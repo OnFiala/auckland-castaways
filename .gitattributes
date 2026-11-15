@@ -1,0 +1,10 @@
+# Preserve downloaded originals byte-for-byte, including OCR whitespace.
+sources/originals/** -text -whitespace
+sources/illustrations/** -text
+*.pdf binary
+*.md text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.svg text eol=lf
+*.geojson text eol=lf

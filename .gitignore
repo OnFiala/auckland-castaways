@@ -1,0 +1,11 @@
+# Local caches and credentials never belong to the public research collection.
+.env
+.env.*
+*.pem
+*.key
+__pycache__/
+*.pyc
+.cache/
+.cache-*/
+.tmp/
+.DS_Store

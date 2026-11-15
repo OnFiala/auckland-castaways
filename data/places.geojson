@@ -1,0 +1,91 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "P01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          166,
+          -50.583
+        ]
+      },
+      "properties": {
+        "name": "Auckland Islands – representative point",
+        "source_id": "S029",
+        "precision": "group-level representative only",
+        "datum_note": "WGS84 assumed for display; source datum not confirmed",
+        "use": "orientation only; not navigation"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "P02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          166.0763,
+          -50.8374
+        ]
+      },
+      "properties": {
+        "name": "Carnley Harbour – representative point",
+        "source_id": "S042",
+        "precision": "secondary general location; not camp",
+        "datum_note": "WGS84 assumed for display; source datum not confirmed",
+        "use": "orientation only; not navigation"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "P03",
+      "geometry": null,
+      "properties": {
+        "name": "Epigwaitt hut",
+        "source_id": "S005",
+        "precision": "exact coordinates not established in this revision"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "P04",
+      "geometry": null,
+      "properties": {
+        "name": "Grafton wreck",
+        "source_id": "S006",
+        "precision": "exact coordinates not established in this revision"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "P05",
+      "geometry": null,
+      "properties": {
+        "name": "Invercauld wreck area",
+        "source_id": "S002",
+        "precision": "exact coordinates not established in this revision"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "P06",
+      "geometry": null,
+      "properties": {
+        "name": "Invercauld later shelters",
+        "source_id": "S038",
+        "precision": "exact coordinates not established in this revision"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "P07",
+      "geometry": null,
+      "properties": {
+        "name": "Camp Cove",
+        "source_id": "S001",
+        "precision": "exact coordinates not established in this revision"
+      }
+    }
+  ]
+}

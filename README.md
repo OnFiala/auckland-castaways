@@ -1,2 +1,60 @@
-# auckland-castaways
-Historical research and game narrative development for the Grafton and Invercauld castaways (Auckland Islands, 1864–1865).
+# Auckland Castaways
+
+**Rešerše a návrh historické hry o trosečnících lodí Grafton a Invercauld na Aucklandových ostrovech v letech 1864–1865.** Hlavní texty jsou česky; bibliografická metadata zachovávají původní názvy a anglické pracovní popisy.
+
+Tento repozitář je první rozsáhlý výzkumný a příběhový balík. Obsahuje **53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek, dva úplné dobové skeny, dva obrazové výřezy a návrh kampaně s 12 kapitolami**. Není hotovou hrou ani tvrzením, že byly nalezeny všechny prameny. U každé položky je rozlišeno, zda byl čten text, jen vybrané pasáže, indexované OCR, metadata, nebo šlo pouze o nalezenou stopu.
+
+Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
+
+## Začněte zde
+
+| Potřebuji… | Dokument |
+|---|---|
+| Pochopit skutečný příběh | [Historický přehled](research/OVERVIEW.md) |
+| Najít původ a přesnou oporu tvrzení | [Registr pramenů](sources/REGISTER.md) a [evidenční deník](research/CHRONOLOGY.md) |
+| Zjistit, co si odporuje | [Rozpory a kouř](research/CONFLICTS.md), [nápoj z místních rostlin](research/FERMENTED_DRINK.md) |
+| Poznat posádky a prostředí | [Životopisné karty](research/CREW.md), [geografie](research/GEOGRAPHY.md), [materiální kultura](research/MATERIAL_CULTURE.md) |
+| Rozlišit historii a tvůrčí zásahy | [Fakt, úsudek a fikce](research/FACT_INFERENCE_FICTION.md) |
+| Posoudit navrhovanou hru | [Příběhová bible](story/NARRATIVE_BIBLE.md), [kapitoly a mise](story/CHAPTERS.md), [ukázková scéna](story/SCENE_SAMPLE.md) |
+| Vybrat první realizovatelný krok | [Formáty](design/FORMATS.md), [systémy](design/SYSTEMS.md), [vertikální řez](design/VERTICAL_SLICE.md) |
+| Prověřit další zpracování a užití materiálů | [Adaptace a práva](research/ADAPTATIONS_AND_RIGHTS.md), [RIGHTS](RIGHTS.md) |
+| Navázat další rešerší | [Backlog](research/BACKLOG.md), [deník hledání](research/SEARCH_LOG.md), [metoda a vydání](research/EDITIONS_AND_METHOD.md) |
+
+## Pevné historické body
+
+Grafton ztroskotal **3.1.1864**. Všech pět mužů přežilo, postavilo společné obydlí Epigwaitt, pracovalo s nástroji a výhní a přestavělo člun. **19.7.1865** odpluli Musgrave, Raynal a Alick; **24.7.** dosáhli Port Adventure na Stewartově ostrově. Musgrave se vrátil a **24.8.1865** vyzvedl George Harrise a Henryho. Opora: S001/S003; E003, E025–E033, E039.
+
+Invercauld ztroskotal **10.5.1864** u severního konce ostrova. Z **25** lidí se **19** dostalo na břeh; pouze **Dalgarno, Smith a Holding** se dočkali záchrany v květnu 1865. Přesný den záchrany se v podáních rozchází. Skupiny se během pobytu nesetkaly a nevěděly o sobě. Měly rozdílný materiál, zdravotní stav, velikost i místo pobytu; výsledek nelze vysvětlit pouze vedením. S002/S038; E011–E019, E036, E048.
+
+Srpen 1865 přináší Musgraveovo **nejisté pozorování kouře**. Vydavatelský dodatek jej spojuje s Invercauldem, jehož tři známí přeživší však byli zachráněni už v květnu. Původ kouře není vyřešen. Herní setkání nebo objevení cizího tábora během pobytu na ostrově by bylo alternativní historií. [Rozbor](research/CONFLICTS.md).
+
+## Tvůrčí návrh
+
+Doporučena je narativní strategie o udržení pěti lidí, práce a společných závazků. Finále tvoří **návrat pro ty, kteří zůstali**, ne jen první únik z ostrova. Invercauld dostává připsaná svědectví a archivní mezihry, které zachovávají rozdílné podmínky a nejistotu.
+
+První řez **Poslední vrták** má na malé scéně ověřit práci, odpočinek, zásoby, dohody a změnu nefunkčního plánu. Cílových 30–45 minut a pět zhuštěných dnů je návrh k testování. Dialogy, číselné hodnoty, událostní karty a část pořadí scén jsou vlastní fikce, nikoli rekonstruované zápisy skutečných lidí.
+
+## Získané originály a data
+
+- [Musgrave 1866 — úplný PDF sken](sources/originals/castawayonauckla01musg.pdf) a [strojový text](sources/originals/musgrave-1866-pdftotext.txt).
+- [Raynal 1874 — úplný anglický PDF sken](sources/originals/wreckedonareef00rayngoog.pdf) a [surové OCR](sources/originals/wreckedonareef00rayngoog_djvu.txt).
+- [Dobová mapa a frontispis](sources/ILLUSTRATIONS.md), [manifest akvizic s SHA-256](sources/acquisition-manifest.json) a [návod ke čtení souborů](sources/ACQUISITION.md).
+- [Prameny JSON](data/sources.json), [evidence CSV](data/evidence.csv), [posádky CSV](data/crew.csv), [tvrzení CSV](data/claims.csv), [místa GeoJSON](data/places.geojson), [návrhové události JSON](data/events.json).
+
+Moderní knihy ani muzejní fotografie nejsou celé přebírány. Smithova samostatná kniha *The Castaways* (1866) je bibliograficky potvrzená, ale její nalezené skeny se nepodařilo zpřístupnit. Srovnání jeho hlasu s Dalgarnem zde stojí na novinovém dopise. Francouzský Raynalův seriál byl čten na webu; celá francouzská knižní vydání zatím nebyla získána.
+
+## Důležitý nález o adaptacích
+
+Tvrzení „příběh nebyl zfilmován“ neplatí: **ZDF Terra X: Die Schiffbrüchigen (2022)** je ověřené přímé dokumentární zpracování. Filmová opce na Druettinu knihu je doložena jako zpráva, její současný stav a dokončený hraný film nikoli. Přímá vydaná hra nebyla v cíleném hledání spolehlivě identifikována; absence není prokázána. [Soupis a meze hledání](research/ADAPTATIONS_AND_RIGHTS.md).
+
+## Údržba a ověření
+
+```sh
+python tools/validate.py
+python tools/render_register.py
+python tools/render_evidence.py
+# Volitelně nová síťová kontrola; přepisuje datovaný report:
+python tools/check_links.py
+```
+
+Kontrola prověřuje odkazy mezi místními soubory, ID, datové vazby, počty posádek a hashe získaných souborů. Neautomatizuje historický úsudek. [Výsledek kontroly](reports/VALIDATION.md) rozlišuje dostupné URL od blokovaných odpovědí; HTTP200 neznamená přečtený pramen. Pravidla dalších příspěvků: [CONTRIBUTING](CONTRIBUTING.md).

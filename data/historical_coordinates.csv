@@ -1,0 +1,2 @@
+place,latitude_as_printed,longitude_as_printed,decimal_latitude_arithmetic_only,decimal_longitude_arithmetic_only,datum,source_id,locator,note
+Ross observatory at Sarah Harbour / Terror Cove,50 32 30 S,166 12 34 E,-50.541666667,166.209444444,unknown historical datum,S001,Appendix II p.163,Not a modern GPS fix or camp location

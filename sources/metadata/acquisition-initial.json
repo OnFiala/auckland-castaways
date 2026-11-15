@@ -1,0 +1,38 @@
+[
+  {
+    "source_id": "S001",
+    "url": "https://archive.org/download/castawayonauckla01musg/castawayonauckla01musg.pdf",
+    "final_url": "https://ia800701.us.archive.org/22/items/castawayonauckla01musg/castawayonauckla01musg.pdf",
+    "path": "sources/originals/castawayonauckla01musg.pdf",
+    "bytes": 8967434,
+    "sha256": "0cce4b167b394959b6575cb0fd0fa01135b28501ebcabb5f72dc15aa14328485",
+    "retrieved_at": "2026-11-15T14:33:24.875417+00:00",
+    "status": 200
+  },
+  {
+    "source_id": "S001",
+    "url": "https://archive.org/download/castawayonauckla01musg/castawayonauckla01musg_djvu.txt",
+    "path": "sources/originals/castawayonauckla01musg_djvu.txt",
+    "error": "HTTP Error 500: Internal Server Error"
+  },
+  {
+    "source_id": "S004",
+    "url": "https://archive.org/download/wreckedonareef00rayngoog/wreckedonareef00rayngoog.pdf",
+    "final_url": "https://dn710604.ca.archive.org/0/items/wreckedonareef00rayngoog/wreckedonareef00rayngoog.pdf",
+    "path": "sources/originals/wreckedonareef00rayngoog.pdf",
+    "bytes": 7375005,
+    "sha256": "55b465457c329a78f54b5317dfa80a4d5899662f5bce756a500e249abd6e4e09",
+    "retrieved_at": "2026-11-15T14:33:25.156037+00:00",
+    "status": 200
+  },
+  {
+    "source_id": "S004",
+    "url": "https://archive.org/download/wreckedonareef00rayngoog/wreckedonareef00rayngoog_djvu.txt",
+    "final_url": "https://dn710604.ca.archive.org/0/items/wreckedonareef00rayngoog/wreckedonareef00rayngoog_djvu.txt",
+    "path": "sources/originals/wreckedonareef00rayngoog_djvu.txt",
+    "bytes": 398076,
+    "sha256": "42f94fd9a967f4de3eb2bd27e8bd9b401b1e1c714f5ed25f773c2d678dd4faa7",
+    "retrieved_at": "2026-11-15T14:33:24.630229+00:00",
+    "status": 200
+  }
+]

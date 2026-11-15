@@ -1,0 +1,255 @@
+{
+  "schema_version": "0.1",
+  "status": "design_data_not_executable_game",
+  "all_numeric_effects": "fictional prototype units, not historical measurements",
+  "events": [
+    {
+      "event_id": "EV01",
+      "title_cs": "První zkouška",
+      "node": "M06",
+      "kind": "fiction_based_on_event",
+      "evidence_ids": [
+        "E025",
+        "E026"
+      ],
+      "source_ids": [
+        "S001"
+      ],
+      "trigger": "day == 1 and forge_ready",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Dva na výheň, ostatní zajistí chod domu",
+          "effects": {
+            "dry_fuel": -2,
+            "knowledge": 1
+          },
+          "note_cs": "Čísla jsou prototypová."
+        },
+        {
+          "id": "b",
+          "label_cs": "Nejprve posílit zásoby a zázemí",
+          "effects": {
+            "preparedness": 1,
+            "experiment_delay": 1
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "EV02",
+      "title_cs": "Výsledek bez vrtáku",
+      "node": "M06",
+      "kind": "fiction_based_on_event",
+      "evidence_ids": [
+        "E026"
+      ],
+      "source_ids": [
+        "S001"
+      ],
+      "trigger": "first_trial_complete",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Omezit další zkoušku na jednu směnu",
+          "effects": {
+            "promise_trial_limit": true
+          }
+        },
+        {
+          "id": "b",
+          "label_cs": "Vyhodnotit přestavbu člunu",
+          "effects": {
+            "boat_plan_visible": true
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "EV03",
+      "title_cs": "Mokré palivo",
+      "node": "M06",
+      "kind": "composite_fiction",
+      "evidence_ids": [
+        "E023",
+        "E025"
+      ],
+      "source_ids": [
+        "S001"
+      ],
+      "trigger": "day == 3",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Odložit výheň a připravit suchou zásobu",
+          "effects": {
+            "preparedness": 1,
+            "experiment_delay": 1
+          }
+        },
+        {
+          "id": "b",
+          "label_cs": "Použít rezervu a přijmout menší večerní komfort",
+          "effects": {
+            "dry_fuel": -1,
+            "evening_recovery": "reduced"
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "EV04",
+      "title_cs": "Slíbená stopka",
+      "node": "M06",
+      "kind": "fiction",
+      "evidence_ids": [
+        "E007",
+        "E010"
+      ],
+      "source_ids": [
+        "S001",
+        "S003"
+      ],
+      "trigger": "promise_trial_limit and shift_end",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Skončit podle dohody",
+          "effects": {
+            "promise_status": "kept"
+          }
+        },
+        {
+          "id": "b",
+          "label_cs": "Požádat o společnou změnu dohody",
+          "effects": {
+            "deliberation_required": true
+          }
+        },
+        {
+          "id": "c",
+          "label_cs": "Pokračovat bez dohody",
+          "effects": {
+            "promise_status": "broken",
+            "trust_state": "strained"
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "EV05",
+      "title_cs": "Ruce na zítřek",
+      "node": "M06",
+      "kind": "composite_fiction",
+      "evidence_ids": [
+        "E025",
+        "E026"
+      ],
+      "source_ids": [
+        "S001"
+      ],
+      "trigger": "worker_capacity == exhausted",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Přerozdělit práci a umožnit zotavení",
+          "effects": {
+            "rest_assignment_required": true
+          }
+        },
+        {
+          "id": "b",
+          "label_cs": "Zkrátit plán na nezbytné úkoly",
+          "effects": {
+            "project_delay": 1
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "EV06",
+      "title_cs": "Zachráněná práce",
+      "node": "M06",
+      "kind": "fiction_based_on_event",
+      "evidence_ids": [
+        "E026",
+        "E027"
+      ],
+      "source_ids": [
+        "S001"
+      ],
+      "trigger": "boat_plan_chosen",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Převést vhodné zásoby do člunu",
+          "effects": {
+            "project": "dinghy_conversion",
+            "reuse_review_required": true
+          }
+        },
+        {
+          "id": "b",
+          "label_cs": "Nejprve společně sepsat dostupné věci",
+          "effects": {
+            "project": "dinghy_conversion",
+            "inventory_review_required": true
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "EV07",
+      "title_cs": "Všech pět u stolu",
+      "node": "M06",
+      "kind": "fiction",
+      "evidence_ids": [
+        "E008",
+        "E010"
+      ],
+      "source_ids": [
+        "S001",
+        "S003"
+      ],
+      "trigger": "day == 5",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Domluvit nový plán práce",
+          "effects": {
+            "slice_complete": true
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "EV08",
+      "title_cs": "Co je doložené",
+      "node": "M06",
+      "kind": "source_note",
+      "evidence_ids": [
+        "E026"
+      ],
+      "source_ids": [
+        "S001"
+      ],
+      "trigger": "slice_complete",
+      "choices": [
+        {
+          "id": "a",
+          "label_cs": "Otevřít zápis a vysvětlení komprese",
+          "effects": {
+            "codex_entry": "E026"
+          }
+        },
+        {
+          "id": "b",
+          "label_cs": "Vrátit se k jinému rozdělení práce",
+          "effects": {
+            "restart_offer": true
+          }
+        }
+      ]
+    }
+  ]
+}

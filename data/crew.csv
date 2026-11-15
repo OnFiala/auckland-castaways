@@ -1,0 +1,31 @@
+person_id,name,variants,role,life_or_age,outcome,source_ids,qualification
+G01,Thomas Musgrave,Musgrave,captain,1832–1891,5/5 rescued,S001;S032,"Kapitán, navigace, deník. Rozlišit jeho zápisy a Shillinglawovy editorské dodatky."
+G02,François Édouard Raynal,F. E. Raynal; Francois,mate / expedition participant,1830–1898,5/5 rescued,S003;S004;S031,Vypravěč pozdějších pamětí; věk a hornická minulost autobiografické.
+G03,Alexander Maclaren,McLaren; Alick; Alex. M’Laren,seaman,about 28 in Raynal,5/5 rescued,S004;S005,Nor podle Raynala p.41; podoba jména kolísá. Jeden ze tří v člunu.
+G04,George Harris,George,seaman,about 20 in Raynal,5/5 rescued,S001;S004,Angličan podle Raynala p.41; zůstal s Henrym v Epigwaittu.
+G05,Henry Forgés,Forges; Forgès; Harry; Henry Folgee,cook / seaman,about 23 in Raynal,5/5 rescued,S001;S004,Portugalec z Azor podle Raynala p.41; přesný matriční zápis neověřen.
+I01,George Dalgarno,see notes,captain,not verified,rescued May 1865,S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I02,Andrew Smith,see notes,chief mate,not verified,rescued May 1865,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I03,Alex. Henderson,see notes,carpenter,not verified,died ashore according to Dalgarno / Smith,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I04,Richard Peenbo,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I05,W. Bonner,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I06,Juan Lagos,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I07,Wm. Goble,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I08,W. Cowan,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I09,Jacob T. Turner,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I10,John Peterson,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I11,James Lancefield,see notes,not resolved,not verified,died ashore according to Dalgarno / Smith,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny. OCR varianty Laneefield / Smithovo Sansfield vyžadují kontrolu.
+I12,John Wilson,see notes,not resolved,not verified,drowned at wreck according to Dalgarno,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I13,Wm. Middleton,see notes,not resolved,not verified,drowned at wreck according to Dalgarno,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I14,George Liddle,see notes,not resolved,not verified,died ashore according to Dalgarno / Smith,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny. OCR seznamu má Liddie; normalizace podle dopisu.
+I15,John Maloney,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,"Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny. Některé pozdější seznamy navíc přidávají Jamese Mahoneyho, čímž vznikne 26 osob. Identitu neslučujeme ani další osobu nepřidáváme."
+I16,Robert Holding,see notes,seaman,not verified,rescued May 1865,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I17,W. Hipwell,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I18,John W. Tait,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I19,Thomas Page,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I20,Wm. Hervey,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I21,James Southerland,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I22,John Teasen,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I23,Aug. Bruns,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I24,Fritz Hawser,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.
+I25,A. Burns,see notes,not resolved,not verified,died; exact circumstances unresolved,S011;S002;S038,Jméno z OCR seznamu S011; originální obraz a muster roll dosud neověřeny.

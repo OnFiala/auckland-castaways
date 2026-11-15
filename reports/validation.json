@@ -1,0 +1,22 @@
+{
+  "sources": 53,
+  "source_statuses": {
+    "inspected_passages": 7,
+    "inspected_text": 4,
+    "inspected_indexed_ocr": 7,
+    "discovered_viewer_blocked": 6,
+    "inspected_metadata": 23,
+    "inspected_indexed_excerpt": 2,
+    "discovered_dynamic_record": 1,
+    "inspected_indexed_metadata": 1,
+    "discovered_unverified": 1,
+    "discovered_blocked": 1
+  },
+  "evidence_entries": 55,
+  "crew_rows": 30,
+  "claims": 34,
+  "design_events": 8,
+  "hashed_files": 8,
+  "local_links_checked": 76,
+  "errors": []
+}

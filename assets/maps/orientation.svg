@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="670" viewBox="0 0 1000 670" role="img" aria-labelledby="title desc">
+<title id="title">Auckland Castaways: orientační schéma</title><desc id="desc">Sever: Invercauld a oblast Port Ross. Jih: Grafton a Carnley Harbour. Diagram nemá měřítko, pobřeží ani přesné trasy.</desc>
+<rect width="1000" height="670" fill="#f3f0e6"/><g font-family="sans-serif" fill="#17383f">
+<text x="55" y="62" font-size="31" font-weight="bold">Dva příběhy na jednom ostrově</text>
+<text x="55" y="95" font-size="17">Orientační schéma • bez měřítka • bez rekonstrukce pobřeží</text>
+<path d="M100 490V165m0 0-12 25m12-25 12 25" fill="none" stroke="#17383f" stroke-width="3"/><text x="91" y="150" font-size="20">S</text>
+<rect x="155" y="135" width="785" height="155" rx="16" fill="#dbe7e8"/>
+<text x="185" y="173" font-size="23" font-weight="bold">SEVER • Invercauld</text>
+<text x="185" y="207" font-size="18">Ztroskotání 10. května 1864 • 25 na palubě → 19 na břehu</text>
+<text x="185" y="238" font-size="18">Více míst pobytu; pozdější pohyb v oblasti Port Ross</text>
+<text x="185" y="267" font-size="18">Tři zachráněni v květnu 1865 • přesný den sporný</text>
+<text x="185" y="335" font-size="18" font-weight="bold">Žádné doložené setkání během pobytu.</text>
+<text x="185" y="365" font-size="17">Nekreslíme přesnou vzdálenost ani cestu mezi tábory.</text>
+<rect x="155" y="403" width="785" height="155" rx="16" fill="#dce4d5"/>
+<text x="185" y="442" font-size="23" font-weight="bold">JIH • Grafton</text>
+<text x="185" y="476" font-size="18">Ztroskotání 3. ledna 1864 • Carnley Harbour • pět přeživších</text>
+<text x="185" y="507" font-size="18">Epigwaitt: společný dům • Camp Cove: příprava odjezdu</text>
+<text x="185" y="537" font-size="18">Tři odplují 19. července 1865; dva vyzvednuti 24. srpna</text>
+<text x="55" y="611" font-size="16">Opora: S001–S005, S007, S038 • podrobnosti a nejistoty: research/GEOGRAPHY.md</text>
+<text x="55" y="640" font-size="15">Vlastní schéma projektu, 2026. Toto není historická mapa ani navigační pomůcka.</text></g></svg>
