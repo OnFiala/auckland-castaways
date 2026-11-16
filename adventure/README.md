@@ -1,37 +1,51 @@
-# Until We Return — First Night
+# Until We Return
 
-A painted point-and-click adventure inspired by the Grafton castaways. Explore the shore, wreck and camp; combine salvaged objects; prepare shelter, fire and a signal. **This is one playable chapter, not the complete nineteen-month story.**
+A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
+
+[Play the hosted game](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
 ## Play
 
-Download this repository and open [dist/index.html](dist/index.html). No installation or server is required. Save availability for local files depends on the browser. GitHub displays the HTML source rather than running it.
+Open [dist/index.html](dist/index.html) from a downloaded copy of this repository. No installation or build is required. Browser support for local-file storage varies. GitHub shows source files rather than running the game.
 
-- Click the ground to walk. Click an object to approach and interact.
-- Select an inventory item, then another item to combine them or a place in the scene to use it.
-- Click a person to hear a short story. Conversations advance automatically; use the arrow to continue or ×/Escape to end. Walking away also ends a conversation.
-- Right-click, Shift+F10 or the context-menu key inspects an object. Escape deselects an item. Space briefly reveals interactive objects.
-- The hint button offers a picture clue. Brief reaction captions are optional; conversations remain readable independently.
-- Settings offer reduced motion and, where supported, optional English narration using a device voice. Narration is off by default and is not a recorded actor performance.
+- Click the ground to walk, an object to collect or approach it, or a person for a short conversation.
+- Select an item in the satchel, then another item to combine them or a world object to use it.
+- Complete the three pictured goals to open the chapter passage. It appears at the right of the scene.
+- The compass button shows the journey. The question mark gives a visual clue and one short instruction. Space reveals hotspots.
+- Right-click or Shift+F10 examines the focused object. Escape clears an item or conversation. Tab and Enter operate controls.
+- Settings include reduced motion, reaction captions and opt-in English device narration. There is no recorded voice acting.
 
-All current interface text, object descriptions, hints and dialogue are English. Existing version-3 saves remain compatible. Any historic Czech journal entries are retained in save data; this interface does not display that journal.
+Progress saves automatically. Existing version-3 first-night saves migrate into chapter I, including completed saves; use the passage to continue into winter. The old save remains untouched. The whole campaign uses a separate version-4 save.
 
-## A living painted scene
+## Chapters
 
-The player and all four companions have six painted walking poses each. Characters keep the same sprite image mounted between steps and while resting; temporary pauses hold the current pose. Walking speed and step cadence share a body-height scale, with gradual starts and stops. Companions change stations after relevant puzzle milestones instead of pacing in repeated loops, and change their stories as shelter, fire and the signal are completed. George is present at camp from the beginning. Subtle sea highlights, distant birds, mist and drifting leaves add movement without changing puzzle targets.
+| Chapter | Places | Play |
+|---|---|---|
+| I · The First Night | Shore, wreck, camp | Recover sailcloth; build shelter, fire and a signal. |
+| II · A House Against the Winter | Epigwaitt, stream | Stitch a roof patch and bring fresh water to the hearth. |
+| III · What Iron Can Become | Forge, charcoal ground | Make the bellows, heat the furnace, test a failed drill and forge fastenings. |
+| IV · Room for Three | Slipway, salvage | Plank, fasten, caulk and rig the boat. |
+| V · Five Days of Ocean | Open boat | Secure the rig, bail, repair canvas and hold a bearing. |
+| VI · The Promise | Harbour, Invercargill chart room | Mark the return route and supply the rescue cutter. |
+| VII · Until We Return | Landing, Epigwaitt | Find Henry and George, prepare the landing and take both aboard. |
 
-[Living-world implementation](LIVING_WORLD.md) · [walking artwork and provenance](WALK_ART.md) · [fictional dialogue and historical basis](STORIES.md) · [painted interface](VISUAL_DESIGN.md).
+The playable viewpoint changes from Alick McLaren to Musgrave for chapters VI–VII. The ending presents the five survivors as a portrait montage, not a claim that all five sailed on the rescue voyage. The Invercauld party is not invented into a meeting with the Grafton crew.
 
-The artwork was generated with AI from this project's original character references. It is not an archaeological reconstruction or an authenticated portrait. Precise first-night puzzles and conversations are original fiction. No Machinarium assets, characters, audio or code were used. [Historical research](../research/OVERVIEW.md).
+## Art and movement
 
-## Verification and remaining work
+All people and physical items use this project's original painted artwork. New scenes have clear foreground walking lanes and state variants for the hearth, forge, boat and crossing. Crew keep persistent sprite images, freeze their pose during interruptions, and move only toward specific work. Player and crew share a body-height step scale. Shapes still vary between the generated walking poses; further animation polish remains necessary.
+
+[Scene artwork](VOYAGE_ART.md) · [walking art](WALK_ART.md) · [motion architecture](LIVING_WORLD.md) · [interface design](VISUAL_DESIGN.md).
+
+The game is an original dramatic adaptation. Puzzles, dialogue, likenesses and convenient staging are fiction, not a measured historical reconstruction. No assets, characters, audio or code from Machinarium were used.
+
+## Validation
 
 ```sh
-node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs adventure/tests/live.test.cjs
+node --test adventure/tests/*.test.js adventure/tests/*.test.cjs adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs adventure/tests/voyage-ui.cjs
 node adventure/tests/ui-contract.cjs
 ```
 
-The puzzle checks cover all 172 reachable states, each with a route to completion. See [verification details and current results](TESTING.md) and the [motion-repair review](reviews/23-motion-repair.md).
+Every one of the campaign's 705 reachable chapter states can reach completion. Real application handlers have completed the full game with repeated save/reload and old-save migration. [Current release evidence](FULL_GAME_TESTING.md).
 
-The renewed cloud preview/browser attempt remains blocked, so complete rendered playback, touch interaction and device narration have not been verified in a real browser. The unchanged generated poses have visible volume, orientation and gait variation; this repair does not claim finished animation quality. Further chapters—winter, the forge, boatbuilding, escape and the return—remain future work.
-
-[Earlier 20-role interface review](SWARM.md) · [original research/story repository](../README.md).
+The managed preview route remains unavailable. Actual browser playback, final visual alignment, touch behavior, native focus, narration quality and frame rate are unverified. Individual generated paintings have been inspected, and their source metadata and hashes are recorded. This is an implemented full campaign, with visual acceptance and player testing still outstanding.

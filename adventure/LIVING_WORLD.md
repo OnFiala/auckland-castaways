@@ -1,3 +1,5 @@
+> The active game now covers all seven chapters. See [the full story](FULL_STORY.md) and [current release verification](FULL_GAME_TESTING.md). The movement architecture below still applies; chapter scenery, protagonist switching and progression are implemented in `voyage.js`, `voyage-world.js` and `voyage-stories.js`.
+
 # English dialogue and living characters
 
 16 November 2026. The motion repair replaces looping patrols and repeated sprite replacement. English storytelling, inventory-puzzle rules and version-3 saves remain compatible.

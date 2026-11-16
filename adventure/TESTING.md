@@ -1,4 +1,10 @@
-# Verification — movement repair
+# Current campaign release
+
+The seven-chapter game is documented in [FULL_GAME_TESTING](FULL_GAME_TESTING.md): **67/67 release tests passed**, with all 705 reachable chapter states able to finish. The separate first-night handler walkthrough also passed. Browser playback remains unverified because the managed preview relay is unavailable.
+
+The movement-repair record below is retained as the preceding release snapshot.
+
+## Previous release — movement repair
 
 16 November 2026. Final automated run: **47/47 Node tests passed**, plus the separate complete UI-handler contract.
 

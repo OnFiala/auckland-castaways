@@ -2,22 +2,28 @@
 
 **Rešerše a návrh historické hry o trosečnících lodí Grafton a Invercauld na Aucklandových ostrovech v letech 1864–1865.** Hlavní texty jsou česky; bibliografická metadata zachovávají původní názvy a anglické pracovní popisy.
 
-Tento repozitář obsahuje první rozsáhlý výzkumný a příběhový balík a **celou malovanou příběhovou kampaň Dokud se nevrátíme**. Obsahuje **53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek, dva úplné dobové skeny, dva obrazové výřezy a návrh kampaně s 12 kapitolami**. Není hotovou hrou ani tvrzením, že byly nalezeny všechny prameny. U každé položky je rozlišeno, zda byl čten text, jen vybrané pasáže, indexované OCR, metadata, nebo šlo pouze o nalezenou stopu.
+Tento repozitář obsahuje historickou rešerši a **anglickou malovanou point-and-click adventuru Until We Return: sedm hratelných kapitol od ztroskotání po návrat pro oba čekající muže**. Rešeršní část obsahuje 53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek a dobové materiály. Není tvrzením, že byly nalezeny všechny prameny. U zdrojů se rozlišuje čtený text, vybrané pasáže, OCR, metadata a neověřené stopy.
 
 Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
 
-## Aktuální směr: klasická vizuální adventura
+## Aktuální hra: Until We Return
 
-Předchozí větvené čtení bylo odmítnuto jako nevhodný herní formát. Nová verze **První noc** má tři propojené lokace, chodící postavu, inventářové kombinace a používání předmětů na prostředí. Hádanky mění obraz scény; krátké titulky jsou standardně vypnuté. Směr vyprávění upřednostňuje obraz a akci.
+**[Spustit hostovanou hru](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
 
-[Anglická verze, chůze a rozhovory](adventure/LIVING_WORLD.md) · [Vizuální revize a tým 20 rolí](adventure/SWARM.md) · [Návod k nové adventuře](adventure/README.md) · [herní soubor po stažení](adventure/dist/index.html) · [provedené testy a jejich meze](adventure/TESTING.md).
+Sedm kapitol propojuje 14 lokací: první noc, zimní dům, kovárnu, přestavbu člunu, oceánskou plavbu, opatření pomoci a záchranný návrat. Hráč chodí po scénách, sbírá a kombinuje předměty, používá je na prostředí a vede krátké anglické rozhovory. Inventář obsahuje 38 různých herních předmětů. Opravený dům, kovárna, člun a bezpečná plavba mají viditelnou změnu obrazu. Hra ukládá postup a převede starší uloženou první kapitolu.
 
-Jde o první hratelnou kapitolu nového systému. **Celá historická kampaň zatím není převedená na adventurní hádanky.** Původní texty a prototypy níže zůstávají jako starší vývojové podklady.
+V kapitolách I–V je dramatickou perspektivou Alick McLaren; v VI–VII kapitán Musgrave, který se historicky účastnil návratu. Závěr neumisťuje všech pět lidí na záchrannou palubu. Invercauld zůstává součástí rešerše, jeho trosečníci nejsou smyšleně propojeni s hráčovou skupinou.
+
+[Příběh celé hry](adventure/FULL_STORY.md) · [Hranice adaptace](adventure/HISTORICAL_ADAPTATION.md) · [Nové malby](adventure/VOYAGE_ART.md) · [Ověření celé hry](adventure/FULL_GAME_TESTING.md) · [Oprava pohybu](adventure/reviews/23-motion-repair.md).
+
+Automatický průchod dokončí všech sedm kapitol. Všech 705 dosažitelných stavů kapitol má cestu k dokončení. Cloudový náhled je stále blokován infrastrukturou; vizuální průchod, dotykové ovládání a plynulost v reálném prohlížeči proto nejsou potvrzené. Jde o implementovanou kompaktní kampaň se začátkem i koncem, která stále potřebuje vizuální a hráčské doladění.
+
+Starší rozhodovací a strategické prototypy níže jsou archivem vývoje.
 
 ## Předchozí příběhová kampaň
 
 
-**Dokud se nevrátíme** nyní obsahuje 12 kapitol, 36 rozhodovacích scén, 72 voleb, tři archivní mezihry Invercauldu a epilog. Pět původních maleb doplňují animované vrstvy mlhy, vody, deště a pohybu postavy. Příběh vede od ztroskotání až po návrat pro George a Henryho.
+Archivovaná rozhodovací verze **Dokud se nevrátíme** obsahuje 12 kapitol, 36 rozhodovacích scén, 72 voleb, tři archivní mezihry Invercauldu a epilog. Pět původních maleb doplňují animované vrstvy mlhy, vody, deště a pohybu postavy. Příběh vede od ztroskotání až po návrat pro George a Henryho.
 
 [Návod ke kampani](campaign/README.md) · [úplný scénář](campaign/STORY.md) · [původ maleb](campaign/ART.md) · [ověření a jeho meze](campaign/TESTING.md).
 
@@ -35,7 +41,7 @@ Herní model prošel 12 automatickými testy včetně úplného dohrání. Cloud
 
 | Potřebuji… | Dokument |
 |---|---|
-| Projít celou malovanou kampaň | [Dokud se nevrátíme](campaign/README.md) |
+| Hrát aktuální celou adventuru | [Until We Return](adventure/README.md) |
 | Vyzkoušet první hratelnou studii | [Prototyp Poslední vrták](prototype/README.md) |
 | Pochopit skutečný příběh | [Historický přehled](research/OVERVIEW.md) |
 | Najít původ a přesnou oporu tvrzení | [Registr pramenů](sources/REGISTER.md) a [evidenční deník](research/CHRONOLOGY.md) |

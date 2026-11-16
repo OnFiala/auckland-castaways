@@ -1,0 +1,495 @@
+{
+  "created": "2026-11-16",
+  "generator": "image_gen.imagegen",
+  "status": "Original artistic game props, not archaeological evidence.",
+  "grid": {
+    "columns": 3,
+    "rows": 3
+  },
+  "atlases": [
+    {
+      "file": "workshop.png",
+      "original_file": "exec-96521446-874e-4678-853d-2395b1cb50a8.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 2303689,
+      "sha256": "d35c2d09fe19c54e10d6eb41a749aabb18e63e17f8323dba8a846ca9ba69e7a4",
+      "prompt": "Original hand-painted inventory props for a richly illustrated historical point-and-click adventure set among Auckland Island castaways in 1864. Fine irregular graphite and ink outlines, delicate textured gouache and colored-pencil shading, believable material volume, muted warm ochre, charcoal iron, worn brown wood, taupe leather, parchment cream. Match a lovingly drawn weathered sailor in a patched wool coat. Consistent overcast light from upper left. Elegant hand-painted book illustration; NOT flat vectors, NOT emoji, NOT UI icons, NOT a 3D render or photograph. No glossy surfaces, white sticker outlines or modern materials. TRUE TRANSPARENT BACKGROUND; absolutely no opaque backdrop, no gradients filling the canvas, no scenery or floor. Only each isolated prop with a very small translucent contact shade. No people, letters, text, numbers, symbols or gridlines.\nCreate one SQUARE sprite atlas in an EXACT 3-column by 3-row layout of NINE equally sized invisible cells. Prefer 1536x1536 or 1024x1024. Each entire object stays in its own cell, centered with wide clear transparent gutters of at least 12 percent of cell width. Nothing crosses a cell boundary. Objects readable at small size, accurate clear silhouettes, no extra objects.\nROW ONE, left to right: (1) one irregular soft brown cured leather hide, visibly supple edges and tactile grain; (2) a compact stitched brown leather water flask with short wooden stopper and small strap, complete container visible; (3) one short bent dull iron pipe, hollow circular opening visible, 19th century salvaged tubing, angled diagonally.\nROW TWO: (4) a small loosely piled handful of dark charcoal chunks with readable texture and irregular broken facets; (5) three short thick salvaged iron straps laid together, rusty charcoal metal with a couple of old rivet holes, NOT nails; (6) a homemade hand forge bellows with two wooden teardrop boards, brown leather accordion sides, narrow iron nozzle, modest nineteenth-century craft construction, closed compact silhouette.\nROW THREE: (7) a small loose cluster of six hand-forged square boat nails with broad irregular heads, dull iron; (8) three weathered sawn wooden planks overlapping diagonally, complete ends and wood grain; (9) a tangled fibrous bundle of loose tawny oakum from unravelled rope, clearly fibrous caulking material, not a neat rope coil.\nAll nine props painted to the same quality and scale of detail. Keep every prop fully contained and visibly isolated against alpha transparency.",
+      "edits": "None. Original generated PNG bytes preserved.",
+      "alpha_note": "Tiny generated color fringes have alpha below 16. Crops use alpha >=16 bounds with 4-pixel padding; image bytes are unchanged."
+    },
+    {
+      "file": "voyage.png",
+      "original_file": "exec-53da8724-0dad-4362-91aa-77755551b6c8.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 2293156,
+      "sha256": "feb493b00633c36dd90b7eee873351a3f079aa7ec3a33680c570f6cde33e5461",
+      "prompt": "Original hand-painted inventory props for a richly illustrated historical point-and-click adventure set among Auckland Island castaways in 1864. Fine irregular graphite and ink outlines, delicate textured gouache and colored-pencil shading, believable material volume, muted warm ochre, charcoal iron, worn brown wood, taupe leather, parchment cream. Match a lovingly drawn weathered sailor in a patched wool coat. Consistent overcast light from upper left. Elegant hand-painted book illustration; NOT flat vectors, NOT emoji, NOT UI icons, NOT a 3D render or photograph. No glossy surfaces, white sticker outlines or modern materials. TRUE TRANSPARENT BACKGROUND; absolutely no opaque backdrop, no gradients filling the canvas, no scenery or floor. Only each isolated prop with a very small translucent contact shade. No people, letters, text, numbers, gridlines or frames.\nCreate one SQUARE sprite atlas in an EXACT 3-column by 3-row layout of NINE equally sized invisible cells. Prefer 1536x1536 or 1024x1024. Each entire object stays in its own cell, centered with wide clear transparent gutters of at least 12 percent of cell width. Nothing crosses a cell boundary. Objects readable at small size, accurate clear silhouettes, no extra objects.\nROW ONE, left to right: (1) a small squat open earthenware jar holding dark amber resin or pitch, old handmade clay pot with thick dark contents and a wooden stirring stick; (2) a simple carved wooden boat bailer, shallow scoop bowl with one integrated short handle, old weathered timber, 19th century hand tool; (3) a small round brass maritime compass open in a square wooden box, visible single needle and simple unlettered radial marks, no numbers or text.\nROW TWO: (4) a partially unfolded aged parchment sea chart with very faint invented coast contours and a simple dotted curved route, no readable text, no words or lettering, weighted by its own curled corners; (5) a closed weathered leather-bound pocket journal with several cream page edges visible, worn corners and a narrow simple tie, no writing on cover; (6) a compact tied burlap provisions sack, rough taupe cloth, folded neck bound with cord, full and upright, no logos.\nROW THREE: (7) an unlit old brass-and-dark-iron maritime lantern with protective wire bars and glass panes, carrying loop folded upright, modest aged finish, complete lantern; (8) a small rough wooden tray holding a thick lump of black-brown pitch mixed with loose tawny oakum strands, clearly prepared sticky caulking compound, isolated portable working material; (9) a roll of weathered cream sail canvas, tied with two thin cords, modest folded edge showing strong woven textile and stitching, complete rolled cloth.\nAll nine props painted to the same quality and scale of detail. Keep every prop fully contained and visibly isolated against alpha transparency.",
+      "edits": "None. Original generated PNG bytes preserved.",
+      "alpha_note": "Tiny generated color fringes have alpha below 16. Crops use alpha >=16 bounds with 4-pixel padding; image bytes are unchanged."
+    }
+  ],
+  "sprites": {
+    "hide": {
+      "atlas": "workshop.png",
+      "column": 0,
+      "row": 0,
+      "cell": [
+        0,
+        0,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        11,
+        57,
+        404,
+        397
+      ],
+      "viewBox": [
+        7,
+        53,
+        401,
+        348
+      ]
+    },
+    "flask": {
+      "atlas": "workshop.png",
+      "column": 1,
+      "row": 0,
+      "cell": [
+        418,
+        0,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        484,
+        19,
+        794,
+        405
+      ],
+      "viewBox": [
+        480,
+        15,
+        318,
+        394
+      ]
+    },
+    "metalPipe": {
+      "atlas": "workshop.png",
+      "column": 2,
+      "row": 0,
+      "cell": [
+        836,
+        0,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        875,
+        78,
+        1230,
+        380
+      ],
+      "viewBox": [
+        871,
+        74,
+        363,
+        310
+      ]
+    },
+    "charcoal": {
+      "atlas": "workshop.png",
+      "column": 0,
+      "row": 1,
+      "cell": [
+        0,
+        418,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        19,
+        499,
+        398,
+        765
+      ],
+      "viewBox": [
+        15,
+        495,
+        387,
+        274
+      ]
+    },
+    "ironScrap": {
+      "atlas": "workshop.png",
+      "column": 1,
+      "row": 1,
+      "cell": [
+        418,
+        418,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        433,
+        462,
+        808,
+        812
+      ],
+      "viewBox": [
+        429,
+        458,
+        383,
+        358
+      ]
+    },
+    "bellows": {
+      "atlas": "workshop.png",
+      "column": 2,
+      "row": 1,
+      "cell": [
+        836,
+        418,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        836,
+        436,
+        1243,
+        804
+      ],
+      "viewBox": [
+        836,
+        432,
+        411,
+        376
+      ]
+    },
+    "boatNails": {
+      "atlas": "workshop.png",
+      "column": 0,
+      "row": 2,
+      "cell": [
+        0,
+        836,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        32,
+        866,
+        374,
+        1236
+      ],
+      "viewBox": [
+        28,
+        862,
+        350,
+        378
+      ]
+    },
+    "planks": {
+      "atlas": "workshop.png",
+      "column": 1,
+      "row": 2,
+      "cell": [
+        418,
+        836,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        418,
+        846,
+        818,
+        1226
+      ],
+      "viewBox": [
+        418,
+        842,
+        404,
+        388
+      ]
+    },
+    "oakum": {
+      "atlas": "workshop.png",
+      "column": 2,
+      "row": 2,
+      "cell": [
+        836,
+        836,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        836,
+        871,
+        1241,
+        1229
+      ],
+      "viewBox": [
+        836,
+        867,
+        409,
+        366
+      ]
+    },
+    "resin": {
+      "atlas": "voyage.png",
+      "column": 0,
+      "row": 0,
+      "cell": [
+        0,
+        0,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        60,
+        10,
+        347,
+        406
+      ],
+      "viewBox": [
+        56,
+        6,
+        295,
+        404
+      ]
+    },
+    "bailer": {
+      "atlas": "voyage.png",
+      "column": 1,
+      "row": 0,
+      "cell": [
+        418,
+        0,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        439,
+        72,
+        807,
+        363
+      ],
+      "viewBox": [
+        435,
+        68,
+        376,
+        299
+      ]
+    },
+    "compass": {
+      "atlas": "voyage.png",
+      "column": 2,
+      "row": 0,
+      "cell": [
+        836,
+        0,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        878,
+        6,
+        1205,
+        413
+      ],
+      "viewBox": [
+        874,
+        2,
+        335,
+        415
+      ]
+    },
+    "chart": {
+      "atlas": "voyage.png",
+      "column": 0,
+      "row": 1,
+      "cell": [
+        0,
+        418,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        7,
+        456,
+        402,
+        836
+      ],
+      "viewBox": [
+        3,
+        452,
+        403,
+        384
+      ]
+    },
+    "journal": {
+      "atlas": "voyage.png",
+      "column": 1,
+      "row": 1,
+      "cell": [
+        418,
+        418,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        457,
+        428,
+        781,
+        820
+      ],
+      "viewBox": [
+        453,
+        424,
+        332,
+        400
+      ]
+    },
+    "provisions": {
+      "atlas": "voyage.png",
+      "column": 2,
+      "row": 1,
+      "cell": [
+        836,
+        418,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        873,
+        427,
+        1221,
+        820
+      ],
+      "viewBox": [
+        869,
+        423,
+        356,
+        401
+      ]
+    },
+    "lantern": {
+      "atlas": "voyage.png",
+      "column": 0,
+      "row": 2,
+      "cell": [
+        0,
+        836,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        96,
+        836,
+        325,
+        1247
+      ],
+      "viewBox": [
+        92,
+        836,
+        237,
+        415
+      ]
+    },
+    "caulking": {
+      "atlas": "voyage.png",
+      "column": 1,
+      "row": 2,
+      "cell": [
+        418,
+        836,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        421,
+        908,
+        819,
+        1218
+      ],
+      "viewBox": [
+        418,
+        904,
+        405,
+        318
+      ]
+    },
+    "sailRoll": {
+      "atlas": "voyage.png",
+      "column": 2,
+      "row": 2,
+      "cell": [
+        836,
+        836,
+        418,
+        418
+      ],
+      "alpha16_bbox": [
+        839,
+        915,
+        1246,
+        1199
+      ],
+      "viewBox": [
+        836,
+        911,
+        414,
+        292
+      ]
+    }
+  },
+  "aliases": {
+    "weatherPatch": "hide",
+    "filledFlask": "flask",
+    "leather": "hide",
+    "sailcloth": "sailRoll",
+    "spareSail": "sailRoll",
+    "markedChart": "chart",
+    "rescueProvisions": "provisions",
+    "drillBlank": "metalPipe"
+  },
+  "reused_original_props": {
+    "twine": "rope",
+    "stormLine": "rope",
+    "rescueLine": "rope",
+    "canvasPatch": "canvas"
+  },
+  "standalone_assets": [
+    {
+      "id": "kettle",
+      "file": "kettle.png",
+      "original_file": "exec-f3d3047a-15af-4bf0-a337-3a20f1df9096.png",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "bytes": 1629369,
+      "sha256": "4ac68a3e99784b8d76d5223ff94d35bf8e2385dd315f23b37d6123cfa91e00a7",
+      "prompt": "One beautiful hand-painted historical castaway adventure prop, a modest 1860s BLACK IRON KETTLE standing alone, full complete object. Squat round cast-iron body with short gently curved spout, small fitted round lid and an arched dark metal carrying handle rising above it. Worn charcoal grey iron, restrained rusty brown patina along rim and seams, softly highlighted curved surface; honest old handmade household implement, no modern enamel or plastic. Fine irregular graphite/ink outlines and textured gouache/colored pencil shading, muted warm ochre highlights and natural material grain, same coherent style as a lovingly illustrated 19th-century sailor's salvage tools, realistic volume but slightly storybook shape. Three-quarter side view, spout points left, handle fully visible, readable silhouette at 80px. Overcast light upperleft. Center inside a SQUARE canvas with at least15% clear padding on all sides. TRUE TRANSPARENT BACKGROUND with no backdrop, no floor, no texture outside object, only tiny translucent contact shadow under base. No people, letters, numbers, symbols, frames, secondary objects or steam. Not photo, not3D, notvector, notemoji, no white sticker border.",
+      "transparent_requested": true,
+      "visually_inspected": true,
+      "edits": "None. Original generated PNG bytes preserved.",
+      "alpha16_bbox": [
+        80,
+        82,
+        1091,
+        1156
+      ],
+      "viewBox": [
+        76,
+        78,
+        1019,
+        1082
+      ]
+    }
+  ]
+}
