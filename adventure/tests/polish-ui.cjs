@@ -86,7 +86,7 @@ test('conversation timers advance and finish, while the speaker stays in place',
  const actor=a.ids.get('person-raynal'),x=actor.style.left;await a.flush();await a.flush();assert.equal(actor.style.left,x);
  a.runTimers();assert.equal(a.ids.get('dialogue-progress').textContent,'2 / 3');a.runTimers();assert.equal(a.ids.get('dialogue-progress').textContent,'3 / 3');a.runTimers();assert(a.ids.get('dialogue').hidden);
 });
-test('saved reduced-motion preference stops patrol displacement',async()=>{
+test('saved reduced-motion preference stops incidental displacement',async()=>{
  const a=app({initial:{[PREF]:JSON.stringify({reduced:true})}});await a.flush();const actor=a.ids.get('person-raynal'),x=actor.style.left;
  assert.match(x,/%$/);for(let i=0;i<8;i++)await a.flush();assert.equal(actor.style.left,x);
 });
@@ -97,4 +97,31 @@ test('English device narration is opt-in and stale speech cannot reopen a conver
  await a.click('settings');assert(a.ids.get('toggle-narration'));await a.click('toggle-narration');assert.equal(JSON.parse(a.stored[PREF]).narration,true);await a.click('modal-close');
  await a.click(a.target('raynal'));assert.equal(spoken.length,1);assert.equal(spoken[0].lang,'en-GB');assert.equal(spoken[0].voice.lang,'en-GB');assert.match(spoken[0].text,/illness/);
  const end=spoken[0].onend;await a.click('dialogue-close');end();a.runTimers();assert(a.ids.get('dialogue').hidden);assert(canceled>0);
+});
+
+
+test('resting crew stay at work and their decoded image survives conversation',async()=>{
+ const a=app();await a.flush();const actor=a.ids.get('person-raynal'),canvas=a.ids.get('actor-raynal'),picture=canvas.querySelector('image'),viewport=canvas.querySelector('.walk-viewport'),x=actor.style.left;
+ assert(picture);for(let i=0;i<4;i++)await a.flush();assert.equal(actor.style.left,x);
+ assert.equal(canvas.querySelector('image'),picture);assert.equal(canvas.querySelector('.walk-viewport'),viewport);
+ await a.click(a.target('raynal'));await a.click('dialogue-close');await a.flush();assert.equal(canvas.querySelector('image'),picture);assert.equal(actor.style.left,x);
+});
+test('recovering the canvas prompts one short move, then Raynal stays there',async()=>{
+ const a=app();await a.flush();const actor=a.ids.get('person-raynal'),canvas=a.ids.get('actor-raynal'),picture=canvas.querySelector('image');
+ await a.pick('rope');await a.pick('pole');await a.click(a.item('rope'));await a.click(a.item('pole'));await a.use('loopPole','sail');await a.flush();
+ assert.equal(actor.style.left,'75%');assert.equal(canvas.querySelector('image'),picture);
+ for(let i=0;i<4;i++)await a.flush();assert.equal(actor.style.left,'75%');
+ const b=app({initial:a.stored});await b.flush();assert.equal(b.ids.get('person-raynal').style.left,'75%');
+});
+test('approaching a speaker from the right does not cross through him',async()=>{
+ const a=app();await a.travel('exit_camp');await a.travel('exit_beach_camp');await a.click(a.target('raynal'));
+ assert.equal(a.ids.get('player').style.left,'87%');assert.equal(a.ids.get('dialogue').hidden,false);
+});
+
+
+test('lighting the fire and raising the signal preserve the companion image and position',async()=>{
+ const initial=readyToFinish(),state=JSON.parse(initial[KEY]);state.flags.fireLit=false;initial[KEY]=JSON.stringify(state);
+ const a=app({initial});await a.flush();const button=a.ids.get('person-george'),canvas=a.ids.get('actor-george'),image=canvas.querySelector('image'),x=button.style.left;
+ await a.use('tinderbox','hearth');assert(a.state().flags.fireLit);await a.use('flagcloth','cairn');
+ assert.equal(a.ids.get('person-george'),button);assert.equal(a.ids.get('actor-george'),canvas);assert.equal(canvas.querySelector('image'),image);assert.equal(button.style.left,x);
 });

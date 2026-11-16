@@ -9,6 +9,8 @@ const crypto=require('node:crypto');
 const dist=path.join(__dirname,'../dist');
 const A=require('../dist/art.js');
 const E=require('../dist/engine.js');
+const M=require('../dist/animation.js');
+const actor=id=>({file:M.WALKS[id].file,box:M.frameBox(id,M.REST_FRAME)});
 const KEY='castaways-adventure-v3';
 function entries(){return Object.entries(A).filter(([name,value])=>['props','people','states'].includes(name)&&value&&typeof value==='object').flatMap(([group,values])=>Object.entries(values).map(([id,a])=>({group,id,a})));}
 function png(file){const b=fs.readFileSync(file);assert.equal(b.subarray(0,8).toString('hex'),'89504e470d0a1a0a','PNG signature');return{width:b.readUInt32BE(16),height:b.readUInt32BE(20),colorType:b[25]};}
@@ -54,12 +56,12 @@ test('actual inventory and world markup use the correct painted crops throughout
    if(['rope','pole','prybar','canvas'].includes(prop))assert(hasPainting(targets,A.props[prop]),`world ${t.id} must show its own painted crop`);
   }
   assert(!/<path\b/.test(targets),'physical world targets cannot fall back to procedural vector drawings');
-  const person={beach:'raynal',wreck:'musgrave',camp:'henry'}[s.scene];assert(hasPainting(targets,A.people[person]),`${person} world sprite`);
+  const person={beach:'raynal',wreck:'musgrave',camp:'henry'}[s.scene];assert(hasPainting(targets,actor(person)),`${person} world sprite`);
   if(s.scene==='camp'&&s.flags.fireLit)assert(hasPainting(changes,A.states.fire),'lit fire uses its painted state');
   if(s.scene==='camp'&&s.flags.mastRaised)assert(hasPainting(changes,s.flags.signalRaised?A.states.mastFlag:A.states.mast),'mast state uses the correct painting');
   if(s.scene==='camp'&&s.flags.shelterBuilt){assert.equal(ui.ids.get('scene').dataset.shelter,'true');assert(backgroundRule('camp','shelter',A.states.shelter.file),'finished shelter selects its painted background');}
   if(s.scene==='wreck'&&s.flags.crateOpen){assert.equal(ui.ids.get('scene').dataset.crate,'true');assert(backgroundRule('wreck','crate',A.states.crateOpen.file),'opened crate selects its painted background');}
-  if(s.completed){for(const id of ['raynal','musgrave','george'])assert(hasPainting(changes,A.people[id]),`final group ${id}`);}
+  if(s.completed){for(const id of ['raynal','musgrave','george'])assert(hasPainting(ui.ids.get('companions').innerHTML,actor(id)),`final group ${id}`);}
   assert(!/function person\(color/.test(fs.readFileSync(path.join(dist,'app.js'),'utf8')),'old procedural NPC replacement is gone');
  }
  assert.deepEqual([...seen].sort(),Object.keys(E.ITEMS).sort());

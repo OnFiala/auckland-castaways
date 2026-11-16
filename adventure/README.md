@@ -17,7 +17,7 @@ All current interface text, object descriptions, hints and dialogue are English.
 
 ## A living painted scene
 
-The player and all four companions have six painted walking poses each. Companions take short walks, stop when approached or addressed, and change their stories as shelter, fire and the signal are completed. George is present at camp from the beginning. Subtle sea highlights, distant birds, mist and drifting leaves add movement without changing puzzle targets.
+The player and all four companions have six painted walking poses each. Characters keep the same sprite image mounted between steps and while resting; temporary pauses hold the current pose. Walking speed and step cadence share a body-height scale, with gradual starts and stops. Companions change stations after relevant puzzle milestones instead of pacing in repeated loops, and change their stories as shelter, fire and the signal are completed. George is present at camp from the beginning. Subtle sea highlights, distant birds, mist and drifting leaves add movement without changing puzzle targets.
 
 [Living-world implementation](LIVING_WORLD.md) · [walking artwork and provenance](WALK_ART.md) · [fictional dialogue and historical basis](STORIES.md) · [painted interface](VISUAL_DESIGN.md).
 
@@ -30,8 +30,8 @@ node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adve
 node adventure/tests/ui-contract.cjs
 ```
 
-39 tests and the separate UI contract passed. All 172 reachable puzzle states lead to completion. [Verification details and limits](TESTING.md).
+The puzzle checks cover all 172 reachable states, each with a route to completion. See [verification details and current results](TESTING.md) and the [motion-repair review](reviews/23-motion-repair.md).
 
-The cloud preview/browser route remains unavailable, so complete rendered playback, touch interaction and device narration have not been verified in a real browser. Generated poses have minor volume and gait variation; six frames are a first animation pass, not a claim of finished cinematic animation. Further chapters—winter, the forge, boatbuilding, escape and the return—remain future work.
+The renewed cloud preview/browser attempt remains blocked, so complete rendered playback, touch interaction and device narration have not been verified in a real browser. The unchanged generated poses have visible volume, orientation and gait variation; this repair does not claim finished animation quality. Further chapters—winter, the forge, boatbuilding, escape and the return—remain future work.
 
 [Earlier 20-role interface review](SWARM.md) · [original research/story repository](../README.md).

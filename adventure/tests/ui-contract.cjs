@@ -10,7 +10,7 @@ function app({initial={},blocked=false,speech=null}={}){
   set innerHTML(html){for(const child of this.children)if(child.id&&ids.get(child.id)===child)ids.delete(child.id);this._html=html;this.children=parse(html);for(const child of this.children)child.parent=this;}
   get innerHTML(){return this._html||'';}
   setAttribute(k,v){this.attrs[k]=v;}
-  querySelectorAll(sel){const match=sel.match(/^\[data-([\w-]+)(?:="([^"]*)")?\]$/);if(match)return this.children.filter(el=>Object.hasOwn(el.dataset,match[1])&&(match[2]===undefined||el.dataset[match[1]]===match[2]));return this.children.filter(el=>el.tag===sel);}
+  querySelectorAll(sel){if(sel.startsWith('.'))return this.children.filter(el=>(el.attrs.class||'').split(/\s+/).includes(sel.slice(1)));const match=sel.match(/^\[data-([\w-]+)(?:="([^"]*)")?\]$/);if(match)return this.children.filter(el=>Object.hasOwn(el.dataset,match[1])&&(match[2]===undefined||el.dataset[match[1]]===match[2]));return this.children.filter(el=>el.tag===sel);}
   querySelector(sel){return this.querySelectorAll(sel)[0]||null;}
   addEventListener(type,fn){this['on'+type]=fn;}
   insertAdjacentHTML(_,html){const added=parse(html);for(const child of added)child.parent=this;this.children.push(...added);this._html=(this._html||'')+html;}
@@ -28,7 +28,7 @@ function app({initial={},blocked=false,speech=null}={}){
  doc={getElementById:id=>ids.get(id)||null,body:new El('body'),createElement:tag=>{const el=new El();el.tag=tag;return el;}};
  const context={console,document:doc,localStorage:{getItem(k){if(blocked)throw Error('blocked');return stored[k]??null;},setItem(k,v){if(blocked)throw Error('blocked');stored[k]=v;}},matchMedia:()=>({matches:false}),performance:{now:()=>clock},requestAnimationFrame(fn){raf.push(fn);return raf.length;},setTimeout(fn,ms=0){timers.set(++timerId,{fn,ms});return timerId;},clearTimeout(id){timers.delete(id);},addEventListener(type,fn){listeners[type]=fn;}};context.window=context;if(speech){context.speechSynthesis=speech.synth;context.SpeechSynthesisUtterance=speech.Utterance;}
  vm.createContext(context);for(const f of ['art.js','engine.js','animation.js','stories.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
- async function flush(){for(let i=0;i<8;i++){clock+=2000;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();}}
+ async function flush(){for(let i=0;i<600;i++){clock+=16;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();}}
  async function click(id){const el=typeof id==='string'?ids.get(id):id;assert.equal(typeof el?.onclick,'function','click handler '+(id?.id||id));el.onclick({preventDefault(){},stopPropagation(){},target:el});await flush();}
  const target=id=>ids.get('targets').querySelector(`[data-target="${id}"]`);
  const item=id=>ids.get('inventory').querySelector(`[data-item="${id}"]`);

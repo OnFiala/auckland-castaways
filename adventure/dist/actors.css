@@ -1,15 +1,15 @@
-/* Full-body painted pose sequences replace the former split still-image puppet. */
+/* One persistent painted atlas per person, including pause and rest. */
 .player{width:16%;height:32%}.player-sprite{position:absolute;inset:0;transform-origin:50% 99%;pointer-events:none}
 .player-sprite>.painted{width:100%;height:100%;display:block}
 .player.walking .player-sprite{animation:none}.player.acting .player-sprite{animation:actor-reach .55s ease-in-out}
 .actor-canvas{position:absolute;left:-30%;bottom:0;width:160%;height:100%;transform-origin:50% 99%;pointer-events:none}
 .actor-canvas>.painted{width:100%;height:100%;display:block;pointer-events:none}
-.actor-canvas>.walk-painting{animation:none!important}
-.person .actor-painting{animation:castaway-idle 7.8s ease-in-out infinite;transform-origin:50% 99%}
+.actor-canvas>.walk-painting{animation:none}
+.person .actor-canvas[data-moving="false"]>.walk-painting{animation:castaway-idle 7.8s ease-in-out infinite;transform-origin:50% 99%}
 .companion.person{background:none;border:0;padding:0;pointer-events:auto;cursor:pointer;opacity:1;min-height:30px;min-width:30px}
 .conversation-mark{position:absolute;top:-9%;left:50%;transform:translateX(-50%);min-width:22px;height:17px;line-height:10px;background:#f0e0bde8;color:#604a33;border:1px solid #806144;border-radius:50%;font:19px/8px Georgia;letter-spacing:1px;opacity:0;transition:opacity .2s;pointer-events:none}
 .person:hover .conversation-mark,.person:focus-visible .conversation-mark,.person.speaking .conversation-mark{opacity:1}
-.person.speaking .actor-painting{animation:speaking-breath 2.7s ease-in-out infinite}
+.person.speaking .actor-canvas[data-moving="false"]>.walk-painting{animation:speaking-breath 2.7s ease-in-out infinite}
 .dialogue{position:absolute;z-index:98;top:6%;left:50%;transform:translateX(-50%);width:min(520px,65%);background:linear-gradient(120deg,#f0e2c4f5,#e2cea9f5);border:1px solid #a28358;border-radius:3px;box-shadow:0 5px 22px #22180d66;display:flex;gap:14px;padding:14px 16px 13px 19px;color:#493426;text-align:left}
 .dialogue:after{content:'';position:absolute;bottom:-7px;left:70%;height:12px;width:12px;background:#e5d2aef5;border-right:1px solid #a28358;border-bottom:1px solid #a28358;transform:rotate(45deg)}
 .dialogue-copy{flex:1;min-width:0}.dialogue-speaker{font:10px/1.3 Georgia;letter-spacing:1.4px;text-transform:uppercase;color:#775737}
@@ -23,5 +23,8 @@
 @keyframes actor-reach{50%{rotate:1.3deg;translate:1px 1px}}
 @media(max-width:700px){.dialogue{top:4%;width:78%;padding:8px 10px;gap:8px}.dialogue p{font-size:12px;line-height:1.35}.dialogue-speaker{font-size:8px;letter-spacing:.8px}.dialogue-controls button{width:26px;height:25px;font-size:19px}.dialogue-controls{gap:3px}.dialogue[data-speaker=player]{width:72%;bottom:6%}.conversation-mark{scale:.8}.help{width:45px}.help span{font-size:8px;white-space:normal;line-height:1.1;text-align:center}}
 @media(max-height:500px) and (orientation:landscape){.dialogue{padding:7px 10px;width:75%}.dialogue p{font-size:12px}.dialogue-speaker{font-size:8px}.dialogue-controls button{height:23px;width:23px}.dialogue[data-speaker=player]{bottom:6%}}
-.reduced .player.acting .player-sprite,.reduced .person .actor-painting{animation:none!important}
-@media(prefers-reduced-motion:reduce){.player.acting .player-sprite,.person .actor-painting{animation:none!important}}
+.reduced .player.acting .player-sprite,.reduced .person .actor-canvas[data-moving="false"]>.walk-painting{animation:none!important}
+@media(prefers-reduced-motion:reduce){.player.acting .player-sprite,.person .actor-canvas[data-moving="false"]>.walk-painting{animation:none!important}}
+
+/* Actor feet share scene depth; scenery repaint never replaces a companion. */
+.targets{z-index:auto}.companions{position:absolute;inset:0;pointer-events:none}
