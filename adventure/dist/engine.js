@@ -78,8 +78,11 @@ function interact(state,targetId,verb='look'){
  if(verb==='talk'){
   if(target.kind!=='person')return unchanged(state,'Tohle nám neodpoví.','wrong',targetId);
   const f=state.flags;
-  const line=targetId==='raynal'?(!f.canvasRecovered?'Zachyť plachtu smyčkou na bidle.':'Z té plachty bude dobrá střecha.'):targetId==='musgrave'?(!f.crateOpen?'Zkus železo podsunout pod víko.':'V krabičce je suchý troud a křesadlo.'):(!f.shelterBuilt?'Potřebujeme střechu, pak se oheň udrží.':!f.fireLit?'Suché třísky jsou důležitější než velká polena.':'Světlý pruh plátna nahoře bude dobře vidět.');
-  const cue=targetId==='raynal'?(!f.canvasRecovered?'loopPole':'canvas'):targetId==='musgrave'?(!f.crateOpen?'prybar':'tinderbox'):(!f.shelterBuilt?'canvas':!f.fireLit?'firewood':'flagcloth');
+  const advice=targetId==='raynal'?
+   (!f.canvasRecovered?['Zachyť plachtu smyčkou na bidle.','loopPole']:!f.shelterBuilt?['Z té plachty bude dobrá střecha.','canvas']:!f.signalRaised?['Zbytek světlého plátna patří na stožár.','flagcloth']:['Znamení je vidět.','done']):targetId==='musgrave'?
+   (!f.crateOpen?['Zkus železo podsunout pod víko.','prybar']:!f.woodCut?['Sekera odhalí suchý střed kmene.','axe']:!f.fireLit?['V krabičce je suchý troud a křesadlo.','tinderbox']:['Oheň se udržel.','done']):
+   (!f.shelterBuilt?['Potřebujeme střechu, pak se oheň udrží.','canvas']:!f.firewoodPlaced?['Suché třísky patří do ohniště.','firewood']:!f.fireLit?['Teď přilož křesadlo k suchému troudu.','tinderbox']:!f.mastRaised?['Bidlo může stát v kamenné patce.','loopPole']:!f.signalRaised?['Světlý pruh plátna nahoře bude dobře vidět.','flagcloth']:['První noc jsme připraveni přečkat.','done']);
+  const [line,cue]=advice;
   return unchanged(state,line,cue,targetId);
  }
  if(verb==='take'||verb==='use'||verb==='interact'){

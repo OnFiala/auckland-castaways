@@ -1,0 +1,24 @@
+{
+  "created": "2026-11-16",
+  "tool": "image_gen.imagegen",
+  "initial": {
+    "prompt": "Create an ORIGINAL transparent PNG UI material atlas for a classic 1864 castaway painted adventure. The attached sailor and camp are STYLE REFERENCES ONLY: match their very fine graphite outlines, muted gouache/watercolour pigment, detailed understated realistic hand-painted surfaces, tactile worn materials. Do not depict the man, landscape, green plants or any scene. Canvas requested 1536 wide x 1024 high, exactly three equal columns and two equal rows (each cell 512 square); no grid lines visible. SIX isolated front-on UI objects, one centered inside each cell, generous clear transparent margins, no object crossing a cell boundary. All six must have actual transparent alpha all around, NO white/black/coloured background, no shadows bleeding into other cells, no painted backdrop. TOP LEFT cell (x0-511 y0-511): wide horizontal strip of weathered dark walnut ship timber, front-on, approximately 450px wide by 160px tall, gently irregular worn edges, warm brown grain, a few subtle iron nail heads near corners, broad empty usable center. TOP MIDDLE cell (x512-1023 y0-511): wide horizontal faded tan sail canvas and stitched leather inventory tray panel, approximately 450px wide by 210px high, simple narrow leather rim and stitching, large flat EMPTY unobstructed light tan center for inventory items, no inner compartments, no objects in it. TOP RIGHT cell (x1024-1535 y0-511): wide aged ivory paper sheet panel, approximately 450px wide by 300px high, subtle deckle torn edges, softly aged lightly mottled ivory center, EMPTY center clean enough for game dialog text, no writing. BOTTOM LEFT cell (x0-511 y512-1023): small closed worn brown leather satchel icon, about 260px wide by 240px high, flap and simple dull brass closure, short strap only, no long dangling strap. BOTTOM MIDDLE cell (x512-1023 y512-1023): blank circular tarnished brass token or button bezel, about 220px diameter, muted brown-gold aged brass, thin raised rim, empty flat center, NO symbols. BOTTOM RIGHT cell (x1024-1535 y512-1023): small ivory rectangular paper tab/tag, about 280px wide by 110px high, subtly torn edges, EMPTY no writing. Palette warm brown, subdued ochre, ivory and iron slate ONLY; absolutely NO green. No labels, no text, no typography, no letters, no numbers, no map markings, no watermark, no extraneous objects. These must feel like six cohesive physical pieces from the same hand-painted 1864 shipwreck adventure, restrained and usable interface materials, not shiny fantasy game loot or stock vector icons. Keep the atlas layout exactly 3 columns x 2 rows.",
+    "referenced_image_paths": [
+      "adventure/dist/assets/sailor.png",
+      "adventure/dist/assets/camp.png"
+    ],
+    "transparent_background": true,
+    "output": "castaway-ui-atlas.png",
+    "original_output": "/workspace/generated_images/exec-f5215bdf-ac25-4217-b5e7-a1dceb4aef01.png"
+  },
+  "cleanup_experiment": {
+    "prompt": "Edit this exact 1536x1024 UI atlas. Preserve the six objects, their composition, exact positions, proportions, tactile graphite and gouache painting, colour and all intrinsic material detail. ONLY remove the unwanted diffuse brown/black/beige atmospheric background, wide glows and cast shadows around all objects, replacing all empty space with perfectly clean fully transparent alpha=0. Object interiors must remain opaque and readable, with fine anti-aliased object edges. No glow, no drop shadow, no haze, no light pool, no vignette or backdrop. Keep three columns x two rows and all six objects intact. Ensure empty 12px transparent gutters on either side of each 512x512 cell, with the objects fitting within their respective cells: top left wood strip, top center tan leather-rimmed canvas panel, top right ivory deckle paper; bottom left closed satchel, bottom center blank circular brass button, bottom right blank paper tag. No text/symbols. CRITICAL: the final image is six isolated opaque physical UI objects on ACTUAL transparent alpha background, no coloured pixels in the spaces between them. Preserve the original muted brown/ochre/ivory style. Output 1536x1024.",
+    "referenced_image_paths": [
+      "castaway-ui-atlas.png"
+    ],
+    "transparent_background": true,
+    "original_output": "/workspace/generated_images/exec-974479b8-ccc9-4170-88e0-720748eef397.png",
+    "adopted": false,
+    "reason": "Layout and physical edges were already usable in the initial atlas. The cleanup did not remove all alpha 1–31 fringe and introduced stronger surface texture, so the quieter initial painting is retained."
+  }
+}

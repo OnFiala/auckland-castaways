@@ -12,4 +12,4 @@ Podrobné rozlišení opce na moderní knihu, dobového příběhu a obrazových
 
 - **Příběhová kampaň v `campaign/`:** původní kód, scénář a pět AI generovaných maleb. Prompty a SHA-256 jsou v obrazovém manifestu; grafika je výtvarná interpretace, nikoli historický doklad. Nebyly převzaty moderní obrazové předlohy. Obecná licence nového projektu zůstává nezvolena.
 
-- **Nová adventura v `adventure/`:** tři původní AI generované scény a postava, samostatné kreslené předměty a kód; původ a editace jsou v jejím obrazovém manifestu. Nebyly převzaty assety, postavy ani kód Machinaria.
+- **Nová adventura v `adventure/`:** tři původní AI generovaná prostředí, hlavní a čtyři vedlejší postavy, malované rekvizity, stavy prostředí, šestiprvkový atlas rozhraní a původní kód. Původ, prompty, editace a hashe jsou v manifestech a dokumentech ART, PEOPLE_ART, PROPS_ART, STATE_ART a UI_ART. Nebyly převzaty assety, postavy ani kód Machinaria.

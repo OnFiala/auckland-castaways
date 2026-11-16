@@ -1,0 +1,557 @@
+{
+  "schema_version": 1,
+  "asset": "castaway-ui-atlas.png",
+  "sha256": "1f4e0dc8fa557ae200229a35e9192812016c739fc7435aa13b6b07953367f292",
+  "width": 1536,
+  "height": 1024,
+  "mode": "RGBA",
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "cell_width": 512,
+    "cell_height": 512
+  },
+  "coordinate_convention": "x/y from upper-left; bbox [left,top,right,bottom] with right/bottom exclusive; viewBox [x,y,width,height] in native atlas units",
+  "modifications": "None. Exact byte copy of imagegen output. No pixel edits, cropping, resizing, or alpha thresholding.",
+  "alpha_note": "Actual RGBA transparency. Alpha 1–31 fringe can extend to cell edges. UI viewBoxes use the visible alpha>=32 bounds plus a four-pixel safety margin. Alpha maxima are 254, with most material interior alpha 252–253.",
+  "items": [
+    {
+      "id": "timber-strip",
+      "column": 0,
+      "row": 0,
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_bounds_by_minimum_alpha": {
+        "1": {
+          "cell_local": [
+            0,
+            4,
+            512,
+            512
+          ],
+          "atlas": [
+            0,
+            4,
+            512,
+            512
+          ]
+        },
+        "32": {
+          "cell_local": [
+            16,
+            186,
+            501,
+            369
+          ],
+          "atlas": [
+            16,
+            186,
+            501,
+            369
+          ]
+        },
+        "128": {
+          "cell_local": [
+            16,
+            187,
+            500,
+            368
+          ],
+          "atlas": [
+            16,
+            187,
+            500,
+            368
+          ]
+        },
+        "200": {
+          "cell_local": [
+            17,
+            187,
+            500,
+            368
+          ],
+          "atlas": [
+            17,
+            187,
+            500,
+            368
+          ]
+        },
+        "250": {
+          "cell_local": [
+            18,
+            189,
+            499,
+            367
+          ],
+          "atlas": [
+            18,
+            189,
+            499,
+            367
+          ]
+        }
+      },
+      "viewBox": [
+        12,
+        182,
+        493,
+        191
+      ]
+    },
+    {
+      "id": "inventory-canvas",
+      "column": 1,
+      "row": 0,
+      "cell": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "alpha_bounds_by_minimum_alpha": {
+        "1": {
+          "cell_local": [
+            0,
+            0,
+            512,
+            511
+          ],
+          "atlas": [
+            512,
+            0,
+            1024,
+            511
+          ]
+        },
+        "32": {
+          "cell_local": [
+            14,
+            146,
+            496,
+            399
+          ],
+          "atlas": [
+            526,
+            146,
+            1008,
+            399
+          ]
+        },
+        "128": {
+          "cell_local": [
+            14,
+            147,
+            496,
+            398
+          ],
+          "atlas": [
+            526,
+            147,
+            1008,
+            398
+          ]
+        },
+        "200": {
+          "cell_local": [
+            15,
+            147,
+            495,
+            398
+          ],
+          "atlas": [
+            527,
+            147,
+            1007,
+            398
+          ]
+        },
+        "250": {
+          "cell_local": [
+            16,
+            148,
+            495,
+            397
+          ],
+          "atlas": [
+            528,
+            148,
+            1007,
+            397
+          ]
+        }
+      },
+      "viewBox": [
+        522,
+        142,
+        490,
+        261
+      ]
+    },
+    {
+      "id": "dialog-paper",
+      "column": 2,
+      "row": 0,
+      "cell": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "alpha_bounds_by_minimum_alpha": {
+        "1": {
+          "cell_local": [
+            0,
+            17,
+            498,
+            512
+          ],
+          "atlas": [
+            1024,
+            17,
+            1522,
+            512
+          ]
+        },
+        "32": {
+          "cell_local": [
+            11,
+            98,
+            494,
+            443
+          ],
+          "atlas": [
+            1035,
+            98,
+            1518,
+            443
+          ]
+        },
+        "128": {
+          "cell_local": [
+            12,
+            98,
+            493,
+            442
+          ],
+          "atlas": [
+            1036,
+            98,
+            1517,
+            442
+          ]
+        },
+        "200": {
+          "cell_local": [
+            12,
+            99,
+            493,
+            441
+          ],
+          "atlas": [
+            1036,
+            99,
+            1517,
+            441
+          ]
+        },
+        "250": {
+          "cell_local": [
+            14,
+            100,
+            492,
+            440
+          ],
+          "atlas": [
+            1038,
+            100,
+            1516,
+            440
+          ]
+        }
+      },
+      "viewBox": [
+        1031,
+        94,
+        491,
+        353
+      ]
+    },
+    {
+      "id": "satchel",
+      "column": 0,
+      "row": 1,
+      "cell": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "alpha_bounds_by_minimum_alpha": {
+        "1": {
+          "cell_local": [
+            0,
+            0,
+            512,
+            512
+          ],
+          "atlas": [
+            0,
+            512,
+            512,
+            1024
+          ]
+        },
+        "32": {
+          "cell_local": [
+            70,
+            72,
+            444,
+            429
+          ],
+          "atlas": [
+            70,
+            584,
+            444,
+            941
+          ]
+        },
+        "128": {
+          "cell_local": [
+            70,
+            73,
+            443,
+            429
+          ],
+          "atlas": [
+            70,
+            585,
+            443,
+            941
+          ]
+        },
+        "200": {
+          "cell_local": [
+            71,
+            73,
+            443,
+            429
+          ],
+          "atlas": [
+            71,
+            585,
+            443,
+            941
+          ]
+        },
+        "250": {
+          "cell_local": [
+            71,
+            74,
+            442,
+            428
+          ],
+          "atlas": [
+            71,
+            586,
+            442,
+            940
+          ]
+        }
+      },
+      "viewBox": [
+        66,
+        580,
+        382,
+        365
+      ]
+    },
+    {
+      "id": "brass-button",
+      "column": 1,
+      "row": 1,
+      "cell": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "alpha_bounds_by_minimum_alpha": {
+        "1": {
+          "cell_local": [
+            0,
+            1,
+            512,
+            492
+          ],
+          "atlas": [
+            512,
+            513,
+            1024,
+            1004
+          ]
+        },
+        "32": {
+          "cell_local": [
+            96,
+            88,
+            411,
+            409
+          ],
+          "atlas": [
+            608,
+            600,
+            923,
+            921
+          ]
+        },
+        "128": {
+          "cell_local": [
+            97,
+            89,
+            410,
+            409
+          ],
+          "atlas": [
+            609,
+            601,
+            922,
+            921
+          ]
+        },
+        "200": {
+          "cell_local": [
+            97,
+            89,
+            410,
+            409
+          ],
+          "atlas": [
+            609,
+            601,
+            922,
+            921
+          ]
+        },
+        "250": {
+          "cell_local": [
+            98,
+            90,
+            409,
+            408
+          ],
+          "atlas": [
+            610,
+            602,
+            921,
+            920
+          ]
+        }
+      },
+      "viewBox": [
+        604,
+        596,
+        323,
+        329
+      ]
+    },
+    {
+      "id": "paper-tab",
+      "column": 2,
+      "row": 1,
+      "cell": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "alpha_bounds_by_minimum_alpha": {
+        "1": {
+          "cell_local": [
+            1,
+            5,
+            492,
+            464
+          ],
+          "atlas": [
+            1025,
+            517,
+            1516,
+            976
+          ]
+        },
+        "32": {
+          "cell_local": [
+            39,
+            167,
+            472,
+            342
+          ],
+          "atlas": [
+            1063,
+            679,
+            1496,
+            854
+          ]
+        },
+        "128": {
+          "cell_local": [
+            40,
+            168,
+            472,
+            341
+          ],
+          "atlas": [
+            1064,
+            680,
+            1496,
+            853
+          ]
+        },
+        "200": {
+          "cell_local": [
+            40,
+            168,
+            471,
+            341
+          ],
+          "atlas": [
+            1064,
+            680,
+            1495,
+            853
+          ]
+        },
+        "250": {
+          "cell_local": [
+            41,
+            170,
+            470,
+            340
+          ],
+          "atlas": [
+            1065,
+            682,
+            1494,
+            852
+          ]
+        }
+      },
+      "viewBox": [
+        1059,
+        675,
+        441,
+        183
+      ]
+    }
+  ]
+}

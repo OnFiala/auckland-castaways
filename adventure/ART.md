@@ -28,3 +28,7 @@ Jde o autorskou výtvarnou interpretaci Aucklandova ostrova a lodního materiál
 Podklady vraku a tábora obsahují také namalované předměty a konstrukce. Při integraci se jejich viditelný stav musí sladit s inventářem a hotspoty; samotná změna herního stavu neodstraní předmět z PNG. Z pláže byly volné sbírané předměty odstraněny a patří dynamické vrstvě. Vizuální kontrola jednotlivých assetů nezastupuje kontrolu hotové hry v prohlížeči.
 
 Tyto podklady nemění dosavadní rozhodnutí projektu o licenci. Manifest popisuje vznik a použití; sám nepřiděluje obecnou licenci celému repozitáři.
+
+## Rozhraní z téže výtvarné sady
+
+[UI_ART](UI_ART.md) dokládá šest materiálových prvků v jednom původním PNG. Hra používá malované dřevo, plátno, papír a brašnu i mimo samotnou scénu. Objekty a UI mají skutečný vnitřní SVG ořez, aby se při různých poměrech stran nezobrazily sousední části atlasu. Souřadnice a vnitřní viewport se ověřují testem; výsledný render zůstává předmětem browserové kontroly.

@@ -14,6 +14,10 @@ Na břehu, u vraku a pod stromy ovládáte postavu, sbíráte předměty, kombin
 
 Po stažení repozitáře otevřete [dist/index.html](dist/index.html). Nejsou potřeba knihovny, instalace ani server. Ukládání při otevření místního souboru závisí na prohlížeči. GitHub HTML jen zobrazuje jako zdrojový kód.
 
+## Vizuální revize rozhraní
+
+Horní lišta, brašna a dialogy používají vlastní malované dřevo, plátno a papír v teplé paletě. Revize opravuje výřezy atlasů, hloubku lidí, obrazové rady, klávesový fokus i závěrečné okno. [Vizuální směr a výsledek](VISUAL_DESIGN.md) · [20 agentních rolí, modely a výstupy](SWARM.md) · [provenience UI](UI_ART.md).
+
 ## Výtvarná a historická povaha
 
 Tři kreslená/kvašová prostředí, hlavní postava, čtyři další postavy, jedenáct rekvizit a pět maleb změněného prostředí tvoří společnou původní AI generovanou výtvarnou sadu. [Provenience](ART.md), [obrazový manifest](dist/assets/manifest.json). Aktivní předměty, plachta, plamen, signál a reakce jsou samostatné vrstvy; chůze využívá jednoduchou animaci rozdělené postavy, nikoli plnou sadu ručně kreslených snímků.
@@ -25,7 +29,7 @@ Přístřeší, záchrana materiálu a řemeslo mají oporu v historii Graftonu.
 ## Ověření a další rozsah
 
 ```sh
-node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs
+node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs
 node adventure/tests/ui-contract.cjs
 node --check adventure/dist/app.js
 ```

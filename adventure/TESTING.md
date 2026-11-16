@@ -1,27 +1,39 @@
-# Ověření nové adventury
+# Ověření aktuální adventury
 
-16. listopadu 2026. Cloudový Linux; žádné úpravy uživatelova Macu.
+16. listopadu 2026, cloudový Linux. Konečný běh po integraci malovaného rozhraní: **30/30 testů `node:test` a samostatný průchod obsluhami UI úspěšné**.
 
-## Model hádanek
+```sh
+node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs
+node adventure/tests/ui-contract.cjs
+node --check adventure/dist/app.js
+node --check adventure/dist/interface.js
+```
 
-`node --test adventure/tests/engine.test.js`: **13 testů úspěšných**. Kontrolují úplné řešení, kombinace v obou pořadích, opakované i nesprávné použití, přechody mezi místnostmi, krátké rady, obnovu uložené hry a předčasné použití nástroje jako stožáru.
+## Co prošlo
 
-Nezávislá kontrola všech dosažitelných stavů nalezla **172 stavů a 410 změnových přechodů**. Z každého existuje cesta k dokončení. Hra neumožňuje omylem spotřebovat nezbytný předmět tak, aby nebylo možné pokračovat.
+| Sada | Počet | Pokrytí |
+|---|---:|---|
+| Pravidla `engine.test.js` | 13 | Úplné řešení, pořadí kombinací, nesprávné použití, obnova, předčasný stožár a dosažitelnost dokončení ze všech stavů. |
+| Malby `art-contract.cjs` | 4 | Rozměry, výřezy, soubory, původní SHA-256, konkrétní malby předmětů, lidí a změněných stavů. |
+| UI atlas `interface-art.cjs` | 5 | Původní hash a alfa formát, šest výřezů, všechny místní skripty/styly, skutečné zapojení materiálů a vnitřní SVG viewport chráněný před CSS přepisem. |
+| Integrační `polish-ui.cjs` | 8 | Fokus nastavení, přístupný text rady, klávesová inspekce, finále, inertní dekorace, kolize finále s modalem, poškozené uložení vs preference a aktuální Henryho rada. |
 
-V kódu rozhraní byla opravena kolize stylů světových předmětů s inventářem a odložené zobrazení starého finále po restartu. Pozice cílů odpovídají kompozicím maleb. Z plážového podkladu byly generátorem odstraněny statické sbírané předměty; ve hře je tvoří samostatné vrstvy, které při sebrání zmizí.
+Průzkum herního modelu pokrývá **172 dosažitelných stavů a 410 změnových přechodů**. Každý stav má cestu k dokončení. Chybné použití nespotřebuje nezbytný předmět. Samostatný `ui-contract.cjs` vykonal skutečné obsluhy aplikace přes úplný průchod, předčasně použitý a vrácený stožár, načtení mezistavu, restart, nedostupné úložiště a zachování nezměněných cílů.
 
-## Obsluhy rozhraní
+Model pravidel a save formát v3 zůstávají zachované. `engine.js` v této revizi mění pouze texty a obrazové rady postav podle stavu; starší revize kompatibility vznikla ještě před touto drobnou změnou. Nový integrační test ověřuje radu po vložení suchého dřeva.
 
-`node adventure/tests/ui-contract.cjs` spouští skutečné app.js a engine.js nad minimální napodobeninou DOM s řízeným časem animací. Prošel celým řešením, kombinováním, chybným použitím, vrácením předčasného stožáru, přechody lokací, načtením rozehrané hry, závěrečným obrazem, restartem i nedostupným úložištěm. Test pokrývá také závěrečný časovač po rychlém restartu. Nejde o skutečný prohlížeč ani renderer.
+## Opravy nalezené kontrolory
 
-## Malované objekty a postavy
+Nezávislá výtvarná oponentura odhalila, že samotný vnější SVG `viewBox` a `overflow:hidden` nebrání zobrazení sousední části atlasu v mezerách při zarovnání `meet`. Vnitřní viewport nyní obraz opravdu ořezává; inline rozměry navíc zabraňují přepsání obecným CSS. Test kontroluje tuto ochranu pro oba režimy zarovnání. Geometrie byla revidována, výsledné pixely však nebyly zachyceny v celé hře.
 
-`node --test adventure/tests/art-contract.cjs` kontroluje přítomnost a rozměry obrázků, hranice jejich zobrazovacích výřezů, průhlednost podporující formát postav a SHA-256 všech jedenácti nových PNG. Nad skutečným rozhraním dále ověřuje, že každý předmět v inventáři i aktivní objekt ve scéně používá svůj malovaný podklad, každá lokace svou postavu a závěrečná skupina tři další odlišné malby. Testy se spouštějí i nad uloženými mezistavy řešení.
+Samostatná integrační kontrola reprodukovala pokus přesunout fokus do finále pod otevřeným nastavením. Finále nyní čeká na uzavření modalu a při restartu se čekání zruší. Také tato posloupnost má regresní test.
 
-Save formát a pravidla hádanek zůstávají shodná s předchozí verzí. Test obsluh rozhraní prošel znovu i po výměně grafiky.
+Dílčí kontrola animací ve vestavěném headless Chromiu přes CSSOM ověřila definice animací a jejich vypnutí ruční i systémovou preferencí. Nešlo o vizuální přehrání celé hry. [Podrobnosti](reviews/09-motion.md).
 
-## Co tyto kontroly nepotvrzují
+## Nepotvrzené vlastnosti
 
-Automatická kontrola pravidel není vizuální kontrola hry. Spravovaný cloudový náhled v tomto prostředí opakovaně selhává na připojení browserového relay. Vzhled ve skutečném prohlížeči, čitelnost na mobilu a pocit z chůze tak zůstávají bez potvrzeného lidského/browserového průchodu. Výtvarný agent a koordinátor prohlédli samotné obrazové soubory; to nenahrazuje zkoušku složené scény.
+Spravovaný náhled se znovu nepodařilo spustit: `sites-preview start` vrátil `relay could not open browser port 4173: timed out waiting for relay readiness`; následný stav byl `Sites preview stopped`. Nedocházelo k náhradě náhledové infrastruktury ani změně síťových oprávnění.
 
-Délka, obtížnost a zábavnost zatím nejsou změřené lidským playtestem. Tato kapitola je novým základem adventury, nikoli hotovou celou kampaní.
+**Celý složený obraz a skutečný průchod v prohlížeči zůstávají neověřené.** Testy UI používají minimální napodobeninu DOM, takže nedokládají nativní fokus/modality, pořadí Tab, dotyk, výsledek CSS, kontrast nad malbou ani výkon. Samostatné obrázky byly prohlédnuty. Kontrast pevných barev a mobilní geometrie byly spočteny; nejde o úplný audit přístupnosti.
+
+Zbývá lidský playtest ve třech místnostech, inventář s výběrem, všechny dialogy, telefon na výšku i naležato, 200% zvětšení a omezený pohyb. Obtížnost, délka a zábavnost nejsou změřené. Kvalita snímkové animace se netvrdí: postava stále používá rozdělenou statickou malbu. [Výsledný návrh](VISUAL_DESIGN.md), [19 specialistů a koordinátor](SWARM.md).

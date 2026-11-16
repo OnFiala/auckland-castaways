@@ -1,0 +1,135 @@
+/* Motion direction: quiet painted theatre. Load after style.css.
+   World positions, sprite scale and the 16:9 stage belong to the game. */
+
+/* A single painting cannot bend like a rig. Keep the torso and hip seam still. */
+.puppet-body {
+  animation: none;
+}
+.player.walking .leg-left {
+  animation: castaway-step .56s ease-in-out infinite alternate;
+}
+.player.walking .leg-right {
+  animation: castaway-step .56s ease-in-out infinite alternate-reverse;
+}
+.player.walking .puppet-body {
+  animation: castaway-weight .56s ease-in-out infinite alternate;
+}
+.player.acting .puppet {
+  animation: castaway-reach .6s ease-in-out;
+}
+
+/* Independently phased, subpixel idle; never stretch a person to simulate breath. */
+.person .actor-painting {
+  animation: castaway-idle 7.8s ease-in-out infinite;
+  animation-delay: var(--actor-delay, 0s);
+}
+
+/* Paper reactions settle once, without an elastic overshoot or a moving target. */
+.thought {
+  pointer-events: none;
+  transform: translateY(3px) rotate(-1.2deg);
+  transition: opacity .22s ease-out, transform .28s cubic-bezier(.2,.65,.3,1);
+}
+.thought.show {
+  transform: translateY(0) rotate(-1.2deg);
+}
+.caption {
+  transform: translate(-50%, 3px);
+  transition: opacity .22s ease-out, transform .28s ease-out;
+}
+.caption.show {
+  transform: translate(-50%, 0);
+}
+.first-hint .gesture {
+  animation: castaway-point 2.8s ease-in-out 3;
+}
+
+/* Light stays around the hearth. The painted log/smoke plate stays rigid. */
+.fire-glow {
+  pointer-events: none;
+  background: radial-gradient(ellipse 28% 30% at 50% 50%, #efb44e30, #d48b3011 60%, transparent 100%);
+  animation: castaway-embers 3.1s ease-in-out infinite;
+}
+.painted-fire .flame {
+  animation: castaway-firelight 2.7s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+/* Current mast-flag art includes its rigid pole. Do not swing the entire plate. */
+.signal-mast .flag-cloth {
+  animation: none;
+}
+.shelter-cloth {
+  animation: none;
+}
+.fog {
+  animation: castaway-mist 32s ease-in-out infinite alternate;
+}
+.smoke-line {
+  animation-duration: 7s;
+}
+.weather, .weather *, .world-changes, .world-changes *,
+.actor-shadow, .player-shadow, .arrival, .scene::after {
+  pointer-events: none;
+}
+
+/* The application owns the cover hold; CSS only softens its opacity envelope. */
+.arrival {
+  transition: opacity .34s cubic-bezier(.22,.61,.36,1);
+}
+.arrival.cover {
+  transition-duration: .12s;
+  transition-timing-function: ease-out;
+}
+
+@keyframes castaway-step {
+  from { rotate: -1.8deg; }
+  to { rotate: 1.8deg; }
+}
+@keyframes castaway-weight {
+  from { translate: 0 0; }
+  to { translate: 0 -.45px; }
+}
+@keyframes castaway-reach {
+  50% { rotate: .8deg; translate: .5px .8px; }
+}
+@keyframes castaway-idle {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -.35px; }
+}
+@keyframes castaway-embers {
+  0%, 100% { opacity: .78; }
+  37% { opacity: .94; }
+  68% { opacity: .83; }
+}
+@keyframes castaway-firelight {
+  0%, 100% { opacity: 1; }
+  42% { opacity: .94; }
+  73% { opacity: .98; }
+}
+@keyframes castaway-mist {
+  from { transform: translateX(-1%); }
+  to { transform: translateX(3%); }
+}
+@keyframes castaway-point {
+  0%, 70%, 100% { translate: 0 0; }
+  85% { translate: 0 1.5px; }
+}
+
+/* Keep both the in-game preference and OS preference authoritative.
+   State visibility remains immediate; no content is hidden by this fallback. */
+.reduced *, .reduced *::before, .reduced *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+.reduced .rain { display: none; }
+.reduced .item:hover { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .rain { display: none; }
+  .item:hover { transform: none; }
+}

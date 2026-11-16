@@ -1,0 +1,59 @@
+'use strict';
+// Static provenance and wiring checks; these do not substitute for browser rendering.
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const dist=path.join(__dirname,'../dist'),dir=path.join(dist,'assets/ui');
+const manifest=JSON.parse(fs.readFileSync(path.join(dir,'atlas.json'),'utf8'));
+const expectedHash='1f4e0dc8fa557ae200229a35e9192812016c739fc7435aa13b6b07953367f292';
+const expected={ 'timber-strip':[12,182,493,191], 'inventory-canvas':[522,142,490,261], 'dialog-paper':[1031,94,491,353], satchel:[66,580,382,365], 'brass-button':[604,596,323,329], 'paper-tab':[1059,675,441,183] };
+function local(ref){assert(!/^(?:[a-z]+:|\/\/|\/)/i.test(ref),`nonlocal reference ${ref}`);const p=path.resolve(dist,ref);assert(p.startsWith(dist+path.sep),`reference escapes dist: ${ref}`);assert(fs.statSync(p).isFile(),`missing ${ref}`);return p;}
+test('atlas is the original generated PNG with recorded dimensions and alpha',()=>{
+ assert.equal(manifest.asset,'castaway-ui-atlas.png');assert.equal(manifest.sha256,expectedHash);
+ const bytes=fs.readFileSync(local('assets/ui/'+manifest.asset));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),expectedHash);
+ assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.readUInt32BE(16),1536);assert.equal(bytes.readUInt32BE(20),1024);assert.equal(bytes[25],6);
+ assert.equal(manifest.width,1536);assert.equal(manifest.height,1024);assert.equal(manifest.mode,'RGBA');
+ assert(fs.statSync(path.join(dir,'generation-prompts.json')).isFile());JSON.parse(fs.readFileSync(path.join(dir,'generation-prompts.json'),'utf8'));
+});
+test('all atlas crops match the reviewed coordinates and contain their alpha bounds',()=>{
+ assert.deepEqual(manifest.items.map(x=>x.id).sort(),Object.keys(expected).sort());
+ for(const item of manifest.items){
+  assert.deepEqual(item.viewBox,expected[item.id],item.id);const [x,y,w,h]=item.viewBox,[l,t,r,b]=item.alpha_bounds_by_minimum_alpha['32'].atlas;
+  assert(x>=0&&y>=0&&w>0&&h>0&&x+w<=manifest.width&&y+h<=manifest.height,item.id+' in atlas');
+  assert(l>=x&&t>=y&&r<=x+w&&b<=y+h,item.id+' contains visible bounds');
+  assert.deepEqual([l-x,t-y,x+w-r,y+h-b],[4,4,4,4],item.id+' margin');
+ }
+});
+test('HTML scripts and styles resolve to local files',()=>{
+ const html=fs.readFileSync(path.join(dist,'index.html'),'utf8');
+ for(const tag of html.matchAll(/<(?:script|link)\b[^>]*>/gi)){
+  const ref=tag[0].match(/\b(?:src|href)="([^"]+)"/i);if(ref)local(ref[1]);
+ }
+});
+test('every interface crop is declared in HTML and mounted with its registered image',()=>{
+ const ui=require('../dist/interface.js'),html=fs.readFileSync(path.join(dist,'index.html'),'utf8');
+ assert.match(html,/<script\b[^>]*src="interface\.js"/);
+ assert.deepEqual(Object.keys(ui.assets).sort(),Object.keys(expected).sort());
+ const nodes=[];
+ for(const m of html.matchAll(/\bdata-(material|ui-painting)="([^"]+)"/g)){
+  const id=m[2];assert(expected[id],`unknown HTML painting ${id}`);
+  nodes.push({kind:m[1],dataset:m[1]==='material'?{material:id}:{uiPainting:id},innerHTML:'',insertAdjacentHTML(_where,value){this.innerHTML+=value;}});
+ }
+ assert.deepEqual([...new Set(nodes.map(n=>n.dataset.material||n.dataset.uiPainting))].sort(),Object.keys(expected).sort());
+ for(const [id,a] of Object.entries(ui.assets)){assert.deepEqual(a.box,expected[id]);assert.equal(a.width,1536);assert.equal(a.height,1024);local(a.file);assert.equal(a.file,'assets/ui/'+manifest.asset);}
+ const doc={querySelectorAll(selector){return nodes.filter(n=>selector===`[data-${n.kind}]`);}};
+ ui.mount(doc);
+ for(const n of nodes){const id=n.dataset.material||n.dataset.uiPainting;assert(n.innerHTML.includes(`viewBox="${expected[id].join(' ')}"`),id);assert(n.innerHTML.includes(`href="${ui.assets[id].file}"`),id);assert.match(n.innerHTML,/aria-hidden="true"/);}
+});
+test('nested SVG clips each atlas crop for both meet and slice panels',()=>{
+ const ui=require('../dist/interface.js');
+ for(const [id,box] of Object.entries(expected)) for(const fit of ['meet','slice']){
+  const markup=ui.painting(id,'',fit),tags=[...markup.matchAll(/<svg\b([^>]*)>/g)];
+  assert.equal(tags.length,2,`${id} ${fit}: outer and inner viewport`);
+  const attr=(tag,name)=>tag[1].match(new RegExp(`\\b${name}="([^"]+)"`))?.[1];
+  assert.equal(attr(tags[0],'viewBox'),box.join(' '));assert.equal(attr(tags[0],'preserveAspectRatio'),`xMidYMid ${fit}`);
+  for(const [i,key] of ['x','y','width','height'].entries())assert.equal(attr(tags[1],key),String(box[i]),`${id} ${fit} ${key}`);
+  assert.equal(attr(tags[1],'viewBox'),box.join(' '));assert.equal(attr(tags[1],'overflow'),'hidden');
+  assert.equal(attr(tags[1],'class'),'atlas-clip');
+  assert.equal(attr(tags[1],'style'),`width:${box[2]}px;height:${box[3]}px;overflow:hidden!important`,`${id} ${fit}: inline CSS clip`);
+  assert.match(markup,/<svg\b[^>]*><image\b[^>]*\/><\/svg><\/svg>$/);
+ }
+});
