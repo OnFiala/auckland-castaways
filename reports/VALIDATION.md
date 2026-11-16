@@ -26,4 +26,10 @@ Nové příběhové scény a číselný model jsou označené jako fikce. ZDF do
 
 ## Meze výsledku
 
-Historická správnost nebyla nahrazena testem: datové kontroly neumějí vyřešit sporná svědectví. Původní Holdingův rukopis, Smithova samostatná kniha1866, úplná francouzská knižní kolace, muster roll, přesné body táborů a produkční oprávnění ke konkrétním moderním obrázkům zůstávají v backlogu. Herní smyčka dosud nebyla implementována ani ověřena playtestem.
+Historická správnost nebyla nahrazena testem: datové kontroly neumějí vyřešit sporná svědectví. Původní Holdingův rukopis, Smithova samostatná kniha1866, úplná francouzská knižní kolace, muster roll, přesné body táborů a produkční oprávnění ke konkrétním moderním obrázkům zůstávají v backlogu. Herní smyčka nebyla k datu původního reportu implementována; následující aktualizace zachycuje první prototyp.
+
+## Prototyp · aktualizace 16. listopadu 2026
+
+Přidána česká hratelná studie [Poslední vrták](../prototype/README.md). Herní model prošel **12 testy**, které zahrnují úspěšné i neúspěšné dohrání, předpověď výsledku, počasí, únavu, dohody, obnovu stavu a 50 dalších smíšených průchodů. Byla znovu ověřena integrita výzkumných dat, místní odkazy a hashe originálů. Ověřeny také místní assety HTML a shoda sedmi souborů prototypu se zdrojem hostované verze.
+
+Cloudová infrastruktura neumožnila náhled ani otevření hostované stránky v ovládaném prohlížeči. Vizuální kontrola, mobilní použitelnost a ukládání ovládané přes UI tedy zůstávají **neověřené**. Lidský playtest neproběhl; délka ani zábavnost nebyly automatickými testy potvrzeny. [Podrobný rozsah kontrol](../prototype/TESTING.md).

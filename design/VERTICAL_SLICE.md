@@ -2,6 +2,12 @@
 
 **Návrh:** 30–45 minut, jeden dům a pracovní prostor, pět postav, pět zhuštěných herních dnů. Rozsah je cílový návrh, zatím neověřený playtestem. Historická kotva je Musgraveův zápis 12.3.1865, pp.81–82: po neúspěšné výrobě vrtáků změna projektu ve prospěch člunu. Celý skutečný proces se do pěti dnů nevešel; komprese bude uvedena před hraním i v kodexu.
 
+## Stav realizace · 16. listopadu 2026
+
+[První hratelná studie](../prototype/README.md) realizuje menší verzi této smyčky v čistém HTML/CSS/JavaScriptu. Má deset směn, společné zásoby, únavu, pevné počasí, čtyři večerní rozhodnutí, slib omezených pokusů a volna konkrétnímu člověku, změnu projektu ve třetím nebo čtvrtém večeru a závěrečné vyhodnocení. První dohoda vzniká už po prvním dni a platí druhý den; jde o konkrétní implementaci, ne přesný přepis tabulky níže.
+
+Pravidla mají automatické testy včetně úplného průchodu. Náhled blokovala cloudová infrastruktura; vizuální kontrola a lidský playtest zůstávají otevřené. Delší dialogová scéna ani všech osm návrhových událostí nebyly do této kratší verze vloženy. Cíl 30–45 minut není její naměřenou délkou. [Testy a další ověření](../prototype/TESTING.md).
+
 ## Co má řez ověřit
 
 Hráč chápe, proč potřebuje věnovat kapacitu domácnosti a odpočinku, i když chce co nejrychleji stavět. Dokáže z výsledku zkoušky vyvodit změnu plánu. Pamatuje si alespoň jeden konkrétní závazek vůči konkrétní postavě. Závěr v něm vzbudí zájem o cestu pro pomoc, nikoli pocit, že vyrobil konečný předmět a hra je hotová.

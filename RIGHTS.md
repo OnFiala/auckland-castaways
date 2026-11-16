@@ -3,6 +3,7 @@
 Veřejný repozitář není automatické udělení licence ke všem jeho souborům.
 
 - **Nové výzkumné poznámky, scénář, návrh, data a pomocné skripty:** vznikly pro tento projekt. Obecná open-source ani Creative Commons licence zatím nebyla zvolena. Nepřidělujeme cizímu historickému materiálu nová práva a nepředstíráme, že otevřená viditelnost znamená volné komerční užití každé položky.
+- **Prototyp v `prototype/`:** kód, herní dialogy, rozhraní a SVG výjev vznikly pro tento projekt. Neobsahuje převzaté moderní ilustrace, fotografie, fonty ani knihovní závislosti. Stejně jako pro ostatní nový obsah zatím není zvolena obecná licence.
 - **Dobové originály:** stav a původ jsou vedeny jednotlivě v [registru](sources/REGISTER.md) a [akvizičním manifestu](sources/acquisition-manifest.json). Musgrave 1866 a Raynal 1874 jsou historické publikace s ověřeným public-domain označením poskytovatelů. Digitální kopie může obsahovat další upozornění a podmínky; u Oxford/Google kopie Raynala je zachována úvodní stránka s požadavkem nekomerčního použití a atribuce. Neoznačujeme ji za bezpodmínečně připravený komerční herní asset.
 - **Moderní knihy, studie, muzejní fotografie a filmy:** nejsou zde celé kopírovány. Registr obsahuje odkazy, bibliografii a vlastní stručné shrnutí. Zařazení odkazu neznamená souhlas autora s herní adaptací.
 - **Wikisource a další transkripce:** odkazy směřují k jejich autorům a historii úprav. Úplná webová transkripce nebyla převzata; lokální texty jsou označené deriváty archivních skenů/OCR.

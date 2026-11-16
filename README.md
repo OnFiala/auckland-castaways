@@ -2,14 +2,23 @@
 
 **Rešerše a návrh historické hry o trosečnících lodí Grafton a Invercauld na Aucklandových ostrovech v letech 1864–1865.** Hlavní texty jsou česky; bibliografická metadata zachovávají původní názvy a anglické pracovní popisy.
 
-Tento repozitář je první rozsáhlý výzkumný a příběhový balík. Obsahuje **53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek, dva úplné dobové skeny, dva obrazové výřezy a návrh kampaně s 12 kapitolami**. Není hotovou hrou ani tvrzením, že byly nalezeny všechny prameny. U každé položky je rozlišeno, zda byl čten text, jen vybrané pasáže, indexované OCR, metadata, nebo šlo pouze o nalezenou stopu.
+Tento repozitář obsahuje první rozsáhlý výzkumný a příběhový balík a **hratelný prototyp Poslední vrták**. Obsahuje **53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek, dva úplné dobové skeny, dva obrazové výřezy a návrh kampaně s 12 kapitolami**. Není hotovou hrou ani tvrzením, že byly nalezeny všechny prameny. U každé položky je rozlišeno, zda byl čten text, jen vybrané pasáže, indexované OCR, metadata, nebo šlo pouze o nalezenou stopu.
 
 Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
+
+## Zahrajte první prototyp
+
+**Dokud se nevrátíme — Poslední vrták** (16. listopadu 2026) je česká hra pro prohlížeč s pěti lidmi a deseti směnami. Rozdělujete práci, hlídáte únavu a zásoby, uzavíráte konkrétní dohody a měníte plán lodi. Před potvrzením směny vidíte její následky. Hra obsahuje ukládání v prohlížeči, deník, návrat jedné směny a úspěšný i neúspěšný závěr.
+
+Stáhněte nebo naklonujte repozitář a otevřete [prototype/dist/index.html](prototype/dist/index.html) v prohlížeči. GitHub tento soubor zobrazuje jako zdrojový kód; samotnou hru spouštějte z místní kopie. Instalace závislostí ani server nejsou nutné. [Návod a rozsah](prototype/README.md), [výsledky testů a jejich meze](prototype/TESTING.md).
+
+Herní model prošel 12 automatickými testy včetně úplného dohrání. Cloudový náhled blokovala infrastruktura, proto dosud není potvrzen vizuální průchod prohlížečem. Obtížnost, srozumitelnost a délka čekají na lidský playtest.
 
 ## Začněte zde
 
 | Potřebuji… | Dokument |
 |---|---|
+| Vyzkoušet první hratelnou studii | [Prototyp Poslední vrták](prototype/README.md) |
 | Pochopit skutečný příběh | [Historický přehled](research/OVERVIEW.md) |
 | Najít původ a přesnou oporu tvrzení | [Registr pramenů](sources/REGISTER.md) a [evidenční deník](research/CHRONOLOGY.md) |
 | Zjistit, co si odporuje | [Rozpory a kouř](research/CONFLICTS.md), [nápoj z místních rostlin](research/FERMENTED_DRINK.md) |
@@ -32,7 +41,7 @@ Srpen 1865 přináší Musgraveovo **nejisté pozorování kouře**. Vydavatelsk
 
 Doporučena je narativní strategie o udržení pěti lidí, práce a společných závazků. Finále tvoří **návrat pro ty, kteří zůstali**, ne jen první únik z ostrova. Invercauld dostává připsaná svědectví a archivní mezihry, které zachovávají rozdílné podmínky a nejistotu.
 
-První řez **Poslední vrták** má na malé scéně ověřit práci, odpočinek, zásoby, dohody a změnu nefunkčního plánu. Cílových 30–45 minut a pět zhuštěných dnů je návrh k testování. Dialogy, číselné hodnoty, událostní karty a část pořadí scén jsou vlastní fikce, nikoli rekonstruované zápisy skutečných lidí.
+První řez **Poslední vrták** má na malé scéně ověřit práci, odpočinek, zásoby, dohody a změnu nefunkčního plánu. První kratší implementace už obsahuje pět zhuštěných dnů; původních 30–45 minut zůstává návrhovým cílem většího řezu, nikoli změřenou délkou prototypu. Dialogy, číselné hodnoty, událostní karty a část pořadí scén jsou vlastní fikce, nikoli rekonstruované zápisy skutečných lidí.
 
 ## Získané originály a data
 
@@ -53,6 +62,7 @@ Tvrzení „příběh nebyl zfilmován“ neplatí: **ZDF Terra X: Die Schiffbr�
 python tools/validate.py
 python tools/render_register.py
 python tools/render_evidence.py
+node --test prototype/tests/engine.test.js
 # Volitelně nová síťová kontrola; přepisuje datovaný report:
 python tools/check_links.py
 ```
