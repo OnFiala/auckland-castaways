@@ -1,5 +1,8 @@
 # Tým vizuální revize
 
+> Historický záznam revize rozhraní. Následující krok již přidal anglickou hru, šest krokových póz pro každou postavu a krátké rozhovory; aktuální stav popisuje [LIVING_WORLD](LIVING_WORLD.md).
+
+
 16. listopadu 2026. Na tomto kroku pracovalo **19 samostatně spuštěných specialistů a koordinátor jako dvacátý agent**. Nástroj při pokusu o sedmého aktivního pomocníka vrátil `agent thread limit reached`, i když uživatel oznámil zvýšení limitu. Úkoly proto proběhly ve vlnách s nejvýše šesti pomocníky současně. Netvrdíme dvacet souběžných běhů.
 
 Tabulka je záznam koordinátora o úspěšných voláních `spawn_agent`, požadovaných modelech a úrovních uvažování. Každá role měla oddělené vlastnictví souborů. Není to nezávislá telemetrie skutečného poskytovatele modelu; živý seznam po dokončení starší role postupně přestal zobrazovat.

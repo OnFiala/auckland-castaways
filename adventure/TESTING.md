@@ -1,39 +1,32 @@
-# Ověření aktuální adventury
+# Verification — English and living-world update
 
-16. listopadu 2026, cloudový Linux. Konečný běh po integraci malovaného rozhraní: **30/30 testů `node:test` a samostatný průchod obsluhami UI úspěšné**.
+16 November 2026. Final automated run: **39/39 Node tests passed**, plus the separate complete UI-handler contract.
 
 ```sh
-node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs
+node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs adventure/tests/live.test.cjs
 node adventure/tests/ui-contract.cjs
 node --check adventure/dist/app.js
-node --check adventure/dist/interface.js
+node --check adventure/dist/animation.js
 ```
 
-## Co prošlo
-
-| Sada | Počet | Pokrytí |
+| Suite | Tests | Established |
 |---|---:|---|
-| Pravidla `engine.test.js` | 13 | Úplné řešení, pořadí kombinací, nesprávné použití, obnova, předčasný stožár a dosažitelnost dokončení ze všech stavů. |
-| Malby `art-contract.cjs` | 4 | Rozměry, výřezy, soubory, původní SHA-256, konkrétní malby předmětů, lidí a změněných stavů. |
-| UI atlas `interface-art.cjs` | 5 | Původní hash a alfa formát, šest výřezů, všechny místní skripty/styly, skutečné zapojení materiálů a vnitřní SVG viewport chráněný před CSS přepisem. |
-| Integrační `polish-ui.cjs` | 8 | Fokus nastavení, přístupný text rady, klávesová inspekce, finále, inertní dekorace, kolize finále s modalem, poškozené uložení vs preference a aktuální Henryho rada. |
+| `engine.test.js` | 14 | Complete solution, item order, invalid uses, restore, early mast recovery and a fixed pre-translation save. Exactly 172 reachable puzzle states, each with a route to completion. |
+| `art-contract.cjs` | 4 | Original painting dimensions/hashes, registered crops and actual character/object/state markup. |
+| `interface-art.cjs` | 5 | UI atlas provenance, six crops, local runtime references, material mounting and clipping protected against CSS overrides. |
+| `polish-ui.cjs` | 12 | Focus, accessible hints, keyboard inspection, restart, completion/modal race, preferences, dialogue beats/timers/cancellation, stationary speaker, reduced motion and opt-in English device-speech contract. |
+| `live.test.cjs` | 4 | Six distinct frame selections, frame bounds, patrol freeze/reset, twenty story-stage combinations, five PNG hashes/dimensions. |
 
-Průzkum herního modelu pokrývá **172 dosažitelných stavů a 410 změnových přechodů**. Každý stav má cestu k dokončení. Chybné použití nespotřebuje nezbytný předmět. Samostatný `ui-contract.cjs` vykonal skutečné obsluhy aplikace přes úplný průchod, předčasně použitý a vrácený stožár, načtení mezistavu, restart, nedostupné úložiště a zachování nezměněných cílů.
+The separate `ui-contract.cjs` executes real application handlers over a minimal DOM mock through the whole puzzle, including save/reload, blocked storage, focus and cancellation. Its clock is controlled; it does not reproduce a browser renderer. Device speech is stubbed in its test: this checks requested English language/voice, opt-in and stale callback handling, not sound or actual voice availability.
 
-Model pravidel a save formát v3 zůstávají zachované. `engine.js` v této revizi mění pouze texty a obrazové rady postav podle stavu; starší revize kompatibility vznikla ještě před touto drobnou změnou. Nový integrační test ověřuje radu po vložení suchého dřeva.
+Version-3 saves and puzzle flags remain compatible. Existing Czech journal entries remain in historic saved data; the current interface does not render the journal. New visible labels, responses, accessible names and dialogue are English. No save migration deletes the old text.
 
-## Opravy nalezené kontrolory
+## Visual and browser evidence
 
-Nezávislá výtvarná oponentura odhalila, že samotný vnější SVG `viewBox` a `overflow:hidden` nebrání zobrazení sousední části atlasu v mezerách při zarovnání `meet`. Vnitřní viewport nyní obraz opravdu ořezává; inline rozměry navíc zabraňují přepsání obecným CSS. Test kontroluje tuto ochranu pro oba režimy zarovnání. Geometrie byla revidována, výsledné pixely však nebyly zachyceny v celé hře.
+The individual generated walk sheets were inspected. Each sheet has six distinct painted poses rather than transformed copies of an idle figure. Original PNG bytes, prompts, alpha bounds and common crops are recorded in [WALK_ART](WALK_ART.md). This is not proof of smooth playback: small generated shape/volume differences remain.
 
-Samostatná integrační kontrola reprodukovala pokus přesunout fokus do finále pod otevřeným nastavením. Finále nyní čeká na uzavření modalu a při restartu se čekání zruší. Také tato posloupnost má regresní test.
+The cloud computer inventory became readable, but opening the hosted game failed with `Browser Use could not read requirements`. A new managed preview attempt still failed with `relay could not open browser port 4173: timed out waiting for relay readiness`, and status was `Sites preview stopped`. No alternative preview infrastructure was installed or substituted.
 
-Dílčí kontrola animací ve vestavěném headless Chromiu přes CSSOM ověřila definice animací a jejich vypnutí ruční i systémovou preferencí. Nešlo o vizuální přehrání celé hry. [Podrobnosti](reviews/09-motion.md).
+**Complete game rendering and playback in a real browser remain unverified.** These tests do not establish touch behavior, native focus/modal behavior, screen-reader experience, textured-background contrast, narration quality, actual loading speed or FPS. Actual footage/screenshots of the new game are not claimed. A real browser pass must still cover walking in both directions, all crew conversations, mobile portrait/landscape, a full inventory, saved positions and both reduced-motion controls.
 
-## Nepotvrzené vlastnosti
-
-Spravovaný náhled se znovu nepodařilo spustit: `sites-preview start` vrátil `relay could not open browser port 4173: timed out waiting for relay readiness`; následný stav byl `Sites preview stopped`. Nedocházelo k náhradě náhledové infrastruktury ani změně síťových oprávnění.
-
-**Celý složený obraz a skutečný průchod v prohlížeči zůstávají neověřené.** Testy UI používají minimální napodobeninu DOM, takže nedokládají nativní fokus/modality, pořadí Tab, dotyk, výsledek CSS, kontrast nad malbou ani výkon. Samostatné obrázky byly prohlédnuty. Kontrast pevných barev a mobilní geometrie byly spočteny; nejde o úplný audit přístupnosti.
-
-Zbývá lidský playtest ve třech místnostech, inventář s výběrem, všechny dialogy, telefon na výšku i naležato, 200% zvětšení a omezený pohyb. Obtížnost, délka a zábavnost nejsou změřené. Kvalita snímkové animace se netvrdí: postava stále používá rozdělenou statickou malbu. [Výsledný návrh](VISUAL_DESIGN.md), [19 specialistů a koordinátor](SWARM.md).
+See [implementation](LIVING_WORLD.md), [dialogue provenance](STORIES.md), [QA notes](reviews/22-live-qa.md) and the earlier [interface review](SWARM.md). Earlier review files are snapshots and may report the smaller test count or animation limitations of their own revision.

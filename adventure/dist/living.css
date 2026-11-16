@@ -1,0 +1,31 @@
+/* Quiet details live above the painting and below all actors and targets. */
+.world-life{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
+.world-life::before,.world-life::after{content:"";position:absolute;pointer-events:none;border-radius:50%;background:radial-gradient(ellipse,rgba(225,225,210,.10),transparent 70%);filter:blur(8px);animation:life-mist 30s ease-in-out infinite alternate}
+.world-life::before{left:-12%;top:64%;width:48%;height:17%}
+.world-life::after{right:-16%;top:71%;width:50%;height:16%;opacity:.55;animation-delay:-14s;animation-direction:alternate-reverse}
+.sea-glint,.sky-bird,.leaf-drift{position:absolute;display:block;pointer-events:none}
+.sea-glint{width:5%;height:.22%;border-radius:50%;background:linear-gradient(90deg,transparent,rgba(229,232,213,.54),transparent);opacity:.25;animation:life-glint 7s ease-in-out infinite}
+.sea-glint:nth-child(1){left:2%;top:45%;animation-delay:-1s}
+.sea-glint:nth-child(2){left:9%;top:49%;width:4%;animation-delay:-4s}
+.sea-glint:nth-child(3){left:2%;top:53%;width:6%;animation-delay:-6s}
+.sky-bird{width:10px;height:5px;opacity:.35;animation:life-bird 22s ease-in-out infinite alternate}
+.sky-bird::before,.sky-bird::after{content:"";position:absolute;top:0;width:52%;height:4px;border-top:1px solid #4d5249;border-radius:50% 50% 0 0}
+.sky-bird::before{left:0;transform:rotate(13deg)}.sky-bird::after{right:0;transform:rotate(-13deg)}
+.sky-bird:nth-child(4){left:33%;top:17%}.sky-bird:nth-child(5){left:37%;top:19%;transform:scale(.7);animation-delay:-8s}.sky-bird:nth-child(6){left:41%;top:16%;transform:scale(.6);animation-delay:-15s}
+.leaf-drift{width:5px;height:2px;border-radius:80% 10%;background:#b4a57d;opacity:0;animation:life-leaf 18s ease-in-out infinite}
+.leaf-drift:nth-child(7){left:71%;top:43%;animation-delay:-2s}.leaf-drift:nth-child(8){left:84%;top:48%;animation-delay:-9s}.leaf-drift:nth-child(9){left:61%;top:51%;animation-delay:-14s}
+.scene[data-scene=wreck] .sea-glint:nth-child(1){left:1%;top:53%;width:4%}
+.scene[data-scene=wreck] .sea-glint:nth-child(2){left:4%;top:58%;width:4%}
+.scene[data-scene=wreck] .sea-glint:nth-child(3){left:1%;top:63%;width:3%}
+.scene[data-scene=wreck] .sky-bird:nth-child(4){left:79%;top:13%}.scene[data-scene=wreck] .sky-bird:nth-child(5){left:83%;top:16%}.scene[data-scene=wreck] .sky-bird:nth-child(6){left:87%;top:12%}
+.scene[data-scene=wreck] .leaf-drift{display:none}
+.scene[data-scene=camp] .sea-glint:nth-child(1){left:31%;top:37%;width:4%}
+.scene[data-scene=camp] .sea-glint:nth-child(2){left:43%;top:38%;width:5%}
+.scene[data-scene=camp] .sea-glint:nth-child(3){left:59%;top:39%;width:4%}
+.scene[data-scene=camp] .sky-bird:nth-child(4){left:42%;top:14%}.scene[data-scene=camp] .sky-bird:nth-child(5){left:46%;top:17%}.scene[data-scene=camp] .sky-bird:nth-child(6){left:50%;top:14%}
+@keyframes life-glint{0%,100%{opacity:.12;transform:scaleX(.8)}50%{opacity:.48;transform:scaleX(1.12)}}
+@keyframes life-mist{to{transform:translateX(10%)}}
+@keyframes life-bird{to{translate:12px -3px}}
+@keyframes life-leaf{0%,20%,100%{opacity:0;translate:0 0}30%{opacity:.4}75%{opacity:.24;translate:-22px 15px}85%{opacity:0;translate:-26px 19px}}
+.reduced .world-life *,.reduced .world-life::before,.reduced .world-life::after{animation:none!important}
+@media(prefers-reduced-motion:reduce){.world-life *,.world-life::before,.world-life::after{animation:none!important}}

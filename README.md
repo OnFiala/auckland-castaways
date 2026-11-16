@@ -10,7 +10,7 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 Předchozí větvené čtení bylo odmítnuto jako nevhodný herní formát. Nová verze **První noc** má tři propojené lokace, chodící postavu, inventářové kombinace a používání předmětů na prostředí. Hádanky mění obraz scény; krátké titulky jsou standardně vypnuté. Směr vyprávění upřednostňuje obraz a akci.
 
-[Vizuální revize a tým 20 rolí](adventure/SWARM.md) · [Návod k nové adventuře](adventure/README.md) · [herní soubor po stažení](adventure/dist/index.html) · [provedené testy a jejich meze](adventure/TESTING.md).
+[Anglická verze, chůze a rozhovory](adventure/LIVING_WORLD.md) · [Vizuální revize a tým 20 rolí](adventure/SWARM.md) · [Návod k nové adventuře](adventure/README.md) · [herní soubor po stažení](adventure/dist/index.html) · [provedené testy a jejich meze](adventure/TESTING.md).
 
 Jde o první hratelnou kapitolu nového systému. **Celá historická kampaň zatím není převedená na adventurní hádanky.** Původní texty a prototypy níže zůstávají jako starší vývojové podklady.
 
@@ -80,7 +80,7 @@ Tvrzení „příběh nebyl zfilmován“ neplatí: **ZDF Terra X: Die Schiffbr�
 python tools/validate.py
 python tools/render_register.py
 python tools/render_evidence.py
-node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs
+node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs adventure/tests/live.test.cjs
 node adventure/tests/ui-contract.cjs
 node --test prototype/tests/engine.test.js
 node --test campaign/tests/engine.test.js

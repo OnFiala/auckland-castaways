@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "character": "george",
+  "image": "george.png",
+  "purpose": "Six hand-painted sequential right-facing walking poses for classic adventure game; fictional visual reconstruction, not an authenticated historical portrait.",
+  "generator": "image_gen",
+  "generated_date_utc": "2026-11-16",
+  "dimensions": {
+    "width": 1536,
+    "height": 1024
+  },
+  "sha256": "da06477588f6cd4d77eb0102cd2f96306382e37c1435cce2231c7501860f563f",
+  "byte_length": 2126960,
+  "frames": [
+    {
+      "index": 0,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        0,
+        1,
+        512,
+        512
+      ],
+      "alpha_bbox_gt_8": [
+        76,
+        13,
+        424,
+        501
+      ],
+      "alpha_bbox_gt_128": [
+        77,
+        14,
+        424,
+        500
+      ]
+    },
+    {
+      "index": 1,
+      "rect": {
+        "x": 512,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        1,
+        1,
+        512,
+        512
+      ],
+      "alpha_bbox_gt_8": [
+        96,
+        16,
+        346,
+        503
+      ],
+      "alpha_bbox_gt_128": [
+        96,
+        17,
+        346,
+        502
+      ]
+    },
+    {
+      "index": 2,
+      "rect": {
+        "x": 1024,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        1,
+        0,
+        511,
+        512
+      ],
+      "alpha_bbox_gt_8": [
+        123,
+        13,
+        302,
+        503
+      ],
+      "alpha_bbox_gt_128": [
+        124,
+        14,
+        301,
+        502
+      ]
+    },
+    {
+      "index": 3,
+      "rect": {
+        "x": 0,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_bbox_gt_8": [
+        80,
+        9,
+        442,
+        500
+      ],
+      "alpha_bbox_gt_128": [
+        81,
+        10,
+        441,
+        499
+      ]
+    },
+    {
+      "index": 4,
+      "rect": {
+        "x": 512,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha_bbox_gt_8": [
+        106,
+        12,
+        333,
+        500
+      ],
+      "alpha_bbox_gt_128": [
+        107,
+        13,
+        332,
+        499
+      ]
+    },
+    {
+      "index": 5,
+      "rect": {
+        "x": 1024,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        1,
+        0,
+        504,
+        512
+      ],
+      "alpha_bbox_gt_8": [
+        130,
+        10,
+        321,
+        500
+      ],
+      "alpha_bbox_gt_128": [
+        130,
+        12,
+        320,
+        499
+      ]
+    }
+  ],
+  "common_crop": {
+    "x": 68,
+    "y": 1,
+    "width": 382,
+    "height": 510
+  },
+  "alpha_extrema": [
+    0,
+    254
+  ],
+  "alpha_zero_ratio": 0.6976127624511719,
+  "original_generation_file": "/workspace/generated_images/exec-568df3da-0b24-4699-a51b-e2e0fc569473.png",
+  "format": "PNG RGBA",
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "cell_width": 512,
+    "cell_height": 512,
+    "order": "row-major"
+  },
+  "bbox_convention": "cell-relative [left, top, right exclusive, bottom exclusive]; alpha_gt_0 includes low-alpha generator noise; alpha_gt_8 defines visible silhouette.",
+  "common_crop_method": "Union of all six cell-relative alpha>8 bounding boxes, expanded 8 pixels and clipped to 512x512; same crop applied to every frame. Original generated PNG bytes unchanged.",
+  "ground_anchor_in_cell": {
+    "x": 256,
+    "y": 508
+  },
+  "ground_anchor_in_crop": {
+    "x": 188,
+    "y": 507
+  },
+  "rendering_note": "Use identical crop dimensions, scale and anchor for every pose; never fit each silhouette separately. Slight generated body bob and foot baseline differences remain.",
+  "suggested_fps": 7,
+  "frame_sequence": [
+    "left-contact",
+    "left-down",
+    "right-passing",
+    "right-contact",
+    "right-down",
+    "left-passing"
+  ],
+  "visual_qa": {
+    "inspected": true,
+    "assessment": "Six articulated right-facing poses with differing arms and leg angles. Retry corrected the last extended contact pose into a narrow passing pose. Same blond-bearded character and patched rust jacket throughout; small proportions/ground-line variations remain.",
+    "transparent_background": true,
+    "no_image_editing": true,
+    "retry_count": 1
+  },
+  "reference_images": [
+    "../people/george.png",
+    "../camp.png"
+  ],
+  "prompt": "Edit the transparent painted GEORGE WALK-CYCLE SPRITE SHEET in reference image 1. Keep its exact 1536x1024 resolution, six 512x512 cells in 3 columns and 2 rows, transparent RGBA background, original hand-painted historical adventure style, and same George identity/outfit/proportions in all six cells. References 2 and 3 are his original standing casting and camp style.\n\nPreserve the five poses in the top row and bottom-left/bottom-middle cells. Correct ONLY bottom-right cell, frame 6, so he is in a genuine LOW PASSING POSE rather than another extended contact stride: his NEAR leg is swinging through with the near boot immediately beside and slightly in front of the FAR planted ankle; the FAR supporting leg is nearly vertical and its boot planted on the same y=1000 ground line; the moving near foot is only 10-20px off ground, bent knee gentle and low. Near arm forward, far arm backward, elbows naturally bent, upright torso. Head top local y~15 and center x~256, full body same scale and feet ground local y=490. The result must have the final passing pose visibly narrower and different from the extended bottom-left contact pose, ready to swing into the top-left contact pose. No high knees, no standing still. No background, shadows, labels, captions, frames, grid, extra objects or extra people. Six distinct painted articulated walking poses.",
+  "generation_history": [
+    {
+      "selected": false,
+      "prompt": "Create a production-ready painted 2D WALK-CYCLE SPRITE SHEET for the man GEORGE shown in reference image 1. Preserve his exact character identity and outfit: adult broad-shouldered sailor, curly sandy-blond hair and thick blond beard, olive ribbed wool cap, patched weathered rust-brown wool jacket over ivory shirt, patched gray-brown trousers with rolled cuffs and rugged brown lace-up boots. Reference image 2 is the camp painting: match its fine watercolor/gouache brushwork, warm muted natural colors, gentle linework, illustrated historical adventure style. This is fictional casting, not a historical portrait.\n\nOUTPUT EXACTLY a 1536 x 1024 RGBA PNG with REAL TRANSPARENT alpha background. EXACTLY THREE columns by TWO rows of equal 512 x 512 cells, SIX full-body poses reading left-to-right then top-to-bottom. No captions, no text, no grid lines, no borders, no numbers, no ground/shadow/background, no objects or additional characters. Each cell contains ONLY ONE full-body George, facing RIGHT in consistent near-side profile, same face, outfit, proportions, scale, and horizontal anchor. Head around local y=40, head center local x=256, boots ground contact local y=480, whole character within local x=60..452. Consistent ground line and the same height in every cell; modest believable vertical bob only.\n\nThese SIX frames must be GENUINELY DIFFERENT SEQUENTIAL POSES of one complete repeating WALK CYCLE, with articulated knees, ankles, hip movement, alternating legs, opposite counter-swinging arms, shifting coat hem. Anatomical consistency is essential. Frame 1 NEAR leg forward heel contact and FAR leg back toe contact, NEAR arm swings BACK and FAR arm FORWARD. Frame 2 NEAR foot planted under weight, body sinks slightly, FAR rear knee lifts slightly forward, arms pass. Frame 3 FAR foot swings low past NEAR planted ankle, body rises a little. Frame 4 FAR foot forward heel contact and NEAR foot back toe contact, NEAR arm FORWARD and FAR arm BACK. Frame 5 FAR foot planted under weight, body sinks slightly, NEAR rear knee lifts slightly forward, arms pass. Frame 6 NEAR foot swings low past FAR supporting ankle, ready to loop to Frame 1. Frame 4 must have the opposite arm and leg forward from Frame 1, do NOT duplicate frame 1.\n\nOrdinary low-knee walking, never marching, running, or standing. Passing foot barely clears floor, knee only gently bent: do not lift a thigh horizontally. Keep torso upright with slight natural forward lean. Show real visible stride silhouettes and differing arm swings, both boots and hands, all heads and feet fully uncropped. Keep expression thoughtful but alert, energetic natural walking. These are freshly painted articulated poses, NOT rigid rubber limb transforms of the reference. No standing duplicates.",
+      "original_generation_file": "/workspace/generated_images/exec-02c3e378-aada-4054-9eb6-edee4f28c7de.png",
+      "references": [
+        "../people/george.png",
+        "../camp.png"
+      ],
+      "reason_for_retry": "Last frame extended contact stride instead of passing pose."
+    },
+    {
+      "selected": true,
+      "prompt": "Edit the transparent painted GEORGE WALK-CYCLE SPRITE SHEET in reference image 1. Keep its exact 1536x1024 resolution, six 512x512 cells in 3 columns and 2 rows, transparent RGBA background, original hand-painted historical adventure style, and same George identity/outfit/proportions in all six cells. References 2 and 3 are his original standing casting and camp style.\n\nPreserve the five poses in the top row and bottom-left/bottom-middle cells. Correct ONLY bottom-right cell, frame 6, so he is in a genuine LOW PASSING POSE rather than another extended contact stride: his NEAR leg is swinging through with the near boot immediately beside and slightly in front of the FAR planted ankle; the FAR supporting leg is nearly vertical and its boot planted on the same y=1000 ground line; the moving near foot is only 10-20px off ground, bent knee gentle and low. Near arm forward, far arm backward, elbows naturally bent, upright torso. Head top local y~15 and center x~256, full body same scale and feet ground local y=490. The result must have the final passing pose visibly narrower and different from the extended bottom-left contact pose, ready to swing into the top-left contact pose. No high knees, no standing still. No background, shadows, labels, captions, frames, grid, extra objects or extra people. Six distinct painted articulated walking poses.",
+      "original_generation_file": "/workspace/generated_images/exec-568df3da-0b24-4699-a51b-e2e0fc569473.png",
+      "references": [
+        "/workspace/generated_images/exec-02c3e378-aada-4054-9eb6-edee4f28c7de.png",
+        "../people/george.png",
+        "../camp.png"
+      ]
+    }
+  ]
+}

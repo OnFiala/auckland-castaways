@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const root=path.join(__dirname,'../dist/');
 const KEY='castaways-adventure-v3';
-function app({initial={},blocked=false}={}){
+function app({initial={},blocked=false,speech=null}={}){
  const ids=new Map(),stored={...initial},raf=[],timers=new Map();let clock=0,timerId=0,doc;const listeners={};
  class El{
   constructor(id='',attrs={}){this.id=id;this.attrs=attrs;this.dataset={};this.children=[];this.style={setProperty(){}};this.open=false;this.hidden=Object.hasOwn(attrs,'hidden');this.disabled=Object.hasOwn(attrs,'disabled');const classes=new Set();this.classList={add(x){classes.add(x);},remove(x){classes.delete(x);},toggle(x,v){if(v===undefined)v=!classes.has(x);v?classes.add(x):classes.delete(x);},contains(x){return classes.has(x);}};for(const [k,v]of Object.entries(attrs))if(k.startsWith('data-'))this.dataset[k.slice(5)]=v;}
@@ -26,8 +26,8 @@ function app({initial={},blocked=false}={}){
  function parse(html){const all=[];for(const tag of html.matchAll(/<([a-z][a-z0-9]*)\b([^>]*)>/g)){const attrs={};for(const m of tag[2].matchAll(/([\w-]+)(?:="([^"]*)")?/g))attrs[m[1]]=m[2]??'';const el=new El(attrs.id||'',attrs);el.tag=tag[1];all.push(el);if(el.id)ids.set(el.id,el);}return all;}
  parse(fs.readFileSync(root+'index.html','utf8'));
  doc={getElementById:id=>ids.get(id)||null,body:new El('body'),createElement:tag=>{const el=new El();el.tag=tag;return el;}};
- const context={console,document:doc,localStorage:{getItem(k){if(blocked)throw Error('blocked');return stored[k]??null;},setItem(k,v){if(blocked)throw Error('blocked');stored[k]=v;}},matchMedia:()=>({matches:false}),performance:{now:()=>clock},requestAnimationFrame(fn){raf.push(fn);return raf.length;},setTimeout(fn,ms=0){timers.set(++timerId,{fn,ms});return timerId;},clearTimeout(id){timers.delete(id);},addEventListener(type,fn){listeners[type]=fn;}};context.window=context;
- vm.createContext(context);for(const f of ['art.js','engine.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
+ const context={console,document:doc,localStorage:{getItem(k){if(blocked)throw Error('blocked');return stored[k]??null;},setItem(k,v){if(blocked)throw Error('blocked');stored[k]=v;}},matchMedia:()=>({matches:false}),performance:{now:()=>clock},requestAnimationFrame(fn){raf.push(fn);return raf.length;},setTimeout(fn,ms=0){timers.set(++timerId,{fn,ms});return timerId;},clearTimeout(id){timers.delete(id);},addEventListener(type,fn){listeners[type]=fn;}};context.window=context;if(speech){context.speechSynthesis=speech.synth;context.SpeechSynthesisUtterance=speech.Utterance;}
+ vm.createContext(context);for(const f of ['art.js','engine.js','animation.js','stories.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
  async function flush(){for(let i=0;i<8;i++){clock+=2000;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();}}
  async function click(id){const el=typeof id==='string'?ids.get(id):id;assert.equal(typeof el?.onclick,'function','click handler '+(id?.id||id));el.onclick({preventDefault(){},stopPropagation(){},target:el});await flush();}
  const target=id=>ids.get('targets').querySelector(`[data-target="${id}"]`);
@@ -73,7 +73,7 @@ async function main(){
  await b.click('keep-exploring');assert.equal(b.ids.get('completion').hidden,true);assert(b.state().completed);
  await b.click('hint');assert(b.ids.get('modal').open);await b.click('modal-close');await b.click('settings');await b.click('restart');await b.click('confirm-restart');assert(!b.state().completed);assert.equal(b.state().scene,'beach');assert.equal(b.ids.get('completion').hidden,true);assert.equal(b.activeElement(),b.ids.get('scene'));b.runTimers();assert.equal(b.ids.get('completion').hidden,true);
  const race=app({initial:beforeCompletion});await race.use('flagcloth','cairn');assert(race.state().completed);await race.click('settings');await race.click('restart');await race.click('confirm-restart');race.runTimers();assert(!race.state().completed);assert.equal(race.ids.get('completion').hidden,true);
- const c=app({blocked:true});await c.pick('rope');assert(c.item('rope'));assert.match(c.ids.get('saved').title,/není dostupné/);
+ const c=app({blocked:true});await c.pick('rope');assert(c.item('rope'));assert.equal(c.ids.get('saved').title,'Saving is unavailable');
  console.log(JSON.stringify({realUiHandlers:true,keyboardFocusAndDialog:true,stableUnaffectedTargets:true,transientFeedbackClears:true,fullPuzzleComplete:true,earlyMastRecovered:true,wrongCombinationSafe:true,midPuzzleReload:true,visibleWorldChangesMarkup:true,restart:true,pendingCompletionTimerCleared:true,storageBlockedFallback:true,limitation:'Minimal DOM contract mock only; does not verify rendering, animation, coordinates, touch or browser storage.'},null,2));
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

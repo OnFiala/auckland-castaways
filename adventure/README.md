@@ -1,39 +1,37 @@
-# Dokud se nevrátíme — První noc
+# Until We Return — First Night
 
-Nový základ klasické point-and-click adventury, vytvořený po odmítnutí předchozího větveného čtení. Přednost má vizuální řešení situací a minimum slov. **Tato verze je první hratelná kapitola se třemi propojenými obrazovkami, ne hotová adaptace celé devatenáctiměsíční historie.** Starší [příběhová kampaň](../campaign/README.md) zůstává samostatným předchozím návrhem.
+A painted point-and-click adventure inspired by the Grafton castaways. Explore the shore, wreck and camp; combine salvaged objects; prepare shelter, fire and a signal. **This is one playable chapter, not the complete nineteen-month story.**
 
-## Co se skutečně hraje
+## Play
 
-Na břehu, u vraku a pod stromy ovládáte postavu, sbíráte předměty, kombinujete je a používáte na prostředí. Cílem první noci je přístřeší, oheň a viditelný signál. Nejsou zde odstavcové volby, přepínání kapitol ani zdrojové ukazatele.
+Download this repository and open [dist/index.html](dist/index.html). No installation or server is required. Save availability for local files depends on the browser. GitHub displays the HTML source rather than running it.
 
-- Kliknutí do krajiny: chůze. Kliknutí na předmět: dojít, vzít nebo prohlédnout. Kliknutí na člověka: obrazová rada.
-- Vybraný předmět v brašně + jiný předmět: pokus o kombinaci. Vybraný předmět + objekt ve scéně: použití.
-- Pravé tlačítko: prohlédnout. Esc: odložit vybranou věc. Mezerník nebo oko: krátce zvýraznit aktivní místa.
-- Otazník poskytuje obrazovou nápovědu. Krátké titulky reakcí jsou standardně vypnuté; lze je zapnout v nastavení.
-- Průběh se ukládá v prohlížeči. Žádný předmět se nezničí chybným použitím. Animace lze omezit.
+- Click the ground to walk. Click an object to approach and interact.
+- Select an inventory item, then another item to combine them or a place in the scene to use it.
+- Click a person to hear a short story. Conversations advance automatically; use the arrow to continue or ×/Escape to end. Walking away also ends a conversation.
+- Right-click, Shift+F10 or the context-menu key inspects an object. Escape deselects an item. Space briefly reveals interactive objects.
+- The hint button offers a picture clue. Brief reaction captions are optional; conversations remain readable independently.
+- Settings offer reduced motion and, where supported, optional English narration using a device voice. Narration is off by default and is not a recorded actor performance.
 
-Po stažení repozitáře otevřete [dist/index.html](dist/index.html). Nejsou potřeba knihovny, instalace ani server. Ukládání při otevření místního souboru závisí na prohlížeči. GitHub HTML jen zobrazuje jako zdrojový kód.
+All current interface text, object descriptions, hints and dialogue are English. Existing version-3 saves remain compatible. Any historic Czech journal entries are retained in save data; this interface does not display that journal.
 
-## Vizuální revize rozhraní
+## A living painted scene
 
-Horní lišta, brašna a dialogy používají vlastní malované dřevo, plátno a papír v teplé paletě. Revize opravuje výřezy atlasů, hloubku lidí, obrazové rady, klávesový fokus i závěrečné okno. [Vizuální směr a výsledek](VISUAL_DESIGN.md) · [20 agentních rolí, modely a výstupy](SWARM.md) · [provenience UI](UI_ART.md).
+The player and all four companions have six painted walking poses each. Companions take short walks, stop when approached or addressed, and change their stories as shelter, fire and the signal are completed. George is present at camp from the beginning. Subtle sea highlights, distant birds, mist and drifting leaves add movement without changing puzzle targets.
 
-## Výtvarná a historická povaha
+[Living-world implementation](LIVING_WORLD.md) · [walking artwork and provenance](WALK_ART.md) · [fictional dialogue and historical basis](STORIES.md) · [painted interface](VISUAL_DESIGN.md).
 
-Tři kreslená/kvašová prostředí, hlavní postava, čtyři další postavy, jedenáct rekvizit a pět maleb změněného prostředí tvoří společnou původní AI generovanou výtvarnou sadu. [Provenience](ART.md), [obrazový manifest](dist/assets/manifest.json). Aktivní předměty, plachta, plamen, signál a reakce jsou samostatné vrstvy; chůze využívá jednoduchou animaci rozdělené postavy, nikoli plnou sadu ručně kreslených snímků.
+The artwork was generated with AI from this project's original character references. It is not an archaeological reconstruction or an authenticated portrait. Precise first-night puzzles and conversations are original fiction. No Machinarium assets, characters, audio or code were used. [Historical research](../research/OVERVIEW.md).
 
-Inspirací je způsob vizuálního vyprávění klasických adventur. Nejsou použity postavy, obrázky, zvuky ani kód Machinaria či jiné hry.
-
-Přístřeší, záchrana materiálu a řemeslo mají oporu v historii Graftonu. Přesné hádanky, pořadí akcí, plánek lokací i shrnutí do první noci jsou vlastní fikce. Postava není autentický portrét konkrétního námořníka. Pětice přežila; herní řešení netvrdí, že se věci staly právě takto. [Historické podklady](../research/OVERVIEW.md).
-
-## Ověření a další rozsah
+## Verification and remaining work
 
 ```sh
-node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs
+node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs adventure/tests/interface-art.cjs adventure/tests/polish-ui.cjs adventure/tests/live.test.cjs
 node adventure/tests/ui-contract.cjs
-node --check adventure/dist/app.js
 ```
 
-Testy zahrnují úplný průchod, všech 172 dosažitelných stavů a jejich návaznost na dokončení i zapojení malovaných předmětů a postav, hranice výřezů a shodu původních obrázků s evidovanými hashi. Podrobné meze ověření rozhraní uvádí [TESTING.md](TESTING.md).
+39 tests and the separate UI contract passed. All 172 reachable puzzle states lead to completion. [Verification details and limits](TESTING.md).
 
-Další kapitoly celé adventury (zima, výroba nástrojů, přestavba člunu, plavba a návrat) zatím nejsou převedeny do tohoto herního systému. Historický scénář v repozitáři pro ně zůstává podkladem. Před rozšiřováním je potřeba ověřit nové vizuální ovládání skutečným hraním.
+The cloud preview/browser route remains unavailable, so complete rendered playback, touch interaction and device narration have not been verified in a real browser. Generated poses have minor volume and gait variation; six frames are a first animation pass, not a claim of finished cinematic animation. Further chapters—winter, the forge, boatbuilding, escape and the return—remain future work.
+
+[Earlier 20-role interface review](SWARM.md) · [original research/story repository](../README.md).

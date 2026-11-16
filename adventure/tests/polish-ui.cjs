@@ -24,14 +24,14 @@ test('settings expose pressed state, preserve focus after rerender and persist',
  assert.equal(a.ids.get('toggle-motion').attrs['aria-labelledby'],'motion-label');
  await a.click('toggle-captions');assert.equal(a.ids.get('toggle-captions').attrs['aria-pressed'],'true');assert.equal(a.activeElement(),a.ids.get('toggle-captions'));
  await a.click('toggle-motion');assert.equal(a.ids.get('toggle-motion').attrs['aria-pressed'],'true');assert.equal(a.activeElement(),a.ids.get('toggle-motion'));
- assert.deepEqual(JSON.parse(a.stored[PREF]),{captions:true,reduced:true});
+ assert.deepEqual(JSON.parse(a.stored[PREF]),{captions:true,reduced:true,narration:false});
  const b=app({initial:a.stored});await b.click('settings');assert.equal(b.ids.get('toggle-captions').attrs['aria-pressed'],'true');assert.equal(b.ids.get('toggle-motion').attrs['aria-pressed'],'true');
  await b.click('toggle-captions');await b.click('toggle-motion');assert.equal(b.ids.get('toggle-motion').attrs['aria-pressed'],'false');assert.equal(b.ids.get('toggle-captions').attrs['aria-pressed'],'false');
 });
 test('hint text remains present for assistive technology when captions default off',async()=>{
- const a=app();await a.click('hint');assert.match(a.ids.get('modal-body').innerHTML,/<p class="sr-only">Prohlédni naplaveniny u vody\.<\/p>/);
+ const a=app();await a.click('hint');assert.match(a.ids.get('modal-body').innerHTML,/<p class="sr-only">Look through the driftwood by the water\.<\/p>/);
  await a.click('modal-close');await a.click('settings');await a.click('toggle-captions');await a.click('modal-close');await a.click('hint');
- assert.match(a.ids.get('modal-body').innerHTML,/<p class="small">Prohlédni naplaveniny u vody\.<\/p>/);
+ assert.match(a.ids.get('modal-body').innerHTML,/<p class="small">Look through the driftwood by the water\.<\/p>/);
  const css=fs.readFileSync(path.join(__dirname,'../dist/interface.css'),'utf8');assert.match(css,/\.sr-only\s*\{[^}]*clip:/);
 });
 test('Shift+F10 and ContextMenu inspect without using selected item',async()=>{
@@ -74,4 +74,27 @@ test('Henry suggests tinderbox when dry fuel is already in the hearth',async()=>
  const advice=engine.interact(s,'henry','talk');assert.equal(advice.cue,'tinderbox');
  const art=require('../dist/art.js'),a=app({initial});await a.click(a.target('henry'));
  assert.equal(a.ids.get('caption').textContent,advice.text);assert(a.ids.get('thought').innerHTML.includes(`viewBox="${art.props.tinderbox.box.join(' ')}"`));
+});
+test('conversation advances, closes on Escape, and is dismissed on travel',async()=>{
+ const a=app();await a.click(a.target('raynal'));assert.equal(a.ids.get('dialogue').hidden,false);assert.equal(a.ids.get('dialogue-speaker').textContent,'François Raynal');assert.equal(a.ids.get('dialogue-progress').textContent,'1 / 3');
+ await a.click('dialogue-next');assert.equal(a.ids.get('dialogue-progress').textContent,'2 / 3');
+ a.key('Escape');assert.equal(a.ids.get('dialogue').hidden,true);a.runTimers();assert.equal(a.ids.get('dialogue').hidden,true);
+ await a.click(a.target('raynal'));await a.travel('exit_camp');assert.equal(a.ids.get('dialogue').hidden,true);a.runTimers();assert.equal(a.ids.get('dialogue').hidden,true);
+});
+test('conversation timers advance and finish, while the speaker stays in place',async()=>{
+ const a=app();for(let i=0;i<4;i++)await a.flush();await a.click(a.target('raynal'));
+ const actor=a.ids.get('person-raynal'),x=actor.style.left;await a.flush();await a.flush();assert.equal(actor.style.left,x);
+ a.runTimers();assert.equal(a.ids.get('dialogue-progress').textContent,'2 / 3');a.runTimers();assert.equal(a.ids.get('dialogue-progress').textContent,'3 / 3');a.runTimers();assert(a.ids.get('dialogue').hidden);
+});
+test('saved reduced-motion preference stops patrol displacement',async()=>{
+ const a=app({initial:{[PREF]:JSON.stringify({reduced:true})}});await a.flush();const actor=a.ids.get('person-raynal'),x=actor.style.left;
+ assert.match(x,/%$/);for(let i=0;i<8;i++)await a.flush();assert.equal(actor.style.left,x);
+});
+
+test('English device narration is opt-in and stale speech cannot reopen a conversation',async()=>{
+ const spoken=[];let canceled=0;const speech={synth:{getVoices:()=>[{lang:'en-GB',name:'Test voice'}],speak:u=>spoken.push(u),cancel:()=>canceled++},Utterance:function(text){this.text=text;}};
+ const a=app({speech});await a.click(a.target('raynal'));assert.equal(spoken.length,0);await a.click('dialogue-close');
+ await a.click('settings');assert(a.ids.get('toggle-narration'));await a.click('toggle-narration');assert.equal(JSON.parse(a.stored[PREF]).narration,true);await a.click('modal-close');
+ await a.click(a.target('raynal'));assert.equal(spoken.length,1);assert.equal(spoken[0].lang,'en-GB');assert.equal(spoken[0].voice.lang,'en-GB');assert.match(spoken[0].text,/illness/);
+ const end=spoken[0].onend;await a.click('dialogue-close');end();a.runTimers();assert(a.ids.get('dialogue').hidden);assert(canceled>0);
 });

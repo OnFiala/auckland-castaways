@@ -50,6 +50,10 @@ test('all genuine saves round-trip and corrupted essential-item states are rejec
  const s=tool();assert.equal(E.restore({...s,inventory:[]}),null);assert.equal(E.restore({...s,inventory:['loopPole','loopPole']}),null);assert.equal(E.restore({...s,completed:true}),null);assert.equal(E.restore({...s,flags:{...s.flags,fireLit:true}}),null);
  const broken=tools(E.createGame());assert.equal(E.restore({...broken,inventory:broken.inventory.filter(id=>id!=='axe')}),null);
 });
+test('a pre-translation v3 save with a Czech journal still restores and progresses',()=>{
+ const old={version:3,scene:'beach',inventory:['loopPole'],flags:{ropeTaken:true,poleTaken:true,canvasRecovered:false,prybarTaken:false,crateOpen:false,woodCut:false,firewoodPlaced:false,shelterBuilt:false,fireLit:false,mastRaised:false,signalRaised:false},log:[{text:'Lano je v brašně.',cue:'take',scene:'beach'}],completed:false,actions:3};
+ const restored=E.restore(old);assert.deepEqual(restored,old);assert.equal(E.useItem(restored,'loopPole','sail').state.flags.canvasRecovered,true);
+});
 test('hints lead from each meaningful stage to an actionable world or inventory target',()=>{
  let s=E.createGame();assert.equal(E.hint(s).targetId,'rope');s=A(s,'rope');assert.equal(E.hint(s).targetId,'pole');s=A(s,'pole');assert.equal(E.hint(s).cue,'combine');s=apply(s,'combine','rope','pole');assert.equal(E.hint(s).targetId,'sail');s=canvas(s);assert.equal(E.hint(s).targetId,'shelter');assert.equal(E.hint(finish(s)).cue,'done');
 });
@@ -69,5 +73,5 @@ test('every reachable puzzle state has a route to completion, including all vali
   assert(states.length<20000,'unexpected unbounded state space');
  }
  const reachable=new Set(goals),queue=[...goals];for(const id of queue)for(const before of reverse[id])if(!reachable.has(before)){reachable.add(before);queue.push(before);}
- assert(states.length>100,'must explore real alternative puzzle orderings');assert.equal(reachable.size,states.length,'some reachable state cannot reach the finale');
+ assert.equal(states.length,172,'the v3 puzzle graph must preserve all reachable states');assert.equal(reachable.size,states.length,'some reachable state cannot reach the finale');
 });

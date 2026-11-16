@@ -3,31 +3,31 @@
 'use strict';
 const VERSION=3;
 const ITEMS={
- rope:{id:'rope',name:'Lano',description:'Pevný kus lana; na konci lze uvázat smyčku.',icon:'rope'},
- pole:{id:'pole',name:'Bidlo',description:'Dlouhé hladké bidlo dosáhne dál než ruka.',icon:'pole'},
- loopPole:{id:'loopPole',name:'Bidlo se smyčkou',description:'Smyčka na konci bidla zachytí vzdálenou věc.',icon:'loopPole'},
- canvas:{id:'canvas',name:'Plachtovina',description:'Zachráněná plachta může zakrýt nízký přístřešek.',icon:'canvas'},
- prybar:{id:'prybar',name:'Železná páka',description:'Kus uvolněného železa poslouží jako páka.',icon:'prybar'},
- axe:{id:'axe',name:'Sekera',description:'Ostří odhalí suché dřevo uvnitř mokrého kmene.',icon:'axe'},
- tinderbox:{id:'tinderbox',name:'Křesadlo a troud',description:'Uzavřená krabička uchovala troud suchý.',icon:'tinderbox'},
- firewood:{id:'firewood',name:'Suché třísky',description:'Třísky ze suchého středu kmene jsou připravené k podpalu.',icon:'firewood'},
- flagcloth:{id:'flagcloth',name:'Pruh plátna',description:'Zbytek plachty bude z dálky vidět na vysokém bidle.',icon:'flagcloth'}
+ rope:{id:'rope',name:'Rope',description:'A sturdy length of rope, long enough to tie a loop at one end.',icon:'rope'},
+ pole:{id:'pole',name:'Pole',description:'A long, smooth pole reaches farther than an arm.',icon:'pole'},
+ loopPole:{id:'loopPole',name:'Looped pole',description:'The loop at the end can catch something out of reach.',icon:'loopPole'},
+ canvas:{id:'canvas',name:'Canvas',description:'A salvaged sail could cover a low shelter.',icon:'canvas'},
+ prybar:{id:'prybar',name:'Iron bar',description:'This loose piece of iron could work as a lever.',icon:'prybar'},
+ axe:{id:'axe',name:'Axe',description:'The blade can split a wet log to reach the dry wood inside.',icon:'axe'},
+ tinderbox:{id:'tinderbox',name:'Tinderbox',description:'The closed box has kept the tinder dry.',icon:'tinderbox'},
+ firewood:{id:'firewood',name:'Kindling',description:'Dry splinters from the heart of the log, ready for a fire.',icon:'firewood'},
+ flagcloth:{id:'flagcloth',name:'Canvas strip',description:'A scrap of sail could be seen from far away on a tall pole.',icon:'flagcloth'}
 };
 const SCENES=[
- {id:'beach',name:'Na břehu',exits:[{id:'exit_wreck',name:'K vraku',to:'wreck',x:8,y:49},{id:'exit_camp',name:'K táboru',to:'camp',x:92,y:54}],targets:[
-  {id:'rope',name:'Lano v naplaveninách',x:70,y:63,kind:'item',item:'rope'},
-  {id:'pole',name:'Dlouhé bidlo',x:47,y:74,kind:'item',item:'pole'},
-  {id:'sail',name:'Zachycená plachta',x:59,y:43,kind:'puzzle'},
-  {id:'driftwood',name:'Vyplavený kmen',x:32,y:54,kind:'puzzle'},
+ {id:'beach',name:'The Shore',exits:[{id:'exit_wreck',name:'To the wreck',to:'wreck',x:8,y:49},{id:'exit_camp',name:'To the camp',to:'camp',x:92,y:54}],targets:[
+  {id:'rope',name:'Rope in the driftwood',x:70,y:63,kind:'item',item:'rope'},
+  {id:'pole',name:'Long pole',x:47,y:74,kind:'item',item:'pole'},
+  {id:'sail',name:'Snagged sail',x:59,y:43,kind:'puzzle'},
+  {id:'driftwood',name:'Driftwood log',x:32,y:54,kind:'puzzle'},
   {id:'raynal',name:'François Raynal',x:81,y:63,kind:'person'}]},
- {id:'wreck',name:'U vraku',exits:[{id:'exit_beach_wreck',name:'Zpět na břeh',to:'beach',x:93,y:76}],targets:[
-  {id:'prybar',name:'Uvolněné železo',x:55,y:64,kind:'item',item:'prybar'},
-  {id:'crate',name:'Bedna s nářadím',x:72,y:56,kind:'puzzle'},
+ {id:'wreck',name:'The Wreck',exits:[{id:'exit_beach_wreck',name:'Back to the shore',to:'beach',x:93,y:76}],targets:[
+  {id:'prybar',name:'Loose iron bar',x:55,y:64,kind:'item',item:'prybar'},
+  {id:'crate',name:'Tool chest',x:72,y:56,kind:'puzzle'},
   {id:'musgrave',name:'Thomas Musgrave',x:83,y:63,kind:'person'}]},
- {id:'camp',name:'Pod stromy',exits:[{id:'exit_beach_camp',name:'Zpět na břeh',to:'beach',x:7,y:76}],targets:[
-  {id:'shelter',name:'Rám přístřešku',x:72,y:48,kind:'puzzle'},
-  {id:'hearth',name:'Ohniště',x:27,y:67,kind:'puzzle'},
-  {id:'cairn',name:'Kamenná patka',x:42,y:44,kind:'puzzle'},
+ {id:'camp',name:'Under the Trees',exits:[{id:'exit_beach_camp',name:'Back to the shore',to:'beach',x:7,y:76}],targets:[
+  {id:'shelter',name:'Shelter frame',x:72,y:48,kind:'puzzle'},
+  {id:'hearth',name:'Fire pit',x:27,y:67,kind:'puzzle'},
+  {id:'cairn',name:'Stone base',x:42,y:44,kind:'puzzle'},
   {id:'henry',name:'Henry Forgés',x:56,y:65,kind:'person'}]}
 ];
 const FLAGS=['ropeTaken','poleTaken','canvasRecovered','prybarTaken','crateOpen','woodCut','firewoodPlaced','shelterBuilt','fireLit','mastRaised','signalRaised'];
@@ -51,119 +51,119 @@ function unchanged(s,text,cue='wrong',targetId=null){return response(s,clone(s),
 function give(s,id){if(!has(s,id))s.inventory.push(id);}
 function consume(s,id){s.inventory=s.inventory.filter(item=>item!==id);}
 function travel(state,sceneId){
- if(!sceneById(sceneId))return unchanged(state,'Tudy cesta nevede.','blocked');
- if(state.scene===sceneId)return unchanged(state,'Už jsme tady.','look');
- if(!sceneById(state.scene).exits.some(exit=>exit.to===sceneId))return unchanged(state,'Nejdřív se vrať na břeh.','beach');
+ if(!sceneById(sceneId))return unchanged(state,'There is no way through here.','blocked');
+ if(state.scene===sceneId)return unchanged(state,'We are already here.','look');
+ if(!sceneById(state.scene).exits.some(exit=>exit.to===sceneId))return unchanged(state,'Go back to the shore first.','beach');
  const next=clone(state);next.scene=sceneId;return response(state,next,sceneById(sceneId).name,'travel');
 }
 function look(state,id){
  const f=state.flags;
  const text={
-  rope:'Na konci lana půjde uvázat smyčka.',pole:'Samotné bidlo na hladké plachtě neudrží úchop.',
-  sail:'Plachta je příliš daleko; něco ji musí zachytit.',driftwood:f.woodCut?'Suchý střed už je naštípaný.':'Kmen má mokrý povrch, ale uvnitř může zůstat suchý.',
-  prybar:'Uvolněné železo poslouží jako páka.',crate:f.crateOpen?'Bedna je otevřená; nástroje už máme.':'Víko drží pevně a pod okrajem je úzká spára.',
-  shelter:f.shelterBuilt?'Pod plachtou je sucho a závětří.':'Rám drží, ale chybí mu plachta.',
-  hearth:f.fireLit?'Oheň hoří v závětří.':f.firewoodPlaced?'Třísky čekají na jiskru.':'K podpalování potřebujeme suché třísky.',
-  cairn:f.signalRaised?'Pruh plátna se pohybuje nad stromy.':f.mastRaised?'Na bidle ještě chybí něco světlého.':'Mezi kameny by mohlo stát dlouhé bidlo.',
-  raynal:'Raynal odpočívá v závětří a sleduje vzdálenou plachtu.',musgrave:'Musgrave prohlíží zachráněnou bednu.',henry:'Henry připravuje místo pro přístřešek a oheň.'
+  rope:'We could tie a loop at the end of the rope.',pole:'The bare pole would just slide off the sail.',
+  sail:'The sail is out of reach. We need something to catch it.',driftwood:f.woodCut?'We have already split the dry wood inside.':'The log is wet outside, but it may still be dry inside.',
+  prybar:'This loose iron bar could work as a lever.',crate:f.crateOpen?'The chest is open. We have the tools.':'The lid is stuck, but there is a narrow gap under its edge.',
+  shelter:f.shelterBuilt?'The canvas keeps out the rain and wind.':'The frame is sound. It still needs a cover.',
+  hearth:f.fireLit?'The fire is burning out of the wind.':f.firewoodPlaced?'The kindling is ready for a spark.':'We need dry kindling to start a fire.',
+  cairn:f.signalRaised?'The canvas strip flutters above the trees.':f.mastRaised?'The pole needs something bright at the top.':'A long pole could stand between these stones.',
+  raynal:'Raynal rests out of the wind, watching the snagged sail.',musgrave:'Musgrave examines the salvaged chest.',henry:'Henry clears a place for shelter and a fire.'
  };
  const cue={rope:'rope',pole:'loopPole',sail:'loopPole',driftwood:'axe',prybar:'prybar',crate:f.crateOpen?'done':'prybar',shelter:f.shelterBuilt?'done':'canvas',hearth:f.fireLit?'fire':f.firewoodPlaced?'tinderbox':'firewood',cairn:f.signalRaised?'done':f.mastRaised?'flagcloth':'loopPole'}[id]||'talk';
- return unchanged(state,text[id]||'Tady nic dalšího není.',cue,id);
+ return unchanged(state,text[id]||'There is nothing else here.',cue,id);
 }
 function interact(state,targetId,verb='look'){
  const target=findTarget(state,targetId);
- if(!target)return unchanged(state,'Teď na to nedosáhneme.','wrong');
+ if(!target)return unchanged(state,'We cannot reach that from here.','wrong');
  if(target.to)return verb==='look'?unchanged(state,target.name,'travel',targetId):travel(state,target.to);
  if(verb==='look')return look(state,targetId);
  if(verb==='talk'){
-  if(target.kind!=='person')return unchanged(state,'Tohle nám neodpoví.','wrong',targetId);
+  if(target.kind!=='person')return unchanged(state,'That will not answer us.','wrong',targetId);
   const f=state.flags;
   const advice=targetId==='raynal'?
-   (!f.canvasRecovered?['Zachyť plachtu smyčkou na bidle.','loopPole']:!f.shelterBuilt?['Z té plachty bude dobrá střecha.','canvas']:!f.signalRaised?['Zbytek světlého plátna patří na stožár.','flagcloth']:['Znamení je vidět.','done']):targetId==='musgrave'?
-   (!f.crateOpen?['Zkus železo podsunout pod víko.','prybar']:!f.woodCut?['Sekera odhalí suchý střed kmene.','axe']:!f.fireLit?['V krabičce je suchý troud a křesadlo.','tinderbox']:['Oheň se udržel.','done']):
-   (!f.shelterBuilt?['Potřebujeme střechu, pak se oheň udrží.','canvas']:!f.firewoodPlaced?['Suché třísky patří do ohniště.','firewood']:!f.fireLit?['Teď přilož křesadlo k suchému troudu.','tinderbox']:!f.mastRaised?['Bidlo může stát v kamenné patce.','loopPole']:!f.signalRaised?['Světlý pruh plátna nahoře bude dobře vidět.','flagcloth']:['První noc jsme připraveni přečkat.','done']);
+   (!f.canvasRecovered?['Try catching the sail with a loop on the pole.','loopPole']:!f.shelterBuilt?['That sail will make a good roof.','canvas']:!f.signalRaised?['The bright scrap of canvas belongs on the mast.','flagcloth']:['The signal is visible.','done']):targetId==='musgrave'?
+   (!f.crateOpen?['Try slipping the iron bar under the lid.','prybar']:!f.woodCut?['The axe can reach the dry heart of the log.','axe']:!f.fireLit?['There is dry tinder and a fire striker in the box.','tinderbox']:['The fire has caught.','done']):
+   (!f.shelterBuilt?['We need a roof to keep the fire going.','canvas']:!f.firewoodPlaced?['Put the dry kindling in the fire pit.','firewood']:!f.fireLit?['Now strike a spark into the dry tinder.','tinderbox']:!f.mastRaised?['The pole can stand in the stone base.','loopPole']:!f.signalRaised?['A bright strip of canvas at the top will stand out.','flagcloth']:['We are ready to face our first night.','done']);
   const [line,cue]=advice;
   return unchanged(state,line,cue,targetId);
  }
  if(verb==='take'||verb==='use'||verb==='interact'){
   const next=clone(state),pickups={rope:'ropeTaken',pole:'poleTaken',prybar:'prybarTaken'};
-  if(pickups[targetId]){next.flags[pickups[targetId]]=true;give(next,targetId);return response(state,next,`${ITEMS[targetId].name} je v brašně.`,'take',[targetId],[],targetId);}
+  if(pickups[targetId]){next.flags[pickups[targetId]]=true;give(next,targetId);return response(state,next,`${ITEMS[targetId].name} is in the satchel.`,'take',[targetId],[],targetId);}
   if(targetId==='cairn'&&state.flags.mastRaised&&!state.flags.signalRaised){
-   next.flags.mastRaised=false;give(next,'loopPole');return response(state,next,'Bidlo můžeme ještě použít jinde.','take',['loopPole'],[],targetId);
+   next.flags.mastRaised=false;give(next,'loopPole');return response(state,next,'We can still use the pole elsewhere.','take',['loopPole'],[],targetId);
   }
   if(target.kind==='person')return interact(state,targetId,'talk');
   return look(state,targetId);
  }
- return unchanged(state,'Tohle tady nejde.','wrong',targetId);
+ return unchanged(state,'That will not work here.','wrong',targetId);
 }
 function combine(state,itemA,itemB){
- if(!has(state,itemA)||!has(state,itemB))return unchanged(state,'Obě věci musí být v brašně.','wrong');
+ if(!has(state,itemA)||!has(state,itemB))return unchanged(state,'Both items need to be in the satchel.','wrong');
  if(new Set([itemA,itemB]).size===2&&[itemA,itemB].includes('rope')&&[itemA,itemB].includes('pole')){
-  const next=clone(state);consume(next,'rope');consume(next,'pole');give(next,'loopPole');return response(state,next,'Smyčka na bidle zachytí plachtu.','combine',['loopPole'],['rope','pole']);
+  const next=clone(state);consume(next,'rope');consume(next,'pole');give(next,'loopPole');return response(state,next,'The loop on the pole can catch the sail.','combine',['loopPole'],['rope','pole']);
  }
- return unchanged(state,'Tyto věci k sobě nepatří.','wrong');
+ return unchanged(state,'Those items do not fit together.','wrong');
 }
 function useItem(state,itemId,targetId){
- if(!has(state,itemId))return unchanged(state,'Tuhle věc nemáme v brašně.','wrong',targetId);
+ if(!has(state,itemId))return unchanged(state,'That item is not in the satchel.','wrong',targetId);
  if(has(state,targetId))return combine(state,itemId,targetId);
  const target=findTarget(state,targetId);
- if(!target)return unchanged(state,'Teď na to nedosáhneme.','wrong');
+ if(!target)return unchanged(state,'We cannot reach that from here.','wrong');
  const next=clone(state),f=next.flags;
  if(itemId==='loopPole'&&targetId==='sail'){
-  f.canvasRecovered=true;give(next,'canvas');return response(state,next,'Plachta je konečně na břehu.','canvas_recovered',['canvas'],[],targetId);
+  f.canvasRecovered=true;give(next,'canvas');return response(state,next,'The sail is finally ashore.','canvas_recovered',['canvas'],[],targetId);
  }
  if(itemId==='prybar'&&targetId==='crate'){
-  if(f.crateOpen)return unchanged(state,'Bedna už je otevřená.','done',targetId);
-  f.crateOpen=true;give(next,'axe');give(next,'tinderbox');return response(state,next,'Uvnitř je sekera a suché křesadlo s troudem.','crate_open',['axe','tinderbox'],[],targetId);
+  if(f.crateOpen)return unchanged(state,'The chest is already open.','done',targetId);
+  f.crateOpen=true;give(next,'axe');give(next,'tinderbox');return response(state,next,'Inside are an axe and a dry tinderbox.','crate_open',['axe','tinderbox'],[],targetId);
  }
  if(itemId==='axe'&&targetId==='driftwood'){
-  if(f.woodCut)return unchanged(state,'Suché třísky už máme připravené.','done',targetId);
-  f.woodCut=true;give(next,'firewood');return response(state,next,'Pod mokrou kůrou je dřevo suché.','wood_cut',['firewood'],[],targetId);
+  if(f.woodCut)return unchanged(state,'We already have dry kindling.','done',targetId);
+  f.woodCut=true;give(next,'firewood');return response(state,next,'The wood is dry beneath the wet bark.','wood_cut',['firewood'],[],targetId);
  }
  if(itemId==='canvas'&&targetId==='shelter'){
-  if(f.shelterBuilt)return unchanged(state,'Střecha už drží.','done',targetId);
-  f.shelterBuilt=true;consume(next,'canvas');give(next,'flagcloth');return response(state,next,'Střecha je napnutá a zbyl světlý pruh plátna.','shelter_built',['flagcloth'],['canvas'],targetId);
+  if(f.shelterBuilt)return unchanged(state,'The roof is already in place.','done',targetId);
+  f.shelterBuilt=true;consume(next,'canvas');give(next,'flagcloth');return response(state,next,'The roof is stretched tight, with a bright strip of canvas left over.','shelter_built',['flagcloth'],['canvas'],targetId);
  }
  if(itemId==='firewood'&&targetId==='hearth'){
-  f.firewoodPlaced=true;consume(next,'firewood');return response(state,next,'Suché třísky jsou v ohništi.','fuel_placed',[],['firewood'],targetId);
+  f.firewoodPlaced=true;consume(next,'firewood');return response(state,next,'The dry kindling is in the fire pit.','fuel_placed',[],['firewood'],targetId);
  }
  if(itemId==='tinderbox'&&targetId==='hearth'){
-  if(f.fireLit)return unchanged(state,'Oheň už hoří.','fire',targetId);
-  if(!f.firewoodPlaced)return unchanged(state,'Jiskra potřebuje suché třísky.','firewood',targetId);
-  if(!f.shelterBuilt)return unchanged(state,'Nejdřív střechu; vítr plamen hned sfoukne.','canvas',targetId);
-  f.fireLit=true;return response(state,next,'Oheň se udržel.','fire_lit',[],[],targetId);
+  if(f.fireLit)return unchanged(state,'The fire is already burning.','fire',targetId);
+  if(!f.firewoodPlaced)return unchanged(state,'A spark needs dry kindling.','firewood',targetId);
+  if(!f.shelterBuilt)return unchanged(state,'A roof first. The wind would blow the flame out.','canvas',targetId);
+  f.fireLit=true;return response(state,next,'The fire has caught.','fire_lit',[],[],targetId);
  }
  if(itemId==='loopPole'&&targetId==='cairn'){
-  if(f.mastRaised)return unchanged(state,'Bidlo už stojí mezi kameny.','flagcloth',targetId);
-  f.mastRaised=true;consume(next,'loopPole');return response(state,next,'Bidlo pevně stojí; nahoře chybí světlé plátno.','mast_raised',[],['loopPole'],targetId);
+  if(f.mastRaised)return unchanged(state,'The pole is already standing between the stones.','flagcloth',targetId);
+  f.mastRaised=true;consume(next,'loopPole');return response(state,next,'The pole is secure. It needs bright canvas at the top.','mast_raised',[],['loopPole'],targetId);
  }
  if(itemId==='flagcloth'&&targetId==='cairn'){
-  if(!f.mastRaised)return unchanged(state,'Plátno musí být výš na dlouhém bidle.','loopPole',targetId);
-  f.signalRaised=true;consume(next,'flagcloth');return response(state,next,'Znamení je nad pobřežím vidět.','signal_raised',[],['flagcloth'],targetId);
+  if(!f.mastRaised)return unchanged(state,'The canvas needs to fly higher, on a long pole.','loopPole',targetId);
+  f.signalRaised=true;consume(next,'flagcloth');return response(state,next,'The signal is visible above the shore.','signal_raised',[],['flagcloth'],targetId);
  }
- if(target.kind==='person')return unchanged(state,`${target.name.split(' ')[0]} ukazuje zpět k práci.`,'talk',targetId);
+ if(target.kind==='person')return unchanged(state,`${target.name.split(' ')[0]} gestures toward the work still to do.`,'talk',targetId);
  const needs={sail:'loopPole',crate:'prybar',driftwood:'axe',shelter:'canvas',hearth:f.firewoodPlaced?'tinderbox':'firewood',cairn:f.mastRaised?'flagcloth':'loopPole'};
- return unchanged(state,'Zkus jinou věc. ',needs[targetId]||'wrong',targetId);
+ return unchanged(state,'Try another item.',needs[targetId]||'wrong',targetId);
 }
 function hint(state){
  const f=state.flags;
  const result=(sceneId,targetId,cue,text,itemId=null)=>({sceneId,targetId,cue,text,itemId});
- if(state.completed)return result('camp','hearth','done','První večer je zvládnutý.');
+ if(state.completed)return result('camp','hearth','done','We are ready for the first night.');
  if(!f.canvasRecovered){
-  if(f.mastRaised)return result('camp','cairn','take','Vezmi bidlo zpátky ze stojanu.');
-  if(!f.ropeTaken)return result('beach','rope','take','Prohlédni naplaveniny u vody.');
-  if(!f.poleTaken)return result('beach','pole','take','Na břehu leží dlouhé bidlo.');
-  if(!has(state,'loopPole'))return result('beach','pole','combine','Spoj lano s bidlem.','rope');
-  return result('beach','sail','loopPole','Smyčka zachytí vzdálenou plachtu.','loopPole');
+  if(f.mastRaised)return result('camp','cairn','take','Take the pole back out of the stone base.');
+  if(!f.ropeTaken)return result('beach','rope','take','Look through the driftwood by the water.');
+  if(!f.poleTaken)return result('beach','pole','take','There is a long pole on the shore.');
+  if(!has(state,'loopPole'))return result('beach','pole','combine','Combine the rope with the pole.','rope');
+  return result('beach','sail','loopPole','The loop can catch the sail out of reach.','loopPole');
  }
- if(!f.shelterBuilt)return result('camp','shelter','canvas','Zakryj rám zachráněnou plachtou.','canvas');
- if(!f.prybarTaken)return result('wreck','prybar','take','Ve vraku je kus uvolněného železa.');
- if(!f.crateOpen)return result('wreck','crate','prybar','Páka se vejde pod víko bedny.','prybar');
- if(!f.woodCut)return result('beach','driftwood','axe','Odhal suchý střed kmene.','axe');
- if(!f.firewoodPlaced)return result('camp','hearth','firewood','Přenes suché třísky do ohniště.','firewood');
- if(!f.fireLit)return result('camp','hearth','tinderbox','Teď už se plamen udrží.','tinderbox');
- if(!f.mastRaised)return result('camp','cairn','loopPole','Bidlo poslouží také jako stožár.','loopPole');
- return result('camp','cairn','flagcloth','Přivaž světlý pruh nahoru.','flagcloth');
+ if(!f.shelterBuilt)return result('camp','shelter','canvas','Cover the frame with the salvaged sail.','canvas');
+ if(!f.prybarTaken)return result('wreck','prybar','take','There is a loose iron bar in the wreck.');
+ if(!f.crateOpen)return result('wreck','crate','prybar','The bar will fit beneath the lid of the chest.','prybar');
+ if(!f.woodCut)return result('beach','driftwood','axe','Split the log to reach the dry wood inside.','axe');
+ if(!f.firewoodPlaced)return result('camp','hearth','firewood','Carry the dry kindling to the fire pit.','firewood');
+ if(!f.fireLit)return result('camp','hearth','tinderbox','The flame will stay alight now.','tinderbox');
+ if(!f.mastRaised)return result('camp','cairn','loopPole','The pole can also serve as a mast.','loopPole');
+ return result('camp','cairn','flagcloth','Tie the bright strip of canvas to the top.','flagcloth');
 }
 function restore(raw){
  try{

@@ -32,3 +32,7 @@ Tyto podklady nemění dosavadní rozhodnutí projektu o licenci. Manifest popis
 ## Rozhraní z téže výtvarné sady
 
 [UI_ART](UI_ART.md) dokládá šest materiálových prvků v jednom původním PNG. Hra používá malované dřevo, plátno, papír a brašnu i mimo samotnou scénu. Objekty a UI mají skutečný vnitřní SVG ořez, aby se při různých poměrech stran nezobrazily sousední části atlasu. Souřadnice a vnitřní viewport se ověřují testem; výsledný render zůstává předmětem browserové kontroly.
+
+## Navazující chůze a rozhovory
+
+Aktuální hra již nepoužívá rozdělenou stojící malbu jako chůzi. Pět samostatných atlasů obsahuje celkem 30 krokových póz; původ, výřezy a omezení dokládá [WALK_ART](WALK_ART.md). Původní postavy zůstávají klidovými pózami. Přibyly krátké anglické rozhovory a živější prostředí, viz [LIVING_WORLD](LIVING_WORLD.md). Starší odstavce výše popisují původ základních obrazů a předchozí implementaci.

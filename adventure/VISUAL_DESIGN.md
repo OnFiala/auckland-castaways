@@ -1,5 +1,8 @@
 # Vizuální směr a provedená revize
 
+> Historický záznam revize rozhraní. Následující krok již přidal anglickou hru, šest krokových póz pro každou postavu a krátké rozhovory; aktuální stav popisuje [LIVING_WORLD](LIVING_WORLD.md).
+
+
 16. listopadu 2026. Hra zachovává první kapitolu se třemi propojenými místnostmi a vizuální práci s předměty. Tato revize sjednocuje malovaný svět, horní lištu, inventář a dialogy. [Tým a modely](SWARM.md), [rozsah hry](README.md), [ověření](TESTING.md).
 
 ## Vzhled
