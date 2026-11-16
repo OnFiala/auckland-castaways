@@ -16,7 +16,7 @@ Po stažení repozitáře otevřete [dist/index.html](dist/index.html). Nejsou p
 
 ## Výtvarná a historická povaha
 
-Tři ručně působící kreslená/kvašová pozadí a průhledná postava jsou původní AI generované podklady. [Provenience](ART.md), [obrazový manifest](dist/assets/manifest.json). Aktivní předměty, plachta, plamen, signál a reakce jsou samostatné vrstvy; chůze využívá jednoduchou animaci rozdělené postavy, nikoli plnou sadu ručně kreslených snímků.
+Tři kreslená/kvašová prostředí, hlavní postava, čtyři další postavy, jedenáct rekvizit a pět maleb změněného prostředí tvoří společnou původní AI generovanou výtvarnou sadu. [Provenience](ART.md), [obrazový manifest](dist/assets/manifest.json). Aktivní předměty, plachta, plamen, signál a reakce jsou samostatné vrstvy; chůze využívá jednoduchou animaci rozdělené postavy, nikoli plnou sadu ručně kreslených snímků.
 
 Inspirací je způsob vizuálního vyprávění klasických adventur. Nejsou použity postavy, obrázky, zvuky ani kód Machinaria či jiné hry.
 
@@ -25,11 +25,11 @@ Přístřeší, záchrana materiálu a řemeslo mají oporu v historii Graftonu.
 ## Ověření a další rozsah
 
 ```sh
-node --test adventure/tests/engine.test.js
+node --test adventure/tests/engine.test.js adventure/tests/art-contract.cjs
 node adventure/tests/ui-contract.cjs
 node --check adventure/dist/app.js
 ```
 
-13 testů zahrnuje úplný průchod i ověření všech 172 dosažitelných stavů a jejich návaznosti na dokončení. Podrobné meze ověření rozhraní uvádí [TESTING.md](TESTING.md).
+Testy zahrnují úplný průchod, všech 172 dosažitelných stavů a jejich návaznost na dokončení i zapojení malovaných předmětů a postav, hranice výřezů a shodu původních obrázků s evidovanými hashi. Podrobné meze ověření rozhraní uvádí [TESTING.md](TESTING.md).
 
 Další kapitoly celé adventury (zima, výroba nástrojů, přestavba člunu, plavba a návrat) zatím nejsou převedeny do tohoto herního systému. Historický scénář v repozitáři pro ně zůstává podkladem. Před rozšiřováním je potřeba ověřit nové vizuální ovládání skutečným hraním.

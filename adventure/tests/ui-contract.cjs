@@ -26,7 +26,7 @@ function app({initial={},blocked=false}={}){
  parse(fs.readFileSync(root+'index.html','utf8'));
  doc={getElementById:id=>ids.get(id)||null,body:new El('body'),createElement:tag=>{const el=new El();el.tag=tag;return el;}};
  const context={console,document:doc,localStorage:{getItem(k){if(blocked)throw Error('blocked');return stored[k]??null;},setItem(k,v){if(blocked)throw Error('blocked');stored[k]=v;}},matchMedia:()=>({matches:false}),performance:{now:()=>clock},requestAnimationFrame(fn){raf.push(fn);return raf.length;},setTimeout(fn,ms=0){timers.set(++timerId,{fn,ms});return timerId;},clearTimeout(id){timers.delete(id);},addEventListener(){}};context.window=context;
- vm.createContext(context);for(const f of ['engine.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
+ vm.createContext(context);for(const f of ['art.js','engine.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
  async function flush(){for(let i=0;i<8;i++){clock+=2000;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();}}
  async function click(id){const el=typeof id==='string'?ids.get(id):id;assert.equal(typeof el?.onclick,'function','click handler '+(id?.id||id));el.onclick({preventDefault(){},stopPropagation(){},target:el});await flush();}
  const target=id=>ids.get('targets').querySelector(`[data-target="${id}"]`);

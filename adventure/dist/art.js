@@ -1,0 +1,240 @@
+// Painted art registry. Crops reference unmodified original PNGs; see assets/*/manifest.json.
+(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.AdventureArt=factory();})(typeof window!=='undefined'?window:globalThis,function(){'use strict';return {
+  "props": {
+    "rope": {
+      "file": "assets/props/tools.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        11,
+        107,
+        489,
+        382
+      ]
+    },
+    "pole": {
+      "file": "assets/props/tools.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        533,
+        19,
+        479,
+        491
+      ]
+    },
+    "loopPole": {
+      "file": "assets/props/tools.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        1039,
+        11,
+        497,
+        499
+      ]
+    },
+    "prybar": {
+      "file": "assets/props/tools.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        43,
+        527,
+        439,
+        483
+      ]
+    },
+    "axe": {
+      "file": "assets/props/tools.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        533,
+        543,
+        469,
+        473
+      ]
+    },
+    "tinderbox": {
+      "file": "assets/props/tools.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        1101,
+        604,
+        387,
+        368
+      ]
+    },
+    "canvas": {
+      "file": "assets/props/materials.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        9,
+        62,
+        489,
+        415
+      ]
+    },
+    "firewood": {
+      "file": "assets/props/materials.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        535,
+        96,
+        462,
+        331
+      ]
+    },
+    "flagcloth": {
+      "file": "assets/props/materials.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        1039,
+        78,
+        490,
+        398
+      ]
+    },
+    "driftwood": {
+      "file": "assets/props/materials.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        7,
+        623,
+        490,
+        302
+      ]
+    },
+    "cairn": {
+      "file": "assets/props/materials.png",
+      "width": 1536,
+      "height": 1024,
+      "box": [
+        529,
+        608,
+        479,
+        325
+      ]
+    },
+    "crate": {
+      "file": "assets/wreck.png",
+      "width": 1672,
+      "height": 941,
+      "box": [
+        1045,
+        410,
+        316,
+        238
+      ]
+    }
+  },
+  "people": {
+    "musgrave": {
+      "file": "assets/people/musgrave.png",
+      "width": 1024,
+      "height": 1536,
+      "box": [
+        208,
+        4,
+        622,
+        1523
+      ]
+    },
+    "raynal": {
+      "file": "assets/people/raynal.png",
+      "width": 1024,
+      "height": 1536,
+      "box": [
+        236,
+        1,
+        522,
+        1534
+      ]
+    },
+    "henry": {
+      "file": "assets/people/henry.png",
+      "width": 1024,
+      "height": 1536,
+      "box": [
+        208,
+        3,
+        575,
+        1531
+      ]
+    },
+    "george": {
+      "file": "assets/people/george.png",
+      "width": 1024,
+      "height": 1536,
+      "box": [
+        185,
+        6,
+        618,
+        1527
+      ]
+    }
+  },
+  "states": {
+    "shelter": {
+      "file": "assets/states/camp-shelter.png",
+      "width": 1672,
+      "height": 941,
+      "box": [
+        0,
+        0,
+        1672,
+        941
+      ]
+    },
+    "crateOpen": {
+      "file": "assets/states/wreck-open.png",
+      "width": 1671,
+      "height": 941,
+      "box": [
+        0,
+        0,
+        1671,
+        941
+      ]
+    },
+    "fire": {
+      "file": "assets/states/fire.png",
+      "width": 1229,
+      "height": 1280,
+      "box": [
+        300,
+        111,
+        612,
+        1017
+      ]
+    },
+    "mastFlag": {
+      "file": "assets/states/mast-flag.png",
+      "width": 887,
+      "height": 1774,
+      "box": [
+        216,
+        22,
+        546,
+        1732
+      ]
+    },
+    "mast": {
+      "file": "assets/states/mast.png",
+      "width": 887,
+      "height": 1774,
+      "box": [
+        216,
+        22,
+        546,
+        1732
+      ]
+    }
+  }
+};});

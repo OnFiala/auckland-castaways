@@ -1,0 +1,360 @@
+{
+  "created": "2026-11-16",
+  "generator": "image_gen.imagegen",
+  "status": "Original painted artistic interpretations, not archaeological evidence.",
+  "grid": {
+    "columns": 3,
+    "rows": 2,
+    "cellWidth": 512,
+    "cellHeight": 512
+  },
+  "atlases": [
+    {
+      "file": "tools.png",
+      "original_file": "exec-12e2ed0a-c25a-445a-92da-ef15ee2a649c.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 2262890,
+      "sha256": "8a0d6fe25cf34d2d90229accb467d805a0559250c61dfbacafc6634eada07b28",
+      "alpha_zero_fraction": 0.17589696248372397,
+      "alpha_below16_fraction": 0.7081807454427084,
+      "prompt": "Hand-painted historical point-and-click adventure game assets, fine graphite and pen contours with richly textured gouache and colored-pencil shading, same sophistication as a lovingly drawn weathered sailor with patched wool coat: muted olive, gray teal, warm ochre, aged parchment, worn brown wood, subdued iron. Tactile natural materials and delicate irregular contour lines, soft painterly volume and directional overcast light from upper left, elegant restrained stylization, realistic 1864 salvage tools but clear readable shapes. Not flat vectors, not emoji, not icon UI graphics, not photorealistic, not 3D renders, no glossy surfaces, no sticker borders, no white outlines. TRUE TRANSPARENT BACKGROUND, no ground plane or backdrop. Each prop isolated with only tiny translucent contact shade. No people, no text, letters or numbers. Create a wide landscape transparent SPRITE ATLAS in an EXACT regular 3-column by 2-row grid of SIX equally sized invisible cells, entire canvas 1536 by 1024 or higher landscape same aspect. Never draw grid lines or frames. Each of the six props stays completely within its own cell with large clear transparent gutters, centered in the cell and never crosses cell boundary; complete object, no cropping. Row 1 left: compact loose coil of thick old frayed hemp rope, warm taupe strands meticulously drawn. Row1 middle: one single long plain weathered wooden pole tilted diagonally lower-left to upper-right, complete ends visible, no rope. Row1 right: one similar complete wooden pole tilted diagonally lower-left to upper-right, with a conspicuous closed loop of hemp rope lashed around its far upper end, loop is clearly circular. Row2 left: one bent old iron prybar, dull charcoal and grey mossy patina, angled diagonally. Row2 middle: one modest 1860s hatchet, short ash handle and steel wedge head, turned slightly three-quarter so wood and iron thickness read. Row2 right: a SMALL half-open rectangular tin tinderbox containing flint and dry fibrous tinder, compact enough to fit a hand, believable brass/iron details but no lettering. Keep the long tools scaled to their own cell, and compact objects somewhat smaller to preserve readable natural silhouettes. Avoid any extra objects.",
+      "edits": "None. Original generated PNG bytes preserved."
+    },
+    {
+      "file": "materials.png",
+      "original_file": "exec-f7163c46-a304-447e-a1b3-a09b1eaf913a.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 2234892,
+      "sha256": "fa70361e4287277c16017fc57b6479896615d221a7a32a493b4d990f8a641e5c",
+      "alpha_zero_fraction": 0.6124897003173828,
+      "alpha_below16_fraction": 0.6927267710367838,
+      "prompt": "Hand-painted historical point-and-click adventure game assets, fine graphite and pen contours with richly textured gouache and colored-pencil shading, same sophistication as a lovingly drawn weathered sailor with patched wool coat: muted olive, gray teal, warm ochre, aged parchment, worn brown wood, subdued iron. Tactile natural materials and delicate irregular contour lines, soft painterly volume and directional overcast light from upper left, elegant restrained stylization, realistic 1864 salvage tools but clear readable shapes. Not flat vectors, not emoji, not icon UI graphics, not photorealistic, not 3D renders, no glossy surfaces, no sticker borders, no white outlines. TRUE TRANSPARENT BACKGROUND, no ground plane or backdrop. Each prop isolated with only tiny translucent contact shade. No people, no text, letters or numbers. Create a wide landscape transparent SPRITE ATLAS in an EXACT regular 3-column by 2-row grid of SIX equally sized invisible cells, entire canvas 1536 by 1024 or higher landscape same aspect. Never draw grid lines or frames. Props each stay completely inside their own cell with large clear transparent gutters, centered in the cell and never cross cell boundary; complete object, no cropping. Row1 left: folded piece of worn sail canvas, warm dirty cream linen with stitched seams and fraying edges, loosely folded into an irregular bundle. Row1 middle: small bundle of split dry kindling sticks and wood splinters, readable individual pale fresh wood grain. Row1 right: one long narrow loose strip of off-white sailcloth with frayed edges, curving gently and folded back a little, not a flag on a pole, no emblem. Row2 left: substantial short weathered driftwood log, worn brown-gray ridged bark, rough cut end, lying mostly horizontally in slight three-quarter perspective; it should look like real timber cast up on a wet rocky shore. Row2 middle: a small low mound/base of five or six irregular grey-green shore stones with a small dark socket gap at the center suitable for supporting a pole; no pole yet, no mortar, no symbols. Row2 right MUST REMAIN ENTIRELY EMPTY TRANSPARENT with no object. Avoid anything outside the specified five objects. Consistent painterly rendering and natural volume.",
+      "edits": "None. Original generated PNG bytes preserved."
+    }
+  ],
+  "sprites": {
+    "rope": {
+      "atlas": "tools.png",
+      "column": 0,
+      "row": 0,
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        15,
+        111,
+        496,
+        485
+      ],
+      "alpha128_bbox": [
+        31,
+        123,
+        484,
+        473
+      ],
+      "viewBox": [
+        11,
+        107,
+        489,
+        382
+      ]
+    },
+    "pole": {
+      "atlas": "tools.png",
+      "column": 1,
+      "row": 0,
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        537,
+        23,
+        1008,
+        506
+      ],
+      "alpha128_bbox": [
+        545,
+        29,
+        997,
+        497
+      ],
+      "viewBox": [
+        533,
+        19,
+        479,
+        491
+      ]
+    },
+    "loopPole": {
+      "atlas": "tools.png",
+      "column": 2,
+      "row": 0,
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        1043,
+        15,
+        1536,
+        506
+      ],
+      "alpha128_bbox": [
+        1051,
+        24,
+        1519,
+        500
+      ],
+      "viewBox": [
+        1039,
+        11,
+        497,
+        499
+      ]
+    },
+    "prybar": {
+      "atlas": "tools.png",
+      "column": 0,
+      "row": 1,
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        47,
+        531,
+        478,
+        1006
+      ],
+      "alpha128_bbox": [
+        52,
+        541,
+        473,
+        997
+      ],
+      "viewBox": [
+        43,
+        527,
+        439,
+        483
+      ]
+    },
+    "axe": {
+      "atlas": "tools.png",
+      "column": 1,
+      "row": 1,
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        537,
+        547,
+        998,
+        1012
+      ],
+      "alpha128_bbox": [
+        545,
+        556,
+        991,
+        999
+      ],
+      "viewBox": [
+        533,
+        543,
+        469,
+        473
+      ]
+    },
+    "tinderbox": {
+      "atlas": "tools.png",
+      "column": 2,
+      "row": 1,
+      "cell": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        1105,
+        608,
+        1484,
+        968
+      ],
+      "alpha128_bbox": [
+        1116,
+        616,
+        1471,
+        947
+      ],
+      "viewBox": [
+        1101,
+        604,
+        387,
+        368
+      ]
+    },
+    "canvas": {
+      "atlas": "materials.png",
+      "column": 0,
+      "row": 0,
+      "cell": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        13,
+        66,
+        494,
+        473
+      ],
+      "alpha128_bbox": [
+        14,
+        66,
+        493,
+        471
+      ],
+      "viewBox": [
+        9,
+        62,
+        489,
+        415
+      ]
+    },
+    "firewood": {
+      "atlas": "materials.png",
+      "column": 1,
+      "row": 0,
+      "cell": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        539,
+        100,
+        993,
+        423
+      ],
+      "alpha128_bbox": [
+        540,
+        102,
+        992,
+        423
+      ],
+      "viewBox": [
+        535,
+        96,
+        462,
+        331
+      ]
+    },
+    "flagcloth": {
+      "atlas": "materials.png",
+      "column": 2,
+      "row": 0,
+      "cell": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        1043,
+        82,
+        1525,
+        472
+      ],
+      "alpha128_bbox": [
+        1044,
+        82,
+        1523,
+        468
+      ],
+      "viewBox": [
+        1039,
+        78,
+        490,
+        398
+      ]
+    },
+    "driftwood": {
+      "atlas": "materials.png",
+      "column": 0,
+      "row": 1,
+      "cell": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        11,
+        627,
+        493,
+        921
+      ],
+      "alpha128_bbox": [
+        12,
+        629,
+        492,
+        920
+      ],
+      "viewBox": [
+        7,
+        623,
+        490,
+        302
+      ]
+    },
+    "cairn": {
+      "atlas": "materials.png",
+      "column": 1,
+      "row": 1,
+      "cell": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "alpha16_bbox": [
+        533,
+        612,
+        1004,
+        929
+      ],
+      "alpha128_bbox": [
+        534,
+        613,
+        1003,
+        928
+      ],
+      "viewBox": [
+        529,
+        608,
+        479,
+        325
+      ]
+    }
+  }
+}

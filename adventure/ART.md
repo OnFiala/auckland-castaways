@@ -13,6 +13,14 @@ Všechny obrazy byly zkontrolované samostatně. Prostředí mají širokou spod
 
 [Manifest](dist/assets/manifest.json) uchovává úplné prompty, původní názvy vytvořených souborů, velikosti, rozměry, barevné režimy a SHA-256. Výsledné PNG byly zkopírovány beze změny z výstupu generátoru; původní výstupy zůstaly zachované. Pozadí beach.png prošlo navazující úpravou přes image_gen: odstranění namalovaného lana a volného dřeva, aby sbírané předměty mohlo kreslit a odstraňovat herní rozhraní. Manifest uchovává také prompt úpravy a hash předchozího podkladu. Knihovní fotografie ani moderní ilustrace nebyly použité jako předlohy.
 
+## Sjednocená malovaná sada
+
+Aktuální hra používá čtyři malované vedlejší postavy, jedenáct samostatných rekvizit ze dvou průhledných atlasů a pět dalších maleb pro změny prostředí. Vektorové figurky i světové kresby předmětů byly odstraněny. Podrobný původ: [postavy](PEOPLE_ART.md), [předměty](PROPS_ART.md), [stavy prostředí](STATE_ART.md).
+
+Registr [art.js](dist/art.js) definuje přesné výřezy z nezměněných PNG. Stejný předmět ve scéně, brašně, u kurzoru i v obrazové nápovědě používá stejnou malbu. Poměr stran zůstává zachovaný a výřezy atlasu jsou oříznuté uvnitř SVG, takže sousední rekvizity nepřetékají. Bedna v nápovědě používá výřez její původní malby ve vraku. Základní značky ovládání zůstávají jednoduchými symboly.
+
+Postavy mají individuální výřezy siluet, kontaktní stín a jemný pohyb v klidu. Chodidla jsou umístěna do společné zemní roviny podle hloubky scény. Plachta přepíná celé tábořiště a otevření bedny celé pozadí vraku. Oheň a oba stavy stožáru používají průhledné malby; společná registrace stožáru brání posunu při uvázání vlajky. Jde stále o animaci jednotlivých maleb, nikoli plnou sadu kreslených snímků.
+
 ## Historické a implementační meze
 
 Jde o autorskou výtvarnou interpretaci Aucklandova ostrova a lodního materiálu 19. století, nikoli přesnou rekonstrukci vraku, nářadí nebo archeologické lokality. Námořník je původní stylizovaná postava a není ověřeným portrétem konkrétního člena posádky. Připravená táborová konstrukce i rozmístění nalezených věcí slouží herním hádankám.

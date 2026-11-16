@@ -1,0 +1,108 @@
+{
+  "created": "2026-11-16",
+  "generator": "image_gen.imagegen",
+  "references": [
+    "../sailor.png",
+    "../camp.png"
+  ],
+  "historical_status": "Fictional character casting, not authentic portraits",
+  "files_are_original_unmodified_png": true,
+  "assets": [
+    {
+      "id": "musgrave",
+      "file": "musgrave.png",
+      "generated_original": "exec-3c33135b-c17c-4780-9f16-4ebecf4ea379.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "bytes": 2042483,
+      "sha256": "fd1b7c9c2aa784344dc256de7a4b53e022572727b25e768d62c5842a46334c20",
+      "alpha_zero_ratio": 0.6787,
+      "alpha_below_16_ratio": 0.692,
+      "alpha_bbox_128": [
+        217,
+        13,
+        821,
+        1518
+      ],
+      "alpha_corner_values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "raynal",
+      "file": "raynal.png",
+      "generated_original": "exec-51e139bc-16db-486c-a762-fc85090dad40.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "bytes": 2002408,
+      "sha256": "f49c7a9ef8d0c7d9d7fd0b2e76f3ef46c24edacc024f317db3a02064ecc510c1",
+      "alpha_zero_ratio": 0.6945,
+      "alpha_below_16_ratio": 0.7113,
+      "alpha_bbox_128": [
+        245,
+        10,
+        749,
+        1526
+      ],
+      "alpha_corner_values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "henry",
+      "file": "henry.png",
+      "generated_original": "exec-fe9bfc87-c299-46f0-b2f0-5a019e2731a3.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "bytes": 2049848,
+      "sha256": "e076a38ca47cdb21b607312fec5a428c7e72afe5cf764f5f15d276a260215976",
+      "alpha_zero_ratio": 0.6737,
+      "alpha_below_16_ratio": 0.6856,
+      "alpha_bbox_128": [
+        217,
+        12,
+        774,
+        1525
+      ],
+      "alpha_corner_values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "george",
+      "file": "george.png",
+      "generated_original": "exec-f1a2b4e0-b056-4efc-a629-31a96e6055b0.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "bytes": 2220209,
+      "sha256": "a96a89a773b0b61f83558d807267a552f6c0767eef7dcdf980c72e65e8820ab3",
+      "alpha_zero_ratio": 0.636,
+      "alpha_below_16_ratio": 0.6514,
+      "alpha_bbox_128": [
+        194,
+        15,
+        794,
+        1524
+      ],
+      "alpha_corner_values": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

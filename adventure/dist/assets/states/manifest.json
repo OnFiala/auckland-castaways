@@ -1,0 +1,120 @@
+{
+  "created": "2026-11-16",
+  "generator": "image_gen.imagegen",
+  "assets": [
+    {
+      "name": "camp-shelter",
+      "refs": [
+        "/workspace/auckland-castaways/adventure/dist/assets/camp.png"
+      ],
+      "transparent": false,
+      "prompt": "Edit the provided painted adventure game scene with exactly ONE localized change: cover the existing rough branch shelter frame on the right side with a weathered cream sailcloth canopy, physically draped and tied to its existing poles with small hemp rope ties. The frame is at x54–88%, y28–71% of this exact image. The cloth must convincingly fit the existing perspective and have soft folds, worn weave texture, some stains, soft grounded shadows, restrained pencil outlines and hand-painted gouache matching the original. Keep the left stone fire pit unlit and unchanged. Preserve the EXACT composition, camera, framing, dimensions, all trees, sea, rocks, ground, branches, colours, lighting and style elsewhere. Do not add people, equipment, extra fire, lettering, labels, arrows or UI. The only change is the finished canvas roof over that original frame. Do not redesign the shelter or move the original posts. Retain wide 1672x941 composition.",
+      "source": "/workspace/generated_images/exec-2354d483-8ffe-4e30-98a9-fe91c3d5766b.png",
+      "file": "camp-shelter.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "5fa285d1b7ec0cf5953b1d632d88243904141dcf0b97d62b2b7f22099f6fc4ca",
+      "bytes": 3158014
+    },
+    {
+      "name": "wreck-open",
+      "refs": [
+        "/workspace/auckland-castaways/adventure/dist/assets/wreck.png"
+      ],
+      "transparent": false,
+      "prompt": "Edit the provided hand-painted adventure game scene with ONE precise localized change: the existing wooden crate at approximately x65–79%, y48–63% is now OPEN. Retain the same exact crate body in the same location, scale and perspective, with its plank lid lifted upward/backward on its far edge so we see a dark empty inner cavity. Its aged wood grain, simple iron nails, gouache textures, muted ochre palette and fine pencil detail must match the existing picture. Do not add any loot or tools. Preserve everything else EXACTLY: same ship, rigging, coastline, rocks, trees, foreground, plank, rope, lighting, painting texture, composition and camera. No people, text, icons, arrows or interface. The only change is opening this particular crate. Keep the original wide 1672x941 framing.",
+      "source": "/workspace/generated_images/exec-b1121b61-a0fa-410d-9e6b-e8de82327207.png",
+      "file": "wreck-open.png",
+      "width": 1671,
+      "height": 941,
+      "mode": "RGB",
+      "sha256": "dac73a8192245696d3102ee1cfe84d67163aabc25d9c14350673dc64578e4693",
+      "bytes": 3276698
+    },
+    {
+      "name": "fire",
+      "refs": [
+        "/workspace/auckland-castaways/adventure/dist/assets/camp.png"
+      ],
+      "transparent": true,
+      "prompt": "Create a single transparent game sprite to integrate seamlessly with the reference's graphite-and-gouache hand-painted adventure setting. Isolate a small natural wood campfire seen from the same slightly elevated side-on camera as the existing stone fire pit: 5 or 6 charred short kindling sticks loosely crossed, a dark red ember core, irregular translucent ochre orange and soft golden flames rising gently, a very faint thin wisp of smoke. No stone ring: the reference already has the stones. No ground or environment. No hard opaque glow rectangle. Rich tactile hand-painted texture and fine subtle pencil edges; restrained desaturated ochre and warm amber, natural flames not flat vector symbols, not neon, not comic clipart, not photorealism. Fire sprite centered with enough transparent padding around complete flame and wood, useful vertical composition; transparent background truly empty. No text, UI, frame, people. The reference is only for palette, brushwork and camera; output ONLY the campfire element.",
+      "source": "/workspace/generated_images/exec-fb4565f3-07fa-4c6a-b375-7c7507f803af.png",
+      "file": "fire.png",
+      "width": 1229,
+      "height": 1280,
+      "mode": "RGBA",
+      "sha256": "769e2eb3c12a83c1835f3a19327978e218e24be7158573d9523ec21e268f2817",
+      "bytes": 567020,
+      "alpha_bbox": [
+        301,
+        426,
+        911,
+        1127
+      ],
+      "fully_transparent_fraction": 0.8634484336859235,
+      "soft_alpha_bbox": [
+        300,
+        111,
+        912,
+        1128
+      ]
+    },
+    {
+      "name": "mast-flag",
+      "refs": [
+        "/workspace/auckland-castaways/adventure/dist/assets/camp.png"
+      ],
+      "transparent": true,
+      "prompt": "Create a single isolated transparent adventure-game prop: one long upright weathered wooden pole with a modest ragged strip of cream sailcloth tied near its top with rough hemp rope. Entire pole from foot to top visible. Pole is slightly crooked natural driftwood, muted brown worn grain and knots. Small cream flag extends right, its irregular worn edge and gentle wind-folds realistically painted. About five pole lengths to flag width; flag modest, not a giant banner. Seen at the same gentle elevated side-on camera as reference. Exactly match reference graphite pencil contours and textured gouache on worn paper look: intricate wood grain, woven dirty sailcloth, muted ochre/moss/grey palette, fine restrained outline. Output only this one pole and cloth, on genuinely transparent background; no ground, stones, sky, people, border, text, UI, or black/white matte. Keep realistic consistent shading soft diffuse overcast light, no bright icon outline. Vertical composition with entire object safely within canvas.",
+      "source": "/workspace/generated_images/exec-a12f92bf-34f6-4a76-95aa-b7f2b07dc940.png",
+      "file": "mast-flag.png",
+      "width": 887,
+      "height": 1774,
+      "mode": "RGBA",
+      "sha256": "b1c06f2d8ea8563ce4fea2ad54288e4f77d6698a89a1c2382420a4100e5408b5",
+      "bytes": 485795,
+      "alpha_bbox": [
+        219,
+        25,
+        760,
+        1751
+      ],
+      "fully_transparent_fraction": 0.8992684002547127,
+      "soft_alpha_bbox": [
+        218,
+        24,
+        762,
+        1752
+      ]
+    },
+    {
+      "name": "mast",
+      "source": "/workspace/generated_images/exec-9c92c778-37db-477a-9e4a-0d525bd8cdd5.png",
+      "prompt": "Edit this isolated transparent game prop with one exact change: REMOVE the cream sailcloth flag completely, leaving the same bare wooden pole and the hemp rope wraps around its upper part. Preserve the exact pole's shape, grain, size, position, perspective, shading and hand-painted texture. Do not move or rescale anything; maintain the same tall canvas dimensions and genuine transparent background. The area where the cloth was must become fully transparent. No new objects, ground, sky, matte colour, outlines, text, or border. Keep the rope wraps but no dangling flag.",
+      "refs": [
+        "/workspace/auckland-castaways/adventure/dist/assets/states/mast-flag.png"
+      ],
+      "transparent": true,
+      "file": "mast.png",
+      "width": 887,
+      "height": 1774,
+      "mode": "RGBA",
+      "bytes": 360426,
+      "sha256": "7b52bf8cd55190c939c29e420446af1348210aefb06fcfe63f15989265e6c899",
+      "alpha_bbox": [
+        217,
+        23,
+        421,
+        1753
+      ],
+      "soft_alpha_bbox": [
+        216,
+        22,
+        422,
+        1754
+      ],
+      "fully_transparent_fraction": 0.920924693270833
+    }
+  ]
+}
