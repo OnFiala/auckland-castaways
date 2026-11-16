@@ -37,3 +37,7 @@ Cloudová infrastruktura neumožnila náhled ani otevření hostované stránky 
 ## Celá příběhová kampaň · 16. listopadu 2026
 
 Přidána [malovaná kampaň](../campaign/README.md): 12 kapitol, 36 scén, 72 voleb, tři archivy a epilog. Její samostatná sada 12 testů prošla včetně skutečných příběhových dat. Pět původních maleb má provenienci a hashe. Vizuální průchod kampaní v prohlížeči blokuje spravovaný relay; automatické kontroly jej nenahrazují. [Podrobný záznam](../campaign/TESTING.md).
+
+## Nový point-and-click základ · 16. listopadu 2026
+
+[První noc](../adventure/README.md) nahrazuje hlavní hostovanou verzi skutečnými inventářovými hádankami. 13 modelových testů prošlo včetně všech 172 dosažitelných stavů; samostatný DOM contract ověřil celý průchod skutečnými obsluhami rozhraní. Prohlížečové vykreslení zůstává neověřené. Rozsah je tři lokace a první kapitola; celá historie není převedena do tohoto systému.

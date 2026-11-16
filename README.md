@@ -6,7 +6,16 @@ Tento repozitář obsahuje první rozsáhlý výzkumný a příběhový balík a
 
 Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
 
-## Zahrajte celý příběh
+## Aktuální směr: klasická vizuální adventura
+
+Předchozí větvené čtení bylo odmítnuto jako nevhodný herní formát. Nová verze **První noc** má tři propojené lokace, chodící postavu, inventářové kombinace a používání předmětů na prostředí. Hádanky mění obraz scény; krátké titulky jsou standardně vypnuté. Směr vyprávění upřednostňuje obraz a akci.
+
+[Návod k nové adventuře](adventure/README.md) · [herní soubor po stažení](adventure/dist/index.html) · [provedené testy a jejich meze](adventure/TESTING.md).
+
+Jde o první hratelnou kapitolu nového systému. **Celá historická kampaň zatím není převedená na adventurní hádanky.** Původní texty a prototypy níže zůstávají jako starší vývojové podklady.
+
+## Předchozí příběhová kampaň
+
 
 **Dokud se nevrátíme** nyní obsahuje 12 kapitol, 36 rozhodovacích scén, 72 voleb, tři archivní mezihry Invercauldu a epilog. Pět původních maleb doplňují animované vrstvy mlhy, vody, deště a pohybu postavy. Příběh vede od ztroskotání až po návrat pro George a Henryho.
 
