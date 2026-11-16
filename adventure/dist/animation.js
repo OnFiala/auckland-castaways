@@ -31,7 +31,8 @@
     const a = WALKS[id], b = frameBox(id, frame);
     if (!a) return '';
     const box = b.join(' ');
-    return `<svg class="painted walk-painting" viewBox="${box}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><svg class="atlas-clip" x="${b[0]}" y="${b[1]}" width="${b[2]}" height="${b[3]}" viewBox="${box}" overflow="hidden" style="width:${b[2]}px;height:${b[3]}px;overflow:hidden!important"><image href="${a.file}" width="${a.width}" height="${a.height}"/></svg></svg>`;
+    const groundOffset = (a.commoncrop[1] + a.commoncrop[3] - a.groundanchor[1]) / a.commoncrop[3] * 100;
+    return `<svg class="painted walk-painting" style="position:relative;top:${groundOffset}%" viewBox="${box}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><svg class="atlas-clip" x="${b[0]}" y="${b[1]}" width="${b[2]}" height="${b[3]}" viewBox="${box}" overflow="hidden" style="width:${b[2]}px;height:${b[3]}px;overflow:hidden!important"><image href="${a.file}" width="${a.width}" height="${a.height}"/></svg></svg>`;
   }
   const excursions = { musgrave: 4, raynal: -6, henry: -6, george: 3, player: 0 };
   function createTrack(id) {
