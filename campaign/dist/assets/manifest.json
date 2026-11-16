@@ -1,0 +1,48 @@
+{
+  "created": "2026-11-16",
+  "generator": "image_gen.imagegen",
+  "purpose": "Original painterly backgrounds for the Auckland Castaways narrative campaign",
+  "status": "Artistic interpretation, not archaeological or shipbuilding reconstruction",
+  "assets": [
+    {
+      "file": "camp.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3076562,
+      "sha256": "4fd9f8417d04b00631a7112b2803eb3c4f8416337f7064de42f86f9eadf8ead6",
+      "prompt": "Create one beautiful wide 16:9 cinematic game background landscape, detailed hand-painted gouache and oil on textured paper, visible expressive brush strokes, sophisticated illustrated historical adventure with atmospheric perspective, muted deep teal, ink navy, moss green, ochre and warm amber palette. Evocative and painterly, not photorealistic, not vector, no text, no lettering, no UI, no borders or frame, no captions. Southern subantarctic Auckland Island in the 1860s, cold rain and rugged windswept rocky temperate vegetation; no tropical palms, no icebergs, no modern objects. Compose as a theatrical wide background with distinct depth, dim foreground along bottom, readable middle ground, distant misty mountains. Sheltered bay at dusk with a modest handmade timber castaway cabin assembled with salvaged wood on a shore terrace, softly glowing amber window, thin chimney smoke, dark mossy southern rata forest behind it, small wooden dinghy pulled onto rocky shore, still deep turquoise water with golden reflections and distant high green island cliffs under broken clouds. The cabin is in middle right, broad bay and layered mountains extend across left two thirds. Human warmth in immense wilderness. No people. Carefully built shelter feels believable but is an artistic reconstruction."
+    },
+    {
+      "file": "wreck.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3121339,
+      "sha256": "605c96f0bccedd4f16f10b38e548e7151c1b213148f8ae2ca2d067114a293a01",
+      "prompt": "Create one beautiful wide 16:9 cinematic game background landscape, detailed hand-painted gouache and oil on textured paper, visible expressive brush strokes, sophisticated illustrated historical adventure with atmospheric perspective, muted deep teal, ink navy, moss green, ochre and warm amber palette. Evocative and painterly, not photorealistic, not vector, no text, no lettering, no UI, no borders or frame, no captions. Southern subantarctic Auckland Island in the 1860s, cold rain and rugged windswept rocky temperate vegetation; no tropical palms, no icebergs, no modern objects. Compose as a theatrical wide background with distinct depth, dim foreground along bottom, readable middle ground, distant misty mountains. A small damaged 19th century two-masted schooner stranded near the rocks in a stormy inlet, tilted but recognizable, torn sails and taut rigging, enormous breaking white waves in deep navy and jade water, steep dark moss-covered island headlands and cold low clouds. Ship sits in middle left and rugged shoreline extends toward bottom right. Dramatic but humane adventure tone, no visible casualties, no bodies, no people close. A sliver of pale light on the distant horizon."
+    },
+    {
+      "file": "ocean.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3007511,
+      "sha256": "c274e9b8a480fa45c53472080908d15b78971965c147eca694584e1b71f66ad5",
+      "prompt": "Create one beautiful wide 16:9 cinematic game background landscape, detailed hand-painted gouache and oil on textured paper, visible expressive brush strokes, sophisticated illustrated historical adventure with atmospheric perspective, muted deep teal, ink navy, moss green, ochre and warm amber palette. Evocative and painterly, not photorealistic, not vector, no text, no lettering, no UI, no borders or frame, no captions. Southern subantarctic Auckland Island in the 1860s, cold rain and rugged windswept rocky temperate vegetation; no tropical palms, no icebergs, no modern objects. Compose as a theatrical wide background with distinct depth, dim foreground along bottom, readable middle ground, distant misty mountains. A small improvised 19th century open wooden sailing dinghy in the lower middle right, single small cream-colored sail catching wind, three tiny indistinct bundled adult silhouettes aboard, traversing luminous teal ocean swell toward the distant dark green outline of an island on the left horizon. Dawn after a long crossing: golden slit of light beneath immense lavender-grey clouds, beautiful rhythmic sea brush strokes, vulnerable boat against vast ocean, hopeful but austere. The little boat is distant, not a portrait. No large modern vessels."
+    },
+    {
+      "file": "forge.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3243023,
+      "sha256": "c35bae094f33022ad5b531fe04e48e912e4a8e9f0782460ebbdfdb94026d1ac2",
+      "prompt": "Create one beautiful wide 16:9 cinematic game background, detailed hand-painted gouache and oil on textured paper, clearly visible expressive brush strokes, sophisticated illustrated historical adventure with atmospheric depth, muted deep teal, ink navy, moss green, ochre and warm amber palette. Painterly, not photorealistic, not vector. No text, no lettering, no UI, no borders. Historic subantarctic New Zealand region in the 1860s. No modern objects, no electricity, no people, no tropical plants. Theatre-like composition with dim foreground, readable middle ground, visible environmental storytelling. This is an artistic interpretation, not a measured reconstruction. Interior of a modest handmade timber shelter and makeshift workshop built by castaway sailors. Rough hewn weathered planks, simple stones surrounding a low glowing charcoal hearth on the middle right, hand-operated bellows, a simple iron striking surface and tongs, several broken homemade auger tools on a rough table, salvaged nails, rope coil, small wooden bowl. Cold blue light comes through a small open door on left with rain and dark southern forest outside, warm copper-orange glow illuminates the workshop. A strong diagonally composed, intimate painting of ingenuity with inadequate materials. It should not look like a grand professional blacksmith factory or fantasy dungeon; sparse improvised tools only."
+    },
+    {
+      "file": "harbour.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 3060232,
+      "sha256": "9e90356339efa690ab54a79cd676da260a4b7f11ff43748ab4564cd1f25a14ce",
+      "prompt": "Create one beautiful wide 16:9 cinematic game background, detailed hand-painted gouache and oil on textured paper, clearly visible expressive brush strokes, sophisticated illustrated historical adventure with atmospheric depth, muted deep teal, ink navy, moss green, ochre and warm amber palette. Painterly, not photorealistic, not vector. No text, no lettering, no UI, no borders. Historic subantarctic New Zealand region in the 1860s. No modern objects, no electricity, no people, no tropical plants. Theatre-like composition with dim foreground, readable middle ground, visible environmental storytelling. This is an artistic interpretation, not a measured reconstruction. A modest sheltered bay in southern New Zealand at dawn, a simple small wooden jetty extending from the rocky grassy shore on right, one small period coastal schooner anchored near its end and an open dinghy alongside. Three modest weatherboard buildings partly obscured by low windblown green trees on the middle right shore; broad calm water and distant soft green headland occupy left two thirds. Gentle light breaks through lilac grey clouds with warm amber reflections. Sense of relief after a dangerous crossing. No city, no crowds, no big marina, no high mountains towering above harbour, no signs or flags. Evoke a very small 1860s Stewart Island settlement without claiming geographical accuracy."
+    }
+  ]
+}

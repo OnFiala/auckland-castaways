@@ -2,11 +2,19 @@
 
 **Rešerše a návrh historické hry o trosečnících lodí Grafton a Invercauld na Aucklandových ostrovech v letech 1864–1865.** Hlavní texty jsou česky; bibliografická metadata zachovávají původní názvy a anglické pracovní popisy.
 
-Tento repozitář obsahuje první rozsáhlý výzkumný a příběhový balík a **hratelný prototyp Poslední vrták**. Obsahuje **53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek, dva úplné dobové skeny, dva obrazové výřezy a návrh kampaně s 12 kapitolami**. Není hotovou hrou ani tvrzením, že byly nalezeny všechny prameny. U každé položky je rozlišeno, zda byl čten text, jen vybrané pasáže, indexované OCR, metadata, nebo šlo pouze o nalezenou stopu.
+Tento repozitář obsahuje první rozsáhlý výzkumný a příběhový balík a **celou malovanou příběhovou kampaň Dokud se nevrátíme**. Obsahuje **53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek, dva úplné dobové skeny, dva obrazové výřezy a návrh kampaně s 12 kapitolami**. Není hotovou hrou ani tvrzením, že byly nalezeny všechny prameny. U každé položky je rozlišeno, zda byl čten text, jen vybrané pasáže, indexované OCR, metadata, nebo šlo pouze o nalezenou stopu.
 
 Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
 
-## Zahrajte první prototyp
+## Zahrajte celý příběh
+
+**Dokud se nevrátíme** nyní obsahuje 12 kapitol, 36 rozhodovacích scén, 72 voleb, tři archivní mezihry Invercauldu a epilog. Pět původních maleb doplňují animované vrstvy mlhy, vody, deště a pohybu postavy. Příběh vede od ztroskotání až po návrat pro George a Henryho.
+
+[Návod ke kampani](campaign/README.md) · [úplný scénář](campaign/STORY.md) · [původ maleb](campaign/ART.md) · [ověření a jeho meze](campaign/TESTING.md).
+
+Po stažení repozitáře otevřete [campaign/dist/index.html](campaign/dist/index.html). Instalace ani server nejsou potřeba. Hra má automatické ukládání, deník, návrat rozhodnutí, přehled kapitol, volitelný zvuk a omezení animací. Každá větev je průchozí; ukazatele mění komentář a závěrečné ohlédnutí. Jde o implementovanou celou příběhovou cestu, jejíž vizuální průchod a lidský playtest zůstávají otevřené.
+
+## Původní strategická studie
 
 **Dokud se nevrátíme — Poslední vrták** (16. listopadu 2026) je česká hra pro prohlížeč s pěti lidmi a deseti směnami. Rozdělujete práci, hlídáte únavu a zásoby, uzavíráte konkrétní dohody a měníte plán lodi. Před potvrzením směny vidíte její následky. Hra obsahuje ukládání v prohlížeči, deník, návrat jedné směny a úspěšný i neúspěšný závěr.
 
@@ -18,6 +26,7 @@ Herní model prošel 12 automatickými testy včetně úplného dohrání. Cloud
 
 | Potřebuji… | Dokument |
 |---|---|
+| Projít celou malovanou kampaň | [Dokud se nevrátíme](campaign/README.md) |
 | Vyzkoušet první hratelnou studii | [Prototyp Poslední vrták](prototype/README.md) |
 | Pochopit skutečný příběh | [Historický přehled](research/OVERVIEW.md) |
 | Najít původ a přesnou oporu tvrzení | [Registr pramenů](sources/REGISTER.md) a [evidenční deník](research/CHRONOLOGY.md) |
@@ -63,6 +72,7 @@ python tools/validate.py
 python tools/render_register.py
 python tools/render_evidence.py
 node --test prototype/tests/engine.test.js
+node --test campaign/tests/engine.test.js
 # Volitelně nová síťová kontrola; přepisuje datovaný report:
 python tools/check_links.py
 ```

@@ -9,3 +9,5 @@ Veřejný repozitář není automatické udělení licence ke všem jeho soubor�
 - **Wikisource a další transkripce:** odkazy směřují k jejich autorům a historii úprav. Úplná webová transkripce nebyla převzata; lokální texty jsou označené deriváty archivních skenů/OCR.
 
 Podrobné rozlišení opce na moderní knihu, dobového příběhu a obrazových materiálů je v [ADAPTATIONS_AND_RIGHTS](research/ADAPTATIONS_AND_RIGHTS.md). Pokud má následovat komerční vydání, připraví se konkrétní seznam skutečně použitých assetů a jejich podmínek. Tento soubor sám není konečným právním posudkem takového vydání.
+
+- **Příběhová kampaň v `campaign/`:** původní kód, scénář a pět AI generovaných maleb. Prompty a SHA-256 jsou v obrazovém manifestu; grafika je výtvarná interpretace, nikoli historický doklad. Nebyly převzaty moderní obrazové předlohy. Obecná licence nového projektu zůstává nezvolena.

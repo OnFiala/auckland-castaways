@@ -33,3 +33,7 @@ Historická správnost nebyla nahrazena testem: datové kontroly neumějí vyře
 Přidána česká hratelná studie [Poslední vrták](../prototype/README.md). Herní model prošel **12 testy**, které zahrnují úspěšné i neúspěšné dohrání, předpověď výsledku, počasí, únavu, dohody, obnovu stavu a 50 dalších smíšených průchodů. Byla znovu ověřena integrita výzkumných dat, místní odkazy a hashe originálů. Ověřeny také místní assety HTML a shoda sedmi souborů prototypu se zdrojem hostované verze.
 
 Cloudová infrastruktura neumožnila náhled ani otevření hostované stránky v ovládaném prohlížeči. Vizuální kontrola, mobilní použitelnost a ukládání ovládané přes UI tedy zůstávají **neověřené**. Lidský playtest neproběhl; délka ani zábavnost nebyly automatickými testy potvrzeny. [Podrobný rozsah kontrol](../prototype/TESTING.md).
+
+## Celá příběhová kampaň · 16. listopadu 2026
+
+Přidána [malovaná kampaň](../campaign/README.md): 12 kapitol, 36 scén, 72 voleb, tři archivy a epilog. Její samostatná sada 12 testů prošla včetně skutečných příběhových dat. Pět původních maleb má provenienci a hashe. Vizuální průchod kampaní v prohlížeči blokuje spravovaný relay; automatické kontroly jej nenahrazují. [Podrobný záznam](../campaign/TESTING.md).
