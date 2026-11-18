@@ -162,6 +162,12 @@ function paintThen(next, commit) {
  pendingPainting = pending;
  chapterBusy = true;
  return new Promise(resolve => {
+  // Block input immediately, but leave a cached room change visually uninterrupted.
+  panel.dataset.phase = 'quiet';
+  const revealTimer = setTimeout(() => {
+   if (pendingPainting === pending && panel.dataset.phase === 'quiet') panel.dataset.phase = 'loading';
+  }, 200);
+  retry.hidden = true;
   function clearRequest() {
    clearTimeout(pending.timer);
    if (pending.image) {
@@ -174,6 +180,7 @@ function paintThen(next, commit) {
    if (pendingPainting !== pending) return;
    // Keep the accepted element's src intact when releasing request ownership.
    if (image) { image.onload = image.onerror = null; pending.image = null; }
+   clearTimeout(revealTimer);
    clearRequest();
    pendingPainting = null;
    chapterBusy = false;
@@ -193,11 +200,15 @@ function paintThen(next, commit) {
    const current = () => pendingPainting === pending && pending.image === image;
    const showRetry = message => {
     if (!current()) return;
+    clearTimeout(revealTimer);
+    panel.dataset.phase = 'retry';
     status.textContent = message;
     retry.hidden = false;
+    retry.disabled = false;
     if (document.activeElement === status) retry.focus();
    };
-   retry.hidden = true;
+   if (!retry.hidden) panel.dataset.phase = 'loading';
+   retry.disabled = true;
    status.textContent = `Loading ${name}…`;
    status.focus();
    pending.timer = setTimeout(() => {
@@ -219,7 +230,7 @@ function paintThen(next, commit) {
    const separator = file.includes('?') ? '&' : '?';
    image.src = pending.attempts === 1 ? file : `${file}${separator}scene_retry=${Date.now()}-${pending.attempts}`;
   }
-  retry.onclick = () => { if (pendingPainting === pending && !retry.hidden) request(); };
+  retry.onclick = () => { if (pendingPainting === pending && !retry.hidden && !retry.disabled) request(); };
   stay.hidden = !visiblePlate;
   stay.onclick = () => { if (!stay.hidden) finish(null); };
   panel.oncancel = event => { event.preventDefault(); if (!stay.hidden) finish(null); };

@@ -49,14 +49,18 @@ def ready(page):
     close_if_shown(page, '#dismiss-hint')
 
 
-def work(page):
+def click(control):
+    control.click()
+
+
+def work(page, activate):
     bench = page.locator('#workbench')
     puzzle = bench.get_attribute('data-fw-puzzle')
     moves = WORK[puzzle].split()
     if puzzle == 'roof' and bench.locator('[data-fw-point="under"]').is_visible():
         moves = moves[2:]  # This campaign already traced the leak via the room pan and reloaded.
     for move in moves:
-        bench.locator(f'[data-fw-point="{move}"]').click()
+        activate(bench.locator(f'[data-fw-point="{move}"]'))
     bench.locator('[data-fw-finish]').click()
     expect(bench).not_to_be_visible()
     return puzzle
@@ -151,7 +155,7 @@ def next_move(page):
     }}""")
 
 
-def campaign(page, evidence):
+def campaign(page, evidence, activate=click):
     chapters = set()
     completed_work = set()
     pan_checked = False
@@ -168,9 +172,11 @@ def campaign(page, evidence):
             check_repair(page)
             pan_checked = True
         if before['completed']:
+            expect(page.locator('#completion')).to_be_visible()
+            assert before['repairRoll'] == {'place': 'peg', 'seen': True}
             page.reload()
             ready(page)
-            assert state(page)['completed']
+            assert state(page) == before
             expect(page.locator('#completion')).to_be_visible()
             expect(page.locator('#ending-portraits figure')).to_have_count(5)
             page.screenshot(path=evidence / 'rescue.png')
@@ -179,13 +185,13 @@ def campaign(page, evidence):
             return
         close_if_shown(page, '#cancel-item')
         if before['chapterComplete']:
-            page.locator('#chapter-exit').click()
+            activate(page.locator('#chapter-exit'))
             page.wait_for_function(f"(n) => {READ}.actions > n || document.querySelector('#repair-roll').open",
                                    arg=before['actions'])
             roll = page.locator('#repair-roll')
             if roll.is_visible():
-                roll.locator('[data-roll-fold]').click()
-                roll.locator('[data-roll-spot="peg"]').click()
+                activate(roll.locator('[data-roll-fold]'))
+                activate(roll.locator('[data-roll-spot="peg"]'))
                 roll.locator('[data-roll-leave]').click()
                 page.wait_for_function(f"(n) => {READ}.chapter > n", arg=chapter)
             continue
@@ -193,21 +199,21 @@ def campaign(page, evidence):
         h = move['hint']
         print(f"Chapter {chapter}, {before['scene']}: {move['exit'] or h['targetId']}", flush=True)
         if move['exit']:
-            page.locator(f'[data-exit="{move["exit"]}"]').click()
+            activate(page.locator(f'[data-exit="{move["exit"]}"]'))
         elif h.get('combineItems'):
             for ingredient in h['combineItems']:
                 item(page, ingredient).click()
         else:
             if h.get('itemId'):
                 item(page, h['itemId']).click()
-            target(page, h['targetId']).click()
+            activate(target(page, h['targetId']))
         wait_for_action(page, before, allow_work=True)
         if page.locator('#workbench').is_visible():
-            completed_work.add(work(page))
+            completed_work.add(work(page, activate))
             wait_for_action(page, before)
         if chapter == 7 and not before['flags']['suppliesShared'] and state(page)['flags']['suppliesShared']:
             close_if_shown(page, '#dialogue-close')
             roll = page.locator('#repair-roll')
-            roll.locator('[data-roll-spot="peg"]').click()
+            activate(roll.locator('[data-roll-spot="peg"]'))
             roll.locator('[data-roll-leave]').click()
     raise AssertionError("The crew did not return within 160 voyages, actions and passages.")

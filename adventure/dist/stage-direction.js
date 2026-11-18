@@ -216,7 +216,8 @@
       ['ironTaken', position(84.1, 68.6, 'left')]
     ]) },
     slipway: { musgrave: posting(position(38, 66.8, 'right'), [
-      ['hullPlanked', position(60.1, 77.4, 'left', 'reach')],
+      // Keep the frame clear while Alick brings the nails to the fitted strake.
+      ['hullPlanked', position(63.2, 77.4, 'left', 'reach')],
       ['hullFastened', position(82.4, 79.8, 'left', 'reach')],
       ['boatSealed', position(89.2, 70.5, 'left')],
       ['sailRigged', position(90, 71.2, 'left')]
@@ -239,15 +240,15 @@
       ])
     },
     // The dock compresses the time ashore and at Invercargill. Raynal stays
-    // beside the landed stores while the player prepares the return passage.
+    // by the forward bollard, clear of the hull while Alick loads the cutter.
     harbour: { raynal: posting(position(27.5, 74.3, 'right'), [
-      ['chartMarked', position(32.2, 74.8, 'right')],
-      ['rescueSupplied', position(31.4, 74.8, 'left', 'reach')],
-      ['rescueRigged', position(31.4, 74.8, 'left')]
+      ['chartMarked', position(23.8, 74.8, 'right')],
+      ['rescueSupplied', position(24.4, 74.8, 'right', 'reach')],
+      ['rescueRigged', position(24.4, 74.8, 'right')]
     ]) },
     landing: {
       henry: posting(position(30.2, 65.9, 'right'), [
-        ['menRescued', position(34.5, 65.2, 'right')]
+        ['menRescued', position(32.2, 65.2, 'right')]
       ]),
       george: posting(position(51.2, 65.9, 'left'), [
         ['menRescued', position(47.2, 65.4, 'left')]

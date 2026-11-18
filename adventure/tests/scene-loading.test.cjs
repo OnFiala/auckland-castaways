@@ -36,6 +36,42 @@ function session(saved = {}) {
   return {ui, el, latest, accept, reject, room, painting, requests};
 }
 
+test('cached travel stays visually quiet; a delayed transfer appears after 200 ms and an early error appears immediately', async () => {
+  const a = session(), panel = a.el('scene-loading');
+  assert(panel.open, 'the native modal already blocks the room');
+  assert.equal(panel.dataset.phase, 'quiet');
+  assert.match(a.el('scene-load-message').textContent, /Loading/);
+  await a.accept();
+  assert(!panel.open);
+  assert.equal(panel.dataset.phase, 'quiet', 'fast success did not reveal the panel');
+
+  const schedule = a.ui.context.setTimeout;
+  let reveal;
+  a.ui.context.setTimeout = (fn, ms) => {
+    if (ms === 200) reveal = fn;
+    return schedule(fn, ms);
+  };
+  await a.ui.travel('exit_wreck');
+  assert(panel.open && panel.dataset.phase === 'quiet');
+  reveal();
+  assert.equal(panel.dataset.phase, 'loading');
+  await a.ui.click('scene-stay');
+  assert.equal(a.room(), 'beach');
+
+  await a.ui.travel('exit_wreck');
+  const originallyScheduledReveal = reveal;
+  await a.reject();
+  originallyScheduledReveal();
+  assert.equal(panel.dataset.phase, 'retry');
+  const retry = a.el('scene-retry');
+  assert(!retry.hidden && !retry.disabled);
+  await a.ui.click('scene-retry');
+  assert.equal(panel.dataset.phase, 'loading');
+  assert(!retry.hidden && retry.disabled);
+  assert(!a.el('scene-stay').hidden);
+  await a.accept(); assert.equal(a.room(), 'wreck');
+});
+
 test('a restored room has no targets until its painting decodes; reload and retry preserve the snapshot', async () => {
   const wreck = engine.travel(engine.createGame(),'wreck').state;
   const json = JSON.stringify(wreck);
@@ -125,6 +161,7 @@ test('cancelling a restart on a slow beach transfer leaves the old voyage and it
   const before = a.ui.stored[key];
   await a.ui.click('settings'); await a.ui.click('restart'); await a.ui.click('confirm-restart');
   const late = a.latest().onload;
+  a.ui.runTimers();
   await a.ui.click('scene-stay'); await late(); await a.ui.flush(8);
   assert.equal(a.ui.stored[key], before); assert.equal(a.room(), 'wreck');
   assert(a.ui.item('prybar')); assert(!a.el('scene-loading').open);

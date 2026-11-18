@@ -101,6 +101,38 @@ def shore(page, evidence, touch):
     pull_block(page, evidence, touch)
 
 
+def diagnose_campaign(page, folder):
+    # An independent, fresh playthrough. A red pointer test stays red even if this finishes.
+    obstructions = []
+
+    def activate(control):
+        expect(control).to_be_visible()
+        control.scroll_into_view_if_needed()
+        hit = control.evaluate("""button => {
+          const rect=button.getBoundingClientRect(), x=rect.x+rect.width/2, y=rect.y+rect.height/2;
+          const stack=document.elementsFromPoint(x,y);
+          if (button.contains(stack[0])) return null;
+          const identify = el => ({tag:el.tagName, id:el.id, label:el.getAttribute('aria-label'), data:{...el.dataset}});
+          return {center:[x,y], expected:identify(button), stack:stack.slice(0,5).map(identify)};
+        }""")
+        if hit is None:
+            control.click()
+            return
+        current = state(page)
+        obstructions.append({**hit, 'scene':current['scene'], 'chapter':current['chapter']})
+        write(folder / 'blocked-centres.json', obstructions)
+        print(f"Diagnostic keyboard route: {current['scene']} {hit['expected']}", flush=True)
+        # Exercise the real sequential focus order, including a native modal's focus trap.
+        for _ in range(page.locator('button, a[href], input, select, textarea, [tabindex]').count() + 2):
+            if control.evaluate("button => document.activeElement === button"):
+                page.keyboard.press('Enter')
+                return
+            page.keyboard.press('Tab')
+        raise AssertionError(f"Cannot reach the blocked control with Tab: {hit}")
+
+    campaign(page, folder, activate)
+
+
 def retry_scenery(page, evidence, painting):
     # Only a disposable extracted copy is faulted. The published archive remains intact.
     before = state(page)
@@ -129,7 +161,7 @@ def retry_scenery(page, evidence, painting):
 def run(browser, index, folder, name, scenario, *, touch=False, reduced=False):
     folder.mkdir(parents=True, exist_ok=True)
     view = {"width": 390, "height": 844} if touch else {"width": 1280, "height": 800}
-    ctx = browser.new_context(viewport=view, is_mobile=touch, has_touch=touch or scenario is campaign,
+    ctx = browser.new_context(viewport=view, is_mobile=touch, has_touch=touch or scenario in (campaign, diagnose_campaign),
                               reduced_motion="reduce" if reduced else "no-preference",
                               offline=True, record_video_dir=folder,
                               record_video_size={"width": 720, "height": 405} if not touch else view)
@@ -183,16 +215,19 @@ def main():
         def check(*args, **kwargs):
             try:
                 run(browser, *args, **kwargs)
+                return True
             except Exception:
                 failures.append(args[2])
                 traceback.print_exc()
+                return False
 
         try:
             for touch in [False, True]:
                 name = 'touch-shore' if touch else 'desktop-shore'
                 check(index, args.evidence / name, name,
                       lambda page, folder: shore(page, folder, touch), touch=touch)
-            check(index, args.evidence / 'campaign', 'seven chapters', campaign, reduced=True)
+            if not check(index, args.evidence / 'campaign', 'seven chapters', campaign, reduced=True):
+                check(index, args.evidence / 'diagnostic', 'keyboard continuation', diagnose_campaign, reduced=True)
             with TemporaryDirectory() as temp:
                 copy = Path(temp) / 'edition'
                 shutil.copytree(index.parent, copy)

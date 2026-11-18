@@ -7,6 +7,9 @@
   box-shadow: 0 .5rem 2rem #201b1773;
 }
 #scene-loading::backdrop { background: #1d242938; backdrop-filter: none; }
+#scene-loading[data-phase="quiet"] { opacity: 0; }
+#scene-loading[data-phase="quiet"]::backdrop { background: transparent; }
+#scene-loading[data-phase="quiet"] button { visibility: hidden; }
 #scene-load-message { margin: 0; line-height: 1.45; }
 #scene-load-message:focus { outline: none; }
 #scene-loading button {
