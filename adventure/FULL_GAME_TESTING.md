@@ -2,6 +2,12 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## Playable edition 15, 18 November 2026
+
+Two fresh offline Chromium sessions finished the seven chapters, eight work surfaces, rescue and archival epilogue using the release ZIP. The ordinary-motion route lit the landing lantern and met Henry and George before recovering the provisions. At the moored boat the captain acknowledged their work. Once the supplies arrived, George and Musgrave had their boarding exchange. The browser sampled six visible walking phases in each chapter, with Alick in I–V and Musgrave in VI–VII. [Full animated route](https://github.com/OnFiala/auckland-castaways/actions/runs/44374680869/job/135051556826) · [Before the provisions](reviews/release-15/zasoby.webp) · [Boarding conversation](reviews/release-15/nalodeni.webp)
+
+The first-shore keyboard run collected the rope and the pole, combined them and confirmed focus after reloading. Additional mouse and emulated-touch sessions tested the shore and wreck. The failed-artwork test restored the wreck plate and retried entry. These browser tests exercised the downloadable files. The signed-in private tab and a physical phone were unavailable. All 192 source tests, the standalone first-night walkthrough and the packaging regression passed. [Input and recovery run](https://github.com/OnFiala/auckland-castaways/actions/runs/44374680869/job/135050532709) · [Keyboard screenshot](reviews/release-15/klavesnice.webp) · [Release notes and checksum](reviews/release-15/README.md)
+
 ## Playable edition 14, 18 November 2026
 
 All 183 source tests passed, together with the separate first-night walkthrough and the packaging regression. The release ZIP contains 145 hashed game files, its manifest and the player guide. The hosted package also preserves 143 prior resource URLs for previously opened sessions.
