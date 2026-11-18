@@ -17,6 +17,8 @@ The campaign extends the existing point-and-click chapter through winter, the fo
 
 [Physical staging](reviews/24-spatial-study.md) · [Static art comparison](reviews/staging/README.md) · [Historical and dialogue review](reviews/24-history-dialogue.md)
 
+A second run exercised the generated web edition. All 13 campaign and workbench handler tests passed against the exact WebP runtime layout. Its 77 static files total 30,118,678 bytes. The packager checks every converted painting for equal dimensions and an identical alpha channel. Composited channel RMS is at most 3.5 on the eight-bit scale. The archival PNGs remain available in the source checkout. [Web packager](tools/build_web.py)
+
 The 16 November release had 67 passing tests and the same 705-state campaign graph. The additional checks exercise the illustrated work, its input handlers, physical staging, optional interactions, art provenance and persistence.
 
 ## Automated checks

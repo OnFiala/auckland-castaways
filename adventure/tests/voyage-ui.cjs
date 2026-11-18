@@ -86,7 +86,9 @@ test('real UI handlers complete all seven chapters with hints, inventory puzzles
   const s=ui.state(),ch=getChapter(s);visits.add(ch);
   if(!dialogues.has(ch)){
    await ui.flush();const portrait=ui.ids.get('player-sprite').querySelector('image');assert(portrait,'protagonist has a painted image');
-   assert.equal(portrait.attrs.href,`assets/walk/${ch>=6?'musgrave':'player'}.png`,'the return uses Captain Musgrave as the player');
+   const actorId=ch>=6?'musgrave':'player';
+   assert.equal(portrait.attrs.href,ui.context.CastawayMotion.WALKS[actorId].file,'the return uses Captain Musgrave as the player');
+   assert.match(portrait.attrs.href,new RegExp('^assets/walk/'+actorId+'\\.(png|webp)$'));
    const people=engine(ui).getTargets(ui.state()).filter(t=>t.kind==='person');
    if(ch>=6)assert(!people.some(t=>t.id==='musgrave'),'protagonist cannot appear again as a companion');
    if(people.length){const before=signature(ui.state());await ui.click(ui.target(people[0].id));assert.equal(ui.ids.get('dialogue').hidden,false);assert(ui.ids.get('dialogue-text').textContent.length>0);await ui.click('dialogue-close');if(ch<7)assert.equal(signature(ui.state()),before,'optional conversation does not gate progress');}

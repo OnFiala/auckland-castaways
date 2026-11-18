@@ -36,6 +36,10 @@ Walking and the fifteen new standing, reaching and kneeling poses share a ground
 
 The scene paintings, people, props and English dialogue were created for this project. The Auckland Island outline on the return chart draws on the historical sketch published in Musgrave’s book. The voyage, the people who sailed and the rescue date follow the research ledger. [Chapter sources and dramatization](reviews/24-history-dialogue.md) · [Original work surfaces](artwork/workplates/README.md) · [Working pose provenance](dist/assets/work-poses/manifest.json)
 
+## Web delivery
+
+The downloadable source runs by opening `dist/index.html`. The hosted edition uses the same scripts and paintings with WebP image addresses. To reproduce the compact static edition with Python, Pillow and an empty destination directory, run `python adventure/tools/build_web.py /tmp/until-we-return-web` from the repository root. The packager checks the dimensions, transparency and colour difference of every image before accepting it.
+
 ## Validation
 
 ```sh
