@@ -40,15 +40,32 @@ async function go(ui,destination){
  for(const exitId of route(engine(ui),ui.state(),destination)){await dismiss(ui);assert(ui.exit(exitId),`visible exit ${exitId}`);await ui.travel(exitId);ui.runTimers();}
  assert.equal(ui.state().scene,destination);
 }
+const workMoves={
+ chest:['notch','near','press'], roof:['under','left','right','pour'], drill:['fresh','scratch','edge','reclaim'],
+ hull:['middle','pack','pack','pitch'], rig:['clew','port','lull','haul'], chart:['origin','east','inlet','verify'], landing:['high','pay','crest','trough']
+};
+const worked=new Set();
+async function doWork(ui){
+ const bench=ui.ids.get('workbench');if(!bench.open)return;
+ const id=bench.dataset.fwPuzzle,start=signature(ui.state());
+ for(const move of workMoves[id]){
+  const button=bench.querySelector(`[data-fw-point="${move}"]`);assert(button,`painted ${id} control ${move}`);await ui.click(button);
+  assert.equal(signature(ui.state()),start,'the scene waits for completed physical work');
+ }
+ await ui.click(bench.querySelector('[data-fw-finish]'));assert.equal(bench.open,false);worked.add(id);
+}
 async function hintStep(ui){
  const E=engine(ui),before=ui.state(),h=E.hint(before);assert(h&&typeof h.text==='string');
- await dismiss(ui);await ui.click('hint');assert(ui.ids.get('modal').open);assert(ui.ids.get('modal-body').innerHTML.includes(h.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')),'hint copy reaches UI');await ui.click('modal-close');
+ await dismiss(ui);await ui.click('hint');assert(ui.ids.get('modal').open);
+ if(ui.ids.get('more-clue')){assert(!ui.ids.get('modal-body').innerHTML.includes('hint-icons'));await ui.click('more-clue');await ui.click('more-clue');}
+ assert(ui.ids.get('modal-body').innerHTML.includes(h.text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')),'hint copy reaches UI');await ui.click('modal-close');
  if(h.sceneId!==ui.state().scene)await go(ui,h.sceneId);
  if(h.cue==='combine'){
   const pair=h.combineItems||['rope','pole'];assert.equal(pair.length,2,'two illustrated recipe ingredients');
   assert(ui.item(pair[0])&&ui.item(pair[1]),`hinted combination is in inventory: ${pair}`);await ui.click(ui.item(pair[0]));await ui.click(ui.item(pair[1]));
  }else if(h.itemId){assert(ui.item(h.itemId),`hinted tool ${h.itemId} is owned`);assert(ui.target(h.targetId),`hinted target ${h.targetId} exists`);await ui.use(h.itemId,h.targetId);
  }else{assert(ui.target(h.targetId),`hinted action ${h.targetId} exists`);await ui.pick(h.targetId);}
+ await doWork(ui);
  assert.notEqual(signature(ui.state()),signature(before),`hint makes progress: chapter ${before.chapter}, ${h.text}`);
  assert(E.restore(ui.state()),'each real-handler state is valid');
 }
@@ -57,6 +74,7 @@ function passage(ui){return ui.ids.get('chapter-exit');}
 async function advance(ui){
  await dismiss(ui);const before=ui.state();assert(before.chapterComplete,'chapter must be solved before passage');
  const control=passage(ui);assert(control&&!control.hidden,'solved chapter exposes its in-world passage');await ui.click(control);ui.runTimers();await ui.flush();
+ for(let i=0;i<2&&ui.state().chapter===before.chapter;i++){assert.notEqual(ui.state().scene,before.scene,'the ordinary exit must lead toward the chapter departure');await ui.click(passage(ui));ui.runTimers();await ui.flush();}
  assert.equal(getChapter(ui.state()),getChapter(before)+1);assert.equal(ui.state().completed,false);assert.equal(ui.state().chapterComplete,false);
  assert.equal(ui.ids.get('completion').hidden,true,'intermediate chapters cannot show the final rescue ending');
 }
@@ -79,7 +97,7 @@ test('real UI handlers complete all seven chapters with hints, inventory puzzles
   if(steps%5===0){const before=canonical(ui.state());ui=createUi({initial:canonical(ui.stored)});assert.deepEqual(canonical(ui.state()),before,'partly solved chapter survives reload');}
  }
  assert(ui.state().completed,'full rescue must be reachable in fewer than160 meaningful actions');assert.equal(getChapter(ui.state()),7);assert.deepEqual([...visits],[1,2,3,4,5,6,7]);
- checkpoints.push(canonical(ui.state()));ui.runTimers();assert.equal(ui.ids.get('completion').hidden,false,'final rescue is visibly presented');
+ assert.deepEqual([...worked],Object.keys(workMoves));checkpoints.push(canonical(ui.state()));ui.runTimers();assert.equal(ui.ids.get('completion').hidden,false,'final rescue is visibly presented');
  console.log(JSON.stringify({campaignUi:true,chapters:[...visits],progressStepsIncludingPassages:steps,chapterCheckpoints:checkpoints.length,midCampaignReloads:true,protagonistSwitch:true,limitation:'DOM contract only; no browser rendering or animation playback.'}));
 });
 
@@ -134,4 +152,24 @@ test('every campaign inventory item resolves to an existing painted crop',()=>{
   const art=A.props[id];assert(art,`painted item ${id}`);assert(Array.isArray(art.box)&&art.box.length===4,`crop ${id}`);assert(fs.existsSync(path.join(dist,art.file)),`source image ${id}`);
   const [x,y,w,h]=art.box;assert(x>=0&&y>=0&&w>0&&h>0&&x+w<=art.width&&y+h<=art.height,`bounded crop ${id}`);
  }
+});
+
+test('optional room interactions give a repeatable material response while preserving all voyage progress',async()=>{
+ const ui=createUi(),before=canonical(ui.state()),life=ui.context.CastawayLife;
+ const [feature]=life.features(before);assert(feature&&feature.kind==='feature');
+ await ui.click(ui.target(feature.id));assert.deepEqual(canonical(ui.state()),before);
+ assert.equal(ui.ids.get('caption').textContent,feature.observation);
+ await ui.click('inspect-mode');assert.equal(ui.ids.get('inspect-mode').attrs['aria-pressed'],'true');
+ await ui.click(ui.target(feature.id));assert.equal(ui.ids.get('inspect-mode').attrs['aria-pressed'],'false');
+ assert.deepEqual(canonical(ui.state()),before);
+});
+
+test('standing back from the chest keeps tools and unfinished work through a complete game reload',async()=>{
+ let ui=createUi();await go(ui,'wreck');await ui.pick('prybar');await ui.use('prybar','crate');
+ let bench=ui.ids.get('workbench');assert(bench.open);await ui.click(bench.querySelector('[data-fw-point="notch"]'));
+ await ui.click(bench.querySelector('[data-fw-close]'));assert(!ui.state().flags.crateOpen);assert(ui.item('prybar'));
+ ui=createUi({initial:canonical(ui.stored)});await ui.use('prybar','crate');bench=ui.ids.get('workbench');
+ assert(!bench.querySelector('[data-fw-point="notch"]'));await ui.click(bench.querySelector('[data-fw-point="near"]'));
+ await ui.click(bench.querySelector('[data-fw-point="press"]'));assert(!ui.state().flags.crateOpen);
+ await ui.click(bench.querySelector('[data-fw-finish]'));assert(ui.state().flags.crateOpen);assert(ui.item('axe')&&ui.item('tinderbox'));
 });

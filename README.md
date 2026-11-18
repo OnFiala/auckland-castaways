@@ -10,13 +10,11 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 **[Spustit hostovanou hru](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
 
-Sedm kapitol propojuje 14 lokací: první noc, zimní dům, kovárnu, přestavbu člunu, oceánskou plavbu, opatření pomoci a záchranný návrat. Hráč chodí po scénách, sbírá a kombinuje předměty, používá je na prostředí a vede krátké anglické rozhovory. Inventář obsahuje 38 různých herních předmětů. Opravený dům, kovárna, člun a bezpečná plavba mají viditelnou změnu obrazu. Hra ukládá postup a převede starší uloženou první kapitolu.
+Sedm kapitol vede přes čtrnáct míst od ztroskotání k záchraně. V každé kapitole se otevře malovaný detail pro práci rukama. Hráč vyčte stopu ze dřeva, plátna či vody, použije nástroj a uvidí výsledek. Postavy mění měřítko podle hloubky, obcházejí překážky a sahají na předměty. Při průzkumu lze například zkusit měch ve výhni nebo pustit třísku po vodě. Dialogy, pozorování i volitelné nápovědy jsou anglicky. [Revize hratelnosti a maleb](adventure/reviews/25-playable-revision.md) · [Šest scén v herním měřítku](adventure/reviews/staging/scene-scale-proof.webp)
 
-V kapitolách I–V je dramatickou perspektivou Alick McLaren; v VI–VII kapitán Musgrave, který se historicky účastnil návratu. Závěr neumisťuje všech pět lidí na záchrannou palubu. Invercauld zůstává součástí rešerše, jeho trosečníci nejsou smyšleně propojeni s hráčovou skupinou.
+V prvních pěti kapitolách hrajete za Alicka McLarena. Návrat pro Henryho Forgése a George Harrise prožijete z pohledu kapitána Musgravea. Invercauld má vlastní osud v rešerši a v historickém dovětku hry. [Příběh](adventure/FULL_STORY.md) · [Dobové prameny a autorské scény](adventure/reviews/24-history-dialogue.md)
 
-[Příběh celé hry](adventure/FULL_STORY.md) · [Hranice adaptace](adventure/HISTORICAL_ADAPTATION.md) · [Nové malby](adventure/VOYAGE_ART.md) · [Ověření celé hry](adventure/FULL_GAME_TESTING.md) · [Oprava pohybu](adventure/reviews/23-motion-repair.md).
-
-Automatický průchod dokončí všech sedm kapitol. Všech 705 dosažitelných stavů kapitol má cestu k dokončení. Cloudový náhled je stále blokován infrastrukturou; vizuální průchod, dotykové ovládání a plynulost v reálném prohlížeči proto nejsou potvrzené. Jde o implementovanou kompaktní kampaň se začátkem i koncem, která stále potřebuje vizuální a hráčské doladění.
+Automatický průchod dokončil záchranu přes herní ovládání a všech sedm pracovních detailů. Hra průběžně ukládá cestu i rozdělané řešení. Obrazy a prostorové vztahy prošly samostatnou vizuální kontrolou. Přehrání celé animované hry a dotykové hraní čekají na dostupný prohlížečový náhled. [Výsledky testů](adventure/FULL_GAME_TESTING.md)
 
 Starší rozhodovací a strategické prototypy níže jsou archivem vývoje.
 

@@ -1,0 +1,475 @@
+{
+  "title": "Until We Return — castaway working poses",
+  "origin": "Five original image-generation edits of the existing project character art. Every sheet retains the native transparent PNG returned by the generator. These modern costume and gesture reconstructions are not historical portraits.",
+  "generator": "OpenAI ImageGen",
+  "prompts": "prompts.json",
+  "measurement": "Source coordinates in pixels from the upper left. alphaBounds gives x, y, width, height of the principal connected silhouette with alpha at least 32. Crop includes a four-pixel antialiasing margin. Ground anchors are the midpoint of the planted boot or knee supports within ten pixels of the lowest solid (alpha at least 64) contact. Contact marks the outer edge of the extended rightmost hand. The upright sole-to-head distance sets the scale for every pose on that sheet. The walking comparison is the median over all six existing gait frames, rounded down.",
+  "artReview": "Each generation was compared with both existing character references for garment cuts, distinctive colours, hair or caps, profile and period illustration style. Each complete source was composited on a neutral background to check all 15 silhouettes, empty gutters, planted boots and lower working postures.",
+  "assets": {
+    "player": {
+      "atlas": "assets/work-poses/player.png",
+      "size": [
+        2172,
+        724
+      ],
+      "byteLength": 1084270,
+      "sha256": "e6871038d5aca38bc1a23526344a59ee498a1a7736925be78da249a808250f6d",
+      "walkView": [
+        363,
+        501
+      ],
+      "walkStandingHeight": 475,
+      "poses": {
+        "stand": {
+          "alphaBounds": [
+            248,
+            8,
+            266,
+            706
+          ],
+          "crop": [
+            244,
+            4,
+            274,
+            714
+          ],
+          "ground": [
+            382,
+            713
+          ]
+        },
+        "reach": {
+          "alphaBounds": [
+            858,
+            55,
+            477,
+            657
+          ],
+          "crop": [
+            854,
+            51,
+            485,
+            665
+          ],
+          "ground": [
+            1032,
+            710
+          ],
+          "contact": [
+            1333,
+            333
+          ]
+        },
+        "crouch": {
+          "alphaBounds": [
+            1573,
+            248,
+            453,
+            461
+          ],
+          "crop": [
+            1569,
+            244,
+            461,
+            469
+          ],
+          "ground": [
+            1737,
+            708
+          ],
+          "contact": [
+            2024,
+            619
+          ]
+        }
+      },
+      "walkGround": [
+        186,
+        489
+      ],
+      "actor": "Alick",
+      "references": [
+        {
+          "path": "assets/sailor.png",
+          "sha256": "8078180eef71ef6982124690f6b1d1dc1649091818d1c13cea0df90a8fc372ac"
+        },
+        {
+          "path": "assets/walk/player.png",
+          "sha256": "235369b75d600f1d383402c17c3be14d8df0269ac6960f7e38a922e474535bc1"
+        }
+      ]
+    },
+    "raynal": {
+      "atlas": "assets/work-poses/raynal.png",
+      "size": [
+        1881,
+        836
+      ],
+      "byteLength": 1212072,
+      "sha256": "5f3abc8718f7b0f2e78ba11401978905210dca48b3c7cea74ed2e30387ae9d3c",
+      "walkView": [
+        380,
+        504
+      ],
+      "walkStandingHeight": 487,
+      "poses": {
+        "stand": {
+          "alphaBounds": [
+            175,
+            15,
+            247,
+            802
+          ],
+          "crop": [
+            171,
+            11,
+            255,
+            810
+          ],
+          "ground": [
+            302,
+            816
+          ]
+        },
+        "reach": {
+          "alphaBounds": [
+            688,
+            75,
+            493,
+            739
+          ],
+          "crop": [
+            684,
+            71,
+            501,
+            747
+          ],
+          "ground": [
+            870,
+            813
+          ],
+          "contact": [
+            1179,
+            373
+          ]
+        },
+        "crouch": {
+          "alphaBounds": [
+            1319,
+            309,
+            501,
+            498
+          ],
+          "crop": [
+            1315,
+            305,
+            509,
+            506
+          ],
+          "ground": [
+            1494,
+            806
+          ],
+          "contact": [
+            1818,
+            723
+          ]
+        }
+      },
+      "walkGround": [
+        177,
+        496
+      ],
+      "actor": "François Raynal",
+      "references": [
+        {
+          "path": "assets/people/raynal.png",
+          "sha256": "f49c7a9ef8d0c7d9d7fd0b2e76f3ef46c24edacc024f317db3a02064ecc510c1"
+        },
+        {
+          "path": "assets/walk/raynal.png",
+          "sha256": "0e70851115c81b8d1ed4d8c51d5e38067e8e3ba9a236168bc72efcc7a1884f9d"
+        }
+      ]
+    },
+    "musgrave": {
+      "atlas": "assets/work-poses/musgrave.png",
+      "size": [
+        1774,
+        887
+      ],
+      "byteLength": 1336907,
+      "sha256": "0ccf1f61de87948c65749fff99fff3d9b12fb31bd8c9347a82fc539cca71b398",
+      "walkView": [
+        371,
+        509
+      ],
+      "walkStandingHeight": 493,
+      "poses": {
+        "stand": {
+          "alphaBounds": [
+            160,
+            10,
+            250,
+            844
+          ],
+          "crop": [
+            156,
+            6,
+            258,
+            852
+          ],
+          "ground": [
+            288,
+            853
+          ]
+        },
+        "reach": {
+          "alphaBounds": [
+            632,
+            68,
+            498,
+            785
+          ],
+          "crop": [
+            628,
+            64,
+            506,
+            793
+          ],
+          "ground": [
+            790,
+            852
+          ],
+          "contact": [
+            1128,
+            344
+          ]
+        },
+        "crouch": {
+          "alphaBounds": [
+            1220,
+            299,
+            521,
+            546
+          ],
+          "crop": [
+            1216,
+            295,
+            529,
+            554
+          ],
+          "ground": [
+            1421,
+            844
+          ],
+          "contact": [
+            1739,
+            750
+          ]
+        }
+      },
+      "walkGround": [
+        170,
+        500
+      ],
+      "actor": "Thomas Musgrave",
+      "references": [
+        {
+          "path": "assets/people/musgrave.png",
+          "sha256": "fd1b7c9c2aa784344dc256de7a4b53e022572727b25e768d62c5842a46334c20"
+        },
+        {
+          "path": "assets/walk/musgrave.png",
+          "sha256": "e96bc3be34e36ca24bc2d16bc992cf747fff381f66fba0d99cba278228c3942b"
+        }
+      ]
+    },
+    "henry": {
+      "atlas": "assets/work-poses/henry.png",
+      "size": [
+        1942,
+        809
+      ],
+      "byteLength": 1248222,
+      "sha256": "f07171296763f5c10c461bfd8984643851522d3cdc0ec8fec483dc36cff9a3e6",
+      "walkView": [
+        352,
+        512
+      ],
+      "walkStandingHeight": 496,
+      "poses": {
+        "stand": {
+          "alphaBounds": [
+            222,
+            16,
+            251,
+            772
+          ],
+          "crop": [
+            218,
+            12,
+            259,
+            780
+          ],
+          "ground": [
+            352,
+            787
+          ]
+        },
+        "reach": {
+          "alphaBounds": [
+            722,
+            75,
+            502,
+            712
+          ],
+          "crop": [
+            718,
+            71,
+            510,
+            720
+          ],
+          "ground": [
+            890,
+            786
+          ],
+          "contact": [
+            1222,
+            330
+          ]
+        },
+        "crouch": {
+          "alphaBounds": [
+            1345,
+            307,
+            491,
+            479
+          ],
+          "crop": [
+            1341,
+            303,
+            499,
+            487
+          ],
+          "ground": [
+            1528,
+            785
+          ],
+          "contact": [
+            1834,
+            717
+          ]
+        }
+      },
+      "walkGround": [
+        177,
+        508
+      ],
+      "actor": "Henry",
+      "references": [
+        {
+          "path": "assets/people/henry.png",
+          "sha256": "e076a38ca47cdb21b607312fec5a428c7e72afe5cf764f5f15d276a260215976"
+        },
+        {
+          "path": "assets/walk/henry.png",
+          "sha256": "6bf46b3379e16848b17750f289392294566b6e6a97b4fb50b7dbd03e76d70756"
+        }
+      ]
+    },
+    "george": {
+      "atlas": "assets/work-poses/george.png",
+      "size": [
+        1881,
+        836
+      ],
+      "byteLength": 1362423,
+      "sha256": "680d063b1e0dae38b556055ae02eb8dfb5d55b75648c72ee3360cd33dc44652d",
+      "walkView": [
+        382,
+        510
+      ],
+      "walkStandingHeight": 495,
+      "poses": {
+        "stand": {
+          "alphaBounds": [
+            184,
+            17,
+            270,
+            796
+          ],
+          "crop": [
+            180,
+            13,
+            278,
+            804
+          ],
+          "ground": [
+            326,
+            812
+          ]
+        },
+        "reach": {
+          "alphaBounds": [
+            703,
+            83,
+            525,
+            729
+          ],
+          "crop": [
+            699,
+            79,
+            533,
+            737
+          ],
+          "ground": [
+            874,
+            810
+          ],
+          "contact": [
+            1226,
+            366
+          ]
+        },
+        "crouch": {
+          "alphaBounds": [
+            1325,
+            295,
+            514,
+            515
+          ],
+          "crop": [
+            1321,
+            291,
+            522,
+            523
+          ],
+          "ground": [
+            1522,
+            809
+          ],
+          "contact": [
+            1837,
+            740
+          ]
+        }
+      },
+      "walkGround": [
+        188,
+        507
+      ],
+      "actor": "George",
+      "references": [
+        {
+          "path": "assets/people/george.png",
+          "sha256": "a96a89a773b0b61f83558d807267a552f6c0767eef7dcdf980c72e65e8820ab3"
+        },
+        {
+          "path": "assets/walk/george.png",
+          "sha256": "da06477588f6cd4d77eb0102cd2f96306382e37c1435cce2231c7501860f563f"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,185 @@
+/* Local weather and physical effects occupy the painting, under actors and
+   target art. In the staged campaign each place supplies its own atmosphere. */
+.scene.staged .world-life, .scene.staged .weather,
+.scene.staged .voyage-glow, .scene.staged .world-steam { display: none; }
+#place-life, .life-ambient { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+#place-life { z-index: 4; user-select: none; }
+#place-life span { position: absolute; display: block; pointer-events: none; }
+#place-life svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.life-paint { background-image: var(--life-plate); background-repeat: no-repeat; }
+.life-feather { mask-image: radial-gradient(ellipse, #000 41%, #000a 66%, transparent 76%); }
+.scene[data-scene=charcoal] .life-paint { filter: brightness(.8) saturate(.7); }
+
+/* Foam climbs the gutter between rocks. Sheltered water moves horizontally;
+   ocean wave fronts lift and roll beyond the gunwale while deck and feet hold. */
+.life-breaker { transform-origin: 28% 70%; animation: life-shore-break 5.8s ease-in-out infinite; }
+.life-swell { animation: life-near-swell 7.2s ease-in-out -2s infinite; }
+.life-current { animation: life-quiet-current 5.2s ease-in-out -2.8s infinite alternate; }
+.life-tide { animation: life-inlet-tide 7s ease-in-out -3s infinite; }
+.life-seaway { transform-origin: 73% 40%; animation: life-sea-rise 4.3s cubic-bezier(.45,.03,.49,1) -1.2s infinite alternate; }
+.life-seaway.port { animation-delay: -2.4s; transform-origin: 20% 50%; }
+.life-reflection { animation: life-harbour-glitter 4.4s ease-in-out -1s infinite alternate; }
+.life-fall { animation: life-spring-fall 1.8s linear infinite; }
+@keyframes life-shore-break {
+  0%, 100% { opacity: .4; transform: translate(-.8%, -2%) scale(.99, .96); }
+  45% { opacity: .84; transform: translate(1.1%, 3.2%) scale(1.035, 1.06); }
+  73% { opacity: .66; transform: translate(1.4%, 2.8%) scale(1.02, 1.045); }
+}
+@keyframes life-near-swell { 0%,100% { transform: translate(-1.4%,-1%); } 54% { transform: translate(2%,3.8%) scale(1.02,1.04); } }
+@keyframes life-quiet-current { from { transform: translateX(-.8%) scaleY(.96); opacity: .55; } to { transform: translateX(1.2%) scaleY(1.05); opacity: .83; } }
+@keyframes life-inlet-tide { 0%,100% { transform: translate(-.3%,-2%); } 56% { transform: translate(.6%,6%) scaleY(1.1); } }
+@keyframes life-sea-rise { from { transform: translate(-.55%, -2.9%) rotate(-.34deg) scaleY(.96); } to { transform: translate(.65%, 3.4%) rotate(.38deg) scaleY(1.07); } }
+@keyframes life-harbour-glitter { from { opacity: .56; transform: scale(.97,.92); } to { opacity: .92; transform: scale(1.04,1.07) translateY(2%); } }
+@keyframes life-spring-fall { 0% { opacity: 0; transform: translateY(-2%); } 28% { opacity: .85; } 72% { opacity: .8; } 100% { opacity: 0; transform: translateY(5%); } }
+
+/* Move only flexible portions of a plate; posts, spars, window mullions and
+   table legs stay registered. The flag is cut away from its fixed pole. */
+.life-rag { transform-origin: 54% 9%; animation: life-loose-rag 4.2s ease-in-out -1.4s infinite; }
+.life-awning { transform-origin: 66% 18%; animation: life-hung-cloth 8.1s ease-in-out -2s infinite; }
+.life-set-sail { transform-origin: 1% 43%; animation: life-sail-belly 6.4s ease-in-out -2s infinite; }
+.life-ocean-sail { transform-origin: 4% 78%; animation: life-sail-belly 3.9s ease-in-out -1.9s infinite; }
+.life-ocean-sail.mended { animation-duration: 5.1s; }
+.life-harbour-sail { transform-origin: 11% 71%; animation: life-hung-cloth 9s ease-in-out -4s infinite; }
+.life-fern { transform-origin: 31% 93%; animation: life-low-fern 8.5s ease-in-out infinite alternate; }
+.life-page { transform-origin: 1% 90%; animation: life-paper-curl 10s ease-in-out -3s infinite; }
+.scene.staged .signal-mast:has(.flag-cloth) .flag-cloth { clip-path: polygon(0 0,100% 0,100% 7%,36% 7%,36% 22%,100% 22%,100% 100%,0 100%); }
+.scene.staged .signal-mast:has(.flag-cloth)::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: url('assets/states/mast-flag.png') 63.343% 52.381% / 162.454% 102.425% no-repeat;
+  clip-path: polygon(35% 7%,100% 7%,100% 22%,35% 22%);
+  transform-origin: 35% 11%; animation: life-signal-flag 3.6s ease-in-out -1.4s infinite;
+}
+@keyframes life-loose-rag { 0%,100% { transform: skewX(-.8deg); } 34% { transform: skewX(1deg) scaleY(.99); } 56% { transform: skewX(.2deg); } 77% { transform: skewX(1.45deg); } }
+@keyframes life-hung-cloth { 0%,100% { transform: scale(1,1); } 36% { transform: skewX(.18deg) scale(1.002,1.019); } 74% { transform: skewX(-.22deg) scale(.998,.994); } }
+@keyframes life-sail-belly { 0%,100% { transform: skewY(-.10deg) scale(.998,.999); } 47% { transform: skewY(.22deg) scale(1.006,1.013); } 69% { transform: skewY(.12deg) scale(1.002,1.006); } }
+@keyframes life-low-fern { to { transform: skewX(1.3deg) rotate(.35deg); } }
+@keyframes life-paper-curl { 0%,55%,100% { transform: none; } 67% { transform: skewY(-.45deg) scaleY(.976); } 74% { transform: skewY(-.15deg) scaleY(.99); } }
+@keyframes life-signal-flag { 0%,100% { transform: skewY(1deg) scaleX(.97); } 40% { transform: skewY(-2.2deg) scaleX(1.012); } 69% { transform: skewY(.2deg) scaleX(.994); } }
+
+/* Light is restricted to its source or the surface it hits. */
+.life-hearth, .life-forge-fire, .life-fire-cast, .life-lantern { mix-blend-mode: screen; }
+.life-window { background: linear-gradient(120deg,#a0c2cf09,#8faec302 42%,#bfd4df0d); animation: life-window-light 12s ease-in-out -5s infinite alternate; }
+.life-hearth { background: radial-gradient(ellipse at 52% 77%,#f6b6569c,#df732b62 24%,#c3562124 48%,transparent 75%); animation: life-hearth-heat 3.2s ease-in-out infinite; }
+.life-fire-cast { background: radial-gradient(ellipse,#eb964233 6%,#e99b4230 22%,transparent 72%); animation: life-hearth-heat 3.2s ease-in-out -.15s infinite; }
+.life-forge-fire { background: radial-gradient(ellipse at 53% 73%,#ef73238f 3%,#e45b225c 23%,#cd42191f 46%,transparent 65%); animation: life-forge-breath 3.9s ease-in-out -.08s infinite; }
+.life-lantern { background: radial-gradient(ellipse at 50% 48%,#ffcf6ab3 1%,#f3ad5196 8%,#e9a44644 24%,#e5a04617 49%,transparent 73%); animation: life-lamp 4.8s ease-in-out infinite; }
+.life-motes { fill: #e8d2a2; opacity: .33; animation: life-window-dust 13s ease-in-out -4s infinite alternate; }
+.life-vapour { stroke: #eae2c7; fill: none; stroke-width: 5.8; stroke-linecap: round; opacity: .49; }
+.life-vapour path { stroke-dasharray: 31 95; animation: life-steam-rise 4.6s ease-in-out infinite; }
+.life-vapour path + path { stroke-width: 3.8; animation-delay: -2.3s; }
+.life-drips path { fill: #bed0d3; opacity: 0; animation: life-drop 5.4s cubic-bezier(.55,.04,.76,.5) infinite; }
+.life-drips path + path { animation-delay: -.55s; }
+.life-drip-ring { stroke: #c1d1ca; fill: none; stroke-width: .65; opacity: 0; transform-origin: 31% 93%; animation: life-drop-ring 5.4s linear infinite; }
+.life-fuel { fill: #302724; }
+.life-hot { fill: none; stroke: #f8b25c; stroke-width: 4.6; opacity: 0; }
+.life-coals.burning .life-fuel { fill: #743c26; }
+.life-coals.burning .life-hot { opacity: .72; animation: life-forge-breath 3.9s ease-in-out -.1s infinite; }
+.life-bellows { transform-origin: 98% 52%; }
+.life-bellows.pumping { animation: life-pump 3.9s cubic-bezier(.4,.02,.55,.99) infinite; }
+.life-rope, .life-rope-shadow { fill: none; stroke: #aa885d; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.life-rope-shadow { stroke: #49392c; stroke-width: 2.8; }
+.life-mooring { transform-origin: 94% 7%; animation: life-line-tug 7s ease-in-out -3s infinite; }
+.life-course, .life-chart-cross { stroke: #725744; stroke-width: 1; fill: none; vector-effect: non-scaling-stroke; opacity: .73; }
+.life-puddle path:first-child { fill: #97b3bb; opacity: .26; }
+.life-puddle path + path { fill: none; stroke: #ccdadb; opacity: .47; stroke-width: 1.3; }
+.life-bilge { transform-origin: 62% 62%; animation: life-bilge-run 4.3s ease-in-out -1.1s infinite alternate; }
+@keyframes life-window-light { from { opacity: .38; } to { opacity: .9; } }
+@keyframes life-hearth-heat { 0%,100% { opacity: .55; } 27% { opacity: .89; } 43% { opacity: .69; } 62% { opacity: .95; } 85% { opacity: .76; } }
+@keyframes life-forge-breath { 0%,100% { opacity: .47; } 37% { opacity: .96; } 58% { opacity: .81; } 81% { opacity: .51; } }
+@keyframes life-lamp { 0%,100% { opacity: .77; } 42% { opacity: .97; } 57% { opacity: .82; } 79% { opacity: .89; } }
+@keyframes life-window-dust { from { transform: translate(0,0); opacity: .18; } to { transform: translate(4%,6%); opacity: .58; } }
+@keyframes life-steam-rise { 0% { stroke-dashoffset: 41; opacity: 0; } 26% { opacity: .68; } 68% { opacity: .51; } 100% { stroke-dashoffset: -87; opacity: 0; } }
+@keyframes life-drop { 0%,39%,100% { transform: translateY(0); opacity: 0; } 43% { transform: translateY(0); opacity: .6; } 58% { transform: translateY(81%); opacity: .72; } 59% { opacity: 0; } }
+@keyframes life-drop-ring { 0%,57%,69%,100% { opacity: 0; transform: scaleX(.35); } 60% { opacity: .58; transform: scaleX(.6); } 68% { opacity: 0; transform: scaleX(1.4); } }
+@keyframes life-pump { 0%,100% { transform: scaleY(1); } 34% { transform: scaleY(.90); } 61% { transform: scaleY(.985); } 81% { transform: scaleY(1.012); } }
+@keyframes life-line-tug { 0%,100% { transform: scaleY(1); } 52% { transform: scaleY(.979); } }
+@keyframes life-bilge-run { from { transform: translateX(-1.1%) scaleX(.98); } to { transform: translateX(1.65%) scaleX(1.04); } }
+
+/* One-shot material reactions. The pointer and the actor remain free to move. */
+.life-work { animation: life-work-beat 1.18s ease-out both; }
+.life-sparks { fill: none; stroke: #f9c171; stroke-width: 2; stroke-linecap: round; animation: life-flying-sparks .94s ease-out both; }
+.life-sparks path + path { stroke: #ef8746; }
+.life-splash, .life-pour { fill: none; stroke: #bdd0cc; stroke-width: 1.8; stroke-linecap: round; }
+.life-splash { transform-origin: 2% 65%; animation: life-water-thrown .91s ease-out both; }
+.life-pour { stroke-dasharray: 13 4; animation: life-water-poured .8s linear; }
+.life-chips { fill: #c39b66; stroke: #805e3b; stroke-width: .8; animation: life-cut-chips .95s ease-out both; }
+.life-thread { stroke: #c0a477; stroke-width: 2.6; fill: none; stroke-dasharray: 100; animation: life-draw-line .95s ease-in-out both; }
+.life-soot { fill: #5c4c40; opacity: .38; filter: blur(2px); animation: life-work-dust 1.1s ease-out both; }
+.life-fibres { fill: none; stroke: #b09263; stroke-width: 1.8; animation: life-work-dust .85s ease-out both; }
+.life-caulk { fill: none; stroke: #44382f; stroke-width: 3.1; stroke-dasharray: 100; animation: life-draw-line 1s ease-in-out both; }
+.life-work .life-course { stroke-dasharray: 100; animation: life-draw-line .95s ease-in-out both; }
+@keyframes life-work-beat { 0% { opacity: .18; } 14%,70% { opacity: .95; } 100% { opacity: 0; } }
+@keyframes life-flying-sparks { from { transform: translateY(7%) scale(.6); opacity: .45; } 40% { opacity: .95; } to { transform: translate(9%,-48%) scale(1.08); opacity: 0; } }
+@keyframes life-water-thrown { from { transform: scale(.15,.3); } 50% { transform: scale(.87,1); } to { transform: translate(15%,16%) scale(1,.82); opacity: 0; } }
+@keyframes life-water-poured { to { stroke-dashoffset: -41; } }
+@keyframes life-cut-chips { from { transform: translate(0,12%) scale(.6); } 45% { transform: translate(7%,-12%); } to { transform: translate(11%,18%); opacity: 0; } }
+@keyframes life-draw-line { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes life-work-dust { from { transform: scale(.6) translateY(30%); } to { transform: scale(1.22) translate(7%,-17%); opacity: 0; } }
+
+/* Last-frame reality remains legible with either motion preference enabled. */
+.reduced #place-life *, .reduced .scene.staged .signal-mast::after { animation: none !important; }
+.reduced .life-work { display: none; }
+.reduced .life-drips path:first-child { opacity: .53; transform: translateY(9%); }
+.reduced .life-vapour path { stroke-dasharray: 48 25; opacity: .5; }
+@media (prefers-reduced-motion: reduce) {
+  #place-life *, .scene.staged .signal-mast::after { animation: none !important; }
+  .life-work { display: none; }
+  .life-drips path:first-child { opacity: .53; transform: translateY(9%); }
+  .life-vapour path { stroke-dasharray: 48 25; opacity: .5; }
+}
+
+.life-anchor-boat { transform-origin: 61% 78%; animation: life-anchor-roll 6.4s ease-in-out -3.4s infinite alternate; }
+.life-hitch { fill: none; stroke: #a18a61; stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+.life-hitch path { vector-effect: non-scaling-stroke; }
+.life-sealed-seam .life-caulk { animation: none; stroke-width: 2; opacity: .64; }
+.life-cargo { filter: brightness(.88) saturate(.83); }
+@keyframes life-anchor-roll { from { transform: rotate(-.55deg) translate(0,-.9%); } to { transform: rotate(.6deg) translate(.35%,1.6%); } }
+body:has(dialog[open]) #place-life *,
+.scene:has(#completion:not([hidden])) #place-life *,
+body:has(dialog[open]) .scene.staged .signal-mast::after,
+.scene.staged:has(#completion:not([hidden])) .signal-mast::after {
+  animation-play-state: paused;
+}
+
+/* Optional actions borrow fragments of the existing painting. A still pose
+   lives in --held so that reduced-motion players can see the material respond. */
+.life-response { position:absolute; inset:0; overflow:hidden; pointer-events:none; animation:life-feature-beat 1.72s linear both; }
+.life-response span { transform: var(--held,none); }
+.life-bent-grass { --held:skewX(-5deg); transform-origin:40% 98%; animation:life-return-spring 1.25s ease-out both; }
+.life-grass-drops .life-pour { stroke:#9dada9; stroke-width:1.8; stroke-dasharray:4 28; animation:life-shaken-drops 1.15s ease-out both; }
+.life-loose-turn { --held:translate(-1.6%,-9%) rotate(-2deg); transform-origin:11% 81%; animation:life-lift-and-lower 1.5s ease-in-out both; }
+.life-fold-pressed { --held:scaleY(.88) skewX(1.2deg); transform-origin:44% 91%; animation:life-return-spring 1.4s ease-out both; }
+.life-floating-sliver { fill:#98734b; stroke:#634f3c; stroke-width:1.8; transform-origin:14% 54%; animation:life-float-away 1.66s ease-in-out both; }
+.life-eddy-ring { fill:none; stroke:#c2ccc4; stroke-width:1.6; opacity:.74; stroke-dasharray:12 9; animation:life-runnel-ring 1.5s ease-out both; }
+.life-bellows-stroke { --held:scaleY(.80); transform-origin:98% 53%; animation:life-lift-and-lower 1.48s ease-in-out both; }
+.life-coal-blush { background:radial-gradient(ellipse at 50% 61%,#f9b34fc7 4%,#e66c259c 18%,#e7501d48 44%,transparent 70%); mix-blend-mode:screen; animation:life-bellows-heat 1.6s ease-in-out both; }
+.life-cold-puff .life-soot { fill:#7b756a; opacity:.45; }
+.life-wood-grains { fill:none; stroke:#bda375; stroke-width:2.1; opacity:.86; animation:life-shaken-drops 1.35s ease-out both; }
+.life-brushed-grain { filter:brightness(1.14) saturate(.9); }
+.life-turned-line { --held:translate(-.6%,-7%) rotate(1.4deg); transform-origin:20% 58%; animation:life-lift-and-lower 1.45s ease-in-out both; }
+.life-turned-line.tight { --held:translate(-.2%,-2.7%) rotate(.45deg); }
+.life-wharf-rope { --held:scaleY(.81); transform-origin:0 6%; animation:life-lift-and-lower 1.52s ease-in-out both; }
+.life-rope-test { opacity:.85; }
+.life-rope-test .life-rope-shadow { stroke-width:2; }
+.life-rope-test .life-rope { stroke-width:.95; }
+.life-paper-lift { --held:skewY(-3.2deg) scaleY(.86); transform-origin:2% 86%; filter:brightness(1.035); animation:life-lift-and-lower 1.53s ease-in-out both; }
+.life-skipping-stone { fill:#605d53; animation:life-stone-hop 1.25s ease-out both; }
+.life-skip-rings ellipse { fill:none; stroke:#c6c9ba; stroke-width:1.25; transform-box:fill-box; transform-origin:center; animation:life-skip-ring 1.15s ease-out .21s both; }
+.life-skip-rings ellipse+ellipse { animation-delay:.57s; }
+@keyframes life-feature-beat { 0% {opacity:.5} 10%,79% {opacity:1} 100% {opacity:0} }
+@keyframes life-return-spring { 0%,100% {transform:none} 28%,46% {transform:var(--held)} 71% {transform:skewX(.65deg)} }
+@keyframes life-lift-and-lower { 0%,100% {transform:none} 37%,56% {transform:var(--held)} }
+@keyframes life-shaken-drops { 0% {opacity:0;transform:translate(0,-8%)} 22% {opacity:.84} 100% {opacity:0;transform:translate(11%,27%)} }
+@keyframes life-float-away { 0% {transform:translate(0,0) rotate(-5deg)} 35% {transform:translate(16%,7%) rotate(15deg)} 63% {transform:translate(36%,9%) rotate(-7deg)} 100% {transform:translate(76%,1%) rotate(19deg)} }
+@keyframes life-runnel-ring { from {stroke-dashoffset:23;opacity:.15} 38% {opacity:.82} to {stroke-dashoffset:0;opacity:.16} }
+@keyframes life-bellows-heat { 0%,100% {opacity:.12} 45% {opacity:1} 70% {opacity:.71} }
+@keyframes life-stone-hop { 0% {transform:translate(0,0);opacity:1} 20% {transform:translate(-19%,-49%)} 45% {transform:translate(-35%,-34%)} 65% {transform:translate(-56%,-58%);opacity:1} 89%,100% {transform:translate(-68%,-45%);opacity:0} }
+@keyframes life-skip-ring { from {opacity:0;transform:scale(.25)} 28% {opacity:.87} to {opacity:.08;transform:scale(1.4)} }
+
+.reduced #place-life .life-response .life-skipping-stone { opacity:0; }
+.reduced #place-life .life-response .life-floating-sliver { transform:translateX(42%); }
+@media (prefers-reduced-motion: reduce) {
+  #place-life .life-response *, #place-life .life-response { animation:none !important; }
+  #place-life .life-response .life-skipping-stone { opacity:0; }
+  #place-life .life-response .life-floating-sliver { transform:translateX(42%); }
+}

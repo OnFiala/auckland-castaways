@@ -8,14 +8,13 @@ A complete, compact seven-chapter painted point-and-click adventure inspired by 
 
 Open [dist/index.html](dist/index.html) from a downloaded copy of this repository. No installation or build is required. Browser support for local-file storage varies. GitHub shows source files rather than running the game.
 
-- Click the ground to walk, an object to collect or approach it, or a person for a short conversation.
-- Select an item in the satchel, then another item to combine them or a world object to use it.
-- Complete the three pictured goals to open the chapter passage. It appears at the right of the scene.
-- The compass button shows the journey. The question mark gives a visual clue and one short instruction. Space reveals hotspots.
-- Right-click or Shift+F10 examines the focused object. Escape clears an item or conversation. Tab and Enter operate controls.
-- Settings include reduced motion, reaction captions and opt-in English device narration. There is no recorded voice acting.
+- Click the ground to walk. Select an object to pick it up, work with it or examine its material. Click a person for a short English conversation.
+- Select an item in the satchel, then another item to combine them, or use the selected tool on something in the scene.
+- At the seven work surfaces, use the painted parts directly. You can drag a line or chart leg, or make the same move with individual clicks. Tab and Enter work on the picture. **Working controls** opens an optional list of the same actions. **Stand back** keeps unfinished work.
+- Use the magnifying glass for touch inspection. A right-click or Shift+F10 also examines a place. The eye or Space briefly reveals interactive areas. The question mark offers an observation, then a direction, then the next move if requested.
+- The compass shows the journey. Finish the work and follow the chapter passage. Settings include reduced motion, reaction captions and optional English narration using the device voice.
 
-Progress saves automatically. Existing version-3 first-night saves migrate into chapter I, including completed saves; use the passage to continue into winter. The old save remains untouched. The whole campaign uses a separate version-4 save.
+The campaign and partial workbench solutions save in the current browser. A version-3 first-night save can continue into winter, and earlier version-4 campaign saves retain their progress.
 
 ## Chapters
 
@@ -33,11 +32,9 @@ The playable viewpoint changes from Alick McLaren to Musgrave for chapters VI–
 
 ## Art and movement
 
-All people and physical items use this project's original painted artwork. New scenes have clear foreground walking lanes and state variants for the hearth, forge, boat and crossing. Crew keep persistent sprite images, freeze their pose during interruptions, and move only toward specific work. Player and crew share a body-height step scale. Shapes still vary between the generated walking poses; further animation polish remains necessary.
+Walking and the fifteen new standing, reaching and kneeling poses share a ground anchor for each person. Painted floor boundaries keep movement on shore, beside workbenches or inside the boat. A background or actor image stays mounted while its replacement decodes. The ten optional scenery interactions include floating a shaving in a stream and testing fitted bellows. [Spatial study](reviews/24-spatial-study.md) · [Illustrated review](reviews/25-playable-revision.md)
 
-[Scene artwork](VOYAGE_ART.md) · [walking art](WALK_ART.md) · [motion architecture](LIVING_WORLD.md) · [interface design](VISUAL_DESIGN.md).
-
-The game is an original dramatic adaptation. Puzzles, dialogue, likenesses and convenient staging are fiction, not a measured historical reconstruction. No assets, characters, audio or code from Machinarium were used.
+The scene paintings, people, props and English dialogue were created for this project. The Auckland Island outline on the return chart draws on the historical sketch published in Musgrave’s book. The voyage, the people who sailed and the rescue date follow the research ledger. [Chapter sources and dramatization](reviews/24-history-dialogue.md) · [Original work surfaces](artwork/workplates/README.md) · [Working pose provenance](dist/assets/work-poses/manifest.json)
 
 ## Validation
 
@@ -46,6 +43,4 @@ node --test adventure/tests/*.test.js adventure/tests/*.test.cjs adventure/tests
 node adventure/tests/ui-contract.cjs
 ```
 
-Every one of the campaign's 705 reachable chapter states can reach completion. Real application handlers have completed the full game with repeated save/reload and old-save migration. [Current release evidence](FULL_GAME_TESTING.md).
-
-The managed preview route remains unavailable. Actual browser playback, final visual alignment, touch behavior, native focus, narration quality and frame rate are unverified. Individual generated paintings have been inspected, and their source metadata and hashes are recorded. This is an implemented full campaign, with visual acceptance and player testing still outstanding.
+The release tests exercise the complete journey, all seven work surfaces, interruptions, an unfinished close-up through reload, optional field observations, and old saves. Every one of the 705 reachable campaign inventory states has a path to chapter completion. The managed browser relay timed out. Full animated playback, native touch and human difficulty testing remain open. [Test results](FULL_GAME_TESTING.md) · [Static comparison of six scenes](reviews/staging/scene-scale-proof.webp)

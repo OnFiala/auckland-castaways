@@ -7,9 +7,9 @@ function decorations(state,{svg}){
  const glow=(x,y)=>`<div class="voyage-glow" style="left:${x}%;top:${y}%"></div>`;
  if(state.scene==='forge'&&f.forgeLit)html+=glow(25,28);
  if(state.scene==='cabin'&&f.warmthReady)html+=glow(-2,42)+`<div class="world-steam" style="left:36%;top:39%"></div>`;
- if(state.scene==='cabin'&&f.roofSealed)html+=`<div class="change" style="left:52%;top:13%;width:12%;height:13%;transform:translate(-50%,-50%) rotate(-4deg)">${svg('weatherPatch')}</div>`;
- if(state.scene==='return_camp'&&f.suppliesShared)html+=`<div class="change" style="left:38%;top:46%;width:9%;height:13%">${svg('rescueProvisions')}</div>`;
- if(state.scene==='landing'&&f.landingMarked)html+=`<div class="change" style="left:77%;top:48%;width:4%;height:11%">${svg('lantern')}</div>`;
+ if(state.scene==='cabin'&&f.roofSealed)html+=`<div class="change" style="left:53.7%;top:17.7%;width:9%;height:7%;transform:translate(-50%,-50%) rotate(-4deg)">${svg('weatherPatch')}</div>`;
+ if(state.scene==='return_camp'&&f.suppliesShared)html+=`<div class="change" style="left:37.9%;top:45.2%;width:4.7%;height:8.5%">${svg('rescueProvisions')}</div>`;
+ if(state.scene==='landing'&&f.landingMarked)html+=`<div class="change" style="left:75.1%;top:45.1%;width:3.2%;height:8.5%">${svg('lantern')}</div>`;
  return html;
 }
 const placements={

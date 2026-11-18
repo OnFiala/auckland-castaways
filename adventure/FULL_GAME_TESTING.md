@@ -2,9 +2,22 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
-## Executed release checks
+## Release checked on 18 November 2026
 
-16 November 2026: **67/67 release tests passed**, plus the separate first-night UI-handler walkthrough. This comprises 47 retained regression tests, 8 full-campaign engine tests, 7 full-campaign UI tests and 5 new artwork/manifest tests. The real-handler walkthrough reached the rescue through all seven chapters, including repeated mid-puzzle and chapter-boundary reloads. The engine search covered **705 reachable chapter states**, and every state had a route to its chapter completion: 172 / 49 / 81 / 95 / 31 / 108 / 169 for chapters I–VII.
+**95 of 95 tests passed**, together with the separate first-night walkthrough. A full campaign run exercised the production handlers across the fourteen rooms, seven work surfaces, the change of protagonist and the final rescue. The long route used 71 inventory, world and chapter actions, with the individual work-surface inputs in addition. The model search still covers 705 reachable chapter inventory states. Dedicated work-surface tests explore the separate partial puzzle states and confirm recovery after wrong moves.
+
+| Check | Observed result |
+|---|---|
+| Clicks, dragging and persistence | The real handlers accepted input on the painting, accepted the equivalent named action, cancelled a drag without spending the tool, preserved an interrupted chest through a reload and granted its contents once on completion. |
+| Walking and size | 1,589 room routes reached their endpoints. 248 routes bent around an obstacle. Every sampled foot position stayed on the painted floor. Pausing a moving character preserved the position. |
+| Work and optional scenes | The ten optional room interactions left the voyage state intact. A dedicated test checks reach and separation from mandatory object fields. The ambient animation nodes survived unrelated inventory changes. |
+| Hints and story | The first clue gives an observation. The player can request a direction or the next action. The inspection/dialogue review checked 63 scene targets and 23 contextual changes in speech. |
+| Visual material | Seven native 1536 × 1024 work paintings, their seven production encodings and five transparent working-figure atlases passed hash checks. The manual art pass compared six compositions and fifteen stationary/working poses. |
+| Historical continuity | The final party travels with Musgrave aboard the rescue expedition. Henry and George return from the island. Invercauld remains a separate historical account. |
+
+[Physical staging](reviews/24-spatial-study.md) · [Static art comparison](reviews/staging/README.md) · [Historical and dialogue review](reviews/24-history-dialogue.md)
+
+The 16 November release had 67 passing tests and the same 705-state campaign graph. The additional checks exercise the illustrated work, its input handlers, physical staging, optional interactions, art provenance and persistence.
 
 ## Automated checks
 
@@ -15,7 +28,7 @@ node adventure/tests/ui-contract.cjs
 
 `voyage-ui.cjs` loads the script order declared by the game's HTML and runs actual application event handlers in the existing deterministic DOM contract harness. It is independent of the campaign engine's unit-test solution: it follows the hints shown to players, navigates scene exits, selects objects, combines inventory items, uses tools on targets, and crosses the chapter passage only after work is complete.
 
-The UI scenarios cover:
+The UI scenarios include the following checks.
 
 - A complete route through all seven chapters and the final rescue screen.
 - Save/reload at chapter boundaries and during unfinished puzzles.

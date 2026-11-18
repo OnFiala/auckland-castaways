@@ -6,18 +6,34 @@ const KEY='castaways-adventure-v3';
 function app({initial={},blocked=false,speech=null}={}){
  const ids=new Map(),stored={...initial},raf=[],timers=new Map();let clock=0,timerId=0,doc;const listeners={};
  class El{
-  constructor(id='',attrs={}){this.id=id;this.attrs=attrs;this.dataset={};this.children=[];this.style={setProperty(){}};this.open=false;this.hidden=Object.hasOwn(attrs,'hidden');this.disabled=Object.hasOwn(attrs,'disabled');const classes=new Set();this.classList={add(x){classes.add(x);},remove(x){classes.delete(x);},toggle(x,v){if(v===undefined)v=!classes.has(x);v?classes.add(x):classes.delete(x);},contains(x){return classes.has(x);}};for(const [k,v]of Object.entries(attrs))if(k.startsWith('data-'))this.dataset[k.slice(5)]=v;}
+  constructor(id='',attrs={}){this.id=id;this.attrs=attrs;this.dataset={};this.children=[];this.style={setProperty(){}};this.open=false;this.hidden=Object.hasOwn(attrs,'hidden');this.disabled=Object.hasOwn(attrs,'disabled');const classes=new Set();this.classList={add(x){classes.add(x);},remove(x){classes.delete(x);},toggle(x,v){if(v===undefined)v=!classes.has(x);v?classes.add(x):classes.delete(x);},contains(x){return classes.has(x);}};for(const [k,v]of Object.entries(attrs))if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v;}
   set innerHTML(html){for(const child of this.children)if(child.id&&ids.get(child.id)===child)ids.delete(child.id);this._html=html;this.children=parse(html);for(const child of this.children)child.parent=this;}
   get innerHTML(){return this._html||'';}
   setAttribute(k,v){this.attrs[k]=v;}
-  querySelectorAll(sel){if(sel.startsWith('.'))return this.children.filter(el=>(el.attrs.class||'').split(/\s+/).includes(sel.slice(1)));const match=sel.match(/^\[data-([\w-]+)(?:="([^"]*)")?\]$/);if(match)return this.children.filter(el=>Object.hasOwn(el.dataset,match[1])&&(match[2]===undefined||el.dataset[match[1]]===match[2]));return this.children.filter(el=>el.tag===sel);}
+  matches(sel){
+   if(sel[0]==='#')return this.id===sel.slice(1);
+   if(sel[0]==='.')return (this.attrs.class||'').split(/\s+/).includes(sel.slice(1));
+   const attr=sel.match(/^\[([\w-]+)(?:="([^"]*)")?\]$/);
+   if(attr)return Object.hasOwn(this.attrs,attr[1])&&(attr[2]===undefined||this.attrs[attr[1]]===attr[2]);
+   return this.tag===sel;
+  }
+  querySelectorAll(sel){return this.children.flatMap(el=>[...(el.matches(sel)?[el]:[]),...el.querySelectorAll(sel)]);}
   querySelector(sel){return this.querySelectorAll(sel)[0]||null;}
+  getAttribute(key){return this.attrs[key]??null;}
+  hasAttribute(key){return Object.hasOwn(this.attrs,key);}
+  contains(el){return this===el||this.children.some(child=>child.contains(el));}
   addEventListener(type,fn){this['on'+type]=fn;}
   insertAdjacentHTML(_,html){const added=parse(html);for(const child of added)child.parent=this;this.children.push(...added);this._html=(this._html||'')+html;}
-  appendChild(el){this.children.push(el);}
+  get ownerDocument(){return doc;}
+  set className(value){this.attrs.class=value;}
+  get className(){return this.attrs.class||'';}
+  appendChild(el){el.parent=this;this.children.push(el);return el;}
+  append(...nodes){for(const el of nodes)this.appendChild(el);}
+  replaceChildren(...nodes){this.innerHTML='';this.append(...nodes);}
+
   remove(){if(this.parent)this.parent.children=this.parent.children.filter(child=>child!==this);if(this.id&&ids.get(this.id)===this)ids.delete(this.id);this.parent=null;}
   get isConnected(){return this.id?ids.get(this.id)===this:!!this.parent&&this.parent.children.includes(this);}
-  closest(sel){return this.tag===sel?this:null;}
+  closest(sel){return this.matches(sel)?this:this.parent?.closest(sel)||null;}
   focus(){if(doc.activeElement!==this){doc.activeElement?.onblur?.();doc.activeElement=this;this.onfocus?.();}}
   getBoundingClientRect(){return {left:0,top:0,right:1000,bottom:562.5,width:1000,height:562.5};}
   animate(){return {};}
@@ -26,10 +42,15 @@ function app({initial={},blocked=false,speech=null}={}){
  function parse(html){const all=[];for(const tag of html.matchAll(/<([a-z][a-z0-9]*)\b([^>]*)>/g)){const attrs={};for(const m of tag[2].matchAll(/([\w-]+)(?:="([^"]*)")?/g))attrs[m[1]]=m[2]??'';const el=new El(attrs.id||'',attrs);el.tag=tag[1];all.push(el);if(el.id)ids.set(el.id,el);}return all;}
  parse(fs.readFileSync(root+'index.html','utf8'));
  doc={getElementById:id=>ids.get(id)||null,body:new El('body'),createElement:tag=>{const el=new El();el.tag=tag;return el;}};
- const context={console,document:doc,localStorage:{getItem(k){if(blocked)throw Error('blocked');return stored[k]??null;},setItem(k,v){if(blocked)throw Error('blocked');stored[k]=v;}},matchMedia:()=>({matches:false}),performance:{now:()=>clock},requestAnimationFrame(fn){raf.push(fn);return raf.length;},setTimeout(fn,ms=0){timers.set(++timerId,{fn,ms});return timerId;},clearTimeout(id){timers.delete(id);},addEventListener(type,fn){listeners[type]=fn;}};context.window=context;if(speech){context.speechSynthesis=speech.synth;context.SpeechSynthesisUtterance=speech.Utterance;}
+ const context={console,document:doc,localStorage:{getItem(k){if(blocked)throw Error('blocked');return stored[k]??null;},setItem(k,v){if(blocked)throw Error('blocked');stored[k]=v;},removeItem(k){if(blocked)throw Error('blocked');delete stored[k];}},matchMedia:()=>({matches:false}),performance:{now:()=>clock},requestAnimationFrame(fn){raf.push(fn);return raf.length;},setTimeout(fn,ms=0){timers.set(++timerId,{fn,ms});return timerId;},clearTimeout(id){timers.delete(id);},addEventListener(type,fn){listeners[type]=fn;}};context.window=context;if(speech){context.speechSynthesis=speech.synth;context.SpeechSynthesisUtterance=speech.Utterance;}
  vm.createContext(context);for(const f of ['art.js','engine.js','animation.js','stories.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
  async function flush(){for(let i=0;i<600;i++){clock+=16;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();}}
- async function click(id){const el=typeof id==='string'?ids.get(id):id;assert.equal(typeof el?.onclick,'function','click handler '+(id?.id||id));el.onclick({preventDefault(){},stopPropagation(){},target:el});await flush();}
+ async function click(id){
+  const el=typeof id==='string'?ids.get(id):id;assert(el,'control '+id);
+  let stopped=false,handled=false;const event={preventDefault(){},stopPropagation(){stopped=true;},target:el};
+  for(let at=el;at&&!stopped;at=at.parent){if(at.onclick){handled=true;at.onclick(event);}}
+  assert(handled,'click handler '+(el.id||JSON.stringify(el.attrs)));await flush();
+ }
  const target=id=>ids.get('targets').querySelector(`[data-target="${id}"]`);
  const item=id=>ids.get('inventory').querySelector(`[data-item="${id}"]`);
  const exit=id=>ids.get('exits').querySelector(`[data-exit="${id}"]`);
@@ -38,7 +59,7 @@ function app({initial={},blocked=false,speech=null}={}){
  async function travel(id){await click(exit(id));}
  function state(){return JSON.parse(stored[KEY]);}
  function runTimers(){const batch=[...timers.values()];timers.clear();for(const {fn}of batch)fn();}
- return{ids,stored,click,target,item,exit,pick,use,travel,state,runTimers,flush,activeElement:()=>doc.activeElement,key(key,target=doc.activeElement){listeners.keydown({key,code:key,target,preventDefault(){}});}};
+ return{ids,stored,click,target,item,exit,pick,use,travel,state,runTimers,flush,context,activeElement:()=>doc.activeElement,key(key,target=doc.activeElement){listeners.keydown({key,code:key,target,preventDefault(){}});}};
 }
 async function main(){
  const focus=app();
@@ -76,4 +97,5 @@ async function main(){
  const c=app({blocked:true});await c.pick('rope');assert(c.item('rope'));assert.equal(c.ids.get('saved').title,'Saving is unavailable');
  console.log(JSON.stringify({realUiHandlers:true,keyboardFocusAndDialog:true,stableUnaffectedTargets:true,transientFeedbackClears:true,fullPuzzleComplete:true,earlyMastRecovered:true,wrongCombinationSafe:true,midPuzzleReload:true,visibleWorldChangesMarkup:true,restart:true,pendingCompletionTimerCleared:true,storageBlockedFallback:true,limitation:'Minimal DOM contract mock only; does not verify rendering, animation, coordinates, touch or browser storage.'},null,2));
 }
-main().catch(error=>{console.error(error);process.exitCode=1;});
+module.exports={app};
+if(require.main===module)main().catch(error=>{console.error(error);process.exitCode=1;});

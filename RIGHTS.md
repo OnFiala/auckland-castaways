@@ -17,3 +17,7 @@ Podrobné rozlišení opce na moderní knihu, dobového příběhu a obrazových
 ## Full point-and-click campaign artwork
 
 The original generated campaign backgrounds and state variants are recorded in [the voyage scene manifest](adventure/dist/assets/voyage/scenes/manifest.json); the original prop atlases and kettle are recorded in [the voyage prop manifest](adventure/dist/assets/voyage/props/manifest.json). Prompts, hashes and edit-parent provenance accompany the unchanged PNGs. These generated interpretations are not copied from modern books or authenticated portraits. New English campaign dialogue and puzzles are original adaptation; factual boundaries and primary-source references are documented in [HISTORICAL_ADAPTATION](adventure/HISTORICAL_ADAPTATION.md).
+
+## Work surfaces and working figures
+
+The seven new close-up paintings and five three-pose character atlases are original image generations for this project. Source PNGs, prompts, referenced project artwork and hashes are documented in the [work surface manifest](adventure/artwork/workplates/manifest.json) and [working pose manifest](adventure/dist/assets/work-poses/manifest.json). The [runtime image manifest](adventure/dist/assets/workplates/manifest.json) records the WebP derivatives. The game’s simplified Auckland and Adams Island contours were hand traced from the 1865 sketch of the Auckland Isles published in Musgrave’s 1866 book. The surrounding voyage diagram and pencil course are an original puzzle composition. [A001 and its public-domain provenance](sources/ILLUSTRATIONS.md)

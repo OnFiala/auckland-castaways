@@ -1,0 +1,226 @@
+{
+  "title": "Until We Return — interactive work surfaces",
+  "generated_on": "2026-11-18",
+  "provenance": "Original game illustrations generated with image_gen.imagegen for this project. Each listed PNG preserves its original output bytes. The prompts and images represent staged puzzle details.",
+  "coordinate_system": "Percentages of the full uncropped 3:2 image. Point arrays are [x, y] measured from the upper left.",
+  "assets": [
+    {
+      "id": "chest",
+      "file": "chest.png",
+      "caption": "Sea chest in the salvage",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3110824,
+      "sha256": "d5e0c65767cfb81df3beca29d0b57f890e513769045fe9b4550f9570176df0f4",
+      "anchors": {
+        "tight_left_joint": [
+          20,
+          61
+        ],
+        "central_strap": [
+          38,
+          61
+        ],
+        "chipped_pry_socket": [
+          73.5,
+          60
+        ],
+        "right_iron_corner": [
+          97.5,
+          60
+        ]
+      },
+      "prompt": "Make ONE original full-bleed, landscape 3:2 (around 1200 by 800) close-up painting for the classic point-and-click adventure Until We Return about the Grafton castaways on Auckland Island, 1864–65. The camera is close to the actual working material. Restrained maritime palette of weathered walnut, salt-grey, slate-blue shadow and warm linen. Finely observed graphite contours and dry-brushed gouache, mellow low contrast and tactile but calm surfaces, composed like a late nineteenth-century naturalist’s painted field plate. Use evocative subdued light with subtle physical shadows in a believable space. Keep essential details distinguishable, leave breathing room at the edges. The material itself communicates the story. No human, hands, panels, highlights, outlines added for a game, interface, borders, arrows, printed symbols, captions or lettering. No twentieth-century tools, modern screws or machinery. Every object is practical and visually belongs to the same scene.\n\nLook close across a modest wreck-salvaged timber sea chest in almost-overhead shallow perspective. It fills the whole picture, the lid and body separated by ONE clearly visible nearly horizontal joint around the middle, from left to right. Several long salt-grey timber planks, small understated hand-worked iron corner braces at the far left and right edges, a few dark old peg or nail heads. The joint is narrow and tight on the left, tight beneath a modest vertical iron strap near the middle-left. Near x72% a single thumb-width chipped triangular notch in the lower lip leaves a plausible purchase for an iron bar. That small broken edge casts a warm dark wedge-shaped shadow. No padlock, catch, iron bar or loose tools, no exaggerated hole or dramatically opening lid. A washed piece of sailcloth at the top margin and cold shore light evoke the wreck. Let the viewer see three candidate areas along one seam and distinguish the damaged one at a glance after looking."
+    },
+    {
+      "id": "roof",
+      "file": "roof.png",
+      "caption": "Water through the canvas lap",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3399891,
+      "sha256": "941d304c0ceb2655cc24c421054714ff31acda7653e8828b5d07d836e90628a0",
+      "anchors": {
+        "leading_droplet": [
+          27.7,
+          27.7
+        ],
+        "dripping_overlap": [
+          40,
+          33
+        ],
+        "downhill_wet_streak": [
+          53,
+          66
+        ],
+        "dry_left_batten": [
+          6,
+          55
+        ],
+        "dry_lower_batten": [
+          50,
+          96
+        ]
+      },
+      "prompt": "Make ONE original full-bleed, landscape 3:2 (around 1200 by 800) close-up painting for the classic point-and-click adventure Until We Return about the Grafton castaways on Auckland Island, 1864–65. The camera is close to the actual working material. Restrained maritime palette of weathered walnut, salt-grey, slate-blue shadow and warm linen. Finely observed graphite contours and dry-brushed gouache, mellow low contrast and tactile but calm surfaces, composed like a late nineteenth-century naturalist’s painted field plate. Use evocative subdued light with subtle physical shadows in a believable space. Keep essential details distinguishable, leave breathing room at the edges. The material itself communicates the story. No human, hands, panels, highlights, outlines added for a game, interface, borders, arrows, printed symbols, captions or lettering. No twentieth-century tools, modern screws or machinery. Every object is practical and visually belongs to the same scene.\n\nInterior looking up at a patched-together sailcloth roof of Epigwaitt, a modest 1860s castaway hut. Show two irregular overlapping strips of natural woven canvas on exposed hand-cut wooden battens under a timber roof. One loose free hem runs on a slight diagonal, parting from the cloth below at x38% y34%. A tiny bead of water hangs at the upstream lip near upper left of centre. A winding, visibly descending darker wet stain extends down and right to the otherwise dry lower panel around x56% y70%; tiny droplets follow the weave. Warm reflected lamplight from below contrasts with cool damp canvas at the gap. The three regions dry timber, active leaking overlap and the old stain below must read differently. No discrete patch glued to roof, no dangling tools, no whole room, no person. Faithful textile texture at a natural scale."
+    },
+    {
+      "id": "drill",
+      "file": "drill.png",
+      "caption": "Two trials in hard timber",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3144790,
+      "sha256": "89c00cefc60b9d24a486f6f056702a7d1db1c424cd81153dd6bef33ce8ff7171",
+      "anchors": {
+        "deep_round_hole": [
+          36.8,
+          43
+        ],
+        "shallow_crescent_scratch": [
+          54,
+          40
+        ],
+        "blunted_iron_tip": [
+          31.5,
+          73
+        ],
+        "flattened_iron_face": [
+          40,
+          73
+        ]
+      },
+      "prompt": "Make ONE original full-bleed, landscape 3:2 (around 1200 by 800) close-up painting for the classic point-and-click adventure Until We Return about the Grafton castaways on Auckland Island, 1864–65. The camera is close to the actual working material. Restrained maritime palette of weathered walnut, salt-grey, slate-blue shadow and warm linen. Finely observed graphite contours and dry-brushed gouache, mellow low contrast and tactile but calm surfaces, composed like a late nineteenth-century naturalist’s painted field plate. Use evocative subdued light with subtle physical shadows in a believable space. Keep essential details distinguishable, leave breathing room at the edges. The material itself communicates the story. No human, hands, panels, highlights, outlines added for a game, interface, borders, arrows, printed symbols, captions or lettering. No twentieth-century tools, modern screws or machinery. Every object is practical and visually belongs to the same scene.\n\nAn intimate shallow overhead view of a weathered 1860s improvised forge workbench with one hard timber offcut, set diagonally across the frame. A small hand-forged plain flat-spade drill bit with a worn, rounded grey edge lies diagonally across the lower face of the timber, not in a powered drill and not a twist drill. The shoulder has a dull, battered silver scrape. Show two very different hand trials on the timber near mid-frame: a clean round, dark pilot hole left of centre with a chip beside it, and a shallow, bright crescent scratch to its right with burnished grain and no curl of wood. A fine split in this timber runs along its grain to the right. A few dark filings and a sliver of pale wood. Directional cool light, mellow dusty warm workbench; fingertips, burning coals, blowtorches and glamorous workshop lamps absent. The scratch and the blunted cutting edge must tell the story of tool failure. Avoid piles of drill bits or clutter."
+    },
+    {
+      "id": "hull",
+      "file": "hull.png",
+      "caption": "Laps of the boat hull",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3424186,
+      "sha256": "af0e80520932de3359ac04ea22b9013be50a5355050a7db707e3b19c1d6fbf10",
+      "anchors": {
+        "sound_upper_lap": [
+          56,
+          26
+        ],
+        "open_middle_lap": [
+          60,
+          57.8
+        ],
+        "sound_lower_lap": [
+          61,
+          90
+        ],
+        "middle_plank_fastener": [
+          45,
+          51
+        ]
+      },
+      "prompt": "Make ONE original full-bleed, landscape 3:2 (around 1200 by 800) close-up painting for the classic point-and-click adventure Until We Return about the Grafton castaways on Auckland Island, 1864–65. The camera is close to the actual working material. Restrained maritime palette of weathered walnut, salt-grey, slate-blue shadow and warm linen. Finely observed graphite contours and dry-brushed gouache, mellow low contrast and tactile but calm surfaces, composed like a late nineteenth-century naturalist’s painted field plate. Use evocative subdued light with subtle physical shadows in a believable space. Keep essential details distinguishable, leave breathing room at the edges. The material itself communicates the story. No human, hands, panels, highlights, outlines added for a game, interface, borders, arrows, printed symbols, captions or lettering. No twentieth-century tools, modern screws or machinery. Every object is practical and visually belongs to the same scene.\n\nThe frame is filled with a close-up of a small 1860s clinker-built boat hull, viewed close and almost square to the side of the hull in the castaways' timber slipway. Show three adjacent, gently curving horizontal lapstrake joints with visible wrought nail heads, lying at upper, middle and lower heights right across the frame. Parallel overlapping courses, warm seasoned planks, salt-stained blue-grey edges. Top and bottom joint are fitted tight, narrow shallow lines. One central section of the MIDDLE joint stands slightly open, revealing a irregular, dark empty seam near x54% y53%, with bare fibre and a trace of old pitch nearby. Strong and legible enough to identify by comparing the three courses but realistic: NOT a through-hole, missing plank or dramatic damage. Hand-worked fastenings, no furniture, no caulking iron, no hands or loose rope. Sea on the far edge only if needed. Side sunlight reveals depth."
+    },
+    {
+      "id": "rig",
+      "file": "rig.png",
+      "caption": "Clew and unled sheet",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2541703,
+      "sha256": "1110a6e44cc4daedacd13b862255c0842b28f933dece05ec29d62d75f0fa2597",
+      "anchors": {
+        "sail_clew_eye": [
+          48,
+          31
+        ],
+        "left_fairlead_eye": [
+          35.2,
+          76.5
+        ],
+        "right_fairlead_eye": [
+          76.3,
+          73
+        ],
+        "free_sheet_tip": [
+          60,
+          92.5
+        ]
+      },
+      "prompt": "Make ONE original full-bleed, landscape 3:2 (around 1200 by 800) close-up painting for the classic point-and-click adventure Until We Return about the Grafton castaways on Auckland Island, 1864–65. The camera is close to the actual working material. Restrained maritime palette of weathered walnut, salt-grey, slate-blue shadow and warm linen. Finely observed graphite contours and dry-brushed gouache, mellow low contrast and tactile but calm surfaces, composed like a late nineteenth-century naturalist’s painted field plate. Use evocative subdued light with subtle physical shadows in a believable space. Keep essential details distinguishable, leave breathing room at the edges. The material itself communicates the story. No human, hands, panels, highlights, outlines added for a game, interface, borders, arrows, printed symbols, captions or lettering. No twentieth-century tools, modern screws or machinery. Every object is practical and visually belongs to the same scene.\n\nAt eye level inside a tiny nineteenth-century sailing boat during an overcast Southern Ocean passage. Extreme close-up of the lower corner (clew) of a worn natural-colour triangular sail in the upper left-centre, with one reinforced rope eye. A single loose muted flax-colour rope end curls down from near the eye, visibly slack. Across the lower quarter a dark weathered wooden gunwale bears exactly TWO separate small fixed rounded hardwood fairleads, worn smooth, one near x36% and one near x73%, at a believable hand's distance. Each has a clearly open rope passage. Canvas clew and fairleads cast soft shadows. Grey-blue moving sea softly out of focus just behind the timber. Compose so the eye and two fairleads can form a simple interaction triangle. A damp light and a diagonal breeze. No rope already threaded around both fittings, no pulley wheels, metal yacht tackle, nylon, people or hands."
+    },
+    {
+      "id": "chart",
+      "file": "chart.png",
+      "caption": "Chart and journal at the table",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2720331,
+      "sha256": "30258e37bdba85a86a3d1189c8db554166f94f22b134f59d276e84762b18cc8b",
+      "anchors": {
+        "journal_fastening": [
+          8,
+          34
+        ],
+        "journal_body": [
+          6,
+          43
+        ],
+        "dividers_pivot": [
+          92,
+          37
+        ],
+        "paper_centre": [
+          50,
+          53
+        ]
+      },
+      "prompt": "Make ONE original full-bleed, landscape 3:2 (around 1200 by 800) close-up painting for the classic point-and-click adventure Until We Return about the Grafton castaways on Auckland Island, 1864–65. The camera is close to the actual working material. Restrained maritime palette of weathered walnut, salt-grey, slate-blue shadow and warm linen. Finely observed graphite contours and dry-brushed gouache, mellow low contrast and tactile but calm surfaces, composed like a late nineteenth-century naturalist’s painted field plate. Use evocative subdued light with subtle physical shadows in a believable space. Keep essential details distinguishable, leave breathing room at the edges. The material itself communicates the story. No human, hands, panels, highlights, outlines added for a game, interface, borders, arrows, printed symbols, captions or lettering. No twentieth-century tools, modern screws or machinery. Every object is practical and visually belongs to the same scene.\n\nAlmost-overhead view of the calm Invercargill chart table, 1865. Wide rectangular sheet of aged but light ivory drawing paper fills most of the picture x15–88%, y12–85%, lying close to square to the screen, with slight cockling, deckled edges and gentle natural fibre texture. The central TWO THIRDS of the sheet visibly blank, smooth, pale and unobstructed for a period course drawing the game will add. At upper left edge of the table a separate closed dark russet clothbound ship's journal with an aged cord, angled and barely overlapping the paper's far left edge; at right a small untouched brass divider lies outside the blank area. Modest warm walnut grain at top/bottom and soft cool window light. No map outline in the central sheet, no grid, cartographic characters, text, fake handwriting, numbers, route, compass rose, illustrations or decorative title scrolls. Macro painted surface for a historical cartographic puzzle.",
+      "clear_route_area": {
+        "left": 19,
+        "top": 25,
+        "right": 81,
+        "bottom": 81
+      }
+    },
+    {
+      "id": "landing",
+      "file": "landing.png",
+      "caption": "Loose line on the landing boat",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 3041513,
+      "sha256": "7982b493255f00ffa437d2db7fff3cfc544895ac52948d410fb68ed9a7676ea4",
+      "anchors": {
+        "line_coil": [
+          8,
+          70
+        ],
+        "free_line_tip": [
+          34.4,
+          82
+        ],
+        "middle_of_gunwale": [
+          55,
+          75.7
+        ],
+        "post_top": [
+          81,
+          24
+        ],
+        "post_wet_mark": [
+          81,
+          47.5
+        ],
+        "water_at_post_base": [
+          80.5,
+          60
+        ],
+        "water_for_swell": [
+          64,
+          55
+        ]
+      },
+      "prompt": "Make ONE original full-bleed, landscape 3:2 (around 1200 by 800) close-up painting for the classic point-and-click adventure Until We Return about the Grafton castaways on Auckland Island, 1864–65. The camera is close to the actual working material. Restrained maritime palette of weathered walnut, salt-grey, slate-blue shadow and warm linen. Finely observed graphite contours and dry-brushed gouache, mellow low contrast and tactile but calm surfaces, composed like a late nineteenth-century naturalist’s painted field plate. Use evocative subdued light with subtle physical shadows in a believable space. Keep essential details distinguishable, leave breathing room at the edges. The material itself communicates the story. No human, hands, panels, highlights, outlines added for a game, interface, borders, arrows, printed symbols, captions or lettering. No twentieth-century tools, modern screws or machinery. Every object is practical and visually belongs to the same scene.\n\nView from a small 1860s landing boat close ashore at Carnley Harbour. Foreground lower left and lower centre show a section of dark clinker gunwale and pale salt-worn wooden thwart/boards in shallow side perspective. At left a modest coil of loose flax rope on the seat, its free end curling toward the clear centre. Across the small strip of blue-grey moving water is a short, solid waist-high weathered wooden mooring post on the shingle, positioned in the right third, around x75%, its top at y33%. A darker wet tide-line on post and small wave washing past irregular flat pebbles tell when tension eases. Far beyond, blurred slate swell and rocky shore, no buildings. Leave the middle foreground clear where the player's hands would work. Bleached sun between rain clouds, discreet low contrast. No tied knot or rope already attached to post, nobody, no modern bollards or deck equipment."
+    }
+  ]
+}

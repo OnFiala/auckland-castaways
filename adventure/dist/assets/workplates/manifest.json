@@ -1,0 +1,103 @@
+{
+  "encoding": "WebP quality 94, full original dimensions, no cropping. Source images, painting provenance and feature anchors are in adventure/artwork/workplates.",
+  "assets": [
+    {
+      "id": "chest",
+      "file": "chest.webp",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "d5e0c65767cfb81df3beca29d0b57f890e513769045fe9b4550f9570176df0f4",
+      "sha256": "50b04729b35fe1a67dea3e94c3ed711a67ccca1b7c9b6bbbaa8689042796f62f",
+      "bytes": 593928,
+      "rms_rgb_8bit": [
+        1.915,
+        1.653,
+        2.365
+      ]
+    },
+    {
+      "id": "roof",
+      "file": "roof.webp",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "941d304c0ceb2655cc24c421054714ff31acda7653e8828b5d07d836e90628a0",
+      "sha256": "0c06c0e00aec1f3516c8ca59bf239df70a56a14b1c7411d09904513bceba9b08",
+      "bytes": 656570,
+      "rms_rgb_8bit": [
+        2.074,
+        1.716,
+        2.853
+      ]
+    },
+    {
+      "id": "drill",
+      "file": "drill.webp",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "89c00cefc60b9d24a486f6f056702a7d1db1c424cd81153dd6bef33ce8ff7171",
+      "sha256": "b3e00e01cf6e5dea6bf0df592b0ccf529527c555a3c16b7dc63a44c557725abd",
+      "bytes": 580074,
+      "rms_rgb_8bit": [
+        1.96,
+        1.649,
+        2.503
+      ]
+    },
+    {
+      "id": "hull",
+      "file": "hull.webp",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "af0e80520932de3359ac04ea22b9013be50a5355050a7db707e3b19c1d6fbf10",
+      "sha256": "93616e56b68e9d0f3278443607d5d62912380f3a0191ce494e67647b7d3bcf02",
+      "bytes": 679138,
+      "rms_rgb_8bit": [
+        2.166,
+        1.743,
+        2.97
+      ]
+    },
+    {
+      "id": "rig",
+      "file": "rig.webp",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "1110a6e44cc4daedacd13b862255c0842b28f933dece05ec29d62d75f0fa2597",
+      "sha256": "6c5392009e9f91c7bd668346c63019c779f72a3b649cbf6cb45df4de79d48763",
+      "bytes": 360990,
+      "rms_rgb_8bit": [
+        1.771,
+        1.562,
+        2.044
+      ]
+    },
+    {
+      "id": "chart",
+      "file": "chart.webp",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "30258e37bdba85a86a3d1189c8db554166f94f22b134f59d276e84762b18cc8b",
+      "sha256": "c68b672b20d9c73668aa114b8b0e2886c883098625ac496ba1e485acfe6d3d1c",
+      "bytes": 442050,
+      "rms_rgb_8bit": [
+        1.872,
+        1.648,
+        2.229
+      ]
+    },
+    {
+      "id": "landing",
+      "file": "landing.webp",
+      "width": 1536,
+      "height": 1024,
+      "source_sha256": "7982b493255f00ffa437d2db7fff3cfc544895ac52948d410fb68ed9a7676ea4",
+      "sha256": "81b2eddc965a764b9b950221b3a1ebabc53d2492e324fa36e776ee0da2b25205",
+      "bytes": 558210,
+      "rms_rgb_8bit": [
+        2.043,
+        1.726,
+        2.48
+      ]
+    }
+  ]
+}

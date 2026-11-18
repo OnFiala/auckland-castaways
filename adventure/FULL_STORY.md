@@ -4,6 +4,8 @@ The seven chapters follow the Grafton group from the wreck to the rescue of the 
 
 The player acts as **Alick McLaren in chapters I–V** and **Captain Thomas Musgrave in VI–VII**. A caption and portrait identify the change. Neither role is an authenticated portrait or a reconstruction of the person's inner life. Their dialogue is original dramatic writing. [Historical boundaries](HISTORICAL_ADAPTATION.md) distinguish events from adaptation.
 
+The playable physical work, visual clues and changes in the rooms are described in the [illustrated revision](reviews/25-playable-revision.md). [Companion dialogue and historical sources](reviews/24-history-dialogue.md) document the voices and the invented actions in each chapter.
+
 ## I. The First Night
 
 **Opening image:** rain crosses the broken Grafton; five people occupy different patches of shore. The player first understands distance by walking, then discovers the rope and pole by their shape in the debris.

@@ -1,0 +1,46 @@
+/* Each actor and object shares one 16:9 painted ground plane. */
+.scene.staged { container-type: inline-size; }
+.staged .companions {
+  position: absolute; inset: 0; width: 100%; height: 100%; opacity: 1;
+  z-index: auto; pointer-events: none;
+}
+.staged .companion { animation: none; }
+.staged .person { min-height: 0; min-width: 0; }
+.staged .actor-canvas { width: var(--canvas-width, 282%); left: calc((100% - var(--canvas-width, 282%)) / 2); }
+.staged .person .actor-shadow { width: 56%; left: 22%; height: 3%; bottom: -0.6%; opacity: .63; }
+.staged .player-shadow { left: 36%; width: 28%; bottom: -.4%; height: 3%; opacity: .63; }
+.staged .player.acting .player-sprite { animation: none; }
+.staged .target, .staged .target:hover, .staged .target.fulfilled { filter: none; }
+.staged .target:after, .staged .target.fulfilled:before { opacity: 0; }
+.show-targets .staged .target:after { opacity: .92; }
+.staged .target:focus-visible, .staged .companion:focus-visible { outline: 2px solid #ffdc92; outline-offset: 2px; }
+.scene-prop {
+  pointer-events: none; position: absolute; display: block; left: 50%; top: 50%;
+  width: var(--paint-width); height: var(--paint-height); transform: translate(-50%, -50%) rotate(var(--art-angle,0deg));
+}
+.scene-prop > .painted { display: block; width: 100%; height: 100%; }
+#inspect-mode {
+  flex: none; height: 28px; width: 34px; padding: 4px; margin-left: auto;
+  display: inline-grid; place-items: center; border: 1px solid transparent; border-radius: 3px;
+  background: transparent; color: #d5c09a;
+}
+#inspect-mode[hidden] { display: none; }
+#inspect-mode svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.7; fill: none; }
+#inspect-mode:hover, #inspect-mode[aria-pressed=true] { color: #ffe8ba; background: #60472b; border-color: #b29462; }
+.staged.examining, .staged.examining .target, .staged.examining .companion { cursor: help; }
+.clue-text { color: #493527; font: 18px/1.55 Georgia,serif; margin: 18px 0 22px; }
+#more-clue { margin: 0; }
+.staged .scene-label { pointer-events: none; }
+#held-tool { position: absolute; z-index: 6; transform: translate(-50%,-50%) rotate(var(--tool-angle,0deg)); opacity: .95; pointer-events: none; }
+#held-tool[hidden] { display: none; }
+#held-tool svg { width: 100%; height: 100%; }
+@media (max-width:700px) {
+ .staged .target:not(.person) { min-width:24px; min-height:24px; }
+ .clue-text { font-size:16px; }
+ #inspect-mode { width:32px; height:30px; }
+}
+/* The chest expands slightly around a planted figure; feet keep their contact point. */
+.staged .speaking .work-viewport { animation: conversation-breath 3.6s ease-in-out infinite; transform-origin: 50% 98%; }
+@keyframes conversation-breath { 50% { transform: scale(1.003,1.004); } }
+.reduced .staged .speaking .work-viewport { animation: none; }
+@media (prefers-reduced-motion: reduce) { .staged .speaking .work-viewport { animation: none; } }
