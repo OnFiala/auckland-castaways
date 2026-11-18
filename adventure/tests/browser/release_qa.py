@@ -158,10 +158,10 @@ def retry_scenery(page, evidence, painting):
     assert state(page)["actions"] == before["actions"] + 1
 
 
-def run(browser, index, folder, name, scenario, *, touch=False, reduced=False):
+def run(browser, index, folder, name, scenario, *, touch=False, reduced=False, touch_input=False):
     folder.mkdir(parents=True, exist_ok=True)
     view = {"width": 390, "height": 844} if touch else {"width": 1280, "height": 800}
-    ctx = browser.new_context(viewport=view, is_mobile=touch, has_touch=touch or scenario in (campaign, diagnose_campaign),
+    ctx = browser.new_context(viewport=view, is_mobile=touch, has_touch=touch or touch_input,
                               reduced_motion="reduce" if reduced else "no-preference",
                               offline=True, record_video_dir=folder,
                               record_video_size={"width": 720, "height": 405} if not touch else view)
@@ -226,8 +226,8 @@ def main():
                 name = 'touch-shore' if touch else 'desktop-shore'
                 check(index, args.evidence / name, name,
                       lambda page, folder: shore(page, folder, touch), touch=touch)
-            if not check(index, args.evidence / 'campaign', 'seven chapters', campaign, reduced=True):
-                check(index, args.evidence / 'diagnostic', 'keyboard continuation', diagnose_campaign, reduced=True)
+            if not check(index, args.evidence / 'campaign', 'seven chapters', campaign, reduced=True, touch_input=True):
+                check(index, args.evidence / 'diagnostic', 'keyboard continuation', diagnose_campaign, reduced=True, touch_input=True)
             with TemporaryDirectory() as temp:
                 copy = Path(temp) / 'edition'
                 shutil.copytree(index.parent, copy)

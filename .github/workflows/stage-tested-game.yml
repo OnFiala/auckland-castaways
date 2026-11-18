@@ -1,0 +1,103 @@
+name: Stage a tested game draft
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  stage:
+    if: >-
+      github.repository == 'OnFiala/auckland-castaways' &&
+      github.event.repository.private == false &&
+      github.ref_type == 'branch' && startsWith(github.ref_name, 'release/edition-')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    concurrency:
+      group: stage-game-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - name: Identify the numbered release branch
+        shell: bash
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^release/edition-([0-9]+)$ ]]
+          echo "EDITION=${BASH_REMATCH[1]}" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: .github/scripts
+      - uses: actions/download-artifact@v4
+        with:
+          name: until-we-return-zip
+          path: ${{ runner.temp }}/qa-zip
+      - uses: actions/download-artifact@v4
+        with:
+          name: chromium-evidence
+          path: ${{ runner.temp }}/qa-evidence
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify QA evidence and prepare the gallery
+        shell: bash
+        run: |
+          python -m pip install 'Pillow==11.3.0'
+          python .github/scripts/game_evidence.py "$RUNNER_TEMP/qa-zip/until-we-return.zip" \
+            "$RUNNER_TEMP/qa-evidence" "$EDITION" "$RUNNER_TEMP/stage"
+          cat "$RUNNER_TEMP/stage/qa-summary.json"
+      - name: Keep the numerical QA summary with this run
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-qa-summary
+          path: ${{ runner.temp }}/stage/qa-summary.json
+          if-no-files-found: error
+          overwrite: true
+      - name: Stage the three assets on the existing draft
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/stage"
+          tag="game-v$EDITION"
+          zip="until-we-return-edition-$EDITION.zip"
+          repo="repos/$GH_REPO"
+
+          # Drafts do not necessarily have a Git tag yet. Locate the exact release ID once.
+          id=$(gh api --paginate "$repo/releases?per_page=100" | jq -ser --arg tag "$tag" '
+            [.[][] | select(.tag_name == $tag and .draft)] |
+            if length == 1 then .[0].id else error("Expected one existing draft for " + $tag) end')
+          guard_draft() {
+            local head target existing
+            head=$(gh api "$repo/git/ref/heads/$GITHUB_REF_NAME" --jq '.object.sha')
+            [[ "$head" == "$GITHUB_SHA" ]] || { echo "::error::A newer commit is on the release branch."; return 1; }
+            target=$(gh api "$repo/releases/$id" | jq -er --arg tag "$tag" '
+              select(.draft == true and .tag_name == $tag) | .target_commitish')
+            existing=$(gh api "$repo/git/matching-refs/tags/$tag" | jq -r --arg ref "refs/tags/$tag" '
+              .[] | select(.ref == $ref) | .ref')
+            if [[ -n "$existing" ]]; then
+              [[ "$(gh api "$repo/commits/$tag" --jq '.sha')" == "$head" ]] ||
+                { echo "::error::The existing tag points at another commit."; return 1; }
+            elif [[ "$target" != "$head" && "$target" != "$GITHUB_REF_NAME" ]]; then
+              echo "::error::The draft targets a different branch or commit."
+              return 1
+            fi
+          }
+
+          for asset in "$zip" review-game.webp SHA256SUMS.txt; do
+            guard_draft
+            gh release upload "$tag" "$asset" --repo "$GH_REPO" --clobber
+          done
+          guard_draft
+          gh api --paginate "$repo/releases/$id/assets?per_page=100" > "$RUNNER_TEMP/staged-assets.json"
+          for asset in "$zip" review-game.webp SHA256SUMS.txt; do
+            digest=$(sha256sum "$asset" | cut -d' ' -f1)
+            jq -se --arg name "$asset" --arg digest "sha256:$digest" '
+              [.[][] | select(.name == $name and .state == "uploaded" and .digest == $digest)] | length == 1
+            ' "$RUNNER_TEMP/staged-assets.json" > /dev/null
+          done
+          echo "Verified three assets on draft $tag at $GITHUB_SHA." >> "$GITHUB_STEP_SUMMARY"

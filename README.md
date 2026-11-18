@@ -8,7 +8,7 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 ## Aktuální hra: Until We Return
 
-**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14)** · [Soukromá hostovaná hra](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
+**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
 
 Ve vydání 14 se scéna, předměty a uložené místo přepínají společně. V chýši lze přímo ohledat misku pod kapající střechou. Každá vydaná sada maleb má vlastní adresy, takže rozehraná verze může dál používat svoje soubory. Stažený ZIP stačí celý rozbalit a otevřít `index.html`. [Opravy a ověření vydání 14](adventure/reviews/release-14/README.md) · [Původní záznam závad](adventure/reviews/browser-13/README.md)
 

@@ -13,8 +13,9 @@ it in the satchel and click another object to combine or use it. The magnifier
 examines a painting. The eye briefly reveals interactive areas. The question
 mark gives a hint in stages. In close-ups you can use the painted parts or
 open Working controls. Tab, Enter and Escape work throughout the game.
-Settings includes reduced motion, English device narration when available
-and a release number.
+Settings shows the release number. Motion follows your system preference,
+and you can reduce it in the game. Brief reaction captions and English
+narration start off. Narration uses a voice supplied by your browser.
 
 The story follows the Grafton from its wreck in 1864 to the rescue in 1865.
 You play Alick McLaren in the first five chapters and Captain Thomas Musgrave

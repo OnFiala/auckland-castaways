@@ -10,6 +10,8 @@ on:
       - 'adventure/PLAY.txt'
       - 'adventure/tests/browser/**'
       - '.github/workflows/game-release-qa.yml'
+      - '.github/workflows/stage-tested-game.yml'
+      - '.github/scripts/game_evidence.py'
   workflow_dispatch:
 
 permissions:
@@ -59,3 +61,45 @@ jobs:
           path: ${{ runner.temp }}/evidence
           if-no-files-found: warn
           retention-days: 14
+
+  animated-voyage:
+    needs: chromium
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: adventure/tests/browser
+      - uses: actions/download-artifact@v4
+        with:
+          name: until-we-return-zip
+          path: ${{ runner.temp }}/tested
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the same Chromium renderer
+        run: |
+          python -m pip install 'playwright==1.56.0'
+          python -m playwright install --with-deps chromium
+      - name: Walk through the extracted game with full animation
+        run: |
+          mkdir "$RUNNER_TEMP/unpacked" "$RUNNER_TEMP/animated-evidence"
+          unzip -q "$RUNNER_TEMP/tested/until-we-return.zip" -d "$RUNNER_TEMP/unpacked"
+          python adventure/tests/browser/animated_route.py "$RUNNER_TEMP/unpacked/index.html" "$RUNNER_TEMP/animated-evidence"
+      - name: Keep the animated campaign record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: animated-voyage
+          path: ${{ runner.temp }}/animated-evidence
+          if-no-files-found: warn
+          retention-days: 14
+
+  stage-draft:
+    needs: [chromium, animated-voyage]
+    if: github.repository == 'OnFiala/auckland-castaways' && github.ref_type == 'branch' && startsWith(github.ref_name, 'release/edition-')
+    permissions:
+      contents: write
+      actions: read
+    uses: ./.github/workflows/stage-tested-game.yml

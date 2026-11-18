@@ -2,7 +2,7 @@
 
 A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
 
-[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14) · [Private hosted game](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Edition 14](reviews/release-14/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
+[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14) · [Edition 14](reviews/release-14/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
 ## Play
 
@@ -40,7 +40,7 @@ The scene paintings, people, props and English dialogue were created for this pr
 
 ## Web delivery
 
-The downloadable source runs by opening `dist/index.html`. The hosted edition uses the same scripts and paintings with WebP image addresses. To reproduce the compact static edition with Python, Pillow and an empty destination directory, run `python adventure/tools/build_web.py /tmp/until-we-return-web` from the repository root. The packager checks dimensions, transparency and colour difference when converting a PNG. Paintings already supplied as WebP are copied byte for byte. The root entry points to a content-specific edition directory. Each painting, walking atlas, sound, font, script and stylesheet keeps its release identity. No network connection is needed by the playable archive. `verify_web.py` checks the entry, resource paths and SHA-256 manifest. `package_download.py` makes the ZIP and includes the player guide. For a site update, pass `--previous /path/to/exact/published/dist` to the build to retain old resource URLs for open sessions.
+A repository checkout runs from `adventure/dist/index.html`. The playable ZIP opens from its root `index.html`. The hosted edition uses the same scripts and paintings with WebP image addresses. To reproduce the compact static edition with Python, Pillow and an empty destination directory, run `python adventure/tools/build_web.py /tmp/until-we-return-web` from the repository root. The packager checks dimensions, transparency and colour difference when converting a PNG. Paintings already supplied as WebP are copied byte for byte. The root entry points to a content-specific edition directory. Each painting, walking atlas, sound, font, script and stylesheet keeps its release identity. No network connection is needed by the playable archive. `verify_web.py` checks the entry, resource paths and SHA-256 manifest. `package_download.py` makes the ZIP and includes the player guide. For a site update, pass `--previous /path/to/exact/published/dist` to the build to retain old resource URLs for open sessions.
 
 ## Validation
 

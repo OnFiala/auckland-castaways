@@ -1,6 +1,6 @@
 # Ostrov po dešti · Until We Return
 
-18. listopadu 2026. Vítr, voda a světlo jsou součástí všech čtrnácti míst. V přístřešku hráč vidí, na které straně ještě zmokne. Ze stejného místa po natažení plachty odkapává voda z okraje střechy. Člun po vybrání vody ukáže dno i stále roztrženou plachtu. Obě opravy se v obraze projeví zvlášť. [Hra](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Animovaná ukázka](weather/weather-in-motion.gif) · [Šest srovnávacích výřezů](weather/README.md)
+18. listopadu 2026. Vítr, voda a světlo jsou součástí všech čtrnácti míst. V přístřešku hráč vidí, na které straně ještě zmokne. Ze stejného místa po natažení plachty odkapává voda z okraje střechy. Člun po vybrání vody ukáže dno i stále roztrženou plachtu. Obě opravy se v obraze projeví zvlášť. [Hra ke stažení](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14) · [Animovaná ukázka](weather/weather-in-motion.gif) · [Šest srovnávacích výřezů](weather/README.md)
 
 ## Co se děje v obraze
 
