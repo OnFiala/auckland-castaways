@@ -26,18 +26,18 @@ function game({loadPaintings = false} = {}) {
   const node = Object.getPrototypeOf(doc.body);
   const markup = Object.getOwnPropertyDescriptor(node, 'innerHTML');
   const remove = node.remove;
-  function clearDetachedFocus(before) {
-    if (before?.isConnected && !ui.activeElement()?.isConnected) doc.body.focus();
+  function clearDetachedFocus(wasConnected) {
+    if (wasConnected && !ui.activeElement()?.isConnected) doc.body.focus();
   }
   Object.defineProperty(node, 'innerHTML', {...markup, set(value) {
-    const before = {isConnected: ui.activeElement()?.isConnected};
+    const wasConnected = ui.activeElement()?.isConnected;
     markup.set.call(this, value);
-    clearDetachedFocus(before);
+    clearDetachedFocus(wasConnected);
   }});
   node.remove = function () {
-    const before = {isConnected: ui.activeElement()?.isConnected};
+    const wasConnected = ui.activeElement()?.isConnected;
     remove.call(this);
-    clearDetachedFocus(before);
+    clearDetachedFocus(wasConnected);
   };
   if (loadPaintings) {
     ui.context.Image = class {
@@ -142,4 +142,19 @@ test('leaving a loading panel returns focus to its opener when travel is cancell
   await focusAndActivate(element('scene-stay'));
   assert.equal(ui.state().scene, 'beach');
   assert.equal(ui.activeElement(), exit);
+});
+
+test('travel does not take focus from a menu control selected during the walk', async () => {
+  const {ui, element, acceptPainting} = game({loadPaintings: true});
+  await acceptPainting();
+  const exit = ui.exit('exit_wreck');
+  const reveal = element('reveal');
+  exit.focus();
+  const travel = ui.click(exit);
+  reveal.focus();
+  await travel;
+  assert.equal(ui.activeElement(), element('scene-load-message'));
+  await acceptPainting();
+  assert.equal(ui.state().scene, 'wreck');
+  assert.equal(ui.activeElement(), reveal);
 });

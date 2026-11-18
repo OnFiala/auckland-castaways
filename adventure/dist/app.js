@@ -633,11 +633,12 @@ function restoreRenderFocus(previous,source,gainedItem,sceneChanged){
  // A walk can finish after the player has already moved focus to another control.
  const wasSource=previous===source;
  if(wasSource && sceneChanged){$('scene').focus({preventScroll:true});return;}
- const item=wasSource && gainedItem || previous.dataset.item;
- const {target,exit}=previous.dataset;
- const replacement=item?$('inventory').querySelector(`[data-item="${item}"]`):
+ const {item,target,exit,storyPerson}=previous.dataset;
+ const nextItem=(wasSource && gainedItem)||item;
+ const replacement=nextItem?$('inventory').querySelector(`[data-item="${nextItem}"]`):
   target?$('targets').querySelector(`[data-target="${target}"]`):
-  exit?$('exits').querySelector(`[data-exit="${exit}"]`):null;
+  exit?$('exits').querySelector(`[data-exit="${exit}"]`):
+  storyPerson?$('person-'+storyPerson):null;
  (replacement||(wasSource?$('scene'):null))?.focus({preventScroll:true});
 }
 function render({source,gainedItem,sceneChanged=false}={}){const previousFocus=document.activeElement,scene=currentScene(),world=W.scenes?.[state.scene];$('scene').dataset.scene=state.scene;$('scene').dataset.chapter=String(chapterNumber());$('scene').dataset.indoor=String(Boolean(world?.indoor));$('scene').dataset.shelter=String(state.flags.shelterBuilt);$('scene').dataset.crate=String(state.flags.crateOpen);$('scene').classList.toggle('warm',(state.scene==='camp'&&state.flags.fireLit)||Boolean(state.flags.forgeLit&&state.scene==='forge'));const location=staged&&chapterNumber()===1&&state.scene==='beach'?'Grafton wreck · Carnley Harbour, January 1864':scene.name;
