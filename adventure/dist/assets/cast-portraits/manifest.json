@@ -1,0 +1,105 @@
+{
+  "created": "2026-11-18",
+  "generator": "OpenAI ImageGen",
+  "historical_status": "Original imagined casting, costumes and expressions for a dramatized game. These illustrations are not historical likenesses.",
+  "prompts": "prompts.json",
+  "source_directory": "adventure/artwork/portraits",
+  "processing": "Entire native square resized to 640 px with Lanczos and encoded as RGB WebP, quality 86. No crop or digital repaint.",
+  "assets": [
+    {
+      "id": "player",
+      "character": "Alick McLaren",
+      "file": "player.webp",
+      "width": 640,
+      "height": 640,
+      "mode": "RGB",
+      "bytes": 57210,
+      "sha256": "0ebd5e9eb2ae86ae239ddfac6c2205864c9c38f2021b0b6692330882a25401c8",
+      "source": {
+        "path": "artwork/portraits/player.png",
+        "output_filename": "exec-2d3d3048-6957-4ebf-8faa-1a5e0b6dd73b.png",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "bytes": 2703589,
+        "sha256": "0d8b1ce470adf3bef32ad4b0b9dc4b8c2e10d2da962c84f8930cfcb523e64e55"
+      }
+    },
+    {
+      "id": "raynal",
+      "character": "François Raynal",
+      "file": "raynal.webp",
+      "width": 640,
+      "height": 640,
+      "mode": "RGB",
+      "bytes": 56570,
+      "sha256": "08b4a0c53cb745e5ec4b869640cad949f22ad1873ae238248c611618842901d3",
+      "source": {
+        "path": "artwork/portraits/raynal.png",
+        "output_filename": "exec-ca9c99a6-4ad9-4566-968b-8a6240131fd6.png",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "bytes": 2624890,
+        "sha256": "86dbda7c502453a14ca07ade6382f25a5ba649efe0d6009963b3f2728056f8c9"
+      }
+    },
+    {
+      "id": "musgrave",
+      "character": "Thomas Musgrave",
+      "file": "musgrave.webp",
+      "width": 640,
+      "height": 640,
+      "mode": "RGB",
+      "bytes": 48500,
+      "sha256": "f9ba681eb304c6d9457d1cc3659bd2e2e0b2bff5042aa18f9eba84288c5c99d0",
+      "source": {
+        "path": "artwork/portraits/musgrave.png",
+        "output_filename": "exec-2b2487c7-b990-422a-8c62-16d4811e5806.png",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "bytes": 2606784,
+        "sha256": "8d0100bba71acb33d4e3aee6f9fb5929f8b614c5e24398f4338d225e154880f1"
+      }
+    },
+    {
+      "id": "henry",
+      "character": "Henry Forgés",
+      "file": "henry.webp",
+      "width": 640,
+      "height": 640,
+      "mode": "RGB",
+      "bytes": 49688,
+      "sha256": "398320d17d4f0f439ccab70a86416c60622fa51ad18567ba8bf92b9d511c93eb",
+      "source": {
+        "path": "artwork/portraits/henry.png",
+        "output_filename": "exec-f5caf2fa-59ca-475a-a293-01ce99513915.png",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "bytes": 2496631,
+        "sha256": "e830a337638063434c74f8e7f6f92aba63efdb134eb145f1f2e5400fde1becf6"
+      }
+    },
+    {
+      "id": "george",
+      "character": "George Harris",
+      "file": "george.webp",
+      "width": 640,
+      "height": 640,
+      "mode": "RGB",
+      "bytes": 61038,
+      "sha256": "0990bcc70fc75c79a2257673f2fea985bce4c0c66c9bbadf648f1f64d611ac85",
+      "source": {
+        "path": "artwork/portraits/george.png",
+        "output_filename": "exec-f4fc4a84-e3df-45d5-b536-072f4b29fd87.png",
+        "width": 1254,
+        "height": 1254,
+        "mode": "RGB",
+        "bytes": 2620997,
+        "sha256": "802f56da6126b9213d247f2bbb84411c2e07e9b2fa01c06b49d95c023543407e"
+      }
+    }
+  ]
+}

@@ -4,18 +4,29 @@
     {
       "file": "slipway.webp",
       "source": "tidepaint/slipway.webp",
-      "sourceSHA256": "5eb3adc11566fcd8c0d29c44725743715488e3c4ce87275cc97fe29bfda020ad",
+      "sourceSHA256": "ada7885071acce49df0850300fe518b3f268479cd6961834c1aa0b5113510bb1",
       "crop": [
-        559,
-        215,
-        1443,
-        804
+        870,
+        355,
+        1606,
+        845
       ],
       "size": [
         924,
         616
       ],
-      "sha256": "2638d238b8c23cd13126710034217ca8f1befe730ed63d201b6b670c76d8ed32"
+      "sha256": "07a18f380e3fc1ed45b5915e435aeafd9484a7b07df3391ecb3ff1d7be80c2cd",
+      "notes": "The actual chapter IV yard after hullPlanked and before sailRigged. Composite the published fitted strake on the unrigged yard, then crop the near side for fastening.",
+      "layers": [
+        {
+          "source": "tidepaint/details/fitted-strake.webp",
+          "sourceSHA256": "ecc494a049934736ac3b3cacdd1164d974d7dc96918eb8907c1c4c3df7c29a51",
+          "at": [
+            750,
+            455
+          ]
+        }
+      ]
     },
     {
       "file": "cabin.webp",
@@ -52,82 +63,83 @@
     {
       "file": "player-stand.webp",
       "source": "work-poses/player.png",
-      "sourceSHA256": "67d120e03375beb530c97558bbe2e358e232c58b87ce89a36e15ab7bf9f4060e",
+      "sourceSHA256": "e9807045376cb0e3bd9cb8048277f2a3286b322174fe5fa8bd126e002a245dd3",
       "crop": [
-        244,
-        4,
-        518,
-        718
+        175,
+        11,
+        335,
+        505
       ],
       "size": [
-        146,
+        123,
         380
       ],
-      "sha256": "4373d984bec62b8c6ef634951a63922fef536f97a3c2e4cc199ec4f832a26a73"
+      "sha256": "a338821e149a4d7be743dfd15a6492b59c7db7a214b3575368344f7b9af81bab"
     },
     {
       "file": "player-reach.webp",
       "source": "work-poses/player.png",
-      "sourceSHA256": "67d120e03375beb530c97558bbe2e358e232c58b87ce89a36e15ab7bf9f4060e",
+      "sourceSHA256": "e9807045376cb0e3bd9cb8048277f2a3286b322174fe5fa8bd126e002a245dd3",
       "crop": [
-        854,
-        51,
-        1339,
-        716
+        660,
+        68,
+        999,
+        504
       ],
       "size": [
-        277,
+        295,
         380
       ],
-      "sha256": "0ea33f86793bbd36bcfc7340329a1e207255f6aeba3d2968735e920ade0402c9"
+      "sha256": "8dcbf84985f43bb4be32b8fb3de417c12000efa2981d32a70ae7f3e15ee90cc3"
     },
     {
       "file": "musgrave-stand.webp",
       "source": "work-poses/musgrave.png",
-      "sourceSHA256": "5d6ca822e99eb1821ee6155da9160a19c8c482ab15467bba32d484c9bb263d30",
+      "sourceSHA256": "d5bf720a63b9142f7a0035246624a1094b86bcd42224603592ce24e721e608ca",
       "crop": [
-        156,
-        6,
-        414,
-        858
+        173,
+        12,
+        347,
+        506
       ],
       "size": [
-        115,
+        134,
         380
       ],
-      "sha256": "e028375e643cf31931dc23804f5abbbb1a472f139b542446aeb0f9436291bec6"
+      "sha256": "f144754021ec5cb87eb0df62ea814d2bdffede023e9c16b8de56c528961ec52b"
     },
     {
       "file": "musgrave-reach.webp",
       "source": "work-poses/musgrave.png",
-      "sourceSHA256": "5d6ca822e99eb1821ee6155da9160a19c8c482ab15467bba32d484c9bb263d30",
+      "sourceSHA256": "d5bf720a63b9142f7a0035246624a1094b86bcd42224603592ce24e721e608ca",
       "crop": [
-        628,
-        64,
-        1134,
-        857
+        611,
+        38,
+        1002,
+        504
       ],
       "size": [
-        242,
-        379
+        319,
+        380
       ],
-      "sha256": "76a4d9dcab4d1657d2451eb2352758f2fcb9bd17edc1e2d7b283dbb1fd61a42c"
+      "sha256": "202a86fd06a1aea5ac8f53ea9bfa8a8ca7d2ccf8715cc79271df540b706cf744"
     },
     {
       "file": "crate-detail.webp",
       "source": "tidepaint/wreck.webp",
-      "sourceSHA256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
+      "sourceSHA256": "291a317ec606d1bc41b29519e0d6585f911da4b2c870ee40419877e1d30f8f36",
       "crop": [
-        1045,
-        441,
-        1358,
-        609
+        1080,
+        461,
+        1362,
+        626
       ],
       "size": [
         313,
         168
       ],
-      "sha256": "9828d57f86397bb30b67487f95a6ff23915b94f6e1a152d7a75a06b5eb432ad9"
+      "sha256": "1cd6f9f3e053ff8ec4e7b9870474bbc14367405ad9bed80a9198eea8bf8d88bd",
+      "notes": "The closed chest at the wreck, with the lid joint and ironwork visible."
     }
   ],
   "sound": {

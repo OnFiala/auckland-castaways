@@ -1,0 +1,83 @@
+{
+  "generator": "OpenAI ImageGen",
+  "date_utc": "2026-11-18",
+  "transparent_background": true,
+  "scene_status": "Original fictional character likenesses and costume design for Until We Return.",
+  "prompt_body": "Produce a new finished hand-painted animation sprite atlas for the original maritime point-and-click game Until We Return, set on subantarctic Auckland Island, 1864. A SQUARE grid of exactly THREE rows, exactly THREE people in each row, exactly NINE separate full-body drawings of ONE SAME person facing screen RIGHT. No gridlines. Each illustration occupies its own spacious equal square cell. All figures entirely visible from hair to sole. All silhouettes isolated on pure transparency, transparent gutters, NO painted ground, cast shadows, floor, props, lettering or design elements. Only one single figure per cell.\n\nAn original expressive gouache and fine-pen illustration for an adventure game: decisively drawn angular outer contours, large planes of luminous wool and skin, rich dark ink along the shaded edges, windblown period fabrics, lightly drybrushed opaque pigment on the figure, nineteenth-century field-sketch liveliness, consistently cool daylight above the left shoulder. Appealing distinct physiognomy even at little playing size. Restrained lively graphic design, strong individual silhouette of a real person; anatomically credible at seven head heights; no doll, muscular hero, costume uniform, glossy rendering, vignette or photorealism. Clothing colours maintain high separation. Faithfully lock the same face, haircut, jacket hem, button locations, trouser cut and shoulder width, uniform light angle, SAME side camera and scale in all nine cells; nose and feet point to the right. Graceful natural movement, real weight, two hands and feet. The head never turns toward the viewer in walking frames.\n\nTOP ROW three sequential frames walking to the right. 1 = heel strike near boot leading far boot trailing, with generous stride and opposite arm forward. 2 = weight taken onto near leg; rear heel lifts. 3 = midpass, far knee bent forward, shoulder over near planted boot. MIDDLE ROW opposite half of the SAME walk: 4 = long heel strike with FAR boot leading; NEAR arm forward opposite step. 5 = weight transferred to far leg and near foot rising; 6 = midpass with near knee carried forward over planted far boot. Walk, never run. Keep lead contact knees extended; support foot at same sole baseline through the cycle. All six flank views must be the same size, from the same side; the far arm exchanges with near arm at changing strides. BOTTOM ROW three action cels in that order: 7 = quiet upright attentive three-quarter view toward the right, two feet planted, hands at side. 8 = standing with a deliberate forward lean, empty right hand stretched to the right at waist-to-lower-chest height, empty left hand supporting. 9 = kneeling low on the rear knee with front boot planted, extending the right hand forward close to the ground. The crown of the kneeling head should naturally be at about 60% of the standing height; aligned soles. Nine distinct figures on pure transparent canvas.",
+  "assets": [
+    {
+      "id": "player",
+      "file": "player.png",
+      "source_id": "exec-5fbcb86e-08c4-4e01-b11e-bd51719389a3",
+      "size": [
+        1230,
+        1278
+      ],
+      "bytes": 1179769,
+      "sha256": "65607f3dfc776bb8d2c48e8d7f1b19b9bf6638504f1402d9123435fac493ceea",
+      "prompt_prefix": "Alick McLaren, 28. Lean, compact and quick. Young longish face, soot-dark curly forelock under a short indigo knitted watch cap, short dark stubble, ochre neckcloth knotted close to the throat. Strong slate-indigo cropped open wool jacket with patch pockets, bone shirt, charcoal-brown trousers, tar-brown ankle boots."
+    },
+    {
+      "id": "raynal",
+      "file": "raynal.png",
+      "source_id": "exec-94c1e6de-1f62-4a71-99af-ed23e659f5d0",
+      "size": [
+        1199,
+        1312
+      ],
+      "bytes": 1406185,
+      "sha256": "3873e0be8a323bc6bb3f28b4fc353372d70d4cedcf1fe984fb2bbcc10b87bfde",
+      "prompt_prefix": "François Raynal, age 33. Tall lean wiry worker, distinctive long nose, narrow alert eyes, neatly swept auburn hair, short copper moustache and beard, bare head. Bottle-green fitted waistcoat over visibly rolled ivory shirt sleeves. Brown trousers and worn ankle boots."
+    },
+    {
+      "id": "musgrave",
+      "file": "musgrave.png",
+      "source_id": "exec-b1e8c5ec-8d50-4359-9444-b40e677db5f7",
+      "size": [
+        1246,
+        1262
+      ],
+      "bytes": 1210107,
+      "sha256": "bcbbe77101e3dd4fca7ad91ddf84f637c9b2af0ac2ca1ddbfcc5831dc759ec74",
+      "prompt_prefix": "Thomas Musgrave, aged only 31. Square jaw, steady direct grey eyes, black hair and close neat black beard, low navy soft peaked sea cap. Double-breasted deep-navy wool coat, understated brick-red necktie, grey trousers and black ankle boots. Upright, alert posture."
+    },
+    {
+      "id": "henry",
+      "file": "henry.png",
+      "source_id": "exec-1feb4032-741e-4518-9486-d5c15b358131",
+      "size": [
+        1247,
+        1261
+      ],
+      "bytes": 1160696,
+      "sha256": "bd3061c13c8c9d7a0e6f9949df07c4cb9fe7972755da60ab5b9a1fe404907f35",
+      "prompt_prefix": "Henry Forgés, 23 years old. Slim, oval young face, defined cheekbones, clean-shaven cheeks, dense dark cropped curly hair uncovered, brown eyes. Warm ochre work shirt with rolled sleeves and open cropped umber waistcoat, slate-blue trousers and scuffed dark boots. Attentive, relaxed strong hands."
+    },
+    {
+      "id": "george",
+      "file": "george.png",
+      "source_id": "exec-7068a54a-185f-4143-8790-de874f06bd14",
+      "size": [
+        1247,
+        1261
+      ],
+      "bytes": 1261291,
+      "sha256": "286cfb9dec59853a539aeb5514ccdfc309c82667837b1e6d7e2e0b3889e07675",
+      "prompt_prefix": "George Harris, 20 years old, broad-shouldered sturdy working youth. Young freckled rounded face, lively eyes, tousled sandy hair uncovered, clean-shaven. Brick-red overshirt, cream collar visible, tobacco-brown trousers belted and sturdy brown boots."
+    }
+  ],
+  "low_work": {
+    "file": "low-work.png",
+    "source_id": "exec-bcecf248-0454-43f6-b6e1-1aa554bccfca",
+    "size": [
+      2172,
+      724
+    ],
+    "bytes": 1408758,
+    "sha256": "78d3566ffd0b1cc253e705bb84ece79d9856bef9458bd07ebd1dbacb2ce70b63",
+    "reference": "low-work-reference.jpg",
+    "reference_sha256": "b2a9e99a0fa3de04e35993b42980ce9574d16fc84c5bf73ac72df0e1406be725",
+    "reference_description": "Standing and crouching cels cropped and assembled from the five above native art sheets.",
+    "prompt": "Paint a new VERY WIDE horizontal transparent game cel strip: exactly FIVE separate full-body kneeling 1864 shipwreck crew members in ONE row, all facing RIGHT. The source is the production cast design sheet. Keep each man's identity (head, age, face, clothing), silhouette, local colours and the gouache/fine-pen rendering precisely as shown. Left to right: 1. Alick in indigo short jacket and knit cap with ochre scarf; 2. Raynal auburn short beard, green waistcoat, rolled ivory sleeves; 3. Musgrave black neat beard, navy long pea coat, low peaked captain's cap, rust necktie and grey trousers; 4. Henry, dark curly hair and young clean-shaven face, ochre shirt and umber waistcoat, slate trousers; 5. young George, sandy hair, brick overshirt, brown trousers. There should be FIVE FIGURES TOTAL and no standing figures or repeat poses. Take only the lower row from the reference and REDRAW the full crouched figures from that reference, correcting the gesture: each man has one knee on the ground with the front boot flat, leaning forward over the thigh, his foremost hand reaching to lift a coin just above the floor. To verify: the long fingers should hang freely downward, their tips below the top of his front shoe (close to the sole of the boot); relaxed and visibly separate from the boot. Lean upper torso lower and forward from hip so there is enough length: this is a low reach, the goal is a short hand span above the floor, not the raised hand in the original. Free hand rests on front thigh for leverage. The entire hat, boot, hand, soles and coat are visible for each person, same scale, side-seen, naturally weighted, with clear alpha gutters. No coin or other object actually painted. No type, captions, shadows, floor, noise, divider, gradient or background, pure transparent outside the five separate silhouettes."
+  }
+}

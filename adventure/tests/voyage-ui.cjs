@@ -212,7 +212,14 @@ test('a saved sailing puzzle restores the painting and its physical weather resp
   const rig = flags.sailMended ? 'patched canvas' : flags.rigSecured ? 'secured shroud' : 'loose shroud';
   assert.ok(ui.ids.get('backdrop').style.backgroundImage.includes(plate + '.'), plate);
   assert.equal(ui.ids.get('place-weather').dataset.wxRig, rig);
-  assert.equal(ui.ids.get('scene').getAttribute('aria-description'), 'Cold squalls on the crossing');
+  const currentWatch=ui.ids.get('place-weather').dataset.wxPhase;
+  const condition=flags.courseSet?'One man holds the course while another minds the pump.':
+    flags.sailMended?'The patch draws tight. The man on watch can look ahead.':
+    flags.boatDry?'Bare boards show. Water beads again along a seam.':
+    flags.rigSecured?'The line holds while water runs across the floorboards.':
+    'A loose shroud beats. Water washes between the floorboards.';
+  assert.match(currentWatch,/lee of the island|wind fills in|squall|rain lifts|wave tops/);
+  assert.equal(ui.ids.get('scene').getAttribute('aria-description'),currentWatch+' '+condition);
   if (!expectedPlates.has(plate)) {
    ui = createUi({initial:{[KEY]:JSON.stringify(state)}});
    assert.ok(ui.ids.get('backdrop').style.backgroundImage.includes(plate + '.'));

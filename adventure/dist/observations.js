@@ -135,18 +135,64 @@
     campTable:f=>f.suppliesShared?'The parcel is open on the table. Either man could draw up a bench and reach it.':'A space has been cleared on the table for what the cutter brought.'
   };
 
-  const PEOPLE={
-    beach:{raynal:f=>f.canvasRecovered?'Raynal checks the recovered canvas for a stretch that will hold.':'Raynal watches the same corner of the sail lift and fall.'},
-    wreck:{musgrave:f=>f.crateOpen?'Musgrave looks back from the chest to what remains of the wreck.':'Musgrave runs his hand along the edge of the stuck lid.'},
-    camp:{henry:f=>f.fireLit?'Henry makes room nearer the fire.':'Henry has cleared the wet branches away from the fire pit.',george:'George lifts a hand when he sees Alick looking his way.',raynal:'Raynal looks at the camp as though he is already thinking about morning.',musgrave:'Musgrave is close enough to the fire to hear the others.'},
-    cabin:{henry:f=>f.warmthReady?'Henry holds his hands close to the warmth and makes space beside him.':f.roofSealed?'Henry watches the edge of the new patch the next time the wind rises.':'Henry keeps glancing from the drip in the roof to the hearth.'},
-    forest:{george:f=>f.waterFetched?'George has come nearer the water. He keeps his feet on the dry side of the stones.':'George waits on the path, looking for a firm way down to the water.'},
-    forge:{raynal:f=>f.drillFailed?'Raynal turns the point until its flattened edge catches the light.':'Raynal looks from the fire bed to the tools laid out beside it.'},
-    charcoal:{george:'George brushes one charcoal-black cuff. It leaves another streak farther up his sleeve.'},
-    slipway:{musgrave:f=>f.hullFastened?'Musgrave leans on the raised side to see if it gives.':'Musgrave follows the line of the low hull from bow to stern.'},
-    salvage:{henry:'Henry looks through the salvage for what can be spared from the cabin.'},
-    crossing:{musgrave:f=>f.boatDry?'Musgrave looks down to see the boards clear of water, one hand still on his line.':'Musgrave braces one arm on a rope beside the water in the bottom.',raynal:f=>f.sailMended?'Raynal glances up at the patch before giving the tiller a little more play.':f.rigSecured?'Raynal has the tiller. He makes room for Alick to move with the scoop.':'Raynal stands by the tiller, ready to relieve Alick.'},
-    return_camp:{henry:f=>f.henryFound?'Henry gathers what he can carry down to the boat.':'Henry is quite still, with a hand against the wood beside him.',george:f=>f.georgeFound?'George stays near the door now that he knows there is a boat.':'George watches the doorway. When he recognises the captain, both his hands come up.'}
+  const PEOPLE = {
+    beach: {raynal: f => f.canvasRecovered
+      ? 'Raynal holds the edge up to the light and follows the tear with a thumb.'
+      : 'Raynal saves his breath. He follows the white corner in the branches and raises his fingers when it comes free.'},
+    wreck: {musgrave: f => f.crateOpen
+      ? 'Musgrave checks the inside of the lid for damp, then looks seaward for the next wash.'
+      : 'Musgrave sets his weight against the chest as the water draws back. The near corner of the lid lifts a fraction.'},
+    camp: {
+      henry: f => f.fireLit ? 'Henry makes room beside the flame and turns a wet sleeve towards it.'
+        : f.firewoodPlaced ? 'Henry cups his hand round the small splinters to shelter them from the wind.'
+        : f.shelterBuilt ? 'Henry feels along the ground beneath the edge of the canvas for a dry place to lie.'
+        : 'Henry clears a strip above the wash. He tests the bare frame with his shoulder.',
+      george: f => f.signalRaised ? 'George holds up a hand as he looks from the shingle to the strip above camp.'
+        : f.shelterBuilt ? 'George sights along the roof towards the shore. Against the trees the cloth is hard to see.'
+        : 'George puts down what he has carried up the beach. He raises a hand so Alick can pick him out.',
+      raynal: 'Raynal settles under the sail where Henry kept a dry place for him.',
+      musgrave: 'Musgrave counts the faces around the hearth. This is the first time today he can see everyone together.'
+    },
+    cabin: {henry: f => f.warmthReady ? 'Henry makes room for five cups near the kettle.'
+      : f.waterStored ? 'Henry puts his palm near the kettle and takes it away again. The metal is still cold.'
+      : f.roofSealed ? 'Henry listens under the mended seam. The floor beneath it stays dry.'
+      : 'Henry edges the bedding away from the drip, then looks up to find where it comes through.'},
+    forest: {george: f => f.waterFetched ? 'George has come down to the bank and offers a hand for the climb back.'
+      : 'George tests the stones on the near bank with his boot. Clear water runs just beyond them.'},
+    forge: {raynal: f => f.nailsForged ? 'Raynal sets the short fastenings together so they can be carried down to the old boat.'
+      : f.drillFailed ? 'Raynal sights along the bent point, then measures the straight metal left behind it.'
+      : f.drillForged ? 'Raynal has the new bit at the timber block. He turns its cutting edge towards the grain.'
+      : f.forgeLit ? 'Raynal leans towards the anvil. The block is a piece of ballast from the Grafton.'
+      : f.bellowsFitted ? 'Raynal feels for the draught low in the furnace.'
+      : 'Raynal looks from the furnace opening to the leather and the hollow pipe.'},
+    charcoal: {george: f => f.ironTaken && f.charcoalTaken ? 'George rubs charcoal dust off his fingers and checks through the remaining pieces.'
+      : f.charcoalTaken ? 'George stoops over the scrap he has put apart from the larger timbers.'
+      : 'George has sorted the charcoal. He offers the basket from the side with the sound handle.'},
+    slipway: {musgrave: f => f.boatSealed ? 'Musgrave leans against the raised side and looks along the seam for a gap.'
+      : f.hullFastened ? 'Musgrave lifts his hands. The board holds under its own weight.'
+      : f.hullPlanked ? 'Musgrave keeps the plank against the rib. The far end still springs out.'
+      : 'Musgrave measures the low side against his knee, then looks into the space left for the crew.'},
+    salvage: {henry: f => f.planksTaken ? 'Henry checks the board he has kept for the house.'
+      : 'Henry draws a straight plank forward and holds a second board back for himself and George.'},
+    crossing: {
+      musgrave: f => f.boatDry ? 'Musgrave watches the exposed boards for fresh water coming through, one hand still on his rope.'
+        : 'Musgrave clings to a rope to keep his feet at the pump. The water washes back over his boots.',
+      raynal: f => f.sailMended ? 'Raynal glances up at the patched sail, then gives the tiller a little more play.'
+        : f.rigSecured ? 'Raynal has the tiller. His elbow is clear and Alick has room to go forward.'
+        : 'Raynal reaches for the tiller between swings of the loose rigging.'
+    },
+    harbour: {raynal: f => f.rescueSupplied ? 'Raynal checks what is still on the wharf after the food has gone aboard.'
+      : 'Raynal looks through the stores on the wharf for something the waiting men could eat as soon as they meet the boat.'},
+    landing: {
+      henry: 'Henry takes a moment to get his footing on the way down to the boat.',
+      george: 'George holds the side steady and keeps a hand free for Henry.'
+    },
+    return_camp: {
+      henry: f => f.henryFound ? 'Henry sorts the belongings he wants to carry out. Every so often he looks back at the door.'
+        : 'Henry is standing quite still with his hand on a post. He shifts his weight when Musgrave comes near.',
+      george: f => f.georgeFound ? 'George gathers up a bundle near the door. He keeps looking out towards the landing.'
+        : 'George holds both hands out towards the captain. He looks past him for the other two.'
+    }
   };
 
   function hints(state,hint){

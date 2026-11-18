@@ -8,7 +8,7 @@ from pathlib import Path
 from PIL import Image, ImageChops, ImageStat
 
 SOURCE = Path(__file__).resolve().parents[1] / 'dist'
-RUNTIME_TYPES = {'.js', '.html', '.css', '.png', '.webp', '.wav'}
+RUNTIME_TYPES = {'.js', '.html', '.css', '.png', '.webp', '.wav', '.woff2', '.txt'}
 
 
 def flatten(image):
@@ -36,6 +36,8 @@ def is_runtime_file(path):
     if not path.is_file() or path.suffix not in RUNTIME_TYPES:
         return False
     relative = path.relative_to(SOURCE).as_posix()
+    if path.suffix == '.txt':
+        return relative == 'assets/lettering/OFL.txt'
     # These full-size studies are archived with their original acquisition receipts.
     # The runtime scenery and the crate detail are now registered to tidepaint.
     if relative.startswith('assets/voyage/scenes/'):
@@ -66,7 +68,7 @@ def build(destination):
         output.parent.mkdir(parents=True, exist_ok=True)
         if src.suffix == '.png':
             work.append((src, output))
-        elif src.suffix in {'.webp', '.wav'}:
+        elif src.suffix in {'.webp', '.wav', '.woff2', '.txt'}:
             shutil.copyfile(src, output)
         else:
             # Registries include names assembled at runtime, e.g. the five walking atlases.

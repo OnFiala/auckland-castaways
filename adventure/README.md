@@ -2,13 +2,13 @@
 
 A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
 
-[Play the hosted game](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
+[Play the hosted game](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
 ## Play
 
 Open [dist/index.html](dist/index.html) from a downloaded copy of this repository. No installation or build is required. Browser support for local-file storage varies. GitHub shows source files rather than running the game.
 
-- Click the ground to walk. Select an object to pick it up, work with it or examine its material. Click a person for a short English conversation.
+- Click the ground to walk. Select an object to pick it up, work with it or examine its material. Click a person to speak. The portrait and name follow the speaker below the scene. You can pause, step through each reply or return to the work with Escape.
 - Select an item in the satchel, then another item to combine them, or use the selected tool on something in the scene.
 - At the eight work surfaces, use the painted parts directly. You can drag a line or chart leg, or make the same move with individual clicks. Tab and Enter work on the picture. **Working controls** opens an optional list of the same actions. **Stand back** keeps unfinished work.
 - Use the magnifying glass for touch inspection. A right-click or Shift+F10 also examines a place. The eye or Space briefly reveals interactive areas. The question mark offers an observation, then a direction, then the next move if requested.
@@ -34,7 +34,7 @@ Alick is the playable character in chapters I–V. Musgrave makes the return jou
 
 Walking and the fifteen new standing, reaching and kneeling poses share a ground anchor for each person. Painted floor boundaries keep movement on shore, beside workbenches or inside the boat. A background or actor image stays mounted while its replacement decodes. Fourteen optional scenery interactions include floating a shaving in the pool below the spring and testing the fitted bellows. [Spatial study](reviews/24-spatial-study.md) · [Illustrated review](reviews/25-playable-revision.md)
 
-The fourteen locations now have twenty-two original painted views. Water runs in two narrow ribbons against a fixed ledge. Whitecaps travel through open water, duck behind rocks and break into foam. Gusts lift grass tips and catch the loose parts of canvas. Worked rope, a shaving, a length of cloth and the crew’s hands have their own contact points. At the helm and by the spring, stone, bark and wood stay in their original pixels. [The new paintings](reviews/tide/ostrov.webp) · [Four seconds of sea and stream](reviews/tide/priboj-a-proud.webp) · [Four gestures at playing scale](reviews/tide/gesta.webp) · [Measurement and release notes](reviews/28-priboj-a-pevna-zem.md)
+The fourteen locations now have twenty-two original painted views. Water runs in two narrow ribbons against a fixed ledge. Whitecaps travel through open water, duck behind rocks and break into foam. Gusts lift grass tips and catch the loose parts of canvas. Worked rope, a shaving, a length of cloth and the crew’s hands have their own contact points. At the helm and by the spring, stone, bark and wood stay in their original pixels. [The new shore, wreck and boatyard](reviews/company/README.md) · [The earlier island study](reviews/tide/ostrov.webp) · [Four seconds of sea and stream](reviews/tide/priboj-a-proud.webp) · [Four gestures at playing scale](reviews/tide/gesta.webp) · [Measurement and release notes](reviews/28-priboj-a-pevna-zem.md)
 
 The scene paintings, people, props and English dialogue were created for this project. The Auckland Island outline on the return chart draws on the historical sketch published in Musgrave’s book. The voyage, the people who sailed and the rescue date follow the research ledger. [Chapter sources and dramatization](reviews/24-history-dialogue.md) · [Original work surfaces](artwork/workplates/README.md) · [Working pose provenance](dist/assets/work-poses/manifest.json)
 

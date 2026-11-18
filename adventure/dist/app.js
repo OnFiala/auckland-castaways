@@ -18,6 +18,7 @@ const chapterNumber=()=>state.chapter||1,playerId=()=>CAMPAIGN&&chapterNumber()>
 const currentScene=()=>E.SCENES.find(s=>s.id===state.scene);
 const exitsFor=()=>E.getExits?E.getExits(state):currentScene().exits;
 let chapterTimer,chapterBusy=false;
+const newVoyage = CAMPAIGN && !localStorageSafe(KEY) && !localStorageSafe('castaways-adventure-v3');
 try{const p=JSON.parse(localStorage.getItem(PREF));if(p){prefs.narration=Boolean(p.narration);prefs.captions=Boolean(p.captions);prefs.reduced=prefs.reduced||Boolean(p.reduced);}}catch(_){}
 const drawings={
  shelter:'<path d="m4 53 23-42 30 41M27 11l-3 42M5 52h52M27 11l21-4 12 34" fill="none" stroke-width="4"/>',
@@ -31,7 +32,11 @@ const drawings={
 };
 function painted(a,cls=''){return `<svg class="painted ${cls}" viewBox="${a.box.join(' ')}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><svg class="atlas-clip" x="${a.box[0]}" y="${a.box[1]}" width="${a.box[2]}" height="${a.box[3]}" viewBox="${a.box.join(' ')}" overflow="hidden" style="width:${a.box[2]}px;height:${a.box[3]}px;overflow:hidden!important"><image href="${a.file}" width="${a.width}" height="${a.height}"/></svg></svg>`;}
 const svg=(id,cls='')=>A.props[id]?painted(A.props[id],cls):A.states[id]?painted(A.states[id],cls):`<svg class="glyph ${cls}" viewBox="0 0 64 64" aria-hidden="true">${drawings[id]||drawings.eye}</svg>`;
-const person=id=>`<span class="actor-shadow"></span><span class="actor-canvas" id="actor-${id}">${M.sprite(id,M.REST_FRAME)}</span><span class="conversation-mark" aria-hidden="true">···</span>`;
+function person(id) {
+ const ashore=staged && id==='raynal' && chapterNumber()===1 && state.scene==='beach';
+ const seat=ashore?'<span class="shore-rest" aria-hidden="true"><img src="assets/shore-rest/raynal.webp" alt="" draggable="false"></span>':'';
+ return `<span class="actor-shadow"></span>${seat}<span class="actor-canvas" id="actor-${id}">${M.sprite(id,M.REST_FRAME)}</span>`;
+}
 const walkReady=new Map();
 function prepareWalk(id){
  if(walkReady.has(id))return walkReady.get(id);
@@ -117,26 +122,117 @@ function departure(){
 }
 function effectiveReduced(){return prefs.reduced||matchMedia('(prefers-reduced-motion: reduce)').matches;}
 function closeDialogue(finished=false){
- const after=finished?dialogue?.after:null;
- clearTimeout(dialogueTimer);dialogueTimer=null;dialogue=null;actorFocus=null;$('dialogue').hidden=true;
- if(voiceAvailable)window.speechSynthesis.cancel();
- if(after)after();
+ const previous=dialogue;
+ clearTimeout(dialogueTimer);dialogueTimer=null;dialogue=null;actorFocus=null;
+ $('dialogue').hidden=true;
+ delete $('command-dock').dataset.mode;
+ $('inventory-bar').inert=false;
+ if(previous&&voiceAvailable)window.speechSynthesis.cancel();
+ if(previous && $('dialogue').contains(document.activeElement)){
+  const target=previous.partner && $('person-'+previous.partner);
+  (target||$('scene')).focus({preventScroll:true});
+ }
+ if(finished && previous?.after)previous.after();
 }
-function showDialogueLine(){if(!dialogue)return;clearTimeout(dialogueTimer);const text=dialogue.lines[dialogue.index];$('dialogue-speaker').textContent=dialogue.speaker;$('dialogue-text').textContent=text;$('dialogue-progress').textContent=`${dialogue.index+1} / ${dialogue.lines.length}`;$('dialogue-next').setAttribute('aria-label',dialogue.index+1===dialogue.lines.length?'Finish conversation':'Continue conversation');$('dialogue').dataset.speaker=dialogue.id;$('dialogue').hidden=false;dialogueTimer=setTimeout(advanceDialogue,Math.max(4300,Math.min(9000,text.split(/\s+/).length*360+1500)));if(prefs.narration&&voiceAvailable){window.speechSynthesis.cancel();const utterance=new window.SpeechSynthesisUtterance(text);utterance.lang='en-GB';utterance.rate=.94;const voices=window.speechSynthesis.getVoices(),voice=voices.find(v=>/^en-GB/i.test(v.lang))||voices.find(v=>/^en/i.test(v.lang));if(voice)utterance.voice=voice;const current=dialogue,index=dialogue.index;utterance.onend=()=>{if(dialogue===current&&dialogue.index===index){clearTimeout(dialogueTimer);dialogueTimer=setTimeout(advanceDialogue,700);}};clearTimeout(dialogueTimer);dialogueTimer=setTimeout(advanceDialogue,Math.max(12000,text.split(/\s+/).length*600));try{window.speechSynthesis.speak(utterance);}catch(_){clearTimeout(dialogueTimer);dialogueTimer=setTimeout(advanceDialogue,6000);}}}
-function advanceDialogue(){if(!dialogue)return;if(++dialogue.index>=dialogue.lines.length){closeDialogue(true);return;}showDialogueLine();}
-function startDialogue(id,short=false,spokenLine=null){closeDialogue();const story=S.lines(id,state);dialogue={id,speaker:story.speaker,lines:spokenLine?[spokenLine]:short?[story.lines[0]]:story.lines,index:0};actorFocus=id==='player'?null:id;showDialogueLine();}
+function scheduleDialogue(){
+ const talk=dialogue, index=talk.index, line=talk.turns[index].text;
+ const delivery=++talk.delivery;
+ const current=()=>dialogue===talk && talk.index===index && delivery===talk.delivery && !talk.paused;
+ const later=delay=>{clearTimeout(dialogueTimer);dialogueTimer=setTimeout(()=>{if(current())advanceDialogue();},delay);};
+ clearTimeout(dialogueTimer);
+ if(voiceAvailable)window.speechSynthesis.cancel();
+ if(talk.paused)return;
+ const words=line.trim().split(/\s+/).length;
+ const reading=Math.max(5000,Math.min(15000,1800+words*420));
+ if(!prefs.narration||!voiceAvailable){later(reading);return;}
+ const utterance=new window.SpeechSynthesisUtterance(line);
+ utterance.lang='en-GB';utterance.rate=.94;
+ const voices=window.speechSynthesis.getVoices();
+ const voice=voices.find(v=>/^en-GB/i.test(v.lang))||voices.find(v=>/^en/i.test(v.lang));
+ if(voice)utterance.voice=voice;
+ utterance.onend=()=>{if(current())later(700);};
+ utterance.onerror=()=>{if(current())later(reading);};
+ later(Math.max(15000,words*700));
+ try{window.speechSynthesis.speak(utterance);}catch(_){later(reading);}
+}
+function showDialogueLine(){
+ if(!dialogue)return;
+ const {turns,index,mode,partner}=dialogue, turn=turns[index];
+ const info=S.speakerInfo(turn.id,state);
+ const rail=$('dialogue'), portrait=$('dialogue-portrait');
+ dialogue.id=turn.id;
+ actorFocus=partner || (turn.id!==playerId()?turn.id:null);
+ const otherId=turn.id===playerId()?actorFocus:turn.id;
+ const other=actorPositions.get(otherId)||actorHomes.get(otherId);
+ if(staged && other && dialogue.mode==='exchange' && Math.abs(other.x-player.x)>.5){
+  playerFacing=other.x<player.x?-1:1;playerPose();
+ }
+ const file=info.portrait;
+ if(portrait.getAttribute('src')!==file)portrait.setAttribute('src',file);
+ $('dialogue-speaker').textContent=info.speaker;
+ $('dialogue-text').textContent=turn.text;
+ $('dialogue-progress').textContent=`${index+1} / ${turns.length}`;
+ const next=index===turns.length-1?'Finish conversation':'Continue conversation';
+ $('dialogue-next').setAttribute('aria-label',next);$('dialogue-next').title=next;
+ $('dialogue-pause').setAttribute('aria-pressed',String(dialogue.paused));
+ rail.dataset.speaker=turn.id;rail.dataset.mode=mode;rail.hidden=false;
+ $('command-dock').dataset.mode=mode;$('inventory-bar').inert=mode==='exchange';
+ scheduleDialogue();
+}
+function advanceDialogue(){
+ if(!dialogue)return;
+ if(++dialogue.index>=dialogue.turns.length){closeDialogue(true);return;}
+ showDialogueLine();
+}
+function beginExchange(turns,partner,mode='exchange'){
+ closeDialogue();
+ if(!turns?.length)return;
+ dialogue={turns,partner,mode,index:0,paused:false,delivery:0};
+ $('dialogue-pause').setAttribute('aria-label','Pause conversation');$('dialogue-pause').title='Pause conversation';
+ showDialogueLine();
+}
+function startDialogue(id,short=false,spokenLine=null,storyState=state){
+ const who=id==='player'?playerId():id;
+ const turns=spokenLine?[{id:who,text:spokenLine}]:S.conversation(id,storyState);
+ beginExchange(short?turns.slice(0,1):turns,who===playerId()?null:who,short?'aside':'exchange');
+}
+function openingConversation(){
+ const turns=S.arrival?.(state);
+ if(!turns?.length)return;
+ $('first-hint').hidden=true;
+ beginExchange(turns,'raynal');
+}
+function pauseDialogue(){
+ if(!dialogue)return;
+ dialogue.paused=!dialogue.paused;
+ const name=dialogue.paused?'Resume conversation':'Pause conversation';
+ const button=$('dialogue-pause');button.setAttribute('aria-pressed',String(dialogue.paused));
+ button.setAttribute('aria-label',name);button.title=name;
+ scheduleDialogue();
+}
+function placeCrew(button,id,x,y,h){
+ if(staged && button.dataset.depth!==String(h)){
+  const w=actorWidth(h);
+  button.style.height=h+'%';button.style.width=w+'%';
+  button.style.setProperty('--canvas-width',(h*.60/w*100)+'%');button.dataset.depth=String(h);
+ }
+ if(button.dataset.foot!==`${x},${y}`){
+  button.style.left=x+'%';button.style.top=(y-h/2)+'%';button.style.zIndex=String(Math.round(y));
+  button.dataset.foot=`${x},${y}`;actorPositions.set(id,{x,y});
+ }
+}
 function liveFrame(now){
  const dt=lastLiveTime===null?0:Math.max(0,Math.min(100,now-lastLiveTime));lastLiveTime=now;
  const paused=Boolean(document.hidden||$('modal').open||Bench?.shown()||window.CastawayRepairRoll?.shown()||
    window.CastawayEpilogue?.shown?.()||!$('completion').hidden),reduced=effectiveReduced();
- const speaker=dialogue?.id==='player'?player:actorPositions.get(dialogue?.id);
+ const speaker=dialogue?.id===playerId()?player:actorPositions.get(dialogue?.id);
+ $('player').classList.toggle('speaking',dialogue?.id===playerId());
  for(const [id,home]of actorHomes){
   const button=$('person-'+id),canvas=$('actor-'+id);if(!button||!canvas)continue;
   const held=paused||!walkImages.get(id);
   let pose,x,y,h;
   if(staged){
    pose=actorStep(id,home,dt,held,reduced,speaker);x=pose.x;y=pose.y;h=heightAt(y);
-   if(button.dataset.depth!==String(h)){const w=actorWidth(h);button.style.height=h+'%';button.style.width=w+'%';button.style.setProperty('--canvas-width',(h*.60/w*100)+'%');button.dataset.depth=String(h);}
   }else{
    const bodyHeight=home.h*9/16;
    if(!actorTracks.has(id)){const track=M.createTrack(id,{bodyHeight});track.setGoal(actorGoal(id),{immediate:true});actorTracks.set(id,track);}
@@ -144,7 +240,7 @@ function liveFrame(now){
    pose=track.tick(dt,{paused:held||Boolean(dialogue)||actorFocus===id||document.activeElement===button||Boolean(button.matches?.(':hover')),reduced,bodyHeight});x=home.x+pose.x;y=home.y+pose.y;h=home.h;
    if(actorFocus===id)pose.facing=player.x<x?'left':'right';
   }
-  if(button.dataset.foot!==`${x},${y}`){button.style.left=x+'%';button.style.top=(y-h/2)+'%';button.style.zIndex=String(Math.round(y));button.dataset.foot=`${x},${y}`;actorPositions.set(id,{x,y});}
+  placeCrew(button,id,x,y,h);
   actorPose(id,canvas,pose.moving,pose.frame,pose.facing,pose.posture);
   button.classList.toggle('speaking',dialogue?.id===id);
  }
@@ -270,8 +366,9 @@ async function activate(target,inspect=false){
  const faceX=target.contact?.x??x;if(Math.abs(faceX-player.x)>.12)playerFacing=faceX<player.x?-1:1;playerPose();
  if(person&&!inspect){
   if(item){showCue('talk','Put the tool away to speak.',[],true);actorFocus=null;return;}
+  const beforeTalk=state;
   if(E.getTargets(state).some(t=>t.id===target.id)){const reply=E.interact(state,target.id,'talk');if(reply.changed||!CAMPAIGN)apply(reply,target);}
-  startDialogue(target.id);return;
+  startDialogue(target.id,false,null,beforeTalk);return;
  }
  if(person&&inspect&&!Observations){startDialogue(target.id,true);return;}
  if(target.kind==='feature'){
@@ -331,28 +428,30 @@ function worldChanges(){const f=state.flags;let html='';
  syncCompanions();
 }
 function syncCompanions(){
- const company=staged?Stage.companions(state.scene,state).map(id=>{const b=Stage.station(state.scene,id);return [id,b.x,b.y,heightAt(b.y)];}):state.scene==='camp'&&chapterNumber()===1?[['george',84,79,28],...((state.completed||state.chapterComplete)?[['musgrave',57,74,25.5],['raynal',68,76,27]]:[])]:[];
+ const company=staged?Stage.companions(state.scene,state).map(id=>{const b=Stage.station(state.scene,id);return [id,b.x,b.y,heightAt(b.y)];}):!CAMPAIGN&&state.scene==='camp'&&chapterNumber()===1?[['george',84,79,28],...((state.completed||state.chapterComplete)?[['musgrave',57,74,25.5],['raynal',68,76,27]]:[])]:[];
  const container=$('companions'),present=new Set(company.map(([id])=>id));
  for(const id of companionMarkup.keys())if(!present.has(id)){container.querySelector(`[data-story-person="${id}"]`)?.remove();companionMarkup.delete(id);}
  for(const [id,bx,by,bh]of company){
   const station=stationFor(id,{x:bx,y:by,h:bh});const {x,y}=station,h=staged?heightAt(y):bh;
   actorHomes.set(id,{...station,h});prepareWalk(id);
-  const markup=`<button id="person-${id}" class="change companion person" data-story-person="${id}" aria-label="Talk to ${S.lines(id,state).speaker}" title="Talk to ${S.lines(id,state).speaker}" style="left:${x}%;top:${y-h/2}%;width:${staged?actorWidth(h):8.5}%;height:${h}%;--canvas-width:${staged?h*.60/actorWidth(h)*100:160}%;--actor-delay:-${x/17}s;z-index:${Math.round(y)}">${person(id)}</button>`;
+  const markup=`<button id="person-${id}" class="change companion person" data-story-person="${id}" aria-label="Talk to ${S.speakerInfo(id,state).speaker}" title="Talk to ${S.speakerInfo(id,state).speaker}" style="left:${x}%;top:${y-h/2}%;width:${staged?actorWidth(h):8.5}%;height:${h}%;--canvas-width:${staged?h*.60/actorWidth(h)*100:160}%;--actor-delay:-${x/17}s;z-index:${Math.round(y)}">${person(id)}</button>`;
   if(companionMarkup.get(id)!==markup){container.querySelector(`[data-story-person="${id}"]`)?.remove();container.insertAdjacentHTML('beforeend',markup);companionMarkup.set(id,markup);}
   const b=container.querySelector(`[data-story-person="${id}"]`);
-  b.onclick=e=>{e.stopPropagation();activate({id,name:S.lines(id,state).speaker,kind:'person',x,y});};
+  b.onclick=e=>{e.stopPropagation();activate({id,name:S.speakerInfo(id,state).speaker,kind:'person',x,y});};
  }
 }
 
 function inspectKey(event,inspect){if(event.key==='ContextMenu'||(event.key==='F10'&&event.shiftKey)){event.preventDefault();event.stopPropagation();inspect();}}
 function renderInventory(){const empty=Math.max(0,8-state.inventory.length);$('inventory').innerHTML=state.inventory.map(id=>`<button class="item ${id===selected?'selected':''}" data-item="${id}" aria-label="${esc(E.ITEMS[id].name)}" aria-pressed="${id===selected}" title="${esc(E.ITEMS[id].name)}">${svg(id)}</button>`).join('')+Array.from({length:empty},()=>'<div class="item empty" aria-hidden="true"></div>').join('');$('inventory').querySelectorAll('[data-item]').forEach(b=>{const id=b.dataset.item;b.onclick=()=>{cancelWalk();if(selected&&selected!==id){const response=E.combine(state,selected,id);if(response.changed){selected=null;apply(response);}else{showCue('wrong',response.text);setSelected(id);}}else setSelected(selected===id?null:id);};b.onmouseenter=()=>label(selected&&selected!==id?`${E.ITEMS[selected].name} + ${E.ITEMS[id].name}`:E.ITEMS[id].name);b.onmouseleave=()=>label(selected?E.ITEMS[selected].name+' → …':E.SCENES.find(s=>s.id===state.scene).name);b.onfocus=b.onmouseenter;b.onblur=b.onmouseleave;b.onkeydown=e=>inspectKey(e,()=>showCue(id,E.ITEMS[id].description));b.oncontextmenu=e=>{e.preventDefault();showCue(id,E.ITEMS[id].description);};});}
-function render(){const scene=currentScene(),world=W.scenes?.[state.scene];$('scene').dataset.scene=state.scene;$('scene').dataset.chapter=String(chapterNumber());$('scene').dataset.indoor=String(Boolean(world?.indoor));$('scene').dataset.shelter=String(state.flags.shelterBuilt);$('scene').dataset.crate=String(state.flags.crateOpen);$('scene').classList.toggle('warm',(state.scene==='camp'&&state.flags.fireLit)||Boolean(state.flags.forgeLit&&state.scene==='forge'));$('scene').setAttribute('aria-label',scene.name);$('scene-label').textContent=scene.name;
+function render(){const scene=currentScene(),world=W.scenes?.[state.scene];$('scene').dataset.scene=state.scene;$('scene').dataset.chapter=String(chapterNumber());$('scene').dataset.indoor=String(Boolean(world?.indoor));$('scene').dataset.shelter=String(state.flags.shelterBuilt);$('scene').dataset.crate=String(state.flags.crateOpen);$('scene').classList.toggle('warm',(state.scene==='camp'&&state.flags.fireLit)||Boolean(state.flags.forgeLit&&state.scene==='forge'));const location=staged&&chapterNumber()===1&&state.scene==='beach'?'Grafton wreck · Carnley Harbour, January 1864':scene.name;
+ $('scene').setAttribute('aria-label',location);$('scene-label').textContent=location;
  $('scene').classList.toggle('staged',staged);$('inspect-mode').hidden=!staged;
  const background=W.background?.(state)||world?.file;if(staged)displayBackdrop(state);else if(background)$('backdrop').style.backgroundImage=`url('${background}')`;else $('backdrop').style.backgroundImage='';
  const goals=CAMPAIGN?E.getChapter(state).goals:[{icon:'shelter',flag:'shelterBuilt',label:'Shelter'},{icon:'fire',flag:'fireLit',label:'Fire'},{icon:'signal',flag:'signalRaised',label:'Signal'}];
  $('goals').setAttribute('aria-label','Chapter goals');$('goals').innerHTML=goals.map(g=>`<span class="goal ${state.flags[g.flag]?'done':''}" title="${esc(g.label)}" aria-label="${esc(g.label)}: ${state.flags[g.flag]?'done':'still needed'}">${svg(g.icon==='fire'?'fireGlyph':g.icon)}</span>`).join('');renderChapterUI();
  actorHomes.clear();const targets=E.getTargets(state).map(t=>{const base=W.stageTarget?W.stageTarget(t,state):t;return staged?Stage.stageTarget(state.scene,base,state):base;}).filter(t=>CAMPAIGN||!state.completed||state.scene==='camp'||t.kind!=='person'),container=$('targets');
- if(targetScene!==state.scene){container.innerHTML='';targetMarkup.clear();actorTracks.clear();actorPositions.clear();targetScene=state.scene;}
+ const enteredRoom=targetScene!==state.scene;
+ if(enteredRoom){container.innerHTML='';targetMarkup.clear();actorTracks.clear();actorPositions.clear();targetScene=state.scene;}
  if(staged&&Life?.features)targets.push(...Life.features(state));
  const present=new Set(targets.map(t=>t.id));
  for(const id of targetMarkup.keys())if(!present.has(id)){container.querySelector(`[data-target="${id}"]`)?.remove();targetMarkup.delete(id);}
@@ -362,7 +461,26 @@ function render(){const scene=currentScene(),world=W.scenes?.[state.scene];$('sc
   const y=isPerson?foot-h/2:t.y,art=targetArt(t);
   const content=staged&&!isPerson&&art?`<span class="scene-prop" style="--art-angle:${t.artAngle||0}deg;--paint-width:${t.artWidth||w}cqw;--paint-height:${(t.artHeight||h)*9/16}cqw">${art}</span>`:art;
   const markup=`<button ${isPerson?`id="person-${t.id}"`: ''} class="target ${t.kind==='item'?'pickup':t.kind} ${t.solvedFlag&&state.flags[t.solvedFlag]?'fulfilled':''}" style="left:${x}%;top:${y}%;--w:${w}%;--h:${h}%;--canvas-width:${isPerson&&staged?h*.60/w*100:160}%;--actor-delay:-${x/17}s;z-index:${isPerson?Math.round(foot):10}" data-target="${t.id}" aria-label="${esc(t.name)}" title="${esc(t.name)}">${content}</button>`;
-  if(targetMarkup.get(t.id)!==markup){container.querySelector(`[data-target="${t.id}"]`)?.remove();container.insertAdjacentHTML('beforeend',markup);targetMarkup.set(t.id,markup);}
+  if(targetMarkup.get(t.id)!==markup){
+   const newcomer=!targetMarkup.has(t.id);
+   container.querySelector(`[data-target="${t.id}"]`)?.remove();
+   container.insertAdjacentHTML('beforeend',markup);
+   targetMarkup.set(t.id,markup);
+   if(staged&&isPerson){
+    // Only a newly opened place in the camp that is already on screen calls for an entrance.
+    // On load or travel the current watch is already at its station.
+    if(newcomer&&!enteredRoom&&state.scene==='camp'&&(t.id==='raynal'||t.id==='musgrave')&&!effectiveReduced()){
+     const door={...profile().from.beach,facing:'right',pose:'stand'};
+     const arriving=Choreo.crewMember(door,profile().walkPolygon,heightAt);
+     actorTracks.set(t.id,arriving);
+     prepareWalk(t.id).then(ok=>{if(!ok && actorTracks.get(t.id)===arriving)actorTracks.delete(t.id);});
+    }
+    const pose=actorStep(t.id,actorHomes.get(t.id),0,true,effectiveReduced(),null);
+    // Write the first visible foot and facing before the browser can paint the nominal home coordinates.
+    placeCrew($('person-'+t.id),t.id,pose.x,pose.y,heightAt(pose.y));
+    $('actor-'+t.id).style.transform=`scaleX(${pose.facing==='left'?-1:1})`;
+   }
+  }
   const b=container.querySelector(`[data-target="${t.id}"]`);b.onclick=e=>{e.stopPropagation();activate(t);};b.oncontextmenu=e=>{e.preventDefault();e.stopPropagation();activate(t,true);};b.onkeydown=e=>inspectKey(e,()=>activate(t,true));b.onmouseenter=()=>label(selected?`${E.ITEMS[selected].name} → ${t.name}`:t.name);b.onmouseleave=()=>label(selected?E.ITEMS[selected].name+' → …':scene.name);b.onfocus=b.onmouseenter;b.onblur=b.onmouseleave;
  });
  const stagedExits=exitsFor().map(e=>staged?Stage.stageExit(state.scene,e):e);
@@ -370,7 +488,7 @@ function render(){const scene=currentScene(),world=W.scenes?.[state.scene];$('sc
  worldChanges();Life?.render($('place-life'),state);
  if(staged&&Weather){
   Weather.render($('place-weather'),state);
-  $('scene').setAttribute('aria-description',Weather.describe(state).weather);
+  $('scene').setAttribute('aria-description',Weather.caption?.($('place-weather'),state)||Weather.describe(state).weather);
  }
  renderInventory();updatePlayer();playerPose(playerWork);$('cancel-item').hidden=!selected;$('cursor-item').innerHTML=selected?svg(selected):'';$('cursor-item').style.display=selected?'block':'none';label(selected?E.ITEMS[selected].name+' → …':scene.name);
 }
@@ -393,7 +511,7 @@ function hint(){
  modal('A little hint',h.cue==='combine'?`<div class="hint-icons">${parts.map(id=>svg(id)).join('<span>+</span>')}</div>`:`<div class="hint-icons">${svg(h.itemId||(h.cue==='take'?'hand':h.cue))}<span>→</span>${svg(targetIcon)}</div><p style="text-align:center">${esc(scene.name)}</p>`);$('modal-body').insertAdjacentHTML('beforeend',`<p class="${prefs.captions||CAMPAIGN?'small':'sr-only'}">${esc(h.text)}</p>`);
 }
 function settings(){modal('Settings',`<div class="setting"><span id="captions-label">Brief reaction captions</span><button id="toggle-captions" aria-labelledby="captions-label" aria-pressed="${prefs.captions}">${prefs.captions?'On':'Off'}</button></div><div class="setting"><span id="motion-label">Reduce motion</span><button id="toggle-motion" aria-labelledby="motion-label" aria-pressed="${prefs.reduced}">${prefs.reduced?'Reduced':'On'}</button></div>${voiceAvailable?`<div class="setting"><span id="narration-label">Narration · device voice</span><button id="toggle-narration" aria-labelledby="narration-label" aria-pressed="${prefs.narration}">${prefs.narration?'On':'Off'}</button></div>`:''}<div class="setting"><span>Return to the shore</span><button id="restart">New game</button></div><p class="small">An original adventure inspired by the Grafton castaways. Puzzles and dialogue are fictional; the historical rescue is documented in the project sources. Artwork was generated with AI.</p><p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/adventure" target="_blank" rel="noopener noreferrer">Sources and project files ↗</a></p>`);$('toggle-captions').onclick=()=>{prefs.captions=!prefs.captions;savePrefs();settings();$('toggle-captions').focus();};$('toggle-motion').onclick=()=>{prefs.reduced=!prefs.reduced;savePrefs();settings();$('toggle-motion').focus();};if($('toggle-narration'))$('toggle-narration').onclick=()=>{prefs.narration=!prefs.narration;savePrefs();settings();$('toggle-narration').focus();};$('restart').onclick=restart;}
-function restart(){modal('Return to the shore?',`<p class="small">This will replace your current progress.</p><button class="dialog-button" id="confirm-restart">Start again</button>`);$('confirm-restart').onclick=()=>{cancelWalk();clearTimeout(completionTimer);clearTimeout(chapterTimer);chapterBusy=false;$('chapter-banner').hidden=true;completionPending=false;closeDialogue();actorTracks.clear();actorPositions.clear();Bench?.reset();window.CastawayEpilogue?.reset?.();hintKey='';hintLevel=0;walkDistance=0;playerWork='stand';setExamine(false);state=E.createGame();selected=null;player=staged?entryPoint():{x:45,y:84};finalShown=false;$('completion').hidden=true;modalReturnFocus=null;$('modal').close();save();render();$('scene').focus();};}
+function restart(){modal('Return to the shore?',`<p class="small">This will replace your current progress.</p><button class="dialog-button" id="confirm-restart">Start again</button>`);$('confirm-restart').onclick=()=>{cancelWalk();clearTimeout(completionTimer);clearTimeout(chapterTimer);chapterBusy=false;$('chapter-banner').hidden=true;completionPending=false;closeDialogue();actorTracks.clear();actorPositions.clear();Bench?.reset();window.CastawayEpilogue?.reset?.();hintKey='';hintLevel=0;walkDistance=0;playerWork='stand';setExamine(false);state=E.createGame();selected=null;player=staged?entryPoint():{x:45,y:84};finalShown=false;$('completion').hidden=true;modalReturnFocus=null;$('modal').close();save();render();$('scene').focus();if(CAMPAIGN)openingConversation();};}
 function reveal(){document.body.classList.add('show-targets');clearTimeout(revealTimer);revealTimer=setTimeout(()=>document.body.classList.remove('show-targets'),2400);}
 function renderChapterUI(){
  $('journey').hidden=!CAMPAIGN;$('chapter-exit').hidden=!CAMPAIGN||!state.chapterComplete||state.completed;
@@ -406,7 +524,7 @@ function renderChapterUI(){
  const illustration=$('homeward-illustration');illustration.src='assets/voyage/promise/ending.webp';illustration.hidden=false;
  $('open-epilogue').hidden=!window.CastawayEpilogue;
  const end=window.CastawayVoyageStory?.ENDING;$('completion-title').textContent=end?.title||'The promise kept.';$('completion-copy').textContent=end?.line||'Henry and George are aboard. The return is complete.';$('completion-note').textContent='The end · Auckland Islands, 1864–1865';$('keep-exploring').textContent='Return to the shore';
- $('ending-portraits').innerHTML=['musgrave','raynal','player','henry','george'].map(id=>`<figure><img src="${id==='player'?'assets/sailor.png':A.people[id].file}" alt="${esc(({musgrave:'Thomas Musgrave',raynal:'François Raynal',player:'Alick McLaren',henry:'Henry Forgés',george:'George Harris'})[id])}"><figcaption>${({musgrave:'Musgrave',raynal:'Raynal',player:'Alick',henry:'Henry',george:'George'})[id]}</figcaption></figure>`).join('');}
+ $('ending-portraits').innerHTML=['musgrave','raynal','player','henry','george'].map(id=>`<figure><img src="assets/cast-portraits/${id}.webp" alt="${esc(({musgrave:'Thomas Musgrave',raynal:'François Raynal',player:'Alick McLaren',henry:'Henry Forgés',george:'George Harris'})[id])}"><figcaption>${({musgrave:'Musgrave',raynal:'Raynal',player:'Alick',henry:'Henry',george:'George'})[id]}</figcaption></figure>`).join('');}
 }
 function showChapterBanner(){
  if(!CAMPAIGN)return;clearTimeout(chapterTimer);const c=E.getChapter(state),beat=window.CastawayVoyageStory?.CHAPTER_BEATS?.find(x=>x.chapter===chapterNumber());
@@ -446,6 +564,6 @@ $('scene').onclick=e=>{if(chapterBusy)return;if(e.target.closest('button')||e.ta
 $('scene').oncontextmenu=e=>e.preventDefault();$('hint').onclick=hint;$('reveal').onclick=reveal;$('settings').onclick=settings;$('help').onclick=help;$('cancel-item').onclick=()=>{cancelWalk();setSelected(null);};$('modal-close').onclick=()=>$('modal').close();$('modal').addEventListener('close',()=>{if(modalReturnFocus?.isConnected)modalReturnFocus.focus();modalReturnFocus=null;if(completionPending)revealCompletion();});$('dismiss-hint').onclick=()=>$('first-hint').hidden=true;$('keep-exploring').onclick=()=>{$('completion').hidden=true;if(!CAMPAIGN)startDialogue('george',true);$('scene').focus();};$('new-game').onclick=restart;
 window.addEventListener('pointermove',e=>{if(!selected)return;$('cursor-item').style.left=e.clientX+14+'px';$('cursor-item').style.top=e.clientY+12+'px';});window.addEventListener('keydown',e=>{if($('modal').open||Bench?.shown()||window.CastawayRepairRoll?.shown()||window.CastawayEpilogue?.shown?.())return;if(e.key==='Escape'){setExamine(false);if(dialogue){closeDialogue();return;}cancelWalk();setSelected(null);}if(e.code==='Space'&&!$('modal').open&&!e.target.closest('button')){e.preventDefault();reveal();}});
 if(!staged)$('rain').innerHTML=Array.from({length:28},(_,i)=>`<i style="--x:${i*37%110}%;--speed:${.8+i%5*.12}s;--delay:-${i*.17}s"></i>`).join('');
-$('dialogue-next').onclick=e=>{e.stopPropagation();advanceDialogue();};$('dialogue-close').onclick=e=>{e.stopPropagation();closeDialogue(true);};document.addEventListener?.('visibilitychange',()=>{lastLiveTime=null;document.body.classList.toggle('inactive',document.hidden);if(document.hidden){closeDialogue();cancelWalk();}});
-if(staged)player=entryPoint();prepareWalk(playerId());savePrefs();save();render();prepareBackground(state);requestAnimationFrame(liveFrame);if(state.actions>0)$('first-hint').hidden=true;if(CAMPAIGN&&state.completed)revealCompletion();else if(CAMPAIGN)showChapterBanner();
+$('dialogue-pause').onclick=e=>{e.stopPropagation();pauseDialogue();};$('dialogue-next').onclick=e=>{e.stopPropagation();advanceDialogue();};$('dialogue-close').onclick=e=>{e.stopPropagation();closeDialogue(true);};document.addEventListener?.('visibilitychange',()=>{lastLiveTime=null;document.body.classList.toggle('inactive',document.hidden);if(document.hidden){closeDialogue();cancelWalk();}});
+if(staged)player=entryPoint();prepareWalk(playerId());savePrefs();save();render();prepareBackground(state);requestAnimationFrame(liveFrame);if(state.actions>0)$('first-hint').hidden=true;if(CAMPAIGN&&state.completed)revealCompletion();else if(newVoyage)openingConversation();else if(CAMPAIGN&&state.actions===0)showChapterBanner();
 })();

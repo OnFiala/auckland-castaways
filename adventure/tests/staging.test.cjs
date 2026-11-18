@@ -71,6 +71,36 @@ test('the raised chest lid can be examined from the same station as the box', ()
   assert.deepEqual(open.approach, shut.approach);
 });
 
+test('the castaway reaches the chest hasp, missing boat side, caulking seam and mast collar', () => {
+  const hand = require('../dist/work-poses.js').contact('player', 'reach');
+  for (const [room, id, x, y] of [
+    ['wreck', 'crate', 71.2, 56.5], ['slipway', 'boatFrame', 53.5, 55],
+    ['slipway', 'seams', 73.2, 59], ['slipway', 'boatMast', 66, 51.3]
+  ]) {
+    const t = Stage.stageTarget(room, {id, kind: 'puzzle'}, {flags: {}});
+    const foot = t.approach;
+    inside(room, foot);
+    const size = Stage.heightAt(room, foot.y);
+    const facing = Math.sign((t.contact || t).x - foot.x);
+    const finger = {x: foot.x + facing * hand.x * size * 9 / 16, y: foot.y - hand.y * size};
+    assert(Math.hypot((finger.x - x) * 16 / 9, finger.y - y) < 0.18, id);
+  }
+  const bare = Stage.stageTarget('slipway', {id:'boatMast', kind:'puzzle'}, {flags:{}});
+  assert.equal(bare.paint, false, 'the spar is already painted into the collar');
+});
+
+test('the fitted strake uses the registered transparent native timber', () => {
+  const folder = require('node:path').resolve(__dirname, '../dist/assets/tidepaint');
+  const receipt = require('../dist/assets/tidepaint/voyage.json');
+  const piece = receipt.details['fitted-strake'];
+  const bytes = require('node:fs').readFileSync(require('node:path').join(folder, piece.file));
+  assert.equal(require('node:crypto').createHash('sha256').update(bytes).digest('hex'), piece.sha256);
+  assert.deepEqual(require('./painting-size.cjs')(bytes), piece.size);
+  assert.deepEqual(piece.bboxNativeXYWH.slice(2), piece.size);
+  assert.deepEqual(piece.stageSize, receipt.files.slipway.size);
+  assert.equal(piece.sourceSHA256, receipt.generations.slipway.output.sha256);
+});
+
 test('the supplies fit the painted crate and the lantern handle reaches the iron ring', () => {
   const sack = Stage.stageTarget('harbour', {id: 'provisions', kind: 'item'}, {});
   const bottom = sack.y + sack.artHeight / 2;
@@ -82,4 +112,21 @@ test('the supplies fit the painted crate and the lantern handle reaches the iron
   const loopTop = lamp.y - lamp.h / 2;
   assert(Math.abs(lamp.x - 77.8) < 0.45);
   assert(loopTop >= 30.7 && loopTop <= 31.8, 'iron ring on the right-hand side of the post');
+});
+
+test('both arrivals can walk from the beach door to distinct places in the first shelter',()=>{
+  const scene='camp', floor=Stage.profile(scene);
+  const sheltered={...E.createGame(),scene};
+  Object.assign(sheltered.flags,{shelterBuilt:true,fireLit:true,signalRaised:true});
+  const people=E.getTargets(sheltered).filter(t=>t.kind==='person');
+  assert.deepEqual(people.map(t=>t.id).sort(),['george','henry','musgrave','raynal']);
+  assert.deepEqual(Stage.companions(scene,sheltered),[]);
+  const places=people.map(person=>Stage.workStation(scene,person.id,sheltered));
+  const door=floor.from.beach;
+  for(const [i,station] of places.entries()){
+    for(const other of places.slice(i+1))assert(Math.abs(station.x-other.x)>8);
+    const route=Ground.route(floor.walkPolygon,door,station);
+    for(let step=0;step<=10;step++)inside(scene,Ground.sample(route,step/10));
+    assert(Ground.distance(Ground.sample(route,1),station)<.0001);
+  }
 });

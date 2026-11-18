@@ -129,8 +129,8 @@
       "width": 1024,
       "height": 1536,
       "mode": "RGBA",
-      "bytes": 2126896,
-      "sha256": "2bd1b63f6e7636c7931cda31956cefb73312e6a9b7935c97e109b1f4b6d92602",
+      "bytes": 1779164,
+      "sha256": "d7d4000707e8922f8853ad95b63945816fe44a4ccbfb1f60d5b8c0d0b1cd084c",
       "created": "2026-11-18",
       "generator": "OpenAI ImageGen",
       "provenance": {
@@ -141,20 +141,19 @@
         "record_id": "player",
         "reference_images": [
           {
-            "path": "adventure/dist/assets/sailor.png",
-            "sha256": "8078180eef71ef6982124690f6b1d1dc1649091818d1c13cea0df90a8fc372ac",
-            "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+            "path": "artwork/portraits/player.png",
+            "sha256": "0d8b1ce470adf3bef32ad4b0b9dc4b8c2e10d2da962c84f8930cfcb523e64e55"
           },
           {
-            "path": "adventure/dist/assets/work-poses/player.png",
-            "sha256": "e6871038d5aca38bc1a23526344a59ee498a1a7736925be78da249a808250f6d",
-            "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+            "path": "artwork/cast/player.png",
+            "sha256": "65607f3dfc776bb8d2c48e8d7f1b19b9bf6638504f1402d9123435fac493ceea"
           }
         ],
         "alpha_extrema": [
           0,
           254
-        ]
+        ],
+        "original_file": "exec-a81ef21a-d194-4d99-aa8d-5d72988080c5.png"
       },
       "previous_revision": {
         "file": "sailor.png",

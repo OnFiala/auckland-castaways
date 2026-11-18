@@ -1,0 +1,783 @@
+{
+  "canvas": [
+    1000,
+    563
+  ],
+  "frames": 64,
+  "fps": 16,
+  "watchStudy": [
+    {
+      "second": 6,
+      "watch": "The boat leaves the lee of the island. A loose shroud beats. Water washes between the floorboards.",
+      "outlookBox": [
+        0,
+        80,
+        196,
+        185
+      ],
+      "precipitationPixels": 23,
+      "skyMeanLuminance": 87.02
+    },
+    {
+      "second": 48,
+      "watch": "A squall draws a curtain across the lookout. A loose shroud beats. Water washes between the floorboards.",
+      "outlookBox": [
+        0,
+        80,
+        196,
+        185
+      ],
+      "precipitationPixels": 1122,
+      "skyMeanLuminance": 76.35
+    },
+    {
+      "second": 78,
+      "watch": "The rain lifts. The swell still runs high. A loose shroud beats. Water washes between the floorboards.",
+      "outlookBox": [
+        0,
+        80,
+        196,
+        185
+      ],
+      "precipitationPixels": 0,
+      "skyMeanLuminance": 88.33
+    }
+  ],
+  "method": "Production atmospheric overlay, production landscape and registered backplates, native Canvas 2D",
+  "offshoreEqualFrames": 64,
+  "sha256": {
+    "weather.js": "d1d940e90f3417538f293d555f664aa3d8bf1bc31b49590954c68016eaa8a51e",
+    "landscape.js": "97faf166d4c1e39244d4ce4deb4c127234f96782321266a9a9200480ef09533f",
+    "voyage-world.js": "1dee211dbdcf4e5ae12424d901ff52aa1c513e8c5e86b932ccc1ce1b92969fc8"
+  },
+  "rooms": [
+    {
+      "scene": "beach",
+      "startSeconds": 32,
+      "flags": {},
+      "source": "assets/tidepaint/beach.webp",
+      "sha256": "0663e6fa24bed611d4757f5c500ca79778016fc25cb3c487c12ea966cc1b36cf",
+      "caption": "Rain sweeps in from the water. Surf breaks on the rocks below the path.",
+      "probes": [
+        {
+          "name": "Distant wreck hull",
+          "mode": "solid",
+          "box": [
+            97,
+            324,
+            16,
+            5
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Rātā branch",
+          "mode": "dry",
+          "box": [
+            727,
+            185,
+            17,
+            6
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Foreground stone",
+          "mode": "dry",
+          "box": [
+            226,
+            506,
+            23,
+            13
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Shoreward breakers",
+          "mode": "land",
+          "box": [
+            0,
+            340,
+            360,
+            40
+          ],
+          "changed": 8648,
+          "max": 142,
+          "min": 310,
+          "distinct": 64,
+          "pass": true
+        },
+        {
+          "name": "Rain above the flats",
+          "mode": "air",
+          "box": [
+            29,
+            187,
+            160,
+            104
+          ],
+          "changed": 7309,
+          "max": 78,
+          "min": 90,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "wreck",
+      "startSeconds": 30,
+      "flags": {},
+      "source": "assets/tidepaint/wreck.webp",
+      "sha256": "291a317ec606d1bc41b29519e0d6585f911da4b2c870ee40419877e1d30f8f36",
+      "caption": "Rain sweeps in from the water. Water drips from the end of the rail.",
+      "probes": [
+        {
+          "name": "Plank face",
+          "mode": "dry",
+          "box": [
+            390,
+            252,
+            29,
+            11
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Iron strap on crate",
+          "mode": "dry",
+          "box": [
+            706,
+            317,
+            8,
+            14
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Rock below the bow",
+          "mode": "solid",
+          "box": [
+            72,
+            378,
+            9,
+            5
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Bow surge",
+          "mode": "land",
+          "box": [
+            0,
+            291,
+            65,
+            80
+          ],
+          "changed": 3139,
+          "max": 148,
+          "min": 120,
+          "distinct": 64,
+          "pass": true
+        },
+        {
+          "name": "Seaway at the stern",
+          "mode": "land",
+          "box": [
+            694,
+            252,
+            77,
+            28
+          ],
+          "changed": 1076,
+          "max": 147,
+          "min": 50,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "salvage",
+      "startSeconds": 43,
+      "flags": {},
+      "source": "assets/tidepaint/salvage.webp",
+      "sha256": "b6c22a2779fe42a65a45c19b6a6e19f63f88c6de4cbf7defeb48cfe22041648c",
+      "caption": "Sleet comes across the mouth of the cove. The broken bow takes the wash.",
+      "probes": [
+        {
+          "name": "Winter planking",
+          "mode": "dry",
+          "box": [
+            386,
+            257,
+            29,
+            11
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Salvage ledge",
+          "mode": "dry",
+          "box": [
+            416,
+            405,
+            20,
+            7
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Swell beside the winter hull",
+          "mode": "land",
+          "box": [
+            1,
+            320,
+            61,
+            73
+          ],
+          "changed": 1780,
+          "max": 113,
+          "min": 100,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "slipway",
+      "startSeconds": 41,
+      "flags": {},
+      "source": "assets/tidepaint/slipway.webp",
+      "sha256": "ada7885071acce49df0850300fe518b3f268479cd6961834c1aa0b5113510bb1",
+      "caption": "Sleet comes across the mouth of the cove. The stocks stand above the reach of the wash.",
+      "probes": [
+        {
+          "name": "Gunwale forward",
+          "mode": "dry",
+          "box": [
+            621,
+            243,
+            24,
+            7
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Forward stock",
+          "mode": "dry",
+          "box": [
+            722,
+            399,
+            17,
+            11
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Rock below the headland",
+          "mode": "solid",
+          "box": [
+            22,
+            239,
+            8,
+            4
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Squall on the cove",
+          "mode": "land",
+          "box": [
+            76,
+            216,
+            223,
+            55
+          ],
+          "changed": 5393,
+          "max": 146,
+          "min": 220,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "slipway",
+      "startSeconds": 41,
+      "flags": {
+        "sailRigged": true
+      },
+      "source": "assets/tidepaint/slipway-ready.webp",
+      "sha256": "385754089d515d41a7a0a0973b90ca86994bbd5966bde849582721a55b439d69",
+      "caption": "Sleet comes across the mouth of the cove. The stocks stand above the reach of the wash.",
+      "probes": [
+        {
+          "name": "Mast step",
+          "mode": "dry",
+          "box": [
+            657,
+            278,
+            5,
+            9
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Foot of forward stock",
+          "mode": "dry",
+          "box": [
+            727,
+            410,
+            9,
+            7
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Rigged sail lifting",
+          "mode": "land",
+          "box": [
+            461,
+            108,
+            193,
+            129
+          ],
+          "changed": 2146,
+          "max": 43,
+          "min": 150,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "forest",
+      "startSeconds": 59,
+      "flags": {},
+      "source": "assets/tidepaint/forest.webp",
+      "sha256": "923037023afe41096e2a729c9ab9a20d6b5b3403f41b67bce848ab044388be5b",
+      "caption": "Wet snow drifts through the gully. Water spills down the rock into the pool.",
+      "probes": [
+        {
+          "name": "Dark rock between streams",
+          "mode": "solid",
+          "box": [
+            201,
+            292,
+            3,
+            27
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Gully root",
+          "mode": "dry",
+          "box": [
+            89,
+            340,
+            20,
+            12
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Falling water",
+          "mode": "land",
+          "box": [
+            191,
+            285,
+            24,
+            75
+          ],
+          "changed": 590,
+          "max": 124,
+          "min": 65,
+          "distinct": 64,
+          "pass": true
+        },
+        {
+          "name": "Snow under canopy",
+          "mode": "air",
+          "box": [
+            625,
+            201,
+            125,
+            102
+          ],
+          "changed": 1893,
+          "max": 128,
+          "min": 75,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "cabin",
+      "startSeconds": 59,
+      "flags": {},
+      "source": "assets/tidepaint/cabin-cold.webp",
+      "sha256": "0048599cde551071f053b5fdda87477ff0c2666ad8ba26eaccb88c078c6703ec",
+      "caption": "Wet snow drifts through the gully. Water follows a roof seam to the pan by the bunks.",
+      "probes": [
+        {
+          "name": "Opaque central sash",
+          "mode": "dry",
+          "box": [
+            210,
+            100,
+            8,
+            85
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Bench timber",
+          "mode": "dry",
+          "box": [
+            439,
+            307,
+            21,
+            9
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Sleet seen through west glass",
+          "mode": "air",
+          "box": [
+            147,
+            98,
+            59,
+            46
+          ],
+          "changed": 826,
+          "max": 88,
+          "min": 10,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "crossing",
+      "startSeconds": 46,
+      "flags": {},
+      "source": "assets/tidepaint/crossing-wet.webp",
+      "sha256": "a00f60fd8dfa3973f347ff03c2662411dd238f164bd68adc8047ac5157192cb8",
+      "caption": "A squall draws a curtain across the lookout. A loose shroud beats. Water washes between the floorboards.",
+      "probes": [
+        {
+          "name": "Mast wood",
+          "mode": "dry",
+          "box": [
+            416,
+            211,
+            10,
+            41
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Port tiller",
+          "mode": "dry",
+          "box": [
+            47,
+            291,
+            19,
+            5
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Gunwale abaft the mast",
+          "mode": "dry",
+          "box": [
+            542,
+            339,
+            29,
+            6
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Foam on the long swell",
+          "mode": "land",
+          "box": [
+            486,
+            222,
+            253,
+            72
+          ],
+          "changed": 2780,
+          "max": 199,
+          "min": 225,
+          "distinct": 64,
+          "pass": true
+        },
+        {
+          "name": "Standing water on the sole",
+          "mode": "land",
+          "box": [
+            569,
+            446,
+            171,
+            28
+          ],
+          "changed": 214,
+          "max": 70,
+          "min": 30,
+          "distinct": 64,
+          "pass": true
+        },
+        {
+          "name": "Squall over lookout",
+          "mode": "air",
+          "box": [
+            8,
+            126,
+            145,
+            132
+          ],
+          "changed": 15930,
+          "max": 138,
+          "min": 130,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "crossing",
+      "startSeconds": 46,
+      "flags": {
+        "rigSecured": true,
+        "boatDry": true
+      },
+      "source": "assets/tidepaint/crossing-bailed.webp",
+      "sha256": "ba63d40decb7ffd8e754eb7509b3fc815874fae4db1aeca975cdacffe07df31f",
+      "caption": "A squall draws a curtain across the lookout. Bare boards show. Water beads again along a seam.",
+      "probes": [
+        {
+          "name": "Tiller after bailing",
+          "mode": "dry",
+          "box": [
+            47,
+            291,
+            19,
+            5
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Board beneath the torn sail",
+          "mode": "dry",
+          "box": [
+            709,
+            466,
+            20,
+            7
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Long swell beside the bailed boat",
+          "mode": "land",
+          "box": [
+            486,
+            222,
+            253,
+            72
+          ],
+          "changed": 2780,
+          "max": 199,
+          "min": 225,
+          "distinct": 64,
+          "pass": true
+        },
+        {
+          "name": "Droplets forming on the board",
+          "mode": "air",
+          "box": [
+            626,
+            454,
+            63,
+            10
+          ],
+          "changed": 21,
+          "max": 82,
+          "min": 5,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "crossing",
+      "startSeconds": 46,
+      "flags": {
+        "rigSecured": true,
+        "boatDry": true,
+        "sailMended": true,
+        "courseSet": true
+      },
+      "source": "assets/tidepaint/crossing-safe.webp",
+      "sha256": "fb255daddea57953a50ce1c47f4e7245c62accd88d496bff75d5b143827a7d57",
+      "caption": "A squall draws a curtain across the lookout. One man holds the course while another minds the pump.",
+      "probes": [
+        {
+          "name": "Mast wood after repair",
+          "mode": "dry",
+          "box": [
+            416,
+            211,
+            10,
+            41
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Dry aft board",
+          "mode": "dry",
+          "box": [
+            709,
+            466,
+            20,
+            7
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Same long swell after repair",
+          "mode": "land",
+          "box": [
+            486,
+            222,
+            253,
+            72
+          ],
+          "changed": 2780,
+          "max": 199,
+          "min": 225,
+          "distinct": 64,
+          "pass": true
+        },
+        {
+          "name": "Beads at the floor seam",
+          "mode": "air",
+          "box": [
+            626,
+            454,
+            63,
+            10
+          ],
+          "changed": 21,
+          "max": 82,
+          "min": 5,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "scene": "landing",
+      "startSeconds": 43,
+      "flags": {},
+      "source": "assets/tidepaint/landing.webp",
+      "sha256": "333f38ecdf7c5eb29cdb0ab75c11b873a0fdb9ae0c764f82c5951effdb4a8634",
+      "caption": "There is light enough to see the landing. The small boat needs a line ashore.",
+      "probes": [
+        {
+          "name": "Keel",
+          "mode": "dry",
+          "box": [
+            474,
+            318,
+            27,
+            10
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Mooring post",
+          "mode": "dry",
+          "box": [
+            756,
+            322,
+            12,
+            31
+          ],
+          "changed": 0,
+          "max": 0,
+          "pass": true
+        },
+        {
+          "name": "Wash reaches below keel",
+          "mode": "land",
+          "box": [
+            538,
+            332,
+            183,
+            19
+          ],
+          "changed": 961,
+          "max": 118,
+          "min": 65,
+          "distinct": 64,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}

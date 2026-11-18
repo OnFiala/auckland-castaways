@@ -1,335 +1,256 @@
 {
-  "schema_version": 2,
-  "character": "musgrave",
+  "id": "musgrave",
   "characterName": "Thomas Musgrave",
   "image": "musgrave.png",
   "generator": "OpenAI ImageGen",
-  "generated_date_utc": "2026-11-18",
-  "kind": "A newly painted, six-frame right-facing walk cycle. Imagined character and costume.",
+  "source_manifest": "../../../artwork/cast/manifest.json",
+  "native_file": "musgrave.png",
+  "native_sha256": "bcbbe77101e3dd4fca7ad91ddf84f637c9b2af0ac2ca1ddbfcc5831dc759ec74",
   "dimensions": {
     "width": 1536,
     "height": 1024
   },
-  "format": "PNG RGBA, 8-bit",
-  "sha256": "d715149449fa1d91362152f81362afcc0a4e1e63b3b681464f4622afe618e35d",
-  "byte_length": 1230645,
-  "layout": {
-    "columns": 3,
-    "rows": 2,
-    "cell_width": 512,
-    "cell_height": 512,
-    "order": "row-major"
-  },
+  "sha256": "9c8cd93c3653d6e89d38cb77641f9fe141639bcc716b0fee49c530de2ef40d8f",
+  "bytes": 957620,
+  "common_crop": [
+    32,
+    5,
+    448,
+    500
+  ],
+  "ground_anchor_in_cell": [
+    256,
+    498
+  ],
   "frames": [
     {
       "index": 0,
       "name": "first-contact",
-      "rect": {
-        "x": 0,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        0,
+        0,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        97,
-        4,
-        444,
+        74,
+        15,
+        433,
         503
       ],
-      "alpha_bbox_gt_8": [
-        100,
-        4,
-        442,
-        501
+      "alpha_bbox_ge128": [
+        78,
+        20,
+        429,
+        499
       ],
-      "alpha_bbox_gt_128": [
-        101,
-        7,
-        441,
-        500
+      "crownX": 267,
+      "solidFloorY": 498,
+      "plantContactX": 352,
+      "idealPlantX": 352,
+      "nativeCropXYXY": [
+        57,
+        1,
+        362,
+        414
       ],
-      "medianCrownX": 271,
-      "solidFloorY": 500
+      "placedXYWH": [
+        73,
+        15,
+        361,
+        488
+      ]
     },
     {
       "index": 1,
       "name": "first-weight",
-      "rect": {
-        "x": 512,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        512,
+        0,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        155,
-        7,
-        361,
-        504
+        113,
+        17,
+        349,
+        503
       ],
-      "alpha_bbox_gt_8": [
-        157,
-        9,
-        358,
-        501
+      "alpha_bbox_ge128": [
+        118,
+        21,
+        344,
+        499
       ],
-      "alpha_bbox_gt_128": [
-        158,
-        10,
-        357,
-        500
+      "crownX": 266,
+      "solidFloorY": 498,
+      "plantContactX": 282,
+      "idealPlantX": 282,
+      "nativeCropXYXY": [
+        507,
+        1,
+        708,
+        415
       ],
-      "medianCrownX": 273,
-      "solidFloorY": 500
+      "placedXYWH": [
+        113,
+        17,
+        236,
+        486
+      ]
     },
     {
       "index": 2,
-      "name": "first-passing",
-      "rect": {
-        "x": 1024,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
+      "name": "first-pass",
+      "cellXYWH": [
+        1024,
+        0,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        184,
-        2,
-        353,
-        504
+        123,
+        11,
+        361,
+        503
       ],
-      "alpha_bbox_gt_8": [
-        187,
-        2,
-        351,
-        501
+      "alpha_bbox_ge128": [
+        127,
+        15,
+        357,
+        499
       ],
-      "alpha_bbox_gt_128": [
-        188,
-        6,
-        350,
-        500
+      "crownX": 267,
+      "solidFloorY": 498,
+      "plantContactX": 211,
+      "idealPlantX": 211,
+      "nativeCropXYXY": [
+        936,
+        1,
+        1136,
+        415
       ],
-      "medianCrownX": 272,
-      "solidFloorY": 500
+      "placedXYWH": [
+        123,
+        11,
+        238,
+        492
+      ]
     },
     {
       "index": 3,
       "name": "opposite-contact",
-      "rect": {
-        "x": 0,
-        "y": 512,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        0,
+        512,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        96,
-        4,
-        453,
-        504
+        70,
+        15,
+        449,
+        503
       ],
-      "alpha_bbox_gt_8": [
-        99,
-        6,
-        450,
-        501
+      "alpha_bbox_ge128": [
+        75,
+        20,
+        444,
+        499
       ],
-      "alpha_bbox_gt_128": [
-        99,
-        8,
-        450,
-        501
+      "crownX": 268,
+      "solidFloorY": 498,
+      "plantContactX": 372,
+      "idealPlantX": 372,
+      "nativeCropXYXY": [
+        57,
+        422,
+        376,
+        833
       ],
-      "medianCrownX": 271,
-      "solidFloorY": 500
+      "placedXYWH": [
+        70,
+        15,
+        379,
+        488
+      ]
     },
     {
       "index": 4,
       "name": "opposite-weight",
-      "rect": {
-        "x": 512,
-        "y": 512,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        512,
+        512,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        135,
-        7,
-        340,
+        117,
+        17,
+        334,
         504
       ],
-      "alpha_bbox_gt_8": [
-        137,
-        10,
-        338,
-        502
+      "alpha_bbox_ge128": [
+        121,
+        21,
+        329,
+        499
       ],
-      "alpha_bbox_gt_128": [
-        138,
-        11,
-        337,
-        501
+      "crownX": 266,
+      "solidFloorY": 498,
+      "plantContactX": 302,
+      "idealPlantX": 302,
+      "nativeCropXYXY": [
+        511,
+        422,
+        695,
+        835
       ],
-      "medianCrownX": 273,
-      "solidFloorY": 500
+      "placedXYWH": [
+        117,
+        17,
+        217,
+        487
+      ]
     },
     {
       "index": 5,
-      "name": "opposite-passing",
-      "rect": {
-        "x": 1024,
-        "y": 512,
-        "width": 512,
-        "height": 512
-      },
+      "name": "opposite-pass",
+      "cellXYWH": [
+        1024,
+        512,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        184,
-        2,
-        380,
+        131,
+        10,
+        358,
         504
       ],
-      "alpha_bbox_gt_8": [
-        186,
-        4,
-        378,
-        502
+      "alpha_bbox_ge128": [
+        136,
+        14,
+        354,
+        499
       ],
-      "alpha_bbox_gt_128": [
-        187,
-        6,
-        377,
-        501
+      "crownX": 267,
+      "solidFloorY": 498,
+      "plantContactX": 231,
+      "idealPlantX": 231,
+      "nativeCropXYXY": [
+        937,
+        422,
+        1127,
+        835
       ],
-      "medianCrownX": 271,
-      "solidFloorY": 500
+      "placedXYWH": [
+        131,
+        10,
+        227,
+        494
+      ]
     }
   ],
-  "common_crop": {
-    "x": 86,
-    "y": 0,
-    "width": 371,
-    "height": 509
-  },
-  "ground_anchor_in_cell": {
-    "x": 256,
-    "y": 500
-  },
-  "ground_anchor_in_crop": {
-    "x": 170,
-    "y": 500
-  },
-  "registration": "The generator painted all six poses against the same full-length character model and the previous walking choreography. The 8-bit PNG is a transparent 3 × 2 assembly of newly painted cels. Each native cel was cropped and resampled with Lanczos interpolation onto the existing game canvas, using a shared sole baseline and paired crown heights for the two halves of the gait. The head centre is registered in X, constrained by the existing common clip. The drawing and its colours are retained. Source and destination entries are [left, top, rightExclusive, bottomExclusive] on their respective sheets.",
-  "sourceRegistration": {
-    "sourceSize": [
-      1536,
-      1024
-    ],
-    "sourceSha256": "61bb2c2d7bc57b2db269d0523e3cc28f34e3f7ab5b32c2bd4f17a30309c4bdd3",
-    "cells": [
-      {
-        "frame": 0,
-        "source": [
-          86,
-          2,
-          444,
-          502
-        ],
-        "destination": [
-          97,
-          4,
-          444,
-          504
-        ]
-      },
-      {
-        "frame": 1,
-        "source": [
-          650,
-          3,
-          871,
-          505
-        ],
-        "destination": [
-          667,
-          7,
-          873,
-          504
-        ]
-      },
-      {
-        "frame": 2,
-        "source": [
-          1200,
-          2,
-          1371,
-          504
-        ],
-        "destination": [
-          1208,
-          2,
-          1377,
-          504
-        ]
-      },
-      {
-        "frame": 3,
-        "source": [
-          87,
-          513,
-          452,
-          1016
-        ],
-        "destination": [
-          96,
-          516,
-          453,
-          1016
-        ]
-      },
-      {
-        "frame": 4,
-        "source": [
-          632,
-          515,
-          848,
-          1017
-        ],
-        "destination": [
-          647,
-          519,
-          852,
-          1016
-        ]
-      },
-      {
-        "frame": 5,
-        "source": [
-          1200,
-          513,
-          1399,
-          1017
-        ],
-        "destination": [
-          1208,
-          514,
-          1404,
-          1016
-        ]
-      }
-    ]
-  },
-  "reference_images": [
-    {
-      "path": "adventure/dist/assets/walk/musgrave.png",
-      "sha256": "e96bc3be34e36ca24bc2d16bc992cf747fff381f66fba0d99cba278228c3942b",
-      "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-    },
-    {
-      "path": "adventure/dist/assets/people/musgrave.png",
-      "sha256": "552c5c4a23367b482cf96bd46d3fdb73b908b87d9d3935bac6a16bef9219430a"
-    }
-  ],
-  "prompt": "Create a NEW hand-painted production game animation sheet of Thomas Musgrave. The first reference is authoritative ONLY for frame order, camera, screen direction, placement and body articulation. The second reference is the NEW authoritative full-resolution costume and face model: carefully repaint EVERY frame in its colours, anatomy, materials and observed naturalist illustration style. The older merchant schooner captain with a short salt-and-pepper beard, navy peaked cloth cap with dark soft visor, deeply ink-blue double-breasted reefer, modest dull brass buttons, dark umber waistcoat, grey-brown wool trousers, broad brown sea boots. Resolute, weather-lined face, erect posture and discreet asymmetry. No military insignia, gold epaulettes or modern visor. Deliver one 1536×1024 LANDSCAPE walking atlas, SIX individual drawings in EXACTLY TWO rows of THREE equal 512×512 square cells. Read reference 1 frame-by-frame, row-major. Keep the same six limb articulations, same step length and timing, same left and right arm and boot in front, clothing silhouette, walking posture and ground support. Nose to screen RIGHT in all six. Top left long contact stride with near heel leading, top middle weight accepted as trailing boot lifts, top right bent-knee passing step; bottom left the opposite contact stride with the other arm in front, bottom middle opposite weight acceptance, bottom right opposite passing position. The near and far limbs exchange roles; no duplicating the first half. Weight travels over the planted foot. In each square every boot and all the hair stay completely within, with clear transparent gutters. Every bottommost planted boot at the same baseline. Use one anatomical and costume model locked across all six: same skull/face at the same scale and height, exact cap/hair angle, identical seam network and jacket closure, identical trousers, cuffs and boots, left light held fixed, each pigment stable. Torso and head advance smoothly through a restrained 2–3px rise/fall. Arms counterbalance legs naturally. The features must not redraw into six different faces. Re-use the same painted head reference for all six degrees of gait. The animation should read clearly at a 160px-tall display and hold still when paused.\n \nPaint the character with the second reference's crisp graphite underdrawing and rich naturalist 1860s maritime gouache: brushwork held together in broad, legible local colour shapes at reduced size, worn wool, hand-sewn linen, scuffed boots, warm skin under a cool upper-left sky. Preserve pronounced local jacket colour and skin tone across every cell. Keep the same stitches, buttons, creases and cap through all cells; make every mark feel part of the same painted world. Avoid dull uniformly brown or uniformly green wash. No independent character redesign, no changes of coat, expressions or cap. Empty hands, no bags, no separate items, NO text, grid lines, floor, shadow, backdrop or digital airbrush glow; absolutely transparent pixels outside and between the character silhouettes. Historical art direction is an original reconstruction for an adventure game.",
-  "alpha_extrema": [
-    0,
-    255
-  ]
+  "registration": "Row-major. xyxy is exclusive at right and bottom. Native alpha >=28 identifies each complete silhouette. A three-pixel antialias band is kept. Each individual drawing is uniformly scaled and translated. Foot support is measured at alpha >=128 within the bottom 15 pixels; idealPlantX is the predicted heel-to-ball contact at gameplay stride .88. Centring by upper head mass suppresses distracting head jitter."
 }

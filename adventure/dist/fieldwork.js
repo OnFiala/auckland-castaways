@@ -14,19 +14,19 @@
   const puzzles = {
     chest: {
       title: 'The swollen chest', place: 'The wreck', item: 'prybar', target: 'crate', scene: 'wreck', flag: 'crateOpen', chapter: 1,
-      description: 'A wet chest. An iron strap crosses the shut seam. Farther right, a splinter has broken away.',
+      description: 'A hinged iron hasp hangs across the wet lid. Farther right, a splinter has broken away.',
       resolved: 'The lid gives. An axe and a tinderbox lie dry beneath it.',
       hints: ['Look for missing wood along the front edge.', 'The bar needs room for its tip and a pivot close to the load.', 'Seat the tip in the nick, put the block near the tip, then press the handle.'],
       start: {seated: false, pivot: ''},
       view(s) {
         if (!s.seated) return {question: 'Where will the iron get a purchase?', actions: [
-          act('flat', 'Try the tight seam', 20, 60), act('strap', 'Try the iron strap', 38, 60), act('notch', 'Try the broken nick', 73, 59)]};
+          act('flat', 'Try the tight seam', 20, 60.9), act('strap', 'Try the iron hasp', 37.2, 60.5), act('notch', 'Try the broken nick', 73.4, 59.4)]};
         return {question: 'Where should the bar turn?', actions: [
           act('near', 'Block near the tip', 68, 64, s.pivot === 'near'), act('far', 'Block near the handle', 47, 77, s.pivot === 'far'), act('press', 'Press the handle', 34, 85)]};
       },
       play(s, a) {
         if (a === 'flat') return stay(s, 'The blade skates across two close-fitting boards.');
-        if (a === 'strap') return stay(s, 'The strap sits flat against the lid. There is no lip for the bar.');
+        if (a === 'strap') return stay(s, 'The hasp swings loose. The wood stays fast, with no lip for the bar here.');
         if (a === 'notch') return move(s, {seated: true}, 'The tip slips under the splintered lip. A small wood block will serve as a pivot.');
         if (a === 'near' || a === 'far') return move(s, {pivot: a}, a === 'near' ? 'The short end sits under the lid. Most of the iron now extends beyond the block.' : 'The block sits near your hand. Only a short length of handle extends beyond it.');
         if (s.pivot !== 'near') return stay(s, s.pivot ? 'The long end barely stirs. Shift the block toward the lid to give your hand more leverage.' : 'The whole bar drops with your hand. It needs a block to turn against.');
@@ -43,8 +43,8 @@
       start: {observed: '', located: false, lap: '', left: false, right: false},
       view(s) {
         if (!s.located) return {question: 'Where is the rain getting in?', actions: [
-          act('oldMark', 'Feel the mark on the wall', 37, 41), act('pan', 'Watch the tin pan', 66, 75),
-          act('drySeam', 'Trace the seam by the window', 36, 15), act('wetSeam', 'Trace the seam above the bunk', 66, 23),
+          act('oldMark', 'Feel the mark on the wall', 37, 41), act('pan', 'Watch the tin pan', 59.8, 86.5),
+          act('drySeam', 'Trace the seam by the window', 36, 15), act('wetSeam', 'Trace the seam above the bunk', 59.8, 22.2),
           act('listen', 'Listen inside the house', 49, 49)]};
         if (!s.lap) return {question: 'Which way should the hide overlap?', actions: [
           act('under', 'Slip beneath upper sheet', 29, 28), act('over', 'Lay over upper sheet', 58, 40)]};
@@ -98,13 +98,13 @@
       start: {tested: false, handed: false, brace: '', driven: false, clear: false},
       view(s) {
         if (!s.tested) return {question: 'Will the board sit against the ribs?', actions: [act('pressPlank', 'Push the loose board', 43, 43)]};
-        if (!s.handed) return {question: 'Musgrave holds out his hand.', actions: [act('giveNails', 'Pass Musgrave the nails', 44, 39)]};
+        if (!s.handed) return {question: 'Musgrave holds out his hand.', actions: [act('giveNails', 'Pass Musgrave the nails', 44, 47)]};
         if (s.driven) return s.clear
           ? {question: 'Will the joint hold on its own?', actions: [act('proveJoint', 'Put weight on the joint', 72, 38)]}
           : {question: 'Both men still have a hand on the work.', actions: [act('release', 'Take both hands away', 76, 36)]};
         return {question: 'Where should Alick hold the board?', actions: [
           act('stern', 'Brace the stern end', 27, 42, s.brace === 'stern'), act('bow', 'Brace the bow end', 76, 35, s.brace === 'bow'),
-          act('strike', 'Signal Musgrave to drive the nail', 60, 35), ...(s.brace ? [act('loosen', 'Let the board go', 42, 55)] : [])]};
+          act('strike', 'Signal Musgrave to drive the nail', 54, 35), ...(s.brace ? [act('loosen', 'Let the board go', 42, 55)] : [])]};
       },
       play(s, a) {
         if (a === 'pressPlank') return move(s, {tested: true}, 'Alick pushes. The stern stays put. At the bow, a strip of daylight opens between the plank and the ribs.');

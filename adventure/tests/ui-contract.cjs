@@ -3,7 +3,7 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const root=path.join(__dirname,'../dist/');
 const KEY='castaways-adventure-v3';
-function app({initial={},blocked=false,speech=null}={}){
+function app({initial={},blocked=false,speech=null,scripts=null,saveKey=KEY}={}){
  const ids=new Map(),stored={...initial},raf=[],timers=new Map();let clock=0,timerId=0,doc;const listeners={};
  class El{
   constructor(id='',attrs={}){this.id=id;this.attrs=attrs;this.dataset={};this.children=[];this.style={setProperty(){}};this.open=false;this.hidden=Object.hasOwn(attrs,'hidden');this.disabled=Object.hasOwn(attrs,'disabled');const classes=new Set();this.classList={add(x){classes.add(x);},remove(x){classes.delete(x);},toggle(x,v){if(v===undefined)v=!classes.has(x);v?classes.add(x):classes.delete(x);},contains(x){return classes.has(x);}};for(const [k,v]of Object.entries(attrs))if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v;}
@@ -43,8 +43,10 @@ function app({initial={},blocked=false,speech=null}={}){
  parse(fs.readFileSync(root+'index.html','utf8'));
  doc={getElementById:id=>ids.get(id)||null,body:new El('body'),createElement:tag=>{const el=new El();el.tag=tag;return el;}};
  const context={console,document:doc,localStorage:{getItem(k){if(blocked)throw Error('blocked');return stored[k]??null;},setItem(k,v){if(blocked)throw Error('blocked');stored[k]=v;},removeItem(k){if(blocked)throw Error('blocked');delete stored[k];}},matchMedia:()=>({matches:false}),performance:{now:()=>clock},requestAnimationFrame(fn){raf.push(fn);return raf.length;},setTimeout(fn,ms=0){timers.set(++timerId,{fn,ms});return timerId;},clearTimeout(id){timers.delete(id);},addEventListener(type,fn){listeners[type]=fn;}};context.window=context;if(speech){context.speechSynthesis=speech.synth;context.SpeechSynthesisUtterance=speech.Utterance;}
- vm.createContext(context);for(const f of ['art.js','engine.js','animation.js','stories.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
- async function flush(){for(let i=0;i<600;i++){clock+=16;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();}}
+ vm.createContext(context);
+ if(scripts){for(const f of scripts)vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});}
+ else for(const f of ['art.js','engine.js','animation.js','stories.js','app.js'])vm.runInContext(fs.readFileSync(root+f,'utf8'),context,{filename:f});
+ async function flush(frames=600){for(let i=0;i<frames;i++){clock+=16;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();}}
  async function click(id){
   const el=typeof id==='string'?ids.get(id):id;assert(el,'control '+id);
   let stopped=false,handled=false;const event={preventDefault(){},stopPropagation(){stopped=true;},target:el};
@@ -57,7 +59,7 @@ function app({initial={},blocked=false,speech=null}={}){
  async function pick(id){if(!ids.get('cancel-item').hidden)await click('cancel-item');await click(target(id));}
  async function use(itemId,targetId){if(!ids.get('cancel-item').hidden)await click('cancel-item');await click(item(itemId));await click(target(targetId));}
  async function travel(id){await click(exit(id));}
- function state(){return JSON.parse(stored[KEY]);}
+ function state(){return JSON.parse(stored[saveKey]);}
  function runTimers(){const batch=[...timers.values()];timers.clear();for(const {fn}of batch)fn();}
  return{ids,stored,click,target,item,exit,pick,use,travel,state,runTimers,flush,context,activeElement:()=>doc.activeElement,key(key,target=doc.activeElement){listeners.keydown({key,code:key,target,preventDefault(){}});}};
 }

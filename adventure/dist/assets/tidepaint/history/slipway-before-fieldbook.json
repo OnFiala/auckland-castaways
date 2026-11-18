@@ -1,0 +1,198 @@
+{
+  "method": "Six original ImageGen edits. A seventh state recombines two native paintings. Native masters were generated at the sizes below. Final RGB plates resized to 1600 x 900, stripped of metadata and encoded via ImageMagick libwebp quality 88 method 6. No freehand procedural illustration or stock image layers.",
+  "maskMethod": "Polygon points measured in 840 x 473 inspection image, scaled to native pixels, rounded, gaussian-feathered sigma 3 native pixels, white admits the child painting. Overlay against base at origin with ImageMagick Over before WebP encoding.",
+  "registrationMasks": {
+    "rigged": [
+      [
+        342,
+        208
+      ],
+      [
+        505,
+        206
+      ],
+      [
+        518,
+        204
+      ],
+      [
+        520,
+        56
+      ],
+      [
+        541,
+        55
+      ],
+      [
+        548,
+        79
+      ],
+      [
+        575,
+        104
+      ],
+      [
+        610,
+        133
+      ],
+      [
+        647,
+        154
+      ],
+      [
+        675,
+        171
+      ],
+      [
+        687,
+        174
+      ],
+      [
+        699,
+        165
+      ],
+      [
+        717,
+        166
+      ],
+      [
+        714,
+        202
+      ],
+      [
+        698,
+        243
+      ],
+      [
+        679,
+        278
+      ],
+      [
+        640,
+        288
+      ],
+      [
+        617,
+        285
+      ],
+      [
+        588,
+        284
+      ],
+      [
+        556,
+        286
+      ],
+      [
+        520,
+        286
+      ],
+      [
+        471,
+        287
+      ],
+      [
+        444,
+        283
+      ],
+      [
+        416,
+        279
+      ],
+      [
+        379,
+        270
+      ],
+      [
+        348,
+        250
+      ]
+    ]
+  },
+  "generations": {
+    "slipway": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-2393ee6b-3d93-4f4a-92c7-2a5f119bb8c5",
+      "inputs": [
+        {
+          "path": "dist/assets/voyage/scenes/slipway.png",
+          "sha256": "f93e33d7ffaf3f61a404977efcff7e6be13f13fa3d804ec7de06523836c73068",
+          "bytes": 3015846,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "Produce one original, full-bleed 16:9 1860s maritime plein-air oil and gouache painting on fine linen for a historical point-and-click adventure. Think a real painter at a windswept place, with confident expressive flat bristle marks, great planes of colour, fine selective detail about things human hands have worn or made; strong non-photographic pictorial design and distinct local atmosphere, intelligible on a telephone. NOT a tracing or recolouring: invent new shapes, material grain, cloud formations, brushstrokes and lighting. Use the supplied reference ONLY as an immovable stage blueprint. Match its straight broadside framing and foreground walk plane, no shift, crop, tilt or lens change. Fixed world geometry! Cast, inventory and dialogue will be composited later: no people, no readable lettering, labels, watermarks, border, UI, loose pickups, modern fittings, or new foreground obstacles. Coordinates below in percent (x,y) of whole painting, origin upper left; do not print numbers. A small bright Auckland Island inlet during a squall clearing late in the Antarctic winter morning. Each colour fresh: wild diagonals of turquoise-slate surf through the narrow LEFT aperture, small opal clouds and warm silver light across a distant angular headland, windswept rata with limbs like calligraphy, violet shadow, copper raw wood, russet-green hillside on right. Transform generic brown clutter into big deliberate masses, foreground mostly open gravel. A roof of salvaged canvas at x26–39 over working bench whose empty top is centered (31.6,50). In front of rata on timber cradles, a partly rebuilt 1865 dinghy sits broadside x42–84 exactly as source image: high curving prow on right at (84,37), open light ribs/unplanked upper section across (54.3,48), strongest strake (71.2,54.2), mast STEP (62,49) but no mast or sail of any sort! This is vital for later separate game layers. Hull lowest at y59, cradle foot at y66. Bottom 32 percent of picture an open level strip of grit, a narrow streak of light crossed by cool tree shadows kept outside active silhouettes; shoreline does not enter strip. Retain stack of split timber at left and barrel at right edge. Frame in a life-sized gestural hand painted landscape. No Alpine towering snowy peaks or tropical plants.",
+      "output": {
+        "sha256": "0ad67722bcdc1f8ae68352768c43f7fa5dca5f47368c48222b1637b7a3e4241b",
+        "bytes": 3455315,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    "slipway-ready": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-2dc1c82e-9ae4-4d20-ab5f-e469a32c1ea0",
+      "inputs": [
+        {
+          "generation": "slipway",
+          "sha256": "0ad67722bcdc1f8ae68352768c43f7fa5dca5f47368c48222b1637b7a3e4241b"
+        },
+        {
+          "path": "dist/assets/voyage/scenes/slipway-ready.png",
+          "sha256": "20de70b4cc3e93d4cbd0eefd53e6e7018e52f193064faf24d5e18a4217468822",
+          "bytes": 2848456,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "A localized change to the FIRST 16:9 colour oil and gouache painting. Stay in the same skewed calm winter morning light, same waves and trees, canvas canopy, landscape, gravel, original surrounding brushwork. DO NOT shift camera at all or repaint the landscape. Complete and rig the boat. The SECOND reference image of the old set shows exact size, placement and silhouette of the BARE MAST and TRIANGULAR SAIL desired. Use that geometry only. In first image, keep the workboat on its same supports, hull outer rim x42–84, y37.0–58.4%, add its finished upper planking, dark oakum seams and gunwale of amber wood, and show a modest working hand-hewn mast at x62.2%, rooted y49.0, top y13.4. Single sea-ivory triangular sail, warm as unbleached linen, held to short stays from about (62.4,15) to (62.4,41.7) to (79.9,38.3); slightly uneven short seams, modest natural weight. No pennants, added mountains, people, tools, new deck gear or other changes. Keep fine linen paint surface, long brush strokes and every possible source pixel of original landscape between boat and sail. Distinct playable state but fixed registration.",
+      "output": {
+        "sha256": "c212233dbb09005e8935440de220f059cec696b072b4f8b3533aa3f16f3fc652",
+        "bytes": 3086968,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    }
+  },
+  "files": {
+    "slipway": {
+      "file": "slipway.webp",
+      "sha256": "5eb3adc11566fcd8c0d29c44725743715488e3c4ce87275cc97fe29bfda020ad",
+      "bytes": 492540,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "slipway"
+      ],
+      "masks": []
+    },
+    "slipway-ready": {
+      "file": "slipway-ready.webp",
+      "sha256": "f7c91995cfd8cb4c5a8262df3db0156ee41ce2472cf78683209cd49c50b8f5ff",
+      "bytes": 487580,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "slipway",
+        "slipway-ready"
+      ],
+      "masks": [
+        "rigged"
+      ],
+      "registration": "Generated ready hull, rig and sail are composited onto the unchanged unrigged painting."
+    }
+  }
+}

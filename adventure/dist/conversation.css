@@ -1,0 +1,75 @@
+@font-face {
+  font-family: Spectral; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('assets/lettering/spectral-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: Spectral; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('assets/lettering/spectral-600.woff2') format('woff2');
+}
+/* Picture, command line and tool roll retain their order. An exchange sits at
+   the rail beneath the actors. A passing comment leaves the tools accessible. */
+.command-dock { position:relative; display:grid; grid-template-columns:minmax(0,1fr); }
+.command-dock > .interaction-line { grid-area:1/1; }
+.command-dock > .inventory-bar { grid-area:2/1; }
+.command-dock[data-mode] > .interaction-line { visibility:hidden; }
+.command-dock[data-mode=exchange] > .inventory-bar { visibility:hidden; }
+.command-dock .dialogue, .command-dock .dialogue[data-speaker] {
+  position:relative; inset:auto; grid-area:1/1/3/2; align-self:stretch; justify-self:stretch;
+  width:auto; min-width:0; transform:none; display:grid; grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center; column-gap:clamp(12px,2vw,29px); margin:0;
+  padding:10px clamp(12px,3.4%,48px); border:0; border-block:1px solid #817565; border-radius:0;
+  color:#f8eed9; background:linear-gradient(90deg,#16232aee,#263036f2 47%,#172328f5),url('assets/ui/materials/canvas.webp') center / auto 100%;
+  box-shadow:inset 0 1px #c2ae8340,inset 0 -1px #0007; z-index:1;
+}
+.command-dock .dialogue::after, .command-dock .dialogue[hidden] { display:none; }
+.speaker-portrait { width:clamp(52px,6.8vw,84px); height:auto; aspect-ratio:1; object-fit:cover; border-radius:3px; box-shadow:0 0 0 1px #b5a48688,0 1px 5px #08111866; }
+.dialogue .dialogue-copy { min-width:0; }
+.dialogue .dialogue-speaker { display:block; font:600 clamp(13px,1.2vw,17px)/1.16 Spectral,Georgia,serif; text-transform:none; letter-spacing:.02em; color:#e6c994; }
+.command-dock .dialogue p { margin:.24em 0 0; max-width:65ch; font:400 clamp(16px,1.85vw,24px)/1.27 Spectral,Georgia,serif; color:#faf2df; text-wrap:pretty; }
+.dialogue .dialogue-controls { display:flex; flex-direction:row; flex-wrap:nowrap; gap:4px; align-self:center; }
+.dialogue .dialogue-controls button { display:grid; place-items:center; width:34px;height:36px; padding:7px; color:#eadfc8; background:transparent; border:1px solid transparent; border-radius:3px;box-shadow:none; }
+.dialogue .dialogue-controls button:hover, .dialogue .dialogue-controls button:focus-visible { background:#394147; color:white; border-color:#baa988; }
+.dialogue-controls svg { width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round; }
+#dialogue-pause .resume-stroke, #dialogue-pause[aria-pressed=true] .pause-strokes { display:none; }
+#dialogue-pause[aria-pressed=true] .resume-stroke { display:inline; }
+.command-dock .dialogue[data-mode=aside] { grid-area:1/1; column-gap:11px; padding-block:3px; min-height:38px; }
+.dialogue[data-mode=aside] .speaker-portrait { width:32px; }
+.dialogue[data-mode=aside] .dialogue-copy { display:flex; align-items:baseline; flex-wrap:wrap; gap:0 10px; }
+.dialogue[data-mode=aside] p { margin:0; font-size:clamp(15px,1.3vw,18px); }
+.dialogue[data-mode=aside] #dialogue-next { display:none; }
+.dialogue[data-mode=aside] .dialogue-controls button { height:30px; width:30px; padding:6px; }
+.chapter-banner strong, .journey-map strong, .completion h1, dialog h2 { font-family:Spectral,Georgia,serif; }
+.chapter-banner p, .clue-text, .caption { font-family:Spectral,Georgia,serif; }
+/* Bag and environment carry the success feedback. Keep pictorial hints in the journal. */
+.scene.staged #thought { display:none; }
+.game-shell:has(.command-dock[data-mode]) .caption { display:none; }
+.game-shell .caption { border-radius:2px; font-size:clamp(15px,1.45vw,19px); line-height:1.3; }
+.completion .ending-portraits img { display:block; width:100%; height:auto; aspect-ratio:1; object-position:center; }
+/* The seated painting is registered to the forward boot. It faces Alick at the shore. */
+.staged .shore-rest {
+  position:absolute; left:50%; bottom:-.265%; width:0; height:63.5%;
+  transform:scaleX(-1); pointer-events:none; filter:var(--cast-light);
+}
+.shore-rest img {
+  display:block; position:absolute; left:0; bottom:0; width:auto; height:100%;
+  max-width:none; transform:translateX(-55.485%); pointer-events:none;
+}
+.shore-rest ~ .actor-canvas { display:none; }
+.staged .person:has(.shore-rest) { clip-path:inset(35% -90% -3%); }
+.staged .person:has(.shore-rest):focus-visible .shore-rest img { filter:drop-shadow(0 0 2px #ffdc92); }
+@media(max-width:700px) {
+  .command-dock .dialogue { column-gap:12px; padding-inline:12px; }
+  .dialogue .dialogue-controls { flex-direction:column; gap:0; }
+  .dialogue .dialogue-controls button { width:31px;height:28px;padding:5px; }
+  .dialogue[data-mode=aside] .dialogue-controls { flex-direction:row; }
+  .dialogue .speaker-portrait { width:52px; }
+  .command-dock .dialogue[data-mode=aside] { column-gap:8px; }
+  .dialogue[data-mode=aside] .speaker-portrait { width:30px; }
+  .command-dock .dialogue[data-mode=aside] p { font-size:15px; }
+}
+@media(max-height:500px) and (orientation:landscape) {
+  .command-dock .dialogue { padding-block:4px; }
+  .command-dock .dialogue .dialogue-controls { flex-direction:row; }
+  .speaker-portrait { width:45px; }
+  .command-dock .dialogue p { font-size:15px; }
+}

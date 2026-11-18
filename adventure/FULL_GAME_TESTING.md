@@ -2,6 +2,14 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## The five castaways, 18 November 2026
+
+All 153 source checks passed. The compact web edition passed 55 checks with no skips. Both copies also reached the separate first-night ending. The campaign walkthrough used the production event handlers for all seven chapters, 71 inventory, travel and passage actions, eight work surfaces and the rescue. Restoring a save during a puzzle, the change of protagonist and closing a conversation during optional spoken narration were exercised. The nature and timing of human choices still call for a player session. [Dialogue and entrances](tests/conversation-ui.test.cjs) · [Boatbuilder handoffs](tests/plank-company.test.cjs) · [Campaign handlers](tests/voyage-ui.cjs)
+
+The web edition holds 144 files totalling 31,758,501 bytes before transfer compression. Its 103 WebP images include 79 files copied byte for byte and 24 converted PNGs whose colour, dimensions and alpha were checked. The two local webfonts, their licence and the single roof-drip recording matched their source bytes. The open boat keeps the same sea and sky while the bilge dries and the sail is mended.
+
+Thirty walk drawings, fifteen working poses and the separate seated Raynal were verified against their source sheets. The 390 px and 1,152 px opening compositions distinguish both faces and leave a 9 px and 25 px gap respectively between Alick’s head and the sail. Native Canvas playback sampled 44 regions in 11 states for 64 frames each, including three states of the open boat. All 26 solid samples stayed fixed. The managed preview timed out opening port 4173 and reported that it was stopped. The image comparisons use the game layers and text metrics. This release still needs a visual playthrough on a real browser and phone. [Staging comparisons](reviews/company/README.md) · [Weather measurements](reviews/tide/watch/README.md) · [Material contact](reviews/tactile/README.md)
+
 ## Fixed scenery and the incoming tide, 18 November 2026
 
 All 133 source tests passed, with zero skips. The stand-alone first-night walkthrough reached its ending. The compiled WebP edition passed 44 further checks against the same handlers for the seven chapters, work surfaces, archive, weather and foreground. Its 116 runtime files occupied 29,154,201 bytes before transfer compression. All 55 source WebPs and the recorded water-drop sound matched the delivery bytes. The other 24 images were converted from PNG with the packager’s geometry, alpha and colour checks.

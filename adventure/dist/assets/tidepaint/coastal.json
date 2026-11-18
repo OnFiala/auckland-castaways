@@ -2,213 +2,210 @@
   "title": "Coastal rooms of Until We Return",
   "generator": "OpenAI ImageGen",
   "date": "2026-11-18",
-  "provenance": "Original game paintings. The existing project plates supplied camera, working-surface, and prop layout. The four base plates were repainted by ImageGen. Each of the three state plates was generated using its new base and the corresponding earlier visual guide. All coordinates use percent of frame, top-left origin. Reference paths are relative to adventure/dist/assets/.",
+  "provenance": "Original game environments. The current beach, schooner and winter revisit have their own ImageGen prompt, input identity, native generation and delivered checks below. Room-specific registration uses a top-left origin. Earlier coastal receipts: history/coastal-before-fieldbook.json.",
   "base_direction": "Paint a BRAND NEW 16:9 background for a cinematic 2D period adventure. The supplied earlier pencil drawing is ONLY a blocking and camera diagram. Discard all its marks and atmosphere. Reinterpret the scenery by a field painter working on location in the 1860s, with fluent oil and bodycolour on dark fine linen: broad angular wet-on-wet facets, subtle broken knife highlights, luminous masses of celadon-grey light, copper bracken, bone-white foam, clean muted indigo and storm-violet darks. Wide restrained value design and beautiful observed details at points of interest, antique pre-rendered game depth. It must look unmistakably like a brand new sophisticated physical PAINTING instead of a color treatment or digital pencil photograph. Specific low wind-scoured Auckland Islands terrain, New Zealand subantarctic. Same original camera, geometry, pose-ground, asset positions and proportions. Keep the whole lower walking strip clear and subdued, suitable for character cutouts. LAND must not flow into water, never paint overlapping ripples onto rocks. No baked-in characters, animals, signage, labels, border, or interface. Edge to edge horizontal painting, 16:9.",
   "assets": [
     {
       "file": "beach.webp",
+      "generator": "OpenAI ImageGen",
+      "generation": "exec-df7d48c9-8231-48eb-96dd-60969876053e",
+      "prompt": "Create a radically restaged native wide 16:9 2D environment for a period adventure. One complete scene edge-to-edge, no picture frames, no lettering, no figures, no interface. Reference is an older version that the director rejected: keep only the listed interaction positions, not the design, drawing, camera perspective, incessant rock texture or palette. The new painter works in opaque matte gouache with fine dark sepia maritime draughtsman's nib accent lines and visible drybrush, early hydrographic survey field book. Bold shapes, physical construction and perspective, soft grey maritime daylight through a white gap from upper left, restrained warm honey-brown timber against petrol-blue shadow and green-grey water. Graphic tonal masses and specific voids. This is a working place on the Auckland Islands in 1864, a coastal temperate windy inlet, not the tropics, not a scenic American fantasy. A brilliant, modest little book painting of a particular lived-in site, elegant color and composition. No old paper illustrated border. No thick outlined comic style or photograph. Percent coordinates read from LEFT, TOP. First shore: open an inviting wedge of pewter wet-sand beach from lower LEFT across bottom to the foot of the rock bluff at right (entire bottom 30% must convincingly take large standing crew, low tide line receding across mid-left). Frame the view with a low, flat volcanic ledge at far lower left and a SINGLE monumental cut aggregate bluff thrusting in from upper right, its warm clay sheer break supporting windswept coastal rata roots; tree comes from right side, its low slender inner hook crosses (69%,33%) where gameplay hangs cream canvas, do NOT paint any cloth. At far left mid distance a VERY SMALL partly hidden two-masted schooner with broken rig and tilted hull in the surf, its bow pointed to left, showing what the player will approach. A soft offshore headland recedes behind it. Path in the scree at (90%,65%) leads out behind bluff; second path towards wreck on left (7%,76%). Leave plumbed sand/mud at (25%,71%), (34%,68%) and (48%,72%) free of all portable objects. Work from the pose level at (78%,69%) where an actor will stand. Use a compelling level, almost seaward eye-line rather than an overhead diagram, great quiet atmospheric space and one distant shaft of chalk-blue glare. Beautiful play of reflected sky near shore, broad sparsely tufted land, isolated clear patches of kelp if any. No chaotic rock piles or bushes filling every area. Absolutely no baked-in ropes or removable items.",
       "references": [
         {
-          "file": "beach.png",
-          "sha256": "c9386388d294858e67df53674a1f5a0ec0aeeedd05e9ef15f61050c4edeabfed",
-          "role": "earlier base layout"
+          "role": "PNG decode supplied to ImageGen from the former game plate",
+          "priorDeliveredWebP": "37e65b27f4f7eff46bee2e159aa6127334746e6e67b3712794b299092dea7f5f",
+          "formerReceipt": "history/coastal-before-fieldbook.json",
+          "bytes": 2943125,
+          "sha256": "ee0dce753fdb7c5266995af33c62a929b331462830c43276ce89ca4b86684e67",
+          "dimensions": [
+            1672,
+            941
+          ]
         }
       ],
-      "direction": "January clearing storm. Stage a dynamic blue-green swell and pearly spray seaward at left, separated cleanly from sculptural dark basalt. Wrecked small two-masted schooner far distant at x14%, centre y38%. Keep the tree arm at x69% y33% as a hanging place for a separate sail scrap; do not paint the scrap, pole, log or coil. Right winding path remains clear. Keep rocky outcrop overlooking firm neutral grey sand below y71%. Show a broad sweep of sky broken by the first glowing cold light.",
-      "method": "Full-frame original painting; RGB WebP encode.",
-      "native_generation_sha256": "68715554526b89c48779991d9c7791e618d359008c7cfd3d93225f25c649f014",
+      "native_generation": {
+        "bytes": 2875222,
+        "sha256": "3d43a90009abaec3355bdcbbb8fbadfb49780d24b01edc9193b6a78374c34141",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      "method": "Full-frame original gouache scene, RGB WebP quality 92, libwebp method 6.",
+      "webp_quality": 92,
+      "bytes": 441368,
+      "sha256": "0663e6fa24bed611d4757f5c500ca79778016fc25cb3c487c12ea966cc1b36cf",
       "dimensions": [
         1672,
         941
-      ],
-      "bytes": 592056,
-      "sha256": "37e65b27f4f7eff46bee2e159aa6127334746e6e67b3712794b299092dea7f5f",
-      "webp_quality": 92
+      ]
     },
     {
       "file": "wreck.webp",
+      "generator": "OpenAI ImageGen",
+      "generation": "exec-63687112-3e59-4c73-823b-bb7beaf40a80",
+      "prompt": "Create a radically restaged native wide 16:9 2D environment for a period adventure. One complete scene edge-to-edge, no picture frames, no lettering, no figures, no interface. Reference is an older version that the director rejected: keep only the listed interaction positions, not the design, drawing, camera perspective, incessant rock texture or palette. The new painter works in opaque matte gouache with fine dark sepia maritime draughtsman's nib accent lines and visible drybrush, early hydrographic survey field book. Bold shapes, physical construction and perspective, soft grey maritime daylight through a white gap from upper left, restrained warm honey-brown timber against petrol-blue shadow and green-grey water. Graphic tonal masses and specific voids. This is a working place on the Auckland Islands in 1864, a coastal temperate windy inlet, not the tropics, not a scenic American fantasy. A brilliant, modest little book painting of a particular lived-in site, elegant color and composition. No old paper illustrated border. No thick outlined comic style or photograph. Percent coordinates read from LEFT, TOP. VERY close inshore three-quarter bow view of a small half-grounded two-masted wooden working schooner of 1864, NOT a vast galleon: port bow looming from the left edge then hull recedes rapidly toward centre-right, canted out of the water on one low flat tilted rock shelf. In the left upper corner its forestay and broken bowsprit imply steep near bow, no ornamental figurehead. Make its structure physically honest: raked stem, planking edges bending round a heavy bilge, continuous keel, broken sheer rail, black iron chainplates fastened through the wales, diagonal broken mast, low cabin near far stern around x55, not a row of dark toy windows; NO GUN PORTS. A slice of steel-blue sea with white water visible at far left and behind the narrower stern near x75%. In the right middle an isolated CLOSED small square honey-oak ship's tool chest, roughly from x65% to 79%, y47% to 63%, near enough for hand use, on a work ledge. A hinged flat lid and unmistakable iron hasp facing us; no metal chest or pirate embellishment. The chest can be opened later. One short loading plank set on the near ground at x45%. Enough clear hard-packed sand foreground across bottom 26% to walk and use a pry bar; stable dry work ledge below the chest. Gentle right exit ascending at x93%,67% behind bench stone. Empty character place at (85%,74%). Hero read is a worn green-grey hull with a pale ochre rubbing strake exposed, lifting above silvery foam. Torn modest small scrap sail at x30%,16% if natural. Heavy, three-dimensional maritime joinery and overlap against the clear morning, quiet foreground and near soft edges accenting the ship.",
       "references": [
         {
-          "file": "wreck.png",
-          "sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
-          "role": "earlier base layout"
-        },
-        {
-          "file": "workplates/chest.webp",
-          "role": "project close-up identifying the narrow rusted strap and triangular pry notch",
-          "sha256": "97949b9dfda8c2cf106bf5e9dd51fc98f1b1d58a41889c98b824584f5a6f98f6"
+          "role": "PNG decode supplied to ImageGen from the former game plate",
+          "priorDeliveredWebP": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
+          "formerReceipt": "history/coastal-before-fieldbook.json",
+          "bytes": 2971028,
+          "sha256": "6f3da3aaf88971f17116f15b8197d98c0bc914efaef45075f96d3d8adc940526",
+          "dimensions": [
+            1672,
+            941
+          ]
         }
       ],
-      "direction": "Hero view of the wounded Grafton deeply raked along a basalt shelf. Its bow towers at left, stern/cabin slopes toward the right. Great sweeping dark-violet shadow under the warmer scarred bent strakes, visibly swollen wood. Light hail passing on far hills, creaming pale sea at far left. Crucial closed, square rough salvage chest on its rock pedestal at x72% y56%, exact original extent x65–79 y49–62. Keep exactly one fixed board leaning at centre right x52–60% y40–73. Preserve era rigging, gash through planks, little coil at left, right-hand shore exit. Clear path under y74%, soft solid gravel. No extra standalone tools, lumber or crates.",
-      "method": "Full-frame original painting; RGB WebP encode.",
-      "native_generation_sha256": "2d6133eb315fc6229f1be02775d7b389f84328f357c209259c97329343b54b0f",
+      "native_generation": {
+        "bytes": 3219819,
+        "sha256": "f8e8a91d9c624628e77be6328e68f7eb29f1067eeba431f5afd97e36ea8cec1f",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      "method": "Full-frame original gouache scene, RGB WebP quality 92, libwebp method 6.",
+      "webp_quality": 92,
+      "bytes": 545844,
+      "sha256": "291a317ec606d1bc41b29519e0d6585f911da4b2c870ee40419877e1d30f8f36",
       "dimensions": [
         1672,
         941
-      ],
-      "bytes": 591708,
-      "sha256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
-      "webp_quality": 92,
-      "delta_outside_local_edits_rgb_mean_after_encoding": [
-        0.266,
-        0.263,
-        0.268
-      ],
-      "prop_continuity": {
-        "generator": "OpenAI ImageGen",
-        "date": "2026-11-18",
-        "pre_edit_file_sha256": "cbbc2f2757b13a1fb624229a4dad28ad58e4dfcd198416bc279f75b2d798617e",
-        "generated_donor_sha256": "c76919229e0c4d7964aa8378143a44c5f4e9e1301af1bb19c5c01ed8b51b5241",
-        "reference_crop_xywh": [
-          1055,
-          409,
-          300,
-          240
-        ],
-        "reference_crop_scale": 3,
-        "donor_registration_xywh_px": [
-          [
-            1149,
-            469,
-            20,
-            41
-          ],
-          [
-            1184,
-            491,
-            17,
-            12
-          ]
-        ],
-        "method": "ImageGen edited a 3× crop of the pre-edit plate with the playable chest workplate as a prop reference. Only the small hardware and notch patches were registered onto the original lossless painting before the same WebP encoding."
-      }
+      ]
     },
     {
       "file": "wreck-open.webp",
+      "generator": "OpenAI ImageGen",
+      "generation": "exec-35c48563-dbe9-4409-9162-0229ab59e40e",
+      "prompt": "One production state change to this supplied historical maritime adventure painting. Pixel-aligned camera and exactly the same painted image. In place, OPEN the only golden wooden tool chest on the rock at x73%, y57%. Its rectangular back-hinged wooden lid has risen almost vertical revealing its wood underside and dark wood interior. Keep the front wall in exactly the same position and exact extents; its hinged front clasp has lifted with the lid and the small fixed metal keeper on the front wall remains below. Retain worn ochre wood, draughtsman's gouache detail. A clear demonstration the chest is open, no extra props or people. Everything else exactly registered; keep sea, ship, hillside, and all other pixels and dimensions fixed. Landscape 16:9. ",
       "references": [
         {
-          "file": "tidepaint/wreck.webp",
-          "sha256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
-          "role": "Live wreck plate. The original composition used its pre-fastener generation; that archived reference is identified separately.",
-          "pre_continuity_reference_sha256": "cbbc2f2757b13a1fb624229a4dad28ad58e4dfcd198416bc279f75b2d798617e"
-        },
-        {
-          "file": "states/wreck-open.png",
-          "sha256": "2eb4cbeb194e87e537730f48501435ec34de25dcd47f6e1c5e9f329e207c680d",
-          "role": "earlier state layout"
-        },
-        {
-          "file": "workplates/chest.webp",
-          "role": "project close-up identifying the narrow rusted strap and triangular pry notch",
-          "sha256": "97949b9dfda8c2cf106bf5e9dd51fc98f1b1d58a41889c98b824584f5a6f98f6"
+          "role": "New full-resolution game painting supplied as the ImageGen reference",
+          "generation": "exec-63687112-3e59-4c73-823b-bb7beaf40a80",
+          "bytes": 3219819,
+          "sha256": "f8e8a91d9c624628e77be6328e68f7eb29f1067eeba431f5afd97e36ea8cec1f",
+          "dimensions": [
+            1672,
+            941
+          ]
         }
       ],
-      "direction": "Image ONE is the actual new finished painting. Make an image identical to it in every respect except for the wooden salvage chest at 72 percent across and 55 percent down. Paint its lid hinged open almost vertical as in reference TWO, the original state guide. Image one is the authority on paint, scale and lighting. Respect first chest front silhouette exactly. Hinged open rear edge, visible inner shadow; empty rough wooden interior. Keep all the background and sea and ship of image one exactly locked. Warm rust against violet shade, wood securely on stone. No other new props.",
-      "method": "Generated state art registered on the original new base under a three-pixel feathered polygon. All surrounding source pixels retained before WebP encoding.",
-      "native_generation_sha256": "9ade25859ea8fce21c8a1189385b2123be8024abe362ba37087a15081950ad72",
+      "native_generation": {
+        "bytes": 2801799,
+        "sha256": "3176b1f6283c4b2e27216127d15975b9c3b5d3acaf2b955dea5fab87366d6d15",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      "method": "Original ImageGen state edit. Its painted functional part is registered onto the lossless base before common WebP encoding.",
+      "webp_quality": 92,
+      "bytes": 536498,
+      "sha256": "df774ba7e84a9abeac10e912aed17fb404a9c0f8c0204a79084725c19b893982",
       "dimensions": [
         1672,
         941
       ],
-      "bytes": 592326,
-      "sha256": "f55cfe61de722993cf58492c4a1e221d2329e3051b9f8717d723b2bbb2570a2f",
-      "webp_quality": 92,
-      "lossless_base_generation_sha256": "2d6133eb315fc6229f1be02775d7b389f84328f357c209259c97329343b54b0f",
-      "mask_polygon_percent": [
-        [
-          64.7,
-          50.6
-        ],
-        [
-          69.7,
-          48
-        ],
-        [
-          69.8,
-          35.1
-        ],
-        [
-          79.0,
-          36.3
-        ],
-        [
-          79.0,
-          61.5
-        ],
-        [
-          74.2,
-          63.9
-        ],
-        [
-          64.8,
-          62.6
-        ]
-      ],
-      "mean_absolute_rgb_error_outside_state_after_encoding": [
-        0.806,
-        0.782,
-        0.832
-      ],
-      "delta_outside_local_edits_rgb_mean_after_encoding": [
-        0.433,
-        0.422,
-        0.443
-      ],
-      "prop_continuity": {
-        "generator": "OpenAI ImageGen",
-        "date": "2026-11-18",
-        "pre_edit_file_sha256": "cd8e00df2c5725663e8320c84f32de23c933e5bd70076ccbdcc35216edeb19ba",
-        "generated_donor_sha256": "82471c2d6947d7d27f183d4a6c485cd3339229334fb389916c4818a51a8859aa",
-        "reference_crop_xywh": [
-          1055,
-          280,
-          300,
-          340
-        ],
-        "reference_crop_scale": 3,
-        "donor_registration_xywh_px": [
+      "registration": {
+        "coordinates": "Native 1672x941 donor pixels; top-left origin",
+        "donorPolygon": [
           [
-            1151,
-            497,
-            19,
-            19
+            1096,
+            513
           ],
           [
-            1227,
-            339,
-            17,
-            15
+            1157,
+            474
+          ],
+          [
+            1166,
+            336
+          ],
+          [
+            1172,
+            332
+          ],
+          [
+            1235,
+            331
+          ],
+          [
+            1237,
+            321
+          ],
+          [
+            1259,
+            317
+          ],
+          [
+            1265,
+            332
+          ],
+          [
+            1344,
+            334
+          ],
+          [
+            1341,
+            602
+          ],
+          [
+            1295,
+            618
+          ],
+          [
+            1095,
+            607
           ]
         ],
-        "method": "ImageGen edited a 3× crop of the open crate with the playable chest close-up as reference. The stationary loop fits the closed hasp. The raised lip is placed on the corresponding lateral line of the foreshortened lid. Only these two patches entered the original lossless open composition before the same WebP encoding."
+        "featherSigmaPixels": 1.7,
+        "compositeTranslation": [
+          0,
+          0
+        ],
+        "registeredMasterSHA256": "b77ff7fc5160009c9839e3adcb693f5a4afc2572ed0d10d2e7c23ef1ff7a0e5d",
+        "meanAbsoluteRGBErrorOutsideDilatedEditEncoded": [
+          1.18825,
+          1.09652,
+          1.27778
+        ]
       }
     },
     {
       "file": "salvage.webp",
+      "generator": "OpenAI ImageGen",
+      "generation": "exec-c25a3d2a-cb14-4dc6-ab35-8ae4465a7019",
+      "prompt": "Make one atmospheric winter revisit of precisely the SAME 1864 working schooner stranded at its SAME angle on this ledge, from EXACTLY the supplied camera. The same recognizable foreshortened stem, port wale, stern chimney, leaning ramp, chest and right path and coast establish continuity BUT several long outer planks and much decking have been worked away; broad irregular long gaps in the port hull reveal a row of dark curved OAK FRAMES and interior void, with two bold remaining strakes each end of ship. Most rigging, loose ropes and canvas and tops of the masts have been taken and the chimney has lost its cowl. Overcast winter morning; salt-faded timber, wet stone, fine patches of frost on sheltered ground and a flurry in the distance (maritime winter, no thick snow). Muted smoke blue and lichen grey wood with ochre in freshly worked cuts. Chest on the same right-hand ledge looks weatherbeaten. Quiet physically walkable foreground holes left for gameplay overlays (spun oakum x27% y70%, boards x49% y71%, cloth x80% y59%). An original in opaque field-note gouache with very fine sepia nib. Hero shape: the handsome raked stem persists, much daylight between creaking ribs. Enormously more visibly stripped than a simple repaint. Preserve sky and water boundaries and place of the far coast. No people, signage, axes, loose portable items, lamps, fresh debris on walking floor or GUI, landscape 16:9.",
       "references": [
         {
-          "file": "tidepaint/wreck.webp",
-          "sha256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
-          "role": "Live wreck plate. The original composition used its pre-fastener generation; that archived reference is identified separately.",
-          "pre_continuity_reference_sha256": "cbbc2f2757b13a1fb624229a4dad28ad58e4dfcd198416bc279f75b2d798617e"
-        },
-        {
-          "file": "voyage/scenes/salvage.png",
-          "sha256": "c0f6d8e13ea09e23331af338188068fb680b91ce6624a45cac9634b369e65e4b",
-          "role": "earlier state layout"
+          "role": "New full-resolution game painting supplied as the ImageGen reference",
+          "generation": "exec-63687112-3e59-4c73-823b-bb7beaf40a80",
+          "bytes": 3219819,
+          "sha256": "f8e8a91d9c624628e77be6328e68f7eb29f1067eeba431f5afd97e36ea8cec1f",
+          "dimensions": [
+            1672,
+            941
+          ]
         }
       ],
-      "direction": "Return to the identical stranded schooner of the first new painting but a winter and a year have weathered the hull. Second painting ONLY indicates what planks were removed from near-side hull. Through the entire midship section, x22–64% y26–58%, paint several missing strakes exposing widely spaced curved ribs, dramatic negative gaps framing sky and the dark hold within as reference TWO. Muted green-gray outer water. Ship still sits on the same rocks and appears same size. Keep closed chest and propped fixed tall board, remove small spool/rope coil at far left base leaving ground and stones bare for salvage. Avoid extra props in front, no people, drawing, lettering, text. Deep and quiet but legible afternoon; keep painterly materials of image ONE. No carved names, do not add any new detachable items, preserve the walkable floor.",
-      "method": "Whole-room seasonal reillustration of the new wreck. Missing strakes expose ribs, the shore coil is gone, and a dusting of snow identifies the winter visit.",
-      "native_generation_sha256": "43d23e63e2f462cc8f825bc40f0d928c072dce99f7ce930ba03cdffe63103001",
-      "dimensions": [
-        1671,
-        941
-      ],
-      "bytes": 613986,
-      "sha256": "f4ea40a4fe4753510c746238f7d5e1958755f9acc8f7f997f1f34c0d3c900d3e",
+      "native_generation": {
+        "bytes": 3178335,
+        "sha256": "8e458fcc68a9848d93028ba266e086b6f09024cbfd3ac94896499e7c0d5f004b",
+        "dimensions": [
+          1672,
+          941
+        ]
+      },
+      "method": "Full-frame original gouache scene, RGB WebP quality 92, libwebp method 6.",
       "webp_quality": 92,
-      "lossless_base_generation_sha256": "2d6133eb315fc6229f1be02775d7b389f84328f357c209259c97329343b54b0f"
+      "bytes": 509728,
+      "sha256": "b6c22a2779fe42a65a45c19b6a6e19f63f88c6de4cbf7defeb48cfe22041648c",
+      "dimensions": [
+        1672,
+        941
+      ]
     },
     {
       "file": "camp.webp",
@@ -734,5 +731,6 @@
         "prompt": "Edit the supplied wide original 1860s painting. Scene is already finished. Mandatory single local correction only, keeping all proportions and coordinates exactly fixed: ankle deep inlet water laps directly against and UNDER the small return skiff at the shingle edge. A small swell from the far water at left has washed through gaps in the stones, and wraps around the bow (right) beneath the keel leaving a narrow bright-edged meandering tongue between the saturated dark pebbles. From the skiff toward the seawards side of the wooden post at x76%, paint a connected, very narrow plane of brushed celadon-pewter water from the existing ocean behind, with a few very fine foamy lips, soft ochre-brown hull reflection, transparent dark pebbles, discontinuous wet reflections. Boat is afloat in seaward shallows; foreground is solid dry beach. Most of the new visible water is just beneath and immediately to the right of the boat, as the tide rides in and recedes. A *convincing connected tidal inlet*, not scattered tidepools. Make it unequivocally visible at phone size, broad enough to read but confined to band x13%–75.2% and y53.0%–64.5%. Keep the skiff in its EXACT current position x20.2%–54.7%, with wooden hull intact, keel baseline y61.8%. Preserve curve and colour of every part of the foreground boat, and timber post at x75–78% and eye ring at 77.8%,31.5% exactly unchanged. Keep large foreground stones where possible. The entire level foreground walking shingle below y65% is EXACTLY UNCHANGED AND DRY; no wash in the walking plane. Gently irregular almost horizontal tide edge settles near y64%. Same full 16:9 image with no reframing, zoom, shift, hue change, new props, people, expanded ocean, or changes to sky, mountain, anchored boat, trees, foreground post, dry ground or the double-ended skiff itself. Finish with same sober brushwork, muted low-angle light and canvas surface as original."
       }
     }
-  ]
+  ],
+  "base_direction_context": "The shared base_direction below documents the earlier coastal series and the surviving paintings from that series. Current field-book paintings have their complete prompt inside their asset records."
 }

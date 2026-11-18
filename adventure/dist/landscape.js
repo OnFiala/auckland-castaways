@@ -24,14 +24,26 @@
   // crest oriented along (span,slope). All dimensions here are % of the plate.
   const front = (x,y,dx,dy,span,slope,period,phase) => ({x,y,dx,dy,span,slope,period,phase});
   const harbourPeriod = 8.6;
-  const shore = water('south coast surf',
-    '0,42.6 15.6,43.1 16.9,43.7 18.1,43.4 20.3,44.1 20.1,45 22.4,45.8 24,46.8 26.3,47.1 26.2,48.7 23.2,49.1 21.8,49.8 19.3,49.3 17.3,49.7 16.3,51 15.4,52.7 15.4,54.4 12.5,55.6 11.5,56.4 9.3,56.7 9.1,58 6.2,58.1 5.1,56.8 3.3,56.5 1.8,57.1 0,57.7','reef',
-    [front(12,44.4,-1.3,4.1,14,-1.1,5.9),front(6.7,48,.9,6.1,16,-2.1,6.8),front(2.4,50.6,2.1,6.4,13,-2.6,7.3)],
-    ['8.6,55.8 9.4,54.4 10.6,53.5 11.8,53.6 12.7,54.2 13.1,55.6 11.1,56.1','13.5,54.9 14.2,53.6 15.4,53 16,54.8','16.3,55.1 16,52.4 17.3,50.8 19.4,49.8 22.4,50.1 23.7,51.3 21.8,53.6','21.3,45.6 22,44.7 23.9,45.4 24.8,46.4','19.9,48.2 20.7,47.7 21.7,47.8 22.6,48.7 21.2,49.4']);
-  const brokenBow = water('surge on the broken bow','0,49 14.3,49 14.9,50.6 13.4,52.1 11.3,55 9.4,59.5 9.1,61.7 7.5,62 5.7,62.3 4.9,63.3 2.9,64.3 1.2,63.7 0,63.6','reef',
-    [front(4.8,51,.5,4.2,9,-.35,5.6),front(2,56,.75,6.2,9.4,-1.65,6.7)],
-    ['2,64 3,62.7 4.2,62.5 5.5,63.6 4.8,65.3 2.2,65.4']);
-  const headland = cloud('clouds west of the headland','0,0 56,0 49,6 34,12 29,19 16,29 0,32');
+  // January shore. The distant wreck and black reef break the skyline at
+  // 59%; the flats below the tongue of surf reflect light but are firm sand.
+  const shore = water('outer surf off the wreck',
+    '0,60.1 9.5,60.1 17.7,60.2 23.6,60.35 31.2,60.5 39.5,60.65 44.2,60.8 42.7,62.5 40.8,64.2 36,64.8 29.3,65.15 21,65.9 13.2,66.8 6,67.3 0,68.3','reef',
+    [front(9.2,60.7,2.1,3.9,23,-.45,7.8),front(28.1,60.9,2.4,2.9,21,-.28,9.9),
+     front(2.6,63.1,1.9,4,20,-1.4,8.7),front(19.1,62.3,2.3,2.6,25,-1.6,10.4)]);
+  const washLine=water('thin water over the flat sand',
+    '0,66.6 6,66.1 13,65.6 20,65.2 31.5,64.8 39.5,64.4 40.5,64.8 36.3,65.3 27,66.1 17,67.1 6,68.8 0,69.5','shoal',
+    [front(7.5,66.2,1,1.8,23,-2.6,10.4,.17),front(27.8,64.7,2.3,1.1,19,-1.4,9.9,.14)]);
+  const brokenBow=water('surge on the broken bow',
+    '0,43 4.5,43 5,47.6 5.7,51.9 6.5,56 7.6,60.1 8.9,64 10.1,68.6 11.6,72.8 12.7,75.1 11.3,75.6 8.5,75.9 5.6,77.1 3.1,77.1 1.2,78.7 0,78.7','reef',
+    [front(1.6,47.6,.9,7.4,10,-.5,7.2),front(2.5,54.8,1.2,8.8,10,-.8,8.3),
+     front(4.5,63.2,1.2,10.2,12,-1.6,9.1)],
+    ['0,70.6 1.4,69.5 3.4,69.1 4.9,69.6 5.9,70.8 4.4,71.9 1.4,72.2 0,72.2',
+     '5.4,68.3 6.3,66.6 8.3,66 9.4,66.7 10.4,68.6 9.5,69.6 7.1,69.7 5.7,69.2',
+     '5.3,78.2 6.6,76.5 9.8,75.8 10.8,76.4 12.1,76.7 13,77.8 10.6,79']);
+  const sternWater=water('water through the stern gap',
+    '69,44.3 79.9,44.4 78.7,46.4 76.6,48 75.6,49.7 71.1,50.1 68.9,50.1 69.15,48','ocean',
+    [front(73.8,45.4,1.6,3,10,-.6,8.6)]);
+  const headland=cloud('light through the bank over the wreck','0,0 55,0 50,11 49,25 43,37 23,42.5 6,49 0,49');
   const cabinWindow = [pane('water in the western pane',[14.7,35.7,6.1,2.1],{style:'glass'}),
     pane('water in the eastern pane',[22.2,35.4,5.7,2.1],{style:'glass'})];
   const roof = cloth('seam under the sailcloth roof','43,0 79,0 76,7 66,19 55,15 46,10',.69);
@@ -69,19 +81,22 @@
       ['41.5,35.6 43.8,44 45.5,53.4 50.4,61'],'#ab9252')
   ];
   const offshore = [
-    water('open sea to port','0,45.8 27.6,45.8 26,50 22.9,54.9 20.9,54.6 18.7,54.1 14.4,52.5 8.2,51.2 3.5,51.9 2.7,54.6 9,54.3 15,55.7 18.2,57.5 18.1,59 6,59.4 0,60.9','ocean',
-      [front(8.5,46.6,3.1,3.6,19,1.5,7.1)],
-      ['2.7,54.9 2.8,52.1 4.8,51.3 6.8,50.8 9.7,50.8 12.4,51.4 16,53.6 19.6,55.2 19.7,53.8 22.5,53.8 23,56 22.1,59.9 18.1,59.9 18.1,57.9 15.1,56.4 11.9,54.9 9,54.3 6.2,54.3 3.4,55.1']),
-    water('sea between the stays','30.6,45.8 42.1,45.8 41.3,58.8 27.3,58.8','ocean',
-      [front(31,49,2.8,4.8,15,-1,8.2)]),
-    water('swells abaft the mast','47,45.8 94.7,45.8 97.2,54.1 97.2,58.7 47,58.7','ocean',
-      [front(56,47.5,4.2,6.9,24,-1.9,7.8),front(73,46.4,5,4.7,23,-1.1,8.6),front(85,49.4,3.1,8.3,26,-3.1,9.2)])
+    water('open sea to port','0,42.8 30.35,42.7 29.1,46.4 28.7,49 26.4,57.1 26,59.1 20.8,58.8 20.4,55.4 19.8,54 17.4,53.9 17.1,55.2 14.6,53 10.4,51 7.6,50.5 5.1,50.8 2.9,51.8 2.3,52.5 2.1,53.9 2.6,54.9 4.9,53.8 7.4,53.2 10,53.9 13.7,55.5 16.5,57.8 16.4,58.4 11.1,58.7 8.8,59.1 5.4,60.3 2.2,62.4 0,64','ocean',
+      [front(9.6,44,2.6,4.7,24,1.1,9.9),front(19,46.6,1.8,5,17,-2,11)]),
+    water('sea between the stays','33.2,42.7 41.05,42.7 40.1,56.4 39.7,59.65 29.1,59.5 30.8,53.3 31.9,48.6','ocean',
+      [front(34,45,1,5.6,13,-1.5,9.4)]),
+    {...water('swells abaft the mast','44.7,42.65 49.7,42.1 56,42.1 61.8,41.7 67.4,40.7 69.5,39.7 71.2,39.4 73.8,40.0 76.3,39.9 81,40.6 84,40.5 88.7,40.9 90.5,41 91.4,46.5 91.8,49.5 89,50.7 85.4,51.6 85.1,52.5 85.5,53.2 87,53.1 85.3,54.4 77,56.7 68,57.8 58,58.7 49,59.5 44.3,59.55','ocean',
+      [front(55,48.9,2.7,5.9,20,-3.7,11.5),front(79,44.8,2.9,5.4,17,-2.6,12.4)]),
+      lip:'47.1,52.6 56.3,49.1 67.4,40.4 71,39.5'},
+    water('sea forward of the sheet','91.7,41.2 100,40.7 100,44.3 97.6,47.5 95.3,49.8 93.1,51 92.9,48.2','ocean',
+      [front(95,42.4,.8,3,7.5,-.7,10.7)])
   ];
-  const hull = [cloud('clouds astern','72,0 100,0 100,9 83,16.7 77,16'),brokenBow];
+  const hull=[cloud('clouds astern','63.8,0 100,0 100,9 85,16.2 72,22.6 65.9,25'),brokenBow,sternWater];
   const paintings = {
-    beach:[headland,shore,leaves('shoregrass by the path','0,77 4,80 9,88 6,91 0,89',
-      [[2,87.4,1],[4.2,86.8,-1],[3.1,86.9,1]],true)],
-    wreck:[...hull,cloth('torn canvas on the rail','27.1,10.1 31.7,12 33.1,11.5 31.6,20.8 29.3,25.7 28.1,21.2',1.12)],
+    beach:[headland,shore,washLine,leaves('grass above the sand at the path',
+      '90.7,62.4 98.9,58.1 100,59 100,66.9 92.5,69 90.5,68',
+      [[95.2,64.3,1],[96.5,64.1,-1],[98.2,62.9,1]],true)],
+    wreck:[...hull,cloth('torn canvas on the rail','25.5,11.6 28.2,13.2 34.3,16.2 37.5,15.2 35.7,19.1 34.6,24.1 31.4,21.3 28,18',.85)],
     salvage:[...hull],
     camp:[cloud('cloud through the canopy','35,3 47,0 51,0 46,14 41,18'),
       water('inlet beyond the clearing','22,33.1 32,33 32.7,34 29.1,36.4 24,39.4 23.2,38.7','sheltered'),
@@ -95,11 +110,12 @@
     forge:[water('water through the forge door','2.5,46 6.8,45.6 10.6,46.4 10.8,47.1 8.2,48.2 7.2,50 6,51.1 4.8,51.3 3.8,51.5 2.5,52.2','glass'),
       glow('daylight on the threshold','sill',5.7,65.4,4.4,1.1),
       beam('dust between the door and furnace','12,37 17,36.9 29,55 27.5,59 19,48')],
-    slipway:[cloud('clouds above the cove','0,0 35,0 29,8.7 15,20.1 0,23'),
-      water('water off the stocks','0,30.5 21,30.5 25.4,31.7 30.6,32.4 27.5,34.1 24.9,36.8 19.8,38.1 19,40.3 12.1,41.7 10,38.5 7.8,37.9 4.3,38.2 0,39.6','reef',
-        [front(9.3,32.4,1.8,3.7,18,-1.1,7.8)]),
-      leaves('leaves over the stocks','46,0 72,0 70,8 60,13 53,16.7 47,16',
-        [[51,12,1],[59.4,9.8,-1],[66.3,6.2,1]])],
+    slipway:[cloud('clouds above the cove','0,0 44.3,0 40.3,8.2 38,18.7 22,19.6 7,29.2 0,31'),
+      water('water off the stocks','0,36.2 14,36.2 22.3,37.4 37,37.6 35.4,39.4 31,41.3 29,44 25.2,45.8 24.1,47.5 21.2,48.6 17.4,50.6 14.6,52.4 10.2,53.8 8.1,54.1 6,53.1 4,52.3 0,51.3','reef',
+        [front(20,38.4,1.3,4,23,-.9,8.7),front(8.2,43.7,1.8,6,19,-1.6,10.1)],
+        ['0,39.1 2.7,39.7 4.5,41.6 6.7,43 8.4,43.9 7.4,45.1 5.4,45.2 2.1,43.2 0,42.8']),
+      leaves('leaves above the stockyard','42,8.7 54.8,2.8 62.5,2.8 58.6,18.4 51.8,22.2 43.2,19.1',
+        [[47.6,15.8,1],[54.7,12.8,-1],[52.9,19.3,1]])],
     crossing:[cloud('squalls off the port bow','0,0 33,0 27,30 22,42 0,42'),...offshore],
     harbour:[cloud('evening cloud over the harbour','0,0 56,0 44,13.4 33.2,23 27,27 23,17.6 19,30 0,39'),
       water('sun path beyond the cutter','0,47.6 19,47.6 15.2,54.1 11.8,53.3 10.7,54.4 7.9,58 4.4,60.4 3.7,59 1.5,59 1.3,61.5 0,61.5','gold',
@@ -135,18 +151,18 @@
         if(f.forgeLit) layers.push(glow('furnace embers','coals',41.5,45.2,4.2,2.1),glow('furnace reflection','reflection',40,65.9,12.4,1.7));
         break;
       case 'slipway':
-        if(f.sailRigged) layers.push(cloth('canvas on the stocks','64.8,24.1 68,28.9 78,39.3 66,40.2',.72));
+        if(f.sailRigged) layers.push(cloth('canvas on the stocks','65.3,13.8 65.6,42.8 44.4,40.9 54.1,28.8',.72));
         break;
       case 'crossing':
-        layers.push(cloth('sail drawing overhead','50,0 91,0 80,13.7 69,19.7 50,28.5',f.sailMended ? .38 : f.rigSecured ? .82 : 1.35));
-        if(!f.boatDry) layers.push(water('standing bilge water','62.4,75.6 64.4,75.7 65.2,75.9 67.7,75.7 69.6,75.9 70,76.4 68.6,77.2 67.3,77.5 65.8,77.9 64.2,77.4 63.2,77.4 62.8,76.9','bilge'));
+        layers.push(cloth('sail drawing overhead','48.2,0 97.2,0 94.2,11.8 79.4,16.6 64.1,24.2 47,30.5 48,17.6',f.sailMended ? .38 : f.rigSecured ? .82 : 1.35));
+        if(!f.boatDry) layers.push(water('standing bilge water','55.8,79.5 61.6,78.8 65.2,78.3 70.8,78.2 74.8,78.1 78.3,78.4 77.2,80.1 72.6,82.5 68.3,84.4 64.7,84.8 62.4,84.0 61.3,82.6 59.8,81.6 57.5,80.9','bilge'));
         break;
       case 'landing':
         if(f.landingMarked) layers.push(glow('lantern on shingle','reflection',77.8,62.1,2.1,1.2),
           glow('light in the lantern glass','reflection',77.8,35.5,.65,.93));
         break;
     }
-    return layers;
+    return state.scene==='crossing'?layers.map(layer=>({...layer,windSign:-1})):layers;
   }
 
   function contains(x,y,poly) {
@@ -172,6 +188,7 @@
         }
       }
       return {...layer,left:left*X,top:top*Y,width:w*X,height:h*Y,phase:noise(seed),marks,
+        lip:layer.lip?points(layer.lip).map(([x,y])=>[x*X,y*Y]):null,
         lanes:layer.lanes?.map(lane=>points(lane).map(([x,y])=>[x*X,y*Y]))};
     });
   }
@@ -201,10 +218,10 @@
     const p=unit(t/b.period+(b.phase ?? m.phase+index*.37));
     const near=m.style==='reef', offshore=m.style==='ocean', rough=near||offshore;
     const power=rough?(near?5.1:6.4):1.65;
-    const amplitude=pulse(p)*(.75+.4*gust);
+    const amplitude=pulse(p)*(.54+.55*gust);
     const width=b.span*X*(.38+.66*Math.sin(Math.PI*p));
     const peel=Math.max(0,Math.min(1,(p-.22)/.48));
-    const centreX=(b.x+p*b.dx)*X,centreY=(b.y+p*b.dy)*Y;
+    const centreX=(b.x+p*b.dx*(m.windSign||1))*X,centreY=(b.y+p*b.dy)*Y;
     const bottom=1.5+(rough?3.1:1.1)*amplitude;
     const gold=m.style==='gold';
     const samples=22;
@@ -230,11 +247,12 @@
       ctx.globalAlpha=Math.min(.94,edgeLight*(near?1.02:.88));
       stroke(ctx,...line[i-1],line[i][0]-line[i-1][0],line[i][1]-line[i-1][1],.42);
       // Breakers curl, burst leeward, then draw a thin ragged lace behind them.
-      if(near && i%3===0 && p>.38 && p<.85){
+      if(rough && gust>.54 && i%3===0 && p>.38 && p<.85){
         const spray=unit((p-.38)*3.3+i*.21);
-        const height=(1.6+3.8*noise(i+index))*pulse(spray);
+        const height=(near?4.2:6.4)*(.66+.58*noise(i+index))*pulse(spray)*gust;
         ctx.globalAlpha=.76*edgeLight*pulse(spray);ctx.lineWidth=.85;
-        stroke(ctx,line[i][0]+spray*5,line[i][1]-height,1.65,-.6,.25);
+        const windSign=m.windSign||1, drift=spray*(near?6:12)*gust*windSign;
+        stroke(ctx,line[i][0]+drift,line[i][1]-height,2.2*windSign,(2*spray-1)*.94,.19);
       }
       if(rough && i%4===0 && p>.47){
         ctx.globalAlpha=.54*edgeLight;ctx.lineWidth=1.1;
@@ -242,20 +260,42 @@
       }
     }
   }
+  // The big July swell is painted into the sea. A short length of foam
+  // spills down its actual lip, runs leeward and separates into small tails.
+  function crest(ctx,lane,t,gust,windSign) {
+    const phase=unit(t/10.8), centre=1.25*(windSign<0?1-phase:phase)-.12;
+    for(let i=0;i<34;i++){
+      const u=i/34, light=Math.max(0,1-Math.abs(u-centre)/.23)*Math.sin(Math.PI*u);
+      if(light<=.03)continue;
+      const [x,y]=bezier(lane,u),[ex,ey]=bezier(lane,(i+1)/34);
+      const peel=unit(t*.28+i*.17),foam=Math.sin(Math.PI*peel);
+      ctx.globalAlpha=.80*light;ctx.lineWidth=1.5+.8*foam;ctx.strokeStyle='#d9e2da';
+      stroke(ctx,x,y+1.3,ex-x,ey-y,.7*foam);
+      if(i%2===0){
+        ctx.globalAlpha=.60*light*foam;
+        ctx.strokeStyle='#d0dcd7';ctx.lineWidth=.93;
+        stroke(ctx,x+peel*5*gust*windSign,y+2+peel*2,(2.3+4.8*peel)*windSign,1.7+2.8*peel,.48);
+        if(gust>.76)stroke(ctx,x+peel*8*gust*windSign,y-5.8*foam,2.7*windSign,(2*peel-1)*1.35,.22);
+      }
+    }
+  }
   function waterMarks(ctx,m,t,gust) {
+    const windSign=m.windSign||1;
+    if(m.lip)crest(ctx,m.lip,t,gust,windSign);
     (m.breakers||[]).forEach((b,i)=>wave(ctx,m,b,i,t,gust));
     const gold=m.style==='gold',glass=m.style==='glass',bilge=m.style==='bilge';
-    const rough=m.style==='reef'||m.style==='ocean';
+    const ocean=m.style==='ocean', rough=m.style==='reef'||ocean;
     for(const f of m.marks){
       const p=unit(t/(3.1+2.7*f.size)+f.p);
       const light=pulse(p);
-      const length=(glass?6:rough?20:gold?17:10)*(.32+f.size)*(.42+.58*light);
-      const x=f.x+(p-.5)*(glass?4:bilge?11:12+8*f.size);
+      const length=(glass?6:ocean?12:rough?18:gold?17:10)*(.32+f.size)*(.42+.58*light);
+      const x=f.x+windSign*(p-.5)*(glass?4:bilge?11:12+8*f.size);
       const y=f.y+(p-.5)*(rough?6:3)-light*(rough?1.35:.45);
       ctx.strokeStyle=gold?'#f5db99':bilge?'#c0c5b7':'#d8e3d9';
-      ctx.globalAlpha=light*(gold ? .78 : glass ? .52 : .58);
+      ctx.globalAlpha=light*(gold ? .78 : glass ? .52 : ocean ? .34 : .53);
       ctx.lineWidth=(rough?1.25:1)*(.6+.62*f.size);
-      stroke(ctx,x-length*.5,y,length,(f.size-.4)*(rough?1.9:.9),.35+light*.65);
+      const slope=ocean?-.16*length+(f.size-.4)*1.6:(f.size-.4)*(rough?1.9:.9);
+      stroke(ctx,x-length*.5,y,length,slope,.35+light*.65);
     }
   }
   function bezier(lane,u) {
@@ -325,11 +365,11 @@
       }
     }
   }
-  function illumination(ctx,m,t) {
+  function illumination(ctx,m,t,shade) {
     const x=m.x*X,y=m.y*Y,w=m.w*X,h=m.h*Y;
     const flicker=.6+.16*Math.sin(4.1*t)+.12*Math.sin(6.7*t+.9)+.08*Math.cos(11.3*t);
     if(m.kind==='sill'||m.kind==='reflection'){
-      const warm=m.kind==='reflection',v=warm?flicker:.48+.25*Math.sin(.87*t+m.phase);
+      const warm=m.kind==='reflection',v=warm?flicker:.85-.64*shade;
       pigment(ctx,x,y,w*(.89+.1*v),h,warm?'252,150,63':'199,210,193',(warm ? .44 : .33)*v);
       return;
     }
@@ -354,27 +394,32 @@
       }
     }
   }
-  function dust(ctx,m,t){
+  function dust(ctx,m,t,shade){
     const rgb='209,200,163';
     for(let i=0;i<8;i++){
       const p=unit(t/(7.3+2.4*noise(i))+m.phase+i*.381);
       const x=m.left+m.width*(.14+.68*p)+2.3*Math.sin(p*TAU+i);
       const y=m.top+m.height*(.12+.72*p+.11*Math.sin(p*TAU+i*.8));
-      const opacity=.65*pulse(p)*(.65+.35*Math.sin(p*9+i));
+      const opacity=(.72-.48*shade)*pulse(p)*(.65+.35*Math.sin(p*9+i));
       ctx.fillStyle='rgba('+rgb+','+opacity+')';
       ctx.beginPath();ctx.ellipse(x,y,.65+noise(i+3)*.6,.45+noise(i+1)*.45,0,0,TAU);ctx.fill();
     }
   }
-  function airLight(ctx,m,t,gust) {
+  function airLight(ctx,m,t,gust,shade) {
     if(m.kind==='cloud') {
-      const p=unit(t/23+m.phase),q=unit(p+.5);
-      for(const z of [p,q]){
-        const x=m.left+m.width*(.02+.96*z),y=m.top+m.height*(.31+.15*Math.sin(z*TAU));
-        pigment(ctx,x,y,Math.max(4,m.width*.25),Math.max(3,m.height*.21),'217,214,190',.17*pulse(z));
+      // One soft bank drifts leeward over *open sky* as a shower arrives.
+      // Light returns slowly in the same aperture. No global plate filter.
+      const sweep=unit(t/62+m.phase);
+      for (const p of [sweep,unit(sweep+.5)]){
+        const u=m.windSign===-1?1-p:p;
+        const x=m.left+m.width*(-.18+1.36*u),y=m.top+m.height*(.44-.09*Math.sin(p*TAU));
+        pigment(ctx,x,y,m.width*.54,m.height*.58,'29,45,60',.47*shade*pulse(p));
+        pigment(ctx,x+m.width*.06,y+m.height*.1,m.width*.36,m.height*.53,'253,230,182',.26*(1-shade)*pulse(p));
       }
     } else {
       // A passing fold catches the light inside the canvas, held at its seams.
-      const pos=unit(t/5.6+m.phase),x=m.left+m.width*(.13+.74*pos);
+      const pos=unit(t/5.6+m.phase),u=m.windSign===-1?1-pos:pos;
+      const x=m.left+m.width*(.13+.74*u);
       const y=m.top+m.height*.46;
       ctx.save();ctx.translate(x,y);ctx.rotate(-.48);
       pigment(ctx,0,0,Math.max(2,m.width*.035),m.height*.48,'245,225,179',.30*pulse(pos)*gust*m.power);
@@ -387,17 +432,17 @@
       ctx.save();clip(ctx,part);draw();ctx.restore();
     }
   }
-  function paint(ctx,parts,t,gust) {
+  function paint(ctx,parts,t,gust,shade=.45) {
     for(const part of parts){
       ctx.save();clip(ctx,part);ctx.lineCap='round';ctx.lineJoin='round';
       switch(part.kind){
         case 'water': waterMarks(ctx,part,t,gust);break;
         case 'run': flowing(ctx,part,t);poolRings(ctx,part,t);break;
         case 'litter': litter(ctx,part,t);break;
-        case 'motes': dust(ctx,part,t);break;
+        case 'motes': dust(ctx,part,t,shade);break;
         case 'leaves': foliage(ctx,part,t,gust);break;
-        case 'cloth': case 'cloud': airLight(ctx,part,t,gust);break;
-        default: illumination(ctx,part,t);
+        case 'cloth': case 'cloud': airLight(ctx,part,t,gust,shade);break;
+        default: illumination(ctx,part,t,shade);
       }
       ctx.restore();
     }

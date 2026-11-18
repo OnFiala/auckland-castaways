@@ -1,335 +1,256 @@
 {
-  "schema_version": 2,
-  "character": "player",
+  "id": "player",
   "characterName": "Alick McLaren",
   "image": "player.png",
   "generator": "OpenAI ImageGen",
-  "generated_date_utc": "2026-11-18",
-  "kind": "A newly painted, six-frame right-facing walk cycle. Imagined character and costume.",
+  "source_manifest": "../../../artwork/cast/manifest.json",
+  "native_file": "player.png",
+  "native_sha256": "65607f3dfc776bb8d2c48e8d7f1b19b9bf6638504f1402d9123435fac493ceea",
   "dimensions": {
     "width": 1536,
     "height": 1024
   },
-  "format": "PNG RGBA, 8-bit",
-  "sha256": "988b491c5048905393b3c932276982f3d9f71b73adaa71cacda9da18a9464350",
-  "byte_length": 1245102,
-  "layout": {
-    "columns": 3,
-    "rows": 2,
-    "cell_width": 512,
-    "cell_height": 512,
-    "order": "row-major"
-  },
+  "sha256": "2ac4da7151a64ae438d95c0eb5461f740186c91419aeee23ecf5a5f3523dde64",
+  "bytes": 901654,
+  "common_crop": [
+    32,
+    5,
+    448,
+    500
+  ],
+  "ground_anchor_in_cell": [
+    256,
+    498
+  ],
   "frames": [
     {
       "index": 0,
       "name": "first-contact",
-      "rect": {
-        "x": 0,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        0,
+        0,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        98,
-        17,
+        51,
+        16,
+        431,
+        503
+      ],
+      "alpha_bbox_ge128": [
+        55,
+        20,
         427,
         499
       ],
-      "alpha_bbox_gt_8": [
-        101,
-        20,
-        425,
-        497
+      "crownX": 267,
+      "solidFloorY": 498,
+      "plantContactX": 352,
+      "idealPlantX": 352,
+      "nativeCropXYXY": [
+        50,
+        3,
+        366,
+        408
       ],
-      "alpha_bbox_gt_128": [
-        102,
-        21,
-        424,
-        496
-      ],
-      "medianCrownX": 269,
-      "solidFloorY": 495
+      "placedXYWH": [
+        51,
+        16,
+        381,
+        488
+      ]
     },
     {
       "index": 1,
       "name": "first-weight",
-      "rect": {
-        "x": 512,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        512,
+        0,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        141,
-        21,
-        369,
+        97,
+        17,
+        337,
+        503
+      ],
+      "alpha_bbox_ge128": [
+        101,
+        22,
+        333,
         499
       ],
-      "alpha_bbox_gt_8": [
-        143,
-        23,
-        367,
-        497
+      "crownX": 267,
+      "solidFloorY": 498,
+      "plantContactX": 282,
+      "idealPlantX": 282,
+      "nativeCropXYXY": [
+        484,
+        2,
+        685,
+        407
       ],
-      "alpha_bbox_gt_128": [
-        144,
-        24,
-        366,
-        496
-      ],
-      "medianCrownX": 270,
-      "solidFloorY": 495
+      "placedXYWH": [
+        97,
+        17,
+        241,
+        486
+      ]
     },
     {
       "index": 2,
-      "name": "first-passing",
-      "rect": {
-        "x": 1024,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
+      "name": "first-pass",
+      "cellXYWH": [
+        1024,
+        0,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
+        161,
+        10,
+        339,
+        503
+      ],
+      "alpha_bbox_ge128": [
         165,
         15,
-        350,
+        334,
         499
       ],
-      "alpha_bbox_gt_8": [
-        167,
-        18,
-        347,
-        497
+      "crownX": 268,
+      "solidFloorY": 498,
+      "plantContactX": 211,
+      "idealPlantX": 211,
+      "nativeCropXYXY": [
+        934,
+        2,
+        1081,
+        407
       ],
-      "alpha_bbox_gt_128": [
-        168,
-        19,
-        346,
-        496
-      ],
-      "medianCrownX": 269,
-      "solidFloorY": 495
+      "placedXYWH": [
+        160,
+        10,
+        179,
+        493
+      ]
     },
     {
       "index": 3,
       "name": "opposite-contact",
-      "rect": {
-        "x": 0,
-        "y": 512,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        0,
+        512,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        85,
-        17,
-        431,
+        45,
+        14,
+        442,
+        503
+      ],
+      "alpha_bbox_ge128": [
+        49,
+        19,
+        438,
         499
       ],
-      "alpha_bbox_gt_8": [
-        88,
-        19,
-        429,
-        496
+      "crownX": 268,
+      "solidFloorY": 498,
+      "plantContactX": 365,
+      "idealPlantX": 365,
+      "nativeCropXYXY": [
+        48,
+        432,
+        375,
+        834
       ],
-      "alpha_bbox_gt_128": [
-        89,
-        20,
-        428,
-        496
-      ],
-      "medianCrownX": 268,
-      "solidFloorY": 495
+      "placedXYWH": [
+        45,
+        14,
+        397,
+        489
+      ]
     },
     {
       "index": 4,
       "name": "opposite-weight",
-      "rect": {
-        "x": 512,
-        "y": 512,
-        "width": 512,
-        "height": 512
-      },
+      "cellXYWH": [
+        512,
+        512,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        143,
-        21,
-        375,
+        107,
+        18,
+        359,
+        504
+      ],
+      "alpha_bbox_ge128": [
+        112,
+        22,
+        355,
         499
       ],
-      "alpha_bbox_gt_8": [
-        146,
-        23,
-        373,
-        496
+      "crownX": 267,
+      "solidFloorY": 498,
+      "plantContactX": 295,
+      "idealPlantX": 295,
+      "nativeCropXYXY": [
+        494,
+        432,
+        703,
+        835
       ],
-      "alpha_bbox_gt_128": [
-        147,
-        24,
-        372,
-        495
-      ],
-      "medianCrownX": 270,
-      "solidFloorY": 495
+      "placedXYWH": [
+        107,
+        18,
+        252,
+        486
+      ]
     },
     {
       "index": 5,
-      "name": "opposite-passing",
-      "rect": {
-        "x": 1024,
-        "y": 512,
-        "width": 512,
-        "height": 512
-      },
+      "name": "opposite-pass",
+      "cellXYWH": [
+        1024,
+        512,
+        512,
+        512
+      ],
       "alpha_bbox_gt_0": [
-        154,
-        16,
-        378,
+        144,
+        11,
+        347,
+        504
+      ],
+      "alpha_bbox_ge128": [
+        149,
+        15,
+        343,
         499
       ],
-      "alpha_bbox_gt_8": [
-        157,
-        18,
-        376,
-        496
+      "crownX": 267,
+      "solidFloorY": 498,
+      "plantContactX": 224,
+      "idealPlantX": 224,
+      "nativeCropXYXY": [
+        925,
+        432,
+        1092,
+        835
       ],
-      "alpha_bbox_gt_128": [
-        158,
-        19,
-        375,
-        495
-      ],
-      "medianCrownX": 270,
-      "solidFloorY": 495
+      "placedXYWH": [
+        144,
+        11,
+        204,
+        493
+      ]
     }
   ],
-  "common_crop": {
-    "x": 70,
-    "y": 6,
-    "width": 363,
-    "height": 501
-  },
-  "ground_anchor_in_cell": {
-    "x": 256,
-    "y": 495
-  },
-  "ground_anchor_in_crop": {
-    "x": 186,
-    "y": 489
-  },
-  "registration": "The generator painted all six poses against the same full-length character model and the previous walking choreography. The 8-bit PNG is a transparent 3 × 2 assembly of newly painted cels. Each native cel was cropped and resampled with Lanczos interpolation onto the existing game canvas, using a shared sole baseline and paired crown heights for the two halves of the gait. The head centre is registered in X, constrained by the existing common clip. The drawing and its colours are retained. Source and destination entries are [left, top, rightExclusive, bottomExclusive] on their respective sheets.",
-  "sourceRegistration": {
-    "sourceSize": [
-      1536,
-      1024
-    ],
-    "sourceSha256": "de724d7dd678d2a1293f0f81b32746d4cac84f2a898203cb86a8f0622ff73272",
-    "cells": [
-      {
-        "frame": 0,
-        "source": [
-          87,
-          8,
-          427,
-          501
-        ],
-        "destination": [
-          98,
-          17,
-          427,
-          499
-        ]
-      },
-      {
-        "frame": 1,
-        "source": [
-          641,
-          8,
-          871,
-          503
-        ],
-        "destination": [
-          653,
-          20,
-          881,
-          499
-        ]
-      },
-      {
-        "frame": 2,
-        "source": [
-          1168,
-          8,
-          1366,
-          503
-        ],
-        "destination": [
-          1189,
-          15,
-          1374,
-          499
-        ]
-      },
-      {
-        "frame": 3,
-        "source": [
-          75,
-          522,
-          431,
-          1014
-        ],
-        "destination": [
-          85,
-          529,
-          431,
-          1011
-        ]
-      },
-      {
-        "frame": 4,
-        "source": [
-          634,
-          521,
-          887,
-          1016
-        ],
-        "destination": [
-          655,
-          532,
-          887,
-          1011
-        ]
-      },
-      {
-        "frame": 5,
-        "source": [
-          1161,
-          521,
-          1392,
-          1016
-        ],
-        "destination": [
-          1178,
-          527,
-          1402,
-          1011
-        ]
-      }
-    ]
-  },
-  "reference_images": [
-    {
-      "path": "adventure/dist/assets/walk/player.png",
-      "sha256": "235369b75d600f1d383402c17c3be14d8df0269ac6960f7e38a922e474535bc1",
-      "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-    },
-    {
-      "path": "adventure/dist/assets/sailor.png",
-      "sha256": "2bd1b63f6e7636c7931cda31956cefb73312e6a9b7935c97e109b1f4b6d92602"
-    }
-  ],
-  "prompt": "Create a NEW hand-painted production game animation sheet of Alick. The first reference is authoritative ONLY for frame order, camera, screen direction, placement and body articulation. The second reference is the NEW authoritative full-resolution costume and face model: carefully repaint EVERY frame in its colours, anatomy, materials and observed naturalist illustration style. The slim young adult deckhand from the references has a short dark beard, a charcoal-blue ribbed watch cap, a strong ochre neckcloth tucked into a work-softened slate-indigo pea jacket, warm smoke-brown wool trousers and worn tar-brown ankle boots. Give his narrow jaw, skin and thoughtful eyes individual character. His jacket is blue, never green. Deliver one 1536×1024 LANDSCAPE walking atlas, SIX individual drawings in EXACTLY TWO rows of THREE equal 512×512 square cells. Read reference 1 frame-by-frame, row-major. Keep the same six limb articulations, same step length and timing, same left and right arm and boot in front, clothing silhouette, walking posture and ground support. Nose to screen RIGHT in all six. Top left long contact stride with near heel leading, top middle weight accepted as trailing boot lifts, top right bent-knee passing step; bottom left the opposite contact stride with the other arm in front, bottom middle opposite weight acceptance, bottom right opposite passing position. The near and far limbs exchange roles; no duplicating the first half. Weight travels over the planted foot. In each square every boot and all the hair stay completely within, with clear transparent gutters. Every bottommost planted boot at the same baseline. Use one anatomical and costume model locked across all six: same skull/face at the same scale and height, exact cap/hair angle, identical seam network and jacket closure, identical trousers, cuffs and boots, left light held fixed, each pigment stable. Torso and head advance smoothly through a restrained 2–3px rise/fall. Arms counterbalance legs naturally. The features must not redraw into six different faces. Re-use the same painted head reference for all six degrees of gait. The animation should read clearly at a 160px-tall display and hold still when paused.\n \nPaint the character with the second reference's crisp graphite underdrawing and rich naturalist 1860s maritime gouache: brushwork held together in broad, legible local colour shapes at reduced size, worn wool, hand-sewn linen, scuffed boots, warm skin under a cool upper-left sky. Preserve pronounced local jacket colour and skin tone across every cell. Keep the same stitches, buttons, creases and cap through all cells; make every mark feel part of the same painted world. Avoid dull uniformly brown or uniformly green wash. No independent character redesign, no changes of coat, expressions or cap. Empty hands, no bags, no separate items, NO text, grid lines, floor, shadow, backdrop or digital airbrush glow; absolutely transparent pixels outside and between the character silhouettes. Historical art direction is an original reconstruction for an adventure game.",
-  "alpha_extrema": [
-    0,
-    255
-  ]
+  "registration": "Row-major. xyxy is exclusive at right and bottom. Native alpha >=28 identifies each complete silhouette. A three-pixel antialias band is kept. Each individual drawing is uniformly scaled and translated. Foot support is measured at alpha >=128 within the bottom 15 pixels; idealPlantX is the predicted heel-to-ball contact at gameplay stride .88. Centring by upper head mass suppresses distracting head jitter."
 }

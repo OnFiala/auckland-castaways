@@ -88,14 +88,51 @@ function projectBase(s){return {version:3,scene:s.scene,inventory:clone(s.invent
 function fromBase(original,r){const next=clone(original);for(const k of ['scene','inventory','log','actions'])next[k]=r.state[k];for(const k of Base.FLAGS)next.flags[k]=r.state.flags[k];normalize(next);return {...r,state:next,completed:next.completed,chapterComplete:next.chapterComplete};}
 function response(original,next,text,cue='look',gained=[],consumed=[],targetId=null){normalize(next);const changed=JSON.stringify({...original,log:[],actions:0})!==JSON.stringify({...next,log:[],actions:0});if(changed){next.actions=original.actions+1;next.log.push({text,cue,scene:next.scene});next.log=next.log.slice(-80);}return {state:next,text,cue,changed,gained,consumed,targetId,completed:next.completed,chapterComplete:next.chapterComplete};}
 const unchanged=(s,text,cue='wrong',targetId=null)=>response(s,clone(s),text,cue,[],[],targetId);
-function getTargets(s){if(chapter(s)===1)return Base.getTargets(projectBase(s));const scene=sceneById(s.scene);if(!scene||scene.chapter!==chapter(s))return [];return scene.targets.filter(t=>!t.pickupFlag||!s.flags[t.pickupFlag]).map(t=>({...t,solved:Boolean(t.solvedFlag&&s.flags[t.solvedFlag])}));}
+// Their places follow the same work flags in live play and restored saves.
+const firstNightCrew = {
+ raynal: person('raynal','François Raynal',70.2,58),
+ musgrave: person('musgrave','Thomas Musgrave',53,61),
+ henry: person('henry','Henry Forgés',56,65),
+ george: person('george','George Harris',84,64)
+};
+function firstNightRoom(s,id) {
+ if(id==='raynal'&&!s.flags.shelterBuilt)return 'beach';
+ if(id==='musgrave'&&!complete(s))return 'wreck';
+ return 'camp';
+}
+function getTargets(s){
+ if(chapter(s)===1){
+  const original=Base.getTargets(projectBase(s));
+  const targets=original.filter(t=>t.kind!=='person'||firstNightRoom(s,t.id)===s.scene);
+  if(s.scene==='camp'){
+   for(const [id,actor] of Object.entries(firstNightCrew)){
+    if(id!=='henry'&&firstNightRoom(s,id)==='camp')targets.push({...actor});
+   }
+  }
+  return targets;
+ }
+ const scene=sceneById(s.scene);
+ if(!scene||scene.chapter!==chapter(s))return [];
+ return scene.targets.filter(t=>!t.pickupFlag||!s.flags[t.pickupFlag]).map(t=>({...t,solved:Boolean(t.solvedFlag&&s.flags[t.solvedFlag])}));
+}
 function getExits(s){return (sceneById(s.scene)?.exits||[]).filter(e=>sceneById(e.to)?.chapter===chapter(s));}
 function findTarget(s,id){return getTargets(s).find(t=>t.id===id)||getExits(s).find(e=>e.id===id);}
 function travel(s,id){if(chapter(s)===1)return fromBase(s,Base.travel(projectBase(s),id));if(!getExits(s).some(e=>e.to===id))return unchanged(s,'There is no path there from here.','blocked');const next=clone(s);next.scene=id;return response(s,next,sceneById(id).name,'travel');}
 function ready(s,r){return (r.requires||[]).every(f=>s.flags[f])&&(!r.unless||!s.flags[r.unless]);}
 function applyEvent(s,r,targetId){if(s.flags[r.flag])return unchanged(s,'That work is already finished.','done',targetId);if(!ready(s,r))return unchanged(s,r.blocked||'Another part of the work must be finished first.','blocked',targetId);if((r.consume||[]).some(i=>!has(s,i)))return unchanged(s,'The necessary item is not in the satchel.','wrong',targetId);const next=clone(s);next.flags[r.flag]=true;for(const id of r.consume||[])next.inventory=next.inventory.filter(i=>i!==id);for(const id of r.give||[])if(!has(next,id))next.inventory.push(id);return response(s,next,r.text||`${ITEMS[r.give[0]].name} is in the satchel.`,r.cue||(r.give?.[0]||'done'),r.give||[],r.consume||[],targetId);}
 function interact(s,id,verb='look'){
- if(chapter(s)===1)return fromBase(s,Base.interact(projectBase(s),id,verb));
+ if(chapter(s)===1){
+  if(Object.hasOwn(firstNightCrew,id)){
+   if(firstNightRoom(s,id)!==s.scene)return unchanged(s,'We cannot reach that from here.','wrong',id);
+   if(s.scene==='camp'&&id!=='henry'){
+    const reports={raynal:'Raynal rests under the sail with the others in earshot.',
+     musgrave:'Musgrave counts the faces gathered under the trees.',
+     george:'George watches the shore from the edge of camp.'};
+    return unchanged(s,reports[id],verb==='look'?'eye':'talk',id);
+   }
+  }
+  return fromBase(s,Base.interact(projectBase(s),id,verb));
+ }
  const target=findTarget(s,id);if(!target)return unchanged(s,'We cannot reach that from here.','wrong',id);
  if(target.to)return verb==='look'?unchanged(s,target.name,'travel',id):travel(s,target.to);
  if(verb==='look')return unchanged(s,target.solved?'That work is finished.':target.kind==='item'?ITEMS[target.item].description:target.name+'.',target.art||'eye',id);
@@ -106,7 +143,13 @@ function interact(s,id,verb='look'){
  return unchanged(s,target.solved?'That work is finished.':'Something from the satchel may help here.',target.solved?'done':target.art||'hand',id);
 }
 function combine(s,a,b){if(chapter(s)===1)return fromBase(s,Base.combine(projectBase(s),a,b));if(a===b||!has(s,a)||!has(s,b))return unchanged(s,'Both different items need to be in the satchel.');const r=RECIPES.find(r=>r.chapter===chapter(s)&&r.items.includes(a)&&r.items.includes(b));return r?applyEvent(s,{...r,consume:r.items,cue:'combine'},null):unchanged(s,'Those items do not fit together.');}
-function useItem(s,item,id){if(chapter(s)===1)return fromBase(s,Base.useItem(projectBase(s),item,id));if(!has(s,item))return unchanged(s,'That item is not in the satchel.');if(has(s,id))return combine(s,item,id);const target=findTarget(s,id);if(!target)return unchanged(s,'We cannot reach that from here.');const matches=RULES.filter(r=>r.chapter===chapter(s)&&r.item===item&&r.target===id);const r=matches.find(r=>!s.flags[r.flag]&&ready(s,r))||matches.find(r=>!s.flags[r.flag])||matches[0];return r?applyEvent(s,r,id):unchanged(s,'Try another item.','wrong',id);}
+function useItem(s,item,id){
+ if(chapter(s)===1){
+  if(Object.hasOwn(firstNightCrew,id)&&firstNightRoom(s,id)!==s.scene)
+   return unchanged(s,'We cannot reach that from here.','wrong',id);
+  return fromBase(s,Base.useItem(projectBase(s),item,id));
+ }
+ if(!has(s,item))return unchanged(s,'That item is not in the satchel.');if(has(s,id))return combine(s,item,id);const target=findTarget(s,id);if(!target)return unchanged(s,'We cannot reach that from here.');const matches=RULES.filter(r=>r.chapter===chapter(s)&&r.item===item&&r.target===id);const r=matches.find(r=>!s.flags[r.flag]&&ready(s,r))||matches.find(r=>!s.flags[r.flag])||matches[0];return r?applyEvent(s,r,id):unchanged(s,'Try another item.','wrong',id);}
 function advance(s){if(!complete(s))return unchanged(s,'Finish the work in this chapter before leaving.','blocked');if(chapter(s)===7)return unchanged(s,'All five Grafton castaways survived.','done');const next=clone(s);next.chapter++;next.scene=getChapter(next).entry;next.inventory=[...LOADOUT[next.chapter]];const r=response(s,next,getChapter(next).title,'chapter');r.chapterChanged=true;return r;}
 
 // A small household decision travels with the main save. Older crossings have no

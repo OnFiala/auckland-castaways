@@ -8,45 +8,45 @@
   // Measured native pixels. assets/work-poses/manifest.json records the source and method.
   const SHEETS = {
     player: {
-      size: [2172, 724], walkView: [363, 501], walkGround: [186, 489], walkStandingHeight: 475, standingHeight: 705,
+      size: [1536, 512], walkView: [448, 500], walkGround: [224, 493], walkStandingHeight: 482, standingHeight: 482,
       poses: {
-        stand: { crop: [244, 4, 274, 714], ground: [383, 713] },
-        reach: { crop: [854, 51, 485, 665], ground: [1033, 710], contact: [1333, 333] },
-        crouch: { crop: [1569, 244, 461, 469], ground: [1740, 708], contact: [2024, 618] },
+        stand: { crop: [175, 11, 160, 494], ground: [256, 498] },
+        reach: { crop: [660, 68, 339, 436], ground: [768, 498], contact: [961, 234] },
+        crouch: { crop: [1141, 162, 374, 341], ground: [1280, 498], contact: [1475, 445] }
       }
     },
     raynal: {
-      size: [1881, 836], walkView: [380, 504], walkGround: [177, 496], walkStandingHeight: 487, standingHeight: 801,
+      size: [1536, 512], walkView: [448, 500], walkGround: [224, 493], walkStandingHeight: 482, standingHeight: 482,
       poses: {
-        stand: { crop: [171, 11, 255, 810], ground: [306, 816] },
-        reach: { crop: [684, 71, 501, 747], ground: [878, 813], contact: [1179, 373] },
-        crouch: { crop: [1315, 305, 509, 506], ground: [1496, 806], contact: [1818, 723] },
+        stand: { crop: [217, 10, 176, 494], ground: [256, 498] },
+        reach: { crop: [685, 71, 314, 434], ground: [768, 498], contact: [961, 226] },
+        crouch: { crop: [1164, 181, 340, 322], ground: [1280, 498], contact: [1474, 449] }
       }
     },
     musgrave: {
-      size: [1774, 887], walkView: [371, 509], walkGround: [170, 500], walkStandingHeight: 493, standingHeight: 843,
+      size: [1536, 512], walkView: [448, 500], walkGround: [224, 493], walkStandingHeight: 482, standingHeight: 482,
       poses: {
-        stand: { crop: [156, 6, 258, 852], ground: [287, 853] },
-        reach: { crop: [628, 64, 506, 793], ground: [792, 852], contact: [1128, 344] },
-        crouch: { crop: [1216, 295, 529, 554], ground: [1423, 844], contact: [1739, 751] },
+        stand: { crop: [173, 12, 174, 494], ground: [256, 498] },
+        reach: { crop: [611, 38, 391, 466], ground: [768, 498], contact: [961, 210] },
+        crouch: { crop: [1119, 166, 373, 338], ground: [1280, 498], contact: [1456, 446] }
       }
     },
     henry: {
-      size: [1942, 809], walkView: [352, 512], walkGround: [177, 508], walkStandingHeight: 496, standingHeight: 771,
+      size: [1536, 512], walkView: [448, 500], walkGround: [224, 493], walkStandingHeight: 482, standingHeight: 482,
       poses: {
-        stand: { crop: [218, 12, 259, 780], ground: [353, 787] },
-        reach: { crop: [718, 71, 510, 720], ground: [890, 786], contact: [1222, 330] },
-        crouch: { crop: [1341, 303, 499, 487], ground: [1527, 785], contact: [1834, 718] },
+        stand: { crop: [163, 11, 183, 495], ground: [256, 498] },
+        reach: { crop: [618, 60, 385, 446], ground: [768, 498], contact: [961, 237] },
+        crouch: { crop: [1147, 172, 360, 332], ground: [1280, 498], contact: [1474, 447] }
       }
     },
     george: {
-      size: [1881, 836], walkView: [382, 510], walkGround: [188, 507], walkStandingHeight: 495, standingHeight: 795,
+      size: [1536, 512], walkView: [448, 500], walkGround: [224, 493], walkStandingHeight: 482, standingHeight: 482,
       poses: {
-        stand: { crop: [180, 13, 278, 804], ground: [326, 812] },
-        reach: { crop: [699, 79, 533, 737], ground: [876, 810], contact: [1226, 366] },
-        crouch: { crop: [1321, 291, 522, 523], ground: [1522, 809], contact: [1837, 740] },
+        stand: { crop: [211, 11, 191, 495], ground: [256, 498] },
+        reach: { crop: [617, 69, 388, 436], ground: [768, 498], contact: [961, 223] },
+        crouch: { crop: [1117, 168, 396, 336], ground: [1280, 498], contact: [1473, 447] }
       }
-    },
+    }
   };
 
   const decoded = new Map();

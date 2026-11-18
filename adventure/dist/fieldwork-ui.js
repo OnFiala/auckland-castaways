@@ -5,16 +5,19 @@
   const saveKey = 'until-we-return.fieldwork.1';
   const memory = new Map(), plates = new Map();
   function fileFor(id, state) {
+    if (id === 'chest' && state?.done) return 'assets/workplates/details/chest-open.webp';
     if (id === 'fastening') return sceneAsset('slipway.webp');
     if (id === 'roof' && (!state?.located || state.done)) return sceneAsset('cabin.webp');
     return 'assets/workplates/' + id + '.webp';
   }
-  function prepare(id) {
-    if (!model.puzzles[id] || !root.Image || plates.has(id)) return;
+  function prepare(id, state) {
+    if (!model.puzzles[id] || !root.Image) return;
+    const file = fileFor(id, state);
+    if (plates.has(file)) return;
     const picture = new root.Image();
-    plates.set(id,picture);
-    picture.onerror = () => plates.delete(id);
-    picture.src = fileFor(id);
+    plates.set(file,picture);
+    picture.onerror = () => plates.delete(file);
+    picture.src = file;
   }
   function prepareForItem(item, scene) {
     const match = Object.entries(model.puzzles).find(([,p]) => p.item === item && p.scene === scene);
@@ -90,43 +93,49 @@
     return `<g class="${className}">${line(d, '#483929', 1.42)}${line(d, '#ac8656', .95)}${line(d, '#d4b78a', .52, 'stroke-dasharray=".28 .7"')}</g>`;
   }
   function chest(s, a) {
-    if (!s.seated) return '';
+    if (!s.seated || s.done) return '';
     const pivot = s.pivot === 'near' ? [67, 61.5] : [46, 75];
     let block = '';
-    if (s.pivot) block = `<g class="fw-place" transform="translate(${pivot.join(' ')})"><path d="M-4 4L-1 -1.5 3 -1 5 3 0 6Z" fill="#755737" stroke="#423323" stroke-width=".42"/>${line('M-3.5 3.5L0 1l4.1 1.6 M-1.5 3.5L1.8 1.8','#ad8d5f',.34)}</g>`;
+    if (s.pivot) block = `<image class="fw-place" href="assets/workplates/details/chest-block.webp" x="${pivot[0] - 5.8}" y="${pivot[1] - 1.3}" width="7.8" height="5" preserveAspectRatio="none"/>`;
     // Crop the same painted iron from the satchel and seat its hook in the nick.
     const bar = `<defs><clipPath id="fw-bar-crop"><rect x="31" y="57.6" width="44.5" height="28.1"/></clipPath></defs>
       <g clip-path="url(#fw-bar-crop)"><image href="assets/props/tools.png" x="26.64" y="26.94" width="155.7" height="59.58" preserveAspectRatio="none"/></g>`;
-    return `${s.done ? '<path d="M18 60.6Q55 60.2 97.5 57.6l-.1 2.6q-27 .8-40 .4l-39.4.5Z" fill="#2c271e" opacity=".96"/>' : ''}${block}<g class="${a === 'press' ? 'fw-lever' : 'fw-place'}" style="transform-origin:${pivot[0]}% ${pivot[1]}%">${bar}</g>`;
+    return `${block}<g class="${a === 'press' ? 'fw-lever' : 'fw-place'}" style="transform-origin:${pivot[0]}% ${pivot[1]}%">${bar}</g>`;
   }
   const sceneAsset = name => 'assets/field-scenes/' + name;
-  function tinAndStain(sealed) {
-    const stain = '<path d="M35.8 34.6q2.8 1.2 3.5 4l-.7 4.1-1.2-.8-.6 4-1.1-1.4.1-3.7-1.1-2.4Z" fill="#543b25" opacity=".53" stroke="#a3885c" stroke-width=".27"/>';
-    const pan = `<ellipse cx="66.5" cy="80" rx="5.9" ry="1.05" fill="#30251c" opacity=".47"/>
-      <path d="M59.5 76.2q6.1 1.6 12.5-.1l-1 3.1q-4.8 1.8-10.3.1Z" fill="url(#fw-tin)" stroke="#423b31" stroke-width=".33"/>
-      <ellipse cx="65.75" cy="76.2" rx="6.25" ry="1.34" fill="#68685b" stroke="#c1b39b" stroke-width=".42"/>
-      ${line('M60.5 76.45q5.4.93 10.6-.05','#343e3b',.24)}
-      ${line('M61.3 78.4q4 .9 8.2.12','#b6a88e',.25)}`;
-    const water = sealed
-      ? line('M28.2 20.2l-.8 3.6m.5.7-.55 3.1m-1 .7-.4 1.7', '#ccdbe0', .48, 'class="fw-runoff"')
-      : `<path class="fw-drip" d="M65.8 23.4q-.85 1.65-.42 2.1.62.43.9-.4.1-.38-.48-1.7Z" fill="#c1d7d8" stroke="#5c7377" stroke-width=".17"/>
-        <ellipse class="fw-pan-ring" cx="65.8" cy="76.2" rx="3.2" ry=".55" fill="none" stroke="#d5ddd0" stroke-width=".35"/>`;
+  // Survey coordinates are shared with the room by the registered crop below.
+  const panFile = 'assets/tactile/tin-pan.webp';
+  function tinAndStain(sealed, instance) {
+    const stain = '<path d="M35.8 34.6q2.8 1.2 3.5 4l-.7 4.1-1.2-.8-.6 4-1.1-1.4.1-3.7-1.1-2.4Z" fill="#543b25" opacity=".43"/>';
+    const pan = `<ellipse cx="59.9" cy="89.86" rx="5.1" ry=".46" fill="#382d24" opacity=".42"/>
+      <image class="fw-tin-pan" href="${panFile}" x="53.75" y="84.22" width="12.1" height="6.18" preserveAspectRatio="none"/>`;
+    if (sealed) {
+      // Seat the same stitched hide as the close view into the sloping roof lap.
+      const repair = `<defs><clipPath id="roof-hide-${instance}"><path d="M55 18.5q4.7 1.3 10 1.9l-.55 2.75q-5.2-.4-9.9-1.95Z"/></clipPath></defs>
+        <image href="assets/voyage/props/workshop.png" x="52.24" y="14.15" width="45" height="40" preserveAspectRatio="none" clip-path="url(#roof-hide-${instance})"/>
+        ${line('M54.95 21q4.15 1.3 9.1 1.85','#c2a67d',.2,'stroke-dasharray=".38 .45"')}`;
+      // Exterior runoff is visible through the upper left window, downhill from its eave.
+      return stain + pan + repair + line('M24.1 20.3l.12 2.3m.1 1.2.14 2.5', '#c5d7da', .24, 'class="fw-runoff"');
+    }
+    const water = `<defs><clipPath id="pan-water-${instance}"><ellipse cx="59.8" cy="86.57" rx="5.02" ry=".94"/></clipPath></defs>
+      <path class="fw-drip" d="M59.8 22.18c-.06.31-.28.55-.23.89.03.28.37.36.46.11.11-.27-.12-.71-.23-1Z" fill="#c4d4d2"/>
+      <g clip-path="url(#pan-water-${instance})"><ellipse class="fw-pan-ring" cx="59.8" cy="86.5" rx="4.65" ry=".88" fill="none" stroke="#c1cbc2" stroke-width=".16"/></g>`;
     return stain + pan + water;
   }
-  const tinGradient = '<defs><linearGradient id="fw-tin"><stop stop-color="#776a55"/><stop offset=".28" stop-color="#aba992"/><stop offset=".6" stop-color="#817b67"/><stop offset="1" stop-color="#504b3d"/></linearGradient></defs>';
   function cabinTraces(sealed) {
-    // The detail crops native scene pixels [125, 0, 1325, 800] from a 1672 × 941 painting.
-    return `<svg aria-hidden="true" class="fw-cabin-traces" viewBox="0 0 100 100" preserveAspectRatio="none">${tinGradient.replace('fw-tin','fw-room-tin')}${tinAndStain(sealed).replace('url(#fw-tin)','url(#fw-room-tin)')}</svg>`;
+    // The detail uses native scene pixels [125, 0, 1325, 800] from the 1672 × 941 painting.
+    return `<svg aria-hidden="true" class="fw-cabin-traces" viewBox="0 0 100 100" preserveAspectRatio="none">${tinAndStain(sealed,'room')}</svg>`;
   }
-  const reaches = {player: [301,377], musgrave: [338,508]};
+  const reaches = {player: [193, 264], musgrave: [193, 288]};
   const poses = {
-    player: {stand: [274,714,138,709], reach: [485,665,479,282], height:705},
-    musgrave: {stand: [258,852,132,847], reach: [506,793,500,280], height:843}
+    player: {stand: [160, 494, 81, 487], reach: [339, 436, 301, 166], height: 482},
+    musgrave: {stand: [174, 494, 83, 486], reach: [391, 466, 350, 172], height: 482}
   };
+  const figureHeight = id => id === 'musgrave' ? 51.5 : 48;
   // Anchor a standing figure at the boots and a working figure at the outstretched hand.
   function figure(id, pose, x, y, face, held='') {
     const sheet=poses[id], [w,h,ax,ay]=sheet[pose];
-    const sy=48/sheet.height, sx=sy*2/3;
+    const sy=figureHeight(id)/sheet.height, sx=sy*2/3;
     const handOrFoot=`translate(${x} ${y}) scale(${face} 1)`;
     const footX = pose === 'stand' ? x : x - face * reaches[id][0] * sx;
     const footY = pose === 'stand' ? y : y + reaches[id][1] * sy;
@@ -153,7 +162,7 @@
         ${line(`M23.4 42.5Q47 46.7 77.1 ${tip+2.4}`,'#614129',.36)}
       </g>`;
     const nail = (x,y) => `<g transform="translate(${x} ${y}) rotate(-14)">${line('M0 0L.3 2.4M-.6 0h1.1','#403931',.52)}${line('M-.48 -.12h.8','#c3b5a1',.22)}</g>`;
-    const hammer = (x,y,hit) => `<g transform="translate(${x} ${y}) rotate(${a==='strike' && !s.driven ? 44 : 0})">
+    const hammer = (x,y,hit) => `<g transform="translate(${x} ${y}) scale(-1 1) rotate(${hit ? 72 : a==='strike' && !s.driven ? 44 : 0})">
       <g class="${hit ? 'fw-hammer-strike' : ''}">
       <path d="M-.4.7q.05.35.43.38l1.85-5.3-.46-.21Z" fill="#876342" stroke="#483829" stroke-width=".2"/>
       ${line('M-.14 .68l1.74-4.9','#bd9569',.15)}
@@ -161,24 +170,22 @@
       ${line('M.88-5.6l.85.35m.82.47.84.38','#a49d8a',.21)}</g></g>`;
     let crew;
     if (!s.handed) {
-      crew = figure('musgrave','reach',44.8,39,-1,hammer(48.7,42.3,false))
-        + (s.tested ? figure('player','reach',43.7,39,1,nail(43,39)) : figure('player','reach',43,43,1,nail(43,43)));
+      crew = figure('musgrave','reach',44.8,47.2,-1,hammer(56.3,52.2,false))
+        + (s.tested ? figure('player','reach',43.7,47.2,1,nail(43.7,47.2)) : figure('player','reach',43,43,1,nail(43,43)));
     } else {
-      const mate = s.clear ? figure('musgrave','stand',50,68,1)
-        : figure('musgrave','reach',62,39,1,hammer(62.1,39.1,a==='strike' && s.driven) + (s.driven ? '' : nail(62,39)));
+      const mate = s.clear ? figure('musgrave','stand',59,81,-1)
+        : figure('musgrave','reach',56,40.5,-1,hammer(56,40.5,s.driven) + (s.driven ? '' : nail(50.2,41.2)));
       const alick = s.brace === 'stern' ? figure('player','reach',27,42,1)
         : s.brace === 'bow' || s.done ? figure('player','reach',76,35,-1)
         : figure('player','stand',s.clear ? 86.5 : 31,s.clear ? 61 : 66,s.clear ? -1 : 1);
       crew = mate + alick;
     }
-    const head = s.driven ? '<ellipse cx="62.2" cy="39.9" rx=".8" ry=".52" fill="#3a342a" stroke="#c4b08f" stroke-width=".2"/>' : '';
+    const head = s.driven ? '<ellipse cx="50.2" cy="41.2" rx=".8" ry=".52" fill="#3a342a" stroke="#c4b08f" stroke-width=".2"/>' : '';
     return wood + head + crew;
   }
   function roof(s, a) {
     if (!s.located || s.done) {
-      const repair = s.done ? `<path d="M61 19.7q4.8 1.3 9.4 1.3l-.4 3q-4.9.15-9.2-1.4Z" fill="#92795b" stroke="#65513d" stroke-width=".26"/>
-        ${line('M61.4 22.3q4.3 1.35 8.5 1.35','#cfb88e',.23,'stroke-dasharray=".44 .46"')}` : '';
-      return tinGradient + tinAndStain(s.done) + repair;
+      return tinAndStain(s.done,'survey');
     }
     if (!s.lap) return '';
     const top = s.lap === 'under' ? 'M24.7 26.4Q42 31 59.7 39.8' : 'M24 23.1q8 1.7 12.1 3.4t7.2 1.9 14.5 4.4';
@@ -323,7 +330,7 @@
     d.innerHTML = `<div class="fw-sheet">
       <header class="fw-top"><div><p class="fw-place-name"></p><h2 id="fw-title" tabindex="-1"></h2></div><button type="button" class="fw-close" data-fw-close aria-label="Stand back from the work">Stand back <span aria-hidden="true">×</span></button></header>
       <div class="fw-body"><div class="fw-board"><img class="fw-plate" alt="" width="1536" height="1024">
-        <div class="fw-lid-surface" aria-hidden="true"></div><svg class="fw-drawing" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <svg class="fw-drawing" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
         <svg class="fw-trace" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><div class="fw-points"></div></div>
         <div class="fw-notes"><h3 class="fw-question"></h3><p id="fw-description"></p><div class="fw-end"></div>
           <p class="fw-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -366,7 +373,7 @@
       if (distance < 5) continue;
       const walking = document.createElementNS(ns,'g'), body = document.createElementNS(ns,'svg');
       const ink = document.createElementNS(ns,'image'), atlas=motion.WALKS[id];
-      const [cx,cy,w,h]=atlas.commoncrop, [gx,gy]=atlas.groundanchor, sy=48/(gy-cy-8), sx=sy*2/3;
+      const [cx,cy,w,h]=atlas.commoncrop, [gx,gy]=atlas.groundanchor, sy=figureHeight(id)/(gy-cy-8), sx=sy*2/3;
       body.setAttribute('x',String((cx-gx)*sx)); body.setAttribute('y',String((cy-gy)*sy));
       // Nested SVG lengths are in workplate units. Override the shared dialog icon size.
       body.style.width=(w*sx)+'px'; body.style.height=(h*sy)+'px';
@@ -386,7 +393,7 @@
         const x=start[0]+dx*ease, y=start[1]+dy*ease;
         figure.dataset.footX=x; figure.dataset.footY=y;
         walking.setAttribute('transform',`translate(${x} ${y}) scale(${face} 1)`);
-        body.setAttribute('viewBox',motion.frameBox(id,motion.frameIndex(distance*ease/48)).join(' '));
+        body.setAttribute('viewBox',motion.frameBox(id,motion.frameIndex(distance*ease/figureHeight(id))).join(' '));
         root.requestAnimationFrame(frame);
       }
       frame(lastFrame);
@@ -420,16 +427,18 @@
     d.querySelector('#fw-description').textContent = surveyEnd
       ? 'Bring the stitched hide to the leak when you are ready to work.'
       : id === 'roof' && state.located ? (state.done ? 'Alick steps back from the mended lap to watch the next shower.' : p.patchDescription)
+      : id === 'chest' && state.done ? 'The axe and tinderbox lie inside. The front staple is clear of the hasp.'
       : id === 'fastening' ? fasteningDescription(state) : p.description;
     d.querySelector('.fw-question').textContent = v.question;
     const plate=d.querySelector('.fw-plate');
     const plateFile = surveyEnd ? sceneAsset('cabin.webp') : fileFor(id,state);
     if (plate.getAttribute('src') !== plateFile) plate.setAttribute('src',plateFile);
+    if (id === 'chest' && state.seated && !state.done) prepare('chest', {done:true});
     const previousFeet = new Map();
     if (id === 'fastening' && action) for (const actor of d.querySelectorAll('[data-fw-actor]')) {
       previousFeet.set(actor.dataset.fwActor, [Number(actor.dataset.footX),Number(actor.dataset.footY)]);
     }
-    d.querySelector('.fw-drawing').innerHTML = surveyEnd ? tinGradient + tinAndStain(false) : artFor(id, state, action);
+    d.querySelector('.fw-drawing').innerHTML = surveyEnd ? tinAndStain(false,'survey') : artFor(id, state, action);
     if (previousFeet.size) walkCrew(d, previousFeet);
     d.querySelector('.fw-points').innerHTML = v.actions.map(a =>
       `<button type="button" class="fw-point" data-fw-point="${a.id}" aria-label="${a.label}" style="left:${a.x}%;top:${a.y}%" ${a.selected === undefined ? '' : 'aria-pressed="' + a.selected + '"'}><span aria-hidden="true"></span></button>`).join('');

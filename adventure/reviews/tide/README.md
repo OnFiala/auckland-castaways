@@ -1,5 +1,7 @@
 # Příboj, lesní tůň a otevřené moře
 
+Nová kompozice plochého pobřeží, vraku, loděnice a paluby má [vlastní měření a ukázku počasí](watch/README.md). Následující snímky, hodnoty a reprodukční příkazy zachycují obrazy z commitu `c2eff1a5f8dd803dccd28d50db0ab66b27949d6e`. Pro zopakování této starší zkoušky otevřete repozitář v dané revizi.
+
 [Čtyři sekundy pohybu ze hry](priboj-a-proud.webp) · [Pevné body přímo v obrazech](pevne-body.webp) · [Čtyři gesta posádky](gesta.webp)
 
 Vlevo od vraku se zpění vlna a v popředí zůstane stát útes. V lesní tůni lze sledovat dva úzké prameny, mezi nimiž prosvítá tmavá skála. Při plavbě přechází světlo po hřebeni vzdálené vlny za stěžněm. Všechny tři výřezy běží současně, každý vlastním herním vykreslovačem. Časové údaje označují kapitolu hry. Přesné počasí i světlo jsou výtvarná rekonstrukce.

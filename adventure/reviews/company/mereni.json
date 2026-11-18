@@ -1,0 +1,147 @@
+[
+  {
+    "file": "beach-1152.webp",
+    "background": "assets/tidepaint/beach.webp",
+    "size": [
+      1152,
+      776
+    ],
+    "actors": [
+      {
+        "id": "raynal",
+        "x": 77.8,
+        "y": 72.1,
+        "facing": "left",
+        "pose": "stand",
+        "height": 34.25
+      },
+      {
+        "x": 63.6,
+        "y": 75.7,
+        "id": "player",
+        "pose": "stand",
+        "facing": "right",
+        "height": 35.91666666666667
+      }
+    ],
+    "backdrop_sha256": "0663e6fa24bed611d4757f5c500ca79778016fc25cb3c487c12ea966cc1b36cf",
+    "dialogue_portrait": "assets/cast-portraits/raynal.webp",
+    "columns_px": 1152,
+    "portrait_px": 78,
+    "font_px": 21,
+    "lines": [
+      "They’ll want a roof. That’s our sail in the branches. I can see the loose",
+      "corner from here."
+    ],
+    "rail_px": 128,
+    "cap_to_sail_px": 25.1
+  },
+  {
+    "file": "beach-390.webp",
+    "background": "assets/tidepaint/beach.webp",
+    "size": [
+      390,
+      326
+    ],
+    "actors": [
+      {
+        "id": "raynal",
+        "x": 77.8,
+        "y": 72.1,
+        "facing": "left",
+        "pose": "stand",
+        "height": 34.25
+      },
+      {
+        "x": 63.6,
+        "y": 75.7,
+        "id": "player",
+        "pose": "stand",
+        "facing": "right",
+        "height": 35.91666666666667
+      }
+    ],
+    "backdrop_sha256": "0663e6fa24bed611d4757f5c500ca79778016fc25cb3c487c12ea966cc1b36cf",
+    "dialogue_portrait": "assets/cast-portraits/raynal.webp",
+    "columns_px": 390,
+    "portrait_px": 52,
+    "font_px": 16,
+    "lines": [
+      "They’ll want a roof. That’s our sail in",
+      "the branches. I can see the loose",
+      "corner from here."
+    ],
+    "rail_px": 107,
+    "cap_to_sail_px": 9.0
+  },
+  {
+    "file": "wreck-960.webp",
+    "background": "assets/tidepaint/wreck.webp",
+    "size": [
+      960,
+      668
+    ],
+    "actors": [
+      {
+        "id": "musgrave",
+        "x": 86.5,
+        "y": 72.4,
+        "facing": "right",
+        "pose": "stand",
+        "height": 33.483870967741936
+      },
+      {
+        "x": 95,
+        "y": 73.4,
+        "id": "player",
+        "pose": "stand",
+        "facing": "left",
+        "height": 33.96774193548387
+      }
+    ],
+    "backdrop_sha256": "291a317ec606d1bc41b29519e0d6585f911da4b2c870ee40419877e1d30f8f36",
+    "dialogue_portrait": "assets/cast-portraits/musgrave.webp",
+    "columns_px": 960,
+    "portrait_px": 65,
+    "font_px": 18,
+    "lines": [
+      "Where’s Raynal? I counted five ashore and now I can only see you."
+    ],
+    "rail_px": 128
+  },
+  {
+    "file": "slipway-960.webp",
+    "background": "assets/tidepaint/slipway.webp",
+    "size": [
+      960,
+      668
+    ],
+    "actors": [
+      {
+        "id": "musgrave",
+        "x": 38,
+        "y": 66.8,
+        "facing": "left",
+        "pose": "stand",
+        "height": 36.50032573289902
+      },
+      {
+        "x": 28.509915309446257,
+        "y": 67.8,
+        "id": "player",
+        "pose": "stand",
+        "facing": "right",
+        "height": 36.92703583061889
+      }
+    ],
+    "backdrop_sha256": "ada7885071acce49df0850300fe518b3f268479cd6961834c1aa0b5113510bb1",
+    "dialogue_portrait": "assets/cast-portraits/musgrave.webp",
+    "columns_px": 960,
+    "portrait_px": 65,
+    "font_px": 18,
+    "lines": [
+      "Stand beside me, Alick. Where would another man put his knees?"
+    ],
+    "rail_px": 128
+  }
+]

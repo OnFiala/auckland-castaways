@@ -33,6 +33,7 @@ test('painted actions, named controls, hints and unfinished work survive standin
   const a = workroom();
   a.open('chest');
   assert.ok(a.bench.shown());
+  assert.equal(a.dialog.querySelector('.fw-plate').getAttribute('src'), 'assets/workplates/chest.webp');
   assert.equal(a.dialog.querySelector('.fw-controls').open, false);
   await a.point('strap');
   assert.match(a.dialog.querySelector('.fw-feedback').textContent, /no lip/);
@@ -61,11 +62,15 @@ test('painted actions, named controls, hints and unfinished work survive standin
   const before = b.dialog.querySelector('.fw-drawing').innerHTML;
   await b.point('press');
   assert.notEqual(b.dialog.querySelector('.fw-drawing').innerHTML, before, 'the physical position changes');
+  const revealed = 'assets/workplates/details/chest-open.webp';
+  assert.equal(b.dialog.querySelector('.fw-plate').getAttribute('src'), revealed);
+  assert.doesNotMatch(b.dialog.querySelector('.fw-drawing').innerHTML, /fw-bar-crop/);
   assert.equal(b.ui.activeElement(), b.dialog.querySelector('[data-fw-finish]'));
   assert.equal(b.calls.complete, 0);
   await b.click('[data-fw-close]');
   assert.deepEqual(b.calls, {complete: 0, close: 1});
   b.open('chest');
+  assert.equal(b.dialog.querySelector('.fw-plate').getAttribute('src'), revealed);
   await b.click('[data-fw-finish]');
   assert.deepEqual(b.calls, {complete: 1, close: 1});
   assert.equal(b.bench.shown(), false);
@@ -219,4 +224,18 @@ test('leaving the tab stops the sound of the pan immediately', async () => {
   }});
   room.bench.surveyRoof();await room.point('listen');
   doc.hidden=true;visibilityChanged();assert.equal(stops,1);
+});
+
+test('the walkable room and roof survey share the pan and place the only ring inside its rim', () => {
+  const room=workroom();room.bench.surveyRoof();
+  const markup=room.dialog.querySelector('.fw-drawing').innerHTML;
+  for(const [svg,name] of [[markup,'survey'],[room.bench.cabinTraces(false),'room']]) {
+    assert.match(svg,/assets\/tactile\/tin-pan.webp/);
+    assert.equal((svg.match(/class="fw-drip"/g)||[]).length,1);
+    assert.ok(svg.includes('clip-path="url(#pan-water-'+name+')"'));
+    assert.match(svg,/class="fw-pan-ring" cx="59.8" cy="86.5"/);
+  }
+  const repaired=room.bench.cabinTraces(true);
+  assert.match(repaired,/tin-pan.webp/);assert.match(repaired,/roof-hide-room/);
+  assert.doesNotMatch(repaired,/fw-drip|fw-pan-ring/);
 });

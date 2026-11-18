@@ -1,200 +1,388 @@
 {
   "title": "Voyage and rescue paintings",
   "coordinateBasis": "16:9 stage, dist/stage-direction.js. Source reference paths are relative to adventure/.",
-  "method": "Six original ImageGen edits. A seventh state recombines two native paintings. Native masters were generated at the sizes below. Final RGB plates resized to 1600 x 900, stripped of metadata and encoded via ImageMagick libwebp quality 88 method 6. No freehand procedural illustration or stock image layers.",
-  "maskMethod": "Polygon points measured in 840 x 473 inspection image, scaled to native pixels, rounded, gaussian-feathered sigma 3 native pixels, white admits the child painting. Overlay against base at origin with ImageMagick Over before WebP encoding.",
+  "method": "Original ImageGen paintings in fixed cameras. The full camera and available working states are recorded per location. The slipway and open-boat scenes retain their native 1672 × 941 dimensions. The wharf and chart room are delivered at 1600 × 900. Each registration record identifies its mask, source and encoding.",
+  "maskMethod": "The coordinate basis and feathering are specified with each registered change. The earlier generation and mask records for the boatyard and open boat remain in the history folder.",
   "registrationMasks": {
-    "dry": [
-      [
-        500,
-        347
+    "dry": {
+      "referenceSize": [
+        840,
+        473
       ],
-      [
-        580,
-        346
+      "polygon": [
+        [
+          426,
+          366
+        ],
+        [
+          484,
+          364
+        ],
+        [
+          532,
+          362
+        ],
+        [
+          591,
+          363
+        ],
+        [
+          654,
+          357
+        ],
+        [
+          693,
+          358
+        ],
+        [
+          700,
+          371
+        ],
+        [
+          680,
+          383
+        ],
+        [
+          652,
+          393
+        ],
+        [
+          600,
+          405
+        ],
+        [
+          545,
+          410
+        ],
+        [
+          507,
+          403
+        ],
+        [
+          480,
+          393
+        ],
+        [
+          454,
+          382
+        ],
+        [
+          429,
+          377
+        ]
       ],
-      [
-        617,
-        348
+      "featherNativePixels": 3.5
+    },
+    "patch": {
+      "referenceSize": [
+        840,
+        473
       ],
-      [
-        625,
-        355
+      "polygon": [
+        [
+          624,
+          64
+        ],
+        [
+          639,
+          51
+        ],
+        [
+          669,
+          42
+        ],
+        [
+          682,
+          43
+        ],
+        [
+          687,
+          56
+        ],
+        [
+          668,
+          73
+        ],
+        [
+          635,
+          88
+        ],
+        [
+          617,
+          91
+        ],
+        [
+          613,
+          79
+        ]
       ],
-      [
-        622,
-        366
+      "featherNativePixels": 3.5
+    },
+    "fieldbookRig": {
+      "coordinates": "Native 1672x941 donor pixels; top-left origin",
+      "polygon": [
+        [
+          696,
+          459
+        ],
+        [
+          699,
+          449
+        ],
+        [
+          724,
+          388
+        ],
+        [
+          730,
+          384
+        ],
+        [
+          1114,
+          114
+        ],
+        [
+          1116,
+          72
+        ],
+        [
+          1126,
+          68
+        ],
+        [
+          1131,
+          75
+        ],
+        [
+          1134,
+          414
+        ],
+        [
+          1138,
+          418
+        ],
+        [
+          1134,
+          427
+        ],
+        [
+          1131,
+          483
+        ],
+        [
+          1121,
+          487
+        ],
+        [
+          1111,
+          486
+        ],
+        [
+          1107,
+          481
+        ],
+        [
+          1107,
+          426
+        ],
+        [
+          731,
+          400
+        ],
+        [
+          705,
+          450
+        ],
+        [
+          704,
+          459
+        ]
       ],
-      [
-        598,
-        373
+      "compositeTranslation": [
+        -16,
+        0
       ],
-      [
-        550,
-        377
+      "featherSigmaPixels": 1.7
+    },
+    "unfinishedStrake": {
+      "donorPolygonNative1654x951": [
+        [
+          419,
+          464
+        ],
+        [
+          527,
+          490
+        ],
+        [
+          667,
+          512
+        ],
+        [
+          829,
+          529
+        ],
+        [
+          1000,
+          538
+        ],
+        [
+          1056,
+          539
+        ],
+        [
+          1058,
+          558
+        ],
+        [
+          1039,
+          583
+        ],
+        [
+          1030,
+          609
+        ],
+        [
+          1021,
+          632
+        ],
+        [
+          982,
+          646
+        ],
+        [
+          890,
+          649
+        ],
+        [
+          723,
+          631
+        ],
+        [
+          570,
+          603
+        ],
+        [
+          448,
+          560
+        ],
+        [
+          436,
+          545
+        ],
+        [
+          427,
+          512
+        ]
       ],
-      [
-        519,
-        369
+      "donorResize": [
+        800,
+        460
       ],
-      [
-        503,
-        361
-      ]
-    ],
-    "patch": [
-      [
-        620,
-        39
-      ],
-      [
-        681,
-        37
-      ],
-      [
-        673,
-        65
-      ],
-      [
-        669,
-        82
-      ],
-      [
-        621,
-        88
-      ],
-      [
-        617,
-        79
-      ]
-    ],
-    "rigged": [
-      [
-        342,
-        208
-      ],
-      [
-        505,
-        206
-      ],
-      [
-        518,
-        204
-      ],
-      [
-        520,
-        56
-      ],
-      [
-        541,
-        55
-      ],
-      [
-        548,
-        79
-      ],
-      [
-        575,
-        104
-      ],
-      [
-        610,
-        133
-      ],
-      [
-        647,
-        154
-      ],
-      [
-        675,
-        171
-      ],
-      [
-        687,
-        174
-      ],
-      [
-        699,
-        165
-      ],
-      [
-        717,
-        166
-      ],
-      [
-        714,
-        202
-      ],
-      [
-        698,
-        243
-      ],
-      [
-        679,
-        278
-      ],
-      [
-        640,
-        288
-      ],
-      [
-        617,
-        285
-      ],
-      [
-        588,
-        284
-      ],
-      [
-        556,
-        286
-      ],
-      [
-        520,
-        286
-      ],
-      [
-        471,
-        287
-      ],
-      [
-        444,
-        283
-      ],
-      [
-        416,
-        279
-      ],
-      [
-        379,
-        270
-      ],
-      [
-        348,
+      "pasteTopLeftNative": [
+        570,
         250
-      ]
-    ]
+      ],
+      "featherSigmaPixels": 1.3,
+      "registeredBeforePlankingMasterSHA256": "432ae45446946d9595513c15b9563fa5e281f3535739ef7736912c00214a74be"
+    },
+    "bareMast": {
+      "donorPolygonNative1672x941": [
+        [
+          1117,
+          73
+        ],
+        [
+          1120,
+          70
+        ],
+        [
+          1126,
+          70
+        ],
+        [
+          1129,
+          74
+        ],
+        [
+          1128,
+          107
+        ],
+        [
+          1129,
+          180
+        ],
+        [
+          1129,
+          294
+        ],
+        [
+          1131,
+          408
+        ],
+        [
+          1130,
+          479
+        ],
+        [
+          1126,
+          484
+        ],
+        [
+          1114,
+          485
+        ],
+        [
+          1111,
+          482
+        ],
+        [
+          1112,
+          424
+        ],
+        [
+          1113,
+          357
+        ],
+        [
+          1114,
+          270
+        ],
+        [
+          1117,
+          173
+        ]
+      ],
+      "compositeTranslation": [
+        -16,
+        0
+      ],
+      "featherSigmaPixels": 0.65,
+      "registeredGameMasterSHA256": "a1297c877ab34094757867ded0f03db32939c83fea00d17615962fa0867f7976"
+    }
   },
   "generations": {
     "slipway": {
       "tool": "OpenAI ImageGen",
-      "id": "exec-2393ee6b-3d93-4f4a-92c7-2a5f119bb8c5",
+      "id": "exec-21d69999-c4a0-4692-8100-54311aa9ce41",
       "inputs": [
         {
-          "path": "dist/assets/voyage/scenes/slipway.png",
-          "sha256": "f93e33d7ffaf3f61a404977efcff7e6be13f13fa3d804ec7de06523836c73068",
-          "bytes": 3015846,
-          "size": [
-            1672,
-            941
+          "role": "PNG decode supplied to ImageGen from the former game plate",
+          "priorDeliveredWebP": "5eb3adc11566fcd8c0d29c44725743715488e3c4ce87275cc97fe29bfda020ad",
+          "formerReceipt": "history/slipway-before-fieldbook.json",
+          "bytes": 2853372,
+          "sha256": "f24899645bc3e756512de24370a4c391a783933ad921bcba62dd0b17b9282d92",
+          "dimensions": [
+            1600,
+            900
           ]
         }
       ],
-      "prompt": "Produce one original, full-bleed 16:9 1860s maritime plein-air oil and gouache painting on fine linen for a historical point-and-click adventure. Think a real painter at a windswept place, with confident expressive flat bristle marks, great planes of colour, fine selective detail about things human hands have worn or made; strong non-photographic pictorial design and distinct local atmosphere, intelligible on a telephone. NOT a tracing or recolouring: invent new shapes, material grain, cloud formations, brushstrokes and lighting. Use the supplied reference ONLY as an immovable stage blueprint. Match its straight broadside framing and foreground walk plane, no shift, crop, tilt or lens change. Fixed world geometry! Cast, inventory and dialogue will be composited later: no people, no readable lettering, labels, watermarks, border, UI, loose pickups, modern fittings, or new foreground obstacles. Coordinates below in percent (x,y) of whole painting, origin upper left; do not print numbers. A small bright Auckland Island inlet during a squall clearing late in the Antarctic winter morning. Each colour fresh: wild diagonals of turquoise-slate surf through the narrow LEFT aperture, small opal clouds and warm silver light across a distant angular headland, windswept rata with limbs like calligraphy, violet shadow, copper raw wood, russet-green hillside on right. Transform generic brown clutter into big deliberate masses, foreground mostly open gravel. A roof of salvaged canvas at x26–39 over working bench whose empty top is centered (31.6,50). In front of rata on timber cradles, a partly rebuilt 1865 dinghy sits broadside x42–84 exactly as source image: high curving prow on right at (84,37), open light ribs/unplanked upper section across (54.3,48), strongest strake (71.2,54.2), mast STEP (62,49) but no mast or sail of any sort! This is vital for later separate game layers. Hull lowest at y59, cradle foot at y66. Bottom 32 percent of picture an open level strip of grit, a narrow streak of light crossed by cool tree shadows kept outside active silhouettes; shoreline does not enter strip. Retain stack of split timber at left and barrel at right edge. Frame in a life-sized gestural hand painted landscape. No Alpine towering snowy peaks or tropical plants.",
+      "prompt": "Create a radically restaged native wide 16:9 2D environment for a period adventure. One complete scene edge-to-edge, no picture frames, no lettering, no figures, no interface. Reference is an older version that the director rejected: keep only the listed interaction positions, not the design, drawing, camera perspective, incessant rock texture or palette. The new painter works in opaque matte gouache with fine dark sepia maritime draughtsman's nib accent lines and visible drybrush, early hydrographic survey field book. Bold shapes, physical construction and perspective, soft grey maritime daylight through a white gap from upper left, restrained warm honey-brown timber against petrol-blue shadow and green-grey water. Graphic tonal masses and specific voids. This is a working place on the Auckland Islands in 1864, a coastal temperate windy inlet, not the tropics, not a scenic American fantasy. A brilliant, modest little book painting of a particular lived-in site, elegant color and composition. No old paper illustrated border. No thick outlined comic style or photograph. Percent coordinates read from LEFT, TOP. Improvised boatbuilder’s yard sheltered by one low shore-beaten tree, slight raised three-quarter side view, the eyes see down INTO a small real clinker dinghy, an open five-man boat under conversion. Beautiful volumetric wood, dark iron rivets, the thick keel scarf, curved stem, top of 3 stout thwarts and fine strake overlap. Put the dinghy on TWO unequivocal trapezoidal timber stocks ALL supporting the actual keel, top edge at y45–49%, keel at y59%, boat from x42 to 83% of width. Stern left, bow right points slightly towards us. Strongly off-centre silhouette, no full-size ship, no building skeleton resembling a prehistoric animal. At (62%,49%) there is an EMPTY mast socket; a separate single mast will be added by the game, leave vertical space above. Foreground empty working gravel and sawdust floor from 68% down, few broad warm ochre marks, strong quietly directional shadows of the yard cast to right. At (31.6%,47%) a plain open shaded trestle table for a small item, left view opens into cool raked working launch channel / inlet, x0-36%, water middle distance, diagonal ramp vanishing to left. Broad watery grey cove and narrow receding headlands; pale weather, moss-dark shoreline, a low sheltering bent rātā crown on the upper RIGHT only, preserve light behind mast. Distinct damp-earth FOOTWAY visible on left, an empty stand between table and hull where a man at x38%,64% can look at his work. ONLY a few purposeful timbers at the edges, not piles. No barrels, boxes, ropes, buckets, pots, sails, masts or loose tools. Strong joinery and fine nib gouache, newly structured world. ",
       "output": {
-        "sha256": "0ad67722bcdc1f8ae68352768c43f7fa5dca5f47368c48222b1637b7a3e4241b",
-        "bytes": 3455315,
-        "size": [
+        "bytes": 3236706,
+        "sha256": "e59992d280b6fafe3189a040cc7f946f7ed4cac97c21d7eb4ea3a22abf66f473",
+        "dimensions": [
           1672,
           941
         ]
@@ -202,22 +390,15 @@
     },
     "crossing-wet": {
       "tool": "OpenAI ImageGen",
-      "id": "exec-5626dea6-a8e6-41bf-b7d8-e6d150f772cc",
-      "inputs": [
-        {
-          "path": "dist/assets/voyage/scenes/crossing-wet.png",
-          "sha256": "96685a4f8c816187d8ff9079cfb833fbbb6b231400cb55864e46c4e4290c2742",
-          "bytes": 2738001,
-          "size": [
-            1672,
-            941
-          ]
-        }
-      ],
-      "prompt": "Produce one original, full-bleed 16:9 1860s maritime plein-air oil and gouache painting on fine linen for a historical point-and-click adventure. Think a real painter at a windswept place, with confident expressive flat bristle marks, great planes of colour, fine selective detail about things human hands have worn or made; strong non-photographic pictorial design and distinct local atmosphere, intelligible on a telephone. NOT a tracing or recolouring: invent new shapes, material grain, cloud formations, brushstrokes and lighting. Use the supplied reference ONLY as an immovable stage blueprint. Match its straight broadside framing and foreground walk plane, no shift, crop, tilt or lens change. Fixed world geometry! Cast, inventory and dialogue will be composited later: no people, no readable lettering, labels, watermarks, border, UI, loose pickups, modern fittings, or new foreground obstacles. Coordinates below in percent (x,y) of whole painting, origin upper left; do not print numbers. A night watch in Foveaux's southern waters, seen from inside a small open wooden ship's boat. A rolling diagonal of viridian sea a few inches beyond the gunwale, behind it distant silvery violet rain withdrawing and threads of luminous moonlight on crests. Sky indigo with a break of pewter blue and warmer bone canvas standing out against it; no orange sunset or land dominating. Look atmospheric and astonishing, but wood, ropes and sail legible at phone size. Preserve this source exact side-on theatre geometry, rail around y60–62 and solid closed bulwark from there down to y74, unbroken walkable sole x6–93 from y75–90. The centered mast is at x44, rope belayed at x26,y55, tiller sticks out left x4–20,y54–59; second halyard near (44.1,55.9). Keep a HUGE natural-flax sail occupying upper right, EXACT angled foot sewn to a long boom from (47,33) to (99,12), with exactly ONE small jagged dark wind tear INSIDE its canvas at x76 y13.9, about 4% of picture width. It must be a VISIBLE rip directly above the foot of the sail. In the cockpit sole at x66.4 y75.3 paint a small, distinct pool of sloshed green/pewter water straddling the floorboard seam, 11% wide, 3% tall. No other standing deck water, all floorboards around it clearly visible. Entire horizon at y45, narrow band of ocean. Keep original mast, tiller, ropes, rail and plane underfoot rigidly registered to the blueprint.",
+      "id": "exec-5000b01f-fd7e-4e4e-99f7-7ee491f60f52",
+      "prompt": "Create a new masterpiece of original narrative ADVENTURE GAME environment art. One single full-bleed 16:9 landscape painting, no UI or lettering. The attached flat earlier game view supplies anchor positions only. REBUILD this as a historically plausible, tiny open wooden dinghy with raised sides, converted by five castaways in 1865 off New Zealand. We are INSIDE it at the empty midships looking across the starboard side into a South Pacific winter swell from human knee height, enough room to play three modest human figures that will be added later. Above all the modelling of this little boat must feel accurate: a graceful arcing, tapering sheerline, real narrower stern to the left near the small tiller, a strongly foreshortened bow curving away at the right, human-sized sheet cleat, thin steamed ribs, old clinker plank laps and bronze nail heads, wet open floorboards strongly following the hull rather than a broad rectangular stage. A low narrow far bench against the starboard side at right, no bench or obstructions across the play area in the lower 25 percent. Eye-catching silhouette and assured drawing, felt material and luminous, personal composition, a little collection of carpenters' marks, warm underpainting emerging through the salt. A short single fine spar rises at x43–45%, hemp halyard just left, upper-right warm ochre off-white sail drawing taut to starboard, DISTINCT small jagged tear at x76%, y14% above the boom. A curved tiller x3–20% y52–58%; gunwale y59–63%; cool green-black sea visible above it from y44–58%; no land or ships. Open keel-floor x8–92%, y75–90%, narrow reflective pool left by the latest boarding sea at x61–75%, y75–79%, central planks and footpath otherwise dry enough to stand. Mood: large low Atlantic-blue swell moving diagonally, distant rain visibly veils the right horizon, a single luminous paler slit on the far-left clouds at late nautical twilight, modulated steel indigo with sea glass highlights and burnt umber wood, no celestial orb and NO foreground downpour or permanent spaghetti whitecaps. Warm reflected light separates inside of boat from water. Lyrical, hand-modeled in opaque gouache with deliberate expressive fine ink, classic European illustrated maritime storybook, clear planar shadows and purposeful quiet negative space, editorial illustration, no noise, no ultra-real CGI, no heavy swirling impasto, no photos, no stencilled outlines, no spectators, people, letters, modern equipment, loose pickups or game symbols. Build a real tiny vulnerable boat and a credible expansive sea. No framing.",
+      "input": {
+        "priorGamePlateSHA256": "49b7aebf19b5004bbe12464c0f63056ce2b36d672b03f301a842ff895e0e238d",
+        "previousReceipt": "history/ocean-before-open-boat.json"
+      },
       "output": {
-        "sha256": "22bb8e21c488169d5284b6057c1e52dcaf1555401df3bc7b804ea0c62bb47cb9",
-        "bytes": 2731971,
+        "sha256": "121fcf772a26ed2a901294dce22b4c3e479c4bfbc60b6cfae912e5c955fcd740",
+        "bytes": 2756874,
         "size": [
           1672,
           941
@@ -274,27 +455,24 @@
     },
     "slipway-ready": {
       "tool": "OpenAI ImageGen",
-      "id": "exec-2dc1c82e-9ae4-4d20-ab5f-e469a32c1ea0",
+      "id": "exec-e11b100f-c30f-4ec6-91b8-f3f164962495",
       "inputs": [
         {
-          "generation": "slipway",
-          "sha256": "0ad67722bcdc1f8ae68352768c43f7fa5dca5f47368c48222b1637b7a3e4241b"
-        },
-        {
-          "path": "dist/assets/voyage/scenes/slipway-ready.png",
-          "sha256": "20de70b4cc3e93d4cbd0eefd53e6e7018e52f193064faf24d5e18a4217468822",
-          "bytes": 2848456,
-          "size": [
+          "role": "New full-resolution game painting supplied as the ImageGen reference",
+          "generation": "exec-21d69999-c4a0-4692-8100-54311aa9ce41",
+          "bytes": 3236706,
+          "sha256": "e59992d280b6fafe3189a040cc7f946f7ed4cac97c21d7eb4ea3a22abf66f473",
+          "dimensions": [
             1672,
             941
           ]
         }
       ],
-      "prompt": "A localized change to the FIRST 16:9 colour oil and gouache painting. Stay in the same skewed calm winter morning light, same waves and trees, canvas canopy, landscape, gravel, original surrounding brushwork. DO NOT shift camera at all or repaint the landscape. Complete and rig the boat. The SECOND reference image of the old set shows exact size, placement and silhouette of the BARE MAST and TRIANGULAR SAIL desired. Use that geometry only. In first image, keep the workboat on its same supports, hull outer rim x42–84, y37.0–58.4%, add its finished upper planking, dark oakum seams and gunwale of amber wood, and show a modest working hand-hewn mast at x62.2%, rooted y49.0, top y13.4. Single sea-ivory triangular sail, warm as unbleached linen, held to short stays from about (62.4,15) to (62.4,41.7) to (79.9,38.3); slightly uneven short seams, modest natural weight. No pennants, added mountains, people, tools, new deck gear or other changes. Keep fine linen paint surface, long brush strokes and every possible source pixel of original landscape between boat and sail. Distinct playable state but fixed registration.",
+      "prompt": "Create one locked-camera state of the supplied field-book painting. Change ONLY that open clinker-built boat by stepping a single slim wooden mast into the EXISTING visible round mast step (hole on thwart x66.05% y51.3%). Straight slim vertical pole from there up to x66% y9%, physically held. Suspend an economical tawny-cream canvas triangular sail, peak near mast head x66% y12%, clew aft to x43% y40%, its foot drawn back to x66% y42%, set to the LEFT of its mast to show the stern. Its exterior silhouette should be a simple slant. Short low boom, fine understated period lines (no forest of artificial string). Calm hanging cotton with a few soft structural folds, edges and one corner repair, late afternoon light. Keep boat, hull, construction, supports, background, tree, and all other pixels/camera exactly the same. This is only a visible rigging installed state. Do not change the position of anything else or add people, another mast, canvas below the gunwale, numbers, or any mark outside the boat and sail. Landscape 16:9.",
       "output": {
-        "sha256": "c212233dbb09005e8935440de220f059cec696b072b4f8b3533aa3f16f3fc652",
-        "bytes": 3086968,
-        "size": [
+        "bytes": 2773165,
+        "sha256": "8452e469401a9ce07233bf1b84279df9c896370366d2422a13ae0ebeac67dd95",
+        "dimensions": [
           1672,
           941
         ]
@@ -302,29 +480,42 @@
     },
     "crossing-safe": {
       "tool": "OpenAI ImageGen",
-      "id": "exec-263de352-ed71-4b8d-90e6-6aa9686acde4",
-      "inputs": [
-        {
-          "generation": "crossing-wet",
-          "sha256": "22bb8e21c488169d5284b6057c1e52dcaf1555401df3bc7b804ea0c62bb47cb9"
-        },
-        {
-          "path": "dist/assets/voyage/scenes/crossing-safe.png",
-          "sha256": "76bd96e1d082e3ff6fd360b712b59685e04ca1f2bfc8e6f73dba9e1bc5fccb59",
-          "bytes": 2669832,
-          "size": [
-            1672,
-            941
-          ]
-        }
-      ],
-      "prompt": "EDIT ONLY TWO SMALL REGIONS in the first painting for a historical adventure background, keeping the first image's camera, palette, exact night-blue moonlit sky and moving sea, solid hull rail and canvas, planks, geometry, position, brushstrokes and image edges absolutely unchanged. The second painting is only an old state diagram as a clue to patch placement, absolutely do not borrow its colours. Single widescreen 16:9 picture. At top right repair the torn sail at EXACTLY x76%,y13.9% on the same sail. Carefully hand-sew a SMALL PALE BUFF LINEN PATCH about 5% of image width, 5.8% height, whose subtle soft golden patch catches the light, with slightly irregular rows of dark stitching visible around each edge. It must cover the existing tear completely. This clear little rectangular patch must express someone touched it, the only new feature on the sail. Dry the single reflective bilge puddle centered x66.4%, y75.3% completely, revealing worn dry grey-oak boards continuous with surrounding wood. Retain every part of solid closed side planks at that location. No other changes; no new props, labels, people, borders or other patches. Style of first picture exactly. No camera drift, no change in cloud or wave. Locally edit the source.",
+      "id": "exec-4f1595cb-0c32-4080-a90e-b4120b0130ad",
+      "prompt": "Localized continuity restoration of this exact original maritime adventure gouache painting. Keep absolutely everything, full-bleed camera, brushlines, light and color and every position identical, as consecutive game frames. Make ONLY TWO small physically specific changes: (1) The little standing pool on the floorboards of this dinghy, lower right of the mast, at 55–78% across and 78–86% down, has just been bailed. Continue the exact wood grain and seams around the pool through that area, a little darker and damp but no pool of liquid and no reflected sky there. (2) The ragged slit in the sail up high at around 77% across and 14% down has been darned and covered by one modest weathered pale-buff canvas patch, a genuine hand-sewn sailor's repair in the same weave and local shade, clearly readable with fine stitching, not a bright new square and not a loose independent sticker. The patch must sit over that exact existing tear with edges following the tension direction of the sail. No other changes, no additional objects, people, text, line/lamp, omens, rain effects or materials. No different shape of the boat or lighting; cutout candidates for a matching two-state painting. Same full landscape 16:9 aspect.",
+      "input": {
+        "nativeMasterSHA256": "121fcf772a26ed2a901294dce22b4c3e479c4bfbc60b6cfae912e5c955fcd740"
+      },
       "output": {
-        "sha256": "7f873e1d57300f7eb8f86a0d9eeb5b14d771a926c7fcfa6b24da8d00ae65d388",
-        "bytes": 2656488,
+        "sha256": "fc3c38b154f0c6bf24d33bcbdf349777d1a67db24e6133d70180897257f644fd",
+        "bytes": 2412216,
         "size": [
           1672,
           941
+        ]
+      }
+    },
+    "slipway-before-planking": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-fc1d4f23-761b-4a19-a87d-52753cde041a",
+      "inputs": [
+        {
+          "role": "2× crop of original native slipway, rect xywh [570,250,800,460]",
+          "sourceGeneration": "exec-21d69999-c4a0-4692-8100-54311aa9ce41",
+          "sha256": "80ef33fbeeccc1728fde9fe1a20e5d8cbdd363c17403f9be634e9ba6e1fe53d6",
+          "bytes": 1759688,
+          "size": [
+            1600,
+            920
+          ]
+        }
+      ],
+      "prompt": "Paint a tightly localized construction-state edit to this exact cropped gouache illustration. The camera, the contour, the hull on stocks and all tones are fixed. This is the BEFORE view at an improvised boatyard; the long, new upper strake of the visible near wall has not yet been fitted. Remove a single broad SPLICED SECTION of the TOP TWO exterior clinker strakes immediately UNDER the thin intact cap rail of the near side of the boat. From 28 percent across the picture to 58 percent across, the gap follows the arc from the left end at (28%,50%) to the right end at (58%,58%); its lower edge runs from (28%,57%) to (58%,66%). A clear definite irregular elongated opening 30% of the crop width x 8% high. Show three spaced slim, upright oak frame ends behind the absent planking. Between them is cool DEEP DARKNESS of the shadowy inside, the top of the opening is the outer thin intact rail, the surface above the gunwale and three cross thwarts remain unchanged. Short oblique cut ends on both sides are awaiting a single fitted section, bottom strakes and hull exterior remain original. It must read unmistakably as unfinished shiplap siding on a real old wooden dinghy, with SUBSTANTIAL DARK VOIDS among slim rib uprights. No broken wreckage, no paintings of objects added outside the hull. No people or text. Keep all existing pixels outside that surgical repair zone and same full-bleed landscape crop.",
+      "output": {
+        "sha256": "66a275583c8e1eff63e24abd5e47f4c401dbba92dbb280eefd72a30ed3afcb4f",
+        "bytes": 2173528,
+        "size": [
+          1654,
+          951
         ]
       }
     }
@@ -332,41 +523,142 @@
   "files": {
     "slipway": {
       "file": "slipway.webp",
-      "sha256": "5eb3adc11566fcd8c0d29c44725743715488e3c4ce87275cc97fe29bfda020ad",
-      "bytes": 492540,
+      "bytes": 569832,
       "size": [
-        1600,
-        900
+        1672,
+        941
       ],
+      "sha256": "ada7885071acce49df0850300fe518b3f268479cd6961834c1aa0b5113510bb1",
       "generations": [
-        "slipway"
+        "slipway",
+        "slipway-before-planking",
+        "slipway-ready"
       ],
-      "masks": []
+      "masks": [
+        "unfinishedStrake",
+        "bareMast"
+      ],
+      "method": "The native yard is shown before planking, with the local ImageGen construction cut on the near strake. At hullPlanked the fitted timber appears from a registered transparency. At sailRigged the complete boat is part of the ready painting. The bare spar comes from the same ImageGen sail donor as the rigged state, registered into the visible collar.",
+      "webp_quality": 92
     },
     "slipway-ready": {
       "file": "slipway-ready.webp",
-      "sha256": "f7c91995cfd8cb4c5a8262df3db0156ee41ce2472cf78683209cd49c50b8f5ff",
-      "bytes": 487580,
+      "bytes": 567490,
       "size": [
-        1600,
-        900
+        1672,
+        941
       ],
+      "sha256": "385754089d515d41a7a0a0973b90ca86994bbd5966bde849582721a55b439d69",
       "generations": [
         "slipway",
         "slipway-ready"
       ],
       "masks": [
-        "rigged"
+        "fieldbookRig"
       ],
-      "registration": "Generated ready hull, rig and sail are composited onto the unchanged unrigged painting."
+      "method": "Original ImageGen state edit. Its painted functional part is registered onto the lossless base before common WebP encoding.",
+      "webp_quality": 92,
+      "registration": {
+        "coordinates": "Native 1672x941 donor pixels; top-left origin",
+        "donorPolygon": [
+          [
+            696,
+            459
+          ],
+          [
+            699,
+            449
+          ],
+          [
+            724,
+            388
+          ],
+          [
+            730,
+            384
+          ],
+          [
+            1114,
+            114
+          ],
+          [
+            1116,
+            72
+          ],
+          [
+            1126,
+            68
+          ],
+          [
+            1131,
+            75
+          ],
+          [
+            1134,
+            414
+          ],
+          [
+            1138,
+            418
+          ],
+          [
+            1134,
+            427
+          ],
+          [
+            1131,
+            483
+          ],
+          [
+            1121,
+            487
+          ],
+          [
+            1111,
+            486
+          ],
+          [
+            1107,
+            481
+          ],
+          [
+            1107,
+            426
+          ],
+          [
+            731,
+            400
+          ],
+          [
+            705,
+            450
+          ],
+          [
+            704,
+            459
+          ]
+        ],
+        "featherSigmaPixels": 1.7,
+        "compositeTranslation": [
+          -16,
+          0
+        ],
+        "registeredMasterSHA256": "978c714936d74e84b4dff6f27204ee08981c63c3152de418514c37d8a0f668c2",
+        "meanAbsoluteRGBErrorOutsideDilatedEditEncoded": [
+          0.80292,
+          0.77921,
+          0.84043
+        ],
+        "comparisonBase": "The encoded, complete, mastless slipway generation used to register the rig, before the unfinished-strake and bare-mast edits entered the initial gameplay state."
+      }
     },
     "crossing-wet": {
       "file": "crossing-wet.webp",
-      "sha256": "49b7aebf19b5004bbe12464c0f63056ce2b36d672b03f301a842ff895e0e238d",
-      "bytes": 272830,
+      "sha256": "a00f60fd8dfa3973f347ff03c2662411dd238f164bd68adc8047ac5157192cb8",
+      "bytes": 337136,
       "size": [
-        1600,
-        900
+        1672,
+        941
       ],
       "generations": [
         "crossing-wet"
@@ -375,11 +667,11 @@
     },
     "crossing-bailed": {
       "file": "crossing-bailed.webp",
-      "sha256": "b21cdaa9245ede06acfc9738cdad7fdf631d50f144d980e3aa88cdca599c1a35",
-      "bytes": 272204,
+      "sha256": "ba63d40decb7ffd8e754eb7509b3fc815874fae4db1aeca975cdacffe07df31f",
+      "bytes": 1673704,
       "size": [
-        1600,
-        900
+        1672,
+        941
       ],
       "generations": [
         "crossing-wet",
@@ -387,16 +679,15 @@
       ],
       "masks": [
         "dry"
-      ],
-      "registration": "Only the dry sole from the repaired painting replaces the puddle. Sail retains the original rip."
+      ]
     },
     "crossing-safe": {
       "file": "crossing-safe.webp",
-      "sha256": "63ca19075400d50b6fdfc64215313c098ec28fbbf2807ea608513d080e245460",
-      "bytes": 272822,
+      "sha256": "fb255daddea57953a50ce1c47f4e7245c62accd88d496bff75d5b143827a7d57",
+      "bytes": 1672904,
       "size": [
-        1600,
-        900
+        1672,
+        941
       ],
       "generations": [
         "crossing-wet",
@@ -405,8 +696,7 @@
       "masks": [
         "dry",
         "patch"
-      ],
-      "registration": "Dry sole and stitched panel from the repaired painting replace the puddle and the tear."
+      ]
     },
     "harbour": {
       "file": "harbour.webp",
@@ -434,5 +724,31 @@
       ],
       "masks": []
     }
-  }
+  },
+  "slipwayProvenance": "The two field-book slipway paintings retain their native dimensions and use WebP quality 92. Their individual records govern registration. The earlier slipway generation and mask records are in history/slipway-before-fieldbook.json.",
+  "details": {
+    "fitted-strake": {
+      "file": "details/fitted-strake.webp",
+      "sha256": "ecc494a049934736ac3b3cacdd1164d974d7dc96918eb8907c1c4c3df7c29a51",
+      "bytes": 39882,
+      "size": [
+        355,
+        130
+      ],
+      "bboxNativeXYWH": [
+        750,
+        455,
+        355,
+        130
+      ],
+      "stageSize": [
+        1672,
+        941
+      ],
+      "sourceGeneration": "exec-21d69999-c4a0-4692-8100-54311aa9ce41",
+      "sourceSHA256": "e59992d280b6fafe3189a040cc7f946f7ed4cac97c21d7eb4ea3a22abf66f473",
+      "method": "Crop from the complete native hull beneath the construction mask dilated by five pixels then feathered sigma 1.6 px. Lossless RGBA WebP. Shown in the same coordinates once the hull is planked; the rigged state already includes the finished side."
+    }
+  },
+  "crossingProvenance": "The open clinker boat retains the native 1672 × 941 camera. The wet plate uses WebP quality 89, method 6. The dry boards and the stitched square come from a separately painted repair. Both paintings first receive identical WebP colour treatment. The two feathered local composites are encoded losslessly. The water outside the boat, the mast and the sky are pixel-identical between all three states."
 }

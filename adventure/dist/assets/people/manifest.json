@@ -1,7 +1,7 @@
 {
   "created": "2026-11-18",
   "generator": "OpenAI ImageGen",
-  "historical_status": "Original, imagined character and costume paintings for the castaway game. Physical appearance is artistic reconstruction.",
+  "historical_status": "Original imagined casting, costumes and expressions for a dramatized game. These illustrations are not historical likenesses.",
   "files_are_original_unmodified_png": true,
   "prompts": "prompts.json",
   "assets": [
@@ -9,180 +9,195 @@
       "id": "player",
       "character": "Alick McLaren",
       "file": "../sailor.png",
-      "mode": "RGBA",
       "width": 1024,
       "height": 1536,
-      "bytes": 2126896,
-      "sha256": "2bd1b63f6e7636c7931cda31956cefb73312e6a9b7935c97e109b1f4b6d92602",
+      "mode": "RGBA",
+      "bytes": 1779164,
+      "sha256": "d7d4000707e8922f8853ad95b63945816fe44a4ccbfb1f60d5b8c0d0b1cd084c",
+      "output_filename": "exec-a81ef21a-d194-4d99-aa8d-5d72988080c5.png",
       "references": [
         {
-          "path": "adventure/dist/assets/sailor.png",
-          "sha256": "8078180eef71ef6982124690f6b1d1dc1649091818d1c13cea0df90a8fc372ac",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/portraits/player.png",
+          "sha256": "0d8b1ce470adf3bef32ad4b0b9dc4b8c2e10d2da962c84f8930cfcb523e64e55"
         },
         {
-          "path": "adventure/dist/assets/work-poses/player.png",
-          "sha256": "e6871038d5aca38bc1a23526344a59ee498a1a7736925be78da249a808250f6d",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/cast/player.png",
+          "sha256": "65607f3dfc776bb8d2c48e8d7f1b19b9bf6638504f1402d9123435fac493ceea"
         }
       ],
-      "alpha_zero_ratio": 0.66018,
-      "alpha_below_16_ratio": 0.67251,
+      "alpha_zero_ratio": 0.6812,
+      "alpha_below_16_ratio": 0.69306,
       "alpha_bbox_128": [
-        177,
-        13,
-        769,
-        1524
+        255,
+        12,
+        741,
+        1528
       ],
       "alpha_corner_values": [
         0,
         0,
         0,
         0
+      ],
+      "alpha_extrema": [
+        0,
+        254
       ]
     },
     {
       "id": "raynal",
       "character": "François Raynal",
       "file": "raynal.png",
+      "width": 887,
+      "height": 1774,
       "mode": "RGBA",
-      "width": 1024,
-      "height": 1536,
-      "bytes": 2008498,
-      "sha256": "0d7b1a9dc766f54a2bd1e9c4adf11fd8287b673262d790463f33edb27ba705c4",
+      "bytes": 1368052,
+      "sha256": "e6f2c9b8d94a464aa611cba026475c08cacafd5e017dbab16f0221a6047cb101",
+      "output_filename": "exec-c39fc393-9049-4c44-aae3-9483fbe3fee5.png",
       "references": [
         {
-          "path": "adventure/dist/assets/people/raynal.png",
-          "sha256": "f49c7a9ef8d0c7d9d7fd0b2e76f3ef46c24edacc024f317db3a02064ecc510c1",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/portraits/raynal.png",
+          "sha256": "86dbda7c502453a14ca07ade6382f25a5ba649efe0d6009963b3f2728056f8c9"
         },
         {
-          "path": "adventure/dist/assets/work-poses/raynal.png",
-          "sha256": "5f3abc8718f7b0f2e78ba11401978905210dca48b3c7cea74ed2e30387ae9d3c",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/cast/raynal.png",
+          "sha256": "3873e0be8a323bc6bb3f28b4fc353372d70d4cedcf1fe984fb2bbcc10b87bfde"
         }
       ],
-      "alpha_zero_ratio": 0.69422,
-      "alpha_below_16_ratio": 0.71065,
+      "alpha_zero_ratio": 0.6091,
+      "alpha_below_16_ratio": 0.62914,
       "alpha_bbox_128": [
-        244,
-        10,
-        752,
-        1526
+        161,
+        20,
+        683,
+        1762
       ],
       "alpha_corner_values": [
         0,
         0,
         0,
         0
+      ],
+      "alpha_extrema": [
+        0,
+        255
       ]
     },
     {
       "id": "musgrave",
       "character": "Thomas Musgrave",
       "file": "musgrave.png",
-      "mode": "RGBA",
       "width": 1024,
       "height": 1536,
-      "bytes": 2014752,
-      "sha256": "552c5c4a23367b482cf96bd46d3fdb73b908b87d9d3935bac6a16bef9219430a",
+      "mode": "RGBA",
+      "bytes": 1795677,
+      "sha256": "d8424da8b69d4f10f37c68f4342848f52e1cbe058a64960f4637f40e45c8c968",
+      "output_filename": "exec-056c59af-c303-43aa-94c2-23f01262997a.png",
       "references": [
         {
-          "path": "adventure/dist/assets/people/musgrave.png",
-          "sha256": "fd1b7c9c2aa784344dc256de7a4b53e022572727b25e768d62c5842a46334c20",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/portraits/musgrave.png",
+          "sha256": "8d0100bba71acb33d4e3aee6f9fb5929f8b614c5e24398f4338d225e154880f1"
         },
         {
-          "path": "adventure/dist/assets/work-poses/musgrave.png",
-          "sha256": "0ccf1f61de87948c65749fff99fff3d9b12fb31bd8c9347a82fc539cca71b398",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/cast/musgrave.png",
+          "sha256": "bcbbe77101e3dd4fca7ad91ddf84f637c9b2af0ac2ca1ddbfcc5831dc759ec74"
         }
       ],
-      "alpha_zero_ratio": 0.67095,
-      "alpha_below_16_ratio": 0.68587,
+      "alpha_zero_ratio": 0.65317,
+      "alpha_below_16_ratio": 0.66478,
       "alpha_bbox_128": [
-        220,
-        10,
-        824,
-        1521
+        242,
+        20,
+        761,
+        1527
       ],
       "alpha_corner_values": [
-        0,
+        1,
         0,
         0,
         0
+      ],
+      "alpha_extrema": [
+        0,
+        254
       ]
     },
     {
       "id": "henry",
       "character": "Henry Forgés",
       "file": "henry.png",
+      "width": 887,
+      "height": 1774,
       "mode": "RGBA",
-      "width": 1024,
-      "height": 1536,
-      "bytes": 2071969,
-      "sha256": "30fc8c39b86e94b2c2982d7c8be804cd29684b4028a5d8eb66259cbfe40157f5",
+      "bytes": 1328648,
+      "sha256": "1d0dd87e195f1eac4795361730b6692829bb6538a8f2106e4ace7773b1bcd67a",
+      "output_filename": "exec-81343ad7-6cb3-48a1-b79f-a890852b15b6.png",
       "references": [
         {
-          "path": "adventure/dist/assets/people/henry.png",
-          "sha256": "e076a38ca47cdb21b607312fec5a428c7e72afe5cf764f5f15d276a260215976",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/portraits/henry.png",
+          "sha256": "e830a337638063434c74f8e7f6f92aba63efdb134eb145f1f2e5400fde1becf6"
         },
         {
-          "path": "adventure/dist/assets/work-poses/henry.png",
-          "sha256": "f07171296763f5c10c461bfd8984643851522d3cdc0ec8fec483dc36cff9a3e6",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/cast/henry.png",
+          "sha256": "bd3061c13c8c9d7a0e6f9949df07c4cb9fe7972755da60ab5b9a1fe404907f35"
         }
       ],
-      "alpha_zero_ratio": 0.65873,
-      "alpha_below_16_ratio": 0.67457,
+      "alpha_zero_ratio": 0.61558,
+      "alpha_below_16_ratio": 0.63161,
       "alpha_bbox_128": [
-        212,
-        10,
-        777,
-        1525
+        168,
+        14,
+        693,
+        1763
       ],
       "alpha_corner_values": [
         0,
         0,
         0,
         0
+      ],
+      "alpha_extrema": [
+        0,
+        255
       ]
     },
     {
       "id": "george",
       "character": "George Harris",
       "file": "george.png",
-      "mode": "RGBA",
       "width": 1024,
       "height": 1536,
-      "bytes": 2210233,
-      "sha256": "d2190babff57636e11080c6737c2ba6d67dfc9cff23c2e6c8b0c4e4a257515bc",
+      "mode": "RGBA",
+      "bytes": 1899221,
+      "sha256": "41904d7c9324306b7c063d4758422591dbd0101ac14a2be3ea9da706a21fdf22",
+      "output_filename": "exec-a6323225-bbc0-4f2d-b0bf-f7631738df3e.png",
       "references": [
         {
-          "path": "adventure/dist/assets/people/george.png",
-          "sha256": "a96a89a773b0b61f83558d807267a552f6c0767eef7dcdf980c72e65e8820ab3",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/portraits/george.png",
+          "sha256": "802f56da6126b9213d247f2bbb84411c2e07e9b2fa01c06b49d95c023543407e"
         },
         {
-          "path": "adventure/dist/assets/work-poses/george.png",
-          "sha256": "680d063b1e0dae38b556055ae02eb8dfb5d55b75648c72ee3360cd33dc44652d",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          "path": "artwork/cast/george.png",
+          "sha256": "286cfb9dec59853a539aeb5514ccdfc309c82667837b1e6d7e2e0b3889e07675"
         }
       ],
-      "alpha_zero_ratio": 0.63224,
-      "alpha_below_16_ratio": 0.64299,
+      "alpha_zero_ratio": 0.66448,
+      "alpha_below_16_ratio": 0.67973,
       "alpha_bbox_128": [
-        195,
-        14,
-        798,
-        1526
+        235,
+        17,
+        747,
+        1523
       ],
       "alpha_corner_values": [
         0,
         0,
         0,
         0
+      ],
+      "alpha_extrema": [
+        0,
+        254
       ]
     }
   ]

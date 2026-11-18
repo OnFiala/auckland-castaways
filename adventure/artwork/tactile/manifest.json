@@ -1,0 +1,58 @@
+{
+  "createdUtc": "2026-11-18",
+  "purpose": "Original interpretive game illustrations. All visual references were paintings created for this project.",
+  "masters": [
+    {
+      "file": "reeved-block.png",
+      "generation": "exec-a2bb8be7-7a8d-40ba-bcbf-59411e21568a.png",
+      "generator": "OpenAI ImageGen",
+      "reference": "Wreck foreground bollard and cordage from prior original Grafton painting, cropped at native resolution.",
+      "artDirection": "Compact wooden block, exposed grooved sheave, iron axle and protective cheek. Horizontal axis, hemp strop on the left and running line on the right. Damp wood, restrained overcast daylight and small oil marks.",
+      "sha256": "5bb0e3339515265420796478915dad358dcb8169f88a807eb4302a690c724910",
+      "bytes": 2121425,
+      "size": [
+        1858,
+        846
+      ]
+    },
+    {
+      "file": "horn-cleat.png",
+      "generation": "exec-260b5ce2-f7cf-465d-97a7-e1cc0e89a520.png",
+      "generator": "OpenAI ImageGen",
+      "reference": "RGB inspection rendering of the original reeved-block generation on neutral ground.",
+      "artDirection": "A horizontal, double-horned iron cleat bolted to a vertical hull, with three turns of wet hemp and a short end. Painted marks in overcast light. Transparent surround.",
+      "sha256": "1d17b0254cae9d13904716273f3a06d05d1c189dca1075e4eb88947b8a6a33ef",
+      "bytes": 1655668,
+      "size": [
+        1862,
+        845
+      ]
+    },
+    {
+      "file": "forge-bellows.png",
+      "generation": "exec-b549f781-d07a-446a-a9d6-b088106e0bbe.png",
+      "generator": "OpenAI ImageGen",
+      "reference": "Registered detail of the fitted bellows in the original forge painting.",
+      "artDirection": "Upper and lower wooden boards hinged at the right. Short nozzle pointing into the furnace, dark iron handle, gussets and sewn leather. Isolated assembly in the workshop light without legs.",
+      "sha256": "d019942d6edf234189975ddcd283327d16fb9919cfa27c507c4976fe42f7a2fc",
+      "bytes": 2369529,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "file": "tin-pan.png",
+      "generation": "exec-6bac43e1-8c13-46bf-bf8a-745d4d6ea2ea.png",
+      "generator": "OpenAI ImageGen",
+      "reference": "Survey crop of the original painted Epigwaitt interior.",
+      "artDirection": "Broad shallow tinned-iron pan with rolled lip, dented rim, water, small wire loops and cold daylight from the left. Transparent surround.",
+      "sha256": "cc355b9f1c358a0b8f906ba88db3ebc545ca3f101256b24222975365d22adec0",
+      "bytes": 1414588,
+      "size": [
+        1774,
+        887
+      ]
+    }
+  ]
+}

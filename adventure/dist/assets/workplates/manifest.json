@@ -6,14 +6,58 @@
       "file": "chest.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "fc6326b6fbc3d99dd796ef303e26effe0272ca9da308bfbc4a89b9759c574ef7",
-      "sha256": "97949b9dfda8c2cf106bf5e9dd51fc98f1b1d58a41889c98b824584f5a6f98f6",
-      "bytes": 761198,
+      "source_sha256": "07842982778227192f18a85e125fd819721f01ca0b5c84772d6d90414a89f2d5",
+      "sha256": "b681aa348b0c84c1a01d279c5915e7308fe3294b3aba355c3c2b31a7e9acbe11",
+      "bytes": 606878,
       "rms_rgb_8bit": [
-        2.591,
-        1.846,
-        3.544
-      ]
+        2.299,
+        1.736,
+        2.921
+      ],
+      "previous_revision": {
+        "id": "chest",
+        "file": "chest.webp",
+        "width": 1536,
+        "height": 1024,
+        "source_sha256": "fc6326b6fbc3d99dd796ef303e26effe0272ca9da308bfbc4a89b9759c574ef7",
+        "sha256": "97949b9dfda8c2cf106bf5e9dd51fc98f1b1d58a41889c98b824584f5a6f98f6",
+        "bytes": 761198,
+        "rms_rgb_8bit": [
+          2.591,
+          1.846,
+          3.544
+        ]
+      },
+      "states": {
+        "open": {
+          "file": "details/chest-open.webp",
+          "width": 1536,
+          "height": 1024,
+          "source_sha256": "02efc5194075f3c5378613b4b9c42060a54c1b5e2ab7db17aff5f36711972c3b",
+          "bytes": 544906,
+          "sha256": "c6c3d8bda1810a604989fbfcb390d4a1ada63229191ea5685e1a8e2837140080",
+          "rms_rgb_8bit": [
+            2.517,
+            1.7,
+            3.208
+          ]
+        }
+      },
+      "fulcrum": {
+        "file": "details/chest-block.webp",
+        "width": 224,
+        "height": 96,
+        "bytes": 27714,
+        "sha256": "d0787261cdfce77a8a693449629f2d03cbff97ef83be7f52f8f6f922b3aa5714",
+        "source_sha256": "a4da26fc0c6858b21915050fe4be644663afc25b0ca522b514bc443a51aa25ea",
+        "nativeCropXYXY": [
+          152,
+          117,
+          1663,
+          766
+        ],
+        "encoding": "Alpha crop at coverage >12/255 then Lanczos resample to width 224 and lossless WebP."
+      }
     },
     {
       "id": "roof",

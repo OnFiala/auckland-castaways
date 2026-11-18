@@ -7,6 +7,7 @@ const vm = require('node:vm');
 const dist = path.resolve(__dirname, '../dist');
 const engine = require('../dist/voyage.js');
 const art = require('../dist/voyage-art.js');
+const paintingSize = require('./painting-size.cjs');
 
 function fixture() {
   let reduced=false, covered=false, supportsCanvas=true, nextId=0;
@@ -52,20 +53,28 @@ test('all foreground surfaces and state marks are bounded and independent of the
       const state=f.draw(scene.id,flags), parts=f.root.children[0].children;
       const [feature]=f.life.features(state);
       if(feature){
-        assert.ok(f.detail(feature.id).tag==='canvas',feature.id);
-        assert.ok(f.detail(feature.id).width>0 && f.detail(feature.id).height>0);
+        const surface=f.detail(feature.id);
+        if (surface.tag==='canvas') assert.ok(surface.width>0 && surface.height>0);
+        else {
+          assert.equal(surface.className,'life-tactile');
+          const strip=surface.children.at(-1);
+          assert.equal(strip.className,'life-strip'); assert.equal(strip.style.left,'0%');
+          for(const image of surface.children) assets.add(image.src);
+          const [w,h]=paintingSize(fs.readFileSync(path.join(dist,strip.src)));
+          assert.ok(Math.abs((w/9/h)/(feature.materialBox[2]/feature.materialBox[3]*16/9)-1)<.01);
+        }
       }
       assert.equal(parts.length,new Set(parts.map(n=>n.dataset.life)).size);
       for(const part of parts) {
         const [x,y,w,h]=Array.from(part.style.cssText.matchAll(/(?:left|top|width|height):([.\d]+)%/g),m=>Number(m[1]));
         assert.ok(x>=0&&y>=0&&w>0&&h>0&&x+w<=100&&y+h<=100,scene.id+'/'+part.dataset.life);
         assert.doesNotMatch(part.style.cssText,/url\(|background|clip-path/);
-        for(const match of (part.innerHTML||'').matchAll(/href="([^"]+)"/g)) assets.add(match[1]);
+        for(const match of (part.innerHTML||'').matchAll(/(?:href|src)="([^"]+)"/g)) assets.add(match[1]);
       }
     }
   }
   for(const asset of assets) {
-    assert.doesNotMatch(asset,/scene|tidepaint|states/);
+    if (asset!=='assets/tidepaint/details/fitted-strake.webp') assert.doesNotMatch(asset,/scene|tidepaint|states/);
     assert.ok(fs.existsSync(path.join(dist,asset)),asset);
   }
   assert.equal(f.frames.size,0,'the resting material has no permanent foreground clock');
@@ -74,7 +83,7 @@ test('all foreground surfaces and state marks are bounded and independent of the
 
 test('state marks survive repeated inventory draws and an unfinished build',()=>{
   const f=fixture();
-  f.draw('cabin');assert.ok(f.detail('leaking-seam'));assert.ok(!f.detail('warming-water'));
+  f.draw('cabin');assert.ok(!f.detail('leaking-seam'),'the pan owns its only drip');assert.ok(!f.detail('warming-water'));
   f.draw('cabin',{roofSealed:true,waterStored:true});assert.ok(!f.detail('leaking-seam'));assert.ok(!f.detail('warming-water'));
   f.draw('cabin',{roofSealed:true,waterStored:true,warmthReady:true});assert.ok(f.detail('warming-water'));
   f.draw('slipway',{hullPlanked:true});assert.ok(f.detail('plank-on-stocks'));assert.ok(!f.detail('caulked-seam'));
@@ -88,7 +97,7 @@ test('state marks survive repeated inventory draws and an unfinished build',()=>
   f.life.work(f.root,fitting,'furnace');assert.equal(f.timers.size,1);
   const lit=f.draw('forge',{...fitting.flags,forgeLit:true});
   f.life.work(f.root,lit,'furnace');assert.equal(f.root.children[1].dataset.life,'work-forgeLit');
-  assert.match(f.detail('charcoal-bed').className,/burning/);
+  assert.ok(!f.detail('charcoal-bed'),'the lit forge plate supplies the hot coals');
   const handle=f.detail('bellows_handle');f.draw('forge',{...lit.flags});assert.equal(f.detail('bellows_handle'),handle);
   f.finish();assert.equal(f.root.children.length,1);assert.equal(charcoal.dataset.life,'charcoal-bed');
   f.life.tryFeature(f.root,lit,'bellows_handle');assert.equal(f.root.children[1].dataset.life,'fresh-air-in-coals');
@@ -111,15 +120,24 @@ test('each material has distinct geometry on contact, without reading any pixels
   }
   for(const scene of engine.SCENES){
     const flags={bellowsFitted:true}, [feature]=f.life.features({scene:scene.id,flags});
+    const state=f.draw(scene.id,flags);
+    const surface=f.detail(feature.id);
+    if(surface.className==='life-tactile') {
+      const strip=surface.children.at(-1), support=surface.children[0], origin=surface.style.cssText;
+      assert.equal(f.frames.size,0); assert.equal(strip.style.left,'0%');
+      f.life.tryFeature(f.root,state,feature.id); f.step(0); f.step(570);
+      assert.equal(strip.style.left,'-800%'); assert.equal(surface.style.cssText,origin);
+      if(support!==strip) assert.equal(support.style.left,undefined,'the trestle is stationary');
+      f.step(1600); assert.equal(strip.style.left,'0%'); assert.equal(f.frames.size,0);
+      continue;
+    }
     const rest=strokes(feature.id,0,flags);
     assert.notDeepEqual(rest,strokes(feature.id,.38,flags),feature.id);
     assert.deepEqual(rest,strokes(feature.id,0,flags),'deterministic '+feature.id);
   }
-  const stems=t=>strokes('shore_tussock',t,{}).filter(([op])=>op==='moveTo');
-  assert.deepEqual(stems(0),stems(.38),'all grass bases are planted');
-  const ends=t=>strokes('wharf_line',t,{}).slice(0,2).map(row=>row.slice(-2));
-  assert.deepEqual(ends(0),ends(.4),'both mooring endpoints are pinned');
-  assert.notDeepEqual(strokes('mast_turns',.4,{}),strokes('mast_turns',.4,{rigSecured:true}));
+  const secured=f.draw('crossing',{rigSecured:true});
+  f.life.tryFeature(f.root,secured,'mast_turns'); f.step(0); f.step(550);
+  assert.equal(f.detail('mast_turns').children.at(-1).style.left,'-200%','only a small movement remains after securing');
 });
 
 test('touch restarts only its own animation, yields a reduced still and cancels on room or visibility changes',()=>{
@@ -198,4 +216,36 @@ test('optional gestures touch the visible spot from the walk polygon, clear of m
     }
   }
   assert.equal(ids.size, 14);
+});
+
+test('a painted gesture shows one held pose and returns to rest in reduced motion',()=>{
+  for(const [scene,id] of [['wreck','wreck_hawser'],['forge','bellows_handle']]){
+    const f=fixture(); f.reduce(); f.noCanvas();
+    const s=f.draw(scene,{bellowsFitted:true}), strip=f.detail(id).children.at(-1);
+    f.life.tryFeature(f.root,s,id);assert.equal(f.frames.size,0);assert.equal(strip.style.left,'-800%');
+    f.finish();assert.equal(strip.style.left,'0%');assert.equal(f.frames.size,0);
+  }
+});
+
+test('native paintings and the delivery manifest resolve to their recorded binaries',()=>{
+  const sha=file=>require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  // The deployment contains the delivered WebPs. Read their original art
+  // receipts from the source checkout when validating that compact copy.
+  const where=path.join(process.env.CASTAWAY_SOURCE_DIST || dist,'assets/tactile');
+  const runtime=path.join(dist,'assets/tactile');
+  const delivery=JSON.parse(fs.readFileSync(path.join(where,'manifest.json')));
+  const sourceManifest=path.resolve(where,delivery.artwork);
+  const native=JSON.parse(fs.readFileSync(sourceManifest));
+  assert.equal(native.masters.length,4);
+  for(const [dir,sourceDir,rows] of [[runtime,where,delivery.assets],[path.dirname(sourceManifest),path.dirname(sourceManifest),native.masters]]){
+    for(const row of rows){
+      const file=path.join(dir,row.file);
+      assert.equal(sha(file),row.sha256,row.file);
+      const bytes=fs.readFileSync(file);
+      const size=row.file.endsWith('.png')?[bytes.readUInt32BE(16),bytes.readUInt32BE(20)]:paintingSize(bytes);
+      assert.deepEqual(size,row.size,row.file);
+      for(const source of row.sources||[]) assert.equal(sha(path.resolve(sourceDir,source.file)),source.sha256);
+    }
+  }
+  assert.deepEqual(delivery.assets.map(a=>a.file).sort(),fs.readdirSync(runtime).filter(a=>a.endsWith('.webp')).sort());
 });

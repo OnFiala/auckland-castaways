@@ -66,9 +66,9 @@ let native;
 try{native=require('@napi-rs/canvas');}catch(e){if(e.code!=='MODULE_NOT_FOUND')throw e;}
 test('native renderer leaves rocks, banks, wood and rail transparent while surf and the gully change', {skip:!native},()=>{
   const protectedAreas={
-    beach:[[101,308,10,3],[179,289,17,4],[290,300,32,20]],
+    beach:[[103,321,9,7],[560,316,14,11],[220,481,24,9]],
     forest:[[117,79,9,19],[187,15,14,9],[201,292,3,27]],
-    crossing:[[42,295,18,8],[42,345,18,8],[473,350,42,12]]
+    crossing:[[45,292,13,5],[409,245,10,32],[473,344,39,8]]
   };
   for(const [scene,areas] of Object.entries(protectedAreas)){
     const model=parts(scene),canvas=native.createCanvas(1000,563),ctx=canvas.getContext('2d');

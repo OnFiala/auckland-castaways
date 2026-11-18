@@ -1,23 +1,27 @@
-# Painted walking poses
+# Posádka v pohybu
 
-Walking uses the six-pose atlases. In the campaign, a stopped person uses the upright drawing from the working sheet. Reaching and kneeling are brief gestures on that same sheet. The individual walk records list the source dimensions, alpha bounds, crop, ground anchor and SHA-256. [Henry walking, working and standing after a reload](reviews/crew/README.md). [Frame registration](dist/animation.js) · [Working-pose manifest](dist/assets/work-poses/manifest.json) · [Weather and art review](reviews/26-weather-and-art.md)
+Pět mužů používá 30 nových maleb kroku, pět stojících postojů, pět natažených paží a pět kleků pro práci u země. Raynal má na prvním břehu navíc sed na naplaveném dřevě. Věk postav vychází z historických podkladů. Tváře, oděvy, držení těla i samotný trámek jsou výtvarnou interpretací. [Posádka Graftonu](../data/crew.csv) · [Pět samostatných portrétů](PEOPLE_ART.md)
 
-| Character | PNG | Provenance and measurements |
+![Pětice v původních a nových oděvech na stejných místech v táboře](reviews/crew/company-comparison.webp)
+
+Alickovi zůstává čepice a okrový šátek při chůzi i při práci. Kapitána od něj v dálce odliší delší dvouřadý kabát a nízký štítek čepice. Světlé rukávy rámují Raynalovu zelenou vestu. Henry má okrové rukávy a tmavé kudrny. Nejmladšího George poznáme podle světlé hlavy, červeného kabátku a širších ramen. [Portréty vedle celých postav](reviews/portraits/posadka.webp)
+
+| Postava | Původní list z ImageGen | Kroková kresba, výřezy a otisky |
 |---|---|---|
-| Player | [player.png](dist/assets/walk/player.png) | [player.json](dist/assets/walk/player.json), [generation history](dist/assets/walk/player-generation.json) |
-| François Raynal | [raynal.png](dist/assets/walk/raynal.png) | [raynal.json](dist/assets/walk/raynal.json) |
-| Thomas Musgrave | [musgrave.png](dist/assets/walk/musgrave.png) | [musgrave.json](dist/assets/walk/musgrave.json) |
-| Henry Forgés | [henry.png](dist/assets/walk/henry.png) | [henry.json](dist/assets/walk/henry.json) |
-| George Harris | [george.png](dist/assets/walk/george.png) | [george.json](dist/assets/walk/george.json) |
+| Alick McLaren | [Postoje](artwork/cast/player.png) | [Atlas](dist/assets/walk/player.png) · [Měření](dist/assets/walk/player.json) |
+| François Raynal | [Postoje](artwork/cast/raynal.png) | [Atlas](dist/assets/walk/raynal.png) · [Měření](dist/assets/walk/raynal.json) |
+| Thomas Musgrave | [Postoje](artwork/cast/musgrave.png) | [Atlas](dist/assets/walk/musgrave.png) · [Měření](dist/assets/walk/musgrave.json) |
+| Henry Forgés | [Postoje](artwork/cast/henry.png) | [Atlas](dist/assets/walk/henry.png) · [Měření](dist/assets/walk/henry.json) |
+| George Harris | [Postoje](artwork/cast/george.png) | [Atlas](dist/assets/walk/george.png) · [Měření](dist/assets/walk/george.json) |
 
-## Archive from 16 November 2026
+Každý z pěti zdrojových listů vznikl jedinou generací. Prvních šest kreseb tvoří sled kroků, dolní dvě zleva postoj v klidu a podání ruky. Pro práci nízko nad zemí vznikl podle těchto postav další list. Na něm je vidět, kde má ruka uchopit nástroj a na které botě leží váha. Na prvním břehu může Raynal sledovat Alicka vsedě a rukou se opřít o kus dřeva. [Zadání a SHA-256 zdrojů](artwork/cast/manifest.json) · [Klečící pětice](artwork/cast/low-work.png) · [Raynalův sed](dist/assets/shore-rest/manifest.json)
 
-Five original AI-generated sprite sheets extended the standing character paintings. Each shipped atlas was an unchanged 1536 × 1024 RGBA PNG with six full-body right-facing poses in a 3 × 2 grid of 512-pixel cells. The project’s own character and environment paintings served as references. No modern game's sprite sheets were copied. Prompts and retry history, where applicable, accompany the atlas files. The resulting fictional figures are visual interpretations of the castaways.
+## Usazení ve scéně
 
-Each six-pose cycle varied leg placement, knee bend and arm swing. One crop covered the union of visible poses plus a safety margin. Inspection found very faint alpha fringe outside some visible bounds, and the recorded bounds specify their measurement thresholds.
+Krokový atlas má 1536 × 1024 px. Každé z šesti políček je čtverec o straně 512 px. Výřez uvnitř pole má 448 × 500 px, kotva podpory je na souřadnicích 256, 498. Při sestavení se celá kresba rovnoměrně zmenší či zvětší a posune. Zachovává se průhledný prostor mezi nohama a měkký okraj původních tahů. Střed horní části hlavy během šestice kreseb kolísá nejvýše o dva pixely, spodní hrana bot o jeden. Na přechodech mezi kresbami odpovídá posun zatížené podrážky vzdálenosti, kterou urazil trup. Při zastavení zůstane postava na svém místě. [Sled kroků v táboře](reviews/crew/gait-in-camp.webp) · [Řízení kroku](dist/animation.js)
 
-The motion repair kept the five PNGs as they were. One atlas image remained mounted per character and stepping updated its clipped viewport. The same sheet supplied the resting pose. A temporary pause retained the current frame, and cadence used the same body-height scale for player and crew.
+Pracovní atlas má 1536 × 512 px. Ve všech třech polích se odměřuje úchop od bot. U prkna na člunu je výřez připnut přímo na dlaň, takže Alick může přidržet záď i příď. Musgrave stojí vedle šikmé podpěry. Při výměně má kladivo v druhé ruce. Úder se otáčí kolem dlaně a končí čelem kladiva na hřebu. Po uvolnění oba odstoupí a Alick vyzkouší spoj. Musgrave při kleku v člunu drží nástroj přibližně 0,365 své výšky dopředu a 0,108 výšky nad úrovní bot. [Otisky a souřadnice úchopů](dist/assets/work-poses/manifest.json) · [Šest okamžiků u prkna](reviews/crew/plank-contact.webp) · [Raynal v měřítku malé scény](reviews/crew/resting-on-shore.webp)
 
-The archival inspection found changes in torso orientation, body volume and costume details between some poses, especially across the two half-cycles. Those differences stemmed from the drawings. The resting frame came from the walk cycle. A browser attempt was blocked during that pass, as recorded in the review. [Motion-repair review](reviews/23-motion-repair.md)
+Porovnání tábora používá stejné pozadí i měřítko obou sestav. Náhled chůze přehrává herní políčka na malbě tábora, náhled břehu skládá malbu, Alicka a Raynalovo sedadlo. Šest pohledů na prkno vzniklo rasterizací skutečného SVG po jednotlivých hráčských pokynech. Tyto obrazové zkoušky vznikly bez prohlížeče. [Kontrola malovaných pixelů](tests/crew-painting.py) · [Zkoušky chůze a pracovních gest](tests/crew.test.cjs) · [Předání hřebů, úder a uvolnění obou rukou](tests/plank-company.test.cjs) · [Dřívější rozbor načítaného postoje u ohně](reviews/crew/README.md)
 
-Source attribution does not grant a new blanket licence to the repository. See [RIGHTS](../RIGHTS.md).
+Původní práci a její právní režim zachycují [poznámky o právech](../RIGHTS.md).

@@ -1,0 +1,268 @@
+{
+  "createdUtc": "2026-11-18",
+  "artwork": "../../../artwork/tactile/manifest.json",
+  "rendering": "In the interactive rooms, stage-life.js selects among nine horizontal frames on contact and resets to frame zero. Round zero is transparent for small changes to an existing painted surface. The pan is a shared static image in the roof survey and walkable room.",
+  "assets": [
+    {
+      "file": "bare-trestle.webp",
+      "sha256": "d84c897610a30f7049ac0ea6bb59324a2788e4cf9b369a0ee7be9d4f00e1cf48",
+      "bytes": 42280,
+      "size": [
+        381,
+        271
+      ],
+      "process": "Open-stool background in the installation footprint plus two support rails sampled from the existing painted trestle. Matches board strip crop.",
+      "sources": [
+        {
+          "file": "../tidepaint/forge-cold.webp",
+          "sha256": "1e81b682dc57c8b8eb08aaaa624a1a4059a66dc0b88f540b1d85d19e493134b7"
+        },
+        {
+          "file": "../tidepaint/forge.webp",
+          "sha256": "ac635e770b3c21852200508f4661ef3e3a16cfab1f18a5435b9f701d42fd00bf"
+        }
+      ]
+    },
+    {
+      "file": "bellows-stroke.webp",
+      "sha256": "e75133b7ef1f5a6b5e251ccafc8975bf8caae689cfd55b9f45fbcc305f941071",
+      "bytes": 221942,
+      "size": [
+        3429,
+        271
+      ],
+      "process": "Nine chamber positions. Bottom board and tuyere stay seated. The upper board rotates about the right hinge and the three broad folds compress between the two boards.",
+      "sources": [
+        {
+          "file": "../../../artwork/tactile/forge-bellows.png",
+          "sha256": "d019942d6edf234189975ddcd283327d16fb9919cfa27c507c4976fe42f7a2fc"
+        }
+      ]
+    },
+    {
+      "file": "blanket-fold.webp",
+      "sha256": "7d0faa951e865ee70b2b374bc2e2365a461897e640e40fd97e0ea825ff54ae35",
+      "bytes": 43380,
+      "size": [
+        1260,
+        66
+      ],
+      "process": "A thumb compresses the top of the existing fabric. The bunk and the lowest fold stay fixed.",
+      "sources": [
+        {
+          "file": "../tidepaint/cabin-cold.webp",
+          "sha256": "0048599cde551071f053b5fdda87477ff0c2666ad8ba26eaccb88c078c6703ec"
+        }
+      ]
+    },
+    {
+      "file": "coal-charge.webp",
+      "sha256": "320a974be258b1c669cc11f7c2f79021adf4a5e29d1ff9d275749aace2b0c022",
+      "bytes": 2034,
+      "size": [
+        103,
+        38
+      ],
+      "process": "Cold charcoal sampled from the existing bed. New fuel sits below the arch until the hot state replaces it.",
+      "sources": [
+        {
+          "file": "../tidepaint/forge-cold.webp",
+          "sha256": "1e81b682dc57c8b8eb08aaaa624a1a4059a66dc0b88f540b1d85d19e493134b7"
+        },
+        {
+          "file": "../tidepaint/forge.webp",
+          "sha256": "ac635e770b3c21852200508f4661ef3e3a16cfab1f18a5435b9f701d42fd00bf"
+        }
+      ]
+    },
+    {
+      "file": "landing-warp.webp",
+      "sha256": "e38fd8f95e4e7f1b58bc4267cfda8cc619bd0ceb408672989abbe82b4a38134f",
+      "bytes": 9364,
+      "size": [
+        636,
+        270
+      ],
+      "process": "Painted hemp runs from the boat to the ring high on the real mooring post.",
+      "sources": [
+        {
+          "file": "../../../artwork/tactile/reeved-block.png",
+          "sha256": "5bb0e3339515265420796478915dad358dcb8169f88a807eb4302a690c724910"
+        }
+      ]
+    },
+    {
+      "file": "mast-round.webp",
+      "sha256": "3ea10218cb4da63b8175bb9db7a876370dfe10dd7449080ea03199857ef9d9ae",
+      "bytes": 9246,
+      "size": [
+        684,
+        49
+      ],
+      "process": "A thumb rolls one coil of the existing mast lashing. Only two of eight increments remain after the rig is secured.",
+      "source": {
+        "parent": "../tidepaint/crossing-wet.webp",
+        "generation": "exec-5000b01f-fd7e-4e4e-99f7-7ee491f60f52.png",
+        "nativeSha256": "121fcf772a26ed2a901294dce22b4c3e479c4bfbc60b6cfae912e5c955fcd740",
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    {
+      "file": "paid-seam.webp",
+      "sha256": "d30bd27b58e99172719f73a68953a6bee7ed7b9e32bf64a74ada527748265a84",
+      "bytes": 2530,
+      "size": [
+        355,
+        130
+      ],
+      "process": "A tarred edge follows the lower contour of the actual newly fitted strake.",
+      "sources": [
+        {
+          "file": "../tidepaint/details/fitted-strake.webp",
+          "sha256": "ecc494a049934736ac3b3cacdd1164d974d7dc96918eb8907c1c4c3df7c29a51"
+        }
+      ]
+    },
+    {
+      "file": "reeved-block.webp",
+      "sha256": "caefc8543736fc6547471e555a5d5845ce91430b791b2576a6f9c9a58b886c9d",
+      "bytes": 137506,
+      "size": [
+        4248,
+        314
+      ],
+      "process": "Nine positions registered to the hull and rock. Wheel turns around the stationary pin, the cheek and served eye retain their contour. Painted hemp texture follows the fall as slack is taken up, and the hull cleat stays fixed.",
+      "sources": [
+        {
+          "file": "../../../artwork/tactile/horn-cleat.png",
+          "sha256": "1d17b0254cae9d13904716273f3a06d05d1c189dca1075e4eb88947b8a6a33ef"
+        },
+        {
+          "file": "../../../artwork/tactile/reeved-block.png",
+          "sha256": "5bb0e3339515265420796478915dad358dcb8169f88a807eb4302a690c724910"
+        }
+      ]
+    },
+    {
+      "file": "sawn-grain.webp",
+      "sha256": "feb0b67118cf2510ec39e9bcf93d0db05beeab8cf163be0c05b5ee0f99ca341f",
+      "bytes": 30748,
+      "size": [
+        819,
+        81
+      ],
+      "process": "A raised fibre on the spare board bends along its grain.",
+      "source": {
+        "parent": "../tidepaint/slipway.webp",
+        "nativeSha256": "e59992d280b6fafe3189a040cc7f946f7ed4cac97c21d7eb4ea3a22abf66f473",
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    {
+      "file": "shroud-seizing.webp",
+      "sha256": "d710c76e00414f09115bb96e4e2d0a8d118e1ac2d009440a90fe39df5cb8a307",
+      "bytes": 3036,
+      "size": [
+        132,
+        102
+      ],
+      "process": "Three turns bind the two actual standing lines on the active crossing plate.",
+      "sources": [
+        {
+          "file": "../../../artwork/tactile/reeved-block.png",
+          "sha256": "5bb0e3339515265420796478915dad358dcb8169f88a807eb4302a690c724910"
+        }
+      ]
+    },
+    {
+      "file": "splinter.webp",
+      "sha256": "3ea3c8f6fc5aa5f08fac4f51894bbda8cdc1ea02887f0aa025338fb0c1b9d87b",
+      "bytes": 33328,
+      "size": [
+        810,
+        87
+      ],
+      "process": "One narrow fibre lifts on the stripped wreck’s sloping plank.",
+      "source": {
+        "parent": "../tidepaint/salvage.webp",
+        "nativeSha256": "8e458fcc68a9848d93028ba266e086b6f09024cbfd3ac94896499e7c0d5f004b",
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    {
+      "file": "stoked-coals.webp",
+      "sha256": "67acafb2bea07ad96dc7e84182515d783d345d02b9a15f9d213e39d6e5d1ff06",
+      "bytes": 12078,
+      "size": [
+        177,
+        108
+      ],
+      "process": "Extra light stays on the native hot-ember pixels inside the arch.",
+      "sources": [
+        {
+          "file": "../tidepaint/forge-lit.webp",
+          "sha256": "d6c47df5936d1754e3305a06fa228e14035fd08493efc8de1fed13f46f581a88"
+        }
+      ]
+    },
+    {
+      "file": "tin-pan.webp",
+      "sha256": "6555b191e8744045c3757a9d469d8e4f3c702fe6d0c5f69eadae47d1a58e0b8d",
+      "bytes": 24054,
+      "size": [
+        388,
+        132
+      ],
+      "process": "One static floor prop. Reflected light stays on the rim; a separate clipped ellipse on the water follows impact in fieldwork-ui.js.",
+      "sources": [
+        {
+          "file": "../../../artwork/tactile/tin-pan.png",
+          "sha256": "cc355b9f1c358a0b8f906ba88db3ebc545ca3f101256b24222975365d22adec0"
+        }
+      ]
+    },
+    {
+      "file": "wet-wrack.webp",
+      "sha256": "05fada6a619f94c44d1c9c5ad2eb0ad97aee2bbef319c2fc69c1c39a2005f9df",
+      "bytes": 35042,
+      "size": [
+        1260,
+        76
+      ],
+      "process": "Lift the end of a real painted kelp blade, then lay it back on the wet sand.",
+      "source": {
+        "parent": "../tidepaint/beach.webp",
+        "nativeSha256": "3d43a90009abaec3355bdcbbb8fbadfb49780d24b01edc9193b6a78374c34141",
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    {
+      "file": "wharf-fall.webp",
+      "sha256": "074223231ac5e8483acf10febd0c3764ffba248b5c30d5890bbe59dc103e90c6",
+      "bytes": 36016,
+      "size": [
+        2079,
+        141
+      ],
+      "process": "On demand, take up slack in the mooring line between the boat and bollard. Both terminal lengths stay pinned.",
+      "sources": [
+        {
+          "file": "../tidepaint/harbour.webp",
+          "sha256": "8b4d89461d12308edf56ac794f2192f9f53f204b450b07e5351faba10b0fd20f"
+        }
+      ]
+    }
+  ]
+}

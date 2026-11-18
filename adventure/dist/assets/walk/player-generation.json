@@ -1,24 +1,6 @@
 {
   "tool": "OpenAI ImageGen",
-  "created": "2026-11-18",
-  "transparent_background": true,
-  "selectedPrompt": "Create a NEW hand-painted production game animation sheet of Alick. The first reference is authoritative ONLY for frame order, camera, screen direction, placement and body articulation. The second reference is the NEW authoritative full-resolution costume and face model: carefully repaint EVERY frame in its colours, anatomy, materials and observed naturalist illustration style. The slim young adult deckhand from the references has a short dark beard, a charcoal-blue ribbed watch cap, a strong ochre neckcloth tucked into a work-softened slate-indigo pea jacket, warm smoke-brown wool trousers and worn tar-brown ankle boots. Give his narrow jaw, skin and thoughtful eyes individual character. His jacket is blue, never green. Deliver one 1536×1024 LANDSCAPE walking atlas, SIX individual drawings in EXACTLY TWO rows of THREE equal 512×512 square cells. Read reference 1 frame-by-frame, row-major. Keep the same six limb articulations, same step length and timing, same left and right arm and boot in front, clothing silhouette, walking posture and ground support. Nose to screen RIGHT in all six. Top left long contact stride with near heel leading, top middle weight accepted as trailing boot lifts, top right bent-knee passing step; bottom left the opposite contact stride with the other arm in front, bottom middle opposite weight acceptance, bottom right opposite passing position. The near and far limbs exchange roles; no duplicating the first half. Weight travels over the planted foot. In each square every boot and all the hair stay completely within, with clear transparent gutters. Every bottommost planted boot at the same baseline. Use one anatomical and costume model locked across all six: same skull/face at the same scale and height, exact cap/hair angle, identical seam network and jacket closure, identical trousers, cuffs and boots, left light held fixed, each pigment stable. Torso and head advance smoothly through a restrained 2–3px rise/fall. Arms counterbalance legs naturally. The features must not redraw into six different faces. Re-use the same painted head reference for all six degrees of gait. The animation should read clearly at a 160px-tall display and hold still when paused.\n \nPaint the character with the second reference's crisp graphite underdrawing and rich naturalist 1860s maritime gouache: brushwork held together in broad, legible local colour shapes at reduced size, worn wool, hand-sewn linen, scuffed boots, warm skin under a cool upper-left sky. Preserve pronounced local jacket colour and skin tone across every cell. Keep the same stitches, buttons, creases and cap through all cells; make every mark feel part of the same painted world. Avoid dull uniformly brown or uniformly green wash. No independent character redesign, no changes of coat, expressions or cap. Empty hands, no bags, no separate items, NO text, grid lines, floor, shadow, backdrop or digital airbrush glow; absolutely transparent pixels outside and between the character silhouettes. Historical art direction is an original reconstruction for an adventure game.",
-  "references": [
-    {
-      "path": "adventure/dist/assets/walk/player.png",
-      "sha256": "235369b75d600f1d383402c17c3be14d8df0269ac6960f7e38a922e474535bc1",
-      "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-    },
-    {
-      "path": "adventure/dist/assets/sailor.png",
-      "sha256": "2bd1b63f6e7636c7931cda31956cefb73312e6a9b7935c97e109b1f4b6d92602"
-    }
-  ],
-  "generatorOutputSha256": "de724d7dd678d2a1293f0f81b32746d4cac84f2a898203cb86a8f0622ff73272",
-  "generatorOutputDimensions": [
-    1536,
-    1024
-  ],
-  "registeredGameFile": "player.png",
-  "registrationRecord": "player.json"
+  "receipt": "../../../artwork/cast/manifest.json",
+  "character": "player",
+  "selection": "First six cels in the Alick native painting."
 }

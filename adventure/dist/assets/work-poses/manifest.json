@@ -1,971 +1,684 @@
 {
-  "title": "Until We Return — cast model and working poses",
-  "created": "2026-11-18",
+  "title": "Until We Return · painted work poses",
   "generator": "OpenAI ImageGen",
-  "origin": "Each working strip is a new original painting referenced to one new full-length character model and its earlier project choreography. These are imagined interpretations of the crew.",
-  "prompts": "prompts.json",
-  "measurement": "Native pixel coordinates from the upper left. alphaBounds is the largest connected silhouette at alpha ≥32, as [left, top, width, height]. Crop, ground and contact record the original registration. work-poses.js uses the crop together with measuredGround and measuredContact to anchor the visible planted supports and extended hand. Contact is positive forward and upward in the game API.",
-  "registration": "The native RGB and alpha painting is cropped and resampled into the original transparent game canvas. Each pose uses four contiguous rectangles with shared vertical and horizontal divisions at the boot-support x and reaching-hand y. This keeps the complete pose, its feet and its interactions inside the same work station. There are no colour filters, procedural limb poses or additional art layers. sourceRegistration records native generator SHA-256, native dimensions and exact source/destination cut lines.",
+  "date_utc": "2026-11-18",
+  "source_manifest": "../../../artwork/cast/manifest.json",
+  "registration": "Each connected painted figure is uniformly scaled and translated onto a blank RGBA cell. Ground is the anatomical support centre at the sole baseline. Contact is the grip point on the painted palm. Full crops and placements give [left,top,right,bottom] and [left,top,width,height] respectively. No skeleton deformation or colour substitution.",
   "assets": {
     "player": {
       "atlas": "assets/work-poses/player.png",
-      "walkView": [
-        363,
-        501
-      ],
-      "walkStandingHeight": 475,
-      "walkGround": [
-        186,
-        489
-      ],
       "actor": "Alick McLaren",
       "size": [
-        2172,
-        724
+        1536,
+        512
       ],
-      "byteLength": 1037130,
-      "sha256": "67d120e03375beb530c97558bbe2e358e232c58b87ce89a36e15ab7bf9f4060e",
+      "sha256": "e9807045376cb0e3bd9cb8048277f2a3286b322174fe5fa8bd126e002a245dd3",
+      "byteLength": 482580,
+      "walkView": [
+        448,
+        500
+      ],
+      "walkGround": [
+        224,
+        493
+      ],
+      "walkStandingHeight": 482,
+      "standingHeight": 482,
       "poses": {
         "stand": {
-          "alphaBounds": [
-            248,
-            8,
-            266,
-            706
-          ],
           "crop": [
-            244,
-            4,
-            274,
-            714
+            175,
+            11,
+            160,
+            494
           ],
           "ground": [
-            382,
-            713
+            256,
+            498
           ],
           "measuredGround": [
-            383,
-            713
+            256,
+            498
+          ],
+          "source": "player.png",
+          "nativeCropXYXY": [
+            132,
+            850,
+            266,
+            1271
+          ],
+          "placedXYWH": [
+            177,
+            13,
+            156,
+            490
           ]
         },
         "reach": {
-          "alphaBounds": [
-            857,
-            55,
-            478,
-            657
-          ],
           "crop": [
-            854,
-            51,
-            485,
-            665
+            660,
+            68,
+            339,
+            436
           ],
           "ground": [
-            1032,
-            710
+            768,
+            498
           ],
           "measuredGround": [
-            1033,
-            710
+            768,
+            498
+          ],
+          "source": "player.png",
+          "nativeCropXYXY": [
+            456,
+            862,
+            772,
+            1270
+          ],
+          "placedXYWH": [
+            150,
+            70,
+            335,
+            432
           ],
           "contact": [
-            1333,
-            333
+            961,
+            234
           ],
           "measuredContact": [
-            1333,
-            333
+            961,
+            234
+          ],
+          "nativeGrip": [
+            738,
+            1017
           ]
         },
         "crouch": {
-          "alphaBounds": [
-            1573,
-            248,
-            453,
-            461
-          ],
           "crop": [
-            1569,
-            244,
-            461,
-            469
+            1141,
+            162,
+            374,
+            341
           ],
           "ground": [
-            1737,
-            708
+            1280,
+            498
           ],
           "measuredGround": [
-            1740,
-            708
+            1280,
+            498
+          ],
+          "source": "low-work.png",
+          "nativeCropXYXY": [
+            12,
+            201,
+            436,
+            587
+          ],
+          "placedXYWH": [
+            119,
+            164,
+            370,
+            337
           ],
           "contact": [
-            2024,
-            619
+            1475,
+            445
           ],
           "measuredContact": [
-            2024,
-            618
+            1475,
+            445
+          ],
+          "nativeGrip": [
+            393,
+            523
           ]
         }
       },
-      "sourceRegistration": {
-        "sourceSize": [
-          2172,
-          724
-        ],
-        "sourceSha256": "6551d8d3a3b01c07fbf7e3c39566da113171e6a71547e525ce157c4b3feeae6f",
-        "cells": [
-          {
-            "pose": "stand",
-            "sourceX": [
-              208,
-              350,
-              488
-            ],
-            "sourceY": [
-              2,
-              360,
-              719
-            ],
-            "destinationX": [
-              244,
-              382,
-              518
-            ],
-            "destinationY": [
-              4,
-              361,
-              718
-            ]
-          },
-          {
-            "pose": "reach",
-            "sourceX": [
-              853,
-              1036,
-              1346
-            ],
-            "sourceY": [
-              47,
-              334,
-              718
-            ],
-            "destinationX": [
-              854,
-              1032,
-              1339
-            ],
-            "destinationY": [
-              51,
-              333,
-              716
-            ]
-          },
-          {
-            "pose": "crouch",
-            "sourceX": [
-              1575,
-              1748,
-              2042
-            ],
-            "sourceY": [
-              243,
-              619,
-              713
-            ],
-            "destinationX": [
-              1569,
-              1737,
-              2030
-            ],
-            "destinationY": [
-              244,
-              619,
-              713
-            ]
-          }
-        ]
-      },
-      "references": [
-        {
-          "path": "adventure/dist/assets/work-poses/player.png",
-          "sha256": "e6871038d5aca38bc1a23526344a59ee498a1a7736925be78da249a808250f6d",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-        },
-        {
-          "path": "adventure/dist/assets/sailor.png",
-          "sha256": "2bd1b63f6e7636c7931cda31956cefb73312e6a9b7935c97e109b1f4b6d92602"
-        }
-      ]
+      "nativeSHA256": "65607f3dfc776bb8d2c48e8d7f1b19b9bf6638504f1402d9123435fac493ceea",
+      "lowWorkSHA256": "78d3566ffd0b1cc253e705bb84ece79d9856bef9458bd07ebd1dbacb2ce70b63"
     },
     "raynal": {
       "atlas": "assets/work-poses/raynal.png",
-      "walkView": [
-        380,
-        504
-      ],
-      "walkStandingHeight": 487,
-      "walkGround": [
-        177,
-        496
-      ],
       "actor": "François Raynal",
       "size": [
-        1881,
-        836
+        1536,
+        512
       ],
-      "byteLength": 1194763,
-      "sha256": "c492c06f748a5e3c21b3860c06635c60c0a937f4478b1fcf90d2ce85e652ba3c",
+      "sha256": "73699198e6dc2acabb0d561915fcf110c7c4bf08e13ed6ebf5351a463b07023a",
+      "byteLength": 462964,
+      "walkView": [
+        448,
+        500
+      ],
+      "walkGround": [
+        224,
+        493
+      ],
+      "walkStandingHeight": 482,
+      "standingHeight": 482,
       "poses": {
         "stand": {
-          "alphaBounds": [
-            175,
-            15,
-            247,
-            802
-          ],
           "crop": [
-            171,
-            11,
-            255,
-            810
+            217,
+            10,
+            176,
+            494
           ],
           "ground": [
-            302,
-            816
+            256,
+            498
           ],
           "measuredGround": [
-            306,
-            816
+            256,
+            498
+          ],
+          "source": "raynal.png",
+          "nativeCropXYXY": [
+            123,
+            853,
+            278,
+            1294
+          ],
+          "placedXYWH": [
+            219,
+            12,
+            172,
+            490
           ]
         },
         "reach": {
-          "alphaBounds": [
-            687,
-            75,
-            494,
-            739
-          ],
           "crop": [
-            684,
+            685,
             71,
-            501,
-            747
+            314,
+            434
           ],
           "ground": [
-            870,
-            813
+            768,
+            498
           ],
           "measuredGround": [
-            878,
-            813
+            768,
+            498
+          ],
+          "source": "raynal.png",
+          "nativeCropXYXY": [
+            450,
+            864,
+            760,
+            1294
+          ],
+          "placedXYWH": [
+            175,
+            73,
+            310,
+            430
           ],
           "contact": [
-            1179,
-            373
+            961,
+            226
           ],
           "measuredContact": [
-            1179,
-            373
+            961,
+            226
+          ],
+          "nativeGrip": [
+            724,
+            1017
           ]
         },
         "crouch": {
-          "alphaBounds": [
-            1319,
-            309,
-            501,
-            498
-          ],
           "crop": [
-            1315,
-            305,
-            509,
-            506
+            1164,
+            181,
+            340,
+            322
           ],
           "ground": [
-            1494,
-            806
+            1280,
+            498
           ],
           "measuredGround": [
-            1496,
-            806
+            1280,
+            498
+          ],
+          "source": "low-work.png",
+          "nativeCropXYXY": [
+            450,
+            204,
+            853,
+            586
+          ],
+          "placedXYWH": [
+            142,
+            183,
+            336,
+            318
           ],
           "contact": [
-            1818,
-            723
+            1474,
+            449
           ],
           "measuredContact": [
-            1818,
-            723
+            1474,
+            449
+          ],
+          "nativeGrip": [
+            820,
+            523
           ]
         }
       },
-      "sourceRegistration": {
-        "sourceSize": [
-          1882,
-          836
-        ],
-        "sourceSha256": "a1c0818e39ae2cd333a4760e947656d833be512cac305700ca451697a739ece3",
-        "cells": [
-          {
-            "pose": "stand",
-            "sourceX": [
-              167,
-              304,
-              424
-            ],
-            "sourceY": [
-              9,
-              416,
-              822
-            ],
-            "destinationX": [
-              171,
-              302,
-              426
-            ],
-            "destinationY": [
-              11,
-              416,
-              821
-            ]
-          },
-          {
-            "pose": "reach",
-            "sourceX": [
-              665,
-              872,
-              1187
-            ],
-            "sourceY": [
-              69,
-              377,
-              820
-            ],
-            "destinationX": [
-              684,
-              870,
-              1185
-            ],
-            "destinationY": [
-              71,
-              373,
-              818
-            ]
-          },
-          {
-            "pose": "crouch",
-            "sourceX": [
-              1312,
-              1497,
-              1828
-            ],
-            "sourceY": [
-              302,
-              727,
-              816
-            ],
-            "destinationX": [
-              1315,
-              1494,
-              1824
-            ],
-            "destinationY": [
-              305,
-              723,
-              811
-            ]
-          }
-        ]
-      },
-      "references": [
-        {
-          "path": "adventure/dist/assets/work-poses/raynal.png",
-          "sha256": "5f3abc8718f7b0f2e78ba11401978905210dca48b3c7cea74ed2e30387ae9d3c",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-        },
-        {
-          "path": "adventure/dist/assets/people/raynal.png",
-          "sha256": "0d7b1a9dc766f54a2bd1e9c4adf11fd8287b673262d790463f33edb27ba705c4"
-        }
-      ]
+      "nativeSHA256": "3873e0be8a323bc6bb3f28b4fc353372d70d4cedcf1fe984fb2bbcc10b87bfde",
+      "lowWorkSHA256": "78d3566ffd0b1cc253e705bb84ece79d9856bef9458bd07ebd1dbacb2ce70b63"
     },
     "musgrave": {
       "atlas": "assets/work-poses/musgrave.png",
-      "walkView": [
-        371,
-        509
-      ],
-      "walkStandingHeight": 493,
-      "walkGround": [
-        170,
-        500
-      ],
       "actor": "Thomas Musgrave",
       "size": [
-        1774,
-        887
+        1536,
+        512
       ],
-      "byteLength": 1351377,
-      "sha256": "5d6ca822e99eb1821ee6155da9160a19c8c482ab15467bba32d484c9bb263d30",
+      "sha256": "d5bf720a63b9142f7a0035246624a1094b86bcd42224603592ce24e721e608ca",
+      "byteLength": 520668,
+      "walkView": [
+        448,
+        500
+      ],
+      "walkGround": [
+        224,
+        493
+      ],
+      "walkStandingHeight": 482,
+      "standingHeight": 482,
       "poses": {
         "stand": {
-          "alphaBounds": [
-            160,
-            10,
-            250,
-            844
-          ],
           "crop": [
-            156,
-            6,
-            258,
-            852
+            173,
+            12,
+            174,
+            494
           ],
           "ground": [
-            288,
-            853
+            256,
+            498
           ],
           "measuredGround": [
-            287,
-            853
+            256,
+            498
+          ],
+          "source": "musgrave.png",
+          "nativeCropXYXY": [
+            128,
+            838,
+            276,
+            1260
+          ],
+          "placedXYWH": [
+            174,
+            13,
+            172,
+            491
           ]
         },
         "reach": {
-          "alphaBounds": [
-            632,
-            68,
-            498,
-            785
-          ],
           "crop": [
-            628,
-            64,
-            506,
-            793
+            611,
+            38,
+            391,
+            466
           ],
           "ground": [
-            790,
-            852
+            768,
+            498
           ],
           "measuredGround": [
-            792,
-            852
+            768,
+            498
+          ],
+          "source": "musgrave.png",
+          "nativeCropXYXY": [
+            448,
+            846,
+            795,
+            1259
+          ],
+          "placedXYWH": [
+            101,
+            40,
+            388,
+            462
           ],
           "contact": [
-            1128,
-            344
+            961,
+            210
           ],
           "measuredContact": [
-            1128,
-            344
+            961,
+            210
+          ],
+          "nativeGrip": [
+            759,
+            998
           ]
         },
         "crouch": {
-          "alphaBounds": [
-            1220,
-            299,
-            521,
-            546
-          ],
           "crop": [
-            1216,
-            295,
-            529,
-            554
+            1119,
+            166,
+            373,
+            338
           ],
           "ground": [
-            1421,
-            844
+            1280,
+            498
           ],
           "measuredGround": [
-            1423,
-            844
+            1280,
+            498
+          ],
+          "source": "low-work.png",
+          "nativeCropXYXY": [
+            863,
+            204,
+            1286,
+            586
+          ],
+          "placedXYWH": [
+            97,
+            168,
+            369,
+            334
           ],
           "contact": [
-            1739,
-            750
+            1456,
+            446
           ],
           "measuredContact": [
-            1739,
-            751
+            1456,
+            446
+          ],
+          "nativeGrip": [
+            1247,
+            522
           ]
         }
       },
-      "sourceRegistration": {
-        "sourceSize": [
-          1774,
-          887
-        ],
-        "sourceSha256": "0a3a91392d70180fe390c8b898ea5e04500506a2940a9b2aef3379236ea5bb13",
-        "cells": [
-          {
-            "pose": "stand",
-            "sourceX": [
-              154,
-              288,
-              418
-            ],
-            "sourceY": [
-              0,
-              430,
-              860
-            ],
-            "destinationX": [
-              156,
-              288,
-              414
-            ],
-            "destinationY": [
-              6,
-              432,
-              858
-            ]
-          },
-          {
-            "pose": "reach",
-            "sourceX": [
-              627,
-              793,
-              1139
-            ],
-            "sourceY": [
-              61,
-              346,
-              859
-            ],
-            "destinationX": [
-              628,
-              790,
-              1134
-            ],
-            "destinationY": [
-              64,
-              344,
-              857
-            ]
-          },
-          {
-            "pose": "crouch",
-            "sourceX": [
-              1215,
-              1423,
-              1745
-            ],
-            "sourceY": [
-              291,
-              751,
-              851
-            ],
-            "destinationX": [
-              1216,
-              1421,
-              1745
-            ],
-            "destinationY": [
-              295,
-              750,
-              849
-            ]
-          }
-        ]
-      },
-      "references": [
-        {
-          "path": "adventure/dist/assets/work-poses/musgrave.png",
-          "sha256": "0ccf1f61de87948c65749fff99fff3d9b12fb31bd8c9347a82fc539cca71b398",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-        },
-        {
-          "path": "adventure/dist/assets/people/musgrave.png",
-          "sha256": "552c5c4a23367b482cf96bd46d3fdb73b908b87d9d3935bac6a16bef9219430a"
-        }
-      ]
+      "nativeSHA256": "bcbbe77101e3dd4fca7ad91ddf84f637c9b2af0ac2ca1ddbfcc5831dc759ec74",
+      "lowWorkSHA256": "78d3566ffd0b1cc253e705bb84ece79d9856bef9458bd07ebd1dbacb2ce70b63"
     },
     "henry": {
       "atlas": "assets/work-poses/henry.png",
-      "walkView": [
-        352,
-        512
-      ],
-      "walkStandingHeight": 496,
-      "walkGround": [
-        177,
-        508
-      ],
       "actor": "Henry Forgés",
       "size": [
-        1942,
-        809
+        1536,
+        512
       ],
-      "byteLength": 1186442,
-      "sha256": "df82c4b03f0242297a7add0ff15f33a7266375f1e9e3caccfb472a8846ee28cb",
+      "sha256": "7a00454ec55d1b21b6c2b04604c1187e2bc75be4a89c2d87e51269196daaa394",
+      "byteLength": 489116,
+      "walkView": [
+        448,
+        500
+      ],
+      "walkGround": [
+        224,
+        493
+      ],
+      "walkStandingHeight": 482,
+      "standingHeight": 482,
       "poses": {
         "stand": {
-          "alphaBounds": [
-            222,
-            16,
-            251,
-            772
-          ],
           "crop": [
-            218,
-            12,
-            259,
-            780
+            163,
+            11,
+            183,
+            495
           ],
           "ground": [
-            352,
-            787
+            256,
+            498
           ],
           "measuredGround": [
-            353,
-            787
+            256,
+            498
+          ],
+          "source": "henry.png",
+          "nativeCropXYXY": [
+            132,
+            835,
+            286,
+            1258
+          ],
+          "placedXYWH": [
+            165,
+            13,
+            179,
+            491
           ]
         },
         "reach": {
-          "alphaBounds": [
-            722,
-            75,
-            502,
-            712
-          ],
           "crop": [
-            718,
-            71,
-            510,
-            720
+            618,
+            60,
+            385,
+            446
           ],
           "ground": [
-            890,
-            786
+            768,
+            498
           ],
           "measuredGround": [
-            890,
-            786
+            768,
+            498
+          ],
+          "source": "henry.png",
+          "nativeCropXYXY": [
+            450,
+            858,
+            793,
+            1254
+          ],
+          "placedXYWH": [
+            107,
+            62,
+            382,
+            442
           ],
           "contact": [
-            1222,
-            330
+            961,
+            237
           ],
           "measuredContact": [
-            1222,
-            330
+            961,
+            237
+          ],
+          "nativeGrip": [
+            757,
+            1015
           ]
         },
         "crouch": {
-          "alphaBounds": [
-            1345,
-            307,
-            491,
-            480
-          ],
           "crop": [
-            1341,
-            303,
-            499,
-            487
+            1147,
+            172,
+            360,
+            332
           ],
           "ground": [
-            1528,
-            785
+            1280,
+            498
           ],
           "measuredGround": [
-            1527,
-            785
+            1280,
+            498
+          ],
+          "source": "low-work.png",
+          "nativeCropXYXY": [
+            1297,
+            210,
+            1706,
+            586
+          ],
+          "placedXYWH": [
+            125,
+            174,
+            356,
+            328
           ],
           "contact": [
-            1834,
-            717
+            1474,
+            447
           ],
           "measuredContact": [
-            1834,
-            718
+            1474,
+            447
+          ],
+          "nativeGrip": [
+            1670,
+            523
           ]
         }
       },
-      "sourceRegistration": {
-        "sourceSize": [
-          1945,
-          808
-        ],
-        "sourceSha256": "c0b25df4693161dbcea20d585483794f835373259125903c7266361dab345b35",
-        "cells": [
-          {
-            "pose": "stand",
-            "sourceX": [
-              198,
-              338,
-              466
-            ],
-            "sourceY": [
-              8,
-              401,
-              794
-            ],
-            "destinationX": [
-              218,
-              352,
-              477
-            ],
-            "destinationY": [
-              12,
-              402,
-              792
-            ]
-          },
-          {
-            "pose": "reach",
-            "sourceX": [
-              717,
-              890,
-              1231
-            ],
-            "sourceY": [
-              68,
-              331,
-              793
-            ],
-            "destinationX": [
-              718,
-              890,
-              1228
-            ],
-            "destinationY": [
-              71,
-              330,
-              791
-            ]
-          },
-          {
-            "pose": "crouch",
-            "sourceX": [
-              1344,
-              1531,
-              1846
-            ],
-            "sourceY": [
-              299,
-              717,
-              791
-            ],
-            "destinationX": [
-              1341,
-              1528,
-              1840
-            ],
-            "destinationY": [
-              303,
-              717,
-              790
-            ]
-          }
-        ]
-      },
-      "references": [
-        {
-          "path": "adventure/dist/assets/work-poses/henry.png",
-          "sha256": "f07171296763f5c10c461bfd8984643851522d3cdc0ec8fec483dc36cff9a3e6",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-        },
-        {
-          "path": "adventure/dist/assets/people/henry.png",
-          "sha256": "30fc8c39b86e94b2c2982d7c8be804cd29684b4028a5d8eb66259cbfe40157f5"
-        }
-      ]
+      "nativeSHA256": "bd3061c13c8c9d7a0e6f9949df07c4cb9fe7972755da60ab5b9a1fe404907f35",
+      "lowWorkSHA256": "78d3566ffd0b1cc253e705bb84ece79d9856bef9458bd07ebd1dbacb2ce70b63"
     },
     "george": {
       "atlas": "assets/work-poses/george.png",
-      "walkView": [
-        382,
-        510
-      ],
-      "walkStandingHeight": 495,
-      "walkGround": [
-        188,
-        507
-      ],
       "actor": "George Harris",
       "size": [
-        1881,
-        836
+        1536,
+        512
       ],
-      "byteLength": 1352285,
-      "sha256": "3be655569c9320dd45f52b887d08b29d0d9871de81c25a9f3c64726fb4928760",
+      "sha256": "d011fa3c571d7596bce3893175b7e8b32e7319bd4066c1a371cd7dd35039a96b",
+      "byteLength": 538695,
+      "walkView": [
+        448,
+        500
+      ],
+      "walkGround": [
+        224,
+        493
+      ],
+      "walkStandingHeight": 482,
+      "standingHeight": 482,
       "poses": {
         "stand": {
-          "alphaBounds": [
-            184,
-            17,
-            270,
-            796
-          ],
           "crop": [
-            180,
-            13,
-            278,
-            804
+            211,
+            11,
+            191,
+            495
           ],
           "ground": [
-            326,
-            812
+            256,
+            498
           ],
           "measuredGround": [
-            326,
-            812
+            256,
+            498
+          ],
+          "source": "george.png",
+          "nativeCropXYXY": [
+            119,
+            834,
+            279,
+            1252
+          ],
+          "placedXYWH": [
+            213,
+            13,
+            188,
+            491
           ]
         },
         "reach": {
-          "alphaBounds": [
-            703,
-            82,
-            525,
-            730
-          ],
           "crop": [
-            699,
-            79,
-            533,
-            737
+            617,
+            69,
+            388,
+            436
           ],
           "ground": [
-            874,
-            810
+            768,
+            498
           ],
           "measuredGround": [
-            876,
-            810
+            768,
+            498
+          ],
+          "source": "george.png",
+          "nativeCropXYXY": [
+            431,
+            854,
+            783,
+            1250
+          ],
+          "placedXYWH": [
+            107,
+            70,
+            385,
+            433
           ],
           "contact": [
-            1226,
-            366
+            961,
+            223
           ],
           "measuredContact": [
-            1226,
-            366
+            961,
+            223
+          ],
+          "nativeGrip": [
+            744,
+            994
           ]
         },
         "crouch": {
-          "alphaBounds": [
-            1324,
-            295,
-            515,
-            516
-          ],
           "crop": [
-            1321,
-            291,
-            522,
-            523
+            1117,
+            168,
+            396,
+            336
           ],
           "ground": [
-            1522,
-            809
+            1280,
+            498
           ],
           "measuredGround": [
-            1522,
-            809
+            1280,
+            498
+          ],
+          "source": "low-work.png",
+          "nativeCropXYXY": [
+            1715,
+            209,
+            2160,
+            586
+          ],
+          "placedXYWH": [
+            95,
+            170,
+            392,
+            332
           ],
           "contact": [
-            1837,
-            740
+            1473,
+            447
           ],
           "measuredContact": [
-            1837,
-            740
+            1473,
+            447
+          ],
+          "nativeGrip": [
+            2117,
+            523
           ]
         }
       },
-      "sourceRegistration": {
-        "sourceSize": [
-          1882,
-          836
-        ],
-        "sourceSha256": "a56c2928bb64adad2ceb01b719cde1fd8ab1dc2d8a24711fba970f903f5ff266",
-        "cells": [
-          {
-            "pose": "stand",
-            "sourceX": [
-              156,
-              306,
-              441
-            ],
-            "sourceY": [
-              5,
-              414,
-              823
-            ],
-            "destinationX": [
-              180,
-              326,
-              458
-            ],
-            "destinationY": [
-              13,
-              415,
-              817
-            ]
-          },
-          {
-            "pose": "reach",
-            "sourceX": [
-              675,
-              856,
-              1215
-            ],
-            "sourceY": [
-              74,
-              371,
-              822
-            ],
-            "destinationX": [
-              699,
-              874,
-              1232
-            ],
-            "destinationY": [
-              79,
-              366,
-              816
-            ]
-          },
-          {
-            "pose": "crouch",
-            "sourceX": [
-              1304,
-              1509,
-              1837
-            ],
-            "sourceY": [
-              288,
-              745,
-              820
-            ],
-            "destinationX": [
-              1321,
-              1522,
-              1843
-            ],
-            "destinationY": [
-              291,
-              740,
-              814
-            ]
-          }
-        ]
-      },
-      "references": [
-        {
-          "path": "adventure/dist/assets/work-poses/george.png",
-          "sha256": "680d063b1e0dae38b556055ae02eb8dfb5d55b75648c72ee3360cd33dc44652d",
-          "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
-        },
-        {
-          "path": "adventure/dist/assets/people/george.png",
-          "sha256": "d2190babff57636e11080c6737c2ba6d67dfc9cff23c2e6c8b0c4e4a257515bc"
-        }
-      ]
+      "nativeSHA256": "286cfb9dec59853a539aeb5514ccdfc309c82667837b1e6d7e2e0b3889e07675",
+      "lowWorkSHA256": "78d3566ffd0b1cc253e705bb84ece79d9856bef9458bd07ebd1dbacb2ce70b63"
     }
   }
 }

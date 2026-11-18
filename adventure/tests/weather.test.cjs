@@ -80,7 +80,7 @@ test('fourteen room weather models use bounded local fields on one transparent c
     assert.equal(r.root.dataset.landscape,'ready');
 
   }
-  assert.deepEqual([...summary].sort(),['after-rain','rain','sleet','snow','spray']);
+  assert.deepEqual([...summary].sort(),['after-rain','rain','sleet','snow']);
 });
 
 test('enclosed rooms receive external precipitation only in the painted openings',()=>{
@@ -109,13 +109,13 @@ test('closing a roof redirects rain and equipment controls response without calm
   assert.ok(!built.zones.some(z=>z.id==='through the bare frame'));
   assert.ok(effect(built,'runoff at the low eave'));assert.equal(open.wind,built.wind);
   const wet=describe('cabin'),sealed=describe('cabin',{roofSealed:true}),warm=describe('cabin',{roofSealed:true,warmthReady:true});
-  assert.ok(effect(wet,'ripples below leaking seam')&&!effect(sealed,'ripples below leaking seam'));
-  assert.ok(effect(sealed,'damp under seam').strength<effect(wet,'damp under seam').strength);
-  assert.ok(!effect(warm,'damp under seam')&&effect(warm,'hearth reflection'));
+  assert.match(wet.weather,/seam to the pan/);assert.match(sealed.weather,/seam holds/);
+  assert.deepEqual(wet.effects,[],'the roof workplate itself owns its drop and pan');
+  assert.equal(warm.shelter,'warm and sealed');
   const loose=describe('crossing'),fast=describe('crossing',{rigSecured:true}),dry=describe('crossing',{rigSecured:true,boatDry:true,sailMended:true});
   assert.notEqual(loose.rig,fast.rig);assert.equal(loose.wind,dry.wind);
-  assert.ok(effect(loose,'water surging in bilge')&&!effect(dry,'water surging in bilge'));
-  assert.ok(!effect(describe('landing'),'lantern on wet shingle')&&effect(describe('landing',{landingMarked:true}),'lantern on wet shingle'));
+  assert.ok(loose.ground.length&&!dry.ground.length);assert.ok(effect(dry,'water beading in the seam'));
+  assert.notEqual(describe('landing').rig,describe('landing',{boatMoored:true}).rig);
 });
 
 test('render retains its bounded canvas and weather clock across unrelated commits',()=>{
@@ -155,8 +155,8 @@ test('foot contact only marks a matching ground patch and dissolves as the water
   for(const room of ['forge','cabin','chartroom','return_camp']){
     s=f.draw(room);assert.ok(!step(s,28,73),room);assert.equal(f.paintedSoles,0);
   }
-  s=f.draw('crossing',{rigSecured:true});assert.ok(step(s,64,77));assert.ok(!step(s,16,85));
-  s=f.draw('crossing',{rigSecured:true,boatDry:true});assert.ok(!step(s,64,77));
+  s=f.draw('crossing',{rigSecured:true});assert.ok(step(s,65.3,81.1));assert.ok(!step(s,16,85));
+  s=f.draw('crossing',{rigSecured:true,boatDry:true});assert.ok(!step(s,65.3,81.1));
   s=f.draw('landing');assert.ok(step(s,32,68));
   f.pref(true);assert.ok(!step(s,33,68));assert.equal(f.paintedSoles,0);
   f.pref(false);f.hide(true);assert.ok(!step(s,34,68));
@@ -180,4 +180,57 @@ test('geometry survives unrelated plate changes without loading or copying image
   assert.equal(f.draws,draws);assert.equal(lookups,0);
   assert.equal(f.root.children.length,1);assert.equal(f.root.dataset.landscape,'ready');
   f.draw('camp',{shelterBuilt:true});assert.equal(f.root.dataset.landscape,'ready');assert.equal(lookups,0);
+});
+
+test('the chapter clock changes the watch independently of the hands, and survives doors and pauses',()=>{
+  const model=fixture(),w=model.weather;
+  model.draw('crossing');const departure=model.root.dataset.wxPhase;
+  assert.match(departure,/lee/);
+  for(let i=0;i<600;i++)model.tick();
+  const squall=model.root.dataset.wxPhase;
+  assert.match(squall,/squall/);
+  const dry=model.draw('crossing',{rigSecured:true,boatDry:true});
+  assert.equal(model.root.dataset.wxPhase,squall);assert.match(w.caption(model.root,dry),/Bare boards/);
+  model.dialog(true);for(let i=0;i<300;i++)model.tick();assert.equal(model.root.dataset.wxPhase,squall);
+  model.dialog(false);for(let i=0;i<500;i++)model.tick();assert.match(model.root.dataset.wxPhase,/rain lifts/);
+  model.draw('forest');for(let i=0;i<570;i++)model.tick();
+  const winter=model.root.dataset.wxPhase;
+  model.draw('cabin',{roofSealed:true});assert.equal(model.root.dataset.wxPhase,winter);
+  assert.match(winter,/Sleet/);
+  const restored=fixture();restored.draw('crossing',{rigSecured:true,boatDry:true});
+  assert.match(restored.root.dataset.wxPhase,/squall/);
+  restored.draw('landing',{boatMoored:true});assert.match(restored.root.dataset.wxPhase,/light enough/);
+});
+
+test('dry intervals last through more than one wave; crossing holds its gale and rescue holds its window',()=>{
+  const at=weather.conditions;
+  for(let i=0;i<7;i++){
+    let clean=0,best=0,previous;
+    for(let t=0;t<220;t+=.25){
+      const now=at(i+1,t);
+      assert.ok(now.wind>0&&now.rain>=0&&now.rain<=1&&now.shade>=0&&now.shade<=1);
+      if(previous)for(const field of ['rain','shade','wind'])assert.ok(Math.abs(now[field]-previous[field])<.09,'gradual sky at '+[i,t,field]);
+      clean=now.rain<.005?clean+.25:0;best=Math.max(best,clean);
+      previous=now;
+    }
+    assert.ok(best>=15,'sustained clear interval in chapter '+(i+1));
+  }
+  assert.ok(at(5,2).wind<at(5,44).wind&&at(5,44).shade>at(5,2).shade);
+  for(const t of [77,125,150,199,387])assert.ok(at(5,t).wind>1,'the gale remains');
+  for(const t of [31,61,127,488])assert.equal(at(7,t).rain,0,'no storm restarts on the landing');
+});
+
+test('airborne sleet, rain and light snow all travel leeward while glass drops run vertically',()=>{
+  const p={u:.6,v:.5};
+  for(const scene of ['forest','crossing']){
+    const m=weather.describe({scene,flags:{}});
+    assert.equal(m.direction,scene==='crossing'?-1:1);
+    for(const k of ['snow','rain','after-rain']){
+      const v=weather.velocity(k,p,.6,m,.92);
+      assert.ok(v.vy>0);assert.equal(Math.sign(v.vx),k==='after-rain'?0:m.direction);
+      assert.ok(Math.abs(weather.velocity(k,p,.6,m,1.14).vx)>=Math.abs(v.vx));
+    }
+    assert.ok(weather.velocity('rain',p,1.18,m,.92).vy>weather.velocity('rain',p,.44,m,.92).vy);
+    for(const layer of landscape.describe({scene,flags:{}}))assert.equal(layer.windSign||1,m.direction);
+  }
 });

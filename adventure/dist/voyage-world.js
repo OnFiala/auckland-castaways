@@ -9,7 +9,6 @@ function decorations(state,{svg,marks}){
  const glow=(x,y)=>`<div class="voyage-glow" style="left:${x}%;top:${y}%"></div>`;
  if(state.scene==='forge'&&f.forgeLit)html+=glow(25,28);
  if(state.scene==='cabin'&&f.warmthReady)html+=glow(-2,42)+`<div class="world-steam" style="left:36%;top:39%"></div>`;
- if(state.scene==='cabin'&&f.roofSealed)html+=`<div class="change" style="left:53.7%;top:17.7%;width:9%;height:7%;transform:translate(-50%,-50%) rotate(-4deg)">${svg('weatherPatch')}</div>`;
  if(state.scene==='return_camp'&&f.suppliesShared)html+=`<div class="change" style="left:37.9%;top:45.2%;width:4.7%;height:8.5%">${svg('rescueProvisions')}</div>`;
  if(state.scene==='landing' && f.landingMarked){
   const lamp=marks?.landing?.lantern || {x:77.8,y:35.3,w:3.2,h:8.5};
@@ -22,7 +21,7 @@ const placements={
  forest:{spring:[22,59,21,18],george:[79,65]},
  forge:{leather:[79,42,9,8],metalPipe:[89,43,8,9],furnace:[40,44,22,25],anvil:[65,46,13,18],testBlock:[83,53,12,9],raynal:[83,65]},
  charcoal:{charcoal:[77,60,8,10],ironScrap:[45,69,9,11],george:[85,65]},
- slipway:{resin:[33,47,6,10],boatFrame:[63,48,32,15],seams:[63,57,29,6],boatMast:[58,25,6,46],musgrave:[86,65]},
+ slipway:{resin:[32,45.6,7,8.5],boatFrame:[55.7,55.6,17.9,6.7],seams:[73.2,59,16,7],boatMast:[66,29.4,6.5,43.8],musgrave:[38,50]},
  crossing:{bailer:[24,78,7,7],stormLine:[38,78,7,8],compass:[58,78,6,8],canvasPatch:[71,78,8,7],rigging:[32,38,9,28],bilge:[64,69,18,15],tornSail:[74,18,26,24],horizon:[14,43,22,13],raynal:[29,65],musgrave:[76,65]},
  harbour:{provisions:[57,71,8,14],spareSail:[72,71,11,10],rescueCutter:[35,51,33,26]},
  chartroom:{chart:[36,43,12,9],journal:[67,43,7,9],chartTable:[51,49,27,12]},
@@ -33,7 +32,7 @@ function stageTarget(target,state){
  const xy=placements[state.scene]?.[target.id];const t={...target};if(xy){t.x=xy[0];t.y=xy[1];if(xy[2]){t.w=xy[2];t.h=xy[3];}}
  if(state.scene==='cabin'&&t.id==='kettle')t.art='kettle';
  if(state.scene==='forge'&&t.id==='testBlock')t.art='planks';
- if(state.scene==='slipway'&&t.id==='boatMast'&&!state.flags.sailRigged)t.art='mast';
+ if(state.scene==='slipway'&&t.id==='boatMast')t.paint=false;
  if(state.scene==='crossing'&&t.kind==='person'){t.groundY=82;t.w=8.5;t.h=26;}
  return t;
 }

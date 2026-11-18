@@ -5,17 +5,17 @@
 })(typeof window !== 'undefined' ? window : globalThis, function () {
   'use strict';
 
-  function walk(id, crop, anchor) {
+  function walk(id) {
     const file = 'assets/walk/' + id + '.png';
     return { id, file, nativefile: file, width: 1536, height: 1024,
-      commoncrop: crop, groundanchor: anchor };
+      commoncrop: [32, 5, 448, 500], groundanchor: [256, 498] };
   }
   const WALKS = {
-    player: walk('player', [70, 6, 363, 501], [256, 495]),
-    raynal: walk('raynal', [79, 4, 380, 504], [256, 500]),
-    musgrave: walk('musgrave', [86, 0, 371, 509], [256, 500]),
-    henry: walk('henry', [79, 0, 352, 512], [256, 508]),
-    george: walk('george', [68, 1, 382, 510], [256, 508])
+    player: walk('player'),
+    raynal: walk('raynal'),
+    musgrave: walk('musgrave'),
+    henry: walk('henry'),
+    george: walk('george')
   };
   // Movement units are body heights, so every person takes the same-sized steps.
   // One complete atlas cycle contains two footfalls. At deck-walking pace

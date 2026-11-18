@@ -1,25 +1,31 @@
-# Krátké rozhovory první noci
+# Rozhovory na cestě z Epigwaittu
 
-Anglické repliky v [dist/stories.js](dist/stories.js) jsou **nová autorská fikce**, nikoli citace, překlad dochovaného rozhovoru nebo rekonstrukce přesného večera. Slouží jako krátké osobní zastavení uvnitř vizuální adventury. Hádanky nadále řeší hráč prostřednictvím předmětů a prostředí; rozhovor nemění inventář, příznaky, uloženou pozici ani pravidla.
+Na první pláži Raynal potřebuje pomoc, aby mohl zůstat sedět v závětří. Sám však odtud vidí cíp plachty, na který Alick nedosáhne. U vraku se kapitán nejdřív zeptá po nemocném druhovi. Až mu Alick řekne, kde nechal ostatní, může se Musgrave opřít do mokré bedny a společně se podívají, co uvnitř zůstalo suché. Hráč může jít k vraku i do tábora dřív, než získá plachtu. Žádný z těch rozhovorů nepodmiňuje další práci.
 
-Každá postava má čtyři sady po třech krátkých větách. Celý rozhovor má nejvýše 60 slov; rozhraní má zobrazovat jednu, nejvýše dvě repliky v jednom kroku. Nejde o větvené dialogové volby. Současný stav určuje příslušnou sadu: příchod, hotový přístřešek, zapálený oheň, vztyčený signál. Stav signálu má přednost před ohněm a přístřeškem, protože hráč může některé úkoly provést v jiném pořadí.
+Každou postavu lze oslovit u její práce. Na jednu repliku odpovídá druhý člověk. Proměna práce mění i odpověď. Když Alick přijde ke stejné bedně po otevření, kapitán už ví, že troud je suchý. Teď je zvědavý, kde Alick vezme dřevo. Rozhovor lze ihned opustit. Znalost konkrétní věty se v inventáři ani v řešení hádanky nevyžaduje. Při srpnovém návratu je potřeba osobně oslovit oba čekající muže. [Scénář první noci](dist/stories.js) · [Scénář dalších kapitol](dist/voyage-stories.js)
 
-## Postavy a meze doložení
+## Kde člověka najdeme a co od něj ostatní potřebují
 
-| ID | Základ v místních podkladech | Autorské doplnění |
+| Kapitola a místo | Práce a důvod k hovoru | Co se po práci změní |
 |---|---|---|
-| `player` | Hráčskou postavou je zde Alick McLaren, jeden z pěti lidí z Graftonu. | Vnitřní hlas „You“, opakované počítání lidí a pocit úlevy jsou fikce. Nepřidává šestého trosečníka ani mu nepřisuzuje další životopis. |
-| `raynal` | Raynalovy paměti zmiňují nemoc při ztroskotání a zkušenosti z dolů; viz S003/S004 a [CREW.md](../research/CREW.md). | Aktuální tělesné pocity, drobný humor, preference střechy a slovní podoba všech vzpomínek. Nemoc není diagnóza a technická zručnost neznamená autorství všech nápadů. |
-| `musgrave` | Kapitán, autor deníku, navigátor; v deníku se objevují i potíže s autoritou. S001, zejména pp. 11–12; [CREW.md](../research/CREW.md). | Opakované počítání posádky a otázka, zda je u ohně místo i pro něj. Musgrave v deníku skutečně myslel na rodinu v Sydney; herní replika je napsaná nově. |
-| `henry` | Člen pětice, péče o jídlo a společný život; práci si ovšem muži také střídali. S001 pp. 12, 95; S004 pp. 40–43. | Pohostinné drobnosti a humor o místě u ohně. Neobsahují nedoložené vzpomínky na rodinu nebo dětství ani etnický akcent. |
-| `george` | Člen pětice, práce a výpravy; jeho vlastní deník zde není k dispozici. S001, S004; [CREW.md](../research/CREW.md). | Všechny osobní pocity, zavolání přes oblázkovou pláž, zdvižená ruka a pozorování vlajky. Žádná replika není autobiografické svědectví skutečného George Harrise. |
+| I. Pláž | Nemocný Raynal v závětří pozoruje utrženou plachtu. Alick má volné ruce a vidí, kam dosáhne příboj. | Po uvolnění plachty Raynal posoudí obrubu. Jakmile je střecha hotová, přesune se z pláže na suché místo u Henryho. Může Alickovi rozprostřít mokrý kabát. |
+| I. Vrak | Musgrave sleduje přicházející vlny a přidržuje bednu. Alick najde oporu pro páčení. | Kapitán zkontroluje troud a předá sekeru. Vrak opustí, až má tábor střechu, oheň i signál. U otevřené strany přístřešku si znovu spočítá celou posádku. |
+| I. Tábor | Henry hledá suché místo na spaní. George sem nosí zachráněné věci a zjišťuje, co je vidět od vody. | Henry chrání třísky před větrem. George a Alick porovnávají viditelnost bílé látky a zdvižené ruky. Nakonec je v táboře všech pět. |
+| II. Dům a potok | Henry odsouvá lůžkoviny zpod kapající střechy. George zkouší, odkud se dá bezpečně dosáhnout na tekoucí vodu. | Henry může naplnit místo u ohně hrnky. George podá Alickovi při výstupu ruku. Na suchý stůl se vracejí šachy. |
+| III. Kovárna a uhlí | Raynal potřebuje vést vzduch až pod uhlí a prověřit vrták proti tvrdému dřevu. George vybírá palivo a použitelný kov. | Ohnutá špička ukončí plán s velkým kýlem. Alick odnese k malé lodi hřeby, George už ví, které další odřezky mají cenu. |
+| IV. Člun a zásoby | Musgrave může u žebra zatlouct hřeb. Alick přitom přidržuje pružící prkno. Henry samostatně rozhodne, které dřevo zůstane domu. | Těsnost zkusí z opačných stran. Henry s Georgem budou potřebovat i jehlu a nit. Volba úkrytu se jim v srpnu vrátí. |
+| V. Otevřené moře | Raynal a Alick se střídají u kormidla. Musgrave se drží lana, aby zůstal u čerpadla. Při rozhovoru přes člun se nemohou všichni otočit. | Alick získá volné ruce pro naběračku. Jakmile voda klesne, může na chvíli přejít od kapitána k plachtě. |
+| VI. Přístav a mapa | V roli kapitána hráč jedná o cestě zpátky. Na herním nábřeží s ním Raynal probírá potraviny pro první chvíle po setkání. Nad mapou v Invercargillu je Musgrave sám. | Přispěvatelé v Invercargillu obstarali mj. přikrývky a oblečení. Cross na cestu jižně potřebuje vědět, kde oba muži jsou. Hra spojuje několik dní a míst. Raynalova práce u balíků je vymyšlená. |
+| VII. Dům a přístaviště | Henry se musí přidržet sloupu. George bere Musgravea za ruku a chce slyšet, jak dopadli ostatní. Hráč může oslovit kteréhokoli jako prvního. | Při dalším rozhovoru muži mluví o tom, co během čekání sami vykonali, včetně voru ze čtyř sudů. U člunu George pomáhá Henrymu nastoupit. |
 
-Číselné odkazy S001, S003 a S004 odkazují na [registr pramenů](../sources/REGISTER.md). Charakterové směry vycházejí z [příběhové bible](../story/NARRATIVE_BIBLE.md), která rovněž rozlišuje doložené činnosti od vytvořených hlasů. Přesný průběh první noci, komprese stavby přístřešku a předmětové hádanky jsou fikce; tento soubor k nim nepřidává historické potvrzení. Rozhovory nezmiňují Invercauld, kouř druhé skupiny ani setkání obou posádek.
+## Co lze připsat svědkům
 
-## Zapojení
+Nemoc při ztroskotání a dlouhé práce popsal Raynal. Musgrave vylíčil střídání u kormidla, svoji práci u čerpadla, přijetí v Port Adventure a Macphersonovu sbírku v Invercargillu. Pro konec hry jsou podstatné strany 116–118 jeho deníku. Kapitán osobně pozoroval George, jak mu svírá ruku oběma rukama. O sporech, hrozícím rozchodu a stavbě voru se naopak dozvěděl od obou mužů po návratu. Kapitán neurčuje, kdo první spatřil loď. Herní rozhovory nepřidělují tento objev ani jednomu. [Pramenné poznámky ke hře](HISTORICAL_ADAPTATION.md) · [Registr S001, S003 a S004](../sources/REGISTER.md)
 
-Modul funguje jako `window.CastawayStories` v prohlížeči a jako `module.exports` v Node. `lines(id, state)` vrací `{ speaker, lines, portrait }`; pole replik je nová kopie, takže rozhraní nemění zdrojová data. `ambient(id, state)` vrací první krátkou repliku. Podporovaná ID jsou `player`, `raynal`, `musgrave`, `henry`, `george`; neznámé ID použije hráčův hlas. Obrazové cesty jsou relativní k `dist/index.html` a využívají již existující fiktivní malby, nikoli ověřené portréty.
+Všechny promluvy vznikly pro hru. Konkrétní úkony, doteky, humor i způsob, jakým se pětice oslovuje, jsou součástí dramatizace. Na stejném ostrově pobývali rovněž lidé z Invercauldu. Žádná hratelná postava je při těchto pracích nepotká. [Obě posádky](../research/CREW.md) · [Rozpory svědectví](../research/CONFLICTS.md)
 
-Anglická lokalizace [dist/engine.js](dist/engine.js) zachovává verzi uložených stavů 3, všechna ID, příznaky, podmínky a výsledky akcí. Mění názvy, popisy, reakce a nápovědy. Historická jména včetně diakritiky zůstávají zachována. Starší uložený záznam akcí může obsahovat český text, protože se historie při načtení nepřepisuje; nové reakce jsou anglické.
+## Rozhraní scénáře
 
-Aktuální rozhraní starý deník akcí nevykresluje; zachované české věty jsou pouze v historických uložených datech. Všechny nové zobrazené reakce a repliky jsou anglické.
+`conversation(id, state)` vrací jednotlivé repliky s identitou mluvčího a anglickým textem. V samotné replice znamená `player` vždy Alicka. Promluvy kapitána mají i po změně pohledu v VI. kapitole ID `musgrave`. `speakerInfo(id, state)` podle této identity zvolí jméno a portrét. Starší volání `lines(id, state)` vrací jméno prvního mluvčího, portrét a nové pole textových řetězců. Vstupní zkratka `lines('player', state)` dál označuje současnou hráčskou postavu.
+
+`arrival(state)` nabízí tři úvodní repliky na první pláži. Krátké reakce při práci vrací `workBeat(previousFlags, state)` jen při přechodu příslušného příznaku. Testy procházejí skutečnost, která se může hráči zobrazit při postupu hrou: ke každému dosažitelnému setkání zjišťují, kdo stojí v dané místnosti a zda všechny repliky opravdu patří někomu z přítomných. [Testy příběhu](tests/story.test.cjs)

@@ -1,31 +1,23 @@
-# Malované vedlejší postavy
+# Pět tváří Graftonu
 
-Čtyři stojící malby vedlejších postav jsou fiktivní portréty. Podobu obličejů a jednotlivosti oděvů vytvořil generátor pro tuto hru. Současné stavy chůze a práce vycházejí ze samostatných atlasů. [Manifest stojících postav](dist/assets/people/manifest.json) · [Krokové atlasy](WALK_ART.md) · [Manifest pracovních atlasů](dist/assets/work-poses/manifest.json) · [Výtvarná a povětrnostní kontrola](reviews/26-weather-and-art.md)
+Alick s přimhouřeným okem poslouchá člověka před sebou. Raynal naklonil hlavu a zvedá jedno obočí. Musgrave pozoruje něco za partnerovým ramenem. Henry začíná úsměv jen jedním koutkem, George na odpověď teprve čeká. Výrazy, tváře a barvy oděvů vznikly jako výtvarné obsazení pro hru. Historické údaje o jednotlivých mužích uvádějí samostatné [životopisné karty](../research/CREW.md).
 
-## Archiv z 16. listopadu 2026
+![Pět portrétů, pět celých postav a zmenšeniny používané při kontrole čitelnosti](reviews/portraits/posadka.webp)
 
-Čtyři původní postavy vytvořil `image_gen.imagegen`. Výtvarnými referencemi byly tehdejší obrazy hlavního námořníka (`dist/assets/sailor.png`) a tábořiště (`dist/assets/camp.png`). Cílem byla shodná jemná grafitová kresba, texturovaný kvaš, tlumené barvy, modelace tváře a opotřebených oděvů.
+| Postava | Rozpoznávací znak v malém okénku | Samostatné obrazy |
+|---|---|---|
+| Alick McLaren | Tmavé kudrny vybíhají pod nízkou čapkou, okrový šátek zasahuje do modré kazajky. | [Rozhovor](dist/assets/cast-portraits/player.webp) · [celá postava](dist/assets/sailor.png) |
+| François Raynal | Úzká tvář, měděné obočí, vous a knír. Světlý límec nad zelenou vestou. | [Rozhovor](dist/assets/cast-portraits/raynal.webp) · [celá postava](dist/assets/people/raynal.png) |
+| Thomas Musgrave | Štítek čepice a zastřižený černý vous rámují hranatou tvář. Krk lemuje cihlově červená vázanka. | [Rozhovor](dist/assets/cast-portraits/musgrave.webp) · [celá postava](dist/assets/people/musgrave.png) |
+| Henry Forgés | Velká silueta tmavých kudrn, hladká brada a košile v teplém okru. | [Rozhovor](dist/assets/cast-portraits/henry.webp) · [celá postava](dist/assets/people/henry.png) |
+| George Harris | Široká pihovatá tvář, světlé rozcuchané vlasy a krémový límec na červené. | [Rozhovor](dist/assets/cast-portraits/george.webp) · [celá postava](dist/assets/people/george.png) |
 
-- [Thomas Musgrave](dist/assets/people/musgrave.png): starší kapitán, tmavý kabát, šedivějící vous a námořnická čepice.
-- [François Raynal](dist/assets/people/raynal.png): štíhlejší, světlé vlasy a vous, olivový kabát, lehce unavený postoj.
-- [Henry Forgés](dist/assets/people/henry.png): tmavé zvlněné vlasy a krátký vous, šedoolivový kabát, okrová košile.
-- [George Harris](dist/assets/people/george.png): robustnější postava, světlý vous, rezavě hnědý kabát.
+## Jak vznikly obrazy
 
-Předlohami byly dřívější malby projektu. Moderní portréty nebyly převzaty. U vydání z 16. listopadu kontrola potvrdila shodu kontrolních součtů použitých PNG s generovanými výstupy.
+Každá tvář má vlastní čtvercovou malbu vytvořenou nástrojem OpenAI ImageGen. Původní PNG mají 1254 × 1254 px. Pro hru se celý čtverec zmenšil na 640 × 640 px a uložil do WebP. Všech pět herních souborů zabírá dohromady 273 006 bajtů. Světlo přichází zleva a teplé odstíny kůže vystupují z šedomodrého pozadí. [Původní čtvercové malby](artwork/portraits) · [Kontrolní součty a názvy výstupů](dist/assets/cast-portraits/manifest.json) · [Přesná zadání](dist/assets/cast-portraits/prompts.json)
 
-[Manifest](dist/assets/people/manifest.json) uvádí SHA-256, velikosti, rozměry a kontrolu alfa kanálu. [Úplné prompty](dist/assets/people/prompts.json) zachycují výtvarné zadání.
+Pro každý z pěti celopostavových obrazů dostal generátor dvě reference téže postavy. Detail mu dal rysy obličeje a pohybová studie střih oblečení včetně kalhot a obuvi. Stojící postavy jsou dostupné v původních průhledných PNG. Při rozhovorech i na vzpomínkové desce v závěru hra používá pět čtvercových portrétů, které zachovávají výraz i v malém rozměru. Jejich neprůhledné siluety vymezují jednotlivé zobrazovací výřezy. [Manifest celých postav](dist/assets/people/manifest.json) · [Zadání se zdrojovými součty](dist/assets/people/prompts.json) · [Pohybové studie](artwork/cast)
 
-### Tehdejší ověření průhlednosti a vložení do hry
+## Kontrola ve zmenšení
 
-U všech čtyř souborů byly naměřeny rozměry **1024 × 1536 px**, režim RGBA a všechna čtyři rohová místa zcela průhledná. Plně průhledných bylo přibližně 64–69 % pixelů. Černou plochu ve zobrazení doplňovaly některé prohlížeče obrázků jako pozadí.
-
-| Soubor | Plně průhledné pixely | Obdélník alfa ≥128 (x0,y0,x1,y1) |
-|---|---:|---|
-| musgrave.png | 67,87 % | 217,13,821,1518 |
-| raynal.png | 69,45 % | 245,10,749,1526 |
-| henry.png | 67,37 % | 217,12,774,1525 |
-| george.png | 63,60 % | 194,15,794,1524 |
-
-Tehdejší hra používala individuální výřez siluety z původního PNG (obdélník alfa ≥128 rozšířený o 9 px). SVG zobrazovalo oblast se zachovaným poměrem stran. Kontejner měl ve scéně šířku 8,5 % a výšku 25,5–28 % podle postavy a hloubky. Nezávislé ukotvení chodidel kompenzovalo rozdílné průhledné okraje. Každá postava měla jemnou klidovou animaci a vlastní kontaktní stín.
-
-Tehdejší vizuální kontrola pokrývala jednotlivé obrazy. Umístění ve složené scéně se řeší při herní integraci.
+Dolní řada galerie používá šířky 82, 49 a 30 skutečných pixelů při zobrazení desky 1 : 1. Na 49 px jsou dobře rozeznatelné tvary hlav, pokrývky hlavy, vousy a převažující barvy košil. Na 30 px u George ustupují pihy a u Henryho jemný pohyb koutku. Rozeznatelnost v nejmenší velikosti podpírají vlasy a límce. U celopostavových PNG mají rohy alfu 0 z 255 s jedinou výjimkou. Levý horní pixel Musgraveova originálu má alfu 1 z 255. Galerie je montáž dodaných obrazů před rozvržením herního okna. [Galerie v plném rozlišení](reviews/portraits/posadka.webp) · [Kontrola vazeb mezi soubory](tests/cast-portraits.test.cjs)

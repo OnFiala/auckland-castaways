@@ -1,0 +1,34 @@
+{
+  "id": "raynal",
+  "file": "raynal.webp",
+  "size": [
+    474,
+    480
+  ],
+  "bytes": 95888,
+  "sha256": "51e16e293eeafc9b5413f88813ab474c0c2c539bb1c420957b6eb6590d0c841b",
+  "ground": [
+    263,
+    478
+  ],
+  "heightInStandingHeights": 0.635,
+  "native": "artwork/cast/raynal-rest.png",
+  "nativeSize": [
+    1381,
+    1139
+  ],
+  "nativeSHA256": "d8906ef536618df8187f7bb738a059abcfe3f7c2edc988288e5ed0711e185499",
+  "nativeCropXYXY": [
+    115,
+    8,
+    1222,
+    1129
+  ],
+  "reference": "artwork/cast/raynal.png",
+  "referenceSHA256": "3873e0be8a323bc6bb3f28b4fc353372d70d4cedcf1fe984fb2bbcc10b87bfde",
+  "generator": "OpenAI ImageGen",
+  "date_utc": "2026-11-18",
+  "source_id": "exec-62396e1b-100c-48ae-8f8e-235a4ea326c7",
+  "prompt": "Create ONE completely new full-body isolated transparent game scene cel, a different pose of the same one male subject in the reference sheet, François Raynal, viewed from the side and slightly in front, facing RIGHT. Aged 33, thin, distinctive long nose, copper moustache and closely cropped matching beard, swept-back auburn hair with a little loose forelock, neat bottle-green waistcoat and rolled ivory shirt sleeves, brown wool trousers, worn brown ankle boots. Preserve the exact identity, costume and painting language of the reference: lively period gouache and fine pen, dry pigment, strong graphic planes of dark and light, cool light from upper left. Day after an 1864 shipwreck on a bleak shore. He is seated on a small crooked length of weather-beaten grey-brown bleached driftwood. An ill sailor knowingly saving his breath, shoulders sag, one hand braced on the timber close to his hip, the other elbow resting on his bent thigh, fingertips at his knee. His wind-reddened face and closed mouth are pale and tired yet lucid. Head raised, watching to right. His buttocks really rest on wood, both feet supported at SAME ground line, knees bent nearly at right angles with trousers and ankle boots distinct. He is clearly sitting much lower than a standing person, not squatting or kneeling. Seat is one short salt-washed piece of wood lying horizontally directly on the shore, wide enough for him, unobtrusive, no upright sawhorse or furniture. Calm believable anatomy, natural proportions not idealized, no modern garments, no caricature, no captions, no people besides him. All of both shoes, hair, hands and short timber visible with generous fully transparent margins; no ground or loose items or exaggerated shadow. Single isolated figure and only that small bit of timber, not a sprite sheet or panel illustration.",
+  "note": "Body, clothing, driftwood and posture are original fictional art. Foreground boot supports ground registration. Height ratio is an art-direction estimate from crown-to-chin on the standing model."
+}
