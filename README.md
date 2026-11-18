@@ -10,6 +10,8 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 **[Spustit hostovanou hru](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
 
+Revize z 18. listopadu dokládá starší podobu Alicka v rozehrané chýši a dvě chyby při načítání obrazu a chůze. Ruční průchod sedmi kapitol zůstává otevřený. [Záznam závad a srovnání maleb](adventure/reviews/browser-13/README.md)
+
 Sedm anglicky vyprávěných kapitol vede přes čtrnáct míst od ztroskotání k záchraně. Na pláži se Raynal nejprve ujistí, že se George dostal na břeh. Teprve z rozhovoru s Alickem vyplyne, proč je potřeba plachta zachycená v koruně stromu. Každý z pěti mužů má vlastní tvář a při práci jiné držení těla. Jejich rozhovor lze pod obrazem číst vlastním tempem. [Aktuální vydání a obrazové ukázky](adventure/reviews/29-na-doslech.md) · [Porovnání ve dvou velikostech](adventure/reviews/company/README.md)
 
 U vraku může hráč vzít do ruky volný konec lana a roztočit kladku. V Epigwaittu jej kapka dopadající do plechové nádoby dovede k netěsnému švu. V loděnici Alick s Musgravem drží společné prkno. Na červencovém moři pracují s vodou uvnitř člunu, zatímco v dálce pokračuje přeháňka. [Jednotlivé kapitoly](adventure/FULL_STORY.md) · [Malby rekvizit](adventure/reviews/tactile/at-work.webp) · [Pohyblivá ukázka pobřeží a moře](adventure/reviews/tide/watch/wind-and-water.webp)
