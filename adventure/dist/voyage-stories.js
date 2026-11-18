@@ -197,7 +197,7 @@
   }
 
   function relief(id, room, f) {
-    // The chartroom represents Invercargill. The quay compresses the welcome and the later loading.
+    // Both playable places are in Invercargill. The men remember their earlier welcome on Stewart Island.
     if (room === 'chartroom') return [turn(Musgrave, f.rescueRoute
       ? 'Cross can follow that line now. I’ll be aboard to show him the turn myself.'
       : f.chartMarked ? 'There’s our harbour on the sheet. I’ll lay it out where Cross can see it.'
@@ -220,9 +220,12 @@
         'Good. I thought I’d run this whole way when the day came.');
       if (id === George) return exchange(George, Musgrave, 'Let me have the side of the boat. Henry, you can lean on me.',
         'I’ve got the line. She’ll keep still for you.', 'All right. It’s a long step after a month wishing for it.');
-      if (f.henryFound && f.georgeFound && f.boatMoored && f.suppliesShared)
+      if (f.henryFound && f.georgeFound && f.boatMoored && f.suppliesShared) {
+        if (!f.landingMarked) return exchange(Musgrave, George, 'Can Cross see this landing from the cutter?',
+          'He’ll lose it against the trees when the light goes.', 'Then hold her here, George. I’ll put the lantern up before we leave.');
         return exchange(Musgrave, George, 'Both men here. Is Henry clear of the line?', 'Yes. I’ve got his arm.',
           'Then come aboard. Cross has places at supper for all three of us.');
+      }
       return [turn(Musgrave, f.boatMoored ? 'She’ll hold there. Up to the house now. I want to see their faces.'
         : 'There’s the way up to Epigwaitt. Steady this boat first. Two men will have to get into her.')];
     }

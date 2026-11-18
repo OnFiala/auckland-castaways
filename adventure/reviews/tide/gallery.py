@@ -9,7 +9,7 @@ PLATES = [
     ('II', 'The Winter Stream', 'forest'), ('III', 'The Forge', 'forge-lit'),
     ('III', 'Charcoal and Salvage', 'charcoal'), ('IV', 'The Boat on the Shore', 'slipway-ready'),
     ('IV', 'The Last Useful Pieces', 'salvage'), ('V', 'An Open Boat', 'crossing-bailed'),
-    ('VI', 'Stewart Island Harbour', 'harbour'), ('VI', 'Invercargill Chart Room', 'chartroom'),
+    ('VI', 'Invercargill Wharf', 'harbour'), ('VI', 'Invercargill Chart Room', 'chartroom'),
     ('VII', 'Back in Carnley Harbour', 'landing'), ('VII', 'The Two Who Waited', 'return-camp'),
 ]
 

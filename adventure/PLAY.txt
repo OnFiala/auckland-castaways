@@ -1,0 +1,31 @@
+UNTIL WE RETURN
+A painted point-and-click adventure in seven chapters
+
+Extract the entire ZIP into a folder. Open index.html in a current desktop
+browser. Keep the editions folder beside index.html. The game works offline.
+For the best chance of keeping your save, use the same browser, the same
+folder and a normal browsing window each time. The dot beside the action
+line reports whether the browser could save. The hosted game keeps its own
+progress in the browser you use to play it.
+
+Click the ground to walk and a person to talk. Pick up an object, then select
+it in the satchel and click another object to combine or use it. The magnifier
+examines a painting. The eye briefly reveals interactive areas. The question
+mark gives a hint in stages. In close-ups you can use the painted parts or
+open Working controls. Tab, Enter and Escape work throughout the game.
+Settings includes reduced motion, English device narration when available
+and a release number.
+
+The story follows the Grafton from its wreck in 1864 to the rescue in 1865.
+You play Alick McLaren in the first five chapters and Captain Thomas Musgrave
+in the last two. The historical notes and the Invercauld papers are available
+after the return. The dialogue, puzzles and imagined portraits were made
+for this adaptation.
+
+Research, credits and source files
+https://github.com/OnFiala/auckland-castaways
+
+Spectral by Production Type is supplied under the SIL Open Font License 1.1.
+The license accompanies the font in the edition's assets/lettering folder.
+Artwork, historical sources and their individual terms are documented at
+https://github.com/OnFiala/auckland-castaways/blob/main/RIGHTS.md

@@ -239,3 +239,20 @@ test('the walkable room and roof survey share the pan and place the only ring in
   assert.match(repaired,/tin-pan.webp/);assert.match(repaired,/roof-hide-room/);
   assert.doesNotMatch(repaired,/fw-drip|fw-pan-ring/);
 });
+
+test('the hit field follows the real painted pan at desktop and narrow touch stage sizes',()=>{
+  const room=workroom(),markup=room.bench.cabinTraces(false),target=room.bench.panTarget(false);
+  const frame=Object.fromEntries([...markup.matchAll(/(?:^|[;"\s])(left|top|width|height):([\d.]+)%/g)].map(m=>[m[1],Number(m[2])]));
+  const painted=markup.match(/class="fw-tin-pan"[^>]+/)[0];
+  const rect=Object.fromEntries([...painted.matchAll(/\b(x|y|width|height)="([\d.]+)"/g)].map(m=>[m[1],Number(m[2])]));
+  for(const width of [320,390,740,1280]){
+    const height=width*9/16;
+    const x=(frame.left+frame.width*(rect.x+rect.width/2)/100)*width/100;
+    const y=(frame.top+frame.height*(rect.y+rect.height/2)/100)*height/100;
+    assert(Math.abs(target.x*width/100-x)<.01);
+    assert(Math.abs(target.y*height/100-y)<.01);
+    assert(Math.abs(target.w*width/100-rect.width*frame.width*width/10000)<.01);
+    assert(Math.abs(target.h*height/100-rect.height*frame.height*height/10000)<.01);
+  }
+  assert.match(fs.readFileSync(path.join(__dirname,'../dist/fieldwork.css'),'utf8'),/\[data-target="tinPan"\]\s*\{ min-width:44px; min-height:44px;/);
+});

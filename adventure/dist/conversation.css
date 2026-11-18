@@ -73,3 +73,5 @@
   .speaker-portrait { width:45px; }
   .command-dock .dialogue p { font-size:15px; }
 }
+
+#modal .settings-release { margin:1rem 0 0; font:600 .94rem/1.4 Spectral,Georgia,serif; color:#54442f; }

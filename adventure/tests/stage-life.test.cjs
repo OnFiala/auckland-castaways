@@ -182,7 +182,10 @@ test('optional gestures touch the visible spot from the walk polygon, clear of m
       ids.add(id);
       assert.equal(feature.kind, 'feature');
       assert.equal(feature.paint, false);
-      assert.ok(w > 0 && w <= 9 && h > 0 && h <= 11);
+      if (id === 'wreck_hawser') {
+        const [left, top, width, height] = feature.materialBox;
+        assert.deepEqual([x, y, w, h], [left + width/2, top + height/2, width, height]);
+      } else assert.ok(w > 0 && w <= 9 && h > 0 && h <= 11);
       const floor = stage.groundPoint(scene.id, approach.x, approach.y);
       assert.ok(Math.hypot(floor.x-approach.x, floor.y-approach.y) < .14, id+' floor');
       const size = stage.heightAt(scene.id, floor.y);

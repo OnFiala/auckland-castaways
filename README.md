@@ -8,9 +8,9 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 ## Aktuální hra: Until We Return
 
-**[Spustit hostovanou hru](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
+**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14)** · [Soukromá hostovaná hra](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
 
-Revize z 18. listopadu dokládá starší podobu Alicka v rozehrané chýši a dvě chyby při načítání obrazu a chůze. Ruční průchod sedmi kapitol zůstává otevřený. [Záznam závad a srovnání maleb](adventure/reviews/browser-13/README.md)
+Ve vydání 14 se scéna, předměty a uložené místo přepínají společně. V chýši lze přímo ohledat misku pod kapající střechou. Každá vydaná sada maleb má vlastní adresy, takže rozehraná verze může dál používat svoje soubory. Stažený ZIP stačí celý rozbalit a otevřít `index.html`. [Opravy a ověření vydání 14](adventure/reviews/release-14/README.md) · [Původní záznam závad](adventure/reviews/browser-13/README.md)
 
 Sedm anglicky vyprávěných kapitol vede přes čtrnáct míst od ztroskotání k záchraně. Na pláži se Raynal nejprve ujistí, že se George dostal na břeh. Teprve z rozhovoru s Alickem vyplyne, proč je potřeba plachta zachycená v koruně stromu. Každý z pěti mužů má vlastní tvář a při práci jiné držení těla. Jejich rozhovor lze pod obrazem číst vlastním tempem. [Aktuální vydání a obrazové ukázky](adventure/reviews/29-na-doslech.md) · [Porovnání ve dvou velikostech](adventure/reviews/company/README.md)
 

@@ -44,3 +44,53 @@
 @keyframes conversation-breath { 50% { transform: scale(1.003,1.004); } }
 .reduced .staged .speaking .work-viewport { animation: none; }
 @media (prefers-reduced-motion: reduce) { .staged .speaking .work-viewport { animation: none; } }
+
+/* A pointer on the seated boots or bracing hand belongs to Raynal. The image
+   and its hit shape share the same mirrored ground anchor at every stage size. */
+.staged .person:has(.shore-rest) { pointer-events:none; }
+.staged .shore-rest img {
+  pointer-events:auto;
+  clip-path:polygon(40% 0, 71% 0, 71% 20%, 64% 25%, 84% 38%, 90% 74%,
+    92% 87%, 100% 90%, 100% 100%, 0 100%, 0 75%, 12% 73%, 15% 42%,
+    25% 26%, 39% 17%);
+}
+
+/* Transparent corners of the raised lid and pulley are open walking ground.
+   Only the painted silhouette is a pointer target. Keep the button's full
+   keyboard outline, centre and transform independent of the pointer shape. */
+.staged[data-scene="wreck"][data-crate="true"] [data-target="crate"],
+.staged [data-target="wreck_hawser"],
+.staged [data-target="rescueBoat"], .staged [data-target="rescueCutter"] { pointer-events:none; }
+.staged[data-scene="wreck"][data-crate="true"] [data-target="crate"]::before,
+.staged [data-target="wreck_hawser"]::before,
+.staged [data-target="rescueBoat"]::before, .staged [data-target="rescueCutter"]::before {
+  content:""; position:absolute; inset:0; pointer-events:auto;
+}
+.staged[data-scene="wreck"][data-crate="true"] [data-target="crate"]::before {
+  clip-path:polygon(0 54%, 16% 53%, 26% 49%, 27% 6%, 53% 6%, 56% 0,
+    67% 0, 68% 6%, 100% 6%, 100% 94%, 76% 100%, 0 96%);
+}
+.staged [data-target="wreck_hawser"]::before {
+  clip-path:polygon(0 0, 32% 0, 32% 18%, 23% 23%, 26% 76%, 32% 76%,
+    43% 68%, 58% 68%, 62% 79%, 80% 71%, 100% 65%, 100% 82%,
+    78% 89%, 85% 89%, 85% 100%, 15% 100%, 13% 77%, 10% 22%, 0 20%);
+}
+.staged [data-target="wreck_hawser"]::after { left:55%; top:88%; }
+.staged [data-target="wreck_hawser"]:focus-visible::after { opacity:1; }
+
+/* Follow the sides of the landing boat, and the hull, cabin and boarding plank
+   of Flying Scud. Water between the high bow and cabin stays walking ground. */
+.staged [data-target="rescueBoat"]::before {
+  clip-path:polygon(0 24%, 19% 20%, 44% 20%, 63% 19%, 81% 15%, 95% 6%, 96% 0, 100% 0,
+    96% 57%, 93% 78%, 88% 96%, 72% 100%, 24% 100%, 14% 95%, 10% 86%, 3% 83%);
+}
+.staged [data-target="rescueCutter"]::before {
+  clip-path:polygon(0 10%, 3% 10%, 3% 15%, 10% 19%, 31% 24%, 61% 24%, 62% 0,
+    82% 0, 83% 23%, 95% 20%, 98% 13%, 100% 15%, 99% 66%, 92% 78%,
+    75% 84%, 76% 100%, 59% 100%, 58% 85%, 26% 85%, 6% 84%, 3% 66%);
+}
+
+/* Preserve the loose item above the working surface behind it. On a narrow
+   deck the bilge's minimum touch height reaches the centre of the compass. */
+.staged[data-scene="crossing"] [data-target="compass"],
+.staged[data-scene="landing"] [data-target="rescueLine"] { z-index:11 !important; }

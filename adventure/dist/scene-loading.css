@@ -1,0 +1,21 @@
+#scene-loading {
+  max-width: min(26rem, 88vw);
+  padding: 1.15rem 1.35rem;
+  border: 1px solid #88724e;
+  background: #e3d5b9;
+  color: #332d24;
+  box-shadow: 0 .5rem 2rem #201b1773;
+}
+#scene-loading::backdrop { background: #1d242938; backdrop-filter: none; }
+#scene-load-message { margin: 0; line-height: 1.45; }
+#scene-load-message:focus { outline: none; }
+#scene-loading button {
+  margin: .85rem .65rem 0 0;
+  padding: .45rem .8rem;
+  border: 1px solid #806b4e;
+  background: #f4e9d4;
+  color: #30291f;
+}
+.scene:not([data-scene]) #backdrop { background: #3e4441; }
+.scene:not([data-scene]) > :not(#backdrop) { visibility: hidden; }
+#backdrop > img { display: block; width: 100%; height: 100%; object-fit: fill; }

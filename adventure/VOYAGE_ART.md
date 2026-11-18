@@ -10,11 +10,13 @@ The seven-chapter route uses painted backgrounds with grounded walking lanes and
 | Forge | [Cold furnace](dist/assets/voyage/scenes/forge-cold.png), [bellows fitted](dist/assets/voyage/scenes/forge.png), then [forge lit](dist/assets/voyage/scenes/forge-lit.png). |
 | Slipway | [The working boat](dist/assets/voyage/scenes/slipway.png) and [ready boat](dist/assets/voyage/scenes/slipway-ready.png), with local feedback as the sides and seams are worked. |
 | Ocean passage | [Torn sail and water in the boat](dist/assets/voyage/scenes/crossing-wet.png), [torn sail with water bailed](dist/assets/voyage/scenes/crossing-bailed.png), then [stitched sail and clear bilge](dist/assets/voyage/scenes/crossing-safe.png). The [neutral crossing image](dist/assets/voyage/scenes/crossing.png) records the base repaint, with an intact sail. |
-| Stewart Island, Invercargill and return landing | [Harbour](dist/assets/voyage/scenes/harbour.png), [chart room](dist/assets/voyage/scenes/chartroom.png) and [landing](dist/assets/voyage/scenes/landing.png) distinguish the stages of arranging and making the return voyage. |
+| Invercargill and the return landing | After the welcome on Stewart Island, Musgrave prepares the relief voyage at the [Invercargill wharf](dist/assets/tidepaint/harbour.webp) and in the [chart room](dist/assets/tidepaint/chartroom.webp). The [landing](dist/assets/tidepaint/landing.webp) is back in Carnley Harbour. |
 
 Current file dimensions, byte counts, SHA-256 hashes and documented transforms are tracked per file. The manifests distinguish generated material from game-ready versions, including registered local changes and width normalisation where used. Interactive coordinates and walks are defined by the current stage. [Scene manifest](dist/assets/voyage/scenes/manifest.json) · [Chronology variant receipt](dist/assets/voyage/scenes/chronology-variants-receipt.json) · [Current stage geometry](dist/stage-direction.js)
 
 ## Archive from 16 November 2026
+
+The early art brief below placed the wharf on Stewart Island. Release 14 uses the painting for loading *Flying Scud* at Invercargill, the port Musgrave names in his journal. [Chapter VI and the witnesses](HISTORICAL_ADAPTATION.md)
 
 Eight original backgrounds and five edited state variants extended the earlier graphite, ink and gouache direction. At that checkpoint these scene PNGs were copied from the generated outputs. They were recorded as 1672 × 941 and had a continuous foreground walking lane. The table preserves the earlier staging and image roles. Links point to the corresponding file paths, which now hold the current images.
 

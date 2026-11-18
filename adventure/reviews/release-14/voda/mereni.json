@@ -1,0 +1,492 @@
+{
+  "renderer": "5d41aca4bde77bf0491f37bc7e0a2df7665dc2a396f3a49a0eb46a088855d37f",
+  "previous": "4dbfa437c2d04a89102ac06a5813d0e377ccbb80",
+  "frameCount": 209,
+  "hz": 16,
+  "gust": 1,
+  "normalisedReference": [
+    1000,
+    563
+  ],
+  "beachTopAtFivePercent": {
+    "release12": 42.76,
+    "release13": 60.1,
+    "release14": 60.1
+  },
+  "geometry": [
+    {
+      "dpr": 1,
+      "sizes": [
+        {
+          "cssWidth": 1360,
+          "backing": [
+            1152,
+            648
+          ],
+          "horizonCSS": [
+            68,
+            459.765
+          ]
+        },
+        {
+          "cssWidth": 998,
+          "backing": [
+            998,
+            561
+          ],
+          "horizonCSS": [
+            49.9,
+            337.386
+          ]
+        }
+      ]
+    },
+    {
+      "dpr": 3,
+      "sizes": [
+        {
+          "cssWidth": 390,
+          "backing": [
+            527,
+            296
+          ],
+          "horizonCSS": [
+            19.5,
+            131.844
+          ]
+        },
+        {
+          "cssWidth": 844,
+          "backing": [
+            1139,
+            641
+          ],
+          "horizonCSS": [
+            42.2,
+            285.325
+          ]
+        },
+        {
+          "cssWidth": 390,
+          "backing": [
+            527,
+            296
+          ],
+          "horizonCSS": [
+            19.5,
+            131.844
+          ]
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "scene": "beach",
+      "plateHashes": {
+        "beach": "0663e6fa24bed611d4757f5c500ca79778016fc25cb3c487c12ea966cc1b36cf"
+      },
+      "registrationBox": [
+        0,
+        307,
+        443,
+        92
+      ],
+      "variantMeanChannelDelta": {},
+      "fixed": [
+        {
+          "name": "wreck",
+          "box": [
+            97,
+            324,
+            16,
+            5
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "reef",
+          "box": [
+            162,
+            330,
+            12,
+            3
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "branch",
+          "box": [
+            727,
+            185,
+            17,
+            6
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "boulder",
+          "box": [
+            434,
+            354,
+            9,
+            11
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "sand",
+          "box": [
+            22,
+            401,
+            110,
+            9
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        }
+      ],
+      "activeBox": [
+        5,
+        342,
+        275,
+        35
+      ],
+      "activePixels": 8892
+    },
+    {
+      "scene": "wreck",
+      "plateHashes": {
+        "wreck": "291a317ec606d1bc41b29519e0d6585f911da4b2c870ee40419877e1d30f8f36",
+        "wreck-open": "df774ba7e84a9abeac10e912aed17fb404a9c0f8c0204a79084725c19b893982"
+      },
+      "registrationBox": [
+        0,
+        358,
+        119,
+        74
+      ],
+      "variantMeanChannelDelta": {
+        "wreck-open": 1.36
+      },
+      "fixed": [
+        {
+          "name": "rockA",
+          "box": [
+            25,
+            384,
+            9,
+            2
+          ],
+          "v13": 18,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "rockB",
+          "box": [
+            73,
+            371,
+            5,
+            2
+          ],
+          "v13": 10,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "grass",
+          "box": [
+            2,
+            424,
+            4,
+            2
+          ],
+          "v13": 8,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "hull",
+          "box": [
+            108,
+            365,
+            10,
+            15
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        }
+      ],
+      "activeBox": [
+        6,
+        351,
+        47,
+        28
+      ],
+      "activePixels": 1278
+    },
+    {
+      "scene": "salvage",
+      "plateHashes": {
+        "salvage": "b6c22a2779fe42a65a45c19b6a6e19f63f88c6de4cbf7defeb48cfe22041648c"
+      },
+      "registrationBox": [
+        0,
+        358,
+        119,
+        74
+      ],
+      "variantMeanChannelDelta": {},
+      "fixed": [
+        {
+          "name": "rockA",
+          "box": [
+            25,
+            384,
+            9,
+            2
+          ],
+          "v13": 18,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "rockB",
+          "box": [
+            73,
+            371,
+            5,
+            2
+          ],
+          "v13": 10,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "hull",
+          "box": [
+            108,
+            365,
+            10,
+            15
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        }
+      ],
+      "activeBox": [
+        6,
+        351,
+        47,
+        28
+      ],
+      "activePixels": 1278
+    },
+    {
+      "scene": "slipway",
+      "plateHashes": {
+        "slipway": "ada7885071acce49df0850300fe518b3f268479cd6961834c1aa0b5113510bb1",
+        "slipway-ready": "385754089d515d41a7a0a0973b90ca86994bbd5966bde849582721a55b439d69"
+      },
+      "registrationBox": [
+        0,
+        211,
+        139,
+        91
+      ],
+      "variantMeanChannelDelta": {
+        "slipway-ready": 0.725
+      },
+      "fixed": [
+        {
+          "name": "outcrop",
+          "box": [
+            6,
+            252,
+            12,
+            4
+          ],
+          "v13": 23,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "grass",
+          "box": [
+            16,
+            279,
+            2,
+            3
+          ],
+          "v13": 6,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "trestle",
+          "box": [
+            724,
+            393,
+            6,
+            18
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        }
+      ],
+      "activeBox": [
+        78,
+        240,
+        35,
+        28
+      ],
+      "activePixels": 865
+    },
+    {
+      "scene": "crossing",
+      "plateHashes": {
+        "crossing-wet": "a00f60fd8dfa3973f347ff03c2662411dd238f164bd68adc8047ac5157192cb8",
+        "crossing-bailed": "ba63d40decb7ffd8e754eb7509b3fc815874fae4db1aeca975cdacffe07df31f",
+        "crossing-safe": "fb255daddea57953a50ce1c47f4e7245c62accd88d496bff75d5b143827a7d57"
+      },
+      "registrationBox": [
+        0,
+        223,
+        1000,
+        117
+      ],
+      "variantMeanChannelDelta": {
+        "crossing-bailed": 0,
+        "crossing-safe": 0
+      },
+      "fixed": [
+        {
+          "name": "ropeCoil",
+          "box": [
+            324,
+            257,
+            3,
+            4
+          ],
+          "v13": 11,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "ropeBelow",
+          "box": [
+            321,
+            266,
+            3,
+            3
+          ],
+          "v13": 9,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "tiller",
+          "box": [
+            47,
+            291,
+            19,
+            5
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "mast",
+          "box": [
+            416,
+            211,
+            10,
+            41
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "rail",
+          "box": [
+            542,
+            339,
+            29,
+            6
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        }
+      ],
+      "activeBox": [
+        332,
+        258,
+        42,
+        31
+      ],
+      "activePixels": 1168
+    },
+    {
+      "scene": "landing",
+      "plateHashes": {
+        "landing": "333f38ecdf7c5eb29cdb0ab75c11b873a0fdb9ae0c764f82c5951effdb4a8634"
+      },
+      "registrationBox": [
+        485,
+        315,
+        245,
+        55
+      ],
+      "variantMeanChannelDelta": {},
+      "fixed": [
+        {
+          "name": "keel",
+          "box": [
+            474,
+            318,
+            27,
+            10
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        },
+        {
+          "name": "post",
+          "box": [
+            756,
+            322,
+            12,
+            31
+          ],
+          "v13": 0,
+          "v14": 0,
+          "permitted": 0
+        }
+      ],
+      "activeBox": [
+        565,
+        336,
+        96,
+        13
+      ],
+      "activePixels": 956
+    }
+  ]
+}

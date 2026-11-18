@@ -35,10 +35,11 @@ const clone=s=>JSON.parse(JSON.stringify(s));
 const has=(s,id)=>s.inventory.includes(id);
 const sceneById=id=>SCENES.find(scene=>scene.id===id);
 function createGame(){return {version:VERSION,scene:'beach',inventory:[],flags:Object.fromEntries(FLAGS.map(key=>[key,false])),log:[],completed:false,actions:0};}
+const removedAfter={rope:'ropeTaken',pole:'poleTaken',prybar:'prybarTaken',sail:'canvasRecovered',driftwood:'woodCut'};
 function getTargets(state){
  const scene=sceneById(state.scene);
  if(!scene)return [];
- return scene.targets.filter(t=>t.id==='rope'?!state.flags.ropeTaken:t.id==='pole'?!state.flags.poleTaken:t.id==='prybar'?!state.flags.prybarTaken:t.id==='sail'?!state.flags.canvasRecovered:true).map(t=>({...t}));
+ return scene.targets.filter(t=>!state.flags[removedAfter[t.id]]).map(t=>({...t}));
 }
 function findTarget(state,id){return getTargets(state).find(t=>t.id===id)||sceneById(state.scene)?.exits.find(t=>t.id===id);}
 function response(original,next,text,cue='look',gained=[],consumed=[],targetId=null){

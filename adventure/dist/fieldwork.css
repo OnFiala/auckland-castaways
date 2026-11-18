@@ -156,8 +156,10 @@
 
 .fw-cabin-traces {
   position: absolute; pointer-events: none;
-  left: 7.476%; top: 0; width: 71.77%; height: 85.02%; overflow: visible;
+  overflow: visible;
 }
+#targets [data-target="tinPan"] { min-width:44px; min-height:44px; }
+.scene:has([data-target="tinPan"]:is(:hover,:focus-visible)) .fw-cabin-traces .fw-tin-pan { filter:brightness(1.09); }
 #workbench .fw-sound {
   margin: 9px 0 0; padding: 4px 0; min-height: 32px; color: #524838; background: transparent;
   border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; font: 14px/1.35 Georgia,serif;

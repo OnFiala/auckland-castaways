@@ -304,3 +304,38 @@ test('placing firewood lets Henry tend it once; on reload the crew is already st
  assert.deepEqual(restored,['stand']);
  assert.equal(again.ids.get('person-henry').dataset.foot,foot);
 });
+
+test('the pan in Epigwaitt opens the roof survey with a tool selected and stays inspectable after repair', async()=>{
+ const state=fixture(2), trailKey='until-we-return.fieldwork.1.roof';
+ let ui=createUi({initial:{[KEY]:JSON.stringify(state)}}), bench=ui.ids.get('workbench');
+ const pan=ui.target('tinPan');
+ assert.equal(pan.tag,'button');
+ assert.equal(pan.getAttribute('aria-label'),'Examine the tin pan');
+ const original=signature(ui.state());
+ await ui.click(ui.item('tinderbox'));pan.focus();
+ assert.equal(ui.ids.get('action-label').textContent,'Examine the tin pan');
+ await ui.click(pan);
+ assert(bench.open);assert.equal(bench.dataset.fwPuzzle,'roof');
+ assert(bench.querySelector('[data-fw-point="pan"]'));
+ await ui.click(bench.querySelector('[data-fw-point="wetSeam"]'));
+ assert(bench.querySelector('[data-fw-point="pan"]'),'entering from the pan does not solve the observation');
+ await ui.click(bench.querySelector('[data-fw-point="pan"]'));
+ await ui.click(bench.querySelector('[data-fw-point="wetSeam"]'));
+ await ui.click(bench.querySelector('[data-fw-close]'));
+ assert.equal(signature(ui.state()),original);
+ assert.equal(ui.item('tinderbox').getAttribute('aria-pressed'),'true');
+ const savedTrail=ui.stored[trailKey];
+ assert.deepEqual(JSON.parse(savedTrail).trail,['pan','wetSeam']);
+ ui=createUi({initial:{[KEY]:JSON.stringify(fixture(2,true)),[trailKey]:savedTrail}});
+ bench=ui.ids.get('workbench');
+ const before=canonical(ui.stored);
+ const repaired=ui.target('tinPan');
+ assert.match(repaired.getAttribute('aria-label'),/repaired roof/);
+ repaired.onkeydown({key:'F10',shiftKey:true,preventDefault(){},stopPropagation(){}});
+ await ui.flush();assert(bench.open);assert.equal(bench.dataset.fwDone,'true');
+ assert.match(bench.querySelector('#fw-description').textContent,/rim is dry/);
+ assert(!bench.querySelector('[data-fw-point]'));assert(!bench.querySelector('[data-fw-finish]'));
+ assert.doesNotMatch(bench.querySelector('.fw-drawing').innerHTML,/fw-pan-ring|fw-drip/);
+ await ui.click(bench.querySelector('[data-fw-close]'));
+ assert.deepEqual(canonical(ui.stored),before);
+});

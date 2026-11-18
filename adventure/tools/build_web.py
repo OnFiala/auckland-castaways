@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Build a smaller static web edition from the same game and original paintings."""
 import argparse
+import hashlib
+import json
+import re
 import concurrent.futures
 import shutil
+import tempfile
 from pathlib import Path
 
 from PIL import Image, ImageChops, ImageStat
@@ -48,13 +52,7 @@ def is_runtime_file(path):
     }
 
 
-def build(destination):
-    destination = destination.resolve()
-    if destination == SOURCE or SOURCE in destination.parents:
-        raise ValueError('Choose an output directory outside the source paintings.')
-    destination.mkdir(parents=True, exist_ok=True)
-    if any(destination.iterdir()):
-        raise ValueError('Use an empty output directory.')
+def encode_runtime(destination):
     files = [p for p in SOURCE.rglob('*') if is_runtime_file(p)]
     output_names = set()
     work = []
@@ -81,7 +79,110 @@ def build(destination):
           f'{sum(p.stat().st_size for p in output_names):,} bytes for deployment.')
 
 
+def write_edition(flat, output):
+    """Keep the entry at its existing URL and pin every resource it can use."""
+    files = sorted(p for p in flat.rglob('*') if p.is_file())
+    entry = (flat / 'index.html').read_text(encoding='utf-8')
+    release_name = re.search(r'<meta name="game-release" content="([0-9]+)">', entry)
+    if not release_name:
+        raise ValueError('index.html must identify the game release')
+    release = release_name.group(1)
+
+    # Hash the compact files and the version of this transformation. Two builds
+    # can share a resource URL only when they generate the same bytes.
+    digest = hashlib.sha256(Path(__file__).read_bytes())
+    names = {p.relative_to(flat).as_posix() for p in files}
+    for path in files:
+        digest.update(path.relative_to(flat).as_posix().encode() + b'\0')
+        digest.update(hashlib.sha256(path.read_bytes()).digest())
+    fingerprint = digest.hexdigest()
+    prefix = f'editions/{release}-{fingerprint[:20]}/'
+    edition = output / prefix
+    edition.mkdir(parents=True)
+    hashes = {}
+
+    def entry_reference(match):
+        attr, resource = match.groups()
+        if resource.startswith(('#', 'https:', 'data:', 'http:')):
+            return match[0]
+        if resource not in names:
+            raise ValueError(f'Missing entry resource: {resource}')
+        return f'{attr}="{prefix}{resource}"'
+
+    # Keep the document base untouched. Room work uses local SVG clip paths,
+    # and a base element would resolve those fragment references off-document.
+    entry = re.sub(r'\b(src|href)="([^"]+)"', entry_reference, entry)
+    entry = entry.replace('<meta name="game-release"', f'<meta name="game-build" content="{fingerprint[:20]}"><meta name="game-release"', 1)
+    (output / 'index.html').write_text(entry, encoding='utf-8')
+    hashes['index.html'] = hashlib.sha256((output / 'index.html').read_bytes()).hexdigest()
+
+    for src in files:
+        name = src.relative_to(flat).as_posix()
+        if name == 'index.html':
+            continue
+        dest = edition / name
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        if src.suffix == '.js':
+            # Game scripts write URLs into document elements (including SVG)
+            # and use path fragments such as 'assets/walk/' + actor + '.webp'.
+            # Stylesheets already resolve their resources against their own URL.
+            script = re.sub(r'(?<![\w./:-])assets/', prefix + 'assets/', src.read_text(encoding='utf-8'))
+            dest.write_text(script, encoding='utf-8')
+        else:
+            shutil.copyfile(src, dest)
+        hashes[prefix + name] = hashlib.sha256(dest.read_bytes()).hexdigest()
+
+    manifest = {'release': release, 'build': fingerprint, 'directory': prefix, 'files': hashes}
+    (output / 'release.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+    return manifest
+
+
+def retain_open_editions(previous, output):
+    """Retain exact URLs that an already opened copy may still request."""
+    if not (previous / 'index.html').is_file():
+        raise ValueError('Previous distribution must contain its published index.html')
+    for src in sorted(p for p in previous.rglob('*') if p.is_file()):
+        name = src.relative_to(previous)
+        if name.as_posix() in {'index.html', 'release.json'}:
+            continue
+        dest = output / name
+        if dest.exists():
+            if src.read_bytes() != dest.read_bytes():
+                raise ValueError(f'Immutable release path changed: {name}')
+        else:
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(src, dest)
+
+
+def build(destination, previous=None):
+    destination = destination.resolve()
+    if destination == SOURCE or SOURCE in destination.parents:
+        raise ValueError('Choose an output directory outside the source paintings.')
+    if previous:
+        previous = previous.resolve()
+        if destination == previous or destination in previous.parents or previous in destination.parents:
+            raise ValueError('The new and previous editions must be in separate directories.')
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    if destination.exists() and any(destination.iterdir()):
+        raise ValueError('Use an empty output directory.')
+    # Commit the prepared tree in one rename, so a failed build cannot serve
+    # a partial release or overwrite an existing edition.
+    with tempfile.TemporaryDirectory(dir=destination.parent) as staging:
+        temp = Path(staging)
+        flat = temp / 'flat'
+        output = temp / 'ready'
+        output.mkdir()
+        encode_runtime(flat)
+        manifest = write_edition(flat, output)
+        if previous:
+            retain_open_editions(previous, output)
+        output.replace(destination)
+    print(f"Edition {manifest['release']}, build {manifest['build'][:20]}, {len(manifest['files'])} verified runtime files.")
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('destination', type=Path, help='empty output folder for index.html and its assets')
-    build(parser.parse_args().destination)
+    parser.add_argument('--previous', type=Path, help='exact previous hosted distribution to preserve for open tabs')
+    args = parser.parse_args()
+    build(args.destination, args.previous)

@@ -188,3 +188,16 @@ test('Raynal and Musgrave change rooms once, in either puzzle order and after a 
     assert.equal(E.advance(E.restore(old)).state.chapter, 2);
   }
 });
+
+test('the return is provisioned in Invercargill and the boarding invitation waits for the light',()=>{
+ const wharf=E.SCENES.find(room=>room.id==='harbour');
+ assert.equal(wharf.name,'Invercargill Wharf');
+ assert.match(S.CHAPTER_BEATS[5].caption,/Port Adventure.*Invercargill/);
+ const landing={chapter:7,scene:'landing',flags:{henryFound:true,georgeFound:true,boatMoored:true,suppliesShared:true}};
+ let reply=S.conversation('player',landing).map(turn=>turn.text).join(' ');
+ assert.match(reply,/lantern/);
+ assert.doesNotMatch(reply,/come aboard/i);
+ landing.flags.landingMarked=true;
+ reply=S.conversation('player',landing).map(turn=>turn.text).join(' ');
+ assert.match(reply,/come aboard/i);
+});

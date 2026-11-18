@@ -138,3 +138,72 @@ test('in the reunion the captain answers George as the player, and a second visi
   await ui.click(ui.target('george'));
   assert.notEqual(ui.ids.get('dialogue-text').textContent,first);
 });
+
+function chapterStarts(){
+  const starts=new Map();
+  let state=E.createGame();
+  for(let step=0; step<200 && !state.completed; step++){
+    if(!starts.has(state.chapter))starts.set(state.chapter,state);
+    const hint=E.hint(state);
+    if(state.chapterComplete)state=E.advance(state).state;
+    else if(state.scene!==hint.sceneId){
+      const result=E.travel(state,hint.sceneId);
+      state=result.changed?result.state:E.travel(state,'beach').state;
+    } else if(hint.combineItems)state=E.combine(state,...hint.combineItems).state;
+    else if(hint.itemId)state=E.useItem(state,hint.itemId,hint.targetId).state;
+    else state=E.interact(state,hint.targetId,'use').state;
+  }
+  assert.equal(starts.size,7);
+  return starts;
+}
+
+test('each painted room names itself once and leaves the command line for the object under consideration',async()=>{
+  const starts=chapterStarts();
+  assert.equal(E.SCENES.length,14);
+  for(const scene of E.SCENES){
+    const state={...starts.get(scene.chapter),scene:scene.id};
+    assert(E.restore(state));
+    const ui=mount({[saveKey]:JSON.stringify(state)});
+    await ui.flush(2);
+    const label=ui.ids.get('action-label');
+    assert.equal(label.textContent,'',scene.id);
+    assert(ui.ids.get('scene-label').textContent);
+    const first=E.getTargets(state)[0], button=ui.target(first.id);
+    button.onmouseenter();assert.equal(label.textContent,first.name);
+    button.onmouseleave();assert.equal(label.textContent,'');
+    button.focus();assert.equal(label.textContent,first.name);
+    const exit=E.getExits(state)[0];
+    if(exit){
+      ui.exit(exit.id).onmouseenter();assert.equal(label.textContent,exit.name);
+      ui.exit(exit.id).onmouseleave();assert.equal(label.textContent,first.name);
+    }
+    ui.ids.get('scene').focus();assert.equal(label.textContent,'');
+    if(scene.id==='harbour'){
+      assert.equal(ui.ids.get('scene-label').textContent,'Invercargill Wharf');
+      const raynal=ui.ids.get('person-raynal');
+      raynal.focus();assert.equal(label.textContent,'François Raynal');
+    }
+    if(scene.id==='cabin'){
+      await ui.click(ui.item('tinderbox'));assert.equal(label.textContent,E.ITEMS.tinderbox.name);
+      button.onmouseenter();assert.equal(label.textContent,E.ITEMS.tinderbox.name+' → '+first.name);
+      button.onmouseleave();assert.equal(label.textContent,E.ITEMS.tinderbox.name);
+      await ui.click('cancel-item');assert.equal(label.textContent,'');
+      await ui.click('inspect-mode');assert.equal(label.textContent,'Examine');
+      await ui.click('inspect-mode');assert.equal(label.textContent,'');
+    }
+  }
+});
+
+test('Settings reads the published release identifier independently of the save format',async()=>{
+  const tag=html.match(/<meta\s+name="game-release"\s+content="([^"]+)"/i);
+  assert(tag,'release metadata in the published document');
+  const ui=mount();
+  const meta={content:tag[1]};
+  ui.context.document.head={querySelector(selector){return selector==='meta[name="game-release"]'?meta:null;}};
+  await ui.click('settings');
+  assert(ui.ids.get('modal-body').innerHTML.includes('Game release '+tag[1]));
+  meta.content='27';
+  await ui.click('toggle-captions');
+  assert(ui.ids.get('modal-body').innerHTML.includes('Game release 27'));
+  assert.equal(ui.state().version,4);
+});

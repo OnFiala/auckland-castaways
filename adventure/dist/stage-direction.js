@@ -98,7 +98,7 @@
       pole: prop(48.4, 75.4, 17.8, 9.8, 56.98, 79.55, 'crouch', 11.5, 19, 27),
       // Only the free end of the sail shows through the branches.
       sail: { ...prop(70.1, 37.6, 9.1, 14.4, 64.8, 71.6, 'reach', 6.1, 11.4, -13), art: 'flagcloth', indirect: true },
-      driftwood: prop(25.5, 73.5, 11.8, 8.4, 17.13, 77.54, 'crouch', 11, 8.4, -4)
+      driftwood: prop(25.5, 73.5, 11.8, 9.2, 17.13, 77.54, 'crouch', 11, 8.4, -4)
     },
     wreck: {
       prybar: prop(53, 77.5, 9.4, 11.2, 61.64, 81.68, 'crouch', 5.6, 11.1, 24),
@@ -154,7 +154,7 @@
     harbour: {
       provisions: prop(80.2, 55.5, 8.5, 10.1, 73.1, 74.5, 'reach', 4.9, 8.5),
       spareSail: prop(61.4, 71.3, 12.2, 9.2, 55, 74.7, 'crouch', 8.1, 6.8, -6),
-      rescueCutter: { ...target(38.9, 57.7, 27, 14.1, 41.3, 73.6, 'stand'), indirect: true }
+      rescueCutter: { ...target(32.65, 60.4, 44.3, 19.2, 41.3, 73.6, 'stand'), contact: { x: 38.9, y: 57.7 }, indirect: true }
     },
     chartroom: {
       chart: prop(32.3, 43.9, 12.1, 8, 23.1, 70.1, 'reach', 8, 5.9, -5),
@@ -165,7 +165,7 @@
       rescueLine: prop(24.4, 61.3, 8.9, 8.3, 30.7, 64.8, 'crouch', 4.9, 5.1),
       rescueProvisions: prop(56.4, 61.2, 9.2, 10, 62.7, 64.5, 'crouch', 5.3, 8.1),
       lantern: prop(79.5, 61.7, 7.5, 11.5, 86, 66.3, 'crouch', 3.5, 8.5),
-      rescueBoat: { ...target(40.5, 53.6, 25.5, 12.7, 39.8, 67.8), contact: { x: 46.8, y: 49 } },
+      rescueBoat: { ...target(37.55, 53, 35.1, 17, 39.8, 67.8), contact: { x: 46.8, y: 49 } },
       signalPost: { ...target(76.3, 41.6, 7.2, 23.5, 69.3, 67.2), contact: { x: 76.1, y: 48.7 } }
     },
     return_camp: { campTable: target(37.8, 51.4, 19.3, 10.4, 27.9, 75.4) }

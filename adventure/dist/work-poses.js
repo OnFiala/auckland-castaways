@@ -54,24 +54,37 @@
   const svgNS = 'http://www.w3.org/2000/svg';
   const file = id => 'assets/work-poses/' + id + '.png';
 
-  function prepare(id) {
+  function available(id) { return Boolean(decoded.get(id)?.loaded); }
+
+  function prepare(id,retry=false) {
     if (!Object.hasOwn(SHEETS, id) || typeof root.Image !== 'function') return Promise.resolve(false);
-    if (decoded.has(id)) return decoded.get(id).ready;
+    const previous = decoded.get(id);
+    if (previous && (!previous.failed || (!retry && Date.now()<previous.retryAt))) return previous.ready;
+    const attempt = (previous?.attempt || 0) + 1;
+    const url = file(id) + (attempt>1 ? '?retry='+attempt : '');
     const image = new root.Image();
-    const entry = { image, loaded: false, ready: null };
+    const entry = {image, url, attempt, loaded:false, failed:false};
+    decoded.set(id,entry);
     entry.ready = new Promise(resolve => {
-      image.onload = async function () {
-        // An already decoded image can be displayed even on browsers which reject decode().
-        if (typeof image.decode === 'function') {
-          try { await image.decode(); } catch (_) { /* onload succeeded */ }
-        }
-        entry.loaded = true;
-        resolve(true);
+      let finished=false;
+      function finish(ok) {
+        if (finished) return;
+        finished=true;
+        root.clearTimeout?.(deadline);
+        image.onload=image.onerror=null;
+        entry.loaded=ok;
+        entry.failed=!ok;
+        entry.retryAt=Date.now()+2000;
+        resolve(ok);
+      }
+      const deadline=root.setTimeout?.(()=>finish(false),4000);
+      image.onload=async()=>{
+        try { await image.decode?.(); } catch (_) { finish(false); return; }
+        finish(image.naturalWidth!==0 && image.naturalHeight!==0);
       };
-      image.onerror = () => resolve(false);
+      image.onerror=()=>finish(false);
+      image.src=url;
     });
-    decoded.set(id, entry);
-    image.src = file(id);
     return entry.ready;
   }
 
@@ -114,8 +127,8 @@
     clip.appendChild(image);
     viewport.appendChild(clip);
     host.appendChild(viewport);
-    return { host, id, walk, viewport, clip, pose: null, visible: false, wanted: false,
-      awaiting: false, previousVisibility: walk.style.visibility };
+    return { host, id, walk, viewport, clip, image, pose: null, visible: false, wanted: false,
+      waitingFor: null, previousVisibility: walk.style.visibility };
   }
 
   function position(record, name, pose) {
@@ -144,6 +157,8 @@
       record.visible = visible;
     }
     if (visible) {
+      const url=decoded.get(record.id).url;
+      if (record.url!==url) {record.image.setAttribute('href',url);record.url=url;}
       if (record.host.dataset.workPose !== record.pose) record.host.dataset.workPose = record.pose;
     } else if (record.host.dataset.workPose) {
       delete record.host.dataset.workPose;
@@ -188,8 +203,8 @@
       return true;
     }
     // A delayed load must never replace a resumed walk or a different person's atlas.
-    if (!record.awaiting) {
-      record.awaiting = true;
+    if (record.waitingFor !== ready) {
+      record.waitingFor = ready;
       ready.then(ok => {
         if (ok && record.wanted && mounted.get(host) === record) display(record, true);
       });
@@ -197,5 +212,5 @@
     return false;
   }
 
-  return { prepare, show, hide, contact };
+  return { prepare, available, show, hide, contact };
 });

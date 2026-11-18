@@ -11,6 +11,9 @@
   const stay = (s, feedback) => move(s, {}, feedback);
   const finish = (s, feedback) => move(s, {done: true}, feedback);
 
+  // Percentages of the 3:2 cabin survey painting. The interactive room uses this same pan.
+  const tinPan = {left:53.75, top:84.22, width:12.1, height:6.18, waterX:59.8, waterY:86.5};
+
   const puzzles = {
     chest: {
       title: 'The swollen chest', place: 'The wreck', item: 'prybar', target: 'crate', scene: 'wreck', flag: 'crateOpen', chapter: 1,
@@ -43,7 +46,7 @@
       start: {observed: '', located: false, lap: '', left: false, right: false},
       view(s) {
         if (!s.located) return {question: 'Where is the rain getting in?', actions: [
-          act('oldMark', 'Feel the mark on the wall', 37, 41), act('pan', 'Watch the tin pan', 59.8, 86.5),
+          act('oldMark', 'Feel the mark on the wall', 37, 41), act('pan', 'Watch the tin pan', tinPan.waterX, tinPan.waterY),
           act('drySeam', 'Trace the seam by the window', 36, 15), act('wetSeam', 'Trace the seam above the bunk', 59.8, 22.2),
           act('listen', 'Listen inside the house', 49, 49)]};
         if (!s.lap) return {question: 'Which way should the hide overlap?', actions: [
@@ -231,5 +234,5 @@
     if (!view(id, s).actions.some(a => a.id === action)) return stay(s, s.done ? puzzles[id].resolved : 'Look over the work before trying that.');
     return puzzles[id].play(s, action);
   }
-  return {challenge, initial, view, step, puzzles};
+  return {challenge, initial, view, step, puzzles, tinPan};
 });

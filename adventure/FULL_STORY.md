@@ -2,7 +2,7 @@
 
 Five men reach land from the wreck of the Grafton. Raynal needs to sit down before he can go any farther. He asks Alick whether George made it. George is already up the beach with Henry. From where he sits, Raynal can see a loose corner of sail that would make a roof. Nineteen months later there is room in the little boat for three. The point of leaving Auckland Island is to put another boat back into that harbour.
 
-The player is Alick McLaren until Port Adventure. On Stewart Island the role passes to Thomas Musgrave, who must ask strangers to help him get back. The five illustrated portraits at the end bring the two halves of the crew together in memory. The historical reunion aboard *Flying Scud* was between Musgrave, Henry and George. All speech in the game is original drama. [Historical route and witnesses](HISTORICAL_ADAPTATION.md)
+The player is Alick McLaren until Port Adventure. After the welcome on Stewart Island, the role passes to Thomas Musgrave at Invercargill, where he must ask for help getting back. The five illustrated portraits at the end bring the two halves of the crew together in memory. The historical reunion aboard *Flying Scud* was between Musgrave, Henry and George. All speech in the game is original drama. [Historical route and witnesses](HISTORICAL_ADAPTATION.md)
 
 ## I. The First Night
 
@@ -38,7 +38,7 @@ After five days and nights the three reach Port Adventure on Stewart Island. Ali
 
 **Port Adventure and Invercargill, July 1865.** The player changes to Musgrave. Captain Cross’s household and the people at Port Adventure receive the exhausted three. In Musgrave’s account he could manage little of his first meal. Cross takes them to Invercargill. On examining the fresh provisions Musgrave remembers how difficult it was even to swallow. He has a different piece of work ahead.
 
-The player places a journal beside a chart in Invercargill. Late in the marooning Musgrave was rationing writing paper. Now the marks on those close-written pages can take somebody else back into Carnley Harbour. John Macpherson sought subscriptions, clothes and blankets in the town; Musgrave remembers his wet walk when loading the cutter. Cross sails south with him aboard *Flying Scud*. On the quay Raynal picks out food the waiting men could manage and asks Musgrave to tell them who provided it. This meeting compresses the first welcome and the later preparations at Invercargill. The playable return crew includes Musgrave and Cross. [Musgrave, chapter IX](https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles/Chapter_9)
+The player places a journal beside a chart in Invercargill. Late in the marooning Musgrave was rationing writing paper. Now the marks on those close-written pages can take somebody else back into Carnley Harbour. John Macpherson sought subscriptions, clothes and blankets in the town; Musgrave remembers his wet walk when loading the cutter. Cross sails south with him aboard *Flying Scud*. On the quay Raynal picks out food the waiting men could manage and asks Musgrave to tell them who provided it. At the Invercargill wharf they remember the first welcome on Stewart Island while preparing for the return. The playable return crew includes Musgrave and Cross. [Musgrave, chapter IX](https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles/Chapter_9)
 
 ## VII. Until We Return
 

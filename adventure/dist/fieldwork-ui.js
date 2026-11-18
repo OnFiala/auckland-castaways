@@ -105,26 +105,35 @@
   const sceneAsset = name => 'assets/field-scenes/' + name;
   // Survey coordinates are shared with the room by the registered crop below.
   const panFile = 'assets/tactile/tin-pan.webp';
+  const pan=model.tinPan;
+  const cabinFrame={left:125/1672*100, top:0, width:1200/1672*100, height:800/941*100};
+  function panTarget(sealed) {
+    const x=cabinFrame.left+(pan.left+pan.width/2)*cabinFrame.width/100;
+    const y=cabinFrame.top+(pan.top+pan.height/2)*cabinFrame.height/100;
+    return {id:'tinPan', name:sealed?'Check the tin pan under the repaired roof':'Examine the tin pan',
+      kind:'object', paint:false, x, y, w:pan.width*cabinFrame.width/100, h:pan.height*cabinFrame.height/100,
+      approach:{x:x-9.5,y:y+5}, pose:'crouch'};
+  }
   function tinAndStain(sealed, instance) {
     const stain = '<path d="M35.8 34.6q2.8 1.2 3.5 4l-.7 4.1-1.2-.8-.6 4-1.1-1.4.1-3.7-1.1-2.4Z" fill="#543b25" opacity=".43"/>';
-    const pan = `<ellipse cx="59.9" cy="89.86" rx="5.1" ry=".46" fill="#382d24" opacity=".42"/>
-      <image class="fw-tin-pan" href="${panFile}" x="53.75" y="84.22" width="12.1" height="6.18" preserveAspectRatio="none"/>`;
+    const paintedPan = `<ellipse cx="59.9" cy="89.86" rx="5.1" ry=".46" fill="#382d24" opacity=".42"/>
+      <image class="fw-tin-pan" href="${panFile}" x="${pan.left}" y="${pan.top}" width="${pan.width}" height="${pan.height}" preserveAspectRatio="none"/>`;
     if (sealed) {
       // Seat the same stitched hide as the close view into the sloping roof lap.
       const repair = `<defs><clipPath id="roof-hide-${instance}"><path d="M55 18.5q4.7 1.3 10 1.9l-.55 2.75q-5.2-.4-9.9-1.95Z"/></clipPath></defs>
         <image href="assets/voyage/props/workshop.png" x="52.24" y="14.15" width="45" height="40" preserveAspectRatio="none" clip-path="url(#roof-hide-${instance})"/>
         ${line('M54.95 21q4.15 1.3 9.1 1.85','#c2a67d',.2,'stroke-dasharray=".38 .45"')}`;
       // Exterior runoff is visible through the upper left window, downhill from its eave.
-      return stain + pan + repair + line('M24.1 20.3l.12 2.3m.1 1.2.14 2.5', '#c5d7da', .24, 'class="fw-runoff"');
+      return stain + paintedPan + repair + line('M24.1 20.3l.12 2.3m.1 1.2.14 2.5', '#c5d7da', .24, 'class="fw-runoff"');
     }
     const water = `<defs><clipPath id="pan-water-${instance}"><ellipse cx="59.8" cy="86.57" rx="5.02" ry=".94"/></clipPath></defs>
       <path class="fw-drip" d="M59.8 22.18c-.06.31-.28.55-.23.89.03.28.37.36.46.11.11-.27-.12-.71-.23-1Z" fill="#c4d4d2"/>
-      <g clip-path="url(#pan-water-${instance})"><ellipse class="fw-pan-ring" cx="59.8" cy="86.5" rx="4.65" ry=".88" fill="none" stroke="#c1cbc2" stroke-width=".16"/></g>`;
-    return stain + pan + water;
+      <g clip-path="url(#pan-water-${instance})"><ellipse class="fw-pan-ring" cx="${pan.waterX}" cy="${pan.waterY}" rx="4.65" ry=".88" fill="none" stroke="#c1cbc2" stroke-width=".16"/></g>`;
+    return stain + paintedPan + water;
   }
   function cabinTraces(sealed) {
     // The detail uses native scene pixels [125, 0, 1325, 800] from the 1672 × 941 painting.
-    return `<svg aria-hidden="true" class="fw-cabin-traces" viewBox="0 0 100 100" preserveAspectRatio="none">${tinAndStain(sealed,'room')}</svg>`;
+    return `<svg aria-hidden="true" class="fw-cabin-traces" style="left:${cabinFrame.left}%;top:${cabinFrame.top}%;width:${cabinFrame.width}%;height:${cabinFrame.height}%" viewBox="0 0 100 100" preserveAspectRatio="none">${tinAndStain(sealed,'room')}</svg>`;
   }
   const reaches = {player: [193, 264], musgrave: [193, 288]};
   const poses = {
@@ -417,14 +426,15 @@
   }
   function draw(d, action) {
     const {id, state, feedback} = active, p = model.puzzles[id];
-    const surveyEnd = active.survey && state.located;
-    const v = surveyEnd ? {question: 'The seam above the bunk', actions: []} : model.view(id, state);
+    const surveyEnd = active.survey && state.located && !active.review;
+    const v = active.review ? {question:'Did the repair hold?', actions:[]}
+      : surveyEnd ? {question:'The seam above the bunk', actions:[]} : model.view(id,state);
     d.dataset.fwPuzzle = id;
     d.dataset.fwDone = String(state.done);
     d.dataset.drawable = String(Boolean(dragPlan(id,state)));
     d.querySelector('.fw-place-name').textContent = p.place;
     d.querySelector('#fw-title').textContent = id === 'roof' && state.located && !surveyEnd ? (state.done ? 'Under the repaired roof' : 'The leaking lap') : p.title;
-    d.querySelector('#fw-description').textContent = surveyEnd
+    d.querySelector('#fw-description').textContent = active.review ? 'The rolled rim is dry. The water caught earlier lies still, and the next shower runs off the eave.' : surveyEnd
       ? 'Bring the stitched hide to the leak when you are ready to work.'
       : id === 'roof' && state.located ? (state.done ? 'Alick steps back from the mended lap to watch the next shower.' : p.patchDescription)
       : id === 'chest' && state.done ? 'The axe and tinderbox lie inside. The front staple is clear of the hasp.'
@@ -445,7 +455,7 @@
     d.querySelector('.fw-actions').innerHTML = v.actions.map(a =>
       `<button type="button" data-fw-action="${a.id}" ${a.selected === undefined ? '' : 'aria-pressed="' + a.selected + '"'}>${a.label}</button>`).join('');
     d.querySelector('.fw-end').innerHTML = state.done ? '<button type="button" class="fw-finish" data-fw-finish>Return to the scene <span aria-hidden="true">→</span></button>' : '';
-    if (surveyEnd) d.querySelector('.fw-end').innerHTML = '<button type="button" class="fw-finish" data-fw-close>Back to the house <span aria-hidden="true">→</span></button>';
+    if (surveyEnd || active.review) d.querySelector('.fw-end').innerHTML = '<button type="button" class="fw-finish" data-fw-close>Back to the house <span aria-hidden="true">→</span></button>';
     d.querySelector('.fw-controls').hidden = state.done || surveyEnd;
     const status = d.querySelector('.fw-feedback');
     status.hidden = !feedback;
@@ -455,7 +465,9 @@
     soundControl(d);
   }
   function play(d, action, fromPlate) {
-    const session = active, outcome = model.step(session.id, session.state, action);
+    const session = active;
+    if (session.review) return;
+    const outcome = model.step(session.id, session.state, action);
     if (session.id === 'roof' && action === 'listen') listen();
     if (session.id === 'roof' && !session.state.located && outcome.state.located) {
       quiet();
@@ -477,16 +489,23 @@
     quiet();
     if (d.open) d.close();
     if (commit && old.state.done) {
-      old.callbacks.complete?.();
-      remove(old.id);
+      // A room variant may still be loading. Keep the solved puzzle across
+      // cancellation or reload until its world state has actually committed.
+      const accepted = old.callbacks.complete?.();
+      if (accepted?.then) accepted.then(committed => { if (committed) remove(old.id); });
+      else if (accepted !== false) remove(old.id);
     } else old.callbacks.close?.();
   }
   function open(id, callbacks = {}) {
     if (!model?.puzzles[id] || active) return false;
     const d = mount();
     if (!d) return false;
-    active = {id, callbacks, survey: Boolean(callbacks.survey), ...read(id)};
-    if (active.survey && active.state.located) active.feedback = 'A drop gathers above the pan at the seam you traced.';
+    // A completed voyage flag wins over any old, unfinished workbench trail. Checking
+    // the repaired house creates an observation with no working controls or save writes.
+    const review=id==='roof' && callbacks.survey && callbacks.sealed;
+    const session=review ? {state:{...model.initial('roof'),located:true,done:true}, trail:[], hints:0, feedback:''} : read(id);
+    active = {id, callbacks, survey:Boolean(callbacks.survey), review, ...session};
+    if (active.survey && !review && active.state.located) active.feedback = 'A drop gathers above the pan at the seam you traced.';
     d.querySelector('.fw-controls').open = false;
     draw(d, '');
     d.showModal();
@@ -497,5 +516,5 @@
     if (active) leave(false);
     for (const id of Object.keys(model.puzzles)) remove(id);
   }
-  root.CastawayBench = {open, surveyRoof: () => open('roof', {survey:true}), cabinTraces, prepareForItem, shown: () => Boolean(active), reset};
+  root.CastawayBench = {open, surveyRoof: (sealed=false) => open('roof', {survey:true,sealed}), panTarget, cabinTraces, prepareForItem, shown: () => Boolean(active), reset};
 })(globalThis);

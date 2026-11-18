@@ -202,7 +202,15 @@
     let observation = item.observation;
     if (state.scene === 'forge' && state.flags.forgeLit) observation = 'A squeeze of the bellows brings a stripe of orange through the coals.';
     if (state.scene === 'crossing' && state.flags.rigSecured) observation = 'Under my thumb the tightened turn barely shifts against the mast.';
-    return [{...item, materialBox: boxFor(item), approach: {...item.approach}, contact: {...item.contact}, observation}];
+    const materialBox = boxFor(item);
+    const feature = {...item, materialBox, approach: {...item.approach}, contact: {...item.contact}, observation};
+    if (item.id === 'wreck_hawser') {
+      // The player may choose the cleat, hanging line, wooden shell or free end.
+      // All four belong to this painted strip. The hand still goes to its lower bight.
+      const [left, top, width, height] = materialBox;
+      Object.assign(feature, {x: left + width/2, y: top + height/2, w: width, h: height});
+    }
+    return [feature];
   }
 
   // [width, height, hand x, hand y]. The hand lies inside the material; the
