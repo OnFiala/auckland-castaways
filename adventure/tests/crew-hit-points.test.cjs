@@ -86,3 +86,18 @@ test('the working player has a separate place to stand when the crew settle afte
     assert(gap > 0, `${room}/${id}: ${player} and ${crew}'s upright paintings share a column (${gap.toFixed(2)}%)`);
   }
 });
+
+test('both patch routes plant on the deck and land the crouching palm on a painted fold', () => {
+  const hand=require('../dist/work-poses').contact('player','crouch');
+  const floor=Stage.profile('crossing').walkPolygon;
+  for (const [flags,edge] of [[{rigSecured:true},81.82],[{rigSecured:true,boatDry:true},84.7]]) {
+    const target=Stage.stageTarget('crossing',{id:'canvasPatch'},{flags});
+    const a=target.approach;
+    assert(Ground.contains(floor,a));
+    const size=Stage.heightAt('crossing',a.y), direction=Math.sign(target.contact.x-a.x);
+    assert(Math.abs(a.x + direction*hand.x*size*9/16-edge)<.035);
+    assert(Math.abs(a.y - hand.y*size-target.contact.y)<.035);
+    const rear=painted.player.poses.crouch.ground[0]-painted.player.poses.crouch.crop[0];
+    if(direction<0) assert(a.x+rear/painted.player.standingHeight*size*9/16<100);
+  }
+});

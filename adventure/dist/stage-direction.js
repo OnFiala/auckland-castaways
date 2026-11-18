@@ -145,7 +145,7 @@
       bailer: prop(24.4, 80.8, 8.7, 8.4, 34.87, 85.86, 'crouch', 4.6, 5.2, 15),
       stormLine: prop(34.1, 81.1, 8.8, 8.8, 23.59, 86.18, 'crouch', 4.9, 5.4),
       compass: prop(59.2, 77.1, 7.3, 8.1, 49.23, 81.92, 'crouch', 2.9, 5.2, -4),
-      canvasPatch: prop(84.7, 80.3, 9, 8.5, 74.30, 85.33, 'crouch', 4.9, 5.2, -9),
+      canvasPatch: { ...prop(83.2, 80.3, 9, 8.5, 74.30, 85.33, 'crouch', 4.9, 5.2, -9), contact: { x: 84.7, y: 80.3 } },
       rigging: { ...target(30.1, 49.2, 6.5, 18.2, 37.06, 77.02), contact: { x: 27.8, y: 54.5 } },
       bilge: target(65, 81.2, 13, 6, 54.48, 86.28, 'crouch'),
       tornSail: { ...target(77.1, 14, 9.6, 10.9, 52.11, 84.63), contact: { x: 41.9, y: 59.8 }, indirect: true },
@@ -229,14 +229,14 @@
     ]) },
     crossing: {
       // Musgrave's chapter IX puts Alick and Raynal at the helm in turns.
-      // Raynal has the present watch. Musgrave keeps the well from its far side;
-      // Alick can bail from the foreground or collect the patch to starboard.
+      // Raynal has the present watch. Musgrave reaches into the well once the
+      // rig holds, then stands behind it to leave the dry boards to Alick.
       raynal: posting(position(16.2, 78.9, 'left'), [
         ['rigSecured', position(16.2, 78.9, 'left', 'reach')],
         ['courseSet', position(16.2, 78.9, 'left')]
       ]),
       musgrave: posting(position(64.5, 76.2, 'right'), [
-        ['rigSecured', position(65.1, 76.1, 'right', 'crouch')],
+        ['rigSecured', position(74.49, 86.18, 'left', 'crouch')],
         ['boatDry', position(64.6, 75.9, 'right')]
       ])
     },
@@ -311,6 +311,12 @@
     const placed = targets[sceneId]?.[source.id];
     if (!placed) return result;
     Object.assign(result, placed);
+    // Before the bilge is dry the captain is working on the inboard side of
+    // this fold. Alick can take its outer edge from the open boards at the bow.
+    if (sceneId === 'crossing' && source.id === 'canvasPatch' && state?.flags?.rigSecured && !state.flags.boatDry) {
+      result.approach = { x: 92.22, y: 85.33 };
+      result.contact = { x: 81.82, y: 80.3 };
+    }
     // Large objects are already painted in the plate. Only their pointer zone
     // is needed, while loose objects retain their own removable image.
     if (source.kind === 'puzzle' && !placed.artWidth) result.paint = false;
