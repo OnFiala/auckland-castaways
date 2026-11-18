@@ -114,6 +114,20 @@ def check_repair(page):
     assert state(page) == before
 
 
+def check_crossing_deck(page, evidence):
+    lashing = page.locator('[data-life="secured-shroud"] img')
+    expect(lashing).to_be_visible()
+    assert lashing.evaluate("image => image.complete && image.naturalWidth > 0")
+    feet = page.evaluate("""() => ({
+      player: parseFloat(document.querySelector('#player').style.left),
+      captain: parseFloat(document.querySelector('#person-musgrave').dataset.foot)
+    })""")
+    assert abs(feet['player'] - feet['captain']) >= 5, feet
+    expect(item(page, 'canvasPatch')).to_be_visible()
+    page.screenshot(path=evidence / 'crossing-patch.png')
+    print(f"Patched crossing deck: Alick at {feet['player']:.1f}%, Musgrave at {feet['captain']:.1f}%.", flush=True)
+
+
 def archive(page, evidence):
     before = state(page)
     page.locator('#open-epilogue').click()
@@ -217,6 +231,8 @@ def campaign(page, evidence, activate=click):
         if page.locator('#workbench').is_visible():
             completed_work.add(work(page, activate))
             wait_for_action(page, before)
+        if chapter == 5 and not before['flags']['patchTaken'] and state(page)['flags']['patchTaken']:
+            check_crossing_deck(page, evidence)
         if chapter == 7 and not before['flags']['suppliesShared'] and state(page)['flags']['suppliesShared']:
             close_if_shown(page, '#dialogue-close')
             roll = page.locator('#repair-roll')

@@ -198,8 +198,8 @@
     },
     cabin: { henry: posting(position(65.8, 70.7, 'left'), [
       ['roofSealed', position(62.7, 70.8, 'left')],
-      ['waterStored', position(20.6, 71.7, 'right', 'reach')],
-      ['warmthReady', position(22.3, 70.2, 'left')]
+      ['waterStored', position(39.1, 72.1, 'left', 'reach')],
+      ['warmthReady', position(37.5, 71.2, 'left')]
     ]) },
     forest: { george: posting(position(64.2, 69.1, 'left'), [
       ['waterFetched', position(33.8, 70.8, 'left')]
@@ -208,7 +208,7 @@
       ['bellowsFitted', position(30.1, 66.8, 'right', 'reach')],
       ['forgeLit', position(73.4, 64.8, 'left', 'reach')],
       ['drillForged', position(91.4, 64.1, 'left', 'reach')],
-      ['drillFailed', position(73.4, 64.8, 'left', 'reach')],
+      ['drillFailed', position(90.3, 64.1, 'left', 'reach')],
       ['nailsForged', position(72.7, 65.1, 'left')]
     ]) },
     charcoal: { george: posting(position(88.3, 68.3, 'left'), [
@@ -222,21 +222,22 @@
       ['boatSealed', position(89.2, 70.5, 'left')],
       ['sailRigged', position(90, 71.2, 'left')]
     ]) },
-    salvage: { henry: posting(position(60.6, 78.2, 'left'), [
+    salvage: { henry: posting(position(70.8, 75.8, 'left'), [
       // The plank has been lifted. Henry checks the exposed hull beside it.
-      ['planksTaken', position(36.1, 81.9, 'left', 'reach')],
-      ['sailclothTaken', position(66.1, 76.7, 'left')]
+      ['planksTaken', position(19.4, 83.1, 'right', 'reach')],
+      ['sailclothTaken', position(71.3, 76.7, 'left')]
     ]) },
     crossing: {
       // Musgrave's chapter IX puts Alick and Raynal at the helm in turns.
-      // Raynal has the present watch. Musgrave is near the water in the hull.
-      raynal: posting(position(19.4, 79.8, 'left'), [
-        ['rigSecured', position(19.4, 79.8, 'left', 'reach')],
-        ['courseSet', position(19.4, 79.8, 'left')]
+      // Raynal has the present watch. Musgrave keeps the well from its far side;
+      // Alick can bail from the foreground or collect the patch to starboard.
+      raynal: posting(position(16.2, 78.9, 'left'), [
+        ['rigSecured', position(16.2, 78.9, 'left', 'reach')],
+        ['courseSet', position(16.2, 78.9, 'left')]
       ]),
-      musgrave: posting(position(78.6, 79.4, 'left'), [
-        ['rigSecured', position(74.49, 86.18, 'left', 'crouch')],
-        ['boatDry', position(74.49, 86.18, 'left')]
+      musgrave: posting(position(64.5, 76.2, 'right'), [
+        ['rigSecured', position(65.1, 76.1, 'right', 'crouch')],
+        ['boatDry', position(64.6, 75.9, 'right')]
       ])
     },
     // The dock compresses the time ashore and at Invercargill. Raynal stays
@@ -251,7 +252,7 @@
         ['menRescued', position(32.2, 65.2, 'right')]
       ]),
       george: posting(position(51.2, 65.9, 'left'), [
-        ['menRescued', position(47.2, 65.4, 'left')]
+        ['menRescued', position(49.7, 65.4, 'left')]
       ])
     },
     return_camp: {

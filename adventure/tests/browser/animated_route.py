@@ -45,7 +45,9 @@ def animated(page, evidence):
     shots = {}
     dialogue = {}
     assert not page.evaluate("matchMedia('(prefers-reduced-motion:reduce)').matches")
-    page.expose_function('reportPaintedStep', samples.append)
+    def remember_pose(sample):
+        samples.append(sample)
+    page.expose_function('reportPaintedStep', remember_pose)
     # The roof survey and completed rescue both exercise a real page reload.
     page.add_init_script(f"({OBSERVE})();")
     page.evaluate(OBSERVE)

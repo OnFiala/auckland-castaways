@@ -50,3 +50,39 @@ test('late-game crew stations leave each puzzle and loose item centre accessible
     }
   }
 });
+
+const painted = require('../dist/assets/work-poses/manifest.json').assets;
+
+function standingRadius(room, actor, foot) {
+  const {standingHeight, poses} = painted[actor];
+  const [left,,width] = poses.stand.crop;
+  const sole = poses.stand.ground[0];
+  // Allow either facing after the working gesture ends and both people look up.
+  return Math.max(sole-left, left+width-sole) / standingHeight *
+    Stage.heightAt(room,foot.y) * 9/16;
+}
+
+test('the working player has a separate place to stand when the crew settle after an action', () => {
+  const reunion = {boatMoored:true,suppliesShared:true,henryFound:true,georgeFound:true};
+  const examples = [
+    ['crossing', 'canvasPatch', 'player', 'musgrave', [{},{rigSecured:true},{boatDry:true}]],
+    ['crossing', 'bilge', 'player', 'musgrave', [{rigSecured:true},{boatDry:true}]],
+    ['cabin', 'kettle', 'player', 'henry', [{waterStored:true}]],
+    ['cabin', 'stove', 'player', 'henry', [{waterStored:true},{warmthReady:true}]],
+    ['forge', 'testBlock', 'player', 'raynal', [{drillForged:true},{drillFailed:true}]],
+    ['salvage', 'planks', 'player', 'henry', [{},{sailclothTaken:true}]],
+    ['salvage', 'oakum', 'player', 'henry', [{planksTaken:true}]],
+    ['harbour', 'rescueCutter', 'musgrave', 'raynal', [{},{chartMarked:true},{rescueSupplied:true}]],
+    ['landing', 'rescueBoat', 'musgrave', 'henry', [reunion,{...reunion,menRescued:true}]],
+    ['landing', 'rescueBoat', 'musgrave', 'george', [reunion,{...reunion,menRescued:true}]],
+  ];
+  for (const [room,id,player,crew,cases] of examples) for (const flags of cases) {
+    const state = {scene:room,flags};
+    const object = Stage.stageTarget(room,{id},state);
+    const floor = Stage.profile(room).walkPolygon;
+    const a = Ground.project(floor,object.approach);
+    const b = Ground.project(floor,Stage.workStation(room,crew,state));
+    const gap = Math.abs(a.x-b.x) - standingRadius(room,player,a) - standingRadius(room,crew,b);
+    assert(gap > 0, `${room}/${id}: ${player} and ${crew}'s upright paintings share a column (${gap.toFixed(2)}%)`);
+  }
+});
