@@ -1,0 +1,61 @@
+name: Game release QA
+
+on:
+  push:
+    paths:
+      - 'adventure/dist/**'
+      - 'adventure/tools/build_web.py'
+      - 'adventure/tools/package_download.py'
+      - 'adventure/tools/verify_web.py'
+      - 'adventure/PLAY.txt'
+      - 'adventure/tests/browser/**'
+      - '.github/workflows/game-release-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            adventure/dist
+            adventure/tools
+            adventure/tests/browser
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install renderer and build dependencies
+        run: |
+          python -m pip install 'Pillow==11.3.0' 'playwright==1.56.0'
+          python -m playwright install --with-deps chromium
+      - name: Build and unpack the downloadable edition
+        run: |
+          python adventure/tools/build_web.py "$RUNNER_TEMP/edition"
+          mkdir "$RUNNER_TEMP/unpacked" "$RUNNER_TEMP/evidence"
+          python adventure/tools/package_download.py "$RUNNER_TEMP/edition" "$RUNNER_TEMP/until-we-return.zip"
+          unzip -q "$RUNNER_TEMP/until-we-return.zip" -d "$RUNNER_TEMP/unpacked"
+          python adventure/tools/verify_web.py "$RUNNER_TEMP/unpacked" > "$RUNNER_TEMP/evidence/verified-edition.json"
+          (cd "$RUNNER_TEMP" && sha256sum until-we-return.zip > evidence/archive.sha256)
+      - name: Play the extracted game offline
+        run: |
+          python adventure/tests/browser/release_qa.py "$RUNNER_TEMP/unpacked/index.html" "$RUNNER_TEMP/evidence"
+      - name: Keep the tested edition
+        uses: actions/upload-artifact@v4
+        with:
+          name: until-we-return-zip
+          path: ${{ runner.temp }}/until-we-return.zip
+          compression-level: 0
+      - name: Keep videos, screenshots and observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chromium-evidence
+          path: ${{ runner.temp }}/evidence
+          if-no-files-found: warn
+          retention-days: 14
