@@ -58,3 +58,28 @@ test('the return party appears at the landing after preparations and companion w
  assert.notDeepEqual({x:home.x,y:home.y},{x:atWork.x,y:atWork.y});inside('forge',atWork);
  assert.equal(atWork.pose,'reach');assert.equal(Stage.stageTarget('crossing',{id:'tornSail',kind:'puzzle'},ready).indirect,true);
 });
+
+test('the raised chest lid can be examined from the same station as the box', () => {
+  const source = {id: 'crate', kind: 'puzzle'};
+  const shut = Stage.stageTarget('wreck', source, {flags: {}});
+  const open = Stage.stageTarget('wreck', source, {flags: {crateOpen: true}});
+  const contains = (box, x, y) =>
+    Math.abs(x - box.x) <= box.w / 2 && Math.abs(y - box.y) <= box.h / 2;
+  assert(!contains(shut, 73.8, 39.2));
+  assert(contains(open, 73.8, 39.2), 'middle of the raised wooden lid');
+  assert(contains(open, 72, 61.5), 'lower front board');
+  assert.deepEqual(open.approach, shut.approach);
+});
+
+test('the supplies fit the painted crate and the lantern handle reaches the iron ring', () => {
+  const sack = Stage.stageTarget('harbour', {id: 'provisions', kind: 'item'}, {});
+  const bottom = sack.y + sack.artHeight / 2;
+  assert(sack.x - sack.artWidth / 2 >= 77.4 && sack.x + sack.artWidth / 2 <= 83.3);
+  assert(bottom >= 59.1 && bottom <= 60.2, 'visible top of the wharf crate');
+  inside('harbour', sack.approach);
+
+  const lamp = Stage.marks.landing.lantern;
+  const loopTop = lamp.y - lamp.h / 2;
+  assert(Math.abs(lamp.x - 77.8) < 0.45);
+  assert(loopTop >= 30.7 && loopTop <= 31.8, 'iron ring on the right-hand side of the post');
+});

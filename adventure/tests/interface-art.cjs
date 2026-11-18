@@ -40,7 +40,7 @@ test('HTML scripts and styles resolve to local files',()=>{
   const ref=tag[0].match(/\b(?:src|href)="([^"]+)"/i);if(ref)local(ref[1]);
  }
 });
-test('every interface crop is declared in HTML and mounted with its registered image',()=>{
+test('the game mounts registered fittings and painted timber, sailcloth and paper',()=>{
  const ui=require('../dist/interface.js'),html=fs.readFileSync(path.join(dist,'index.html'),'utf8');
  assert.match(html,/<script\b[^>]*src="interface\.js"/);
  assert.deepEqual(Object.keys(ui.assets).sort(),Object.keys(expected).sort());
@@ -53,7 +53,23 @@ test('every interface crop is declared in HTML and mounted with its registered i
  for(const [id,a] of Object.entries(ui.assets)){assert.deepEqual(a.box,expected[id]);assert.equal(a.width,1536);assert.equal(a.height,1024);local(a.file);assert.equal(a.file,'assets/ui/'+manifest.asset);}
  const doc={querySelectorAll(selector){return nodes.filter(n=>selector===`[data-${n.kind}]`);}};
  ui.mount(doc);
- for(const n of nodes){const id=n.dataset.material||n.dataset.uiPainting;assert(n.innerHTML.includes(`viewBox="${expected[id].join(' ')}"`),id);assert(n.innerHTML.includes(`href="${ui.assets[id].file}"`),id);assert.match(n.innerHTML,/aria-hidden="true"/);}
+ const css=fs.readFileSync(path.join(dist,'tide-light.css'),'utf8');
+ for(const n of nodes){
+  assert.match(n.innerHTML,/aria-hidden="true"/);
+  if(n.kind==='material'){
+   const material=ui.materials[n.dataset.material];assert(n.innerHTML.includes(`ship-${material}`));
+   assert(css.includes(`assets/ui/materials/${material}.webp`));
+  }else{
+   const id=n.dataset.uiPainting;assert(n.innerHTML.includes(`viewBox="${expected[id].join(' ')}"`),id);
+   assert(n.innerHTML.includes(`href="${ui.assets[id].file}"`),id);
+  }
+ }
+ const receipt=JSON.parse(fs.readFileSync(path.join(dir,'materials/manifest.json'),'utf8'));
+ for(const material of receipt.assets){
+  const bytes=fs.readFileSync(local('assets/ui/materials/'+material.file));
+  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),material.sha256);
+  assert.deepEqual(require('./painting-size.cjs')(bytes),material.size);
+ }
 });
 test('nested SVG clips each atlas crop for both meet and slice panels',()=>{
  const ui=require('../dist/interface.js');

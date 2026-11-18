@@ -1,35 +1,4 @@
-/* Drawn in plate coordinates below targets, feet and story UI. Never takes
-   focus or pointer events. Stage-life supplies the physical materials which
-   these weather fields reach: bedding, kettle, coals, boat, water and canvas. */
+/* One transparent atmospheric canvas, registered under stage props and actors. */
 #place-weather, #place-weather * { pointer-events:none !important; }
 #place-weather { position:absolute; inset:0; z-index:3; overflow:hidden; user-select:none; contain:strict; }
 #place-weather .wx-particles { position:absolute; inset:0; width:100%; height:100%; display:block; }
-#place-weather .wx-cut { position:absolute; display:block; background-repeat:no-repeat; }
-#place-weather .wx-cut[hidden] { display:none; }
-.wx-grass { transform-origin:36% 95%; mask-image:radial-gradient(ellipse,#000 46%,#0009 65%,transparent 78%); animation:wx-leaves 6.8s ease-in-out -2.1s infinite; }
-.wx-loose-line, .wx-fast-line { transform-origin:4% 98%; animation:wx-shroud 3.7s ease-in-out -.8s infinite; }
-.wx-fast-line { animation-name:wx-bound-shroud; }
-@keyframes wx-leaves { 0%,100%{transform:skewX(-.5deg)} 31%{transform:skewX(-3.4deg) rotate(.4deg)} 59%{transform:skewX(-1.1deg)} 78%{transform:skewX(-2.1deg)} }
-@keyframes wx-shroud { 0%,100%{transform:skewX(-.52deg)} 45%{transform:skewX(1.2deg)} 71%{transform:skewX(.2deg)} }
-@keyframes wx-bound-shroud { 0%,100%{transform:skewX(-.12deg)} 45%{transform:skewX(.23deg)} 71%{transform:skewX(.07deg)} }
-
-/* The same open-water wind now pulls against a secured shroud and repaired
-   cloth instead of making the entire boat lurch when a puzzle completes. */
-.scene:has(#place-weather[data-wx-rig="loose shroud"]) .life-ocean-sail { animation-duration:3.35s; }
-.scene:has(#place-weather[data-wx-rig="secured shroud"]) .life-ocean-sail { animation-duration:4.15s; }
-.scene:has(#place-weather[data-wx-rig="patched canvas"]) .life-ocean-sail { animation-duration:5.15s; }
-#place-weather[data-wx-paused=true] * { animation-play-state:paused !important; }
-.reduced #place-weather *, #place-weather[data-wx-still=true] * { animation:none !important; }
-@media (prefers-reduced-motion: reduce) { #place-weather * { animation:none !important; } }
-
-/* A prepared moving painting owns these surfaces in the main scene. Material
-   contacts and furniture remain in the stage above it. The small original
-   fragments still serve browsers without a 2D context and the still view. */
-#place-weather[data-landscape="ready"][data-wx-still="false"] ~ #place-life :is(
-  [data-life="surf"], [data-life="outer-water"], [data-life="rock-wash"],
-  [data-life="tattered-cloth"], [data-life="windward-leaves"], [data-life="cove"],
-  [data-life="lean-to"], [data-life="seep"], [data-life="stream-pool"],
-  [data-life="water-at-door"], [data-life="water-beyond-stocks"], [data-life="sail-on-stocks"],
-  [data-life="seaward-swell"], [data-life="port-swell"], [data-life="drawing-sail"],
-  [data-life="sun-path"], [data-life="harbour-water"], [data-life="inlet"], [data-life="chart-corner"]
-) { display:none; }

@@ -6,150 +6,149 @@ const path = require('node:path');
 const vm = require('node:vm');
 const dist = path.resolve(__dirname, '../dist');
 const engine = require('../dist/voyage.js');
-const world = require('../dist/voyage-world.js');
 const art = require('../dist/voyage-art.js');
 
 function fixture() {
-  let reduced = false;
-  const timers = [];
-  const doc = {createElement: () => new Node()};
-  class Node {
-    constructor() {
-      this.children = [];
-      this.ownerDocument = doc;
-      this.style = {setProperty: (key, value) => { this.style[key] = value; }};
-      this.dataset = {};
+  let reduced=false, covered=false, supportsCanvas=true, nextId=0;
+  const frames=new Map(), timers=new Map(), calls=[];
+  const ctx=new Proxy({}, {
+    get(target,key) {
+      if(key in target) return target[key];
+      return (...args)=>calls.push([key,...args]);
     }
-    setAttribute(key, value) { this[key] = value; }
-    append(node) { this.children.push(node); node.parent = this; }
-    replaceChildren(node) { this.children = []; this.append(node); }
-    remove() { if (this.parent) this.parent.children = this.parent.children.filter(n => n !== this); }
-    querySelector(name) { return this.children.find(n => n.className === name.slice(1)); }
-    closest() { return null; }
-    addEventListener() {}
+  });
+  const doc={createElement:tag=>new Node(tag),querySelector:()=>covered,hidden:false};
+  class Node {
+    constructor(tag) {this.tag=tag;this.children=[];this.ownerDocument=doc;this.style={};this.dataset={};}
+    setAttribute(k,v) {this[k]=v;}
+    append(n) {this.children.push(n);n.parent=this;}
+    replaceChildren(n) {this.children=[];this.append(n);}
+    remove() {if(this.parent) this.parent.children=this.parent.children.filter(n=>n!==this);}
+    closest() {return null;}
+    getContext() {return supportsCanvas?ctx:null;}
   }
-  const root = new Node();
-  const host = {
-    CastawayWorld: world, AdventureArt: art,
-    matchMedia: () => ({matches: reduced}), setTimeout: f => timers.push(f)
+  const root=new Node('div');
+  const host={
+    AdventureArt: art,
+    matchMedia:()=>({matches:reduced}),
+    setTimeout:cb=>{timers.set(++nextId,cb);return nextId;},clearTimeout:id=>timers.delete(id),
+    requestAnimationFrame:cb=>{frames.set(++nextId,cb);return nextId;},cancelAnimationFrame:id=>frames.delete(id)
   };
-  vm.runInNewContext(fs.readFileSync(path.join(dist, 'stage-life.js'), 'utf8'), {window: host});
-  const life = host.CastawayLife;
-  function draw(scene, flags = {}) {
-    const state = {scene, flags};
-    life.render(root, state);
-    return state;
-  }
-  const detail = id => root.children[0].children.find(n => n.dataset.life === id);
-  const work = (s, target) => life.work(root, s, target);
-  return {draw, detail, work, root, timers, life, reduce: () => { reduced = true; }};
+  vm.runInNewContext(fs.readFileSync(path.join(dist,'stage-life.js'),'utf8'),{window:host});
+  const life=host.CastawayLife;
+  function draw(scene,flags={}) {const s={scene,flags};life.render(root,s);return s;}
+  function step(ms) {const pending=[...frames.values()];frames.clear();pending.forEach(fn=>fn(ms));}
+  function finish() {const pending=[...timers.values()];timers.clear();pending.forEach(fn=>fn());}
+  const detail=id=>root.children[0].children.find(n=>n.dataset.life===id);
+  return {draw,detail,step,finish,root,doc,calls,ctx,frames,timers,life,
+    reduce:()=>{reduced=true;},cover:v=>{covered=v;},noCanvas:()=>{supportsCanvas=false;}};
 }
 
-test('every room has registered, bounded material detail and references existing files', () => {
-  const f = fixture();
-  const assets = new Set();
-  for (const scene of engine.SCENES) {
-    for (const flags of [{}, Object.fromEntries(engine.FLAGS.map(key => [key, true]))]) {
-      f.draw(scene.id, flags);
-      const parts = f.root.children[0].children;
-      assert.ok(parts.length >= 2, scene.id);
-      assert.equal(parts.length, new Set(parts.map(n => n.dataset.life)).size);
-      assets.add(f.root.style['--life-plate'].match(/url\("(.+?)"\)/)[1]);
-      for (const part of parts) {
-        const [x,y,w,h] = Array.from(part.style.cssText.matchAll(/(?:left|top|width|height):([.\d]+)%/g), m => Number(m[1]));
-        assert.ok(x >= 0 && y >= 0 && w > 0 && h > 0 && x+w <= 100 && y+h <= 100, scene.id + '/' + part.dataset.life);
-        for (const match of (part.innerHTML || '').matchAll(/href="([^"]+)"/g)) assets.add(match[1]);
-        for (const match of part.style.cssText.matchAll(/url\("(.+?)"\)/g)) assets.add(match[1]);
+test('all foreground surfaces and state marks are bounded and independent of the background',()=>{
+  const f=fixture();
+  const assets=new Set();
+  for(const scene of engine.SCENES) {
+    for(const flags of [{},Object.fromEntries(engine.FLAGS.map(key=>[key,true]))]) {
+      const state=f.draw(scene.id,flags), parts=f.root.children[0].children;
+      const [feature]=f.life.features(state);
+      if(feature){
+        assert.ok(f.detail(feature.id).tag==='canvas',feature.id);
+        assert.ok(f.detail(feature.id).width>0 && f.detail(feature.id).height>0);
+      }
+      assert.equal(parts.length,new Set(parts.map(n=>n.dataset.life)).size);
+      for(const part of parts) {
+        const [x,y,w,h]=Array.from(part.style.cssText.matchAll(/(?:left|top|width|height):([.\d]+)%/g),m=>Number(m[1]));
+        assert.ok(x>=0&&y>=0&&w>0&&h>0&&x+w<=100&&y+h<=100,scene.id+'/'+part.dataset.life);
+        assert.doesNotMatch(part.style.cssText,/url\(|background|clip-path/);
+        for(const match of (part.innerHTML||'').matchAll(/href="([^"]+)"/g)) assets.add(match[1]);
       }
     }
   }
-  for (const asset of assets) assert.ok(fs.existsSync(path.join(dist, asset)), asset);
-});
-
-test('cold, interrupted and completed work each have distinct physical states', () => {
-  const f = fixture();
-  f.draw('cabin');
-  assert.ok(f.detail('leaking-seam'));
-  f.draw('cabin', {roofSealed: true, waterStored: true});
-  assert.ok(!f.detail('leaking-seam') && !f.detail('warming-water'));
-  f.draw('cabin', {roofSealed: true, waterStored: true, warmthReady: true});
-  assert.ok(f.detail('warming-water') && f.detail('hearth'));
-  f.draw('slipway', {hullPlanked: true});
-  assert.ok(f.detail('raised-planking') && !f.detail('sail-on-stocks'));
-  f.draw('crossing', {rigSecured: true});
-  assert.ok(f.detail('secured-shroud') && f.detail('bilge-water'));
-  f.draw('crossing', {rigSecured: true, boatDry: true});
-  assert.match(f.root.style['--life-plate'], /crossing-bailed/);
-  assert.ok(!f.detail('bilge-water'));
-  f.draw('crossing', {rigSecured: true, boatDry: true, sailMended: true});
-  assert.match(f.root.style['--life-plate'], /crossing-safe/);
-  assert.ok(!f.detail('bilge-water'));
-  f.draw('landing', {boatMoored: true});
-  assert.ok(f.detail('mooring-line') && !f.detail('lantern-on-post'));
-  f.draw('landing', {boatMoored: true, landingMarked: true});
-  assert.ok(f.detail('lantern-on-post'));
-});
-
-test('shared furnace target plays the actual work once and preserves the water animation', () => {
-  const f = fixture();
-  f.draw('forge', {forgeFueled: true});
-  const water = f.detail('water-at-door');
-  const fitted = f.draw('forge', {forgeFueled: true, bellowsFitted: true});
-  const bellows = f.detail('bellows');
-  f.work(fitted, 'furnace');
-  assert.equal(f.root.children[1].dataset.life, 'work-bellowsFitted');
-  const count = f.timers.length;
-  f.work(fitted, 'furnace');
-  assert.equal(f.timers.length, count);
-  const lit = f.draw('forge', {...fitted.flags, forgeLit: true});
-  f.work(lit, 'furnace');
-  assert.equal(f.root.children[1].dataset.life, 'work-forgeLit');
-  assert.equal(f.detail('water-at-door'), water);
-  assert.equal(f.detail('bellows'), bellows);
-  assert.match(bellows.className, /pumping/);
-  f.timers.forEach(fn => fn());
-  assert.equal(f.root.children.length, 1);
-});
-
-test('reduced motion skips transients while keeping completed material states', () => {
-  const f = fixture();
-  f.draw('chartroom');
-  f.reduce();
-  const s = f.draw('chartroom', {rescueRoute: true});
-  f.work(s, 'chartTable');
-  assert.ok(f.detail('pencilled-course'));
-  assert.equal(f.root.children.length, 1);
-  assert.equal(f.timers.length, 0);
-});
-
-test('crop scale and position reconstruct the original plate at each corner', () => {
-  const f = fixture();
-  const flags = Object.fromEntries(engine.FLAGS.map(key => [key, true]));
-  for (const scene of engine.SCENES) {
-    f.draw(scene.id, flags);
-    for (const node of f.root.children[0].children.filter(n => n.className.includes('life-paint'))) {
-      const css = node.style.cssText;
-      const rect = Array.from(css.matchAll(/(?:left|top|width|height):([.\d]+)%/g), m => Number(m[1]));
-      const [,sx,sy] = css.match(/background-size:([.\d]+)% ([.\d]+)%/);
-      const [,px,py] = css.match(/background-position:([.\d]+)% ([.\d]+)%/);
-      for (const [start, length, scale, position] of [[rect[0],rect[2],sx,px],[rect[1],rect[3],sy,py]]) {
-        const wholePlate = length * scale / 100;
-        const origin = start + (length - wholePlate) * position / 100;
-        assert.ok(Math.abs(100 - wholePlate) < .001 && Math.abs(origin) < .001, scene.id+'/'+node.dataset.life);
-      }
-    }
+  for(const asset of assets) {
+    assert.doesNotMatch(asset,/scene|tidepaint|states/);
+    assert.ok(fs.existsSync(path.join(dist,asset)),asset);
   }
+  assert.equal(f.frames.size,0,'the resting material has no permanent foreground clock');
+  assert.ok(!f.calls.some(([op])=>op==='drawImage'||op==='getImageData'));
 });
 
-test('scene CSS pauses behind a dialog and has static reduced-motion states', () => {
-  const css = fs.readFileSync(path.join(dist, 'stage-life.css'), 'utf8');
-  const actors = fs.readFileSync(path.join(dist, 'actors.css'), 'utf8');
-  assert.match(css, /body:has\(dialog\[open\]\) #place-life \*[^{]+\{\s*animation-play-state: paused;/);
-  assert.match(actors, /\.inactive \*[^{]+\{animation-play-state:paused!important/);
-  assert.match(css, /\.reduced #place-life \*[^{]+\{ animation: none !important;/);
-  assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]+#place-life \*[^{]+\{ animation: none !important;/);
-  const definitions = new Set(Array.from(css.matchAll(/@keyframes ([\w-]+)/g), m => m[1]));
-  for (const [,name] of css.matchAll(/animation: (life-[\w-]+)/g)) assert.ok(definitions.has(name), name);
+test('state marks survive repeated inventory draws and an unfinished build',()=>{
+  const f=fixture();
+  f.draw('cabin');assert.ok(f.detail('leaking-seam'));assert.ok(!f.detail('warming-water'));
+  f.draw('cabin',{roofSealed:true,waterStored:true});assert.ok(!f.detail('leaking-seam'));assert.ok(!f.detail('warming-water'));
+  f.draw('cabin',{roofSealed:true,waterStored:true,warmthReady:true});assert.ok(f.detail('warming-water'));
+  f.draw('slipway',{hullPlanked:true});assert.ok(f.detail('plank-on-stocks'));assert.ok(!f.detail('caulked-seam'));
+  f.draw('slipway',{hullPlanked:true,boatSealed:true});assert.ok(f.detail('caulked-seam'));
+  f.draw('slipway',{hullPlanked:true,boatSealed:true,sailRigged:true});assert.ok(!f.detail('plank-on-stocks'));
+  f.draw('crossing',{rigSecured:true});assert.ok(f.detail('secured-shroud'));
+  f.draw('landing',{boatMoored:true});assert.ok(f.detail('mooring-line'));
+  f.draw('forge',{forgeFueled:true});const charcoal=f.detail('charcoal-bed');
+  const fitting=f.draw('forge',{forgeFueled:true,bellowsFitted:true});
+  f.life.work(f.root,fitting,'furnace');assert.equal(f.root.children[1].dataset.life,'work-bellowsFitted');
+  f.life.work(f.root,fitting,'furnace');assert.equal(f.timers.size,1);
+  const lit=f.draw('forge',{...fitting.flags,forgeLit:true});
+  f.life.work(f.root,lit,'furnace');assert.equal(f.root.children[1].dataset.life,'work-forgeLit');
+  assert.match(f.detail('charcoal-bed').className,/burning/);
+  const handle=f.detail('bellows_handle');f.draw('forge',{...lit.flags});assert.equal(f.detail('bellows_handle'),handle);
+  f.finish();assert.equal(f.root.children.length,1);assert.equal(charcoal.dataset.life,'charcoal-bed');
+  f.life.tryFeature(f.root,lit,'bellows_handle');assert.equal(f.root.children[1].dataset.life,'fresh-air-in-coals');
+  f.draw('forge',{bellowsFitted:true});const cold=f.draw('forge',{bellowsFitted:true});
+  f.life.tryFeature(f.root,cold,'bellows_handle');assert.equal(f.root.children[1].dataset.life,'dust-at-tuyere');
+  f.finish();
+  f.reduce();f.draw('chartroom');const charted=f.draw('chartroom',{rescueRoute:true});
+  f.life.work(f.root,charted,'chartTable');assert.equal(f.timers.size,0);assert.ok(f.detail('pencilled-course'));
+});
+
+test('each material has distinct geometry on contact, without reading any pixels',()=>{
+  const f=fixture();
+  function strokes(id,t,flags) {
+    f.calls.length=0; assert.equal(f.life.paintMaterial(f.ctx,id,t,flags),true);
+    const commands=f.calls.filter(([op])=>['moveTo','lineTo','bezierCurveTo','ellipse','translate','rotate'].includes(op));
+    for(const [, ...args] of commands) assert.ok(args.every(Number.isFinite),id);
+    assert.ok(commands.length>=2,id);
+    assert.ok(!f.calls.some(([op])=>['drawImage','getImageData','putImageData'].includes(op)),id);
+    return commands;
+  }
+  for(const scene of engine.SCENES){
+    const flags={bellowsFitted:true}, [feature]=f.life.features({scene:scene.id,flags});
+    const rest=strokes(feature.id,0,flags);
+    assert.notDeepEqual(rest,strokes(feature.id,.38,flags),feature.id);
+    assert.deepEqual(rest,strokes(feature.id,0,flags),'deterministic '+feature.id);
+  }
+  const stems=t=>strokes('shore_tussock',t,{}).filter(([op])=>op==='moveTo');
+  assert.deepEqual(stems(0),stems(.38),'all grass bases are planted');
+  const ends=t=>strokes('wharf_line',t,{}).slice(0,2).map(row=>row.slice(-2));
+  assert.deepEqual(ends(0),ends(.4),'both mooring endpoints are pinned');
+  assert.notDeepEqual(strokes('mast_turns',.4,{}),strokes('mast_turns',.4,{rigSecured:true}));
+});
+
+test('touch restarts only its own animation, yields a reduced still and cancels on room or visibility changes',()=>{
+  const f=fixture();const state=f.draw('forest'), id='runnel_shaving';
+  const before=JSON.stringify(state);const obs=f.life.tryFeature(f.root,state,id);assert.match(obs,/shaving/);
+  f.step(0);f.step(300);assert.equal(f.frames.size,1);
+  f.life.tryFeature(f.root,state,id);assert.equal(f.frames.size,1);
+  f.cover(true);f.step(700);assert.equal(f.frames.size,0);
+  f.life.tryFeature(f.root,state,id);assert.equal(f.frames.size,0);
+  f.cover(false);f.life.tryFeature(f.root,state,id);assert.equal(f.frames.size,1);
+  f.draw('beach');assert.equal(f.frames.size,0);
+  f.draw('forest');f.life.tryFeature(f.root,state,id);f.step(1000);f.reduce();f.step(1030);
+  assert.equal(f.frames.size,0);assert.equal(f.timers.size,1);f.finish();
+  assert.equal(f.life.tryFeature(f.root,state,id),obs);assert.equal(f.frames.size,0);assert.equal(f.timers.size,1);
+  f.finish();f.doc.hidden=true;assert.equal(f.life.tryFeature(f.root,state,id),obs);assert.equal(f.timers.size,0);
+  assert.equal(JSON.stringify(state),before);
+  const missing=fixture();missing.noCanvas();
+  assert.match(missing.life.tryFeature(missing.root,missing.draw('forest'),id),/shaving/);
+  assert.equal(missing.frames.size,0);assert.equal(missing.root.children[0].children.length,1);
+});
+
+test('work feedback has a static reduced view and pauses behind a dialog',()=>{
+  const css=fs.readFileSync(path.join(dist,'stage-life.css'),'utf8');
+  assert.doesNotMatch(css,/background-image|url\(|--life-plate|clip-path|life-paint/);
+  assert.match(css,/body:has\(dialog\[open\]\) #place-life \*[^{]+\{ animation-play-state: paused;/);
+  assert.match(css,/\.reduced #place-life \* \{ animation: none !important;/);
+  assert.match(css,/@media \(prefers-reduced-motion: reduce\)[\s\S]+#place-life \* \{ animation: none !important;/);
+  const keys=new Set(Array.from(css.matchAll(/@keyframes ([\w-]+)/g),m=>m[1]));
+  for(const [,name]of css.matchAll(/animation:\s*(life-[\w-]+)/g))assert.ok(keys.has(name),name);
 });
 
 test('optional gestures touch the visible spot from the walk polygon, clear of mandatory object centres', () => {
@@ -180,32 +179,23 @@ test('optional gestures touch the visible spot from the walk polygon, clear of m
         assert.ok(Math.abs(x-target.x) > (w+target.w)/2 || Math.abs(y-target.y) > (h+target.h)/2,
           id+' overlaps '+target.id);
       }
+      // Companions stand above the feature buttons in the stage's depth
+      // stack. The centre must stay clickable after each person changes job.
+      for(const variant of [{},...engine.FLAGS.map(key=>({[key]:true}))]) {
+        const ss={...state,flags:variant};
+        const people=[...scene.targets.filter(t=>t.kind==='person').map(t=>t.actor||t.id),
+          ...stage.companions(scene.id,ss)];
+        for(const who of people) {
+          const body=stage.workStation(scene.id,who,ss);
+          if(!body) continue;
+          const height=stage.heightAt(scene.id,body.y);
+          const halfWidth=Math.max(6.5,Math.min(10.8,height*.213))/2;
+          assert.ok(Math.abs(x-body.x)>halfWidth || y>body.y || y<body.y-height,
+            id+' under '+who);
+        }
+      }
       assert.ok(feature.observation.length <= 110);
     }
   }
-  assert.equal(ids.size, 10);
-});
-
-test('a room feature can be tried repeatedly without progressing, including in reduced motion', () => {
-  const f = fixture();
-  for (const scene of engine.SCENES) {
-    const state = f.draw(scene.id, {bellowsFitted:true});
-    const before = JSON.stringify(state);
-    f.reduce();
-    for (const feature of f.life.features(state)) {
-      const first = f.life.tryFeature(f.root, state, feature.id);
-      assert.equal(first, feature.observation);
-      const firstBeat = f.root.children[1];
-      assert.ok(firstBeat.children.length >= 1);
-      assert.equal(f.life.tryFeature(f.root, state, feature.id), first);
-      assert.equal(f.root.children.length, 2);
-      assert.notEqual(f.root.children[1], firstBeat);
-    }
-    assert.equal(JSON.stringify(state), before);
-    assert.equal(f.life.tryFeature(f.root, state, 'unknown'), null);
-  }
-  assert.deepEqual(Array.from(f.life.features({scene:'forge',flags:{}})), []);
-  const lit = f.draw('forge', {bellowsFitted:true, forgeLit:true});
-  assert.match(f.life.tryFeature(f.root, lit, 'bellows_handle'), /orange/);
-  assert.ok(f.root.children[1].children.some(n => n.dataset.life === 'fresh-air-in-coals'));
+  assert.equal(ids.size, 14);
 });

@@ -1,0 +1,288 @@
+{
+  "frames": 64,
+  "fps": 16,
+  "rendererHashes": {
+    "landscape.js": "c8e2e71559aefa574619d11189e5c2d0305138b21e4cd05e6d30c524edf4e85c",
+    "weather.js": "295eedb3b9c15b5a55841bf8796a4dbd325d87aabf7eec095892e8bf97162a89",
+    "stage-life.js": "f299102eeb63279b2acc2c67d757a35b58a6beb202683d50d69da64e5a0def4c",
+    "voyage-world.js": "9efc6b238e31ef6fbe1400fb6ca90f48e2f1e118f7f524eaa75ea8366605465c"
+  },
+  "components": "production landscape, weather, foreground interaction",
+  "independentChannels": [
+    {
+      "name": "běžící hřeben a pěna",
+      "box": [
+        0,
+        245,
+        155,
+        64
+      ],
+      "visiblePixels": 4753,
+      "distinctFrames": 64
+    },
+    {
+      "name": "odlesky mezi vlnami",
+      "box": [
+        0,
+        245,
+        155,
+        64
+      ],
+      "visiblePixels": 1044,
+      "distinctFrames": 64
+    },
+    {
+      "name": "vodopád",
+      "box": [
+        188,
+        279,
+        28,
+        90
+      ],
+      "visiblePixels": 609,
+      "distinctFrames": 64
+    },
+    {
+      "name": "lístky kapradiny",
+      "box": [
+        117,
+        296,
+        49,
+        33
+      ],
+      "visiblePixels": 268,
+      "distinctFrames": 64
+    }
+  ],
+  "scenes": {
+    "beach": {
+      "file": "assets/tidepaint/beach.webp",
+      "sha256": "37e65b27f4f7eff46bee2e159aa6127334746e6e67b3712794b299092dea7f5f",
+      "foreground": "shore_tussock",
+      "foregroundFrames": 23,
+      "probes": [
+        {
+          "name": "Čelo útesu",
+          "mode": "solid",
+          "box": [
+            185,
+            281,
+            17,
+            8
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Lišejník na balvanu",
+          "mode": "dry",
+          "box": [
+            318,
+            330,
+            18,
+            12
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Pěna v příboji",
+          "mode": "live",
+          "box": [
+            2,
+            252,
+            125,
+            49
+          ],
+          "changedPixels": 4202,
+          "atLeast4": 3635,
+          "maxDelta": 165,
+          "distinctFrames": 64,
+          "pass": true
+        },
+        {
+          "name": "Špičky trávy",
+          "mode": "live",
+          "box": [
+            6,
+            458,
+            45,
+            33
+          ],
+          "changedPixels": 253,
+          "atLeast4": 220,
+          "maxDelta": 71,
+          "distinctFrames": 64,
+          "pass": true
+        }
+      ]
+    },
+    "forest": {
+      "file": "assets/tidepaint/forest.webp",
+      "sha256": "923037023afe41096e2a729c9ab9a20d6b5b3403f41b67bce848ab044388be5b",
+      "foreground": "runnel_shaving",
+      "foregroundFrames": 23,
+      "probes": [
+        {
+          "name": "Skalní římsa",
+          "mode": "solid",
+          "box": [
+            220,
+            286,
+            10,
+            22
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Mezi vodními prameny",
+          "mode": "solid",
+          "box": [
+            201,
+            292,
+            3,
+            27
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Větev nad kaskádou",
+          "mode": "dry",
+          "box": [
+            187,
+            15,
+            15,
+            10
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Kmen s lišejníkem",
+          "mode": "dry",
+          "box": [
+            117,
+            79,
+            10,
+            20
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Kořen u pěšiny",
+          "mode": "dry",
+          "box": [
+            89,
+            340,
+            20,
+            12
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Proud přes římsu",
+          "mode": "live",
+          "box": [
+            191,
+            285,
+            24,
+            75
+          ],
+          "changedPixels": 607,
+          "atLeast4": 586,
+          "maxDelta": 127,
+          "distinctFrames": 64,
+          "pass": true
+        },
+        {
+          "name": "Lístky kapradiny",
+          "mode": "live",
+          "box": [
+            117,
+            296,
+            49,
+            33
+          ],
+          "changedPixels": 268,
+          "atLeast4": 252,
+          "maxDelta": 106,
+          "distinctFrames": 64,
+          "pass": true
+        }
+      ]
+    },
+    "crossing": {
+      "file": "assets/tidepaint/crossing-wet.webp",
+      "sha256": "49b7aebf19b5004bbe12464c0f63056ce2b36d672b03f301a842ff895e0e238d",
+      "foreground": "mast_turns",
+      "foregroundFrames": 21,
+      "probes": [
+        {
+          "name": "Zahnuté dřevo nad zábradlím",
+          "mode": "solid",
+          "box": [
+            54,
+            296,
+            14,
+            5
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Spára na stěžni",
+          "mode": "dry",
+          "box": [
+            443,
+            260,
+            12,
+            26
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Horní hrana pažení",
+          "mode": "dry",
+          "box": [
+            523,
+            340,
+            58,
+            7
+          ],
+          "changedPixels": 0,
+          "maxDelta": 0,
+          "pass": true
+        },
+        {
+          "name": "Povrch otevřeného moře",
+          "mode": "live",
+          "box": [
+            524,
+            262,
+            255,
+            65
+          ],
+          "changedPixels": 6146,
+          "atLeast4": 5914,
+          "maxDelta": 192,
+          "distinctFrames": 64,
+          "pass": true
+        }
+      ]
+    }
+  }
+}

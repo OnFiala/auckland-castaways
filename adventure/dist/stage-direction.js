@@ -153,7 +153,7 @@
       horizon: { ...target(8.8, 44.9, 13.5, 8.7, 8.8, 78.7, 'stand'), indirect: true }
     },
     harbour: {
-      provisions: prop(76.8, 56.3, 8.5, 10.1, 69.9, 74.7, 'reach', 4.9, 8.5),
+      provisions: prop(80.2, 55.5, 8.5, 10.1, 73.1, 74.5, 'reach', 4.9, 8.5),
       spareSail: prop(61.4, 71.3, 12.2, 9.2, 55, 74.7, 'crouch', 8.1, 6.8, -6),
       rescueCutter: { ...target(38.9, 57.7, 27, 14.1, 41.3, 73.6, 'stand'), indirect: true }
     },
@@ -303,6 +303,11 @@
     // Large objects are already painted in the plate. Only their pointer zone
     // is needed, while loose objects retain their own removable image.
     if (source.kind === 'puzzle' && !placed.artWidth) result.paint = false;
+    // The raised lid remains part of the chest when the player examines it.
+    if (sceneId === 'wreck' && source.id === 'crate' && state?.flags?.crateOpen) {
+      result.y = 49.9;
+      result.h = 27.8;
+    }
     if (sceneId === 'slipway' && source.id === 'boatMast') {
       result.art = 'mast';
       result.paint = !state?.flags?.sailRigged;
@@ -344,7 +349,7 @@
     forge: { mouth: { x: 41.1, y: 42 }, tuyere: { x: 34.7, y: 44.5 } },
     slipway: { mastStep: { x: 62, y: 49 }, strake: { x: 71.2, y: 54.2 } },
     crossing: { halyard: { x: 44.1, y: 55.9 }, tear: { x: 76, y: 13.9 }, bilge: { x: 66.4, y: 75.3 } },
-    landing: { lantern: { x: 75.1, y: 45.1, w: 3.2, h: 8.5 }, line: { x: 76.3, y: 39 } },
+    landing: { lantern: { x: 77.8, y: 35.3, w: 3.2, h: 8.5 }, line: { x: 76.3, y: 39 } },
     return_camp: { provisions: { x: 37.9, y: 45.2, w: 4.7, h: 8.5 } }
   };
 

@@ -1,0 +1,71 @@
+{
+  "source": "Original project artwork generated with OpenAI ImageGen on 2026-11-18. The four materials were painted together as horizontal bands. No external works or samples.",
+  "generatedSHA256": "cd51d5ad27d622d54de624a9934c66fe99b7b524e49e64780f66902806b5e283",
+  "generatedSize": [
+    1536,
+    1024
+  ],
+  "brief": "A maritime field painter\u2019s materials, seen straight on. Oiled ship timber, indigo waxed sailcloth, unwritten rag paper and warm brushed brass. Quiet diffuse light and fine surface detail.",
+  "assets": [
+    {
+      "file": "timber.webp",
+      "crop": [
+        0,
+        8,
+        1536,
+        248
+      ],
+      "size": [
+        1536,
+        240
+      ],
+      "sha256": "082129329adbb121550a912c0a91b53729107f1ea3cb38ce1b684bf4ecb8ca94",
+      "bytes": 67796
+    },
+    {
+      "file": "canvas.webp",
+      "crop": [
+        0,
+        258,
+        1536,
+        505
+      ],
+      "size": [
+        1536,
+        247
+      ],
+      "sha256": "681171c6c0dca708f3ed92c37991af6a6da7ded15648db0a89788c9336c97702",
+      "bytes": 82524
+    },
+    {
+      "file": "paper.webp",
+      "crop": [
+        0,
+        523,
+        1536,
+        756
+      ],
+      "size": [
+        1536,
+        233
+      ],
+      "sha256": "15130fdeb132f91b3ae4cd80731cb2faa7a8d9c51624fd5076dfac65b8c13082",
+      "bytes": 67290
+    },
+    {
+      "file": "brass.webp",
+      "crop": [
+        0,
+        780,
+        1536,
+        1015
+      ],
+      "size": [
+        1536,
+        235
+      ],
+      "sha256": "d1487289ae5f890b7ffffcdde0781cd856f5498901810e96c1119d4bbc9440e6",
+      "bytes": 75858
+    }
+  ]
+}

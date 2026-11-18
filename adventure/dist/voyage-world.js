@@ -1,15 +1,20 @@
 /* The later visits keep their geography and have their own painted evidence of elapsed time. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.CastawayWorld=factory();})(typeof window!=='undefined'?window:globalThis,function(){'use strict';
-const scene=(name,indoor=false,walk=[6,94,74,89])=>({file:'assets/voyage/scenes/'+name+'.png',indoor,walk});
-const scenes={cabin:scene('cabin',true),forest:scene('forest'),forge:scene('forge',true),charcoal:scene('charcoal'),slipway:scene('slipway'),salvage:scene('salvage',false,[6,94,76,88]),crossing:scene('crossing',false,[20,80,76,88]),harbour:scene('harbour'),chartroom:scene('chartroom',true),return_camp:scene('return-camp',true),landing:scene('landing')};
-function decorations(state,{svg}){
+const painting = name => `assets/tidepaint/${name}.webp`;
+const scene=(name,indoor=false,walk=[6,94,74,89])=>({file:painting(name),indoor,walk});
+const shore = name => scene(name, false, [6,94,74,90]);
+const scenes={beach:shore('beach'),wreck:shore('wreck'),camp:shore('camp'),cabin:scene('cabin',true),forest:scene('forest'),forge:scene('forge',true),charcoal:scene('charcoal'),slipway:scene('slipway'),salvage:scene('salvage',false,[6,94,76,88]),crossing:scene('crossing-wet',false,[20,80,76,88]),harbour:scene('harbour'),chartroom:scene('chartroom',true),return_camp:scene('return-camp',true),landing:scene('landing')};
+function decorations(state,{svg,marks}){
  const f=state.flags;let html='';
  const glow=(x,y)=>`<div class="voyage-glow" style="left:${x}%;top:${y}%"></div>`;
  if(state.scene==='forge'&&f.forgeLit)html+=glow(25,28);
  if(state.scene==='cabin'&&f.warmthReady)html+=glow(-2,42)+`<div class="world-steam" style="left:36%;top:39%"></div>`;
  if(state.scene==='cabin'&&f.roofSealed)html+=`<div class="change" style="left:53.7%;top:17.7%;width:9%;height:7%;transform:translate(-50%,-50%) rotate(-4deg)">${svg('weatherPatch')}</div>`;
  if(state.scene==='return_camp'&&f.suppliesShared)html+=`<div class="change" style="left:37.9%;top:45.2%;width:4.7%;height:8.5%">${svg('rescueProvisions')}</div>`;
- if(state.scene==='landing'&&f.landingMarked)html+=`<div class="change" style="left:75.1%;top:45.1%;width:3.2%;height:8.5%">${svg('lantern')}</div>`;
+ if(state.scene==='landing' && f.landingMarked){
+  const lamp=marks?.landing?.lantern || {x:77.8,y:35.3,w:3.2,h:8.5};
+  html+=`<div class="change" style="left:${lamp.x}%;top:${lamp.y}%;width:${lamp.w}%;height:${lamp.h}%">${svg('lantern')}</div>`;
+ }
  return html;
 }
 const placements={
@@ -32,17 +37,19 @@ function stageTarget(target,state){
  if(state.scene==='crossing'&&t.kind==='person'){t.groundY=82;t.w=8.5;t.h=26;}
  return t;
 }
-function background(state){const f=state.flags,dir='assets/voyage/scenes/';
- if(state.scene==='cabin')return dir+(f.warmthReady?'cabin':'cabin-cold')+'.png';
- if(state.scene==='forge'){
-  if(f.forgeLit)return dir+'forge-lit.png';
-  return dir+(f.bellowsFitted?'forge':'forge-cold')+'.png';
+function background({scene: location, flags = {}}) {
+ switch (location) {
+  case 'wreck': return painting(flags.crateOpen ? 'wreck-open' : 'wreck');
+  case 'camp': return painting(flags.shelterBuilt ? 'camp-shelter' : 'camp');
+  case 'cabin': return painting(flags.warmthReady ? 'cabin' : 'cabin-cold');
+  case 'forge':
+   if (flags.forgeLit) return painting('forge-lit');
+   return painting(flags.bellowsFitted ? 'forge' : 'forge-cold');
+  case 'slipway': return painting(flags.sailRigged ? 'slipway-ready' : 'slipway');
+  case 'crossing':
+   if (flags.sailMended || flags.courseSet) return painting('crossing-safe');
+   return painting(flags.boatDry ? 'crossing-bailed' : 'crossing-wet');
+  default: return scenes[location]?.file;
  }
- if(state.scene==='slipway')return dir+(f.sailRigged?'slipway-ready':'slipway')+'.png';
- if(state.scene==='crossing'){
-  if(f.sailMended||f.courseSet)return dir+'crossing-safe.png';
-  return dir+(f.boatDry?'crossing-bailed':'crossing-wet')+'.png';
- }
- return scenes[state.scene]?.file;
 }
 return {scenes,decorations,stageTarget,background};});

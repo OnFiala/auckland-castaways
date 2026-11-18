@@ -7,6 +7,7 @@ const path=require('node:path');
 const dist=path.resolve(__dirname,'../dist');
 const weather=require('../dist/weather.js');
 const engine=require('../dist/voyage.js');
+const landscape=require('../dist/landscape.js');
 
 function fixture({motion=false,context=true,world=null}={}) {
   let reduced=motion,frameNumber=0,clock=1000,draws=0,timerId=0,pausedDialog=false,bodyReduced=false,paintedSoles=0;
@@ -32,7 +33,7 @@ function fixture({motion=false,context=true,world=null}={}) {
   const media={get matches(){return reduced;},
     addEventListener:(name,listener)=>handlers.set('media',listener),removeEventListener:()=>handlers.delete('media')};
   const host={
-    CastawayWorld:world,devicePixelRatio:2,matchMedia:()=>media,
+    CastawayWorld:world,CastawayLandscape:landscape,devicePixelRatio:2,matchMedia:()=>media,
     setTimeout(fn){timers.set(++timerId,fn);return timerId;},clearTimeout(id){timers.delete(id);},
     requestAnimationFrame(fn){frames.set(++frameNumber,fn);return frameNumber;},cancelAnimationFrame(id){frames.delete(id);},
     MutationObserver:class {constructor(fn){mutations.push(fn);}observe(){}disconnect(){}},
@@ -52,7 +53,7 @@ function fixture({motion=false,context=true,world=null}={}) {
     get draws(){return draws;},get paintedSoles(){return paintedSoles;},get pending(){return timers.size+frames.size;}};
 }
 
-test('fourteen room weather models use bounded local fields and valid cut registration',()=>{
+test('fourteen room weather models use bounded local fields on one transparent canvas',()=>{
   const summary=new Set();
   for(const scene of engine.SCENES) {
     const state={scene:scene.id,flags:{}}, m=weather.describe(state);
@@ -74,12 +75,10 @@ test('fourteen room weather models use bounded local fields and valid cut regist
     assert.ok(count<=110);
     const r=fixture();r.draw(scene.id);r.tick();r.tick();
     assert.equal(r.errors.length,0);
-    const cut=r.root.children[0];
-    if(!cut.hidden){
-      const asset=cut.style.cssText.match(/url\("(.+?)"\)/)[1];
-      assert.ok(fs.existsSync(path.join(dist,asset)));
-      const [x,y,w,h]=m.cut.rect;assert.ok(x>=0&&y>=0&&x+w<=100&&y+h<=100);
-    }
+    assert.equal(r.root.children.length,1);
+    assert.equal(r.root.children[0].className,'wx-particles');
+    assert.equal(r.root.dataset.landscape,'ready');
+
   }
   assert.deepEqual([...summary].sort(),['after-rain','rain','sleet','snow','spray']);
 });
@@ -114,19 +113,19 @@ test('closing a roof redirects rain and equipment controls response without calm
   assert.ok(effect(sealed,'damp under seam').strength<effect(wet,'damp under seam').strength);
   assert.ok(!effect(warm,'damp under seam')&&effect(warm,'hearth reflection'));
   const loose=describe('crossing'),fast=describe('crossing',{rigSecured:true}),dry=describe('crossing',{rigSecured:true,boatDry:true,sailMended:true});
-  assert.notEqual(loose.cut.motion,fast.cut.motion);assert.equal(loose.wind,dry.wind);
+  assert.notEqual(loose.rig,fast.rig);assert.equal(loose.wind,dry.wind);
   assert.ok(effect(loose,'water surging in bilge')&&!effect(dry,'water surging in bilge'));
   assert.ok(!effect(describe('landing'),'lantern on wet shingle')&&effect(describe('landing',{landingMarked:true}),'lantern on wet shingle'));
 });
 
 test('render retains its bounded canvas and weather clock across unrelated commits',()=>{
   const f=fixture();f.draw('beach');
-  const canvas=f.root.children[1],initial=f.draws;
+  const canvas=f.root.children[0],initial=f.draws;
   assert.equal(canvas.width,1152); assert.equal(canvas.height,648);
   f.draw('beach',{ropeTaken:true});
   assert.equal(f.draws,initial);
   f.tick();assert.ok(f.draws>initial);assert.equal(f.pending,1);
-  f.draw('crossing');assert.equal(f.root.children[1],canvas);
+  f.draw('crossing');assert.equal(f.root.children[0],canvas);
   const tied=f.draw('crossing',{rigSecured:true});assert.equal(f.weather.respond(f.root,tied,'bilge'),false);
   assert.equal(f.weather.respond(f.root,tied,'rigging'),true);assert.equal(f.weather.respond(f.root,tied,'rigging'),false);
   const before=JSON.stringify(tied);f.tick();assert.equal(JSON.stringify(tied),before);
@@ -145,7 +144,7 @@ test('hidden, paused, and either reduced-motion preference stop scheduling; retu
   f.reduced(false);assert.equal(f.pending,1);f.pref(true);assert.equal(f.pending,0);
   f.pref(false);assert.equal(f.pending,1);
   const fallback=fixture({context:false});fallback.draw('beach');
-  assert.equal(fallback.pending,0);assert.equal(fallback.root.children[0].hidden,false);
+  assert.equal(fallback.pending,0);assert.equal(fallback.root.dataset.landscape,'still');
 });
 
 test('foot contact only marks a matching ground patch and dissolves as the water is bailed',()=>{
@@ -172,8 +171,13 @@ test('short-lived tracks are capped at twelve, then fade without changing a save
   assert.equal(JSON.stringify(s),original);
 });
 
-test('wind cuts follow the current registered plate even if the changing flag has no weather consequence',()=>{
-  const f=fixture({world:{background:s=>s.flags.canvasRecovered?'assets/beach-cleared.png':'assets/beach.png'}});
-  f.draw('beach');assert.match(f.root.children[0].style.cssText,/assets\/beach\.png/);
-  f.draw('beach',{canvasRecovered:true});assert.match(f.root.children[0].style.cssText,/assets\/beach-cleared\.png/);
+test('geometry survives unrelated plate changes without loading or copying images',()=>{
+  let lookups=0;
+  const f=fixture({world:{background(){lookups++;throw Error('unexpected plate access');}}});
+  f.draw('beach');
+  const draws=f.draws;
+  f.draw('beach',{canvasRecovered:true});
+  assert.equal(f.draws,draws);assert.equal(lookups,0);
+  assert.equal(f.root.children.length,1);assert.equal(f.root.dataset.landscape,'ready');
+  f.draw('camp',{shelterBuilt:true});assert.equal(f.root.dataset.landscape,'ready');assert.equal(lookups,0);
 });

@@ -1,0 +1,738 @@
+{
+  "title": "Coastal rooms of Until We Return",
+  "generator": "OpenAI ImageGen",
+  "date": "2026-11-18",
+  "provenance": "Original game paintings. The existing project plates supplied camera, working-surface, and prop layout. The four base plates were repainted by ImageGen. Each of the three state plates was generated using its new base and the corresponding earlier visual guide. All coordinates use percent of frame, top-left origin. Reference paths are relative to adventure/dist/assets/.",
+  "base_direction": "Paint a BRAND NEW 16:9 background for a cinematic 2D period adventure. The supplied earlier pencil drawing is ONLY a blocking and camera diagram. Discard all its marks and atmosphere. Reinterpret the scenery by a field painter working on location in the 1860s, with fluent oil and bodycolour on dark fine linen: broad angular wet-on-wet facets, subtle broken knife highlights, luminous masses of celadon-grey light, copper bracken, bone-white foam, clean muted indigo and storm-violet darks. Wide restrained value design and beautiful observed details at points of interest, antique pre-rendered game depth. It must look unmistakably like a brand new sophisticated physical PAINTING instead of a color treatment or digital pencil photograph. Specific low wind-scoured Auckland Islands terrain, New Zealand subantarctic. Same original camera, geometry, pose-ground, asset positions and proportions. Keep the whole lower walking strip clear and subdued, suitable for character cutouts. LAND must not flow into water, never paint overlapping ripples onto rocks. No baked-in characters, animals, signage, labels, border, or interface. Edge to edge horizontal painting, 16:9.",
+  "assets": [
+    {
+      "file": "beach.webp",
+      "references": [
+        {
+          "file": "beach.png",
+          "sha256": "c9386388d294858e67df53674a1f5a0ec0aeeedd05e9ef15f61050c4edeabfed",
+          "role": "earlier base layout"
+        }
+      ],
+      "direction": "January clearing storm. Stage a dynamic blue-green swell and pearly spray seaward at left, separated cleanly from sculptural dark basalt. Wrecked small two-masted schooner far distant at x14%, centre y38%. Keep the tree arm at x69% y33% as a hanging place for a separate sail scrap; do not paint the scrap, pole, log or coil. Right winding path remains clear. Keep rocky outcrop overlooking firm neutral grey sand below y71%. Show a broad sweep of sky broken by the first glowing cold light.",
+      "method": "Full-frame original painting; RGB WebP encode.",
+      "native_generation_sha256": "68715554526b89c48779991d9c7791e618d359008c7cfd3d93225f25c649f014",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 592056,
+      "sha256": "37e65b27f4f7eff46bee2e159aa6127334746e6e67b3712794b299092dea7f5f",
+      "webp_quality": 92
+    },
+    {
+      "file": "wreck.webp",
+      "references": [
+        {
+          "file": "wreck.png",
+          "sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+          "role": "earlier base layout"
+        },
+        {
+          "file": "workplates/chest.webp",
+          "role": "project close-up identifying the narrow rusted strap and triangular pry notch",
+          "sha256": "97949b9dfda8c2cf106bf5e9dd51fc98f1b1d58a41889c98b824584f5a6f98f6"
+        }
+      ],
+      "direction": "Hero view of the wounded Grafton deeply raked along a basalt shelf. Its bow towers at left, stern/cabin slopes toward the right. Great sweeping dark-violet shadow under the warmer scarred bent strakes, visibly swollen wood. Light hail passing on far hills, creaming pale sea at far left. Crucial closed, square rough salvage chest on its rock pedestal at x72% y56%, exact original extent x65–79 y49–62. Keep exactly one fixed board leaning at centre right x52–60% y40–73. Preserve era rigging, gash through planks, little coil at left, right-hand shore exit. Clear path under y74%, soft solid gravel. No extra standalone tools, lumber or crates.",
+      "method": "Full-frame original painting; RGB WebP encode.",
+      "native_generation_sha256": "2d6133eb315fc6229f1be02775d7b389f84328f357c209259c97329343b54b0f",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 591708,
+      "sha256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
+      "webp_quality": 92,
+      "delta_outside_local_edits_rgb_mean_after_encoding": [
+        0.266,
+        0.263,
+        0.268
+      ],
+      "prop_continuity": {
+        "generator": "OpenAI ImageGen",
+        "date": "2026-11-18",
+        "pre_edit_file_sha256": "cbbc2f2757b13a1fb624229a4dad28ad58e4dfcd198416bc279f75b2d798617e",
+        "generated_donor_sha256": "c76919229e0c4d7964aa8378143a44c5f4e9e1301af1bb19c5c01ed8b51b5241",
+        "reference_crop_xywh": [
+          1055,
+          409,
+          300,
+          240
+        ],
+        "reference_crop_scale": 3,
+        "donor_registration_xywh_px": [
+          [
+            1149,
+            469,
+            20,
+            41
+          ],
+          [
+            1184,
+            491,
+            17,
+            12
+          ]
+        ],
+        "method": "ImageGen edited a 3× crop of the pre-edit plate with the playable chest workplate as a prop reference. Only the small hardware and notch patches were registered onto the original lossless painting before the same WebP encoding."
+      }
+    },
+    {
+      "file": "wreck-open.webp",
+      "references": [
+        {
+          "file": "tidepaint/wreck.webp",
+          "sha256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
+          "role": "Live wreck plate. The original composition used its pre-fastener generation; that archived reference is identified separately.",
+          "pre_continuity_reference_sha256": "cbbc2f2757b13a1fb624229a4dad28ad58e4dfcd198416bc279f75b2d798617e"
+        },
+        {
+          "file": "states/wreck-open.png",
+          "sha256": "2eb4cbeb194e87e537730f48501435ec34de25dcd47f6e1c5e9f329e207c680d",
+          "role": "earlier state layout"
+        },
+        {
+          "file": "workplates/chest.webp",
+          "role": "project close-up identifying the narrow rusted strap and triangular pry notch",
+          "sha256": "97949b9dfda8c2cf106bf5e9dd51fc98f1b1d58a41889c98b824584f5a6f98f6"
+        }
+      ],
+      "direction": "Image ONE is the actual new finished painting. Make an image identical to it in every respect except for the wooden salvage chest at 72 percent across and 55 percent down. Paint its lid hinged open almost vertical as in reference TWO, the original state guide. Image one is the authority on paint, scale and lighting. Respect first chest front silhouette exactly. Hinged open rear edge, visible inner shadow; empty rough wooden interior. Keep all the background and sea and ship of image one exactly locked. Warm rust against violet shade, wood securely on stone. No other new props.",
+      "method": "Generated state art registered on the original new base under a three-pixel feathered polygon. All surrounding source pixels retained before WebP encoding.",
+      "native_generation_sha256": "9ade25859ea8fce21c8a1189385b2123be8024abe362ba37087a15081950ad72",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 592326,
+      "sha256": "f55cfe61de722993cf58492c4a1e221d2329e3051b9f8717d723b2bbb2570a2f",
+      "webp_quality": 92,
+      "lossless_base_generation_sha256": "2d6133eb315fc6229f1be02775d7b389f84328f357c209259c97329343b54b0f",
+      "mask_polygon_percent": [
+        [
+          64.7,
+          50.6
+        ],
+        [
+          69.7,
+          48
+        ],
+        [
+          69.8,
+          35.1
+        ],
+        [
+          79.0,
+          36.3
+        ],
+        [
+          79.0,
+          61.5
+        ],
+        [
+          74.2,
+          63.9
+        ],
+        [
+          64.8,
+          62.6
+        ]
+      ],
+      "mean_absolute_rgb_error_outside_state_after_encoding": [
+        0.806,
+        0.782,
+        0.832
+      ],
+      "delta_outside_local_edits_rgb_mean_after_encoding": [
+        0.433,
+        0.422,
+        0.443
+      ],
+      "prop_continuity": {
+        "generator": "OpenAI ImageGen",
+        "date": "2026-11-18",
+        "pre_edit_file_sha256": "cd8e00df2c5725663e8320c84f32de23c933e5bd70076ccbdcc35216edeb19ba",
+        "generated_donor_sha256": "82471c2d6947d7d27f183d4a6c485cd3339229334fb389916c4818a51a8859aa",
+        "reference_crop_xywh": [
+          1055,
+          280,
+          300,
+          340
+        ],
+        "reference_crop_scale": 3,
+        "donor_registration_xywh_px": [
+          [
+            1151,
+            497,
+            19,
+            19
+          ],
+          [
+            1227,
+            339,
+            17,
+            15
+          ]
+        ],
+        "method": "ImageGen edited a 3× crop of the open crate with the playable chest close-up as reference. The stationary loop fits the closed hasp. The raised lip is placed on the corresponding lateral line of the foreshortened lid. Only these two patches entered the original lossless open composition before the same WebP encoding."
+      }
+    },
+    {
+      "file": "salvage.webp",
+      "references": [
+        {
+          "file": "tidepaint/wreck.webp",
+          "sha256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
+          "role": "Live wreck plate. The original composition used its pre-fastener generation; that archived reference is identified separately.",
+          "pre_continuity_reference_sha256": "cbbc2f2757b13a1fb624229a4dad28ad58e4dfcd198416bc279f75b2d798617e"
+        },
+        {
+          "file": "voyage/scenes/salvage.png",
+          "sha256": "c0f6d8e13ea09e23331af338188068fb680b91ce6624a45cac9634b369e65e4b",
+          "role": "earlier state layout"
+        }
+      ],
+      "direction": "Return to the identical stranded schooner of the first new painting but a winter and a year have weathered the hull. Second painting ONLY indicates what planks were removed from near-side hull. Through the entire midship section, x22–64% y26–58%, paint several missing strakes exposing widely spaced curved ribs, dramatic negative gaps framing sky and the dark hold within as reference TWO. Muted green-gray outer water. Ship still sits on the same rocks and appears same size. Keep closed chest and propped fixed tall board, remove small spool/rope coil at far left base leaving ground and stones bare for salvage. Avoid extra props in front, no people, drawing, lettering, text. Deep and quiet but legible afternoon; keep painterly materials of image ONE. No carved names, do not add any new detachable items, preserve the walkable floor.",
+      "method": "Whole-room seasonal reillustration of the new wreck. Missing strakes expose ribs, the shore coil is gone, and a dusting of snow identifies the winter visit.",
+      "native_generation_sha256": "43d23e63e2f462cc8f825bc40f0d928c072dce99f7ce930ba03cdffe63103001",
+      "dimensions": [
+        1671,
+        941
+      ],
+      "bytes": 613986,
+      "sha256": "f4ea40a4fe4753510c746238f7d5e1958755f9acc8f7f997f1f34c0d3c900d3e",
+      "webp_quality": 92,
+      "lossless_base_generation_sha256": "2d6133eb315fc6229f1be02775d7b389f84328f357c209259c97329343b54b0f"
+    },
+    {
+      "file": "camp.webp",
+      "references": [
+        {
+          "file": "camp.png",
+          "sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+          "role": "earlier base layout"
+        }
+      ],
+      "direction": "January camp sheltered between red-flowering southern rāta trees, evening slant just touches unbleached lashed fork poles of EMPTY OPEN shelter frame. No roof, absolutely no canvas or cloth. Preserve four support feet, same line of lashed ridge. Tent frame x56–84% y32–67%, a distant sheet of water behind rocks at x36–65% y34%. Cold stone fire circle centre x27.3% y65.7% exactly, completely unlit. Vacant cairn/marker spot x44.4 y63.7. Large left and right trunks, near branches distinct, kelp-coloured low bushes, bare warm umber camp floor under y69%. Coppery sun judiciously edging bark, distant celadon sea; still and private. No flag, pole, cairn, fire or ropes on floor.",
+      "method": "Full-frame original painting; RGB WebP encode.",
+      "native_generation_sha256": "ca6492d37d513b8943db81e9bde38f89c849631b691aa80f013766927ae5ecef",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 510628,
+      "sha256": "b2b027c08ee9906a6fb3a153f6b87fbee8fb2e2e92eab8917929468b68cc7a4b",
+      "webp_quality": 92
+    },
+    {
+      "file": "camp-shelter.webp",
+      "references": [
+        {
+          "file": "tidepaint/camp.webp",
+          "sha256": "b2b027c08ee9906a6fb3a153f6b87fbee8fb2e2e92eab8917929468b68cc7a4b",
+          "role": "new base; lossless generation used for editing"
+        },
+        {
+          "file": "states/camp-shelter.png",
+          "sha256": "8906c27bdb0bd8cd602f1901ff0e0d15cf07389957464370ad061c0617b36171",
+          "role": "earlier state layout"
+        }
+      ],
+      "direction": "Image ONE is the true finished painting. Change ONLY its right-side stick A-frame to its roofed state. Paint one large triangular rig of reclaimed pale flax sail canvas lashed over the FIRST picture’s poles. Match open sides and location of reference TWO, which is an old blocking diagram. The near flap stretches diagonally across the poles from x65% y38% across to x83% y31%, its bottom hem runs from x59% y55% to x79% y60%. Leave the foreground and fire circle empty, preserve entire new first background, camera, trunks, terrain, water and pole feet. Canvas well-tensioned, damp, fawn-and-bone coloured winter shelter, readable clearly as a change. No furniture, people, poles in the foreground or other additions.",
+      "method": "Generated state art registered on the original new base under a three-pixel feathered polygon. All surrounding source pixels retained before WebP encoding.",
+      "native_generation_sha256": "e5d4cee3c976461d578285f22b42e6623e5033dd27cf0513c03dc25c6ce7b56f",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 508428,
+      "sha256": "4f70b0a2c89f53a12512fc799ad16f96fd4a4b17edd7e294fe26193419db4bde",
+      "webp_quality": 92,
+      "lossless_base_generation_sha256": "ca6492d37d513b8943db81e9bde38f89c849631b691aa80f013766927ae5ecef",
+      "mask_polygon_percent": [
+        [
+          54.6,
+          67.4
+        ],
+        [
+          57.9,
+          53.5
+        ],
+        [
+          64.3,
+          37.2
+        ],
+        [
+          64.0,
+          32.4
+        ],
+        [
+          67.5,
+          31.6
+        ],
+        [
+          67.8,
+          36.0
+        ],
+        [
+          80.9,
+          31.6
+        ],
+        [
+          80.9,
+          28.0
+        ],
+        [
+          84.8,
+          27.8
+        ],
+        [
+          85.1,
+          30.2
+        ],
+        [
+          87.8,
+          56.0
+        ],
+        [
+          85.4,
+          61.9
+        ],
+        [
+          80.3,
+          63.6
+        ],
+        [
+          79.7,
+          70.9
+        ],
+        [
+          77.8,
+          70.8
+        ],
+        [
+          77.9,
+          64.4
+        ],
+        [
+          63.8,
+          65.8
+        ],
+        [
+          63.5,
+          68.0
+        ],
+        [
+          61.4,
+          68.4
+        ],
+        [
+          60.9,
+          65.7
+        ],
+        [
+          56.4,
+          67.8
+        ]
+      ],
+      "mean_absolute_rgb_error_outside_state_after_encoding": [
+        0.866,
+        0.83,
+        0.899
+      ]
+    },
+    {
+      "file": "landing.webp",
+      "references": [
+        {
+          "file": "voyage/scenes/landing.png",
+          "sha256": "e4d06c1c1c512cbd2fb5246cb9cfbc643c13a41a1a2a898cf73b38920fd9be3f",
+          "role": "earlier base layout"
+        }
+      ],
+      "direction": "Cold August rescue landing. Far hills and distant cutter at x10% y29%. Silver after-rain iridescence on horizon. Clinker rowing boat pulled up on shore, side on at x21–54% y46–62%, nearest gunwale accessible at x47,y49, no painted oars across foreground. Upright weathered single post x76% y27–62%; keep top and its small fixed loop clear for separate lantern and line. Tidewater behind boat, half-hidden rocks right, dark thin kelp against amber-green water, sheltered landing of Carnley Harbour. Entire lower 36% of frame bare solid sand. Age layers in the imported timber and show the reflection of the sky on the bay. No separate lantern, goods, people, cordage or modern marina.",
+      "method": "Full-frame original painting followed by a masked native ImageGen tidewater correction. Original encoded RGB pixels retained outside the small wash; final exact lossless RGB WebP.",
+      "native_generation_sha256": "d6c994c3bfa3ba007f70c52c369d994abb2acecaad04d19f234d28f103f8cd2f",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "bytes": 1864094,
+      "sha256": "333f38ecdf7c5eb29cdb0ab75c11b873a0fdb9ae0c764f82c5951effdb4a8634",
+      "webp_quality": "lossless",
+      "intertidal_revision": {
+        "native_donor_id": "exec-2b6fe600-6148-48ab-8788-86e3a3c063ac",
+        "native_donor_sha256": "c68afae6d030cfeadd4eb714568daa16d6513ed3678ca5493d3c16ede1086b95",
+        "native_donor_bytes": 2580070,
+        "before_bytes": 527918,
+        "before_sha256": "25d008e150770f279a0af7ad31ca0da818fd123e06e1514cc9c1b6e4fa12a728",
+        "mask_polygon_native_pixels": [
+          [
+            126,
+            548
+          ],
+          [
+            164,
+            533
+          ],
+          [
+            272,
+            528
+          ],
+          [
+            335,
+            528
+          ],
+          [
+            340,
+            534
+          ],
+          [
+            348,
+            552
+          ],
+          [
+            353,
+            558
+          ],
+          [
+            352,
+            561
+          ],
+          [
+            343,
+            570
+          ],
+          [
+            335,
+            583
+          ],
+          [
+            334,
+            595
+          ],
+          [
+            346,
+            599
+          ],
+          [
+            380,
+            600
+          ],
+          [
+            401,
+            599
+          ],
+          [
+            421,
+            597
+          ],
+          [
+            435,
+            592
+          ],
+          [
+            435,
+            583
+          ],
+          [
+            431,
+            576
+          ],
+          [
+            448,
+            581
+          ],
+          [
+            488,
+            585
+          ],
+          [
+            552,
+            586
+          ],
+          [
+            627,
+            585
+          ],
+          [
+            700,
+            585
+          ],
+          [
+            771,
+            584
+          ],
+          [
+            822,
+            583
+          ],
+          [
+            847,
+            581
+          ],
+          [
+            862,
+            574
+          ],
+          [
+            871,
+            564
+          ],
+          [
+            881,
+            546
+          ],
+          [
+            891,
+            519
+          ],
+          [
+            897,
+            500
+          ],
+          [
+            932,
+            502
+          ],
+          [
+            974,
+            505
+          ],
+          [
+            1015,
+            506
+          ],
+          [
+            1050,
+            507
+          ],
+          [
+            1073,
+            515
+          ],
+          [
+            1095,
+            520
+          ],
+          [
+            1115,
+            519
+          ],
+          [
+            1136,
+            513
+          ],
+          [
+            1150,
+            497
+          ],
+          [
+            1170,
+            489
+          ],
+          [
+            1202,
+            491
+          ],
+          [
+            1236,
+            501
+          ],
+          [
+            1248,
+            513
+          ],
+          [
+            1248,
+            536
+          ],
+          [
+            1248,
+            572
+          ],
+          [
+            1249,
+            588
+          ],
+          [
+            1238,
+            591
+          ],
+          [
+            1205,
+            597
+          ],
+          [
+            1175,
+            600
+          ],
+          [
+            1140,
+            596
+          ],
+          [
+            1110,
+            594
+          ],
+          [
+            1075,
+            593
+          ],
+          [
+            1030,
+            590
+          ],
+          [
+            970,
+            585
+          ],
+          [
+            949,
+            585
+          ],
+          [
+            870,
+            596
+          ],
+          [
+            844,
+            599
+          ],
+          [
+            792,
+            600
+          ],
+          [
+            703,
+            599
+          ],
+          [
+            621,
+            600
+          ],
+          [
+            541,
+            600
+          ],
+          [
+            466,
+            599
+          ],
+          [
+            406,
+            601
+          ],
+          [
+            353,
+            599
+          ],
+          [
+            328,
+            601
+          ],
+          [
+            306,
+            600
+          ],
+          [
+            287,
+            599
+          ],
+          [
+            266,
+            598
+          ],
+          [
+            261,
+            593
+          ],
+          [
+            255,
+            586
+          ],
+          [
+            243,
+            577
+          ],
+          [
+            229,
+            575
+          ],
+          [
+            214,
+            578
+          ],
+          [
+            197,
+            581
+          ],
+          [
+            181,
+            578
+          ],
+          [
+            165,
+            572
+          ],
+          [
+            151,
+            569
+          ],
+          [
+            141,
+            567
+          ],
+          [
+            135,
+            557
+          ]
+        ],
+        "donor_wash_registration": "Donor raster untouched through row 557. Local lower tide rows 558–634 scaled to rows 558–601. Only the irregular intertidal mask admits this donor.",
+        "feather_sigma_pixels": 1.8,
+        "changed_decoded_pixels": 60499,
+        "changed_bounds_inclusive_pixels": [
+          124,
+          486,
+          1253,
+          605
+        ],
+        "verified_unchanged_boxes_half_open": {
+          "walk surface at 65% and below": [
+            0,
+            612,
+            1672,
+            941
+          ],
+          "tall post including eye and base": [
+            1255,
+            249,
+            1310,
+            602
+          ],
+          "hull interior, gunwale and planks at centre": [
+            451,
+            456,
+            759,
+            574
+          ],
+          "distant cutter and light": [
+            0,
+            100,
+            274,
+            340
+          ]
+        },
+        "unchanged_below_stage_direction_landing_floor": true,
+        "input_description": "Exact decoded, released-size landing plate from the first coastal generation, identified by before_sha256. Generated replacement applies to shallow water and saturated pebbles only.",
+        "prompt": "Edit the supplied wide original 1860s painting. Scene is already finished. Mandatory single local correction only, keeping all proportions and coordinates exactly fixed: ankle deep inlet water laps directly against and UNDER the small return skiff at the shingle edge. A small swell from the far water at left has washed through gaps in the stones, and wraps around the bow (right) beneath the keel leaving a narrow bright-edged meandering tongue between the saturated dark pebbles. From the skiff toward the seawards side of the wooden post at x76%, paint a connected, very narrow plane of brushed celadon-pewter water from the existing ocean behind, with a few very fine foamy lips, soft ochre-brown hull reflection, transparent dark pebbles, discontinuous wet reflections. Boat is afloat in seaward shallows; foreground is solid dry beach. Most of the new visible water is just beneath and immediately to the right of the boat, as the tide rides in and recedes. A *convincing connected tidal inlet*, not scattered tidepools. Make it unequivocally visible at phone size, broad enough to read but confined to band x13%–75.2% and y53.0%–64.5%. Keep the skiff in its EXACT current position x20.2%–54.7%, with wooden hull intact, keel baseline y61.8%. Preserve curve and colour of every part of the foreground boat, and timber post at x75–78% and eye ring at 77.8%,31.5% exactly unchanged. Keep large foreground stones where possible. The entire level foreground walking shingle below y65% is EXACTLY UNCHANGED AND DRY; no wash in the walking plane. Gently irregular almost horizontal tide edge settles near y64%. Same full 16:9 image with no reframing, zoom, shift, hue change, new props, people, expanded ocean, or changes to sky, mountain, anchored boat, trees, foreground post, dry ground or the double-ended skiff itself. Finish with same sober brushwork, muted low-angle light and canvas surface as original."
+      }
+    }
+  ]
+}

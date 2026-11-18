@@ -32,6 +32,20 @@ def encode(png, output):
     raise ValueError(f'Unacceptable colour difference in {png.name}')
 
 
+def is_runtime_file(path):
+    if not path.is_file() or path.suffix not in RUNTIME_TYPES:
+        return False
+    relative = path.relative_to(SOURCE).as_posix()
+    # These full-size studies are archived with their original acquisition receipts.
+    # The runtime scenery and the crate detail are now registered to tidepaint.
+    if relative.startswith('assets/voyage/scenes/'):
+        return False
+    return relative not in {
+        'assets/beach.png', 'assets/camp.png', 'assets/wreck.png',
+        'assets/states/wreck-open.png', 'assets/states/camp-shelter.png',
+    }
+
+
 def build(destination):
     destination = destination.resolve()
     if destination == SOURCE or SOURCE in destination.parents:
@@ -39,7 +53,7 @@ def build(destination):
     destination.mkdir(parents=True, exist_ok=True)
     if any(destination.iterdir()):
         raise ValueError('Use an empty output directory.')
-    files = [p for p in SOURCE.rglob('*') if p.is_file() and p.suffix in RUNTIME_TYPES]
+    files = [p for p in SOURCE.rglob('*') if is_runtime_file(p)]
     output_names = set()
     work = []
     for src in files:

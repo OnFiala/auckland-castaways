@@ -79,7 +79,15 @@ function actorGoal(id){
  return id==='raynal'&&f.canvasRecovered?-6:id==='musgrave'&&f.crateOpen?-7:id==='henry'?(f.fireLit?-10:f.shelterBuilt?-6:0):id==='george'&&f.shelterBuilt?-6:0;
 }
 const backgroundReady=new Map();
-function backdropFor(next){return W.background?.(next)||W.scenes?.[next.scene]?.file||(next.scene==='camp'&&next.flags.shelterBuilt?'assets/states/camp-shelter.png':next.scene==='wreck'&&next.flags.crateOpen?'assets/states/wreck-open.png':`assets/${next.scene}.png`);}
+function backdropFor(next) {
+ const registered = W.background?.(next);
+ if (registered) return registered;
+ // The stand-alone first-night edition can also run without the voyage script.
+ let name = next.scene;
+ if (name === 'camp' && next.flags.shelterBuilt) name = 'camp-shelter';
+ if (name === 'wreck' && next.flags.crateOpen) name = 'wreck-open';
+ return `assets/tidepaint/${name}.webp`;
+}
 function prepareBackground(next){
  const file=backdropFor(next);if(backgroundReady.has(file))return backgroundReady.get(file);
  if(typeof window.Image!=='function')return Promise.resolve(true);
@@ -317,7 +325,7 @@ function worldChanges(){const f=state.flags;let html='';
  if(f.mastRaised)html+=`<div class="change signal-mast" style="left:46.9%;top:44%;width:6.8%;height:38%">${painted(f.signalRaised?A.states.mastFlag:A.states.mast,f.signalRaised?'flag-cloth':'bare-mast')}</div>`;
 
  }
- if(W.decorations)html+=W.decorations(state,{painted,svg});
+ if(W.decorations)html+=W.decorations(state,{painted,svg,marks:Stage?.marks});
  if(state.scene==='cabin')html+=Bench?.cabinTraces?.(state.flags.roofSealed)||'';
  if(worldMarkup!==html){$('world-changes').innerHTML=html;worldMarkup=html;}
  syncCompanions();

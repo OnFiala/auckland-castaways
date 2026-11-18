@@ -13,13 +13,12 @@
   const zone = (id, medium, depth, count, points) => ({id, medium, depth, count, points});
   const box = (x,y,w,h) => [[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
   const fx = (id, kind, x,y,w,h, strength = 1) => ({id,kind,x,y,w,h,strength});
-  const crop = (id, rect, shape, motion) => ({id,rect,shape,motion});
   const pane = (id, x,y,w,h, medium) => zone(id,medium,'distant',5,box(x,y,w,h));
   // Each light of the sash has its own aperture. The central mullions and the
   // sill remain opaque, including when a near-white snowflake crosses a pane.
   const cabinPanes = medium => [
-    pane('upper-left pane',14.6,16.6,6.2,8.4,medium),pane('upper-right pane',21.9,16.6,6.0,8.4,medium),
-    pane('lower-left pane',14.6,26.4,6.2,10.5,medium),pane('lower-right pane',21.9,26.4,6.0,10.5,medium)
+    pane('upper-left pane',14.6,17.4,6.2,8.4,medium),pane('upper-right pane',22.1,17.5,5.7,8.3,medium),
+    pane('lower-left pane',14.6,28,6.2,9.0,medium),pane('lower-right pane',22.1,28,5.7,9.0,medium)
   ];
   const chartPanes = [
     pane('upper-west glass',4.6,9.9,6.2,12.1,'rain'),pane('upper-east glass',12.3,10.2,6.1,11.9,'rain'),
@@ -34,8 +33,7 @@
       zones:[zone('outer shoal','rain','middle',32,[[0,4],[28,1],[43,13],[33,29],[22,44],[10,59],[0,64]]),
         zone('windward shingle','rain','near',15,[[0,45],[15,46],[25,59],[21,69],[9,80],[0,84]]),
         zone('breaking water','spray','near',12,[[0,48],[15,47],[18,52],[12,56],[0,60]])],
-      effects:[fx('rain on shingle','rings',10.3,61.8,8,2.1),fx('backwash on rock','backwash',.1,56.3,13.2,2.4)],
-      cut:crop('shore grass',[0,79.1,8.2,11.8],'0 0,100% 0,100% 80%,0 100%','grass')},
+      effects:[fx('rain on shingle','rings',10.3,61.8,8,2.1),fx('backwash on rock','backwash',.1,56.3,13.2,2.4)]},
     wreck: {chapter:1, season:'austral summer', weather:'Runoff from the wreck', wind:1.03, slant:.78,
       zones:[zone('exposed water','rain','middle',29,wreckSeaward),
         zone('gap beyond the stern','rain','far',15,[[75,3],[99,3],[98,35],[87,44],[82,33]]),
@@ -52,16 +50,14 @@
         zone('near bank','sleet','near',18,[[5,27],[15,32],[27,52],[30,68],[21,71],[8,56]]),
         zone('open path','snow','middle',22,[[50,30],[67,28],[72,45],[56,66],[43,70],[46,50]]),
         zone('flakes below the near canopy','snow','near',20,[[63,27],[73,22],[83,35],[84,61],[72,75],[59,65],[61,49]])],
-      effects:[fx('meltwater below the fall','rings',19.5,66.4,6.3,1.7),fx('last flakes on moss','snow-edge',24.8,52.8,5.7,1.7),fx('wet slush at the runnel','slush-edge',22.6,68.2,21,5.0)],
-      cut:crop('bank fern',[2,85.7,10.4,11.3],'0 0,100% 0,94% 100%,0 100%','grass')},
+      effects:[fx('meltwater below the fall','pool-rings',19.4,65.7,5.9,1.2)]},
     forge: {chapter:3, indoor:true, season:'early 1865', weather:'Fine rain beyond the forge door', wind:.67, slant:.64,
       zones:[zone('doorway below lintel','rain','distant',16,[[2,17],[10.8,19],[10.3,56],[2,58]])],
       effects:[fx('drips outside threshold','drip',3.1,44.2,.5,11.8)]},
     charcoal: {chapter:3, season:'early 1865', weather:'A shower caught in the canopy', wind:.66, slant:.64,
       zones:[zone('hollow beyond the roots','rain','far',17,winterGully),
         zone('dripping stand of trees','rain','middle',11,[[72,20],[85,17],[82,42],[74,57],[69,49]])],
-      effects:[fx('water off the roots','drip',17.2,47.5,.8,10.9),fx('droplets at the seep','rings',19,66.4,7,1.6)],
-      cut:crop('wind at the pit',[90.4,50.8,9.2,8.2],'0 22%,100% 0,100% 100%,0 94%','grass')},
+      effects:[fx('water off the roots','drip',17.2,47.5,.8,10.9),fx('droplets at the seep','pool-rings',23.7,67.1,3.5,.9)]},
     slipway: {chapter:4, season:'July 1865', weather:'Needles of sleet off the cove', wind:.94, slant:.84,
       zones:[zone('open cove','sleet','middle',31,cove),
         zone('wind across the stocks','sleet','far',17,[[12,3],[30,4],[39,21],[30,37],[20,41],[13,28]])],
@@ -101,7 +97,7 @@
     harbour:[patch('damp edge of the wharf','boards',[[6.4,71.6],[29,70.9],[36,71.8],[34,76.6],[12.5,78]])],
     landing:[patch('shingle above the wash','shingle',[[6,67],[25,64.5],[47.8,65.5],[58,65],[55.1,69],[22,74.1],[6,73.4]])]
   };
-  const wetBilge=patch('wet planks by the bilge','bilge',[[55,76],[63,74.7],[73,75.3],[74.2,78.2],[65,81],[57.2,79.1]]);
+  const wetBilge=patch('wet planks by the bilge','bilge',[[62.6,75.8],[69.6,75.9],[70,76.4],[68.6,77.2],[65.8,77.9],[63.2,77.4]]);
   const maxTracks=12;
   const controlled = {
     camp:['shelterBuilt','firewoodPlaced','fireLit','mastRaised','signalRaised'],
@@ -113,7 +109,7 @@
     const scene=state?.scene, base=scenes[scene];
     if (!base) return null;
     const f=state.flags || {}, zones=[...base.zones], effects=[...base.effects];
-    let shelter='open', rig='none', cut=base.cut;
+    let shelter='open', rig='none';
     if (base.indoor) shelter='indoors';
     if (scene==='camp') {
       shelter=f.shelterBuilt?'canvas lee':'bare frame';
@@ -133,14 +129,13 @@
       if(f.hullPlanked) effects.push(fx(f.boatSealed?'sealed strake runoff':'water beads on strake','drip',76.6,53.7,.45,f.boatSealed?7.7:2.7));
     } else if(scene==='crossing') {
       rig=f.sailMended?'patched canvas':f.rigSecured?'secured shroud':'loose shroud';
-      if(!f.boatDry) effects.push(fx('water surging in bilge','backwash',61.4,73.9,10.1,1.5));
-      cut=crop('working shroud',[23.9,37,12.2,23.1],'73% 0,78% 0,14% 100%,8% 100%',f.rigSecured?'fast-line':'loose-line');
+      if(!f.boatDry) effects.push(fx('water surging in bilge','backwash',63.2,75.9,5.3,1.1));
     } else if(scene==='landing') {
       rig=f.boatMoored?'boat made fast':'boat unmoored';
-      if(f.landingMarked) effects.push(fx('lantern on wet shingle','warmth',73.4,59.5,4.2,2.6));
+      if(f.landingMarked) effects.push(fx('lantern on wet shingle','warmth',75.7,60.7,4.2,2.6));
     }
     return {scene, chapter:base.chapter, season:base.season, weather:base.weather, indoor:!!base.indoor,
-      wind:base.wind,slant:base.slant,zones,effects,shelter,rig,cut,
+      wind:base.wind,slant:base.slant,zones,effects,shelter,rig,
       ground:scene==='crossing' ? (f.boatDry ? [] : [wetBilge]) : (patches[scene] || [])};
   }
 
@@ -182,18 +177,6 @@
   function air(ctx,field,m,t,gust,still) {
     const {z,x,y,w,h,depth,grains}=field;
     ctx.save();clipZone(ctx,z.points);
-    // A soft, local curtain makes the passing fall readable against textured
-    // rock and sky. No tint is allowed outside the aperture or over the floor.
-    if(!m.indoor && z.medium!=='spray') {
-      const silver=z.medium==='snow'||z.medium==='sleet';
-      ctx.save();
-      ctx.translate(x+w*(.5+.055*Math.sin(.19*t)),y+h*.49);
-      ctx.scale(w*.44,h*.48);
-      const wash=ctx.createRadialGradient(0,0,0,0,0,1);
-      wash.addColorStop(0,silver?'rgba(191,205,212,.22)':'rgba(141,159,168,.16)');
-      wash.addColorStop(1,'transparent');
-      ctx.fillStyle=wash;ctx.globalAlpha=.65+.35*gust;oval(ctx,0,0,1,1,true);ctx.restore();
-    }
     const rate = still ? 0.40 : 0.73 + 0.27 * gust;
     for (let i=0;i<Math.ceil(rate*grains.length);i++) {
       const p=grains[i], kind=z.medium, snow=kind==='snow'||(kind==='sleet'&&p.u>.62), spray=kind==='spray';
@@ -233,7 +216,7 @@
   function surface(ctx,e,t,gust,still) {
     const x=e.x*10,y=e.y*height/100,w=e.w*10,h=e.h*height/100;
     ctx.save();ctx.lineCap='round';
-    if(e.kind==='rings') {
+    if(e.kind==='rings'||e.kind==='pool-rings') {
       for(let j=0;j<3;j++) {
         const phase=unit(t*(.49+.12*j)+.37*j);
         ctx.globalAlpha=.5*Math.sin(phase*Math.PI)*e.strength;
@@ -254,19 +237,6 @@
         ctx.globalAlpha=.4*Math.sin(phase*Math.PI)*gust;
         ctx.beginPath();ctx.moveTo(px,y+h*phase);ctx.quadraticCurveTo(px+w*.065,y+h*(phase+.17),px+w*.16,y+h*(phase-.08));ctx.stroke();
       }
-    } else if(e.kind==='slush-edge') {
-      // Thin fragments at the margin of the runnel, where a boot can disturb
-      // the thawing skin. The central footpath remains exposed earth.
-      ctx.fillStyle='#d0d2c6';ctx.strokeStyle='#c5cbbf';ctx.lineWidth=.7;
-      for(let i=0;i<21;i++){
-        const u=noise(73+i),v=noise(91+i),px=x+w*u,py=y+h*(.88-.69*u+.12*v);
-        ctx.globalAlpha=.25+.2*v;
-        oval(ctx,px,py,1.3+2.1*v,.4+.34*v,true);
-        if(i%4===0)stroke(ctx,px,py+.65,1.2+2.8*v,-.35);
-      }
-    } else if(e.kind==='snow-edge') {
-      ctx.fillStyle='#dfddd0';ctx.globalAlpha=.44;
-      for(let i=0;i<7;i++) oval(ctx,x+w*noise(i+7),y+h*noise(i+17),.8+noise(i+71),.45,true);
     } else if(e.kind==='heat') {
       ctx.lineWidth=.65;ctx.strokeStyle='#edba773b';
       for(let i=0;i<3;i++) {
@@ -329,7 +299,7 @@
     boatDry:['crossing','bilge','over-rail',72.8,51.5,10.5,8.7],
     sailMended:['crossing','tornSail','drawn-cloth',74,10.3,5.2,5.5],
     boatMoored:['landing','rescueBoat','rope-settles',73.3,36.7,3.3,5.3],
-    landingMarked:['landing','signalPost','warmth',73.2,59.7,4.4,2.2]
+    landingMarked:['landing','signalPost','warmth',76.25,33.1,3.1,4.0]
   };
   function contactWeather(ctx,a,time) {
     const p=Math.max(0,Math.min(1,(time-a.start)/1.24));
@@ -367,58 +337,13 @@
     ctx.restore();
   }
 
-  function background(model,state) {
-    const active=host.CastawayWorld?.background?.(state);
-    if(active)return active;
-    if(model.scene==='beach') return 'assets/beach.png';
-    if(model.scene==='camp') return state.flags?.shelterBuilt?'assets/states/camp-shelter.png':'assets/camp.png';
-    if(model.scene==='wreck') return state.flags?.crateOpen?'assets/states/wreck-open.png':'assets/wreck.png';
-    if(model.scene==='crossing') return 'assets/voyage/scenes/crossing-'+(state.flags.courseSet?'safe':'wet')+'.png';
-    return 'assets/voyage/scenes/'+(model.scene==='return_camp'?'return-camp':model.scene)+'.png';
-  }
-  // The browser already has this URL for the backdrop. The image handle is
-  // scoped to the current plate; a late load cannot paint the next location.
-  function landscape(r,state,plate) {
-    if(!host.CastawayLandscape||!r.ctx||typeof host.Image!=='function')return;
-    const layers=host.CastawayLandscape.describe(state);
-    const signature=plate+'|'+layers.map(layer=>layer.name+'/'+(layer.power||'')).join('|');
-    if(signature===r.landSignature)return;
-    r.landSignature=signature;r.landLayers=layers;r.landDirty=true;
-    if(plate!==r.landPlate){
-      if(r.landImage)r.landImage.onload=r.landImage.onerror=null;
-      r.landPlate=plate;r.landImage=null;r.landParts=[];
-    }
-    prepareLandscape(r);
-  }
-  function prepareLandscape(r){
-    if(!r.landDirty||r.reduced||r.paused||r.doc.hidden||r.disposed)return;
-    if(r.landImage){
-      if(r.landImage.complete && r.landImage.naturalWidth){
-        r.landParts=host.CastawayLandscape.prepare(r.doc,r.landImage,r.landLayers);
-        r.landDirty=false;r.root.dataset.landscape=r.landParts.length?'ready':'still';
-      }
-      return;
-    }
-    const img=new host.Image();
-    r.landImage=img;
-    img.onload=()=>{
-      if(r.disposed||r.landImage!==img)return;
-      prepareLandscape(r);
-      if(!r.doc.hidden&&!r.paused&&!r.reduced)paint(r);
-    };
-    img.onerror=()=>{
-      if(r.landImage===img){r.landDirty=false;r.landImage=null;r.root.dataset.landscape='still';}
-    };
-    r.root.dataset.landscape='loading';
-    img.src=r.landPlate;
-  }
-  function texture(node,model,state) {
-    const cut=model.cut;
-    node.hidden=!cut;
-    if(!cut)return;
-    const [x,y,w,h]=cut.rect;
-    node.className='wx-cut wx-'+cut.motion;
-    node.style.cssText=`left:${x}%;top:${y}%;width:${w}%;height:${h}%;background-image:url("${background(model,state)}");background-size:${10000/w}% ${10000/h}%;background-position:${100*x/(100-w)}% ${100*y/(100-h)}%;clip-path:polygon(${cut.shape})`;
+  // Cache the active scene's small geometry descriptions. No bitmap is loaded,
+  // sampled or moved by either weather or landscape.
+  function prepareLandscape(r) {
+    if(!r.landDirty || r.disposed || r.paused || r.reduced || r.doc.hidden || !r.ctx || !host.CastawayLandscape)return;
+    r.landParts=host.CastawayLandscape.prepare(host.CastawayLandscape.describe(r.landState));
+    r.landDirty=false;
+    r.root.dataset.landscape=r.landParts.length?'ready':'still';
   }
   function paint(r) {
     if(!r.ctx||!r.model)return;
@@ -429,12 +354,22 @@
     const t=still?3.8:r.time;
     const gust=weatherCycle(t);
     if(!still && r.landParts?.length)host.CastawayLandscape.paint(ctx,r.landParts,t,gust);
-    for(const region of r.fields) air(ctx,region,model,t,gust,still);
-    for(const e of model.effects) surface(ctx,e,t,gust,still);
+    // Spindrift, waves and their wakes are masked a second time at the final
+    // draw site, including the exposed rocks within the original waterline.
+    for(const region of r.fields){
+      if(region.z.medium==='spray') host.CastawayLandscape?.onWater(ctx,r.landParts,()=>air(ctx,region,model,t,gust,still));
+      else air(ctx,region,model,t,gust,still);
+    }
+    for(const e of model.effects){
+      if(e.kind==='backwash'||e.kind==='pool-rings') host.CastawayLandscape?.onWater(ctx,r.landParts,()=>surface(ctx,e,t,gust,still));
+      else surface(ctx,e,t,gust,still);
+    }
     while(r.tracks.length && t-r.tracks[0].start>=r.tracks[0].duration)r.tracks.shift();
     if(!still)for(const track of r.tracks)planted(ctx,track,t);
     if(r.action&&!still) {
-      contactWeather(ctx,r.action,t);
+      if(responses[r.action.key][2]==='disturbed-water')
+        host.CastawayLandscape?.onWater(ctx,r.landParts,()=>contactWeather(ctx,r.action,t));
+      else contactWeather(ctx,r.action,t);
       if(t-r.action.start>=1.24)r.action=null;
     }
   }
@@ -480,14 +415,14 @@
     }
   }
   function mount(root) {
-    const doc=root.ownerDocument, cut=doc.createElement('span'), canvas=doc.createElement('canvas');
-    cut.hidden=true;canvas.className='wx-particles';
-    root.setAttribute('aria-hidden','true');root.replaceChildren(cut,canvas);
+    const doc=root.ownerDocument, canvas=doc.createElement('canvas');
+    canvas.className='wx-particles';
+    root.setAttribute('aria-hidden','true');root.replaceChildren(canvas);
     // Some low-capability renderers expose canvas but have no 2D context.
-    // The registered wind cut, CSS state and game path still work in that case.
+    // The backplate and game controls remain fully usable in that case.
     let ctx=null;
     try {ctx=canvas.getContext?.('2d',{alpha:true})||null;}catch(_){}
-    const r={root,doc,cut,canvas,ctx,model:null,fields:[],frame:null,timer:null,time:3.8,last:null,
+    const r={root,doc,canvas,ctx,model:null,fields:[],frame:null,timer:null,time:3.8,last:null,
       media:host.matchMedia?.('(prefers-reduced-motion: reduce)'),disposed:false,changes:[],flags:{},action:null,tracks:[],side:1};
     memory.set(root,r);
     r.prefListener=()=>preferences(r);
@@ -508,8 +443,7 @@
   function render(root,state) {
     if(!root||!state||!scenes[state.scene])return;
     const r=memory.get(root)||mount(root), keys=controlled[state.scene]||[];
-    const plate=background({scene:state.scene},state);
-    const signature=state.scene+'|'+keys.map(k=>state.flags?.[k]?'1':'0').join('')+'|'+plate;
+    const signature=state.scene+'|'+keys.map(k=>state.flags?.[k]?'1':'0').join('');
     if(r.signature===signature)return;
     const same=r.model?.scene===state.scene, f=state.flags||{};
     r.changes=same?keys.filter(k=>f[k]&&!r.flags[k]&&responses[k]):[];
@@ -518,8 +452,9 @@
     if(!same){r.action=null;r.last=null;r.tracks.length=0;}
     if(!r.model.ground.length)r.tracks.length=0;
     root.dataset.wxRoom=r.model.scene;root.dataset.wxShelter=r.model.shelter;root.dataset.wxRig=r.model.rig;
-    texture(r.cut,r.model,state);
-    landscape(r,state,plate);
+    r.landState={scene:state.scene,flags:{...state.flags}};r.landDirty=true;
+    r.landParts=[];r.root.dataset.landscape='still';
+    prepareLandscape(r);
     if(!r.doc.hidden)paint(r);
     preferences(r);schedule(r);
   }
@@ -552,8 +487,7 @@
   function dispose(root) {
     const r=memory.get(root);if(!r)return;
     r.disposed=true;
-    if(r.landImage)r.landImage.onload=r.landImage.onerror=null;
-    r.landParts=[];r.landImage=null;
+    r.landParts=[];r.landState=null;
     stop(r);r.sizeObserver?.disconnect();r.prefObserver?.disconnect();
     r.doc.removeEventListener?.('visibilitychange',r.prefListener);r.media?.removeEventListener?.('change',r.prefListener);
     if(!r.sizeObserver)host.removeEventListener?.('resize',r.sizeListener);

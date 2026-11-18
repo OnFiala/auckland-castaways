@@ -122,17 +122,7 @@
         325
       ]
     },
-    "crate": {
-      "file": "assets/wreck.png",
-      "width": 1672,
-      "height": 941,
-      "box": [
-        1045,
-        410,
-        316,
-        238
-      ]
-    }
+    "crate": {"file": "assets/field-scenes/crate-detail.webp", "width": 313, "height": 168, "box": [0, 0, 313, 168]}
   },
   "people": {
     "musgrave": {
@@ -181,28 +171,6 @@
     }
   },
   "states": {
-    "shelter": {
-      "file": "assets/states/camp-shelter.png",
-      "width": 1672,
-      "height": 941,
-      "box": [
-        0,
-        0,
-        1672,
-        941
-      ]
-    },
-    "crateOpen": {
-      "file": "assets/states/wreck-open.png",
-      "width": 1671,
-      "height": 941,
-      "box": [
-        0,
-        0,
-        1671,
-        941
-      ]
-    },
     "fire": {
       "file": "assets/states/fire.png",
       "width": 1229,

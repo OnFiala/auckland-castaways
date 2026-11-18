@@ -5,6 +5,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
+const webpSize=require('./painting-size.cjs');
 const dist=path.join(__dirname,'../dist');
 const E=require('../dist/voyage.js');
 const A=require('../dist/voyage-art.js');
@@ -84,20 +85,17 @@ test('all fourteen playable scene IDs resolve to registered paintings and usable
  const expected=['beach','wreck','camp','cabin','forest','forge','charcoal','slipway','salvage','crossing','harbour','chartroom','return_camp','landing'];
  assert.deepEqual(E.SCENES.map(s=>s.id).sort(),expected.sort());
  assert.equal(new Set(E.SCENES.map(s=>s.id)).size,14);
- const first={beach:'assets/beach.png',wreck:'assets/wreck.png',camp:'assets/camp.png'};
- const later=E.SCENES.filter(s=>s.chapter>1);
- assert.deepEqual(Object.keys(W.scenes).sort(),later.map(s=>s.id).sort(),'staging registry must cover every later scene exactly');
+ assert.deepEqual(Object.keys(W.scenes).sort(),expected);
  for(const scene of E.SCENES){
-  const entry=W.scenes[scene.id],file=entry?.file||first[scene.id];
-  const p=png(asset(file));assert(p.width>1000&&p.height>500,scene.id+' stage resolution');
-  if(entry){
-   const [minX,maxX,minY,maxY]=entry.walk;
-   assert(minX>=0&&maxX<=100&&minX<maxX&&minY>=0&&maxY<=100&&minY<maxY,scene.id+' walking bounds');
-  }
+  const entry=W.scenes[scene.id], file=W.background({scene:scene.id,flags:{}});
+  const [width,height]=webpSize(fs.readFileSync(asset(file)));
+  assert(width>=1536 && Math.abs(width/height-16/9)<.01,scene.id+' stage resolution and aspect ratio');
+  const [minX,maxX,minY,maxY]=entry.walk;
+  assert(minX>=0&&maxX<=100&&minX<maxX&&minY>=0&&maxY<=100&&minY<maxY,scene.id+' walking bounds');
  }
 });
 
-test('every generated campaign scene and state painting matches its provenance manifest',()=>{
+test('the archived earlier campaign paintings retain their original provenance',()=>{
  const folder=path.join(dist,'assets/voyage/scenes');
  const manifest=JSON.parse(fs.readFileSync(path.join(folder,'manifest.json'),'utf8'));
  assert(manifest.assets.length>=6,'six original campaign scene paintings are required');
@@ -109,7 +107,6 @@ test('every generated campaign scene and state painting matches its provenance m
   assert.equal(p.width,a.width);assert.equal(p.height,a.height);assert.equal(p.bytes.length,a.bytes);
   assert(a.source_original_file&&a.prompt,a.file+' generation provenance');
  }
- for(const entry of Object.values(W.scenes))if(entry.file.startsWith('assets/voyage/scenes/'))assert(files.has(path.basename(entry.file)),entry.file+' missing from manifest');
 });
 
 test('the playable page resolves all local scripts/styles and mounts campaign extensions in dependency order',()=>{

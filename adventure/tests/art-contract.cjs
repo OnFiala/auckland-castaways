@@ -6,6 +6,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
 const crypto=require('node:crypto');
+const webpSize=require('./painting-size.cjs');
 const dist=path.join(__dirname,'../dist');
 const A=require('../dist/art.js');
 const E=require('../dist/engine.js');
@@ -23,11 +24,13 @@ function snapshots(){let s=E.createGame();const all=[s];const use=r=>{s=r.state;
 test('every physical inventory object and every secondary character has painted artwork',()=>{
  for(const id of [...Object.keys(E.ITEMS),'driftwood','cairn'])assert(A.props[id],`missing painted prop ${id}`);
  for(const id of ['musgrave','raynal','henry','george'])assert(A.people[id],`missing painted person ${id}`);
- assert(Object.keys(A.states).length>=4,'solved-world states have dedicated artwork');
+ for (const id of ['fire','mast','mastFlag']) assert(A.states[id], `solved-world prop ${id} has artwork`);
 });
 test('all registered paintings exist and their crop boxes stay inside the original images',()=>{
  for(const {group,id,a}of entries()){
-  const meta=png(localFile(a));assert.equal(a.width,meta.width,`${group}/${id} width`);assert.equal(a.height,meta.height,`${group}/${id} height`);
+  const file=localFile(a);
+  const [width,height]=a.file.endsWith('.webp')?webpSize(fs.readFileSync(file)):[];
+  const meta=width?{width,height}:png(file);assert.equal(a.width,meta.width,`${group}/${id} width`);assert.equal(a.height,meta.height,`${group}/${id} height`);
   assert(Array.isArray(a.box)&&a.box.length===4&&a.box.every(Number.isFinite),`${group}/${id} crop`);
   const[x,y,w,h]=a.box;assert(x>=0&&y>=0&&w>0&&h>0&&x+w<=a.width+.01&&y+h<=a.height+.01,`${group}/${id} crop bounds`);
   if(group==='people')assert([4,6].includes(meta.colorType),`${id} needs an alpha-capable PNG`);
@@ -59,8 +62,8 @@ test('actual inventory and world markup use the correct painted crops throughout
   const person={beach:'raynal',wreck:'musgrave',camp:'henry'}[s.scene];assert(hasPainting(targets,actor(person)),`${person} world sprite`);
   if(s.scene==='camp'&&s.flags.fireLit)assert(hasPainting(changes,A.states.fire),'lit fire uses its painted state');
   if(s.scene==='camp'&&s.flags.mastRaised)assert(hasPainting(changes,s.flags.signalRaised?A.states.mastFlag:A.states.mast),'mast state uses the correct painting');
-  if(s.scene==='camp'&&s.flags.shelterBuilt){assert.equal(ui.ids.get('scene').dataset.shelter,'true');assert(backgroundRule('camp','shelter',A.states.shelter.file),'finished shelter selects its painted background');}
-  if(s.scene==='wreck'&&s.flags.crateOpen){assert.equal(ui.ids.get('scene').dataset.crate,'true');assert(backgroundRule('wreck','crate',A.states.crateOpen.file),'opened crate selects its painted background');}
+  if(s.scene==='camp'&&s.flags.shelterBuilt){assert.equal(ui.ids.get('scene').dataset.shelter,'true');assert(backgroundRule('camp','shelter','assets/tidepaint/camp-shelter.webp'),'finished shelter selects its painted background');}
+  if(s.scene==='wreck'&&s.flags.crateOpen){assert.equal(ui.ids.get('scene').dataset.crate,'true');assert(backgroundRule('wreck','crate','assets/tidepaint/wreck-open.webp'),'opened crate selects its painted background');}
   if(s.completed){for(const id of ['raynal','musgrave','george'])assert(hasPainting(ui.ids.get('companions').innerHTML,actor(id)),`final group ${id}`);}
   assert(!/function person\(color/.test(fs.readFileSync(path.join(dist,'app.js'),'utf8')),'old procedural NPC replacement is gone');
  }

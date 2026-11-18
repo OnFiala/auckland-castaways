@@ -1,12 +1,14 @@
 # Moře a zimní potok v pohybu
 
+*Archiv předchozí verze. Původní kontrola zaznamenala změnu v obraze také tehdy, když se pohnula samotná skála. Současná ukázka měří vodu a pevné body zvlášť. [Nová ukázka](../tide/priboj-a-proud.webp) · [Kontrolní výřezy](../tide/pevne-body.webp)*
+
 [Otevřít pětisekundovou ukázku](sea-and-stream.webp)
 
 Vlevo lze sledovat, jak se vlna zvedne za pevným okrajem člunu, zpění se a klesne. Vpravo voda padá přes horní hranu skály do druhé, širší kaskády. Ve stejném záběru přechází mokrý sníh před vzdáleným svahem a blízkým břehem. Popisky leží vně obou maleb.
 
 Oba výřezy vznikly ve stejném Chromiu ze scén `crossing` a `forest`. Skript načte jejich herní obrazy, připojí oba produkční vykreslovače a skládá obraz počasí a pohybující se malby přes příslušné pozadí. Na člunu už hráč uvázal lano. Hráčské postavy ani ovládací prvky ve výřezech nejsou. Hodiny při záznamu postupují po 62,5 ms. Ve hře tempo řídí plánovač počasí.
 
-S Node.js, balíčkem `playwright`, Chromiem a FFmpegem s kodekem `libwebp_anim` lze z kořene repozitáře ukázku vytvořit znovu:
+Pro tehdejší verzi šlo s Node.js, balíčkem `playwright`, Chromiem a FFmpegem s kodekem `libwebp_anim` ukázku znovu vytvořit z kořene repozitáře.
 
 ```sh
 node adventure/reviews/living/render-landscape.cjs

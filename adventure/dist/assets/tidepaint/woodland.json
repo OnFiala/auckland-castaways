@@ -1,0 +1,685 @@
+{
+  "title": "Winter forest, castaway shelter and smithy · Until We Return",
+  "date": "2026-11-18",
+  "generator": "OpenAI ImageGen",
+  "provenance": "Original game paintings; no third-party illustration or museum scan supplied to the generator. Asset reference paths are relative to adventure/dist/assets/. Composition coordinates in percent from the upper-left corner. The pictures interpret period materials; their layouts and portable furnishings are game staging.",
+  "historical_context": [
+    {
+      "file": "../../../../research/MATERIAL_CULTURE.md",
+      "locators": [
+        "Dům, oheň, sucho · S001 p. 11",
+        "Výheň a meze vynalézavosti · S001 pp. 79–82; S003 §§XV–XVI"
+      ]
+    }
+  ],
+  "base_direction": "Generate a new full-bleed WIDE 16:9 adventure game environment painting. Use attached older scene ONLY for gameplay geometry, do a completely new prestige historical adventure keyframe, far more beautiful and cinematic, with daring luminous color design. No copy of bland flat brown existing visuals. Field painter’s oils and opaque gouache on fine linen, tactile sculpted pigment, purposeful large brush planes, crisp and broken edges, sophisticated composition and warm-to-cool chiaroscuro; reminiscent of an antique illustrated voyage in contemporary narrative illustration. Fill horizontal frame edge to edge, no borders, NO text, no people, no detached inventory objects. ",
+  "generations": [
+    {
+      "id": "forest",
+      "input": "voyage/scenes/forest.png",
+      "sha256": "1d45174d8e41fa79e8cd3436368ebd10369ea6382b1928e66f05866324430782",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "Paint the Auckland Island rātā wood and spring. The foreground track is broad soft leaf-mould, curving far into a light-filled opening like a blue cathedral, winter sunlight fractured in fine haze. Huge unmistakably solid, sharply defined knotted rata trunks with still hanging moss and filmy ferns frame the sides; copper and ember leaves against a misty pewter-blue vanishing point and warm moss velvets. Dappled light on the foliage in distinct rest areas. Build a small beautiful SILVER waterfall dropping in just TWO thin, adjacent clean uninterrupted vertical ribbons around x19–21% in the middle left, a charcoal shadow behind the falling water clearly separating it from ABSOLUTELY RIGID horizontal slabs of schist. Falls run from ~y48 to y61%; reflect into a distinct small unobstructed still dark-blue oval spring pool centered x21% y65%. All other areas are still and dry. No vertical water in front of roots or ledges. Frame without blocking walking plane across y70–87%. Foreground darker than middle distance. Not generic mountain scenery; oceanic crooked southern rata, ferns, moss, no conifers or palms. No campfire or camp."
+    },
+    {
+      "id": "crown",
+      "input": "generation:forest",
+      "sha256": "fb8d1df241b7a5ee5033b7e8948c43c8e5dd0819da08669e618959bc38e152a0",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "This is a subantarctic maritime forest of broad-leaf EVERGREEN southern rātā in winter. Keep exact camera, framing, existing painted silhouettes, pool and its 2 delicate trickles, trunks, and beautiful diagonal shaft of light. Modify only the hue of the MANY bright orange autumn-maple-like leaves at the upper edge, broad left foliage, and in the far right boughs: turn these into luminous jade, muted laurel, sage and blue-green evergreen leaves, mixed warm golden sunlit tips. No crimson autumn forest or flowers. Keep amber-copper ferns and the warm sunny patches and fallen leaf litter on the floor. Retain this 16:9 oil painting, lush foliage diversity and visual magic; old illustrated adventure on a misty southern island. No other changes."
+    },
+    {
+      "id": "charcoal",
+      "input": "voyage/scenes/charcoal.png",
+      "sha256": "a87c33d6cf4701bd940d6b570cc8e343ca9ff3e7a6f0892bc368e138a61b4b35",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "Return to the same bone-still UNESCO subantarctic dwarf rātā grove, but at a distinct chilly late-winter grey-amber morning after a charcoal firing. A spent dome of dark turf with a torn charcoal-dark hollow beyond the far right edge of the path, at x83% y54-61%. Small trunks, braided roots and copper ferns flank magnificent mist-blue heartspace under a canopy of contorted green rātā branches; a few lemon-yellow streaks of low sun pick out moss. Damp slate and terracotta leaf-mould in a broad traversable foreground, clear across y69–88%. The small background spring is in rocky moss right at x20% as in the design geometry, quiet and less important; no large plunging cascade. Leave the ground clear where loose charcoal and scrap iron are to be placed by the game (x78%,y63% and x60%,y69%). No painted loose metal or separate pile of charcoal. No people, buildings or active fires."
+    },
+    {
+      "id": "cabin-cold",
+      "input": "voyage/scenes/cabin-cold.png",
+      "sha256": "b853f0f2334c15501475cfeb3e307df6facb991ebc2d2adadd2835b9b1af1b44",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "Paint the inside of Epigwaitt castaways’ 1864 shelter on Auckland Island, a beautiful intimate improvised maritime dwelling, preserving the STRAIGHT-ON stage camera and object positions shown but completely reimagine the painting. Luminous pearly cyan-blue winter daylight entering through the four window panes at x13–29% y16–40% as brilliant hard-edged glacier light and one strong golden reflected pool grazes the flagstone hearth. Forge-like rough dry-stone FIREPLACE FAR LEFT, cold black opening centered at exactly x10.8%, y60%, neither fire nor embers. Little salt-silver bay and slopes outside the four panes. A simple EMPTY salvaged dark grey table with its top x26–46%, y50%, lashings and adze marks. Right half has a homebuilt bunk, worn dark indigo blanket with one rust-red stripe at x58–80%; cask at 87%; a few meaningful handbuilt joinery and mariner details in dark backdrop. Canvas roof patch area x54 y17, keep it fairly plain/repairable. Strong big angled beams cast shadows, worn honey-sienna canvas vs deep umber, blue charcoal shadows, soft amber pools on old wood, painterly subtle lively marks. A low broad EMPTY walkable wood floor, eye led deep by lovely coherent side light across grain. No lantern, loose props, sleeping person, kettle, hide, flask or twine. Do not use generic wooden-cabin stock art; show 1864 handmade resourcefulness."
+    },
+    {
+      "id": "cabin",
+      "input": "generation:cabin-cold",
+      "sha256": "3117846e72595b9ef3dc71bca9ede817920cdd77ff57582e2faee307c2950493",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "Modify JUST the left fireplace opening: in the dark hole, light a modest hearth with short flaming wood and vivid yellow-orange light, warm pointed flames against soot, a subtle honey glow across the surrounding masonry. No other new or altered objects."
+    },
+    {
+      "id": "return-camp",
+      "input": "generation:cabin-cold",
+      "sha256": "7b613d389454c608ad75a06ac02ba10ec7348be8eb10f33623c334d4cf85e1bb",
+      "dimensions": [
+        1671,
+        941
+      ],
+      "direction": "This is the last visit to this cabin, weeks later. Show purposeful traces of the two men who waited; keep fixed interior style and architecture. In the left fireplace, kindle a modest orange home fire. Through the four far-left window panes show a tranquil warm early dusk over the sea after the winter storm, still separated by the four intact original EXACT window mullions. Across the right bunk fold a square small storm-grey second blanket over the foot at x68–76% and add a tightly rolled coarse off-white bedroll; keep roomy EMPTY floor, table and wall clear. Respect exact camera."
+    },
+    {
+      "id": "forge-cold",
+      "input": "voyage/scenes/forge-cold.png",
+      "sha256": "762d94e0e4f0604cf46fff43c76417789773b91229af9779163ba1e4624fc5fe",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "A shipwreck smithy's COLD workshop, handmade on Auckland Island in 1865, wide straight-on camera, sweeping bespoke theatre of indigo charcoal shadows, copper bronze light and a luminous pale sea beyond a tall narrow door at far LEFT x3–12%, y20–62%. Tell a life with small salvaged ship ribs, tar-stained ochre canvas roof, battered woodwork, adzed rafters, pegs and etched scrapes. Rough slate fieldstone furnace with STILL-DARK cold arched mouth centered EXACTLY x41.1%,y42%, old grey coals, side nozzle port at x34.7%,y44.5%. Empty space for future bellows to its left; do not paint a bellows now. A small handmade blunt iron anvil on a stump, centered x64.5%, flat anvil top at y43.2%, empty bench x74–95% y42%, a few dark hanging tools above, leave bench top bare. All these props terminate at ~y64%. Walkable open dark clay forefloor across y66–91%, tactile but uncluttered, diagonal cast daylight across floor. Luminous reflected daylight touches stoic iron and lichen-flecked volcanic stone. Taller door, NO window, modern material, kettle, clocks, lettering, bright fire or glowing coals. Prioritize a newly painted compelling image over fidelity to surface texture; major anchor locations precisely as stage."
+    },
+    {
+      "id": "bellows",
+      "input": "generation:forge-cold",
+      "sha256": "283ed6426202bc5631948956962a1a672bb4e0e93f56be5d943c487527784da4",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "Draw a substantial LARGE handmade 1865 mariner's air BELLOWS on a rough wooden tripod, left of the furnace at x15–34%, leather accordion and wooden top, pointed nozzle fitted to the existing circular socket at x34%,y45%. Position this bellows aligned down to x19% y62%, not blocking hearth mouth or the sea doorway. Cold grey coals remain. Modify just this rectangle."
+    },
+    {
+      "id": "plain-bellows",
+      "input": "generation:bellows",
+      "sha256": "e1e03e4fc833670e80ae29d810926b83aebdfeebb5c8e5fe3538452f12e43e00",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "Edit just the little shiny brass plaque stamped '1865' with a nautical anchor decorating the wooden top of the leather bellows. REMOVE that touristy brass plaque and numbers and anchor graphic entirely. Paint continuous ordinary scuffed warm brown adzed wooden lid surface in its place, retaining all the exact geometry of the outer corners, rivets, and handle. This is rough salvaged wood made by castaways. Make NO other alterations anywhere. Same input frame, crop, color scale and exact dimensions."
+    },
+    {
+      "id": "heat",
+      "input": "generation:forge-cold",
+      "sha256": "b1722b89df7ce5ef4c4a7c0a58512a956fb1a7b84e03b9d66b32061706a84422",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "direction": "Modify ONLY the dark coals and empty inner space inside the arched furnace. Ignite these coals in pools of peach-orange cherry-red heat, modest flicks of yellow-orange fire rise from them in the black mouth, bounded by x36–46%,y35–47%; glow on immediate inner masonry."
+    }
+  ],
+  "assets": [
+    {
+      "file": "forest.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "923037023afe41096e2a729c9ab9a20d6b5b3403f41b67bce848ab044388be5b",
+      "bytes": 566534,
+      "webp_quality": 89,
+      "generations": [
+        "forest",
+        "crown"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/forest.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "a5bc45b3c331e364f9cd7a6d5512dfe11b540cd02d3a2197df6d6e6989e465ee"
+        }
+      ],
+      "method": "Localized areas of original generated donor painting composited over the registered painted base before encoding.",
+      "donor_polygons_percent": [
+        [
+          [
+            -1,
+            -1
+          ],
+          [
+            101,
+            -1
+          ],
+          [
+            101,
+            55
+          ],
+          [
+            85,
+            53
+          ],
+          [
+            84,
+            40
+          ],
+          [
+            67,
+            36
+          ],
+          [
+            60,
+            27
+          ],
+          [
+            54,
+            21
+          ],
+          [
+            39,
+            28
+          ],
+          [
+            38,
+            48
+          ],
+          [
+            30,
+            49
+          ],
+          [
+            28,
+            45
+          ],
+          [
+            19,
+            44
+          ],
+          [
+            13,
+            45
+          ],
+          [
+            8,
+            40
+          ],
+          [
+            -1,
+            44
+          ]
+        ]
+      ],
+      "mask_feather_px": 5
+    },
+    {
+      "file": "charcoal.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "e6890a9f1c7c06761dfe24d00a990c49180a7c27b60c76bcc5f429c69fe037d2",
+      "bytes": 615386,
+      "webp_quality": 89,
+      "generations": [
+        "charcoal"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/charcoal.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "e00be8de72e33a2c75fa3beb3ebc9e9073a08790261b7bc1eb717712f18b4647"
+        }
+      ],
+      "method": "Full original painting, normalized to 16:9 and encoded."
+    },
+    {
+      "file": "cabin-cold.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "0048599cde551071f053b5fdda87477ff0c2666ad8ba26eaccb88c078c6703ec",
+      "bytes": 515982,
+      "webp_quality": 89,
+      "generations": [
+        "cabin-cold"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/cabin-cold.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785"
+        }
+      ],
+      "method": "Full original painting, normalized to 16:9 and encoded."
+    },
+    {
+      "file": "cabin.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "6cb92d1a86cc7528e80a3606d0d43599a0529dcafbc6f5d37ed257a47676be5f",
+      "bytes": 516752,
+      "webp_quality": 89,
+      "generations": [
+        "cabin-cold",
+        "cabin"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/cabin-cold.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785"
+        },
+        {
+          "file": "tidepaint/cabin-cold.webp",
+          "role": "new registered base, assembled from the lossless generation before encoding",
+          "sha256": "0048599cde551071f053b5fdda87477ff0c2666ad8ba26eaccb88c078c6703ec"
+        },
+        {
+          "file": "voyage/scenes/cabin.png",
+          "role": "earlier art inspected for state continuity",
+          "sha256": "be9fbcfcfebc2069c99b961f73824e0cfa5d1cc713c60888c4d26c4d7aaa0090"
+        }
+      ],
+      "method": "Localized areas of original generated donor painting composited over the registered painted base before encoding.",
+      "donor_polygons_percent": [
+        [
+          [
+            6,
+            49
+          ],
+          [
+            17.8,
+            49
+          ],
+          [
+            19.6,
+            55
+          ],
+          [
+            21,
+            65
+          ],
+          [
+            20,
+            69
+          ],
+          [
+            8,
+            72
+          ],
+          [
+            3,
+            70
+          ],
+          [
+            2,
+            59
+          ]
+        ]
+      ],
+      "mask_feather_px": 5
+    },
+    {
+      "file": "return-camp.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "63c551356cd693a2244b3dcdb2547915bfa4077a0e2040bc5bb7e8b7c890f412",
+      "bytes": 499280,
+      "webp_quality": 89,
+      "generations": [
+        "cabin-cold",
+        "return-camp"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/cabin-cold.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785"
+        },
+        {
+          "file": "tidepaint/cabin-cold.webp",
+          "role": "new registered base, assembled from the lossless generation before encoding",
+          "sha256": "0048599cde551071f053b5fdda87477ff0c2666ad8ba26eaccb88c078c6703ec"
+        },
+        {
+          "file": "voyage/scenes/return-camp.png",
+          "role": "earlier art inspected for state continuity",
+          "sha256": "6a5d24d22e84172be3517c9728cd2b7fbe1df8399bdcbfb80a7258059fd2cd03"
+        }
+      ],
+      "method": "Localized areas of original generated donor painting composited over the registered painted base before encoding.",
+      "donor_polygons_percent": [
+        [
+          [
+            6,
+            49
+          ],
+          [
+            17.8,
+            49
+          ],
+          [
+            19.6,
+            55
+          ],
+          [
+            21,
+            65
+          ],
+          [
+            20,
+            69
+          ],
+          [
+            8,
+            72
+          ],
+          [
+            3,
+            70
+          ],
+          [
+            2,
+            59
+          ]
+        ],
+        [
+          [
+            13.7,
+            16
+          ],
+          [
+            28.6,
+            16
+          ],
+          [
+            28.6,
+            38
+          ],
+          [
+            13.7,
+            38
+          ]
+        ],
+        [
+          [
+            54,
+            48
+          ],
+          [
+            67,
+            47
+          ],
+          [
+            68,
+            46.3
+          ],
+          [
+            79,
+            46.3
+          ],
+          [
+            81,
+            52
+          ],
+          [
+            81,
+            61
+          ],
+          [
+            80,
+            63
+          ],
+          [
+            72,
+            63
+          ],
+          [
+            70,
+            59
+          ],
+          [
+            55,
+            58
+          ]
+        ]
+      ],
+      "mask_feather_px": 4
+    },
+    {
+      "file": "forge-cold.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "1e81b682dc57c8b8eb08aaaa624a1a4059a66dc0b88f540b1d85d19e493134b7",
+      "bytes": 431486,
+      "webp_quality": 89,
+      "generations": [
+        "forge-cold"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/forge-cold.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "7b3661505a3916f6965334ea03a1adb3c2a29eff56354feeebb271dcb1af77e6"
+        }
+      ],
+      "method": "Full original painting, normalized to 16:9 and encoded."
+    },
+    {
+      "file": "forge.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "ac635e770b3c21852200508f4661ef3e3a16cfab1f18a5435b9f701d42fd00bf",
+      "bytes": 435858,
+      "webp_quality": 89,
+      "generations": [
+        "forge-cold",
+        "bellows",
+        "plain-bellows"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/forge-cold.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "7b3661505a3916f6965334ea03a1adb3c2a29eff56354feeebb271dcb1af77e6"
+        },
+        {
+          "file": "tidepaint/forge-cold.webp",
+          "role": "new registered base, assembled from the lossless generation before encoding",
+          "sha256": "1e81b682dc57c8b8eb08aaaa624a1a4059a66dc0b88f540b1d85d19e493134b7"
+        },
+        {
+          "file": "voyage/scenes/forge.png",
+          "role": "earlier art inspected for state continuity",
+          "sha256": "53dfa8af123225a87d749116d5b76a16cc89699ae9c3243f7bd63800c2aca655"
+        }
+      ],
+      "method": "Localized areas of original generated donor painting composited over the registered painted base before encoding.",
+      "donor_polygons_percent": [
+        [
+          [
+            12.1,
+            37.6
+          ],
+          [
+            13.8,
+            32.6
+          ],
+          [
+            16.9,
+            32
+          ],
+          [
+            17.4,
+            31
+          ],
+          [
+            20.8,
+            30.8
+          ],
+          [
+            22,
+            32.8
+          ],
+          [
+            26.6,
+            36.8
+          ],
+          [
+            30.6,
+            41.1
+          ],
+          [
+            33.8,
+            42
+          ],
+          [
+            35.1,
+            43.8
+          ],
+          [
+            34.7,
+            47.1
+          ],
+          [
+            30.1,
+            48.6
+          ],
+          [
+            24.6,
+            52.2
+          ],
+          [
+            28.6,
+            64.7
+          ],
+          [
+            27.8,
+            67.5
+          ],
+          [
+            18.8,
+            70.4
+          ],
+          [
+            16,
+            69.9
+          ],
+          [
+            14,
+            68
+          ],
+          [
+            11.2,
+            66.3
+          ],
+          [
+            12.5,
+            59.3
+          ],
+          [
+            13.7,
+            54
+          ],
+          [
+            14,
+            48.7
+          ],
+          [
+            12.9,
+            45
+          ]
+        ]
+      ],
+      "mask_feather_px": 3
+    },
+    {
+      "file": "forge-lit.webp",
+      "dimensions": [
+        1664,
+        936
+      ],
+      "sha256": "d6c47df5936d1754e3305a06fa228e14035fd08493efc8de1fed13f46f581a88",
+      "bytes": 437616,
+      "webp_quality": 89,
+      "generations": [
+        "forge-cold",
+        "bellows",
+        "plain-bellows",
+        "heat"
+      ],
+      "references": [
+        {
+          "file": "voyage/scenes/forge-cold.png",
+          "role": "project-owned source painting, used for camera and interaction geometry",
+          "sha256": "7b3661505a3916f6965334ea03a1adb3c2a29eff56354feeebb271dcb1af77e6"
+        },
+        {
+          "file": "tidepaint/forge.webp",
+          "role": "new registered base, assembled from the lossless generation before encoding",
+          "sha256": "ac635e770b3c21852200508f4661ef3e3a16cfab1f18a5435b9f701d42fd00bf"
+        },
+        {
+          "file": "voyage/scenes/forge-lit.png",
+          "role": "earlier art inspected for state continuity",
+          "sha256": "f32ecd4eeaf434dce885397584687f783f3b8be05ca19611178d69c4379fc1ff"
+        }
+      ],
+      "method": "Localized areas of original generated donor painting composited over the registered painted base before encoding.",
+      "donor_polygons_percent": [
+        [
+          [
+            35,
+            34.1
+          ],
+          [
+            37.2,
+            31.5
+          ],
+          [
+            40.2,
+            30.7
+          ],
+          [
+            43.2,
+            31.5
+          ],
+          [
+            46.8,
+            34.7
+          ],
+          [
+            48.5,
+            38.7
+          ],
+          [
+            48.5,
+            47.9
+          ],
+          [
+            47.4,
+            49.3
+          ],
+          [
+            34.7,
+            49.3
+          ],
+          [
+            34.5,
+            46.6
+          ],
+          [
+            35.1,
+            42
+          ]
+        ]
+      ],
+      "mask_feather_px": 4
+    }
+  ]
+}

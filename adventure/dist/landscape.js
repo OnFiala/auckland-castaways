@@ -1,326 +1,406 @@
-/* Moving paint. The masks are traced in percentages on the actual 16:9
-   paintings. Rocks, spars, window frames and walkable floors stay in place.
-   The weather renderer owns the only clock, canvas and visibility lifecycle. */
+/* Transparent marks drawn in registration with the plate. This painter only
+   receives geometry. It has no plate handle, bitmap or offscreen surfaces. */
 (function (host, factory) {
   const landscape = factory();
   if (typeof module === 'object' && module.exports) module.exports = landscape;
   else host.CastawayLandscape = landscape;
 })(typeof window !== 'undefined' ? window : globalThis, function () {
   'use strict';
-  const W = 1000, H = 562.5, TAU = 2 * Math.PI;
-  const points = outline => outline.split(' ').map(pair => pair.split(',').map(Number));
-  const area = (name, kind, power, outline) => ({name, kind, power, points:points(outline)});
-  const light = (name, x, y, w, h, color, kind, angle=0) => ({name,x,y,w,h,color,kind,angle});
-  const outerWind = area('clouds off the headland','cloud',1,'0,0 65,0 59,8 49,11 39,17 29,23 20,31 0,31');
-  const cloudGap = area('sky through the branches','cloud',.66,'32,0 54,0 49,10 47,19 39,20 39,14');
-  const leftLeaves = area('windward flowering branches','bough',1,'0,11 4,4 10,0 20,1 25,4 34,9 38,20 35,22 25,17 22,24 16,22 10,16 3,20');
-  const gullyLeaves = area('crown over the gully','bough',.84,'4,0 45,0 43,4 39,5 36,12 32,13 28,18 24,16 20,13 12,17 9,18 12,10 4,12');
-  const fall = area('water over the two ledges','fall',1,'19,48 21,48 22,54 21.8,60 23.6,61 24.8,67.8 27.6,69 24,70.2 20.3,67.7 20,61.5 18.9,60.5 19.6,55');
-  const pool = area('outflow across the track','current',.82,'19,67.4 24,66.8 31.2,68.5 36,70.8 44,72.1 39,74 30.2,72.4 24,70.6 17.4,70.5');
-  const cutGrass = area('tussock underfoot','grass',1.08,'0,80 3,83 7.2,85.7 8.6,89 5.8,91 0,89.9');
-  const wreckSea = area('surge on the broken bow','surf',1.05,'0,49 12,49.2 12.3,52.3 9.6,57.6 8.5,62.7 6,65.3 4,71.5 0,72.8');
-  const cove = area('water off the stocks','sea',.7,'0,29.4 8,29.4 14,29.8 29.8,29.8 25.7,33.4 21,35.8 21.3,38.9 12,42.1 9.7,40 4,38.4 0,38.1');
-  const shelterWindow = [
-    area('western pane above the fire','sea',.34,'14.7,30 20.8,30.3 20.8,36.4 14.7,36.4'),
-    area('eastern pane above the fire','sea',.34,'22,30.3 27.8,30 27.8,36.2 22,36.4')
+  const WIDTH = 1000, HEIGHT = 562.5, X = WIDTH/100, Y = HEIGHT/100, TAU = Math.PI*2;
+  const unit = n => n-Math.floor(n);
+  const pulse = n => Math.sin(Math.PI*Math.max(0,Math.min(1,n)));
+  const noise = n => unit(Math.sin(n*78.237+31.43)*47297.33);
+  const points = text => text.split(' ').map(pair => pair.split(',').map(Number));
+  const rect = (x,y,w,h) => [[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
+  const area = (name,kind,outline,extra={}) => ({name,kind,points:points(outline),...extra});
+  const pane = (name,box,extra={}) => ({name,kind:'water',points:rect(...box),...extra});
+  const water = (name,outline,style,breakers=[],holes=[]) =>
+    area(name,'water',outline,{style,breakers,holes:holes.map(points)});
+  const cloud = (name,outline) => area(name,'cloud',outline);
+  const leaves = (name,outline,tips,grass=false) => area(name,'leaves',outline,{tips,grass});
+  const glow = (name,kind,x,y,w,h) => ({name,kind,points:rect(x-w,y-h,2*w,2*h),x,y,w,h});
+  const cloth = (name,outline,power) => area(name,'cloth',outline,{power});
+  // A train starts at (x,y), travels (dx,dy) over one period, and has its
+  // crest oriented along (span,slope). All dimensions here are % of the plate.
+  const front = (x,y,dx,dy,span,slope,period,phase) => ({x,y,dx,dy,span,slope,period,phase});
+  const harbourPeriod = 8.6;
+  const shore = water('south coast surf',
+    '0,42.6 15.6,43.1 16.9,43.7 18.1,43.4 20.3,44.1 20.1,45 22.4,45.8 24,46.8 26.3,47.1 26.2,48.7 23.2,49.1 21.8,49.8 19.3,49.3 17.3,49.7 16.3,51 15.4,52.7 15.4,54.4 12.5,55.6 11.5,56.4 9.3,56.7 9.1,58 6.2,58.1 5.1,56.8 3.3,56.5 1.8,57.1 0,57.7','reef',
+    [front(12,44.4,-1.3,4.1,14,-1.1,5.9),front(6.7,48,.9,6.1,16,-2.1,6.8),front(2.4,50.6,2.1,6.4,13,-2.6,7.3)],
+    ['8.6,55.8 9.4,54.4 10.6,53.5 11.8,53.6 12.7,54.2 13.1,55.6 11.1,56.1','13.5,54.9 14.2,53.6 15.4,53 16,54.8','16.3,55.1 16,52.4 17.3,50.8 19.4,49.8 22.4,50.1 23.7,51.3 21.8,53.6','21.3,45.6 22,44.7 23.9,45.4 24.8,46.4','19.9,48.2 20.7,47.7 21.7,47.8 22.6,48.7 21.2,49.4']);
+  const brokenBow = water('surge on the broken bow','0,49 14.3,49 14.9,50.6 13.4,52.1 11.3,55 9.4,59.5 9.1,61.7 7.5,62 5.7,62.3 4.9,63.3 2.9,64.3 1.2,63.7 0,63.6','reef',
+    [front(4.8,51,.5,4.2,9,-.35,5.6),front(2,56,.75,6.2,9.4,-1.65,6.7)],
+    ['2,64 3,62.7 4.2,62.5 5.5,63.6 4.8,65.3 2.2,65.4']);
+  const headland = cloud('clouds west of the headland','0,0 56,0 49,6 34,12 29,19 16,29 0,32');
+  const cabinWindow = [pane('water in the western pane',[14.7,35.7,6.1,2.1],{style:'glass'}),
+    pane('water in the eastern pane',[22.2,35.4,5.7,2.1],{style:'glass'})];
+  const roof = cloth('seam under the sailcloth roof','43,0 79,0 76,7 66,19 55,15 46,10',.69);
+  const fire = glow('flame at the grate','hearth',11.7,61.2,3.1,5.3);
+  const reflection = glow('hearth light on the floor','reflection',14.3,69.6,10.8,2.05);
+  const sill = glow('light returning from the glass','sill',22,39.3,7.1,.69);
+  const fallingLeaves = (name,outline,lanes,color) => area(name,'litter',outline,{lanes,color});
+  const gully = [
+    leaves('ferns beneath the near tree','5.5,56.8 13.8,52.8 18.1,54.9 16.8,62 11.3,62.6',
+      [[12.5,57.1,1],[14.7,55.2,-1],[15.8,57.9,1]],true),
+    leaves('leaves at the edge of the winter canopy','27.9,12 32,9.8 37.9,7.6 40,8.7 37.4,16 30.8,18.3 28.4,17.4',
+      [[35.2,12.4,1],[36.7,11.7,-1],[32.5,14.7,1]]),
+    area('western ribbon of the fall','run','19.03,50.3 19.54,50.3 19.83,55.5 19.85,64.8 19.39,64.8 19.38,56.3',
+      {lanes:['19.28,50.5 19.59,54.5 19.53,60.8 19.61,64.9'],fall:true,spread:1.8}),
+    area('eastern ribbon of the fall','run','20.42,50.4 20.77,50.4 21.02,55.8 21.04,64.9 20.61,64.9 20.53,54.3',
+      {lanes:['20.43,50.6 20.73,54.4 20.84,60.3 20.85,64.9'],fall:true,spread:2.1}),
+    area('pool fed by the ribbons','run','16.7,65.7 20,65.3 25.8,65.4 28.7,65.9 30,66.9 29.7,68.2 26.9,69.1 20.5,69.6 17.9,69 16.6,67.4',
+      {lanes:['19.6,65.8 20.8,66.2 22.4,66.8 26.6,66.6','20.8,66.0 21.5,67.5 23.2,67.9 28.5,68.1'],ripples:[[19.7,65.8],[20.8,65.8]]}),
+    fallingLeaves('windfall leaves in the open gully','39,33 50,33 58,61 57,64 43,60 40,48',
+      ['42,35 44,44 49,52 50.3,60','47.1,36 46.2,45 54.4,50.1 53.9,59.1'],'#8d9153'),
+    leaves('golden fern beside the path','0,82 9,81 15,88 12,97 0,97',
+      [[3.3,87,1],[8.3,84.8,-1],[8.8,90.5,.65]],true)
   ];
-  const ceiling = area('underside of the sailcloth roof','canvas',.48,'42,0 82,0 77,7.2 70.7,14 65.7,20.2 59,18.9 50,15.3 44.5,11.7');
-  const sillLight = light('cold light across the sill',23.4,39.8,9.2,.85,'163,193,197','window',-.015);
-  const reflectedFire = light('hearth light along floor boards',14.9,67.5,13.5,2.4,'251,154,72','fire',.024);
-  const hearth = area('flame at the grate','fire',1,'9.3,63.5 10.3,59.3 11.6,55.9 12.2,53.8 13.1,58.1 13.8,57.8 15.2,63.6 13.8,64.4 11.2,64.6');
-  const openSea = [
-    area('open sea to port','ocean',1.02,'0,45.3 27.2,45.2 25.1,54.8 23.4,58.5 20.9,58 20.4,55.5 15.6,54.1 7,51.8 1,52.3 0,52.7'),
-    area('sea through the shrouds','ocean',1.12,'28.8,45.5 42.6,45.4 41.9,53.6 41.2,58.3 26.6,58.6'),
-    area('swells abaft the mast','ocean',1.52,'47.6,45.6 93.4,45 94.2,48.5 97.4,59.2 92,59.8 82,59 64,59.3 46.8,59.4')
+  const beam = (name,outline) => area(name,'motes',outline);
+  const hollow = [
+    leaves('fronds on the edge of the hollow','85,78 99,77 100,94 86,98',
+      [[91.4,84,1],[90.9,87.2,-1],[95.3,88,-1]],true),
+    area('upper spill in the charcoal brook','run','19.5,53.5 20,53.4 21.8,55.3 22.3,58.6 22.3,60.6 21.5,60.6 21.2,57.6 20.6,55.9',
+      {lanes:['19.8,53.8 21.7,55.2 21.5,57.3 22.1,60.4'],fall:true,spread:1.9}),
+    area('lower spill in the charcoal brook','run','22.8,62.1 23.9,62.3 24.5,63.7 24.7,66.6 24.2,67 23.8,65.6 23.5,63.5',
+      {lanes:['23.4,62.5 24.3,63.1 24.2,65.3 24.4,66.7'],fall:true,spread:2}),
+    area('eddy below the charcoal bank','run','21.8,67.6 24,66.7 27.3,67.2 29.2,68.1 29,69 25.3,68.8 23.2,68.5',
+      {lanes:['22.8,67.7 24.6,67.1 26.4,67.9 28.4,68.2'],ripples:[[24.4,67.2]]}),
+    fallingLeaves('fallen leaves turning in the lee','40,32 48,31 55,52 58,64 46,62 40,48',
+      ['41.5,35.6 43.8,44 45.5,53.4 50.4,61'],'#ab9252')
   ];
+  const offshore = [
+    water('open sea to port','0,45.8 27.6,45.8 26,50 22.9,54.9 20.9,54.6 18.7,54.1 14.4,52.5 8.2,51.2 3.5,51.9 2.7,54.6 9,54.3 15,55.7 18.2,57.5 18.1,59 6,59.4 0,60.9','ocean',
+      [front(8.5,46.6,3.1,3.6,19,1.5,7.1)],
+      ['2.7,54.9 2.8,52.1 4.8,51.3 6.8,50.8 9.7,50.8 12.4,51.4 16,53.6 19.6,55.2 19.7,53.8 22.5,53.8 23,56 22.1,59.9 18.1,59.9 18.1,57.9 15.1,56.4 11.9,54.9 9,54.3 6.2,54.3 3.4,55.1']),
+    water('sea between the stays','30.6,45.8 42.1,45.8 41.3,58.8 27.3,58.8','ocean',
+      [front(31,49,2.8,4.8,15,-1,8.2)]),
+    water('swells abaft the mast','47,45.8 94.7,45.8 97.2,54.1 97.2,58.7 47,58.7','ocean',
+      [front(56,47.5,4.2,6.9,24,-1.9,7.8),front(73,46.4,5,4.7,23,-1.1,8.6),front(85,49.4,3.1,8.3,26,-3.1,9.2)])
+  ];
+  const hull = [cloud('clouds astern','72,0 100,0 100,9 83,16.7 77,16'),brokenBow];
   const paintings = {
-    beach: [outerWind,
-      area('south coast surf','surf',1.24,'0,42.6 13,43.3 19.5,44.9 28,46.4 25.9,48.5 19.9,50.4 18.6,53.6 13.6,54.8 9,60.4 3.7,63.6 0,64.7'),
-      area('windward leaves above the track','bough',1,'53,14 60,7.8 66,1.9 87,0 85,6.8 80.3,7.2 78,13 71,14 67.6,20.2 63,21.8 60.4,28.1 56.7,26 59,18.4 53.4,20.4'),cutGrass],
-    wreck: [area('clouds behind the stern','cloud',.84,'65,0 100,0 100,9.5 86,15.4 80,17.5 72,13.8'),wreckSea,
-      area('weathered square of canvas','rag',1.35,'26,8.1 29,11.7 34.2,10.4 33.2,17.4 31.3,21 30.2,26.9 28.8,24.2 27.6,28.6 26.6,18.3')],
-    camp: [cloudGap,area('inlet beyond the clearing','sea',.52,'21,32.8 32.7,31.6 34.7,32.6 30.8,34.9 25,38.7 21.1,38.5 22.2,35.1'),leftLeaves,
-      area('tussocks between grey stones','grass',.85,'0,48.5 2.6,48.3 7.8,54.2 9.1,59.4 3.9,60.4 0,60.5')],
-    cabin: [...shelterWindow,ceiling,sillLight],
-    forest: [gullyLeaves,fall,pool,
-      area('ferns on the nearest bank','grass',.75,'0,86.3 3,85.5 6.5,84.5 9.3,86 13.2,91 11.1,96.4 6.7,98.5 0,95.8')],
-    charcoal: [gullyLeaves,fall,pool,
-      area('ferns beside the charcoal hollow','grass',1,'87.5,52.6 90.1,49.4 93.3,51.1 96.2,47.6 99.8,45.9 99.8,57.2 95,59.3 90.1,58')],
-    forge: [
-      light('cool spill from the open forge door',6.1,65,5.8,1.25,'175,196,191','window',-.09),
-      area('water through the forge door','surf',.63,'0,47.6 8.5,47.5 7,50.2 6,52.1 3.7,54.6 1.8,56.4 0,57'),
-      area('loose edge of the smithy curtain','rag',.56,'97.3,19 100,21.1 100,55.2 99,54.6 98.3,56.1 96.6,53.2')],
-    slipway: [cove,area('clouds above the bay','cloud',.9,'0,0 38,0 37,6.3 31.3,9.2 18.5,20.7 14.5,20.7 11,24.6 0,24.3'),
-      area('wind in the boathouse tree','bough',.88,'41.7,0 76,0 75,6.8 69,9.7 66.3,15.4 57,12.5 52,17.6 47.2,18.4 49,12.4 43.3,11.5 45.5,6.7 39.3,7.5')],
-    salvage: [area('clouds seen above the stripped stern','cloud',1.07,'67,0 100,0 100,9.3 88.7,13.6 84,18.1 78.2,20 74.1,16 72.6,11'),
-      wreckSea,
-      area('streamers on the empty rail','rag',1.44,'25.4,7 29.8,10.6 34.3,10.8 33,18.4 32,22.6 31,23.3 30.4,27.5 30,20.1 28.2,28.8 27.4,25.5 27,15.3')],
-    crossing: [area('squall off the port bow','cloud',1.24,'0,0 39,0 33.8,11 29.6,27.6 24.8,42.6 13.2,44.5 0,43.9'), ...openSea],
-    harbour: [
-      area('western sky at sundown','cloud',.77,'0,0 57,0 50,7 42,15 35,24.5 29.8,31.4 27.7,19.7 23,30.8 18.6,39 12,41.4 0,42'),
-      area('sun path and water ahead of the cutter','gold',1.02,'0,45 23.2,45.3 23.1,49.8 16.4,52.1 11.4,52.8 10.1,56.1 10.7,60.2 9.7,66.1 4.5,67.1 1.7,65.4 0,65.5'),
-      area('backwash abaft the cutter','current',.95,'55,56.7 66.7,55 68.5,58 67.1,60.7 62,65.6 55.2,67 55,63.6 56,61.4')],
-    chartroom: [
-      area('harbour through west window','sea',.49,'4.7,31.5 10.8,31.5 10.8,38 4.7,38'),
-      area('harbour through east window','sea',.49,'12.4,31.5 18.2,31.5 18.2,37.9 12.4,37.9'),
-      area('lifted corner of the working chart','page',.98,'59.9,43.9 66.5,42.8 69.3,43.9 72.8,47.8 72.6,49.1 68,49.2 64.1,48.9 59.5,48.5'),
-      light('water light on the chart',35,46.3,12,2.8,'212,211,168','window',-.08),
-      light('silver light below the sash',11.6,41.1,10.5,.81,'182,196,192','window',-.036)],
-    landing: [
-      area('cloud bank over the inlet','cloud',.78,'0,0 67,0 65,6.3 55,12.2 40,16.5 33.7,19 26,21.7 11.6,19.7 3.1,17.5 0,18'),
-      area('tidal reach behind the dinghy','sea',1.04,'13.6,31 74,32.7 73.6,46.9 63.3,51.7 55.2,51.7 54.7,45.9 52,44 45.9,47.6 20.8,48.1 18.4,52.1 14.4,55.2 5.7,54.3 2,51 0,52 0,36.5 7.6,36.5 13,34.5'),
-      area('grass above the mooring post','grass',.88,'90.8,43.7 94.8,40 96.7,38.7 100,36.1 100,49.7 97,52.9 92,54 89,53.7')],
-    return_camp: [...shelterWindow,ceiling,hearth,sillLight,reflectedFire]
-  };
-  // These are surfaces that can receive moving daylight. Sampling the actual
-  // colour and grain of their paint keeps the light on the boulders and path.
-  const daylight={
-    beach:area('passing sun across the schist','daylight',1.1,'32,51.1 41.5,42.7 48.4,43 62.7,37.9 70.9,41 64.5,48.1 54.2,53.2 49.6,61.6 40.5,60.4 31.2,65.7 28.3,63.5'),
-    camp:area('leaves casting shade over the fire ring','daylight',.9,'13.6,62.1 19.1,56.3 33.6,55.6 42.7,53.2 49,55.7 44.2,62.9 38.3,68.8 27.6,73 17.2,72.4 11.2,68.9'),
-    forest:area('dapple below the far branches','daylight',.63,'27.7,42.1 39.4,32.6 48.6,34.9 46.6,42.8 42.3,48.2 41,53.6 34.7,59.8 32,53.4'),
-    charcoal:area('light crossing the bank of the pit','daylight',.83,'42,54 53.3,43.6 63.3,43.3 69.5,46.6 72.3,49.3 64.2,52.6 57.4,54.8 49.9,59.6 43.4,59.6'),
-    slipway:area('changing light on the woodpile','daylight',.9,'2.1,48.9 4,43.7 7.3,42.4 9.4,49.9 17.9,49.8 20.1,54.4 22,57.5 20,60.2 11.7,63.4 7,64.3'),
-    landing:area('silver light on the wet shingle','daylight',.8,'6.7,60.4 21,61.1 34,61.4 48.9,60.9 56.3,57.8 61.5,60.1 52.5,64.6 35.8,66.8 19.4,67.8 9.8,65.6')
+    beach:[headland,shore,leaves('shoregrass by the path','0,77 4,80 9,88 6,91 0,89',
+      [[2,87.4,1],[4.2,86.8,-1],[3.1,86.9,1]],true)],
+    wreck:[...hull,cloth('torn canvas on the rail','27.1,10.1 31.7,12 33.1,11.5 31.6,20.8 29.3,25.7 28.1,21.2',1.12)],
+    salvage:[...hull],
+    camp:[cloud('cloud through the canopy','35,3 47,0 51,0 46,14 41,18'),
+      water('inlet beyond the clearing','22,33.1 32,33 32.7,34 29.1,36.4 24,39.4 23.2,38.7','sheltered'),
+      pane('sun in the second inlet',[53.6,34.1,6.5,1.4],{style:'sheltered'}),
+      leaves('leaves at the clearing','3,0 24,0 38,16 38,22 27,16 21,21 13,18 6,13',
+        [[31,15.2,1],[26.5,10.7,-1],[14.5,9.9,1],[19.7,15.5,-1]])],
+    cabin:[...cabinWindow,roof,sill,beam('dust in the diagonal window beam','27,24 31,26 45,44 44,48 38,42 30,32')],
+    return_camp:[...cabinWindow,roof,sill,fire,reflection,beam('motes over the warm table','29,31 34,33 44,46 40,48 33,40')],
+    forest:gully,
+    charcoal:hollow,
+    forge:[water('water through the forge door','2.5,46 6.8,45.6 10.6,46.4 10.8,47.1 8.2,48.2 7.2,50 6,51.1 4.8,51.3 3.8,51.5 2.5,52.2','glass'),
+      glow('daylight on the threshold','sill',5.7,65.4,4.4,1.1),
+      beam('dust between the door and furnace','12,37 17,36.9 29,55 27.5,59 19,48')],
+    slipway:[cloud('clouds above the cove','0,0 35,0 29,8.7 15,20.1 0,23'),
+      water('water off the stocks','0,30.5 21,30.5 25.4,31.7 30.6,32.4 27.5,34.1 24.9,36.8 19.8,38.1 19,40.3 12.1,41.7 10,38.5 7.8,37.9 4.3,38.2 0,39.6','reef',
+        [front(9.3,32.4,1.8,3.7,18,-1.1,7.8)]),
+      leaves('leaves over the stocks','46,0 72,0 70,8 60,13 53,16.7 47,16',
+        [[51,12,1],[59.4,9.8,-1],[66.3,6.2,1]])],
+    crossing:[cloud('squalls off the port bow','0,0 33,0 27,30 22,42 0,42'),...offshore],
+    harbour:[cloud('evening cloud over the harbour','0,0 56,0 44,13.4 33.2,23 27,27 23,17.6 19,30 0,39'),
+      water('sun path beyond the cutter','0,47.6 19,47.6 15.2,54.1 11.8,53.3 10.7,54.4 7.9,58 4.4,60.4 3.7,59 1.5,59 1.3,61.5 0,61.5','gold',
+        [front(6.9,48.4,-1,6.6,12,-.3,harbourPeriod)]),
+      water('backwash abaft the cutter','56,54 61,55.7 64.6,56.8 66.4,59 65.8,62.3 61,63.2 58.2,61.7 56.4,59.6','sheltered',[],
+        ['54.6,54.8 56.7,57.8 60.9,61.9 64.5,63.6 67.2,63.4 67.8,64.4 64.4,65.1 60.2,63.2 56.1,59.4 54.1,56.1'])],
+    chartroom:[pane('harbour through west sash',[4.8,37.1,5.9,1.4],{style:'glass'}),pane('harbour through east sash',[12.6,37.1,5.1,1.4],{style:'glass'}),
+      glow('silver light below the sash','sill',11.5,41,8,.8),glow('reflected harbour light on the chart','sill',34.5,46.8,8.8,1.3),
+      beam('dust above the charts','15,26 18,25 39,39 35.9,42.1 24,35.8')],
+    landing:[cloud('passing cloud over the inlet','0,0 65,0 54,11 25,20 0,17.4'),
+      water('inlet inside the mooring','0,34 13,33.6 14.6,32.8 72.7,33.7 72.7,45 66.6,48.9 55.4,51 54.2,44.1 49,44.6 43,47 20,47 18.2,50.9 14.5,53.2 0,51.5','sheltered',
+        [front(24,37.2,1.9,5,25,-.7,harbourPeriod,.42),front(60.5,40.8,1.4,4.4,20,-.8,harbourPeriod,.24)],
+        ['5.9,31.2 13.4,31.3 13.2,34.5 8,35.2 5.9,34.3']),
+      // The incoming crest reaches the hull after the two offshore fronts.
+      // Its narrow footprint follows the water between the keel and the stones.
+      water('shallow wash beside the keel','53.8,59.95 57,59.6 58.2,59.1 62.6,59.2 64.4,59.9 68.8,60.1 72.1,60 72.1,61.8 68.3,61.9 65.1,61.95 62.7,61.55 58.1,61.6 56.1,62.0 53.8,62.1','shoal',
+        [front(61.4,59.95,1.7,1.59,20.1,-.23,harbourPeriod,.04)]),
+      leaves('grass above the mooring','91,43.8 100,38 100,52 92,54',
+        [[96,47.8,1],[97.8,46,-1],[94.2,49.9,1]],true)]
   };
   function describe(state) {
-    const f=state.flags || {}, layers=[...(paintings[state.scene] || [])];
-    if(daylight[state.scene])layers.push(daylight[state.scene]);
-    switch(state.scene) {
+    const f=state.flags||{}, layers=[...(paintings[state.scene]||[])];
+    switch(state.scene){
       case 'camp':
-        if(f.shelterBuilt) layers.push(area('belly of the shelter sail','canvas',.93,'60.4,53.6 65.4,43.2 68,37.2 80.9,34.5 82,35 80.8,44.8 79.6,54.4 73.3,53.9 66.8,53.7'));
-        if(f.fireLit) layers.push(light('fire reflected by the ring stones',26.1,65.9,8,1.8,'254,159,65','fire'));
+        if(f.shelterBuilt) layers.push(cloth('shelter sail','65,48 68,38 79.3,36 78.5,51.7 67,52',.54));
+        if(f.fireLit) layers.push(glow('camp fire','hearth',27.5,65.5,2,2.3),glow('fire ring reflection','reflection',27.6,68.3,4.5,.9));
         break;
       case 'cabin':
-        if(f.roofSealed) layers[layers.indexOf(ceiling)]={...ceiling,power:.13};
-        if(f.warmthReady) layers.push(hearth,reflectedFire);
+        if(f.roofSealed) layers[layers.indexOf(roof)]={...roof,power:.12};
+        if(f.warmthReady) layers.push(fire,reflection);
         break;
       case 'forge':
-        if(f.forgeLit) layers.push(area('hot bed above the stone lip','coals',1,'34.4,45.8 35.7,43 39,41.8 42.3,41.8 45.4,43.3 47,46.5 45.4,47.3 36,47.1'),
-          light('coal light on the smithy floor',40.8,67.2,18,3.2,'243,124,49','fire'));
+        if(f.forgeLit) layers.push(glow('furnace embers','coals',41.5,45.2,4.2,2.1),glow('furnace reflection','reflection',40,65.9,12.4,1.7));
         break;
       case 'slipway':
-        if(f.sailRigged) layers.push(area('new sail drawing on the stocks','canvas',1.28,'63.8,19.7 66,25.4 72.6,33.4 80.7,39.8 75.3,40.2 66.7,41.2 64.1,42.2'));
+        if(f.sailRigged) layers.push(cloth('canvas on the stocks','64.8,24.1 68,28.9 78,39.3 66,40.2',.72));
         break;
       case 'crossing':
-        layers.push(area('sail drawing against its shrouds','canvas',f.sailMended ? .64 : f.rigSecured?1.04:1.57,'49.5,0 96,0 92.5,7.5 81,15.7 67.4,22.6 48.6,31.6 49.3,20.8'));
-        if(!f.boatDry) layers.push(area('standing water on the deck','bilge',1,'36.5,79.1 55,74.9 71.2,74.4 81.9,76.6 78,80 61,82.5 46.3,82.1'));
+        layers.push(cloth('sail drawing overhead','50,0 91,0 80,13.7 69,19.7 50,28.5',f.sailMended ? .38 : f.rigSecured ? .82 : 1.35));
+        if(!f.boatDry) layers.push(water('standing bilge water','62.4,75.6 64.4,75.7 65.2,75.9 67.7,75.7 69.6,75.9 70,76.4 68.6,77.2 67.3,77.5 65.8,77.9 64.2,77.4 63.2,77.4 62.8,76.9','bilge'));
         break;
       case 'landing':
-        if(f.landingMarked) layers.push(light('lantern cast toward the tied boat',75,55.7,2,5.8,'231,171,85','fire',.06));
+        if(f.landingMarked) layers.push(glow('lantern on shingle','reflection',77.8,62.1,2.1,1.2),
+          glow('light in the lantern glass','reflection',77.8,35.5,.65,.93));
         break;
     }
     return layers;
   }
 
-  // Capture the paint once per plate or state change. A feathered matte on
-  // each small swatch lets it move over the unbroken stationary illustration.
-  function swatch(doc, image, part, index) {
-    if(!part.points) return {...part,phase:index*.91};
-    const px=part.points.map(([x,y])=>[x*W/100,y*H/100]);
-    const x=Math.max(0,Math.floor(Math.min(...px.map(p=>p[0])))-2);
-    const y=Math.max(0,Math.floor(Math.min(...px.map(p=>p[1])))-2);
-    const w=Math.min(W-x,Math.ceil(Math.max(...px.map(p=>p[0])))-x+2);
-    const h=Math.min(Math.ceil(H-y),Math.ceil(Math.max(...px.map(p=>p[1])))-y+2);
-    const paper=doc.createElement('canvas');paper.width=w;paper.height=h;
-    const pen=paper.getContext('2d');
-    if(!pen) return null;
-    const mat=doc.createElement('canvas');mat.width=w;mat.height=h;
-    const mask=mat.getContext('2d');
-    if(!mask) return null;
-    mask.filter='blur('+(part.kind==='daylight'?6:part.kind==='cloud'?4.5:part.kind==='bough'?2.5:1.2)+'px)';
-    mask.beginPath();px.forEach(([u,v],i)=>i?mask.lineTo(u-x,v-y):mask.moveTo(u-x,v-y));mask.closePath();mask.fill();
-    pen.drawImage(image,0,0,image.naturalWidth||image.width,image.naturalHeight||image.height,-x,-y,W,H);
-    if(part.kind==='daylight'){
-      pen.globalCompositeOperation='soft-light';
-      pen.fillStyle='#fff2ba';pen.fillRect(0,0,w,h);
-    }
-    pen.globalCompositeOperation='destination-in';pen.drawImage(mat,0,0);
-    const flecks=[];
-    // A specular mark must live on the particular body of water, including
-    // when that body wraps around a gunwale or entirely surrounds a tiny rock.
-    if(['surf','gold','sea','ocean','current','fall','coals','fire','bilge'].includes(part.kind)){
-      const step=part.kind==='ocean'?12:part.kind==='gold'?16:part.kind==='fall'?5:7;
-      for(let i=0;i<step*6 && flecks.length<step;i++){
-        let u=.04+.92*hash(23*index+5*i+13),v=.13+.71*hash(13*index+3*i+27);
-        if(part.kind==='gold') u=.08+.59*u;
-        const cx=u*w,cy=v*h;
-        if(inside(cx+x,cy+y,px))flecks.push({u,v,s:hash(18+i*7),phase:TAU*hash(3+i*37)});
-      }
-    }
-    return {...part,paper,x,y,w,h,phase:hash(index*31+11)*TAU,flecks};
-  }
-  const hash=n=>{const s=Math.sin(174.83+n*77.17)*43758.5453;return s-Math.floor(s);};
-  function inside(x,y,poly){
+  function contains(x,y,poly) {
     let match=false;
     for(let i=0,j=poly.length-1;i<poly.length;j=i++){
       const [ax,ay]=poly[i],[bx,by]=poly[j];
-      if((ay>y)!==(by>y)&&x<(bx-ax)*(y-ay)/(by-ay)+ax)match=!match;
+      if((ay>y)!==(by>y)&&x<(bx-ax)*(y-ay)/(by-ay)+ax) match=!match;
     }
     return match;
   }
-  function prepare(doc,image,layers){
-    return layers.map((part,i)=>swatch(doc,image,part,i)).filter(Boolean);
+  function prepare(layers) {
+    return layers.map(layer=>{
+      const xs=layer.points.map(p=>p[0]), ys=layer.points.map(p=>p[1]);
+      const left=Math.min(...xs), top=Math.min(...ys), w=Math.max(...xs)-left, h=Math.max(...ys)-top;
+      const seed=Array.from(layer.name).reduce((n,s)=>((n*31)+s.charCodeAt(0))>>>0,23)%6857;
+      const marks=[];
+      if(layer.kind==='water'){
+        const count=Math.min(27,Math.max(4,Math.ceil(w*h/27)));
+        for(let i=0;i<count*12 && marks.length<count;i++){
+          const x=left+w*noise(seed+9*i),y=top+h*noise(seed+9*i+1);
+          if(contains(x,y,layer.points)&&!(layer.holes||[]).some(p=>contains(x,y,p)))
+            marks.push({x:x*X,y:y*Y,size:noise(seed+9*i+2),p:noise(seed+9*i+3)});
+        }
+      }
+      return {...layer,left:left*X,top:top*Y,width:w*X,height:h*Y,phase:noise(seed),marks,
+        lanes:layer.lanes?.map(lane=>points(lane).map(([x,y])=>[x*X,y*Y]))};
+    });
   }
-
-  function illumination(ctx,m,t) {
-    const ember=m.kind==='fire';
-    const shimmer=ember ? .57+.15*Math.sin(3.53*t)+.1*Math.sin(5.37*t+.6)+.06*Math.sin(8.9*t) :
-      .52+.32*Math.sin(1.32*t+m.phase)+.12*Math.sin(2.14*t+m.phase);
-    ctx.save();ctx.translate(m.x*10,m.y*H/100);ctx.rotate(m.angle);
-    ctx.scale(m.w*10*(.9+.16*shimmer),m.h*H/100);
-    const g=ctx.createRadialGradient(0,0,0,0,0,1);
-    g.addColorStop(0,'rgba('+m.color+','+((ember ? .48 : .28)*shimmer)+')');g.addColorStop(1,'rgba('+m.color+',0)');
-    ctx.fillStyle=g;ctx.fillRect(-1,-1,2,2);ctx.restore();
+  function contour(ctx,poly) {
+    poly.forEach(([x,y],i)=>i?ctx.lineTo(x*X,y*Y):ctx.moveTo(x*X,y*Y));
+    ctx.closePath();
   }
-  const liquid={sea:[4.1,1.15,1.28],surf:[7,2.85,1.6],gold:[3.7,1.6,1.13],ocean:[8.2,3.5,1.48],current:[4,1.02,1.72],bilge:[4.3,.64,1.6]};
-  function water(ctx,m,t) {
-    const [sweep,lift,rate]=liquid[m.kind], speed=t*rate+m.phase;
-    // Different parts of the same wave arrive at the camera at different
-    // times. Neighbouring strips share their vertical boundary exactly.
-    const bands=Math.max(4,Math.min(19,Math.ceil(m.h/3.7)));
-    let sourceY=0, destY=0;
-    for(let i=0;i<bands;i++){
-      const v=(i+1)/bands, edge=Math.round(v*m.h), depth=.32+.68*v;
-      const roll=speed-9*v;
-      const dy=lift*m.power*depth*(Math.sin(roll)+.28*Math.sin(1.7*roll+.3));
-      const newY=edge+dy;
-      const dx=sweep*m.power*depth*(Math.sin(roll+.9)+.25*Math.sin(roll*1.77-1.5));
-      ctx.drawImage(m.paper,0,sourceY,m.w,edge-sourceY,m.x+dx,m.y+destY,m.w,Math.max(.1,newY-destY+.3));
-      sourceY=edge;destY=newY;
+  function clip(ctx,m) {
+    ctx.beginPath();contour(ctx,m.points);ctx.clip();
+    // Intersect the original matte with each hole's exterior. A hole which
+    // crosses the shoreline cannot open a second island of visible paint.
+    for(const hole of m.holes||[]){
+      ctx.beginPath();ctx.rect(-1,-1,WIDTH+2,HEIGHT+2);contour(ctx,hole);ctx.clip('evenodd');
     }
   }
-  // A few explicitly placed wave fronts turn white at the reef, then pull
-  // back. Their bends follow the shingle or the open wave in the painting.
-  const wavefronts={
-    'south coast surf':[[0,55.1,5.5,54.2,11.2,51.2,16.4,51.8],[0,61.2,3.5,60.5,6.8,57.4,10.9,57.1],[12,48.4,15.4,46.9,20.8,48.4,24.4,47.5]],
-    'surge on the broken bow':[[0,58.4,2.7,58.9,5.7,56.9,9.4,56.8],[0,68.1,2.4,66.9,4.9,67.5,6.7,64.5]],
-    'swells abaft the mast':[[49,55.9,55,54.8,57.7,51.6,63.8,51.8],[68,53,74.1,54.3,77.4,48.7,84.5,48.9],[82.8,56.2,87.4,57,91.4,52.7,95.9,53.3]],
-    'open sea to port':[[0,47.5,4.4,46.2,9,48.7,13.6,48.9],[9.8,50.8,14.4,49.5,19.5,54.3,24.8,52.8]],
-    'tidal reach behind the dinghy':[[0,52.7,5.1,54.5,11.6,51.7,17.9,51.8],[54.5,50.2,59.4,51.8,63.8,49.7,67.7,49.2]],
-    'water off the stocks':[[2.5,37.6,7.3,37.7,11,37.3,15.8,36.7]],
-    'water through the forge door':[[0,52.5,1.3,51.7,3.4,51.4,5.2,50.6]]
-  };
-  function breaking(ctx,m,t){
-    const fronts=wavefronts[m.name];
-    if(!fronts)return;
-    const rough=m.kind==='ocean'||m.kind==='surf';
-    for(const [i,c] of fronts.entries()){
-      const phase=t*(rough?1.16:.8)+m.phase+i*2.23;
-      const arrive=.5+.5*Math.sin(phase), lift=arrive*arrive;
-      if(lift<.06)continue;
-      ctx.save();
-      ctx.translate(1.5*m.power*Math.sin(phase-.6),(lift-.35)*(rough?4.8:1.7));
-      // Broken teeth of foam sit just in front of a broader blue-green lip.
-      ctx.beginPath();ctx.moveTo(c[0]*10,c[1]*H/100);
-      ctx.bezierCurveTo(c[2]*10,c[3]*H/100,c[4]*10,c[5]*H/100,c[6]*10,c[7]*H/100);
-      ctx.globalAlpha=.21*lift;ctx.lineWidth=rough?3.3:1.65;ctx.strokeStyle='#738e91';ctx.stroke();
-      ctx.globalAlpha=(rough ? .62 : .37)*lift;ctx.strokeStyle='#e2e7dc';
-      ctx.lineWidth=rough?1.37:.84;ctx.lineCap='round';ctx.setLineDash(rough?[7,2,3,1.7,13,3,4,3,2,4]:[8,4,11,4]);ctx.lineDashOffset=-t*(rough?3.8:1.8);ctx.stroke();
+  function stroke(ctx,x,y,dx,dy,bend) {
+    ctx.beginPath();ctx.moveTo(x,y);
+    ctx.quadraticCurveTo(x+.48*dx,y+.48*dy-bend,x+dx,y+dy);ctx.stroke();
+  }
+  function pigment(ctx,x,y,w,h,rgb,alpha) {
+    ctx.save();ctx.translate(x,y);ctx.scale(w,h);
+    const wash=ctx.createRadialGradient(0,0,0,0,0,1);
+    wash.addColorStop(0,'rgba('+rgb+','+alpha+')');wash.addColorStop(1,'rgba('+rgb+',0)');
+    ctx.fillStyle=wash;ctx.fillRect(-1,-1,2,2);ctx.restore();
+  }
+  function wave(ctx,m,b,index,t,gust) {
+    const p=unit(t/b.period+(b.phase ?? m.phase+index*.37));
+    const near=m.style==='reef', offshore=m.style==='ocean', rough=near||offshore;
+    const power=rough?(near?5.1:6.4):1.65;
+    const amplitude=pulse(p)*(.75+.4*gust);
+    const width=b.span*X*(.38+.66*Math.sin(Math.PI*p));
+    const peel=Math.max(0,Math.min(1,(p-.22)/.48));
+    const centreX=(b.x+p*b.dx)*X,centreY=(b.y+p*b.dy)*Y;
+    const bottom=1.5+(rough?3.1:1.1)*amplitude;
+    const gold=m.style==='gold';
+    const samples=22;
+    function edge(i){
+      const u=i/samples;
+      const envelope=Math.sin(Math.PI*u);
+      const smallTeeth=.33*Math.sin(i*1.7+index)+.27*Math.cos(i*2.21);
+      const lift=power*amplitude*envelope*(.56+.45*Math.sin(4.1*u+index+.7)+smallTeeth*.28);
+      return [centreX+width*(u-.5),centreY+Y*b.slope*(u-.5)-lift];
+    }
+    const line=Array.from({length:samples+1},(_,i)=>edge(i));
+    ctx.beginPath();ctx.moveTo(...line[0]);line.slice(1).forEach(v=>ctx.lineTo(...v));
+    for(let i=samples;i>=0;i--)ctx.lineTo(line[i][0],line[i][1]+bottom*Math.sin(Math.PI*i/samples));
+    ctx.closePath();ctx.globalAlpha=.44*amplitude;ctx.fillStyle=gold?'#b99d69':'#496e72';ctx.fill();
+    const white=amplitude*(.22+.78*pulse((p-.16)/.83));
+    ctx.strokeStyle=gold?'#f3d59b':m.style==='shoal'?'#e5d9ba':'#ecebd9';
+    for(let i=1;i<samples;i++){
+      const u=i/samples;
+      const distance=Math.abs(u-(.12+.65*peel));
+      const edgeLight=Math.max(0,1-distance/(.22+.28*peel))*white;
+      if(edgeLight<.06 || (i+index)%7===0)continue;
+      ctx.lineWidth=(rough?1.75:m.style==='shoal'?1.48:1.05)*(.58+.75*edgeLight);
+      ctx.globalAlpha=Math.min(.94,edgeLight*(near?1.02:.88));
+      stroke(ctx,...line[i-1],line[i][0]-line[i-1][0],line[i][1]-line[i-1][1],.42);
+      // Breakers curl, burst leeward, then draw a thin ragged lace behind them.
+      if(near && i%3===0 && p>.38 && p<.85){
+        const spray=unit((p-.38)*3.3+i*.21);
+        const height=(1.6+3.8*noise(i+index))*pulse(spray);
+        ctx.globalAlpha=.76*edgeLight*pulse(spray);ctx.lineWidth=.85;
+        stroke(ctx,line[i][0]+spray*5,line[i][1]-height,1.65,-.6,.25);
+      }
+      if(rough && i%4===0 && p>.47){
+        ctx.globalAlpha=.54*edgeLight;ctx.lineWidth=1.1;
+        stroke(ctx,line[i][0]+.4,line[i][1]+bottom,4+i%3,1,.7);
+      }
+    }
+  }
+  function waterMarks(ctx,m,t,gust) {
+    (m.breakers||[]).forEach((b,i)=>wave(ctx,m,b,i,t,gust));
+    const gold=m.style==='gold',glass=m.style==='glass',bilge=m.style==='bilge';
+    const rough=m.style==='reef'||m.style==='ocean';
+    for(const f of m.marks){
+      const p=unit(t/(3.1+2.7*f.size)+f.p);
+      const light=pulse(p);
+      const length=(glass?6:rough?20:gold?17:10)*(.32+f.size)*(.42+.58*light);
+      const x=f.x+(p-.5)*(glass?4:bilge?11:12+8*f.size);
+      const y=f.y+(p-.5)*(rough?6:3)-light*(rough?1.35:.45);
+      ctx.strokeStyle=gold?'#f5db99':bilge?'#c0c5b7':'#d8e3d9';
+      ctx.globalAlpha=light*(gold ? .78 : glass ? .52 : .58);
+      ctx.lineWidth=(rough?1.25:1)*(.6+.62*f.size);
+      stroke(ctx,x-length*.5,y,length,(f.size-.4)*(rough?1.9:.9),.35+light*.65);
+    }
+  }
+  function bezier(lane,u) {
+    const a=1-u,A=a*a*a,B=3*a*a*u,C=3*a*u*u,D=u*u*u;
+    return [A*lane[0][0]+B*lane[1][0]+C*lane[2][0]+D*lane[3][0],
+      A*lane[0][1]+B*lane[1][1]+C*lane[2][1]+D*lane[3][1]];
+  }
+  function flowing(ctx,m,t) {
+    const vertical=m.fall;
+    for(const [k,lane] of m.lanes.entries()){
+      for(let i=0;i<(vertical?13:12);i++){
+        const n=noise(29*i+3*k),p=unit(t/(vertical?1.1+n*.45:3.1+n*1.6)+i*.627+m.phase);
+        const u=vertical?p*p:p;
+        const ahead=Math.min(1,u+(vertical ? .09+.12*p : .025+.023*n));
+        const a=bezier(lane,u),b=bezier(lane,ahead);
+        const offset=(n-.5)*(m.spread||(vertical?4:6.3));
+        const side=(noise(i+6)-.5)*1.4;
+        const x=a[0]+(vertical?offset:side),y=a[1]+(vertical?side:offset);
+        ctx.globalAlpha=(.50+.45*n)*pulse(p);
+        ctx.strokeStyle=vertical?'#e8ebd8':i%4===0?'#a5b7a4':'#dce1ca';
+        ctx.lineWidth=.84+1.1*n;
+        stroke(ctx,x,y,b[0]-a[0],b[1]-a[1],vertical ? .24 : .43);
+        if(!vertical && i%4===0) {
+          ctx.fillStyle='#e6e3ce';ctx.beginPath();ctx.ellipse(x+3.1,y-.4,1.1,.56,0,0,TAU);ctx.fill();
+        }
+      }
+      if(vertical){
+        const [x,y]=lane[3],p=unit(t*.85+k*.44);
+        ctx.strokeStyle='#d5e0cc';ctx.lineWidth=1;ctx.globalAlpha=.65*pulse(p);
+        ctx.beginPath();ctx.ellipse(x+1,y-.7,1+6.1*p,.4+1.1*p,0,.23,Math.PI*1.56);ctx.stroke();
+      }
+    }
+  }
+  function poolRings(ctx,m,t){
+    for(const [i,[x,y]] of (m.ripples||[]).entries()){
+      const p=unit(t/(2.1+i*.21)+i*.61);
+      ctx.strokeStyle='#d4e2ce';ctx.lineWidth=.95;
+      ctx.globalAlpha=.66*pulse(p);
+      ctx.beginPath();ctx.ellipse(x*X+2*p,y*Y+1.4*p,2.1+p*11,.5+p*2.3,0,.05,Math.PI*1.78);ctx.stroke();
+    }
+  }
+  function litter(ctx,m,t){
+    for(const [i,lane] of m.lanes.entries()){
+      const p=unit(t/(11.7+2*i)+m.phase+.49*i);
+      if(p>.68)continue;
+      const u=p/.68,[x,y]=bezier(lane,u);
+      const spin=Math.sin(u*15.3+i),glide=3.4*Math.sin(u*11.2+i);
+      ctx.fillStyle=m.color;ctx.globalAlpha=.84*pulse(u);
+      ctx.beginPath();ctx.ellipse(x+glide,y,2.4+1.4*Math.abs(spin),.64+1.01*Math.abs(spin),spin*.84,0,TAU);ctx.fill();
+    }
+  }
+  function foliage(ctx,m,t,gust) {
+    for(const [index,[u,v,d]] of m.tips.entries()){
+      const x=u*X,y=v*Y;
+      const wind=(.48+.48*Math.sin(t*1.51+.7*index)+.21*Math.sin(t*3.14+index))*gust;
+      for(let k=0;k<3;k++){
+        const rootX=x+(k-1)*(m.grass?2.3:3.4),rootY=y+.75*k;
+        const length=(m.grass?9.8:5.8)*(1+.23*k);
+        const dx=(m.grass?(k-.7)*2:2.2+.9*k)*d+wind*(m.grass?5.3:3.1);
+        const dy=-length*(.71+.10*Math.sin(t*1.85+k*.35+index));
+        ctx.fillStyle=m.grass?['#8c835a','#b1a474','#847b4e'][k]:['#7c824e','#92905b','#aba26c'][k];
+        ctx.globalAlpha=m.grass ? .84 : .83;
+        // Each blade attaches at a fixed painted point. There is no branch geometry.
+        ctx.beginPath();ctx.moveTo(rootX,rootY);
+        ctx.quadraticCurveTo(rootX+dx*.4-1.1,rootY+dy*.47,rootX+dx,rootY+dy);
+        ctx.quadraticCurveTo(rootX+dx*.75+(m.grass ? .65 : 1.8),rootY+dy*.47,rootX,rootY);ctx.fill();
+      }
+    }
+  }
+  function illumination(ctx,m,t) {
+    const x=m.x*X,y=m.y*Y,w=m.w*X,h=m.h*Y;
+    const flicker=.6+.16*Math.sin(4.1*t)+.12*Math.sin(6.7*t+.9)+.08*Math.cos(11.3*t);
+    if(m.kind==='sill'||m.kind==='reflection'){
+      const warm=m.kind==='reflection',v=warm?flicker:.48+.25*Math.sin(.87*t+m.phase);
+      pigment(ctx,x,y,w*(.89+.1*v),h,warm?'252,150,63':'199,210,193',(warm ? .44 : .33)*v);
+      return;
+    }
+    const coals=m.kind==='coals';
+    pigment(ctx,x,y+h*.15,w*.92,h*(coals ? .76 : 1),'255,154,54',.30+.32*flicker);
+    for(let i=0;i<(coals?8:4);i++){
+      const n=noise(i+31),p=unit(t/(.87+.45*n)+n);
+      const cx=x+w*(n-.5)*1.44,cy=y+h*.47;
+      ctx.globalAlpha=pulse(p)*(.56+.34*n);
+      ctx.fillStyle=i%3===0?'#ffdf87':'#ffad49';
+      if(coals){
+        ctx.beginPath();ctx.ellipse(cx,cy-h*.22*n,1.4+2.3*n,.9+.72*n,0,0,TAU);ctx.fill();
+      }else{
+        const high=h*(.28+.78*pulse(p)),bend=2*Math.sin(t*4+i);
+        ctx.beginPath();ctx.moveTo(cx-2,cy);ctx.quadraticCurveTo(cx-2.9,cy-high*.48,cx+bend,cy-high);
+        ctx.quadraticCurveTo(cx+3.4,cy-high*.31,cx+2,cy);ctx.fill();
+      }
+      const rise=unit(t*.5+i*.34);
+      if(i%3===0) {
+        ctx.globalAlpha=.76*pulse(rise);ctx.fillStyle='#fac777';
+        ctx.beginPath();ctx.ellipse(cx+rise*3,cy-rise*h*1.37,.86,.67,0,0,TAU);ctx.fill();
+      }
+    }
+  }
+  function dust(ctx,m,t){
+    const rgb='209,200,163';
+    for(let i=0;i<8;i++){
+      const p=unit(t/(7.3+2.4*noise(i))+m.phase+i*.381);
+      const x=m.left+m.width*(.14+.68*p)+2.3*Math.sin(p*TAU+i);
+      const y=m.top+m.height*(.12+.72*p+.11*Math.sin(p*TAU+i*.8));
+      const opacity=.65*pulse(p)*(.65+.35*Math.sin(p*9+i));
+      ctx.fillStyle='rgba('+rgb+','+opacity+')';
+      ctx.beginPath();ctx.ellipse(x,y,.65+noise(i+3)*.6,.45+noise(i+1)*.45,0,0,TAU);ctx.fill();
+    }
+  }
+  function airLight(ctx,m,t,gust) {
+    if(m.kind==='cloud') {
+      const p=unit(t/23+m.phase),q=unit(p+.5);
+      for(const z of [p,q]){
+        const x=m.left+m.width*(.02+.96*z),y=m.top+m.height*(.31+.15*Math.sin(z*TAU));
+        pigment(ctx,x,y,Math.max(4,m.width*.25),Math.max(3,m.height*.21),'217,214,190',.17*pulse(z));
+      }
+    } else {
+      // A passing fold catches the light inside the canvas, held at its seams.
+      const pos=unit(t/5.6+m.phase),x=m.left+m.width*(.13+.74*pos);
+      const y=m.top+m.height*.46;
+      ctx.save();ctx.translate(x,y);ctx.rotate(-.48);
+      pigment(ctx,0,0,Math.max(2,m.width*.035),m.height*.48,'245,225,179',.30*pulse(pos)*gust*m.power);
       ctx.restore();
     }
   }
-  // Work in local swatch coordinates. Each crest is a few linked opaque and
-  // broken brush marks, brightening only as the moving wave turns into light.
-  function glints(ctx,m,t) {
-    const gold=m.kind==='gold',large=m.kind==='ocean'||m.kind==='surf',fire=m.kind==='fire'||m.kind==='coals';
-    ctx.save();
-    ctx.beginPath();m.points.forEach(([u,v],i)=>i?ctx.lineTo(u*10,v*H/100):ctx.moveTo(u*10,v*H/100));ctx.closePath();ctx.clip();
-    breaking(ctx,m,t);
-    for(const f of m.flecks) {
-      const rate=fire?3.2:m.kind==='fall'?3.4:gold?1.15:1.32;
-      const phase=t*rate+f.phase, crest=Math.sin(phase);
-      if(crest<-.14)continue;
-      const shine=(crest+.14)/1.14;
-      let x=m.x+f.u*m.w+Math.sin(phase-.8)*m.power*(large?5:2),y=m.y+f.v*m.h;
-      if(fire){
-        const scale=m.kind==='fire'?1.6:1;
-        ctx.fillStyle=f.s>.48?'#ffad4e':'#ffdc86';ctx.globalAlpha=(.24+.51*f.s)*shine;
-        ctx.beginPath();ctx.ellipse(x,y-Math.sin(phase)*scale,.7+f.s*1.3,(.9+shine*1.5)*scale,0,0,TAU);ctx.fill();continue;
-      }
-      if(m.kind==='fall'){
-        y+=5*Math.sin(phase);ctx.strokeStyle='#e6e9de';ctx.globalAlpha=shine*.7;
-        ctx.lineWidth=.75+.55*f.s;ctx.beginPath();ctx.moveTo(x,y-3);ctx.quadraticCurveTo(x+.2,y+1.9,x+1.3,y+3+f.s*4.6);ctx.stroke();continue;
-      }
-      y+=Math.sin(phase)*m.power*(large?1.7:.8);
-      const span=Math.min(m.w*.24,(gold?14:large?18:6.5)*(f.s+.38)*(.55+.45*shine));
-      const rise=large?1.3+.9*f.s:.26+.38*f.s;
-      ctx.globalAlpha=(gold ? .76 : large ? .55 : .47)*shine;
-      ctx.fillStyle=gold?'#ffe0a3':m.kind==='bilge'?'#b9ced2':'#d3ded9';
-      ctx.beginPath();ctx.moveTo(x-span*.57,y+rise*.4);
-      ctx.quadraticCurveTo(x-span*.21,y-rise*.82,x+span*.07,y-rise);
-      ctx.quadraticCurveTo(x+span*.27,y-rise*.87,x+span*.54,y-rise*.25);
-      ctx.quadraticCurveTo(x+span*.19,y-rise*.46,x+span*.03,y+(large ? .54 : .32));
-      ctx.closePath();ctx.fill();
-      if(f.s>.52){
-        ctx.globalAlpha*=.62;ctx.fillRect(x+span*.62,y-.15,span*.21,.66);
-      }
-    }
-    ctx.restore();
-  }
-  function flexible(ctx,m,t,gust) {
-    const breeze=.63*Math.sin(t*1.28+m.phase)+.25*Math.sin(t*2.15+m.phase)+.12*Math.sin(t*3.26+m.phase*.5);
-    const strength=m.power*(.59+gust*.67);
-    ctx.save();
-    if(m.kind==='daylight'){
-      const bands=Math.max(4,Math.min(20,Math.ceil(m.w/12)));
-      for(let i=0;i<bands;i++){
-        const u=i/bands, left=Math.round(u*m.w),right=Math.round((i+1)*m.w/bands);
-        const ray=.5+.5*Math.sin(t*.58-4.6*u+m.phase);
-        ctx.globalAlpha=m.power*(.09+.69*ray*ray);
-        ctx.drawImage(m.paper,left,0,right-left,m.h,m.x+left,m.y,right-left+.12,m.h);
-      }
-      ctx.restore();return;
-    }
-    if(m.kind==='cloud'){
-      const tide=Math.sin(t*.28+m.phase), drift=(9.7*tide+4.3*Math.sin(t*.46+m.phase))*strength;
-      ctx.globalAlpha=.82;ctx.drawImage(m.paper,m.x+drift,m.y+2.1*tide);ctx.restore();return;
-    }
-    if(m.kind==='bough'||m.kind==='grass'){
-      const grass=m.kind==='grass';
-      ctx.translate(m.x+m.w*.45,m.y+m.h);
-      ctx.transform(1,0,-(grass ? .125 : .052)*strength*breeze,1+.008*strength*breeze,0,0);
-      ctx.drawImage(m.paper,-m.w*.45,-m.h);ctx.restore();return;
-    }
-    if(m.kind==='page'){
-      // The weight of the sheet holds the west edge. Only the last few
-      // centimetres lift when a draught reaches the free corner.
-      const lift=Math.pow(.5+.5*Math.sin(t*.94+m.phase),3);
-      for(let i=0;i<10;i++){
-        const u=(i+.5)/10,a=Math.round(i*m.w/10),b=Math.round((i+1)*m.w/10);
-        const rise=(2.6+.74*breeze)*lift*u*u*m.power;
-        ctx.drawImage(m.paper,a,0,b-a,m.h,m.x+a,m.y-rise,b-a+.16,m.h);
-      }
-      ctx.restore();return;
-    }
-    if(m.kind==='fall'){
-      const flow=(t*.96)%1;
-      ctx.globalAlpha=Math.sin(Math.PI*flow)*.95;
-      ctx.drawImage(m.paper,m.x+flow*1.0,m.y+flow*7.4);ctx.restore();return;
-    }
-    if(m.kind==='fire'||m.kind==='coals'){
-      const pulse=.64*Math.sin(t*5.4)+.23*Math.sin(t*8.2)+.13*Math.sin(t*3.37);
-      ctx.translate(m.x+m.w/2,m.y+m.h);
-      ctx.transform(1+.034*pulse,0,.045*pulse,1+(m.kind==='fire' ? .14 : .037)*pulse,0,0);
-      ctx.drawImage(m.paper,-m.w/2,-m.h);ctx.restore();return;
-    }
-    // The head of a hanging rag is fast. The belly of a sail is fast at head
-    // and foot. A travelling fold between those attachments catches the gust.
-    const bands=12;
-    for(let i=0;i<bands;i++){
-      const a=Math.round(i*m.h/bands),b=Math.round((i+1)*m.h/bands),v=(i+.5)/bands;
-      if(b<=a)continue;
-      const bellying=m.kind==='rag'?v:Math.sin(Math.PI*v);
-      const dx=strength*bellying*(m.kind==='rag'?4.8:3.9)*(breeze+.53*Math.sin(t*2.5-v*5+m.phase));
-      ctx.drawImage(m.paper,0,a,m.w,b-a,m.x+dx,m.y+a,m.w,b-a+.22);
-    }
-    ctx.restore();
-  }
-  function paint(ctx,parts,time,gust) {
-    for(const m of parts){
-      if(!m.paper){illumination(ctx,m,time);continue;}
-      if(liquid[m.kind])water(ctx,m,time);else flexible(ctx,m,time,gust);
-      if(m.flecks.length)glints(ctx,m,time);
+  function onWater(ctx,parts,draw) {
+    for(const part of parts||[]) {
+      if(part.kind!=='run' && part.kind!=='water')continue;
+      ctx.save();clip(ctx,part);draw();ctx.restore();
     }
   }
-  return {describe,prepare,paint};
+  function paint(ctx,parts,t,gust) {
+    for(const part of parts){
+      ctx.save();clip(ctx,part);ctx.lineCap='round';ctx.lineJoin='round';
+      switch(part.kind){
+        case 'water': waterMarks(ctx,part,t,gust);break;
+        case 'run': flowing(ctx,part,t);poolRings(ctx,part,t);break;
+        case 'litter': litter(ctx,part,t);break;
+        case 'motes': dust(ctx,part,t);break;
+        case 'leaves': foliage(ctx,part,t,gust);break;
+        case 'cloth': case 'cloud': airLight(ctx,part,t,gust);break;
+        default: illumination(ctx,part,t);
+      }
+      ctx.restore();
+    }
+  }
+  return {describe,prepare,paint,onWater};
 });

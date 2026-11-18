@@ -1,0 +1,64 @@
+/* The frame borrows its timber, cloth and hardware from the painted vessel. */
+body {
+  color: #f1e4c9;
+  background: radial-gradient(ellipse at 50% 26%, #45474a, #1d242b 64%, #111a21);
+}
+.game-shell {
+  background: #22282c;
+  border-color: #766755;
+  box-shadow: 0 18px 64px #0a0f16b3;
+}
+.ship-timber { background: url('assets/ui/materials/timber.webp') center / auto 110px repeat-x; }
+.ship-canvas { background: url('assets/ui/materials/canvas.webp') center bottom / auto 100% repeat-x; }
+.ship-paper { background: url('assets/ui/materials/paper.webp') center / 680px auto repeat; }
+.game-header { background: #292425; color: #f4e9d0; border-bottom: 1px solid #a38760; }
+.game-header .ship-timber { opacity: .55; }
+.brand { font-family: Georgia, 'Times New Roman', serif; letter-spacing: .13em; }
+.brand span { color: #e1d1b6; }
+.game-header nav button {
+  background: linear-gradient(#1c28309c, #12202ad4), url('assets/ui/materials/brass.webp') center / 180px auto;
+  border: 1px solid #af926b;
+  box-shadow: inset 0 0 0 2px #1d2225, 0 1px 2px #100e0c;
+  color: #f4e9d1;
+}
+.game-header nav button:hover, .game-header nav button:focus-visible { background: #605243; color: #fff5df; }
+.game-header .button-metal { opacity: .1; }
+.game-header .goal { opacity: .73; }
+.game-header .goal.done { opacity: 1; }
+.inventory-bar {
+  background: #202d37;
+  border-top: 1px solid #827360;
+  box-shadow: inset 0 2px #bda98a33, inset 0 -2px #0c141c;
+}
+.inventory-bar .ship-canvas { opacity: .67; }
+.inventory .item {
+  background: #142029a8; border: 1px solid #a5967d91;
+  box-shadow: inset 0 2px 5px #0a101952, 0 1px #a5957c4f;
+}
+.inventory .item.empty { opacity: .32; border: 1px solid #a7aa9f; background: #202e3530; box-shadow: none; }
+.inventory .item:hover, .inventory .item:focus-visible { background: #3b4852; border-color: #d9c7a6; }
+.inventory .item.selected { border: 2px solid #f2d698; background: #594735b3; }
+.inventory-bar .help { color: #f5e9d5; }
+.interaction-line { background: #202a32; color: #eedfc3; }
+.interaction-line #saved { color: #d9b980; }
+.perspective-label { color: #dbbc87; }
+.first-hint, dialog, .completion { background: #eadfc6; color: #352e2a; }
+.first-hint .ship-paper, dialog > .ship-paper, .completion > .ship-paper { opacity: .5; }
+.dialogue, .dialogue[data-speaker=player] {
+  color: #352e2a;
+  background: linear-gradient(#f1e7d277, #f1e7d2bb), url('assets/ui/materials/paper.webp') center / 600px auto;
+  border-color: #88745f;
+}
+.dialogue-speaker { color: #674b34; }
+.dialogue:after { background: #e3d8bf; }
+/* Walk and work share the same light. Keep the silhouette and ground anchor untouched. */
+.staged { --cast-light: saturate(.91) brightness(.98); }
+.staged[data-scene=forest], .staged[data-scene=charcoal] { --cast-light: saturate(.86) brightness(.91); }
+.staged[data-scene=crossing] { --cast-light: saturate(.85) brightness(.96); }
+.staged[data-indoor=true] { --cast-light: sepia(.07) saturate(.89) brightness(.94); }
+.staged .actor-canvas, .staged .player-sprite, .staged .scene-prop, .staged #held-tool { filter: var(--cast-light); }
+@media (max-width: 700px) { .brand { letter-spacing: .06em; } }
+@media (prefers-contrast: more) {
+  .game-header .material-surface, .inventory-bar .material-surface { opacity: .2; }
+  .inventory .item { border-color: #e4d6bd; }
+}

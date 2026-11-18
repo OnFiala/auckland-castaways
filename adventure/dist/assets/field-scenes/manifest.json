@@ -3,35 +3,35 @@
   "assets": [
     {
       "file": "slipway.webp",
-      "source": "voyage/scenes/slipway.png",
-      "sourceSHA256": "f93e33d7ffaf3f61a404977efcff7e6be13f13fa3d804ec7de06523836c73068",
+      "source": "tidepaint/slipway.webp",
+      "sourceSHA256": "5eb3adc11566fcd8c0d29c44725743715488e3c4ce87275cc97fe29bfda020ad",
       "crop": [
-        584,
-        225,
-        1508,
-        841
+        559,
+        215,
+        1443,
+        804
       ],
       "size": [
         924,
         616
       ],
-      "sha256": "cfdf5d733cf27e261947ca46744a1df5619c429a3265215143cd4d9f2cdb0cfe"
+      "sha256": "2638d238b8c23cd13126710034217ca8f1befe730ed63d201b6b670c76d8ed32"
     },
     {
       "file": "cabin.webp",
-      "source": "voyage/scenes/cabin-cold.png",
-      "sourceSHA256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785",
+      "source": "tidepaint/cabin-cold.webp",
+      "sourceSHA256": "0048599cde551071f053b5fdda87477ff0c2666ad8ba26eaccb88c078c6703ec",
       "crop": [
-        125,
+        124,
         0,
-        1325,
-        800
+        1319,
+        796
       ],
       "size": [
         1200,
         800
       ],
-      "sha256": "fbe6291d787a077b1fca142fcd4470ef73a63df43f15774479f255dd1f18a1c9"
+      "sha256": "f7961b3a9ba971c4f34a5cee90fed188f9d5872632405856665ef9560a352c74"
     },
     {
       "file": "timber.webp",
@@ -112,6 +112,22 @@
         379
       ],
       "sha256": "76a4d9dcab4d1657d2451eb2352758f2fcb9bd17edc1e2d7b283dbb1fd61a42c"
+    },
+    {
+      "file": "crate-detail.webp",
+      "source": "tidepaint/wreck.webp",
+      "sourceSHA256": "59cb88ce74c9fcf79795a04437153ba3ca7105f7bf027c46b4e7fc881a2c8821",
+      "crop": [
+        1045,
+        441,
+        1358,
+        609
+      ],
+      "size": [
+        313,
+        168
+      ],
+      "sha256": "9828d57f86397bb30b67487f95a6ff23915b94f6e1a152d7a75a06b5eb432ad9"
     }
   ],
   "sound": {

@@ -1,4 +1,4 @@
-// Original painted interface materials; native PNGs remain unchanged.
+// Original painted fittings and full-width shipboard materials.
 (function(root,factory){const ui=factory();if(typeof module==='object'&&module.exports)module.exports=ui;else{root.AdventureInterface=ui;ui.mount(document);}})(typeof window!=='undefined'?window:globalThis,function(){'use strict';
 const assets={
   "timber-strip": {
@@ -69,6 +69,19 @@ const assets={
   }
 };
 function painting(id,cls='',fit='meet'){const a=assets[id];if(!a)return '';return `<svg class="painted ui-painting ${cls}" viewBox="${a.box.join(' ')}" preserveAspectRatio="xMidYMid ${fit}" aria-hidden="true" focusable="false"><svg class="atlas-clip" x="${a.box[0]}" y="${a.box[1]}" width="${a.box[2]}" height="${a.box[3]}" viewBox="${a.box.join(' ')}" overflow="hidden" style="width:${a.box[2]}px;height:${a.box[3]}px;overflow:hidden!important"><image href="${a.file}" width="${a.width}" height="${a.height}"/></svg></svg>`;}
-function mount(doc){doc.querySelectorAll('[data-material]').forEach(node=>{if(node.dataset.materialMounted)return;const id=node.dataset.material;node.insertAdjacentHTML('afterbegin',`<span class="material-surface" aria-hidden="true">${painting(id,'',id==='dialog-paper'?'meet':'slice')}</span>`);node.dataset.materialMounted='true';});doc.querySelectorAll('[data-ui-painting]').forEach(node=>{node.innerHTML=painting(node.dataset.uiPainting);});}
-return {assets,painting,mount};
+const materials = {
+ 'timber-strip': 'timber', 'inventory-canvas': 'canvas', 'dialog-paper': 'paper', 'paper-tab': 'paper'
+};
+function mount(doc) {
+ for (const node of doc.querySelectorAll('[data-material]')) {
+  const material = materials[node.dataset.material];
+  if (!material || node.dataset.materialMounted) continue;
+  node.insertAdjacentHTML('afterbegin', `<span class="material-surface ship-${material}" aria-hidden="true"></span>`);
+  node.dataset.materialMounted = 'true';
+ }
+ for (const node of doc.querySelectorAll('[data-ui-painting]')) {
+  node.innerHTML = painting(node.dataset.uiPainting);
+ }
+}
+return {assets,materials,painting,mount};
 });

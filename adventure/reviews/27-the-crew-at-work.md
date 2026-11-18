@@ -1,5 +1,7 @@
 # Ostrov v pohybu a návrat do Epigwaittu
 
+*Tento zápis zachycuje předchozí vydání. Pozdější měření u potoka a pobřeží odhalilo posun kamenů a větví uvnitř animovaných výřezů. Současná verze má nový způsob vykreslování a vlastní [srovnání pevných bodů](tide/pevne-body.webp).*
+
 Hráč může na okamžik přestat klikat a sledovat, jak voda přepadá přes dvě skály, jak se pod poryvem ohne koruna nebo jak Henry po práci vstane a otočí se k Alickovi. Změny procházejí všemi sedmi kapitolami. [Malba moře a potoka v pohybu](living/sea-and-stream.webp) · [Henryho příchod k ohništi a návrat do stoje](crew/henry-hearth.webp)
 
 ## Posádka a krajina

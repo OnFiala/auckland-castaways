@@ -2,6 +2,14 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## Fixed scenery and the incoming tide, 18 November 2026
+
+All 133 source tests passed, with zero skips. The stand-alone first-night walkthrough reached its ending. The compiled WebP edition passed 44 further checks against the same handlers for the seven chapters, work surfaces, archive, weather and foreground. Its 116 runtime files occupied 29,154,201 bytes before transfer compression. All 55 source WebPs and the recorded water-drop sound matched the delivery bytes. The other 24 images were converted from PNG with the packager’s geometry, alpha and colour checks.
+
+At 1,000 pixels of stage width the native Canvas check measured 2,031 stationary pixels in ten samples over 64 frames. It also isolated visible moving water, foam and foliage. A separate set of 32 phases verified the new tidal edge beside the rescue skiff and the steady profile of the wood, shingle and rocks. The fourteen optional gestures were checked against the walkable ground, hand positions and crew button areas. [Motion measurements](reviews/tide/README.md) · [Stage and reach](reviews/tide/registration.md) · [Release notes](reviews/28-priboj-a-pevna-zem.md)
+
+The managed Sites preview timed out opening port 4173. The frame evidence above comes from the production renderers running on native Canvas. Desktop and touch playback in a live browser remain unverified for this release.
+
 ## The crew at work and the archival epilogue, 18 November 2026
 
 The full suite passed 129 checks. The separate first-night UI walkthrough also reached its ending. The main campaign script completed all seven chapters in 71 inventory, room and chapter actions, with the physical work and the sewing roll exercised along the way. The workbench now has eight tasks. The new tests include Henry finishing his work and standing after a save reload, both stowage choices, the roof clue with sound muted, foot placement at the boat, and recovering from wrong choices in the Invercauld archive. [Current release](reviews/27-the-crew-at-work.md) · [Deterministic archive tests](tests/epilogue.test.cjs) · [Character gesture tests](tests/crew.test.cjs)

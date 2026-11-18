@@ -1,0 +1,438 @@
+{
+  "title": "Voyage and rescue paintings",
+  "coordinateBasis": "16:9 stage, dist/stage-direction.js. Source reference paths are relative to adventure/.",
+  "method": "Six original ImageGen edits. A seventh state recombines two native paintings. Native masters were generated at the sizes below. Final RGB plates resized to 1600 x 900, stripped of metadata and encoded via ImageMagick libwebp quality 88 method 6. No freehand procedural illustration or stock image layers.",
+  "maskMethod": "Polygon points measured in 840 x 473 inspection image, scaled to native pixels, rounded, gaussian-feathered sigma 3 native pixels, white admits the child painting. Overlay against base at origin with ImageMagick Over before WebP encoding.",
+  "registrationMasks": {
+    "dry": [
+      [
+        500,
+        347
+      ],
+      [
+        580,
+        346
+      ],
+      [
+        617,
+        348
+      ],
+      [
+        625,
+        355
+      ],
+      [
+        622,
+        366
+      ],
+      [
+        598,
+        373
+      ],
+      [
+        550,
+        377
+      ],
+      [
+        519,
+        369
+      ],
+      [
+        503,
+        361
+      ]
+    ],
+    "patch": [
+      [
+        620,
+        39
+      ],
+      [
+        681,
+        37
+      ],
+      [
+        673,
+        65
+      ],
+      [
+        669,
+        82
+      ],
+      [
+        621,
+        88
+      ],
+      [
+        617,
+        79
+      ]
+    ],
+    "rigged": [
+      [
+        342,
+        208
+      ],
+      [
+        505,
+        206
+      ],
+      [
+        518,
+        204
+      ],
+      [
+        520,
+        56
+      ],
+      [
+        541,
+        55
+      ],
+      [
+        548,
+        79
+      ],
+      [
+        575,
+        104
+      ],
+      [
+        610,
+        133
+      ],
+      [
+        647,
+        154
+      ],
+      [
+        675,
+        171
+      ],
+      [
+        687,
+        174
+      ],
+      [
+        699,
+        165
+      ],
+      [
+        717,
+        166
+      ],
+      [
+        714,
+        202
+      ],
+      [
+        698,
+        243
+      ],
+      [
+        679,
+        278
+      ],
+      [
+        640,
+        288
+      ],
+      [
+        617,
+        285
+      ],
+      [
+        588,
+        284
+      ],
+      [
+        556,
+        286
+      ],
+      [
+        520,
+        286
+      ],
+      [
+        471,
+        287
+      ],
+      [
+        444,
+        283
+      ],
+      [
+        416,
+        279
+      ],
+      [
+        379,
+        270
+      ],
+      [
+        348,
+        250
+      ]
+    ]
+  },
+  "generations": {
+    "slipway": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-2393ee6b-3d93-4f4a-92c7-2a5f119bb8c5",
+      "inputs": [
+        {
+          "path": "dist/assets/voyage/scenes/slipway.png",
+          "sha256": "f93e33d7ffaf3f61a404977efcff7e6be13f13fa3d804ec7de06523836c73068",
+          "bytes": 3015846,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "Produce one original, full-bleed 16:9 1860s maritime plein-air oil and gouache painting on fine linen for a historical point-and-click adventure. Think a real painter at a windswept place, with confident expressive flat bristle marks, great planes of colour, fine selective detail about things human hands have worn or made; strong non-photographic pictorial design and distinct local atmosphere, intelligible on a telephone. NOT a tracing or recolouring: invent new shapes, material grain, cloud formations, brushstrokes and lighting. Use the supplied reference ONLY as an immovable stage blueprint. Match its straight broadside framing and foreground walk plane, no shift, crop, tilt or lens change. Fixed world geometry! Cast, inventory and dialogue will be composited later: no people, no readable lettering, labels, watermarks, border, UI, loose pickups, modern fittings, or new foreground obstacles. Coordinates below in percent (x,y) of whole painting, origin upper left; do not print numbers. A small bright Auckland Island inlet during a squall clearing late in the Antarctic winter morning. Each colour fresh: wild diagonals of turquoise-slate surf through the narrow LEFT aperture, small opal clouds and warm silver light across a distant angular headland, windswept rata with limbs like calligraphy, violet shadow, copper raw wood, russet-green hillside on right. Transform generic brown clutter into big deliberate masses, foreground mostly open gravel. A roof of salvaged canvas at x26–39 over working bench whose empty top is centered (31.6,50). In front of rata on timber cradles, a partly rebuilt 1865 dinghy sits broadside x42–84 exactly as source image: high curving prow on right at (84,37), open light ribs/unplanked upper section across (54.3,48), strongest strake (71.2,54.2), mast STEP (62,49) but no mast or sail of any sort! This is vital for later separate game layers. Hull lowest at y59, cradle foot at y66. Bottom 32 percent of picture an open level strip of grit, a narrow streak of light crossed by cool tree shadows kept outside active silhouettes; shoreline does not enter strip. Retain stack of split timber at left and barrel at right edge. Frame in a life-sized gestural hand painted landscape. No Alpine towering snowy peaks or tropical plants.",
+      "output": {
+        "sha256": "0ad67722bcdc1f8ae68352768c43f7fa5dca5f47368c48222b1637b7a3e4241b",
+        "bytes": 3455315,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    "crossing-wet": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-5626dea6-a8e6-41bf-b7d8-e6d150f772cc",
+      "inputs": [
+        {
+          "path": "dist/assets/voyage/scenes/crossing-wet.png",
+          "sha256": "96685a4f8c816187d8ff9079cfb833fbbb6b231400cb55864e46c4e4290c2742",
+          "bytes": 2738001,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "Produce one original, full-bleed 16:9 1860s maritime plein-air oil and gouache painting on fine linen for a historical point-and-click adventure. Think a real painter at a windswept place, with confident expressive flat bristle marks, great planes of colour, fine selective detail about things human hands have worn or made; strong non-photographic pictorial design and distinct local atmosphere, intelligible on a telephone. NOT a tracing or recolouring: invent new shapes, material grain, cloud formations, brushstrokes and lighting. Use the supplied reference ONLY as an immovable stage blueprint. Match its straight broadside framing and foreground walk plane, no shift, crop, tilt or lens change. Fixed world geometry! Cast, inventory and dialogue will be composited later: no people, no readable lettering, labels, watermarks, border, UI, loose pickups, modern fittings, or new foreground obstacles. Coordinates below in percent (x,y) of whole painting, origin upper left; do not print numbers. A night watch in Foveaux's southern waters, seen from inside a small open wooden ship's boat. A rolling diagonal of viridian sea a few inches beyond the gunwale, behind it distant silvery violet rain withdrawing and threads of luminous moonlight on crests. Sky indigo with a break of pewter blue and warmer bone canvas standing out against it; no orange sunset or land dominating. Look atmospheric and astonishing, but wood, ropes and sail legible at phone size. Preserve this source exact side-on theatre geometry, rail around y60–62 and solid closed bulwark from there down to y74, unbroken walkable sole x6–93 from y75–90. The centered mast is at x44, rope belayed at x26,y55, tiller sticks out left x4–20,y54–59; second halyard near (44.1,55.9). Keep a HUGE natural-flax sail occupying upper right, EXACT angled foot sewn to a long boom from (47,33) to (99,12), with exactly ONE small jagged dark wind tear INSIDE its canvas at x76 y13.9, about 4% of picture width. It must be a VISIBLE rip directly above the foot of the sail. In the cockpit sole at x66.4 y75.3 paint a small, distinct pool of sloshed green/pewter water straddling the floorboard seam, 11% wide, 3% tall. No other standing deck water, all floorboards around it clearly visible. Entire horizon at y45, narrow band of ocean. Keep original mast, tiller, ropes, rail and plane underfoot rigidly registered to the blueprint.",
+      "output": {
+        "sha256": "22bb8e21c488169d5284b6057c1e52dcaf1555401df3bc7b804ea0c62bb47cb9",
+        "bytes": 2731971,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    "harbour": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-ee835455-5f14-4a11-ac31-9fd18cd040d4",
+      "inputs": [
+        {
+          "path": "dist/assets/voyage/scenes/harbour.png",
+          "sha256": "347ed5786657dfb34579dd887eba743778104335c5a99b3fb493d03849e975db",
+          "bytes": 2804610,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "Produce one original, full-bleed 16:9 1860s maritime plein-air oil and gouache painting on fine linen for a historical point-and-click adventure. Think a real painter at a windswept place, with confident expressive flat bristle marks, great planes of colour, fine selective detail about things human hands have worn or made; strong non-photographic pictorial design and distinct local atmosphere, intelligible on a telephone. NOT a tracing or recolouring: invent new shapes, material grain, cloud formations, brushstrokes and lighting. Use the supplied reference ONLY as an immovable stage blueprint. Match its straight broadside framing and foreground walk plane, no shift, crop, tilt or lens change. Fixed world geometry! Cast, inventory and dialogue will be composited later: no people, no readable lettering, labels, watermarks, border, UI, loose pickups, modern fittings, or new foreground obstacles. Coordinates below in percent (x,y) of whole painting, origin upper left; do not print numbers. Stewart Island small working harbour, winter. Paint this as a new spectacular amber horizontal shaft of evening light through violet cloud, reflected in a long peach-gold road on still green water at LEFT; distinct layered slate-blue, dusk-violet headlands and a secluded vernacular timber settlement at right. Long, low cutter with a single bare mast x27 and pale cabin, warm russet-brown/indigo hull around (38.9,57.7) berths beside wharf; keep cutter span x11–55 and gangplank x37–44 running to y70. Low waterside sheds x55–100 with large but distant open door far right, modest timber boards and flecks of amber within; retain casks and crates by right mooring post x76 y62. Empty working platform on far right around (76.8,56.3) for provisions. A broad low timber foreground quay exactly as blueprint x0–100 starts y70 with horizontal planks, walk strip y71–90, sunlight, planks, no obstacles on it, right exit clear. Wharf need not look polished, use salt-black nailheads, chisel gouges, hard shadow from mooring post limited near edge. Gold longshore light and a short trail of luminous sea across harbour; NOT bustling, fancy, oriental, stone, electric-lit, or high mountain village. Top left sky and water can breathe.",
+      "output": {
+        "sha256": "c8a21646db8051a33dfad4793e2e0ad5d9181339e2fc3293e2d65fddb7274275",
+        "bytes": 3357814,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    "chartroom": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-75d879ab-9baf-4ee5-a5aa-09b179e6e482",
+      "inputs": [
+        {
+          "path": "dist/assets/voyage/scenes/chartroom.png",
+          "sha256": "7ab20a69c5a48afedce201a220f5e190fdd5cfbfe91fa8a2e113eae072a9ff87",
+          "bytes": 2993111,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "Produce one original, full-bleed 16:9 1860s maritime plein-air oil and gouache painting on fine linen for a historical point-and-click adventure. Think a real painter at a windswept place, with confident expressive flat bristle marks, great planes of colour, fine selective detail about things human hands have worn or made; strong non-photographic pictorial design and distinct local atmosphere, intelligible on a telephone. NOT a tracing or recolouring: invent new shapes, material grain, cloud formations, brushstrokes and lighting. Use the supplied reference ONLY as an immovable stage blueprint. Match its straight broadside framing and foreground walk plane, no shift, crop, tilt or lens change. Fixed world geometry! Cast, inventory and dialogue will be composited later: no people, no readable lettering, labels, watermarks, border, UI, loose pickups, modern fittings, or new foreground obstacles. Coordinates below in percent (x,y) of whole painting, origin upper left; do not print numbers. The small 1860s coastal chart room, an intimate still-life. A brooding moss-green/Prussian teal wood interior punctuated by a warm river of raking afternoon light from the LEFT four-pane window, cold blue dawn-like atmosphere beyond with scattered brushmarks for distant vessels. Plane of an old empty oiled chest x4–19 y52–68. Two antique anonymous charts pinned on back wall x26–51 and x54–66. Nearby rolled paper on shelf x69–86 y15, weathered jamb and closed plank door x90–100 at right. Heavy long 1860s working table with the flat pale overlapping paper of an unlettered nautical chart, top from x22–77, upper edge y40, lower edge y49. Its widest drawing surface stays empty so that inventory can appear at x32.3 y43.9 and x65.7 y45. Legs end y69, open walkable floor across x5–95 at y72–90, russet warm edge meeting cool slate-violet floorboards, reflected light beneath the table. Wide human-scale broadside framing as reference, accurate perspective. Masterful glancing light and luminous warm vellum define the room. No candles, books, added instruments, writing, extra furniture or figures.",
+      "output": {
+        "sha256": "2d5164f2dd42f08005776d082ef3b7fc077ce01af5caab80b078fcd2f6822ecc",
+        "bytes": 2849635,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    "slipway-ready": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-2dc1c82e-9ae4-4d20-ab5f-e469a32c1ea0",
+      "inputs": [
+        {
+          "generation": "slipway",
+          "sha256": "0ad67722bcdc1f8ae68352768c43f7fa5dca5f47368c48222b1637b7a3e4241b"
+        },
+        {
+          "path": "dist/assets/voyage/scenes/slipway-ready.png",
+          "sha256": "20de70b4cc3e93d4cbd0eefd53e6e7018e52f193064faf24d5e18a4217468822",
+          "bytes": 2848456,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "A localized change to the FIRST 16:9 colour oil and gouache painting. Stay in the same skewed calm winter morning light, same waves and trees, canvas canopy, landscape, gravel, original surrounding brushwork. DO NOT shift camera at all or repaint the landscape. Complete and rig the boat. The SECOND reference image of the old set shows exact size, placement and silhouette of the BARE MAST and TRIANGULAR SAIL desired. Use that geometry only. In first image, keep the workboat on its same supports, hull outer rim x42–84, y37.0–58.4%, add its finished upper planking, dark oakum seams and gunwale of amber wood, and show a modest working hand-hewn mast at x62.2%, rooted y49.0, top y13.4. Single sea-ivory triangular sail, warm as unbleached linen, held to short stays from about (62.4,15) to (62.4,41.7) to (79.9,38.3); slightly uneven short seams, modest natural weight. No pennants, added mountains, people, tools, new deck gear or other changes. Keep fine linen paint surface, long brush strokes and every possible source pixel of original landscape between boat and sail. Distinct playable state but fixed registration.",
+      "output": {
+        "sha256": "c212233dbb09005e8935440de220f059cec696b072b4f8b3533aa3f16f3fc652",
+        "bytes": 3086968,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    },
+    "crossing-safe": {
+      "tool": "OpenAI ImageGen",
+      "id": "exec-263de352-ed71-4b8d-90e6-6aa9686acde4",
+      "inputs": [
+        {
+          "generation": "crossing-wet",
+          "sha256": "22bb8e21c488169d5284b6057c1e52dcaf1555401df3bc7b804ea0c62bb47cb9"
+        },
+        {
+          "path": "dist/assets/voyage/scenes/crossing-safe.png",
+          "sha256": "76bd96e1d082e3ff6fd360b712b59685e04ca1f2bfc8e6f73dba9e1bc5fccb59",
+          "bytes": 2669832,
+          "size": [
+            1672,
+            941
+          ]
+        }
+      ],
+      "prompt": "EDIT ONLY TWO SMALL REGIONS in the first painting for a historical adventure background, keeping the first image's camera, palette, exact night-blue moonlit sky and moving sea, solid hull rail and canvas, planks, geometry, position, brushstrokes and image edges absolutely unchanged. The second painting is only an old state diagram as a clue to patch placement, absolutely do not borrow its colours. Single widescreen 16:9 picture. At top right repair the torn sail at EXACTLY x76%,y13.9% on the same sail. Carefully hand-sew a SMALL PALE BUFF LINEN PATCH about 5% of image width, 5.8% height, whose subtle soft golden patch catches the light, with slightly irregular rows of dark stitching visible around each edge. It must cover the existing tear completely. This clear little rectangular patch must express someone touched it, the only new feature on the sail. Dry the single reflective bilge puddle centered x66.4%, y75.3% completely, revealing worn dry grey-oak boards continuous with surrounding wood. Retain every part of solid closed side planks at that location. No other changes; no new props, labels, people, borders or other patches. Style of first picture exactly. No camera drift, no change in cloud or wave. Locally edit the source.",
+      "output": {
+        "sha256": "7f873e1d57300f7eb8f86a0d9eeb5b14d771a926c7fcfa6b24da8d00ae65d388",
+        "bytes": 2656488,
+        "size": [
+          1672,
+          941
+        ]
+      }
+    }
+  },
+  "files": {
+    "slipway": {
+      "file": "slipway.webp",
+      "sha256": "5eb3adc11566fcd8c0d29c44725743715488e3c4ce87275cc97fe29bfda020ad",
+      "bytes": 492540,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "slipway"
+      ],
+      "masks": []
+    },
+    "slipway-ready": {
+      "file": "slipway-ready.webp",
+      "sha256": "f7c91995cfd8cb4c5a8262df3db0156ee41ce2472cf78683209cd49c50b8f5ff",
+      "bytes": 487580,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "slipway",
+        "slipway-ready"
+      ],
+      "masks": [
+        "rigged"
+      ],
+      "registration": "Generated ready hull, rig and sail are composited onto the unchanged unrigged painting."
+    },
+    "crossing-wet": {
+      "file": "crossing-wet.webp",
+      "sha256": "49b7aebf19b5004bbe12464c0f63056ce2b36d672b03f301a842ff895e0e238d",
+      "bytes": 272830,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "crossing-wet"
+      ],
+      "masks": []
+    },
+    "crossing-bailed": {
+      "file": "crossing-bailed.webp",
+      "sha256": "b21cdaa9245ede06acfc9738cdad7fdf631d50f144d980e3aa88cdca599c1a35",
+      "bytes": 272204,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "crossing-wet",
+        "crossing-safe"
+      ],
+      "masks": [
+        "dry"
+      ],
+      "registration": "Only the dry sole from the repaired painting replaces the puddle. Sail retains the original rip."
+    },
+    "crossing-safe": {
+      "file": "crossing-safe.webp",
+      "sha256": "63ca19075400d50b6fdfc64215313c098ec28fbbf2807ea608513d080e245460",
+      "bytes": 272822,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "crossing-wet",
+        "crossing-safe"
+      ],
+      "masks": [
+        "dry",
+        "patch"
+      ],
+      "registration": "Dry sole and stitched panel from the repaired painting replace the puddle and the tear."
+    },
+    "harbour": {
+      "file": "harbour.webp",
+      "sha256": "8b4d89461d12308edf56ac794f2192f9f53f204b450b07e5351faba10b0fd20f",
+      "bytes": 447300,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "harbour"
+      ],
+      "masks": []
+    },
+    "chartroom": {
+      "file": "chartroom.webp",
+      "sha256": "55f2c4fc94f3dee1bb4b3652b0c45ea7c876f64718e0c06f1bc80c3c72f55c5a",
+      "bytes": 334570,
+      "size": [
+        1600,
+        900
+      ],
+      "generations": [
+        "chartroom"
+      ],
+      "masks": []
+    }
+  }
+}
