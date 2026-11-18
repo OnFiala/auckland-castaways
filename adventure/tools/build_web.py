@@ -126,7 +126,11 @@ def write_edition(flat, output):
             # Game scripts write URLs into document elements (including SVG)
             # and use path fragments such as 'assets/walk/' + actor + '.webp'.
             # Stylesheets already resolve their resources against their own URL.
-            script = re.sub(r'(?<![\w./:-])assets/', prefix + 'assets/', src.read_text(encoding='utf-8'))
+            script = src.read_text(encoding='utf-8')
+            # The living scenery uses asset:<path> to distinguish paintings
+            # from drawn marks. Its renderer removes the tag before loading.
+            script = script.replace('asset:assets/', 'asset:' + prefix + 'assets/')
+            script = re.sub(r'(?<![\w./:-])assets/', prefix + 'assets/', script)
             dest.write_text(script, encoding='utf-8')
         else:
             shutil.copyfile(src, dest)

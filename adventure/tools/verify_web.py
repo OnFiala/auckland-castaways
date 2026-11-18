@@ -57,8 +57,12 @@ def verify(directory, previous=None):
             if not target.is_relative_to(directory / edition) or not target.is_file():
                 raise ValueError(f'Broken stylesheet image {sheet.name}: {url}')
     for script in (directory / edition).rglob('*.js'):
-        if re.search(r'(?<![\w./:-])assets/', script.read_text(encoding='utf-8')):
+        source = script.read_text(encoding='utf-8')
+        if re.search(r'(?<![\w./:-])assets/', source) or 'asset:assets/' in source:
             raise ValueError(f'An unpinned resource remains in {script.name}')
+        for painting in re.findall(r"""['"]asset:([^'"]+)['"]""", source):
+            if not painting.startswith(edition) or painting not in current_files:
+                raise ValueError(f'Missing scene detail in {script.name}: {painting}')
     retained = 0
     if previous:
         for prior in (p for p in previous.rglob('*') if p.is_file()):

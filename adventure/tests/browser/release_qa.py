@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 from playwright.sync_api import expect, sync_playwright
 
 from campaign import READ, campaign, ready, state, target
+from diagnostics import LISTEN, failure_view, print_snapshot
 
 # Independently measured centres on the painted first shore, in stage percentages.
 BEACH = {"rope": (34, 71.6), "pole": (48.4, 75.4), "sail": (70.1, 37.6),
@@ -166,9 +167,14 @@ def run(browser, index, folder, name, scenario, *, touch=False, reduced=False, t
                               offline=True, record_video_dir=folder,
                               record_video_size={"width": 720, "height": 405} if not touch else view)
     page = ctx.new_page()
+    page.add_init_script(LISTEN)
     page.set_default_timeout(15000)
     errors, external, failed = [], [], []
-    page.on('pageerror', lambda err: errors.append(str(err)))
+    def script_error(error):
+        message = getattr(error, 'stack', None) or str(error)
+        errors.append(message)
+        print(f'Chromium page error ({name}): {message}', flush=True)
+    page.on('pageerror', script_error)
     page.on('request', lambda req: external.append(urlsplit(req.url).hostname)
             if urlsplit(req.url).scheme in ('http', 'https') else None)
     page.on('requestfailed', lambda req: failed.append({"file":Path(urlsplit(req.url).path).name,
@@ -190,6 +196,12 @@ def run(browser, index, folder, name, scenario, *, touch=False, reduced=False, t
         }
     except Exception:
         if not page.is_closed():
+            try:
+                snapshot = failure_view(page)
+                print_snapshot(snapshot)
+                write(folder / 'failure-ui.json', snapshot)
+            except Exception:
+                traceback.print_exc()
             try:
                 write(folder / 'failure-state.json', state(page))
                 page.screenshot(path=folder / 'failure.png', timeout=5000)

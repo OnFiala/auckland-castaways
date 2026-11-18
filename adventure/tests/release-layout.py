@@ -16,7 +16,7 @@ class EditionLayout(unittest.TestCase):
             base = root / 'flat'
             (base / 'assets').mkdir(parents=True)
             (base / 'index.html').write_text('<meta name="game-release" content="14"><script src="app.js"></script><link href="view.css" rel="stylesheet">')
-            (base / 'app.js').write_text("const sheet = 'assets/' + actor + '.webp'; const cut = 'url(#pan)';")
+            (base / 'app.js').write_text("const sheet = 'assets/' + actor + '.webp'; const cut = 'url(#pan)'; const mark = 'asset:assets/sea.webp';")
             (base / 'view.css').write_text("p{background:url('assets/sea.webp')}")
             (base / 'assets' / 'sea.webp').write_bytes(b'original sea')
             first = root / 'first'
@@ -24,6 +24,7 @@ class EditionLayout(unittest.TestCase):
             scope = launch['directory']
             self.assertIn(scope + 'assets/', (first / scope / 'app.js').read_text())
             self.assertIn('url(#pan)', (first / scope / 'app.js').read_text())
+            self.assertIn("'asset:" + scope + "assets/sea.webp'", (first / scope / 'app.js').read_text())
             self.assertEqual(verify(first)['current_files'], 4)
             second = root / 'second'
             (base / 'assets' / 'sea.webp').write_bytes(b'changed sea')
@@ -36,6 +37,12 @@ class EditionLayout(unittest.TestCase):
             (second / newer['directory'] / 'assets' / 'sea.webp').write_bytes(b'wrong content')
             with self.assertRaisesRegex(ValueError, 'Content hash'):
                 verify(second)
+
+            (base / 'app.js').write_text("const missing = 'asset:assets/missing-wood.webp';")
+            broken = root / 'broken'
+            write_edition(base, broken)
+            with self.assertRaisesRegex(ValueError, 'Missing scene detail'):
+                verify(broken)
 
 
 if __name__ == '__main__':

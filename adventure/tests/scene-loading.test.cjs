@@ -189,3 +189,43 @@ test('a same-room painting failure retains the solved workbench across reload an
   assert(a.ui.state().flags.crateOpen); assert(!a.ui.stored[progressKey]);
   assert.equal(a.ui.state().inventory.filter(item=>item==='axe').length,1);
 });
+
+test('bailing only releases the reusable scoop on commit, then a plain click collects the sail patch', async () => {
+  let s=engine.createGame();
+  for (let n=0; n<180 && s.chapter<5; n++) {
+    const hint=engine.hint(s);
+    if(s.chapterComplete) s=engine.advance(s).state;
+    else if(s.scene!==hint.sceneId){
+      const route=engine.travel(s,hint.sceneId);
+      s=route.changed?route.state:engine.travel(s,'beach').state;
+    } else if(hint.combineItems) s=engine.combine(s,...hint.combineItems).state;
+    else if(hint.itemId) s=engine.useItem(s,hint.itemId,hint.targetId).state;
+    else s=engine.interact(s,hint.targetId,'use').state;
+  }
+  assert.equal(s.chapter,5);
+  s=engine.interact(s,'stormLine','use').state;
+  s=engine.useItem(s,'stormLine','rigging').state;
+  s=engine.interact(s,'bailer','use').state;
+  assert(engine.restore(s));
+  const a=session({[key]:JSON.stringify(s)});await a.accept();
+  await a.ui.click(a.ui.item('bailer'));
+  await a.ui.click(a.ui.target('tornSail'));
+  assert.equal(a.ui.item('bailer').getAttribute('aria-pressed'),'true','a wrong tool stays selected');
+  a.ui.target('canvasPatch').oncontextmenu({stopPropagation(){},preventDefault(){}});
+  await a.ui.flush();
+  assert.equal(a.ui.item('bailer').getAttribute('aria-pressed'),'true','looking leaves the hand alone');
+  await a.ui.click(a.ui.target('bilge'));
+  assert(a.el('scene-loading').open);
+  await a.reject();await a.ui.click('scene-stay');
+  assert.equal(a.ui.item('bailer').getAttribute('aria-pressed'),'true','cancelled painting preserves intent');
+  await a.ui.click(a.ui.target('bilge'));await a.accept();
+  assert(a.ui.state().flags.boatDry);
+  assert.equal(a.ui.item('bailer').getAttribute('aria-pressed'),'false','successful use leaves the scoop in the bag');
+  assert(a.el('cancel-item').hidden);
+  assert.equal(a.el('command-dock').dataset.mode,'aside');
+  const before=a.ui.state().actions;
+  await a.ui.click(a.ui.target('canvasPatch'));
+  assert.equal(a.ui.state().actions,before+1);
+  assert(a.ui.state().flags.patchTaken);
+  assert(a.ui.item('bailer')&&a.ui.item('canvasPatch'));
+});

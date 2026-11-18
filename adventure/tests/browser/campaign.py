@@ -183,7 +183,13 @@ def campaign(page, evidence, activate=click):
             archive(page, evidence)
             assert chapters == set(range(1, 8)) and completed_work == set(WORK) and pan_checked
             return
-        close_if_shown(page, '#cancel-item')
+        selected = page.locator('#inventory [data-item][aria-pressed="true"]')
+        if selected.count():
+            # A tool may still be in hand after examination or a cancelled action.
+            # A new bare-hand action needs an explicit deselection in the command dock.
+            print(f"Put away {selected.get_attribute('data-item')} at {before['scene']}", flush=True)
+            page.locator('#cancel-item').click()
+            expect(selected).to_have_count(0)
         if before['chapterComplete']:
             activate(page.locator('#chapter-exit'))
             page.wait_for_function(f"(n) => {READ}.actions > n || document.querySelector('#repair-roll').open",

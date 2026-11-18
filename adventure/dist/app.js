@@ -454,8 +454,10 @@ function cancelWalk(){ticket++;if(!dialogue)actorFocus=null;$('player').classLis
 function flyItem(id,origin){if(prefs.reduced)return;const item=$('inventory').querySelector(`[data-item="${id}"]`);if(!item)return;const r=item.getBoundingClientRect(),s=$('scene').getBoundingClientRect(),x=s.left+s.width*(origin?.x||player.x)/100,y=s.top+s.height*(origin?.y||player.y)/100;const el=document.createElement('div');el.className='cursor-item flying';el.style.cssText=`display:block;left:${x}px;top:${y}px;width:44px;height:44px`;el.innerHTML=svg(id);document.body.appendChild(el);const animation=el.animate([{transform:'translate(-22px,-22px) scale(1.4)',opacity:1},{transform:`translate(${r.left-x+10}px,${r.top-y+10}px) scale(.75)`,opacity:.8}],{duration:650,easing:'ease-in-out'});animation.onfinish=()=>el.remove();}
 function revealCompletion(){if(!state.completed)return;if($('modal').open){completionPending=true;return;}completionPending=false;closeDialogue();$('completion').hidden=false;
  if(CAMPAIGN){$('completion-title').focus({preventScroll:true});$('completion').scrollTop=0;}else $('keep-exploring').focus();}
-function apply(response,origin,after){
+function apply(response,origin,usedItem=null,after){
  return paintThen(response.state,()=>{
+  // Release the hand only when its successful action and required painting commit.
+  if(usedItem && usedItem===selected)selected=null;
   applyReady(response,origin);
   after?.();
  });
@@ -551,7 +553,7 @@ async function activate(target,inspect=false){
  const pendingState=state;
  const complete=(atBench=false)=>{
   if(state!==pendingState)return false;
-  const commit=()=>apply(r,target,()=>{
+  const commit=()=>apply(r,target,inspect?null:item,()=>{
    if(staged)Life?.work($('place-life'),state,target.id);
    if(staged)Weather?.respond($('place-weather'),state,target.id);
    if(!CAMPAIGN&&['shelter_built','fire_lit'].includes(r.cue))startDialogue('player',true);
