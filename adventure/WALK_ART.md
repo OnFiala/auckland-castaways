@@ -1,6 +1,6 @@
 # Painted walking poses
 
-Five original AI-generated sprite sheets extend the existing fictional character paintings. Each is a 1536 × 1024 RGBA PNG with six full-body right-facing poses in a 3 × 2 grid of 512-pixel cells. All source pixels are preserved; runtime cropping and mirroring do not modify the original files.
+Walking and resting use the six-pose atlases. The individual atlas records list the current source dimensions, alpha bounds, crop, ground anchor and SHA-256. Hands-on work uses a separate set of poses. [Frame registration](dist/animation.js) · [Working-pose manifest](dist/assets/work-poses/manifest.json) · [Weather and art review](reviews/26-weather-and-art.md)
 
 | Character | PNG | Provenance and measurements |
 |---|---|---|
@@ -10,12 +10,14 @@ Five original AI-generated sprite sheets extend the existing fictional character
 | Henry Forgés | [henry.png](dist/assets/walk/henry.png) | [henry.json](dist/assets/walk/henry.json) |
 | George Harris | [george.png](dist/assets/walk/george.png) | [george.json](dist/assets/walk/george.json) |
 
-The generation references are this project's own standing characters and environment paintings. No modern game's sprite sheets were copied. Prompts, retry history where applicable, actual image dimensions, alpha bounds, common crop, ground anchor and SHA-256 are recorded alongside each PNG. These are fictional game designs, not historical portraits or surviving illustrations.
+## Archive from 16 November 2026
 
-Each six-pose cycle varies leg placement, bent knees and arm swing. The shared crop is the union of visible poses plus a safety margin, rather than an independently resized crop for each frame. Very faint alpha fringe exists outside some visible bounds; the documents state their measurement thresholds.
+Five original AI-generated sprite sheets extended the standing character paintings. Each shipped atlas was an unchanged 1536 × 1024 RGBA PNG with six full-body right-facing poses in a 3 × 2 grid of 512-pixel cells. The project’s own character and environment paintings served as references. No modern game's sprite sheets were copied. Prompts and retry history, where applicable, accompany the atlas files. The resulting fictional figures are visual interpretations of the castaways.
 
-The motion repair leaves all five PNGs unchanged. One atlas image remains mounted per character; stepping updates its clipped viewport. The same sheet supplies the resting pose, so stopping no longer substitutes a separately drawn three-quarter portrait. A temporary pause retains the current frame, and cadence uses the same body-height scale for player and crew.
+Each six-pose cycle varied leg placement, knee bend and arm swing. One crop covered the union of visible poses plus a safety margin. Inspection found very faint alpha fringe outside some visible bounds, and the recorded bounds specify their measurement thresholds.
 
-Inspection found visible changes in torso orientation, body volume and costume details between some poses, especially across the two half-cycles. A common crop cannot correct these drawing differences. The resting frame is an existing walk pose, not a dedicated idle drawing. The renewed browser attempt was blocked, so rendered loop quality remains unverified. A future art pass needs registered in-between and rest poses, with actual playback review; more independent generated poses alone would not establish continuity.
+The motion repair kept the five PNGs as they were. One atlas image remained mounted per character and stepping updated its clipped viewport. The same sheet supplied the resting pose. A temporary pause retained the current frame, and cadence used the same body-height scale for player and crew.
 
-[animation.js](dist/animation.js) supplies the registered frame boxes; tests verify them against source dimensions and original hashes. Source attribution does not grant a new blanket licence to the repository. See [RIGHTS](../RIGHTS.md).
+The archival inspection found changes in torso orientation, body volume and costume details between some poses, especially across the two half-cycles. Those differences stemmed from the drawings. The resting frame came from the walk cycle. A browser attempt was blocked during that pass, as recorded in the review. [Motion-repair review](reviews/23-motion-repair.md)
+
+Source attribution does not grant a new blanket licence to the repository. See [RIGHTS](../RIGHTS.md).

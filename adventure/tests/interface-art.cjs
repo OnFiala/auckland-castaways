@@ -3,23 +3,35 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const dist=path.join(__dirname,'../dist'),dir=path.join(dist,'assets/ui');
 const manifest=JSON.parse(fs.readFileSync(path.join(dir,'atlas.json'),'utf8'));
-const expectedHash='1f4e0dc8fa557ae200229a35e9192812016c739fc7435aa13b6b07953367f292';
+
 const expected={ 'timber-strip':[12,182,493,191], 'inventory-canvas':[522,142,490,261], 'dialog-paper':[1031,94,491,353], satchel:[66,580,382,365], 'brass-button':[604,596,323,329], 'paper-tab':[1059,675,441,183] };
 function local(ref){assert(!/^(?:[a-z]+:|\/\/|\/)/i.test(ref),`nonlocal reference ${ref}`);const p=path.resolve(dist,ref);assert(p.startsWith(dist+path.sep),`reference escapes dist: ${ref}`);assert(fs.statSync(p).isFile(),`missing ${ref}`);return p;}
-test('atlas is the original generated PNG with recorded dimensions and alpha',()=>{
- assert.equal(manifest.asset,'castaway-ui-atlas.png');assert.equal(manifest.sha256,expectedHash);
- const bytes=fs.readFileSync(local('assets/ui/'+manifest.asset));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),expectedHash);
+test('UI atlas matches its registration receipt, generation record and PNG dimensions',()=>{
+ assert.equal(manifest.asset,'castaway-ui-atlas.png');
+ const bytes=fs.readFileSync(local('assets/ui/'+manifest.asset));
+ assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),manifest.sha256);
+ assert.equal(bytes.length,manifest.bytes);
  assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');assert.equal(bytes.readUInt32BE(16),1536);assert.equal(bytes.readUInt32BE(20),1024);assert.equal(bytes[25],6);
  assert.equal(manifest.width,1536);assert.equal(manifest.height,1024);assert.equal(manifest.mode,'RGBA');
- assert(fs.statSync(path.join(dir,'generation-prompts.json')).isFile());JSON.parse(fs.readFileSync(path.join(dir,'generation-prompts.json'),'utf8'));
+ const generation=JSON.parse(fs.readFileSync(path.join(dir,'generation-prompts.json'),'utf8'));
+ assert.match(manifest.generated_sha256,/^[0-9a-f]{64}$/);
+ assert.equal(generation.generated_sha256,manifest.generated_sha256);
+ assert.equal(generation.prompt,manifest.prompt);
+ assert.equal(manifest.alpha_extrema[0],0);assert(manifest.alpha_extrema[1]>=250&&manifest.alpha_extrema[1]<=255);
 });
-test('all atlas crops match the reviewed coordinates and contain their alpha bounds',()=>{
+test('six fixed UI viewBoxes retain centered visible paint, clear gutters and uniform scale',()=>{
  assert.deepEqual(manifest.items.map(x=>x.id).sort(),Object.keys(expected).sort());
  for(const item of manifest.items){
-  assert.deepEqual(item.viewBox,expected[item.id],item.id);const [x,y,w,h]=item.viewBox,[l,t,r,b]=item.alpha_bounds_by_minimum_alpha['32'].atlas;
+  assert.deepEqual(item.viewBox,expected[item.id],item.id);
+  const [x,y,w,h]=item.viewBox,[left,top,right,bottom]=item.alpha_bounds_by_minimum_alpha['32'].atlas;
   assert(x>=0&&y>=0&&w>0&&h>0&&x+w<=manifest.width&&y+h<=manifest.height,item.id+' in atlas');
-  assert(l>=x&&t>=y&&r<=x+w&&b<=y+h,item.id+' contains visible bounds');
-  assert.deepEqual([l-x,t-y,x+w-r,y+h-b],[4,4,4,4],item.id+' margin');
+  const margins=[left-x,top-y,x+w-right,y+h-bottom];
+  assert(margins.every(n=>n>=4&&n<=12),item.id+' readable paint and at least four clear pixels at the visible threshold');
+  assert(Math.abs(margins[0]-margins[2])<=2 && Math.abs(margins[1]-margins[3])<=2,item.id+' centered');
+  const [l,t,r,b]=item.registration.source_paint_bounds,[rx,ry,rw,rh]=item.registration.registered_rect;
+  const scale=item.registration.uniform_scale;
+  assert(Math.abs((r-l)*scale-rw)<=.51 && Math.abs((b-t)*scale-rh)<=.51,item.id+' uniform resampling');
+  assert(rx>=x&&ry>=y&&rx+rw<=x+w&&ry+rh<=y+h,item.id+' complete cutout inside its viewBox');
  }
 });
 test('HTML scripts and styles resolve to local files',()=>{

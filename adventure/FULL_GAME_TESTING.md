@@ -2,7 +2,13 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
-## Release checked on 18 November 2026
+## Weather and artwork edition, 18 November 2026
+
+104 of 104 release checks passed, along with the separate first-night walkthrough. The game handler tests additionally restored the wet, bailed and mended crossing pictures after their actual puzzles. Eight focused weather tests covered the fourteen room models, shelter and boat responses, dry indoor masks, persistent canvas, footprints, new plate selection and reduced or paused motion. The 64-frame weather example was composited with the production renderer and current paintings. It runs for 5.12 seconds. Native device touch and a complete interactive browser playthrough remain unverified because the managed preview relay timed out while opening port 4173. [Weather evidence](reviews/weather/README.md) · [Artwork and changes](reviews/26-weather-and-art.md)
+
+The release directory contains 84 runtime files totalling 32,331,554 bytes. Its 54 WebP images comprise the seven work surfaces and 47 encoded PNG paintings. The encoder checked each source PNG against the delivered pixels for dimensions, exact alpha and its colour-error budget. Fourteen of the UI checks, including the entire voyage, were rerun on this compact directory.
+
+## Earlier playable revision, 18 November 2026
 
 **95 of 95 tests passed**, together with the separate first-night walkthrough. A full campaign run exercised the production handlers across the fourteen rooms, seven work surfaces, the change of protagonist and the final rescue. The long route used 71 inventory, world and chapter actions, with the individual work-surface inputs in addition. The model search still covers 705 reachable chapter inventory states. Dedicated work-surface tests explore the separate partial puzzle states and confirm recovery after wrong moves.
 

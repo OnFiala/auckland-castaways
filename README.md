@@ -12,6 +12,8 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 Sedm kapitol vede přes čtrnáct míst od ztroskotání k záchraně. V každé kapitole se otevře malovaný detail pro práci rukama. Hráč vyčte stopu ze dřeva, plátna či vody, použije nástroj a uvidí výsledek. Postavy mění měřítko podle hloubky, obcházejí překážky a sahají na předměty. Při průzkumu lze například zkusit měch ve výhni nebo pustit třísku po vodě. Dialogy, pozorování i volitelné nápovědy jsou anglicky. [Revize hratelnosti a maleb](adventure/reviews/25-playable-revision.md) · [Šest scén v herním měřítku](adventure/reviews/staging/scene-scale-proof.webp)
 
+Ve všech čtrnácti místech působí vítr a v otevřených částech obrazu déšť, sníh nebo mořská tříšť. Zakrytá střecha odvádí vodu, upevněné lano mění pohyb a v pozdějším vraku je vidět, kolik materiálu už posádka odnesla. [Počasí a nové malby](adventure/reviews/26-weather-and-art.md) · [Krátká animace](adventure/reviews/weather/weather-in-motion.gif) · [Návrhy dalšího rozvoje](adventure/design-next.md)
+
 V prvních pěti kapitolách hrajete za Alicka McLarena. Návrat pro Henryho Forgése a George Harrise prožijete z pohledu kapitána Musgravea. Invercauld má vlastní osud v rešerši a v historickém dovětku hry. [Příběh](adventure/FULL_STORY.md) · [Dobové prameny a autorské scény](adventure/reviews/24-history-dialogue.md)
 
 Automatický průchod dokončil záchranu přes herní ovládání a všech sedm pracovních detailů. Hra průběžně ukládá cestu i rozdělané řešení. Obrazy a prostorové vztahy prošly samostatnou vizuální kontrolou. Přehrání celé animované hry a dotykové hraní čekají na dostupný prohlížečový náhled. [Výsledky testů](adventure/FULL_GAME_TESTING.md)

@@ -175,3 +175,26 @@ test('standing back from the chest keeps tools and unfinished work through a com
  await ui.click(bench.querySelector('[data-fw-point="press"]'));assert(!ui.state().flags.crateOpen);
  await ui.click(bench.querySelector('[data-fw-finish]'));assert(ui.state().flags.crateOpen);assert(ui.item('axe')&&ui.item('tinderbox'));
 });
+
+test('a saved sailing puzzle restores the painting and its physical weather response after each repair', async () => {
+ const initial = fixture(5);
+ let ui = createUi({initial:{[KEY]:JSON.stringify(initial)}});
+ const expectedPlates = new Set();
+ while (!ui.state().chapterComplete) {
+  await hintStep(ui);
+  const state = ui.state();
+  const flags = state.flags;
+  const plate = flags.sailMended ? 'crossing-safe' : flags.boatDry ? 'crossing-bailed' : 'crossing-wet';
+  const rig = flags.sailMended ? 'patched canvas' : flags.rigSecured ? 'secured shroud' : 'loose shroud';
+  assert.ok(ui.ids.get('backdrop').style.backgroundImage.includes(plate + '.'), plate);
+  assert.equal(ui.ids.get('place-weather').dataset.wxRig, rig);
+  assert.equal(ui.ids.get('scene').getAttribute('aria-description'), 'Cold squalls on the crossing');
+  if (!expectedPlates.has(plate)) {
+   ui = createUi({initial:{[KEY]:JSON.stringify(state)}});
+   assert.ok(ui.ids.get('backdrop').style.backgroundImage.includes(plate + '.'));
+   assert.equal(ui.ids.get('place-weather').dataset.wxRig, rig);
+   expectedPlates.add(plate);
+  }
+ }
+ assert.deepEqual([...expectedPlates], ['crossing-wet','crossing-bailed','crossing-safe']);
+});

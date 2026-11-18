@@ -1,0 +1,52 @@
+{
+  "generator": "OpenAI image_gen.imagegen",
+  "date": "2026-11-18",
+  "method": "Each is an edit of the indicated project painting; native generated PNG copied unchanged. Artistic reconstruction; not documentary evidence.",
+  "assets": [
+    {
+      "file": "charcoal.png",
+      "reference": "voyage/scenes/forest.png",
+      "reference_sha256": "ce31d19653a3a1770542a5feac3047dde73cd63e0829abff7de1f47b11cc6182",
+      "native_generated_file": "exec-f551b8c5-fa02-4fa1-be34-8515718b6f67.png",
+      "prompt": "Edit this exact forest location into the separate charcoal working clearing. Keep the full 16:9 frame and viewpoint, the left creek and cascade, large trees and roots, rear path and broad clear lower walking floor at precisely the same positions. At the EXISTING dark low stone-ringed area at right midground, make a modest earth-covered charcoal burn mound with dark earth and faint thin smoke, not a furnace or chimney. A small fixed stack of cut coppice wood behind the mound suggests work; no loose collectible items or tools. Hand-painted naturalist field gouache of 1864 subantarctic island, plausible natural materials, no people, animals, lettering or UI.",
+      "size": [
+        1670,
+        941
+      ],
+      "bytes": 3225945,
+      "sha256": "e00be8de72e33a2c75fa3beb3ebc9e9073a08790261b7bc1eb717712f18b4647",
+      "visual_review": "Inspected source and result at full frame. Major landmarks and walkable floor retained; subject changes are drawn in. No people or lettering.",
+      "intermediate_generated_file": "exec-7ffb6506-926f-4d2c-9bd5-4be13c3f1b3b.png",
+      "intermediate_sha256": "803ddbfa68e9705936b2dc71d7268b3eec71edd10184492c4e65f33c64f91db1",
+      "second_edit_prompt": "Edit ONLY the small red flowering clusters on this existing Auckland Island forest illustration into muted dark green leathery evergreen foliage and brown spent seed capsules, appropriate to winter. Preserve every tree branch, all other foliage, creek, exact earthen charcoal mound and smoke, stacked cut wood, ground and all scene geometry and color/brushwork; do not alter the full-frame composition, add people, text, props, or flowers."
+    },
+    {
+      "file": "salvage.png",
+      "reference": "wreck.png",
+      "reference_sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+      "native_generated_file": "exec-b0979c30-9267-4be2-86df-ce5b85a42dd9.png",
+      "prompt": "Edit this exact wreck location to show the SAME ship and shore later in 1865, after gradual salvage. Preserve exact full 16:9 frame, viewpoint, hull silhouette and location, fixed boulders, chest at the same position, path, and empty lower walking ground. Keep chest visually anchored but weathered. Show more weathered stripped planking and broken rigging, with a slightly different tide visible only at the left sea edge. Do not move existing major landmarks or introduce loose movable props, tools, people, letters or UI. Restrained 19th-century naturalist field gouache; scene is weathered but recognizable, not a new shipwreck.",
+      "size": [
+        1671,
+        941
+      ],
+      "bytes": 3413497,
+      "sha256": "c0f6d8e13ea09e23331af338188068fb680b91ce6624a45cac9634b369e65e4b",
+      "visual_review": "Inspected source and result at full frame. Major landmarks and walkable floor retained; subject changes are drawn in. No people or lettering."
+    },
+    {
+      "file": "return-camp.png",
+      "reference": "voyage/scenes/cabin.png",
+      "reference_sha256": "be9fbcfcfebc2069c99b961f73824e0cfa5d1cc713c60888c4d26c4d7aaa0090",
+      "native_generated_file": "exec-7fd11c98-ce8c-438c-8378-6eaf4227abef.png",
+      "prompt": "Edit this exact hand-painted 1864 Epigwaitt shelter scene into a later August return scene, after two castaways have waited here. Keep the EXACT full-frame 1672x941 view, camera, layout and positions of window, hearth, table, cot, barrel, walls and all existing furniture; maintain the clear empty walking floor and preserve painterly style. Show a quietly repaired roof seam in the existing canvas and subtle wear and lived-in traces in permanent materials, with two neatly separated folds in the same existing bedding suggesting two inhabitants. Subtle cool changed light outside. No people, no letters, no loose movable objects or supplies, no extra furniture or new props, no dramatic additions; respectful restrained historical field gouache.",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 2623509,
+      "sha256": "6a5d24d22e84172be3517c9728cd2b7fbe1df8399bdcbfb80a7258059fd2cd03",
+      "visual_review": "Inspected source and result at full frame. Major landmarks and walkable floor retained; subject changes are drawn in. No people or lettering."
+    }
+  ]
+}

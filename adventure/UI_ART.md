@@ -1,22 +1,26 @@
 # Malované materiály rozhraní
 
-Původní sada šesti rekvizit rozhraní pro malovanou adventuru z roku 1864. Atlas navazuje na jemné grafitové obrysy, kvašovou kresbu a opotřebené materiály ilustrací `sailor.png` a `camp.png`. Obsahuje tmavé lodní dřevo, plátno s koženým okrajem, list papíru, zavřenou brašnu, prázdné mosazné tlačítko a papírový štítek. Bez písma, značek a zelených ornamentů. Povrchy jsou záměrně klidné; text a obsah inventáře má vykreslovat aplikace.
+Šest materiálů rozhraní má vlastní atlas. Jeho souborové vlastnosti, souřadnice a prahové hodnoty alfa kanálu uvádí manifest. Text a obsah inventáře doplňuje aplikace. Malby prostředí a pracovní detaily jsou evidované zvlášť. [Manifest atlasu rozhraní](dist/assets/ui/atlas.json) · [Výtvarná a povětrnostní kontrola](reviews/26-weather-and-art.md)
 
-## Soubory a původ
+## Archiv z 16. listopadu 2026
 
-- `dist/assets/ui/castaway-ui-atlas.png`: původní výstup `image_gen.imagegen`, beze změny bajtů. RGBA, **1536 × 1024 px**, tři sloupce a dva řádky po 512 px.
+Výtvarné zadání navázalo na jemné grafitové obrysy, kvašovou kresbu a opotřebené materiály tehdejších ilustrací `sailor.png` a `camp.png`. Výsledný atlas obsahoval tmavé lodní dřevo, plátno s koženým okrajem, list papíru, zavřenou brašnu, prázdné mosazné tlačítko a papírový štítek. Povrchy byly záměrně klidné, aby na nich zůstal čitelný text a inventář.
+
+### Soubory a původ
+
+- `dist/assets/ui/castaway-ui-atlas.png` byl v této verzi přesnou kopií výstupu `image_gen.imagegen`. Měl režim RGBA a rozměry **1536 × 1024 px**, se třemi sloupci a dvěma řádky po 512 px.
 - `dist/assets/ui/atlas.json`: hash, souřadnice buněk, přesné alpha bounds při několika prahových hodnotách a doporučené výřezy.
 - `dist/assets/ui/generation-prompts.json`: celé zadání, referenční soubory a druhý experiment s čištěním průhlednosti. Druhý výstup nebyl přijat; původní atlas má klidnější materiálové textury.
 
-Vygenerováno 16. listopadu 2026. Reference byly před generováním prohlédnuty. Nepoužity žádné stock ikony ani stažené ilustrace. Jde o novou herní grafiku, nikoli historický doklad vzhledu konkrétního předmětu posádky. Výtvarné detaily jako nýty nebo uzávěr brašny nevyjadřují archeologickou identifikaci.
+Před generováním byly prohlédnuty vlastní předlohy projektu. Nebyly použity knihovní ikony ani stažené ilustrace. Nýty a uzávěr brašny jsou součástí této výtvarné interpretace.
 
-SHA-256 původního atlasu:
+SHA-256 atlasu z 16. listopadu 2026
 
 ```text
 1f4e0dc8fa557ae200229a35e9192812016c739fc7435aa13b6b07953367f292
 ```
 
-## Souřadnice pro integraci
+### Souřadnice pro integraci v původním atlasu
 
 Počátek souřadnic je vlevo nahoře. `viewBox` je `x y šířka výška` v původním atlasu. Výřez zahrnuje hranice viditelného materiálu při alpha ≥ 32 a čtyřpixelový přesah. Zachovat poměr stran; dřevo či plátno lze při potřebě širokého pruhu opakovat nebo záměrně roztáhnout v aplikaci, papír má sloužit jako podklad dialogu. Zdroje se na disku neořezávaly ani nepřevzorkovávaly.
 
@@ -39,10 +43,10 @@ Příklad použití bez změny zdrojového PNG:
 
 Dekorativní SVG skrýt před čtečkou obrazovky; skutečné tlačítko i jeho přístupný název řešit v HTML. Volný střed mosazného tlačítka lze překrýt funkčním textem či ikonou aplikace. Nový text nevypalovat do původního atlasu.
 
-## Kontrola průhlednosti a limity
+### Tehdejší kontrola průhlednosti
 
-PNG má skutečný alpha kanál s rozsahem **0–254**; většina vnitřních pixelů materiálu má alpha 252–253. Pozadí není zapečená jednobarevná plocha. Mimo fyzické obrysy však zůstávají rozptýlené pixely s alpha 1–31, které mohou zasahovat až k hranicím buněk. Proto nepoužívat celou buňku jako těsný vizuální výřez. Přesné hranice všech nenulových pixelů i hranice při alpha 32, 128, 200 a 250 obsahuje `atlas.json`; není tvrzeno, že atlas má dokonale vyčištěné nulové okolí každé buňky.
+U původního PNG byl naměřen alfa kanál s rozsahem **0–254**. Většina vnitřních pixelů materiálu měla hodnoty 252–253. Mimo fyzické obrysy zůstávaly rozptýlené pixely s hodnotami 1–31, místy až k hranicím buněk. Hranice při prahových hodnotách 32, 128, 200 a 250 dovolují zvolit těsnější výřez. [Manifest s měřením](dist/assets/ui/atlas.json)
 
-Čtení PNG přes Pillow sloužilo pouze ke kontrole rozměrů, alpha a hashe. Žádné pixely se programově neupravovaly. Generátor byl požádán o čistší průhlednost i druhým editačním zadáním; výsledek stále obsahoval slabou okrajovou alpha a zvýraznil texturu, proto zůstal původní obraz. Případná další oprava obrázku má opět proběhnout přes imagegen; do té doby jsou uvedené výřezy připraveny k přímému použití.
+Pillow zde sloužil pouze ke kontrole rozměrů, alfa kanálu a kontrolního součtu. Druhé zadání pro generátor mělo vyčistit průhlednost. Výsledek stále obsahoval slabou okrajovou kresbu a zvýraznil texturu. Proto tehdy zůstal původní obraz.
 
-Původní generovaný soubor zůstává také v cloudovém pracovním adresáři `/workspace/generated_images/exec-f5215bdf-ac25-4217-b5e7-a1dceb4aef01.png`; veřejný projekt nepotřebuje tuto pracovní cestu k běhu. Atlas v `dist/assets/ui/` je jeho přesná kopie.
+Generovaný výstup měl identifikátor `exec-f5215bdf-ac25-4217-b5e7-a1dceb4aef01.png`. Veřejná hra načítá atlas z adresáře `dist/assets/ui/`.

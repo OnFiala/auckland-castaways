@@ -1,15 +1,18 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "character": "musgrave",
+  "characterName": "Thomas Musgrave",
   "image": "musgrave.png",
-  "purpose": "Six hand-painted sequential right-facing walking poses for classic adventure game; fictional visual reconstruction, not an authenticated historical portrait.",
-  "generator": "image_gen",
-  "generated_date_utc": "2026-11-16",
+  "generator": "OpenAI ImageGen",
+  "generated_date_utc": "2026-11-18",
+  "kind": "A newly painted, six-frame right-facing walk cycle. Imagined character and costume.",
   "dimensions": {
     "width": 1536,
     "height": 1024
   },
-  "format": "PNG RGBA",
+  "format": "PNG RGBA, 8-bit",
+  "sha256": "d715149449fa1d91362152f81362afcc0a4e1e63b3b681464f4622afe618e35d",
+  "byte_length": 1230645,
   "layout": {
     "columns": 3,
     "rows": 2,
@@ -17,11 +20,10 @@
     "cell_height": 512,
     "order": "row-major"
   },
-  "sha256": "e96bc3be34e36ca24bc2d16bc992cf747fff381f66fba0d99cba278228c3942b",
-  "byte_length": 1923789,
   "frames": [
     {
       "index": 0,
+      "name": "first-contact",
       "rect": {
         "x": 0,
         "y": 0,
@@ -29,107 +31,119 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        0,
-        0,
-        512,
-        504
+        97,
+        4,
+        444,
+        503
       ],
       "alpha_bbox_gt_8": [
-        94,
-        0,
-        436,
-        499
-      ],
-      "alpha_bbox_gt_128": [
-        95,
-        6,
-        435,
-        498
-      ]
-    },
-    {
-      "index": 1,
-      "rect": {
-        "x": 512,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
-      "alpha_bbox_gt_0": [
-        1,
-        0,
-        512,
-        512
-      ],
-      "alpha_bbox_gt_8": [
-        153,
-        9,
-        352,
-        500
-      ],
-      "alpha_bbox_gt_128": [
-        154,
-        10,
-        351,
-        499
-      ]
-    },
-    {
-      "index": 2,
-      "rect": {
-        "x": 1024,
-        "y": 0,
-        "width": 512,
-        "height": 512
-      },
-      "alpha_bbox_gt_0": [
-        0,
-        0,
-        486,
-        512
-      ],
-      "alpha_bbox_gt_8": [
-        174,
-        3,
-        336,
-        500
-      ],
-      "alpha_bbox_gt_128": [
-        174,
-        6,
-        336,
-        499
-      ]
-    },
-    {
-      "index": 3,
-      "rect": {
-        "x": 0,
-        "y": 512,
-        "width": 512,
-        "height": 512
-      },
-      "alpha_bbox_gt_0": [
-        31,
-        0,
-        496,
-        512
-      ],
-      "alpha_bbox_gt_8": [
-        99,
-        8,
-        449,
+        100,
+        4,
+        442,
         501
       ],
       "alpha_bbox_gt_128": [
-        100,
-        9,
-        448,
+        101,
+        7,
+        441,
         500
-      ]
+      ],
+      "medianCrownX": 271,
+      "solidFloorY": 500
+    },
+    {
+      "index": 1,
+      "name": "first-weight",
+      "rect": {
+        "x": 512,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        155,
+        7,
+        361,
+        504
+      ],
+      "alpha_bbox_gt_8": [
+        157,
+        9,
+        358,
+        501
+      ],
+      "alpha_bbox_gt_128": [
+        158,
+        10,
+        357,
+        500
+      ],
+      "medianCrownX": 273,
+      "solidFloorY": 500
+    },
+    {
+      "index": 2,
+      "name": "first-passing",
+      "rect": {
+        "x": 1024,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        184,
+        2,
+        353,
+        504
+      ],
+      "alpha_bbox_gt_8": [
+        187,
+        2,
+        351,
+        501
+      ],
+      "alpha_bbox_gt_128": [
+        188,
+        6,
+        350,
+        500
+      ],
+      "medianCrownX": 272,
+      "solidFloorY": 500
+    },
+    {
+      "index": 3,
+      "name": "opposite-contact",
+      "rect": {
+        "x": 0,
+        "y": 512,
+        "width": 512,
+        "height": 512
+      },
+      "alpha_bbox_gt_0": [
+        96,
+        4,
+        453,
+        504
+      ],
+      "alpha_bbox_gt_8": [
+        99,
+        6,
+        450,
+        501
+      ],
+      "alpha_bbox_gt_128": [
+        99,
+        8,
+        450,
+        501
+      ],
+      "medianCrownX": 271,
+      "solidFloorY": 500
     },
     {
       "index": 4,
+      "name": "opposite-weight",
       "rect": {
         "x": 512,
         "y": 512,
@@ -137,26 +151,29 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        1,
-        1,
-        512,
-        512
+        135,
+        7,
+        340,
+        504
       ],
       "alpha_bbox_gt_8": [
-        130,
-        12,
-        327,
-        500
+        137,
+        10,
+        338,
+        502
       ],
       "alpha_bbox_gt_128": [
-        130,
-        13,
-        327,
-        499
-      ]
+        138,
+        11,
+        337,
+        501
+      ],
+      "medianCrownX": 273,
+      "solidFloorY": 500
     },
     {
       "index": 5,
+      "name": "opposite-passing",
       "rect": {
         "x": 1024,
         "y": 512,
@@ -164,33 +181,33 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        0,
-        0,
-        488,
-        512
+        184,
+        2,
+        380,
+        504
       ],
       "alpha_bbox_gt_8": [
-        176,
-        5,
-        365,
-        500
+        186,
+        4,
+        378,
+        502
       ],
       "alpha_bbox_gt_128": [
-        177,
+        187,
         6,
-        364,
-        500
-      ]
+        377,
+        501
+      ],
+      "medianCrownX": 271,
+      "solidFloorY": 500
     }
   ],
-  "bbox_convention": "cell-relative [left, top, right exclusive, bottom exclusive]; alpha_gt_0 preserves low alpha generator noise; alpha_gt_8 defines visible silhouette.",
   "common_crop": {
     "x": 86,
     "y": 0,
     "width": 371,
     "height": 509
   },
-  "common_crop_method": "Union of all six cell-relative alpha>8 bounding boxes, expanded 8 pixels and clipped to 512x512; same crop applied to every frame. Original PNG bytes unchanged.",
   "ground_anchor_in_cell": {
     "x": 256,
     "y": 500
@@ -199,26 +216,120 @@
     "x": 170,
     "y": 500
   },
-  "rendering_note": "Use identical crop dimensions, scale and anchor on every pose. Never fit each alpha bounding box separately. Slight drawn body bob and foot differences are natural generated variations.",
-  "suggested_fps": 7,
-  "frame_sequence": [
-    "left-contact",
-    "left-down",
-    "right-passing",
-    "right-contact",
-    "right-down",
-    "left-passing"
-  ],
-  "visual_qa": {
-    "inspected": true,
-    "assessment": "Six clearly differing leg and arm poses; stable clothing identity, right-facing whole-body figures; opposite-arm stride alternation is visually evident across cycle halves. Generated rather than rigged animation, so small proportions/height differences remain.",
-    "transparent_background": true,
-    "no_image_editing": true
+  "registration": "The generator painted all six poses against the same full-length character model and the previous walking choreography. The 8-bit PNG is a transparent 3 × 2 assembly of newly painted cels. Each native cel was cropped and resampled with Lanczos interpolation onto the existing game canvas, using a shared sole baseline and paired crown heights for the two halves of the gait. The head centre is registered in X, constrained by the existing common clip. The drawing and its colours are retained. Source and destination entries are [left, top, rightExclusive, bottomExclusive] on their respective sheets.",
+  "sourceRegistration": {
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "sourceSha256": "61bb2c2d7bc57b2db269d0523e3cc28f34e3f7ab5b32c2bd4f17a30309c4bdd3",
+    "cells": [
+      {
+        "frame": 0,
+        "source": [
+          86,
+          2,
+          444,
+          502
+        ],
+        "destination": [
+          97,
+          4,
+          444,
+          504
+        ]
+      },
+      {
+        "frame": 1,
+        "source": [
+          650,
+          3,
+          871,
+          505
+        ],
+        "destination": [
+          667,
+          7,
+          873,
+          504
+        ]
+      },
+      {
+        "frame": 2,
+        "source": [
+          1200,
+          2,
+          1371,
+          504
+        ],
+        "destination": [
+          1208,
+          2,
+          1377,
+          504
+        ]
+      },
+      {
+        "frame": 3,
+        "source": [
+          87,
+          513,
+          452,
+          1016
+        ],
+        "destination": [
+          96,
+          516,
+          453,
+          1016
+        ]
+      },
+      {
+        "frame": 4,
+        "source": [
+          632,
+          515,
+          848,
+          1017
+        ],
+        "destination": [
+          647,
+          519,
+          852,
+          1016
+        ]
+      },
+      {
+        "frame": 5,
+        "source": [
+          1200,
+          513,
+          1399,
+          1017
+        ],
+        "destination": [
+          1208,
+          514,
+          1404,
+          1016
+        ]
+      }
+    ]
   },
   "reference_images": [
-    "../people/musgrave.png",
-    "../camp.png"
+    {
+      "path": "adventure/dist/assets/walk/musgrave.png",
+      "sha256": "e96bc3be34e36ca24bc2d16bc992cf747fff381f66fba0d99cba278228c3942b",
+      "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+    },
+    {
+      "path": "adventure/dist/assets/people/musgrave.png",
+      "sha256": "552c5c4a23367b482cf96bd46d3fdb73b908b87d9d3935bac6a16bef9219430a"
+    }
   ],
-  "original_generation_file": "/workspace/generated_images/exec-ccb99713-d9f9-4e2c-9e3d-f931b366a1df.png",
-  "prompt": "Create a production 2D adventure-game WALK-CYCLE SPRITE SHEET, 1536 pixels wide x 1024 pixels high, genuinely transparent RGBA background. EXACT layout: 3 columns x 2 rows of 512x512 pixel cells; six complete FULL BODY figures of THE SAME man, one centered within every cell. First supplied image is exact character/clothing reference, second camp is painted style reference only. Character is Captain Thomas Musgrave: middle aged weathered man, dark brown hair with grey, thick dark beard streaked grey, dark navy blue soft naval peaked cap with brass side button, worn navy blue short wool captain jacket with brass buttons and olive patch at upper arm, brown waistcoat, off-white open collar shirt, patched dark brown trousers rolled at cuffs, worn brown lace boots. Hand-painted realistic classic adventure game art, richly detailed brushwork and coherent clothing matching the reference; do not simply repeat the original portrait pose. All six figures face RIGHT in same mostly side profile, slight three-quarter visibility. Same size head and body scale throughout. Top of cap cell y=35, boot ground baseline cell y=480. Center torso x=256. Arms swing freely and natural legs walk. Six visibly DIFFERENT sequential walk frames read left to right top row then bottom row: 1 LEFT leg extended forward heel first and RIGHT leg behind on toe, opposite RIGHT arm forward; 2 left foot planted, body lowered, right knee starting to bend behind; 3 left leg supporting body directly beneath hip, RIGHT knee lifted forward and boot off ground crossing in front, arms near vertical; 4 RIGHT leg extended forward heel first and LEFT leg behind on toe, opposite LEFT arm forward; 5 right foot planted, body lowered, left knee starting to bend behind; 6 right leg supporting body directly beneath hip, LEFT knee lifted forward and boot off ground crossing in front, arms near vertical. Show left/right leg distinction in clothing and occlusion, maintain cycle continuity and life. Coat moves subtly with walking. Both hands relaxed open, neither hand on hip. Every head same height and boots ground baseline consistent. At least 20px margin inside each cell. NO background or color wash, no halo, no ground/cast shadow, no text or numbers, no grid lines, no extra objects. Exactly SIX poses."
+  "prompt": "Create a NEW hand-painted production game animation sheet of Thomas Musgrave. The first reference is authoritative ONLY for frame order, camera, screen direction, placement and body articulation. The second reference is the NEW authoritative full-resolution costume and face model: carefully repaint EVERY frame in its colours, anatomy, materials and observed naturalist illustration style. The older merchant schooner captain with a short salt-and-pepper beard, navy peaked cloth cap with dark soft visor, deeply ink-blue double-breasted reefer, modest dull brass buttons, dark umber waistcoat, grey-brown wool trousers, broad brown sea boots. Resolute, weather-lined face, erect posture and discreet asymmetry. No military insignia, gold epaulettes or modern visor. Deliver one 1536×1024 LANDSCAPE walking atlas, SIX individual drawings in EXACTLY TWO rows of THREE equal 512×512 square cells. Read reference 1 frame-by-frame, row-major. Keep the same six limb articulations, same step length and timing, same left and right arm and boot in front, clothing silhouette, walking posture and ground support. Nose to screen RIGHT in all six. Top left long contact stride with near heel leading, top middle weight accepted as trailing boot lifts, top right bent-knee passing step; bottom left the opposite contact stride with the other arm in front, bottom middle opposite weight acceptance, bottom right opposite passing position. The near and far limbs exchange roles; no duplicating the first half. Weight travels over the planted foot. In each square every boot and all the hair stay completely within, with clear transparent gutters. Every bottommost planted boot at the same baseline. Use one anatomical and costume model locked across all six: same skull/face at the same scale and height, exact cap/hair angle, identical seam network and jacket closure, identical trousers, cuffs and boots, left light held fixed, each pigment stable. Torso and head advance smoothly through a restrained 2–3px rise/fall. Arms counterbalance legs naturally. The features must not redraw into six different faces. Re-use the same painted head reference for all six degrees of gait. The animation should read clearly at a 160px-tall display and hold still when paused.\n \nPaint the character with the second reference's crisp graphite underdrawing and rich naturalist 1860s maritime gouache: brushwork held together in broad, legible local colour shapes at reduced size, worn wool, hand-sewn linen, scuffed boots, warm skin under a cool upper-left sky. Preserve pronounced local jacket colour and skin tone across every cell. Keep the same stitches, buttons, creases and cap through all cells; make every mark feel part of the same painted world. Avoid dull uniformly brown or uniformly green wash. No independent character redesign, no changes of coat, expressions or cap. Empty hands, no bags, no separate items, NO text, grid lines, floor, shadow, backdrop or digital airbrush glow; absolutely transparent pixels outside and between the character silhouettes. Historical art direction is an original reconstruction for an adventure game.",
+  "alpha_extrema": [
+    0,
+    255
+  ]
 }

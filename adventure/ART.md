@@ -1,6 +1,14 @@
 # Výtvarné podklady adventury
 
-Datum: 16. listopadu 2026. Čtyři nové původní obrazy byly vytvořeny pomocí `image_gen.imagegen` pro point-and-click adventuru. Používají kresbu tužkou a inkoustem, kvašové plochy, zvětralou papírovou texturu a tlumenou paletu moře, mechu a okru. Směr zdůrazňuje vizuální řešení situací a čitelné objekty; nejsou převzaty postavy, roboti ani konkrétní grafika jiné hry.
+## Aktuální herní sada
+
+Sedm kapitol používá malované prostředí, různé stavy rozpracovaných úloh, samostatné rekvizity a atlasy postav. Přepracování drží místa pro chůzi, sběr předmětů a práci. Hra odlišuje studené, mokré a pozdější stavy a má vlastní malby pro opakované návštěvy vybraných míst. Prohlídku novější podoby popisuje [výtvarná a povětrnostní kontrola](reviews/26-weather-and-art.md).
+
+Rozměry, kontrolní součty a případné úpravy každého herního souboru uvádí jeho manifest. Pro pracovní detaily jsou samostatně evidované malované PNG a méně objemné herní WebP v plném rozlišení. [První kapitola](dist/assets/manifest.json) · [Stavové obrazy](dist/assets/states/manifest.json) · [Pozadí dalších kapitol](dist/assets/voyage/scenes/manifest.json) · [Pracovní detaily PNG](artwork/workplates/manifest.json) · [Pracovní detaily WebP](dist/assets/workplates/manifest.json)
+
+## Archiv první výtvarné sady z 16. listopadu 2026
+
+Čtyři původní obrazy byly vytvořeny pomocí `image_gen.imagegen`. Používaly kresbu tužkou a inkoustem, kvašové plochy, zvětralou papírovou texturu a tlumenou paletu moře, mechu a okru. Směr zdůrazňoval vizuální řešení situací a čitelné objekty. Grafika vznikla pro tuto hru. Tabulka popisuje tehdejší výstupy a odkazy vedou na odpovídající cesty v aktuální hře.
 
 | Soubor | Rozměry | Zamýšlené použití |
 |---|---|---|
@@ -9,17 +17,17 @@ Datum: 16. listopadu 2026. Čtyři nové původní obrazy byly vytvořeny pomoc�
 | [camp.png](dist/assets/camp.png) | 1672 × 941 | Nedokončená konstrukce přístřešku, studené ohniště, vyhlídková skála. |
 | [sailor.png](dist/assets/sailor.png) | 1024 × 1536, RGBA | Celá stylizovaná postava otočená doprava pro herní ovládání. |
 
-Všechny obrazy byly zkontrolované samostatně. Prostředí mají širokou spodní část pro chůzi. Postava obsahuje skutečný alfa kanál; všechny čtyři rohy jsou plně průhledné. Jde o jedinou stojící pózu, nikoli předstíranou sadu snímků chůze. Pohyb, otočení, stín a další stavové vrstvy může vytvořit rozhraní hry.
+Všechny čtyři obrazy byly zkontrolované samostatně. Prostředí měla širokou spodní část pro chůzi. U stojící postavy kontrola tehdy potvrdila alfa kanál a všechny čtyři plně průhledné rohy. Otočení, stín a další vrstvy v této fázi doplňovalo rozhraní hry.
 
-[Manifest](dist/assets/manifest.json) uchovává úplné prompty, původní názvy vytvořených souborů, velikosti, rozměry, barevné režimy a SHA-256. Výsledné PNG byly zkopírovány beze změny z výstupu generátoru; původní výstupy zůstaly zachované. Pozadí beach.png prošlo navazující úpravou přes image_gen: odstranění namalovaného lana a volného dřeva, aby sbírané předměty mohlo kreslit a odstraňovat herní rozhraní. Manifest uchovává také prompt úpravy a hash předchozího podkladu. Knihovní fotografie ani moderní ilustrace nebyly použité jako předlohy.
+Pro tuto verzi byla výsledná PNG zkopírována beze změny z výstupu generátoru. Navazující editace pláže v ImageGenu odstranila namalované lano a volné dřevo, aby hra mohla předměty samostatně zobrazit a po sebrání skrýt. Vstupem byly místní malby projektu. Původ a kontrolní součty předchozích souborů zůstávají u příslušných položek. [Manifest první kapitoly](dist/assets/manifest.json)
 
-## Sjednocená malovaná sada
+### Sjednocení malované sady v první verzi
 
-Aktuální hra používá čtyři malované vedlejší postavy, jedenáct samostatných rekvizit ze dvou průhledných atlasů a pět dalších maleb pro změny prostředí. Vektorové figurky i světové kresby předmětů byly odstraněny. Podrobný původ: [postavy](PEOPLE_ART.md), [předměty](PROPS_ART.md), [stavy prostředí](STATE_ART.md).
+Tato verze přidala čtyři malované vedlejší postavy, rekvizity ze dvou průhledných atlasů a pět maleb pro změny prostředí. Nahradila vektorové figurky i vektorové kresby předmětů ve scéně. [Postavy](PEOPLE_ART.md) · [Předměty](PROPS_ART.md) · [Stavy prostředí](STATE_ART.md)
 
-Registr [art.js](dist/art.js) definuje přesné výřezy z nezměněných PNG. Stejný předmět ve scéně, brašně, u kurzoru i v obrazové nápovědě používá stejnou malbu. Poměr stran zůstává zachovaný a výřezy atlasu jsou oříznuté uvnitř SVG, takže sousední rekvizity nepřetékají. Bedna v nápovědě používá výřez její původní malby ve vraku. Základní značky ovládání zůstávají jednoduchými symboly.
+Stejný předmět ve scéně, brašně, u kurzoru i v obrazové nápovědě používal stejnou malbu. Výřezy byly oříznuté uvnitř SVG se zachovaným poměrem stran. Bedna v nápovědě používala výřez její tehdejší malby ve vraku. Základní značky ovládání měly podobu jednoduchých symbolů. [Registr výřezů ve hře](dist/art.js)
 
-Postavy mají individuální výřezy siluet, kontaktní stín a jemný pohyb v klidu. Chodidla jsou umístěna do společné zemní roviny podle hloubky scény. Plachta přepíná celé tábořiště a otevření bedny celé pozadí vraku. Oheň a oba stavy stožáru používají průhledné malby; společná registrace stožáru brání posunu při uvázání vlajky. Jde stále o animaci jednotlivých maleb, nikoli plnou sadu kreslených snímků.
+Postavy měly individuální výřezy siluet, kontaktní stín a jemný pohyb v klidu. Chodidla se zasazovala do zemní roviny podle hloubky scény. Plachta přepínala celé tábořiště a otevření bedny celé pozadí vraku. Oheň a oba stavy stožáru používaly průhledné malby. Společné umístění stožáru bránilo posunu při uvázání vlajky.
 
 ## Historické a implementační meze
 
@@ -33,6 +41,6 @@ Tyto podklady nemění dosavadní rozhodnutí projektu o licenci. Manifest popis
 
 [UI_ART](UI_ART.md) dokládá šest materiálových prvků v jednom původním PNG. Hra používá malované dřevo, plátno, papír a brašnu i mimo samotnou scénu. Objekty a UI mají skutečný vnitřní SVG ořez, aby se při různých poměrech stran nezobrazily sousední části atlasu. Souřadnice a vnitřní viewport se ověřují testem; výsledný render zůstává předmětem browserové kontroly.
 
-## Navazující chůze a rozhovory
+## Chůze, pracovní pózy a rozhovory
 
-Aktuální hra již nepoužívá rozdělenou stojící malbu jako chůzi. Pět samostatných atlasů obsahuje celkem 30 krokových póz; původ, výřezy a omezení dokládá [WALK_ART](WALK_ART.md). Původní postavy zůstávají klidovými pózami. Přibyly krátké anglické rozhovory a živější prostředí, viz [LIVING_WORLD](LIVING_WORLD.md). Starší odstavce výše popisují původ základních obrazů a předchozí implementaci.
+Pět samostatných atlasů obsahuje celkem 30 krokových póz. Samostatné pracovní atlasy přidávají pózy pro úkony na místě. Vzhled postav navazuje na stojící malby. Hru doprovázejí krátké anglické rozhovory a pohyb prostředí. [Krokové atlasy](WALK_ART.md) · [Pracovní pózy](dist/assets/work-poses/manifest.json) · [Živé prostředí](LIVING_WORLD.md)

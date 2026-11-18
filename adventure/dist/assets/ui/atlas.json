@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "asset": "castaway-ui-atlas.png",
-  "sha256": "1f4e0dc8fa557ae200229a35e9192812016c739fc7435aa13b6b07953367f292",
+  "sha256": "d1f25d1cdf90f39f8a72eb40006b3509f4ca26e2a3db5602525bcf3c50968ab4",
   "width": 1536,
   "height": 1024,
   "mode": "RGBA",
   "alpha_extrema": [
     0,
-    254
+    255
   ],
   "layout": {
     "columns": 3,
@@ -16,8 +16,8 @@
     "cell_height": 512
   },
   "coordinate_convention": "x/y from upper-left; bbox [left,top,right,bottom] with right/bottom exclusive; viewBox [x,y,width,height] in native atlas units",
-  "modifications": "None. Exact byte copy of imagegen output. No pixel edits, cropping, resizing, or alpha thresholding.",
-  "alpha_note": "Actual RGBA transparency. Alpha 1–31 fringe can extend to cell edges. UI viewBoxes use the visible alpha>=32 bounds plus a four-pixel safety margin. Alpha maxima are 254, with most material interior alpha 252–253.",
+  "modifications": "Each isolated cutout is fit uniformly inside its existing UI crop, centered on both axes with at least four pixels of padding. Artwork uses its native alpha with a three-pixel antialias fringe; resampling uses premultiplied alpha.",
+  "alpha_note": "Recorded alpha bounds are measured on the registered PNG. Cell bounds use right/bottom exclusive coordinates.",
   "items": [
     {
       "id": "timber-strip",
@@ -32,72 +32,72 @@
       "alpha_bounds_by_minimum_alpha": {
         "1": {
           "cell_local": [
-            0,
-            4,
-            512,
-            512
+            18,
+            184,
+            499,
+            371
           ],
           "atlas": [
-            0,
-            4,
-            512,
-            512
+            18,
+            184,
+            499,
+            371
           ]
         },
         "32": {
           "cell_local": [
-            16,
-            186,
-            501,
-            369
+            21,
+            187,
+            495,
+            368
           ],
           "atlas": [
-            16,
-            186,
-            501,
-            369
+            21,
+            187,
+            495,
+            368
           ]
         },
         "128": {
           "cell_local": [
-            16,
+            22,
             187,
-            500,
-            368
+            495,
+            367
           ],
           "atlas": [
-            16,
+            22,
             187,
-            500,
-            368
+            495,
+            367
           ]
         },
         "200": {
           "cell_local": [
-            17,
-            187,
-            500,
-            368
+            22,
+            188,
+            494,
+            367
           ],
           "atlas": [
-            17,
-            187,
-            500,
-            368
+            22,
+            188,
+            494,
+            367
           ]
         },
         "250": {
           "cell_local": [
-            18,
-            189,
-            499,
-            367
+            23,
+            190,
+            494,
+            366
           ],
           "atlas": [
-            18,
-            189,
-            499,
-            367
+            23,
+            190,
+            494,
+            366
           ]
         }
       },
@@ -106,7 +106,22 @@
         182,
         493,
         191
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          13,
+          182,
+          507,
+          374
+        ],
+        "registered_rect": [
+          18,
+          184,
+          481,
+          187
+        ],
+        "uniform_scale": 0.9731183
+      }
     },
     {
       "id": "inventory-canvas",
@@ -121,71 +136,71 @@
       "alpha_bounds_by_minimum_alpha": {
         "1": {
           "cell_local": [
-            0,
-            0,
-            512,
-            511
+            14,
+            144,
+            497,
+            401
           ],
           "atlas": [
-            512,
-            0,
-            1024,
-            511
+            526,
+            144,
+            1009,
+            401
           ]
         },
         "32": {
           "cell_local": [
-            14,
-            146,
-            496,
-            399
+            17,
+            147,
+            494,
+            398
           ],
           "atlas": [
-            526,
-            146,
-            1008,
-            399
+            529,
+            147,
+            1006,
+            398
           ]
         },
         "128": {
           "cell_local": [
-            14,
+            18,
             147,
-            496,
+            493,
             398
           ],
           "atlas": [
-            526,
+            530,
             147,
-            1008,
+            1005,
             398
           ]
         },
         "200": {
           "cell_local": [
-            15,
-            147,
-            495,
-            398
+            19,
+            148,
+            493,
+            397
           ],
           "atlas": [
-            527,
-            147,
-            1007,
-            398
+            531,
+            148,
+            1005,
+            397
           ]
         },
         "250": {
           "cell_local": [
-            16,
+            20,
             148,
-            495,
+            492,
             397
           ],
           "atlas": [
-            528,
+            532,
             148,
-            1007,
+            1004,
             397
           ]
         }
@@ -195,7 +210,22 @@
         142,
         490,
         261
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          521,
+          142,
+          1012,
+          403
+        ],
+        "registered_rect": [
+          526,
+          144,
+          483,
+          257
+        ],
+        "uniform_scale": 0.9843137
+      }
     },
     {
       "id": "dialog-paper",
@@ -210,72 +240,72 @@
       "alpha_bounds_by_minimum_alpha": {
         "1": {
           "cell_local": [
-            0,
-            17,
-            498,
-            512
+            9,
+            97,
+            496,
+            444
           ],
           "atlas": [
-            1024,
-            17,
-            1522,
-            512
+            1033,
+            97,
+            1520,
+            444
           ]
         },
         "32": {
           "cell_local": [
-            11,
-            98,
-            494,
-            443
+            12,
+            100,
+            493,
+            441
           ],
           "atlas": [
-            1035,
-            98,
-            1518,
-            443
+            1036,
+            100,
+            1517,
+            441
           ]
         },
         "128": {
           "cell_local": [
-            12,
-            98,
-            493,
-            442
+            13,
+            101,
+            492,
+            441
           ],
           "atlas": [
-            1036,
-            98,
-            1517,
-            442
+            1037,
+            101,
+            1516,
+            441
           ]
         },
         "200": {
           "cell_local": [
-            12,
-            99,
-            493,
-            441
-          ],
-          "atlas": [
-            1036,
-            99,
-            1517,
-            441
-          ]
-        },
-        "250": {
-          "cell_local": [
-            14,
-            100,
+            13,
+            101,
             492,
             440
           ],
           "atlas": [
-            1038,
-            100,
+            1037,
+            101,
             1516,
             440
+          ]
+        },
+        "250": {
+          "cell_local": [
+            16,
+            103,
+            490,
+            439
+          ],
+          "atlas": [
+            1040,
+            103,
+            1514,
+            439
           ]
         }
       },
@@ -284,7 +314,22 @@
         94,
         491,
         353
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          1030,
+          96,
+          1520,
+          445
+        ],
+        "registered_rect": [
+          1033,
+          97,
+          487,
+          347
+        ],
+        "uniform_scale": 0.9938017
+      }
     },
     {
       "id": "satchel",
@@ -299,72 +344,72 @@
       "alpha_bounds_by_minimum_alpha": {
         "1": {
           "cell_local": [
-            0,
-            0,
-            512,
-            512
+            68,
+            72,
+            446,
+            430
           ],
           "atlas": [
-            0,
-            512,
-            512,
-            1024
+            68,
+            584,
+            446,
+            942
           ]
         },
         "32": {
           "cell_local": [
-            70,
-            72,
-            444,
-            429
-          ],
-          "atlas": [
-            70,
-            584,
-            444,
-            941
-          ]
-        },
-        "128": {
-          "cell_local": [
-            70,
-            73,
-            443,
-            429
-          ],
-          "atlas": [
-            70,
-            585,
-            443,
-            941
-          ]
-        },
-        "200": {
-          "cell_local": [
-            71,
-            73,
-            443,
-            429
-          ],
-          "atlas": [
-            71,
-            585,
-            443,
-            941
-          ]
-        },
-        "250": {
-          "cell_local": [
             71,
             74,
-            442,
-            428
+            444,
+            426
           ],
           "atlas": [
             71,
             586,
+            444,
+            938
+          ]
+        },
+        "128": {
+          "cell_local": [
+            72,
+            75,
+            443,
+            426
+          ],
+          "atlas": [
+            72,
+            587,
+            443,
+            938
+          ]
+        },
+        "200": {
+          "cell_local": [
+            72,
+            75,
+            443,
+            425
+          ],
+          "atlas": [
+            72,
+            587,
+            443,
+            937
+          ]
+        },
+        "250": {
+          "cell_local": [
+            73,
+            76,
             442,
-            940
+            425
+          ],
+          "atlas": [
+            73,
+            588,
+            442,
+            937
           ]
         }
       },
@@ -373,7 +418,22 @@
         580,
         382,
         365
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          59,
+          575,
+          446,
+          942
+        ],
+        "registered_rect": [
+          68,
+          584,
+          378,
+          358
+        ],
+        "uniform_scale": 0.976378
+      }
     },
     {
       "id": "brass-button",
@@ -388,72 +448,72 @@
       "alpha_bounds_by_minimum_alpha": {
         "1": {
           "cell_local": [
-            0,
-            1,
-            512,
-            492
+            94,
+            86,
+            413,
+            410
           ],
           "atlas": [
-            512,
-            513,
-            1024,
-            1004
+            606,
+            598,
+            925,
+            922
           ]
         },
         "32": {
           "cell_local": [
-            96,
-            88,
-            411,
-            409
+            97,
+            89,
+            410,
+            407
           ],
           "atlas": [
-            608,
-            600,
-            923,
-            921
+            609,
+            601,
+            922,
+            919
           ]
         },
         "128": {
           "cell_local": [
-            97,
-            89,
+            98,
+            90,
             410,
-            409
+            406
           ],
           "atlas": [
-            609,
-            601,
+            610,
+            602,
             922,
-            921
+            918
           ]
         },
         "200": {
           "cell_local": [
-            97,
-            89,
-            410,
-            409
-          ],
-          "atlas": [
-            609,
-            601,
-            922,
-            921
-          ]
-        },
-        "250": {
-          "cell_local": [
             98,
             90,
             409,
-            408
+            406
           ],
           "atlas": [
             610,
             602,
             921,
-            920
+            918
+          ]
+        },
+        "250": {
+          "cell_local": [
+            99,
+            93,
+            408,
+            405
+          ],
+          "atlas": [
+            611,
+            605,
+            920,
+            917
           ]
         }
       },
@@ -462,7 +522,22 @@
         596,
         323,
         329
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          603,
+          598,
+          926,
+          926
+        ],
+        "registered_rect": [
+          606,
+          598,
+          319,
+          324
+        ],
+        "uniform_scale": 0.9873817
+      }
     },
     {
       "id": "paper-tab",
@@ -477,72 +552,72 @@
       "alpha_bounds_by_minimum_alpha": {
         "1": {
           "cell_local": [
-            1,
-            5,
-            492,
-            464
+            37,
+            166,
+            474,
+            342
           ],
           "atlas": [
-            1025,
-            517,
-            1516,
-            976
+            1061,
+            678,
+            1498,
+            854
           ]
         },
         "32": {
           "cell_local": [
-            39,
-            167,
-            472,
-            342
+            40,
+            169,
+            471,
+            339
           ],
           "atlas": [
-            1063,
-            679,
-            1496,
-            854
+            1064,
+            681,
+            1495,
+            851
           ]
         },
         "128": {
           "cell_local": [
-            40,
-            168,
-            472,
-            341
-          ],
-          "atlas": [
-            1064,
-            680,
-            1496,
-            853
-          ]
-        },
-        "200": {
-          "cell_local": [
-            40,
-            168,
-            471,
-            341
-          ],
-          "atlas": [
-            1064,
-            680,
-            1495,
-            853
-          ]
-        },
-        "250": {
-          "cell_local": [
             41,
             170,
             470,
-            340
+            338
           ],
           "atlas": [
             1065,
             682,
             1494,
-            852
+            850
+          ]
+        },
+        "200": {
+          "cell_local": [
+            41,
+            170,
+            470,
+            337
+          ],
+          "atlas": [
+            1065,
+            682,
+            1494,
+            849
+          ]
+        },
+        "250": {
+          "cell_local": [
+            42,
+            172,
+            469,
+            336
+          ],
+          "atlas": [
+            1066,
+            684,
+            1493,
+            848
           ]
         }
       },
@@ -551,7 +626,27 @@
         675,
         441,
         183
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          1054,
+          677,
+          1501,
+          857
+        ],
+        "registered_rect": [
+          1061,
+          678,
+          437,
+          176
+        ],
+        "uniform_scale": 0.9773243
+      }
     }
-  ]
+  ],
+  "bytes": 1528979,
+  "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. 1864 expedition field kit UI. 3x2 landscape. TOP: elongated charcoal-dark worn timber strip, long rectangular slate-blue waxed sailing canvas with faded stitching, an ivory rectangular folded-in-corner sheet of wove rag paper for reading. BOTTOM: warm brown patched leather satchel with brass buckle, one circular aged bronze disk with fully blank face, low wide blank light buff paper ticket. Specific proportions and locations align to original atlas. Exquisite natural brushwork and edges, slight patina. NO writing, engravings, icons or symbols. Leave controls flat and readable when tiny.",
+  "original_file": "exec-d0c287c2-73e2-4cd3-b082-f3b93ae9c412.png",
+  "generated_sha256": "76ffc35e73493444c4312f78782372b53d331d8c498a4935c772453cd18fbf31",
+  "reference_sha256": "1f4e0dc8fa557ae200229a35e9192812016c739fc7435aa13b6b07953367f292"
 }

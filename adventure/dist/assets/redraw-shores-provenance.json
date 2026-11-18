@@ -1,0 +1,122 @@
+{
+  "generator": "OpenAI image_gen.imagegen",
+  "date": "2026-11-18",
+  "method": "Original illustrations generated using earlier project paintings as composition references. Four base files are native ImageGen outputs. Each alternate used its newly generated base as its sole image reference. Its generated state region was registered onto that same base with an antialiased four-pixel-sigma mask to preserve identical background pixels while playing. The open-chest export omits the far-right column to match the existing 1671-pixel runtime canvas. The winter forest includes a second generated pass for its seasonal canopy.",
+  "common_prompt_for_base_images": "Repaint this project-owned layout from scratch as a new, finished horizontal 16:9 production background for a classic illustrated point-and-click adventure. Match the existing stage's camera, shoreline, depth, anchor positions and full width with precision. New original brushwork and line drawing throughout. Establish an unmistakable hand: dry graphite broken outlines, graphic masses of light and dark, economical gouache strokes, transparent mineral watercolor glazing, small areas of densely observed lichen, end grain and shell grit; subtle tooth of paper, beautiful crisp materials at gameplay size. Restrained subantarctic naturalism, no generic sepia, no uniform green cast. The player, men and removable objects are separate sprites, so draw NO people, animals, loose quest supplies, interface, labels, text, borders or diagrams. Preserve the broad unblocked walkable foreground across the width; its shallow depth is intentional. This is southern Auckland Island, 1864. Fill the entire frame edge to edge.",
+  "assets": [
+    {
+      "file": "beach.png",
+      "generated_file": "exec-a7ae3ee6-fff4-4f37-9132-9e700ce170d3.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3622974,
+      "sha256": "c9386388d294858e67df53674a1f5a0ec0aeeedd05e9ef15f61050c4edeabfed",
+      "previous_sha256": "9c32f8537d28ba16999d5f8044d0ccf88ac751384828a08b1fa71eb914140d8c",
+      "generated_sha256": "c9386388d294858e67df53674a1f5a0ec0aeeedd05e9ef15f61050c4edeabfed",
+      "reference": "beach.png",
+      "reference_sha256": "9c32f8537d28ba16999d5f8044d0ccf88ac751384828a08b1fa71eb914140d8c",
+      "prompt_continuation": "Paint a January squall clearing over cold Carnley Harbour. Silvery steel-blue sea on left, a low peacock-blue wave face, torn warm pearl cloud with small clean gaps over a blue-grey ridge. Make the wrecked two-masted 1860s small schooner just a legible dark hull in the far left, centred at 14% across and 36% down. The ship stays small, never sitting in the foreground. The low black volcanic rocks and subdued ochre lichen rise across the middle at x24–52%, y52–69%. On the right the salt-pruned southern rātā has whorling bark, russet buds, dark plum shadows and a branch at x69%, y33% where a separate scrap will hang. The actual path rises behind the right boulders at x88%, y53%. Bare wet packed sand and fine gravel across the lower third, soft raking pewter light, thin marks of retreating tide at the extreme edges. Keep room for a removable rope, log and bare pole; none painted in. Low natural scale, a quiet, lived-in maritime landscape, distinct graphic silhouettes."
+    },
+    {
+      "file": "wreck.png",
+      "generated_file": "exec-5b6956a8-c765-4c1d-9bc5-36f70b2796e3.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3625933,
+      "sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+      "previous_sha256": "10790a76ee4f4aaa363410b25716e98719eb332c1bcddc42e9f1d0efe295568d",
+      "generated_sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+      "reference": "wreck.png",
+      "reference_sha256": "10790a76ee4f4aaa363410b25716e98719eb332c1bcddc42e9f1d0efe295568d",
+      "prompt_continuation": "The Grafton small 19th-century two-masted schooner stranded on basalt cobbles immediately before salvage. Keep the exact left-high to right-low diagonal, showing the same seaward end at x10–22%: last strip of torn sail on the rail, dark peeling red-brown sill and sap-grey split planking, restrained rusty fastenings, a few warm ochre cuts catching cold sun across the grain. Give the hull credible individual strakes, lifted knees and scoured waterline; a few attached rigging ropes are allowed as fixed ship fixtures, with the worn painted coil at lower left. Preserve the long single fixed sloping board x51–60%, y39–72%. The tabletop-sized CLOSED plain salvaged chest is crucial: identical box and bounding rectangle as reference, x65–79%, y49–62%, with front corner and simple lid clearly silhouetted on the stone shelf. Gentle green-gray seawater at left, distant cold violet hills, bright salt air and a seam of pale sun. Brown kelp stays at the outside edges. Retain clear near-ground footpath y75–89%, right-hand escape trail; never add any loose iron bars, folded sail bundles, new timber stacks or a second chest. No additional holes or fantasy ornament. Paint empty sky around mast and water with breathing room."
+    },
+    {
+      "file": "states/wreck-open.png",
+      "generated_file": "exec-b325ebbb-3b5f-41ce-8683-5fb1ae18d6a8.png",
+      "size": [
+        1671,
+        941
+      ],
+      "bytes": 3235245,
+      "sha256": "2eb4cbeb194e87e537730f48501435ec34de25dcd47f6e1c5e9f329e207c680d",
+      "previous_sha256": "dac73a8192245696d3102ee1cfe84d67163aabc25d9c14350673dc64578e4693",
+      "generated_sha256": "54967aa05fe329761a55ce58b5fc2cc6eea5eefcde024eff8d65f799914058ab",
+      "reference": "wreck.png",
+      "reference_sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+      "changed_pixel_bounds_xyxy_exclusive": [
+        1059,
+        338,
+        1349,
+        625
+      ],
+      "prompt": "Produce the OPEN CHEST state of the provided finished illustrated adventure backdrop, preserving its composition and the rest of the drawing in exact registration. Make a narrowly localized edit to the SINGLE SMALL CLOSED WOODEN SALVAGE CHEST ON THE RIGHT LEDGE at x65–79% and y49–63%. The base of this particular chest, all four edges, wooden slats, rusty nailheads, old diagonal batten and contact shadow MUST stay in exactly the same pixels. Raise just the existing lid, hinged at the back: angle it back and up into the small empty space immediately over the chest (x66–79%, y37–51%) so its underside, the hinge and the unlit empty interior are plainly readable at small game size. The lid stays attached to the chest, no glowing contents or loose tools. Don't repaint the hull, torn cloth, attached ropes, shelf, light on sand, standing board, coast, sky or trees. The painting must be seamless when toggled with the original as one fixed-camera scene. Hand-drawn contemporary game gouache, cold daylight across muted brown oak wood fibres. No text, UI, figures, decorative framing or new objects. Deliver this exact full 16:9 landscape."
+    },
+    {
+      "file": "camp.png",
+      "generated_file": "exec-379195ae-1fea-49e8-9159-f40f2a588fea.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3346513,
+      "sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+      "previous_sha256": "68167ef81e67886679f8e541bf48896a871fac17aaef80379df0051948622a2f",
+      "generated_sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+      "reference": "camp.png",
+      "reference_sha256": "68167ef81e67886679f8e541bf48896a871fac17aaef80379df0051948622a2f",
+      "prompt_continuation": "A clearing below windswept southern rātā, washed with late honey-coloured light blown up from the sheltered cove. The two framing trunks lean around a slit of pearl-blue sea and a far mauve ridge. Give the gnarled silvery bark a rhythm of fractured graphite, a few quiet rusty red flower clusters and deep cool shadow in the inner canopy. The OPEN UNROOFED shelter frame on the right is a game anchor: three or four plain crooked poles, lashed cross spar x63–83% across, y31–37% down, feet around x56–82%, y66–68%; match the reference exactly. Absolutely no roof, hide, tarp, canvas, hanging fabric or lean-to walls. Cold shallow stone fire ring centre x27.3%,y65.7% with a small grey ash hollow, no flame or pile of sticks. The lower centre-left space around x44.4%,y60.5% remains open for a later cairn; no marker, pole, flag or new central pile. Behind it the low rock outcrop looks to sea. Lower third earthen floor with hooked fine sedges at far margins, natural cast light and restrained patches of cool shadow. Wide, calm, comfortable space in which painted people can move. No added structures or campsite equipment."
+    },
+    {
+      "file": "states/camp-shelter.png",
+      "generated_file": "exec-a3fdc793-a5cc-4f2a-9802-62f80942b800.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3029176,
+      "sha256": "8906c27bdb0bd8cd602f1901ff0e0d15cf07389957464370ad061c0617b36171",
+      "previous_sha256": "5fa285d1b7ec0cf5953b1d632d88243904141dcf0b97d62b2b7f22099f6fc4ca",
+      "generated_sha256": "9038730566e6ef7e32f2c6355331a96913788073e3743f9036a8697b44bb859a",
+      "reference": "camp.png",
+      "reference_sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+      "changed_pixel_bounds_xyxy_exclusive": [
+        878,
+        234,
+        1495,
+        680
+      ],
+      "prompt": "Make a localized game-state edit of the supplied newly painted 1864 Auckland Island camp. The result must read as THIS EXACT painting after the men have stretched their salvaged sail over the existing shelter poles. Precisely preserve camera, framing, scale, light, colour choices and brushwork of the input, with all scenery outside the shelter visually registered including every tree silhouette, fire-ring stone and fixed pole. The only change is a low completed canvas lean-to on the right, x56–85% of the width and y30–65% height. Lash weathered smoke-oatmeal sail canvas to the existing long top spar from approximately x65%,y36% to x83%,y30%. Lay it over the frame with plausible gravity, three readable creases, one bias seam and subdued rain marks, tidy but hand-lashed corners, a few warm highlights and natural cool shelter shadow. Keep the existing upright support poles visible and frame in precisely the same position; the cloth must leave a low open space beneath for shelter. No bright white tent, added floor, new equipment, campfire, people or text. Preserve all original ground, warm afternoon lighting, cold stone fire ring and centre-left clearing. Output the full original landscape at the reference's 1672x941 aspect ratio edge to edge. Fine hand-painted gouache, local pearly colour variation, crisp edges only at close details."
+    },
+    {
+      "file": "voyage/scenes/forest.png",
+      "generated_file": "exec-df6066cf-3177-455a-971a-73c7ba2d7767.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3130275,
+      "sha256": "a5bc45b3c331e364f9cd7a6d5512dfe11b540cd02d3a2197df6d6e6989e465ee",
+      "previous_sha256": "89d18dedb898febc51bb1d81dfe0f6e12e1d7d28b24d1daa5d6e8713f552dfc0",
+      "generated_sha256": "a5bc45b3c331e364f9cd7a6d5512dfe11b540cd02d3a2197df6d6e6989e465ee",
+      "reference": "exec-a97f89a9-1af5-4497-a0d9-0586aa24f4e6.png",
+      "reference_sha256": "ce31d19653a3a1770542a5feac3047dde73cd63e0829abff7de1f47b11cc6182",
+      "intermediate_generation": {
+        "generated_file": "exec-a97f89a9-1af5-4497-a0d9-0586aa24f4e6.png",
+        "sha256": "ce31d19653a3a1770542a5feac3047dde73cd63e0829abff7de1f47b11cc6182",
+        "reference": "voyage/scenes/forest.png",
+        "reference_sha256": "89d18dedb898febc51bb1d81dfe0f6e12e1d7d28b24d1daa5d6e8713f552dfc0",
+        "prompt_continuation": "Reinvent every brush mark of this damp winter track through low subantarctic southern rātā forest. This is a forest of character: flattened growing crowns and gnarled argent old trunks, black-pumice shelves, velvety rust-brown forest floor, restrained olive and bronze fern tips, distant smoke-blue shapes disappearing into cold winter mist. Light comes obliquely from the cool opening behind the track; a low warm bounce catches the bark and rock. Use deliberate, broad graphic shadow groups and only a few intimate detailed foreground passages. Keep two precise landmarks. At left the small freshwater seep tumbles over basalt between x19% and x23%, y50–67%, pooling with a lucid silver glint at x21%, y67%. At right a shallow unlit earthen charcoal pit, a bare dark concavity with ash lip and no objects, centered x78%,y60%. Central path recedes at x46%,y54%. Preserve continuous walkable earthen foreground from y72–89% across most of the width. Zero figures, tools, metal offcuts, baskets or carried charcoal. No waterfall across the path, no mountains inside the woodland, no tropical plants. Full-width stage, fixed view at the same scale and plane as this reference."
+      },
+      "prompt": "Make a narrowly focused seasonal correction to this newly hand-painted adventuring background. It is the southern winter on Auckland Island. Remove EVERY scarlet flower, scarlet stamen, reddish pom-pom and bright flowering patch from ALL tree crowns (high left edge, upper centre, high right, and outer right). Replace each little cluster naturally with small dull brown woody seed capsules, glabrous olive-grey evergreen leaves or a short quiet bare twig, matching the neighbouring dry gouache brushwork. There must be zero red flowers anywhere; do not relocate them. These are southern rātā outside their summer blossom season. Keep the source painting's whole geometry and composition unchanged: the wind-wracked bark shapes, foreground opening, misty blue-grey tree layers, stream and small rock cascade x21%, charcoal hollow x78%, wet winter forest floor, all negative spaces and local colour. Keep the wonderful copper-brown soil and mottled bark accents (they are warm physical materials), contrast, pencil marks and atmospheric illumination. Preserve the proportions and frame of the 1672 x 941 16:9 painting. No new items, no snow, no new signs of people, no text, no UI.",
+      "season_reference": {
+        "title": "Rātā, Department of Conservation, New Zealand",
+        "url": "https://www.doc.govt.nz/nature/native-plants/rata/",
+        "detail": "The winter painting shows foliage and seed capsules. The conspicuous red bloom belongs to the warmer season."
+      }
+    }
+  ]
+}

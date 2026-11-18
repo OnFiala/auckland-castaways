@@ -1,7 +1,7 @@
-/* Scene staging. Shared paintings are deliberate returns to known places. */
+/* The later visits keep their geography and have their own painted evidence of elapsed time. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.CastawayWorld=factory();})(typeof window!=='undefined'?window:globalThis,function(){'use strict';
 const scene=(name,indoor=false,walk=[6,94,74,89])=>({file:'assets/voyage/scenes/'+name+'.png',indoor,walk});
-const scenes={cabin:scene('cabin',true),forest:scene('forest'),forge:scene('forge',true),charcoal:scene('forest'),slipway:scene('slipway'),salvage:{file:'assets/wreck.png',walk:[6,94,76,88]},crossing:scene('crossing',false,[20,80,76,88]),harbour:scene('harbour'),chartroom:scene('chartroom',true),return_camp:scene('cabin',true),landing:scene('landing')};
+const scenes={cabin:scene('cabin',true),forest:scene('forest'),forge:scene('forge',true),charcoal:scene('charcoal'),slipway:scene('slipway'),salvage:scene('salvage',false,[6,94,76,88]),crossing:scene('crossing',false,[20,80,76,88]),harbour:scene('harbour'),chartroom:scene('chartroom',true),return_camp:scene('return-camp',true),landing:scene('landing')};
 function decorations(state,{svg}){
  const f=state.flags;let html='';
  const glow=(x,y)=>`<div class="voyage-glow" style="left:${x}%;top:${y}%"></div>`;
@@ -34,9 +34,15 @@ function stageTarget(target,state){
 }
 function background(state){const f=state.flags,dir='assets/voyage/scenes/';
  if(state.scene==='cabin')return dir+(f.warmthReady?'cabin':'cabin-cold')+'.png';
- if(state.scene==='forge')return dir+(f.bellowsFitted?'forge':'forge-cold')+'.png';
+ if(state.scene==='forge'){
+  if(f.forgeLit)return dir+'forge-lit.png';
+  return dir+(f.bellowsFitted?'forge':'forge-cold')+'.png';
+ }
  if(state.scene==='slipway')return dir+(f.sailRigged?'slipway-ready':'slipway')+'.png';
- if(state.scene==='crossing')return dir+(f.courseSet?'crossing-safe':'crossing-wet')+'.png';
+ if(state.scene==='crossing'){
+  if(f.sailMended||f.courseSet)return dir+'crossing-safe.png';
+  return dir+(f.boatDry?'crossing-bailed':'crossing-wet')+'.png';
+ }
  return scenes[state.scene]?.file;
 }
 return {scenes,decorations,stageTarget,background};});

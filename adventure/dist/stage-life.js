@@ -113,10 +113,6 @@
         sea('port-swell', [1.0, 45.9, 18.6, 6.4], 'life-seaway port'),
         f.rigSecured && mark('secured-shroud', [24.7, 55.5, 2.4, 3.6], 'life-lashing', 'lashing'),
         wash('drawing-sail', [48.1, 0, 51.4, 31.3], f.sailMended ? 'life-ocean-sail mended' : 'life-ocean-sail', '1,0 99,0 96,18 62,55 2,99'),
-        /* Lay the correct dry floor and the repaired canvas independently: the
-           base painting switches only after a bearing has been established. */
-        f.boatDry && !f.courseSet && wash('dry-boards', [52.0, 66.2, 28.7, 17.7], 'life-feather', paintedSea, 'crossing-safe'),
-        f.sailMended && !f.courseSet && wash('sail-repair', [70, 0, 17, 19], 'life-feather', paintedSea, 'crossing-safe'),
         !f.boatDry && mark('bilge-water', [59.5, 72.7, 14.1, 4.0], 'life-bilge', 'bilge')
       ];
       case 'harbour': return [

@@ -5,60 +5,172 @@
   "historical_status": "Artistic reconstruction, not historical evidence",
   "assets": [
     {
+      "id": "beach",
       "file": "beach.png",
-      "original_file": "exec-2def9aad-734d-4dd8-8112-5b31ff545d1f.png",
-      "prompt": "Original hand-drawn point-and-click adventure game art, warm human story in a cold subantarctic island in 1864. Wide 16:9 playable scene with fixed camera, hand-inked and graphite pencil contours, gouache wash on worn textured paper, charming restrained stylization, simplified legible silhouettes, muted desaturated blue-green, moss, charcoal and ochre palette. Thoughtful, tactile, slightly whimsical craftsmanship, but serious survival setting. NOT photorealistic, not a film screenshot, not 3D render, not pixel art, no robot, no modern objects, no tropical plants, no icebergs. No text, no lettering, no interface, no frames, no arrows, no icons, no people in this background. Very important: the LOWER THIRD is broad unobstructed level walkable ground spanning left to right, like an old adventure game stage, painted at a useful human scale; environmental interactable objects readable in middle ground, not tiny far away. A theatrical cutaway-like shallow scene with atmospheric depth behind it. Scene: a lonely rocky strand after a shipwreck at Auckland Island, storm clouds opening slightly, dark southern rata trees on far right and rough teal sea on left. A small damaged 1860s two-masted schooner is visible farther back on the left near rocks, but a clear shore path leads toward it. In the middle left, a short weathered driftwood pole rests conspicuously on a rock; nearer middle right, a small coil of old ship's rope on the ground; the lower foreground itself remains a clear continuous sandy gravel walking strip. Flat rock ledges frame rather than block movement. On the right a path leads into low forest. Balanced readable composition with sky only upper quarter, friendly hand-painted puzzle game environment, no UI or text.",
-      "transparent_requested": false,
       "width": 1672,
       "height": 941,
-      "bytes": 3101847,
-      "sha256": "9c32f8537d28ba16999d5f8044d0ccf88ac751384828a08b1fa71eb914140d8c",
       "mode": "RGB",
-      "edit_history": [
-        {
-          "source_original_file": "exec-d3ad437b-8e31-499b-a4a8-53973d95ca72.png",
-          "source_sha256": "b27655833b44d0b47ddd66ba7fb978ad3ed3223d565effff633d20c8e97950d2",
-          "prompt": "Edit this existing hand-drawn adventure background with a VERY localized change. Remove the loose driftwood pole/log lying diagonally on the large rock in the middle-left (around x=32%, y=54%) including the short rope tied around that pole, and remove the loose coil of rope on the ground in the middle-right (around x=70%, y=63%). Fill these removed objects naturally with matching bare rock and soil textures, so the two pickup areas are empty and ready for interactive game objects drawn over them. Preserve EVERYTHING else: exact full composition, framing, dimensions and perspective, wide empty walking foreground, distant wrecked ship and its rigging, sea, cliffs, trees, path, palette, pencil/gouache textured drawing. Do not add any objects or text. No people. The only desired difference is removal of those two loose foreground/midground pickup objects.",
-          "purpose": "Remove static pickup objects so the interface can draw and remove them dynamically."
-        }
-      ]
+      "bytes": 3622974,
+      "sha256": "c9386388d294858e67df53674a1f5a0ec0aeeedd05e9ef15f61050c4edeabfed",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "beach.png",
+        "generated_file": "exec-a7ae3ee6-fff4-4f37-9132-9e700ce170d3.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3622974,
+        "sha256": "c9386388d294858e67df53674a1f5a0ec0aeeedd05e9ef15f61050c4edeabfed",
+        "previous_sha256": "9c32f8537d28ba16999d5f8044d0ccf88ac751384828a08b1fa71eb914140d8c",
+        "generated_sha256": "c9386388d294858e67df53674a1f5a0ec0aeeedd05e9ef15f61050c4edeabfed",
+        "reference": "beach.png",
+        "reference_sha256": "9c32f8537d28ba16999d5f8044d0ccf88ac751384828a08b1fa71eb914140d8c",
+        "prompt_continuation": "Paint a January squall clearing over cold Carnley Harbour. Silvery steel-blue sea on left, a low peacock-blue wave face, torn warm pearl cloud with small clean gaps over a blue-grey ridge. Make the wrecked two-masted 1860s small schooner just a legible dark hull in the far left, centred at 14% across and 36% down. The ship stays small, never sitting in the foreground. The low black volcanic rocks and subdued ochre lichen rise across the middle at x24–52%, y52–69%. On the right the salt-pruned southern rātā has whorling bark, russet buds, dark plum shadows and a branch at x69%, y33% where a separate scrap will hang. The actual path rises behind the right boulders at x88%, y53%. Bare wet packed sand and fine gravel across the lower third, soft raking pewter light, thin marks of retreating tide at the extreme edges. Keep room for a removable rope, log and bare pole; none painted in. Low natural scale, a quiet, lived-in maritime landscape, distinct graphic silhouettes."
+      },
+      "previous_revision": {
+        "file": "beach.png",
+        "original_file": "exec-2def9aad-734d-4dd8-8112-5b31ff545d1f.png",
+        "prompt": "Original hand-drawn point-and-click adventure game art, warm human story in a cold subantarctic island in 1864. Wide 16:9 playable scene with fixed camera, hand-inked and graphite pencil contours, gouache wash on worn textured paper, charming restrained stylization, simplified legible silhouettes, muted desaturated blue-green, moss, charcoal and ochre palette. Thoughtful, tactile, slightly whimsical craftsmanship, but serious survival setting. NOT photorealistic, not a film screenshot, not 3D render, not pixel art, no robot, no modern objects, no tropical plants, no icebergs. No text, no lettering, no interface, no frames, no arrows, no icons, no people in this background. Very important: the LOWER THIRD is broad unobstructed level walkable ground spanning left to right, like an old adventure game stage, painted at a useful human scale; environmental interactable objects readable in middle ground, not tiny far away. A theatrical cutaway-like shallow scene with atmospheric depth behind it. Scene: a lonely rocky strand after a shipwreck at Auckland Island, storm clouds opening slightly, dark southern rata trees on far right and rough teal sea on left. A small damaged 1860s two-masted schooner is visible farther back on the left near rocks, but a clear shore path leads toward it. In the middle left, a short weathered driftwood pole rests conspicuously on a rock; nearer middle right, a small coil of old ship's rope on the ground; the lower foreground itself remains a clear continuous sandy gravel walking strip. Flat rock ledges frame rather than block movement. On the right a path leads into low forest. Balanced readable composition with sky only upper quarter, friendly hand-painted puzzle game environment, no UI or text.",
+        "transparent_requested": false,
+        "width": 1672,
+        "height": 941,
+        "bytes": 3101847,
+        "sha256": "9c32f8537d28ba16999d5f8044d0ccf88ac751384828a08b1fa71eb914140d8c",
+        "mode": "RGB",
+        "edit_history": [
+          {
+            "source_original_file": "exec-d3ad437b-8e31-499b-a4a8-53973d95ca72.png",
+            "source_sha256": "b27655833b44d0b47ddd66ba7fb978ad3ed3223d565effff633d20c8e97950d2",
+            "prompt": "Edit this existing hand-drawn adventure background with a VERY localized change. Remove the loose driftwood pole/log lying diagonally on the large rock in the middle-left (around x=32%, y=54%) including the short rope tied around that pole, and remove the loose coil of rope on the ground in the middle-right (around x=70%, y=63%). Fill these removed objects naturally with matching bare rock and soil textures, so the two pickup areas are empty and ready for interactive game objects drawn over them. Preserve EVERYTHING else: exact full composition, framing, dimensions and perspective, wide empty walking foreground, distant wrecked ship and its rigging, sea, cliffs, trees, path, palette, pencil/gouache textured drawing. Do not add any objects or text. No people. The only desired difference is removal of those two loose foreground/midground pickup objects.",
+            "purpose": "Remove static pickup objects so the interface can draw and remove them dynamically."
+          }
+        ]
+      }
     },
     {
+      "id": "wreck",
       "file": "wreck.png",
-      "original_file": "exec-7f67c010-274a-4340-8e40-10c28955a8cc.png",
-      "prompt": "Original hand-drawn point-and-click adventure game art, warm human story in a cold subantarctic island in 1864. Wide 16:9 playable scene with fixed camera, hand-inked and graphite pencil contours, gouache wash on worn textured paper, charming restrained stylization, simplified legible silhouettes, muted desaturated blue-green, moss, charcoal and ochre palette. Thoughtful, tactile, slightly whimsical craftsmanship, but serious survival setting. NOT photorealistic, not a film screenshot, not 3D render, not pixel art, no robot, no modern objects, no tropical plants, no icebergs. No text, no lettering, no interface, no frames, no arrows, no icons, no people in this background. Very important: the LOWER THIRD is broad unobstructed level walkable ground spanning left to right, like an old adventure game stage, painted at a useful human scale; environmental interactable objects readable in middle ground, not tiny far away. A theatrical cutaway-like shallow scene with atmospheric depth behind it. Scene: close side view of a small wrecked wooden 1860s schooner tilted against rocks. Ship hull dominates middle left and upper middle, weathered planks, broken rail, ropes, a small rag of sail dangling from the rail high enough to require a tool. There is a clearly visible closed wooden supply crate in middle right on a low raised rock, a rough plank leaning against hull nearby. The sea is visible beyond left edge and a return shore path at right edge. LOWER THIRD continuous clear sand and shingle walkable stage, no water blocking it. Distinct simple objects in readable positions, restrained detail, large forms, hand-painted adventure scene, no people, no text.",
-      "transparent_requested": false,
       "width": 1672,
       "height": 941,
-      "bytes": 3596023,
-      "sha256": "10790a76ee4f4aaa363410b25716e98719eb332c1bcddc42e9f1d0efe295568d",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 3625933,
+      "sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "wreck.png",
+        "generated_file": "exec-5b6956a8-c765-4c1d-9bc5-36f70b2796e3.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3625933,
+        "sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+        "previous_sha256": "10790a76ee4f4aaa363410b25716e98719eb332c1bcddc42e9f1d0efe295568d",
+        "generated_sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+        "reference": "wreck.png",
+        "reference_sha256": "10790a76ee4f4aaa363410b25716e98719eb332c1bcddc42e9f1d0efe295568d",
+        "prompt_continuation": "The Grafton small 19th-century two-masted schooner stranded on basalt cobbles immediately before salvage. Keep the exact left-high to right-low diagonal, showing the same seaward end at x10–22%: last strip of torn sail on the rail, dark peeling red-brown sill and sap-grey split planking, restrained rusty fastenings, a few warm ochre cuts catching cold sun across the grain. Give the hull credible individual strakes, lifted knees and scoured waterline; a few attached rigging ropes are allowed as fixed ship fixtures, with the worn painted coil at lower left. Preserve the long single fixed sloping board x51–60%, y39–72%. The tabletop-sized CLOSED plain salvaged chest is crucial: identical box and bounding rectangle as reference, x65–79%, y49–62%, with front corner and simple lid clearly silhouetted on the stone shelf. Gentle green-gray seawater at left, distant cold violet hills, bright salt air and a seam of pale sun. Brown kelp stays at the outside edges. Retain clear near-ground footpath y75–89%, right-hand escape trail; never add any loose iron bars, folded sail bundles, new timber stacks or a second chest. No additional holes or fantasy ornament. Paint empty sky around mast and water with breathing room."
+      },
+      "previous_revision": {
+        "file": "wreck.png",
+        "original_file": "exec-7f67c010-274a-4340-8e40-10c28955a8cc.png",
+        "prompt": "Original hand-drawn point-and-click adventure game art, warm human story in a cold subantarctic island in 1864. Wide 16:9 playable scene with fixed camera, hand-inked and graphite pencil contours, gouache wash on worn textured paper, charming restrained stylization, simplified legible silhouettes, muted desaturated blue-green, moss, charcoal and ochre palette. Thoughtful, tactile, slightly whimsical craftsmanship, but serious survival setting. NOT photorealistic, not a film screenshot, not 3D render, not pixel art, no robot, no modern objects, no tropical plants, no icebergs. No text, no lettering, no interface, no frames, no arrows, no icons, no people in this background. Very important: the LOWER THIRD is broad unobstructed level walkable ground spanning left to right, like an old adventure game stage, painted at a useful human scale; environmental interactable objects readable in middle ground, not tiny far away. A theatrical cutaway-like shallow scene with atmospheric depth behind it. Scene: close side view of a small wrecked wooden 1860s schooner tilted against rocks. Ship hull dominates middle left and upper middle, weathered planks, broken rail, ropes, a small rag of sail dangling from the rail high enough to require a tool. There is a clearly visible closed wooden supply crate in middle right on a low raised rock, a rough plank leaning against hull nearby. The sea is visible beyond left edge and a return shore path at right edge. LOWER THIRD continuous clear sand and shingle walkable stage, no water blocking it. Distinct simple objects in readable positions, restrained detail, large forms, hand-painted adventure scene, no people, no text.",
+        "transparent_requested": false,
+        "width": 1672,
+        "height": 941,
+        "bytes": 3596023,
+        "sha256": "10790a76ee4f4aaa363410b25716e98719eb332c1bcddc42e9f1d0efe295568d",
+        "mode": "RGB"
+      }
     },
     {
+      "id": "camp",
       "file": "camp.png",
-      "original_file": "exec-418cb6b1-9146-43fe-928a-25c7fe5699bb.png",
-      "prompt": "Original hand-drawn point-and-click adventure game art, warm human story in a cold subantarctic island in 1864. Wide 16:9 playable scene with fixed camera, hand-inked and graphite pencil contours, gouache wash on worn textured paper, charming restrained stylization, simplified legible silhouettes, muted desaturated blue-green, moss, charcoal and ochre palette. Thoughtful, tactile, slightly whimsical craftsmanship, but serious survival setting. NOT photorealistic, not a film screenshot, not 3D render, not pixel art, no robot, no modern objects, no tropical plants, no icebergs. No text, no lettering, no interface, no frames, no arrows, no icons, no people in this background. Very important: the LOWER THIRD is broad unobstructed level walkable ground spanning left to right, like an old adventure game stage, painted at a useful human scale; environmental interactable objects readable in middle ground, not tiny far away. A theatrical cutaway-like shallow scene with atmospheric depth behind it. Scene: a sheltered clearing among wind-bent southern rata trees near a rocky cove on Auckland Island. A simple UNFINISHED lean-to frame made from crooked branches stands on the middle RIGHT, with entirely open bare poles and NO roof, NO cloth, NO finished hut. On the middle LEFT a small ring of stones surrounds a COLD UNLIT fire site, no flame, no smoke. In upper middle behind clearing, a broad low bare rock outcrop makes a lookout with sea visible beyond. A tuft of dry pale grass under a sheltering rock is visible at far left; a small glint of iron or metal scrap near tree roots to right. Lower third continuous broad clear earth walking space, almost horizontal, with a path entering at left edge. Soft overcast afternoon light, expressive pencil edges and gouache texture, readable compact puzzle scene. No people, no text, no UI.",
-      "transparent_requested": false,
       "width": 1672,
       "height": 941,
-      "bytes": 3600088,
-      "sha256": "68167ef81e67886679f8e541bf48896a871fac17aaef80379df0051948622a2f",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 3346513,
+      "sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "camp.png",
+        "generated_file": "exec-379195ae-1fea-49e8-9159-f40f2a588fea.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3346513,
+        "sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+        "previous_sha256": "68167ef81e67886679f8e541bf48896a871fac17aaef80379df0051948622a2f",
+        "generated_sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+        "reference": "camp.png",
+        "reference_sha256": "68167ef81e67886679f8e541bf48896a871fac17aaef80379df0051948622a2f",
+        "prompt_continuation": "A clearing below windswept southern rātā, washed with late honey-coloured light blown up from the sheltered cove. The two framing trunks lean around a slit of pearl-blue sea and a far mauve ridge. Give the gnarled silvery bark a rhythm of fractured graphite, a few quiet rusty red flower clusters and deep cool shadow in the inner canopy. The OPEN UNROOFED shelter frame on the right is a game anchor: three or four plain crooked poles, lashed cross spar x63–83% across, y31–37% down, feet around x56–82%, y66–68%; match the reference exactly. Absolutely no roof, hide, tarp, canvas, hanging fabric or lean-to walls. Cold shallow stone fire ring centre x27.3%,y65.7% with a small grey ash hollow, no flame or pile of sticks. The lower centre-left space around x44.4%,y60.5% remains open for a later cairn; no marker, pole, flag or new central pile. Behind it the low rock outcrop looks to sea. Lower third earthen floor with hooked fine sedges at far margins, natural cast light and restrained patches of cool shadow. Wide, calm, comfortable space in which painted people can move. No added structures or campsite equipment."
+      },
+      "previous_revision": {
+        "file": "camp.png",
+        "original_file": "exec-418cb6b1-9146-43fe-928a-25c7fe5699bb.png",
+        "prompt": "Original hand-drawn point-and-click adventure game art, warm human story in a cold subantarctic island in 1864. Wide 16:9 playable scene with fixed camera, hand-inked and graphite pencil contours, gouache wash on worn textured paper, charming restrained stylization, simplified legible silhouettes, muted desaturated blue-green, moss, charcoal and ochre palette. Thoughtful, tactile, slightly whimsical craftsmanship, but serious survival setting. NOT photorealistic, not a film screenshot, not 3D render, not pixel art, no robot, no modern objects, no tropical plants, no icebergs. No text, no lettering, no interface, no frames, no arrows, no icons, no people in this background. Very important: the LOWER THIRD is broad unobstructed level walkable ground spanning left to right, like an old adventure game stage, painted at a useful human scale; environmental interactable objects readable in middle ground, not tiny far away. A theatrical cutaway-like shallow scene with atmospheric depth behind it. Scene: a sheltered clearing among wind-bent southern rata trees near a rocky cove on Auckland Island. A simple UNFINISHED lean-to frame made from crooked branches stands on the middle RIGHT, with entirely open bare poles and NO roof, NO cloth, NO finished hut. On the middle LEFT a small ring of stones surrounds a COLD UNLIT fire site, no flame, no smoke. In upper middle behind clearing, a broad low bare rock outcrop makes a lookout with sea visible beyond. A tuft of dry pale grass under a sheltering rock is visible at far left; a small glint of iron or metal scrap near tree roots to right. Lower third continuous broad clear earth walking space, almost horizontal, with a path entering at left edge. Soft overcast afternoon light, expressive pencil edges and gouache texture, readable compact puzzle scene. No people, no text, no UI.",
+        "transparent_requested": false,
+        "width": 1672,
+        "height": 941,
+        "bytes": 3600088,
+        "sha256": "68167ef81e67886679f8e541bf48896a871fac17aaef80379df0051948622a2f",
+        "mode": "RGB"
+      }
     },
     {
+      "id": "sailor",
       "file": "sailor.png",
-      "original_file": "exec-c936371a-43d8-444e-be68-bbb91f9044c5.png",
-      "prompt": "Create one original full-body human castaway sailor character sprite for a hand-drawn point-and-click adventure game set in 1864. Transparent background, isolated character, no floor, no scenery, NO cast shadow, no text or interface. Entire figure head to soles visible with generous empty transparent margin. Stylized adult male with a slightly oversized head, strong readable silhouette, thoughtful tired kind face, short scruffy dark brown beard, small wool cap, weathered muted teal wool coat, ochre neck cloth, patched charcoal trousers and simple brown boots. Hand-drawn graphite and ink contours with soft gouache on paper texture, charming restrained proportions, tactile and expressive original storybook art, NOT a robot, not photorealistic, not a 3D model, not copied existing character. Standing neutral ready-to-walk pose with feet separated, arms relaxed and clearly separated from torso, body in three-quarter profile FACING RIGHT, eyes looking right. No carried tools, no weapons. Consistent muted blue-green, moss, brown and ochre palette. Tall portrait composition. Single character only.",
-      "transparent_requested": true,
       "width": 1024,
       "height": 1536,
-      "bytes": 2108785,
-      "sha256": "8078180eef71ef6982124690f6b1d1dc1649091818d1c13cea0df90a8fc372ac",
       "mode": "RGBA",
-      "alpha_extrema": [
-        0,
-        254
-      ]
+      "bytes": 2126896,
+      "sha256": "2bd1b63f6e7636c7931cda31956cefb73312e6a9b7935c97e109b1f4b6d92602",
+      "created": "2026-11-18",
+      "generator": "OpenAI ImageGen",
+      "provenance": {
+        "character": "Alick McLaren",
+        "native_generator_png": true,
+        "art_record": "people/manifest.json",
+        "prompt_record": "people/prompts.json",
+        "record_id": "player",
+        "reference_images": [
+          {
+            "path": "adventure/dist/assets/sailor.png",
+            "sha256": "8078180eef71ef6982124690f6b1d1dc1649091818d1c13cea0df90a8fc372ac",
+            "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          },
+          {
+            "path": "adventure/dist/assets/work-poses/player.png",
+            "sha256": "e6871038d5aca38bc1a23526344a59ee498a1a7736925be78da249a808250f6d",
+            "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+          }
+        ],
+        "alpha_extrema": [
+          0,
+          254
+        ]
+      },
+      "previous_revision": {
+        "file": "sailor.png",
+        "original_file": "exec-c936371a-43d8-444e-be68-bbb91f9044c5.png",
+        "prompt": "Create one original full-body human castaway sailor character sprite for a hand-drawn point-and-click adventure game set in 1864. Transparent background, isolated character, no floor, no scenery, NO cast shadow, no text or interface. Entire figure head to soles visible with generous empty transparent margin. Stylized adult male with a slightly oversized head, strong readable silhouette, thoughtful tired kind face, short scruffy dark brown beard, small wool cap, weathered muted teal wool coat, ochre neck cloth, patched charcoal trousers and simple brown boots. Hand-drawn graphite and ink contours with soft gouache on paper texture, charming restrained proportions, tactile and expressive original storybook art, NOT a robot, not photorealistic, not a 3D model, not copied existing character. Standing neutral ready-to-walk pose with feet separated, arms relaxed and clearly separated from torso, body in three-quarter profile FACING RIGHT, eyes looking right. No carried tools, no weapons. Consistent muted blue-green, moss, brown and ochre palette. Tall portrait composition. Single character only.",
+        "transparent_requested": true,
+        "width": 1024,
+        "height": 1536,
+        "bytes": 2108785,
+        "sha256": "8078180eef71ef6982124690f6b1d1dc1649091818d1c13cea0df90a8fc372ac",
+        "mode": "RGBA",
+        "alpha_extrema": [
+          0,
+          254
+        ]
+      }
     }
   ]
 }

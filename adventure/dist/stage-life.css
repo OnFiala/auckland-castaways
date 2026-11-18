@@ -8,7 +8,6 @@
 #place-life svg { width: 100%; height: 100%; display: block; overflow: visible; }
 .life-paint { background-image: var(--life-plate); background-repeat: no-repeat; }
 .life-feather { mask-image: radial-gradient(ellipse, #000 41%, #000a 66%, transparent 76%); }
-.scene[data-scene=charcoal] .life-paint { filter: brightness(.8) saturate(.7); }
 
 /* Foam climbs the gutter between rocks. Sheltered water moves horizontally;
    ocean wave fronts lift and roll beyond the gunwale while deck and feet hold. */

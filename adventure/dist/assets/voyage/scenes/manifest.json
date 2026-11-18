@@ -7,269 +7,879 @@
     {
       "id": "cabin",
       "file": "cabin.png",
-      "source_original_file": "exec-b56e9928-7a42-4132-83d6-1d196d40d9d5.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Interior of Epigwaitt, a handmade modest castaway timber cabin during cold subantarctic winter. Wide cutaway side view, rough salvaged plank wall in back, patched sailcloth under roof, small window with cold blue rain streaks upperleft, simple low empty table against backwall at x40%, woven bunk with folded grey blanket at x70%, modest stone cooking hearth and dim amber embers at x16%, empty shelf upperright, plain closed wooden water barrel against wall at x86%. A visible draft gap in rear wall near window and a slightly sagging roofline suggest work to do. NO snow filling interior, no elaborate house or modern stove. Clear empty wooden-plank floor spans ENTIRE lower third, no furniture crossing that walking lane. Cozy restrained warmth, storm outside, intimate honest ingenuity.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3311612,
-      "sha256": "d1de4528411263bff0afc2af786a9a20c568af0ad8472ccedd0693751a614326",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2700779,
+      "sha256": "be9fbcfcfebc2069c99b961f73824e0cfa5d1cc713c60888c4d26c4d7aaa0090",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "cabin.png",
+        "generated_file": "exec-e7e709ca-602b-4805-8957-bae5f535ebd5.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 2700779,
+        "sha256": "be9fbcfcfebc2069c99b961f73824e0cfa5d1cc713c60888c4d26c4d7aaa0090",
+        "previous_sha256": "d1de4528411263bff0afc2af786a9a20c568af0ad8472ccedd0693751a614326",
+        "derived_from": "cabin-cold.png"
+      },
+      "previous_revision": {
+        "id": "cabin",
+        "file": "cabin.png",
+        "source_original_file": "exec-b56e9928-7a42-4132-83d6-1d196d40d9d5.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Interior of Epigwaitt, a handmade modest castaway timber cabin during cold subantarctic winter. Wide cutaway side view, rough salvaged plank wall in back, patched sailcloth under roof, small window with cold blue rain streaks upperleft, simple low empty table against backwall at x40%, woven bunk with folded grey blanket at x70%, modest stone cooking hearth and dim amber embers at x16%, empty shelf upperright, plain closed wooden water barrel against wall at x86%. A visible draft gap in rear wall near window and a slightly sagging roofline suggest work to do. NO snow filling interior, no elaborate house or modern stove. Clear empty wooden-plank floor spans ENTIRE lower third, no furniture crossing that walking lane. Cozy restrained warmth, storm outside, intimate honest ingenuity.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3311612,
+        "sha256": "d1de4528411263bff0afc2af786a9a20c568af0ad8472ccedd0693751a614326",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-e7e709ca-602b-4805-8957-bae5f535ebd5.png",
+      "prompt": "ImageGen edit: cabin.png. Repaint as historical naturalist gouache, preserving fixed composition and anchors; see provenance for generation and reference details."
     },
     {
       "id": "forest",
       "file": "forest.png",
-      "source_original_file": "exec-890870d7-1002-4919-8721-7f230cf22fec.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. A sheltered clearing in southern rata forest on subantarctic Auckland Island, cold wet winter morning. Twisting weathered dark tree trunks and low dense foliage frame both sides and top, damp brown leaf litter, pale fog beyond the middle path, a tiny trickling freshwater seep in a rock ledge at middleleft, fallen branches arranged naturally high in middle ground but no loose pickup handtools. A broad earthen path spans whole bottom third left to right unobstructed. A shallow charcoal earth pit with unlit blackened soil sits middle right beyond the walking lane, not a huge fire. Underbrush moss muted grey olive, slateblue distance, warmbrown tree roots, minimalgreen dominance. Broad interesting organic silhouettes and excellent old-adventure readability.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3542953,
-      "sha256": "89d18dedb898febc51bb1d81dfe0f6e12e1d7d28b24d1daa5d6e8713f552dfc0",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 3130275,
+      "sha256": "a5bc45b3c331e364f9cd7a6d5512dfe11b540cd02d3a2197df6d6e6989e465ee",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "voyage/scenes/forest.png",
+        "generated_file": "exec-df6066cf-3177-455a-971a-73c7ba2d7767.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3130275,
+        "sha256": "a5bc45b3c331e364f9cd7a6d5512dfe11b540cd02d3a2197df6d6e6989e465ee",
+        "previous_sha256": "89d18dedb898febc51bb1d81dfe0f6e12e1d7d28b24d1daa5d6e8713f552dfc0",
+        "generated_sha256": "a5bc45b3c331e364f9cd7a6d5512dfe11b540cd02d3a2197df6d6e6989e465ee",
+        "reference": "exec-a97f89a9-1af5-4497-a0d9-0586aa24f4e6.png",
+        "reference_sha256": "ce31d19653a3a1770542a5feac3047dde73cd63e0829abff7de1f47b11cc6182",
+        "intermediate_generation": {
+          "generated_file": "exec-a97f89a9-1af5-4497-a0d9-0586aa24f4e6.png",
+          "sha256": "ce31d19653a3a1770542a5feac3047dde73cd63e0829abff7de1f47b11cc6182",
+          "reference": "voyage/scenes/forest.png",
+          "reference_sha256": "89d18dedb898febc51bb1d81dfe0f6e12e1d7d28b24d1daa5d6e8713f552dfc0",
+          "prompt_continuation": "Reinvent every brush mark of this damp winter track through low subantarctic southern rātā forest. This is a forest of character: flattened growing crowns and gnarled argent old trunks, black-pumice shelves, velvety rust-brown forest floor, restrained olive and bronze fern tips, distant smoke-blue shapes disappearing into cold winter mist. Light comes obliquely from the cool opening behind the track; a low warm bounce catches the bark and rock. Use deliberate, broad graphic shadow groups and only a few intimate detailed foreground passages. Keep two precise landmarks. At left the small freshwater seep tumbles over basalt between x19% and x23%, y50–67%, pooling with a lucid silver glint at x21%, y67%. At right a shallow unlit earthen charcoal pit, a bare dark concavity with ash lip and no objects, centered x78%,y60%. Central path recedes at x46%,y54%. Preserve continuous walkable earthen foreground from y72–89% across most of the width. Zero figures, tools, metal offcuts, baskets or carried charcoal. No waterfall across the path, no mountains inside the woodland, no tropical plants. Full-width stage, fixed view at the same scale and plane as this reference."
+        },
+        "prompt": "Make a narrowly focused seasonal correction to this newly hand-painted adventuring background. It is the southern winter on Auckland Island. Remove EVERY scarlet flower, scarlet stamen, reddish pom-pom and bright flowering patch from ALL tree crowns (high left edge, upper centre, high right, and outer right). Replace each little cluster naturally with small dull brown woody seed capsules, glabrous olive-grey evergreen leaves or a short quiet bare twig, matching the neighbouring dry gouache brushwork. There must be zero red flowers anywhere; do not relocate them. These are southern rātā outside their summer blossom season. Keep the source painting's whole geometry and composition unchanged: the wind-wracked bark shapes, foreground opening, misty blue-grey tree layers, stream and small rock cascade x21%, charcoal hollow x78%, wet winter forest floor, all negative spaces and local colour. Keep the wonderful copper-brown soil and mottled bark accents (they are warm physical materials), contrast, pencil marks and atmospheric illumination. Preserve the proportions and frame of the 1672 x 941 16:9 painting. No new items, no snow, no new signs of people, no text, no UI.",
+        "season_reference": {
+          "title": "Rātā, Department of Conservation, New Zealand",
+          "url": "https://www.doc.govt.nz/nature/native-plants/rata/",
+          "detail": "The winter painting shows foliage and seed capsules. The conspicuous red bloom belongs to the warmer season."
+        }
+      },
+      "previous_revision": {
+        "id": "forest",
+        "file": "forest.png",
+        "source_original_file": "exec-890870d7-1002-4919-8721-7f230cf22fec.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. A sheltered clearing in southern rata forest on subantarctic Auckland Island, cold wet winter morning. Twisting weathered dark tree trunks and low dense foliage frame both sides and top, damp brown leaf litter, pale fog beyond the middle path, a tiny trickling freshwater seep in a rock ledge at middleleft, fallen branches arranged naturally high in middle ground but no loose pickup handtools. A broad earthen path spans whole bottom third left to right unobstructed. A shallow charcoal earth pit with unlit blackened soil sits middle right beyond the walking lane, not a huge fire. Underbrush moss muted grey olive, slateblue distance, warmbrown tree roots, minimalgreen dominance. Broad interesting organic silhouettes and excellent old-adventure readability.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3542953,
+        "sha256": "89d18dedb898febc51bb1d81dfe0f6e12e1d7d28b24d1daa5d6e8713f552dfc0",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-df6066cf-3177-455a-971a-73c7ba2d7767.png",
+      "prompt": "Make a narrowly focused seasonal correction to this newly hand-painted adventuring background. It is the southern winter on Auckland Island. Remove EVERY scarlet flower, scarlet stamen, reddish pom-pom and bright flowering patch from ALL tree crowns (high left edge, upper centre, high right, and outer right). Replace each little cluster naturally with small dull brown woody seed capsules, glabrous olive-grey evergreen leaves or a short quiet bare twig, matching the neighbouring dry gouache brushwork. There must be zero red flowers anywhere; do not relocate them. These are southern rātā outside their summer blossom season. Keep the source painting's whole geometry and composition unchanged: the wind-wracked bark shapes, foreground opening, misty blue-grey tree layers, stream and small rock cascade x21%, charcoal hollow x78%, wet winter forest floor, all negative spaces and local colour. Keep the wonderful copper-brown soil and mottled bark accents (they are warm physical materials), contrast, pencil marks and atmospheric illumination. Preserve the proportions and frame of the 1672 x 941 16:9 painting. No new items, no snow, no new signs of people, no text, no UI."
     },
     {
       "id": "slipway",
       "file": "slipway.png",
-      "source_original_file": "exec-169964ce-b754-4600-a5c3-7cfe7b9d64d9.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Castaways' makeshift boatbuilding slipway beside a calm cold Auckland Island cove in early winter light. The LOWER THIRD is a broad clear sandy-gravel shore walkway across full width. Above it, in middle center at x50–72%, an unfinished small open wooden sailing boat on low timber cradles, seen from side, partially raised gunwales and visible ribs, no sail, no people. Size readable at human scale. Salvaged timber stacked against low rocks at left middle, rough covered workbench against rear forest at x20%, plain empty barrel at far right middle. Rata tree shelter behind right half, distant grey blue cove and headlands upperleft. Cold slate sea, golden worn timber, warmpaper edges, cohesive hand-painted illustrated game scene, no text or UI.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3480096,
-      "sha256": "e0c2bee202606c2d5e43f899150219d7896dbfc59571f7c90e19b6099236d695",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 3015846,
+      "sha256": "f93e33d7ffaf3f61a404977efcff7e6be13f13fa3d804ec7de06523836c73068",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "slipway.png",
+        "generated_file": "exec-1791928c-dc3a-4fed-a391-b1ce0bceae75.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3344818,
+        "sha256": "1a7949c690b08ba2487413efc40b2f3884d483062a8d8e7156cfc60b9bdba27a",
+        "previous_sha256": "e0c2bee202606c2d5e43f899150219d7896dbfc59571f7c90e19b6099236d695"
+      },
+      "previous_revision": {
+        "id": "slipway",
+        "file": "slipway.png",
+        "source_original_file": "exec-169964ce-b754-4600-a5c3-7cfe7b9d64d9.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Castaways' makeshift boatbuilding slipway beside a calm cold Auckland Island cove in early winter light. The LOWER THIRD is a broad clear sandy-gravel shore walkway across full width. Above it, in middle center at x50–72%, an unfinished small open wooden sailing boat on low timber cradles, seen from side, partially raised gunwales and visible ribs, no sail, no people. Size readable at human scale. Salvaged timber stacked against low rocks at left middle, rough covered workbench against rear forest at x20%, plain empty barrel at far right middle. Rata tree shelter behind right half, distant grey blue cove and headlands upperleft. Cold slate sea, golden worn timber, warmpaper edges, cohesive hand-painted illustrated game scene, no text or UI.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3480096,
+        "sha256": "e0c2bee202606c2d5e43f899150219d7896dbfc59571f7c90e19b6099236d695",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-1791928c-dc3a-4fed-a391-b1ce0bceae75.png",
+      "prompt": "ImageGen edit: slipway.png. Repaint as historical naturalist gouache, preserving fixed composition and anchors; see provenance for generation and reference details.",
+      "seasonal_edit": {
+        "date": "2026-11-18",
+        "generated_file": "exec-fa020399-ae62-467c-8da9-b196cf6e7807.png",
+        "generated_sha256": "8554fdd4c3325a81e26530440801aa391e23620452fb4cf2170d8798a6d67ea2",
+        "prompt": "Remove vivid scarlet rata flowers from winter canopy; replace with muted evergreen leaves and woody seed capsules, retain bark and exact composition.",
+        "reference": "slipway.png before this correction",
+        "reference_sha256": "1a7949c690b08ba2487413efc40b2f3884d483062a8d8e7156cfc60b9bdba27a",
+        "method": "Composite generated canopy over registered base with feathered polygon. In ready state, preserve sail, mast and rigging using protected masks.",
+        "changed_bounds_xyxy_exclusive": [
+          593,
+          0,
+          1672,
+          300
+        ],
+        "prior_runtime": {
+          "sha256": "1a7949c690b08ba2487413efc40b2f3884d483062a8d8e7156cfc60b9bdba27a",
+          "bytes": 3344818,
+          "generation": {
+            "file": "slipway.png",
+            "generated_file": "exec-1791928c-dc3a-4fed-a391-b1ce0bceae75.png",
+            "size": [
+              1672,
+              941
+            ],
+            "bytes": 3344818,
+            "sha256": "1a7949c690b08ba2487413efc40b2f3884d483062a8d8e7156cfc60b9bdba27a",
+            "previous_sha256": "e0c2bee202606c2d5e43f899150219d7896dbfc59571f7c90e19b6099236d695"
+          }
+        }
+      }
     },
     {
       "id": "crossing",
       "file": "crossing.png",
-      "source_original_file": "exec-6131f4fd-d860-413a-a2f9-b5444bee65ca.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Aboard the tiny improvised open wooden sailing boat during the 1865 ocean crossing, viewed as a theatrical SIDE CUTAWAY playable stage, not looking down its length. The inner boat's broad planked sole forms a continuous unobstructed left-to-right walking strip across lower third, with a thin low hull edge at very bottom. The boat fills nearly entire image width, safely readable interior, no people. One mast rises near x45% from middle behind lane, a modest cream sail and dark rigging occupy upper right, simple steering tiller visible rear middleleft, water sloshing in a small recess near middle right beyond lane, an empty plain box at x77%. Beyond lowgunwale are dramatic slateblue Southern Ocean waves and immense grey clouds with a fragile pale light along horizon. Boat perspective deliberately shallow for point-click action, real small open craft not a bigship deck, no railings or fantasy vessel. No floating icons, labels or loose handheld pickups.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        20,
-        74,
-        80,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3249004,
-      "sha256": "3bb36b3190f347f3c3a8858894e0957357de9318ec5e84e088370c479426f4c8",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 3026826,
+      "sha256": "504e49a6c2826b512e1d74b618e7851acc3f07362a3d0db9f31be17c3cb94fda",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "id": "crossing",
+        "file": "crossing.png",
+        "generationTool": "OpenAI ImageGen",
+        "generationId": "exec-9ba038d4-db50-4d39-b082-809b9938b192",
+        "references": [
+          "previous crossing-wet.png"
+        ],
+        "prompt": "Create a substantially redrawn, authentic naturalist illustration in matte opaque gouache over fine graphite on lightly toothy paper. Restained mid-19th century field-sketch character, with deliberate broad shapes in distant weather, brushy watercolor-like edges, occasional pencil strokes that articulate joinery, authentic wood and textiles, soft atmospheric depth, lower contrast less dense detail on walkable foreground to support small inserted game sprites. The reference is a placement template: preserve nearly exact silhouettes, scale and perspective of pinned in-game landmarks and flat floor. Redraw every surface with a distinct palette and original gouache strokes. An uncropped landscape widescreen 16:9 fixed camera game background, original illustration for real 1865 events; no people, lettering, symbols, guide marks, UI, printed coordinates, animals, loose tools, ropes laid as pickups, crates as pickups, bright yellow-green vegetation, heavy global sepia, artificial bloom, cinematic photorealism, current materials, fantasy. Coordinates below are silent approximate percentages [x,y] from upper-left.\nBoats of 1865 at human scale. Repaint the close broadside cutaway interior of a small modified open ship's wooden boat offshore in the Southern Ocean. Retain the exact reference lens with low, curved uninterrupted closed hull, top far rail across y60, far-to-near planking, clear continuous subtly damp timber sole from y75 to 93, no raised new objects or pools on the walking strip. Mast x44.5% with its base at (44.5,75.5), heel measures the same apparent height; hand-hewn greying dark ochre spars. A single old warm-grey, flax canvas sail fills upper right exactly from the mast toward the upper right; its working edge crosses x76 at y20, so x76,y14 is within canvas. In this base panel canvas is intact with subtle seams; boom slopes up right from (47,33) to (99,12). Two taut rigging lines run down left from top (41,0)/(43,0) past (28,47)/(26,55) to (24.6,61)/(26.9,61). Keep curved stern tiller protruding left, handle near (12,55), attachment near (21,58), finished footer at y74. Close the hull completely, no missing plank. A slight darker join in the shallow bilge around (66,75) but no puddle in base. Weather is leaden grey violet, navy and soft mineral blue waves with broken fine whitecaps, a sliver of cool pale light along the horizon at y46; at right a remote vague blue grey headland on the horizon, not giant cliffs, suggesting distance and no clear feature to steer by. Dark timber looks rinsed and slightly damp and is several values cooler than the reference, worn fibres still clear. Painted crest silhouettes feel dangerously close without hiding the boat. Calm side-on theatre perspective and no tilt. No loose props or fabricated high bridge or railings.",
+        "sha256": "504e49a6c2826b512e1d74b618e7851acc3f07362a3d0db9f31be17c3cb94fda",
+        "nativeSize": [
+          1672,
+          941
+        ],
+        "localSize": [
+          1672,
+          941
+        ],
+        "finish": "Exact ImageGen PNG bytes"
+      },
+      "previous_revision": {
+        "id": "crossing",
+        "file": "crossing.png",
+        "source_original_file": "exec-6131f4fd-d860-413a-a2f9-b5444bee65ca.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Aboard the tiny improvised open wooden sailing boat during the 1865 ocean crossing, viewed as a theatrical SIDE CUTAWAY playable stage, not looking down its length. The inner boat's broad planked sole forms a continuous unobstructed left-to-right walking strip across lower third, with a thin low hull edge at very bottom. The boat fills nearly entire image width, safely readable interior, no people. One mast rises near x45% from middle behind lane, a modest cream sail and dark rigging occupy upper right, simple steering tiller visible rear middleleft, water sloshing in a small recess near middle right beyond lane, an empty plain box at x77%. Beyond lowgunwale are dramatic slateblue Southern Ocean waves and immense grey clouds with a fragile pale light along horizon. Boat perspective deliberately shallow for point-click action, real small open craft not a bigship deck, no railings or fantasy vessel. No floating icons, labels or loose handheld pickups.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          20,
+          74,
+          80,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3249004,
+        "sha256": "3bb36b3190f347f3c3a8858894e0957357de9318ec5e84e088370c479426f4c8",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-9ba038d4-db50-4d39-b082-809b9938b192.png",
+      "prompt": "Create a substantially redrawn, authentic naturalist illustration in matte opaque gouache over fine graphite on lightly toothy paper. Restained mid-19th century field-sketch character, with deliberate broad shapes in distant weather, brushy watercolor-like edges, occasional pencil strokes that articulate joinery, authentic wood and textiles, soft atmospheric depth, lower contrast less dense detail on walkable foreground to support small inserted game sprites. The reference is a placement template: preserve nearly exact silhouettes, scale and perspective of pinned in-game landmarks and flat floor. Redraw every surface with a distinct palette and original gouache strokes. An uncropped landscape widescreen 16:9 fixed camera game background, original illustration for real 1865 events; no people, lettering, symbols, guide marks, UI, printed coordinates, animals, loose tools, ropes laid as pickups, crates as pickups, bright yellow-green vegetation, heavy global sepia, artificial bloom, cinematic photorealism, current materials, fantasy. Coordinates below are silent approximate percentages [x,y] from upper-left.\nBoats of 1865 at human scale. Repaint the close broadside cutaway interior of a small modified open ship's wooden boat offshore in the Southern Ocean. Retain the exact reference lens with low, curved uninterrupted closed hull, top far rail across y60, far-to-near planking, clear continuous subtly damp timber sole from y75 to 93, no raised new objects or pools on the walking strip. Mast x44.5% with its base at (44.5,75.5), heel measures the same apparent height; hand-hewn greying dark ochre spars. A single old warm-grey, flax canvas sail fills upper right exactly from the mast toward the upper right; its working edge crosses x76 at y20, so x76,y14 is within canvas. In this base panel canvas is intact with subtle seams; boom slopes up right from (47,33) to (99,12). Two taut rigging lines run down left from top (41,0)/(43,0) past (28,47)/(26,55) to (24.6,61)/(26.9,61). Keep curved stern tiller protruding left, handle near (12,55), attachment near (21,58), finished footer at y74. Close the hull completely, no missing plank. A slight darker join in the shallow bilge around (66,75) but no puddle in base. Weather is leaden grey violet, navy and soft mineral blue waves with broken fine whitecaps, a sliver of cool pale light along the horizon at y46; at right a remote vague blue grey headland on the horizon, not giant cliffs, suggesting distance and no clear feature to steer by. Dark timber looks rinsed and slightly damp and is several values cooler than the reference, worn fibres still clear. Painted crest silhouettes feel dangerously close without hiding the boat. Calm side-on theatre perspective and no tilt. No loose props or fabricated high bridge or railings."
     },
     {
       "id": "forge",
       "file": "forge.png",
-      "source_original_file": "exec-138a3000-c4f9-4059-bfac-6f4d51b7099d.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Interior of an improvised 1864 castaway smithy on Auckland Island, modest rather than professional. Entire LOWER THIRD is a completely clear flat earthen floor from left edge to right edge for characters walking. ALL furniture confined to backmiddle band above y68%. Warm charcoal stone forge in back middle at x35%, hand-made large leather bellows at x17% beside forge, a squat iron block on a timber stump at x66% as an anvil, simple low bare workbench against rear wall at x83%. Back wall weathered timber with sailcloth roof and a doorway at far left leading into grey rain. No glowing hugefantasyfurnace, no modernmachinery, no loose hand tools, no people, no letter. Charcoal hearth unlit darkblack coal with only a faint warmemberhint, because gamewilllightit. Clear left-right floor, welcoming ochrecontrastagainstcoldblue entrance, lovely expressive illustrated handcrafted materials.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3413917,
-      "sha256": "ed6ca2f8c9ae3a95c49a5930dc6b3d734e016267135b37ee458ccd14fdb780f2",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2450061,
+      "sha256": "53dfa8af123225a87d749116d5b76a16cc89699ae9c3243f7bd63800c2aca655",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "forge.png",
+        "generated_file": "exec-321ccdb3-012f-452e-924d-752c04bb558c.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 2630268,
+        "sha256": "1e1f75a2f4feb26ae01f39e2672ddfff5b89b14f8fa558f0c64f025cab33ce91",
+        "previous_sha256": "ed6ca2f8c9ae3a95c49a5930dc6b3d734e016267135b37ee458ccd14fdb780f2",
+        "derived_from": "forge-cold.png"
+      },
+      "previous_revision": {
+        "id": "forge",
+        "file": "forge.png",
+        "source_original_file": "exec-138a3000-c4f9-4059-bfac-6f4d51b7099d.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Interior of an improvised 1864 castaway smithy on Auckland Island, modest rather than professional. Entire LOWER THIRD is a completely clear flat earthen floor from left edge to right edge for characters walking. ALL furniture confined to backmiddle band above y68%. Warm charcoal stone forge in back middle at x35%, hand-made large leather bellows at x17% beside forge, a squat iron block on a timber stump at x66% as an anvil, simple low bare workbench against rear wall at x83%. Back wall weathered timber with sailcloth roof and a doorway at far left leading into grey rain. No glowing hugefantasyfurnace, no modernmachinery, no loose hand tools, no people, no letter. Charcoal hearth unlit darkblack coal with only a faint warmemberhint, because gamewilllightit. Clear left-right floor, welcoming ochrecontrastagainstcoldblue entrance, lovely expressive illustrated handcrafted materials.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3413917,
+        "sha256": "ed6ca2f8c9ae3a95c49a5930dc6b3d734e016267135b37ee458ccd14fdb780f2",
+        "mode": "RGB"
+      },
+      "local_postprocess": {
+        "method": "Feathered local composite replacing visibly glowing coals with matching unlit coals from forge-cold.png; bellows retained. Pillow ellipse (650,395,750,453), Gaussian blur radius 5; full-size RGB output.",
+        "input_sha256": "1e1f75a2f4feb26ae01f39e2672ddfff5b89b14f8fa558f0c64f025cab33ce91",
+        "cold_source_sha256": "7b3661505a3916f6965334ea03a1adb3c2a29eff56354feeebb271dcb1af77e6"
+      },
+      "source_original_file": "exec-321ccdb3-012f-452e-924d-752c04bb558c.png",
+      "prompt": "ImageGen edit: forge.png. Repaint as historical naturalist gouache, preserving fixed composition and anchors; see provenance for generation and reference details."
     },
     {
       "id": "harbour",
       "file": "harbour.png",
-      "source_original_file": "exec-a4873c4c-9d49-4111-a50e-f66705514c18.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. A tiny 1860s Stewart Island harbour at morning. IMPORTANT: the full LOWER THIRD is a broad wooden jetty walkway running HORIZONTALLY from LEFT edge to RIGHT edge as a continuous foreground stage. The water is behind this foregroundwharf, never in the walkinglane. A modest period coastal rescue cutter moored behind walkway in middle left, side-on with small mast and bundledcanvas, no people; short gangplank joins foregroundwharf at x42%. Three small weatherboard buildings against soft distant low wooded hills in upper right; one open simple doorway at x82% leads to a chartroom. Plain empty barrel and woodenbox behind walkway notblocking it at x74%. Gentle greyblue water, slateclouds with ochresunlight, relief and renewedpurpose. No city/marina/highmountains, no lettering, no flags, no modernobjects, no people. Simple clearlyreadable handcrafted adventure stage.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3324919,
-      "sha256": "30d5790d83a84541e02c85ea277031e08d912672bad6ae4beeec02e0286c1661",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2804610,
+      "sha256": "347ed5786657dfb34579dd887eba743778104335c5a99b3fb493d03849e975db",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "id": "harbour",
+        "file": "harbour.png",
+        "generationTool": "OpenAI ImageGen",
+        "generationId": "exec-a32c78f6-4e36-4219-a1dc-0c381107300e",
+        "references": [
+          "previous harbour.png"
+        ],
+        "prompt": "Create a substantially redrawn, authentic naturalist illustration in matte opaque gouache over fine graphite on lightly toothy paper. Restained mid-19th century field-sketch character, with deliberate broad shapes in distant weather, brushy watercolor-like edges, occasional pencil strokes that articulate joinery, authentic wood and textiles, soft atmospheric depth, lower contrast less dense detail on walkable foreground to support small inserted game sprites. The reference is a placement template: preserve nearly exact silhouettes, scale and perspective of pinned in-game landmarks and flat floor. Redraw every surface with a distinct palette and original gouache strokes. An uncropped landscape widescreen 16:9 fixed camera game background, original illustration for real 1865 events; no people, lettering, symbols, guide marks, UI, printed coordinates, animals, loose tools, ropes laid as pickups, crates as pickups, bright yellow-green vegetation, heavy global sepia, artificial bloom, cinematic photorealism, current materials, fantasy. Coordinates below are silent approximate percentages [x,y] from upper-left.\nRepaint Port Adventure, Stewart Island/Rakiura, a small coastal settlement in winter 1865, warm near shore but large clear cool maritime air. Preserve fixed camera and exact layout. Period single-masted working coastal sailing cutter Flying Scud, profile occupying x11–55 y50–68; squat timber coaming, longitudinal pale grey off-white weathered planking, dark hull trim, subdued oxidised terracotta boot stripe; simple furled flax sail between x28–49 at y48, mast on x27.5 from y12 to y57, period hemp rig with minimal details, no engine clutter, no fan of large modern portholes or added rig. A simple narrow gangplank centered x40 from y55 to y70.5, no post or plank intrudes into the full clear traversable dock from y71.5 to y90.6. Keep low mooring-world detail at back edge; plain wooden single barrel x74 y57–69 with a smoothed empty lid and plain crate x80 y60–70, no baked in loose supplies anywhere. The large functional shed door x86–91 y38–56 belongs to the right-hand shore cottage, visible amber bounce on timber inside, keep no sign or numbers; minimal plain weatherboard huts on right behind shoreline, plausible shingled roofs with age, one modest chimney; near shore worn rocky ledge and dark scraps of kelp, restrained rātā-green shore scrub and wooded rounded ridge beyond y20–47. Gentle pyrrol slate and grey-indigo water, stronger cool reflections but only a narrow streak of pale peach for the lifting dawn toward the left with soft graphite-grey cloud. Finely massed true working waterfront, no modern piers or shops. Preserve clear, broad low-contrast full-width horizontal pier, begins at y69 with weathered neutral warm gray matte planks and simple sparse nailed details, front edge y93. Soft low gold only on a few edges, overall cool-neutral illustration; no yellow fog or green tint.",
+        "sha256": "347ed5786657dfb34579dd887eba743778104335c5a99b3fb493d03849e975db",
+        "nativeSize": [
+          1671,
+          941
+        ],
+        "localSize": [
+          1672,
+          941
+        ],
+        "finish": "One column of width normalization, nearest-neighbor, RGB PNG"
+      },
+      "previous_revision": {
+        "id": "harbour",
+        "file": "harbour.png",
+        "source_original_file": "exec-a4873c4c-9d49-4111-a50e-f66705514c18.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. A tiny 1860s Stewart Island harbour at morning. IMPORTANT: the full LOWER THIRD is a broad wooden jetty walkway running HORIZONTALLY from LEFT edge to RIGHT edge as a continuous foreground stage. The water is behind this foregroundwharf, never in the walkinglane. A modest period coastal rescue cutter moored behind walkway in middle left, side-on with small mast and bundledcanvas, no people; short gangplank joins foregroundwharf at x42%. Three small weatherboard buildings against soft distant low wooded hills in upper right; one open simple doorway at x82% leads to a chartroom. Plain empty barrel and woodenbox behind walkway notblocking it at x74%. Gentle greyblue water, slateclouds with ochresunlight, relief and renewedpurpose. No city/marina/highmountains, no lettering, no flags, no modernobjects, no people. Simple clearlyreadable handcrafted adventure stage.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3324919,
+        "sha256": "30d5790d83a84541e02c85ea277031e08d912672bad6ae4beeec02e0286c1661",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-a32c78f6-4e36-4219-a1dc-0c381107300e.png",
+      "prompt": "Create a substantially redrawn, authentic naturalist illustration in matte opaque gouache over fine graphite on lightly toothy paper. Restained mid-19th century field-sketch character, with deliberate broad shapes in distant weather, brushy watercolor-like edges, occasional pencil strokes that articulate joinery, authentic wood and textiles, soft atmospheric depth, lower contrast less dense detail on walkable foreground to support small inserted game sprites. The reference is a placement template: preserve nearly exact silhouettes, scale and perspective of pinned in-game landmarks and flat floor. Redraw every surface with a distinct palette and original gouache strokes. An uncropped landscape widescreen 16:9 fixed camera game background, original illustration for real 1865 events; no people, lettering, symbols, guide marks, UI, printed coordinates, animals, loose tools, ropes laid as pickups, crates as pickups, bright yellow-green vegetation, heavy global sepia, artificial bloom, cinematic photorealism, current materials, fantasy. Coordinates below are silent approximate percentages [x,y] from upper-left.\nRepaint Port Adventure, Stewart Island/Rakiura, a small coastal settlement in winter 1865, warm near shore but large clear cool maritime air. Preserve fixed camera and exact layout. Period single-masted working coastal sailing cutter Flying Scud, profile occupying x11–55 y50–68; squat timber coaming, longitudinal pale grey off-white weathered planking, dark hull trim, subdued oxidised terracotta boot stripe; simple furled flax sail between x28–49 at y48, mast on x27.5 from y12 to y57, period hemp rig with minimal details, no engine clutter, no fan of large modern portholes or added rig. A simple narrow gangplank centered x40 from y55 to y70.5, no post or plank intrudes into the full clear traversable dock from y71.5 to y90.6. Keep low mooring-world detail at back edge; plain wooden single barrel x74 y57–69 with a smoothed empty lid and plain crate x80 y60–70, no baked in loose supplies anywhere. The large functional shed door x86–91 y38–56 belongs to the right-hand shore cottage, visible amber bounce on timber inside, keep no sign or numbers; minimal plain weatherboard huts on right behind shoreline, plausible shingled roofs with age, one modest chimney; near shore worn rocky ledge and dark scraps of kelp, restrained rātā-green shore scrub and wooded rounded ridge beyond y20–47. Gentle pyrrol slate and grey-indigo water, stronger cool reflections but only a narrow streak of pale peach for the lifting dawn toward the left with soft graphite-grey cloud. Finely massed true working waterfront, no modern piers or shops. Preserve clear, broad low-contrast full-width horizontal pier, begins at y69 with weathered neutral warm gray matte planks and simple sparse nailed details, front edge y93. Soft low gold only on a few edges, overall cool-neutral illustration; no yellow fog or green tint."
     },
     {
       "id": "forge-cold",
       "file": "forge-cold.png",
-      "source_original_file": "exec-6d5af2ef-4c5e-4cbd-a96b-10dfc2ec4d9b.png",
-      "prompt": "Edit this existing painted adventure background with only the following puzzle-state changes. REMOVE the large leather bellows and its entire wooden support frame on the left of the hearth (roughly x12–33%, y29–65%). Reveal matching empty wooden wall and earth floor there; leave a small empty dark air-inlet/nozzle opening in the left side of the stone hearth ready for a bellows to be fitted. Extinguish ALL tiny glowing ember specks: coal inside the hearth must be cold dark charcoal with no glow, fire or smoke. Preserve exactly the camera, 16:9 full framing and dimensions, all stonework, anvil, table, door, ceiling and the continuous clear foreground walking lane. Match precisely the original pencil/ink/gouache texture and warm grey/ochre/slate palette. No people, objects added, text or interface. This is the 'before the bellows repair' state of precisely this same room.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "derived_from": {
-        "file": "forge.png",
-        "sha256": "ed6ca2f8c9ae3a95c49a5930dc6b3d734e016267135b37ee458ccd14fdb780f2"
-      },
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3082358,
-      "sha256": "544a01f95730e71cd17bf1a16ced10534356cc087cd5aa7bc97006abf11df5fe",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2988681,
+      "sha256": "7b3661505a3916f6965334ea03a1adb3c2a29eff56354feeebb271dcb1af77e6",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "forge-cold.png",
+        "generated_file": "exec-8189eeb8-9824-438d-93b4-cd96b94063cb.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 2988681,
+        "sha256": "7b3661505a3916f6965334ea03a1adb3c2a29eff56354feeebb271dcb1af77e6",
+        "previous_sha256": "544a01f95730e71cd17bf1a16ced10534356cc087cd5aa7bc97006abf11df5fe"
+      },
+      "previous_revision": {
+        "id": "forge-cold",
+        "file": "forge-cold.png",
+        "source_original_file": "exec-6d5af2ef-4c5e-4cbd-a96b-10dfc2ec4d9b.png",
+        "prompt": "Edit this existing painted adventure background with only the following puzzle-state changes. REMOVE the large leather bellows and its entire wooden support frame on the left of the hearth (roughly x12–33%, y29–65%). Reveal matching empty wooden wall and earth floor there; leave a small empty dark air-inlet/nozzle opening in the left side of the stone hearth ready for a bellows to be fitted. Extinguish ALL tiny glowing ember specks: coal inside the hearth must be cold dark charcoal with no glow, fire or smoke. Preserve exactly the camera, 16:9 full framing and dimensions, all stonework, anvil, table, door, ceiling and the continuous clear foreground walking lane. Match precisely the original pencil/ink/gouache texture and warm grey/ochre/slate palette. No people, objects added, text or interface. This is the 'before the bellows repair' state of precisely this same room.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "derived_from": {
+          "file": "forge.png",
+          "sha256": "ed6ca2f8c9ae3a95c49a5930dc6b3d734e016267135b37ee458ccd14fdb780f2"
+        },
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3082358,
+        "sha256": "544a01f95730e71cd17bf1a16ced10534356cc087cd5aa7bc97006abf11df5fe",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-8189eeb8-9824-438d-93b4-cd96b94063cb.png",
+      "prompt": "ImageGen edit: forge-cold.png. Repaint as historical naturalist gouache, preserving fixed composition and anchors; see provenance for generation and reference details."
     },
     {
       "id": "crossing-safe",
       "file": "crossing-safe.png",
-      "source_original_file": "exec-048261b5-a178-48f4-82de-90711a6252d2.png",
-      "prompt": "Edit this exact painted open-boat adventure scene into its visibly repaired safe state, making very localized changes only. The recess inside the hull at middle right around x57–74%,y67–74% currently has foaming water: REMOVE this water and foam completely, revealing dry sound weathered wooden planks and a small neatly caulked seam. The cream sail in upper right should remain the same shape and size but gain one modest clearly visible hand-stitched rectangular canvas repair patch near x74%,y20%, with seam stitches, showing the sail has been mended. Tighten the loose rigging only subtly, keeping its exact layout. Preserve all other composition, camera, dimensions, background ocean waves, horizon, wooden floor, tiller, mast and warm paper illustration texture. Do NOT change the sea, weather or island, do not add people, tools, labels or UI. Same image, same walkable floor, just repaired dry bilge and a visibly stitched sound sail.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "derived_from": {
-        "file": "crossing.png",
-        "sha256": "3bb36b3190f347f3c3a8858894e0957357de9318ec5e84e088370c479426f4c8"
-      },
-      "walk_bounds_percent": [
-        20,
-        74,
-        80,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 2906148,
-      "sha256": "676c62071ca9a81142748642d853a19aa9233a73061a034a9812c14e21f53c54",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2669832,
+      "sha256": "76bd96e1d082e3ff6fd360b712b59685e04ca1f2bfc8e6f73dba9e1bc5fccb59",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "id": "crossing-safe",
+        "file": "crossing-safe.png",
+        "generationTool": "OpenAI ImageGen",
+        "generationId": "exec-b09e1c51-9e26-47dd-a0da-4089a47f6065",
+        "references": [
+          "redrawn crossing.png",
+          "previous crossing-safe.png"
+        ],
+        "prompt": "A single exact-framed widescreen 16:9 state variant of the FIRST reference, the blue-grey naturalist gouache boat illustration. FIRST image is the original to edit; a second image, if any, is only a sample for size and position of the state details. Make a highly local edit; preserve pixel framing, architecture, viewpoint, positions, palette, sky, ocean, mast, steering tiller, canvas outline, bottom boom, standing ropes and walking floor from the first reference. Small local new brushwork only, matching fine graphite and naturalist matte gouache style and blue-grey shadow. No zoom or crops, no people or loose items, no symbols or text. Show the repaired version of the boat. Add just one plain small stitched patch to the old off-white flax sail in the upper right, centered precisely at x76%, y13.9% (measured from top-left), about 4.6% of full image width and 6% of image height. Its muted sand-grey rough-cut cloth has a subtly uneven hand-sewn edge, stitched in sparse dark hemp, accepting the same tonal direction as the surrounding billowing sail. No tear visible and no standing puddle in the hull in this state. Keep the floor and sky unaltered from the FIRST blue-grey reference so that the variant snaps to it with no camera movement. Maintain firm uninterrupted planks along the entire hull. SECOND reference only for rough patch size and position; do not borrow the warmer wood or cloudy hills. No new props, no tonal gradients that look like a spotlight.",
+        "sha256": "76bd96e1d082e3ff6fd360b712b59685e04ca1f2bfc8e6f73dba9e1bc5fccb59",
+        "nativeSize": [
+          1672,
+          941
+        ],
+        "localSize": [
+          1672,
+          941
+        ],
+        "finish": "Exact ImageGen PNG bytes"
+      },
+      "previous_revision": {
+        "id": "crossing-safe",
+        "file": "crossing-safe.png",
+        "source_original_file": "exec-048261b5-a178-48f4-82de-90711a6252d2.png",
+        "prompt": "Edit this exact painted open-boat adventure scene into its visibly repaired safe state, making very localized changes only. The recess inside the hull at middle right around x57–74%,y67–74% currently has foaming water: REMOVE this water and foam completely, revealing dry sound weathered wooden planks and a small neatly caulked seam. The cream sail in upper right should remain the same shape and size but gain one modest clearly visible hand-stitched rectangular canvas repair patch near x74%,y20%, with seam stitches, showing the sail has been mended. Tighten the loose rigging only subtly, keeping its exact layout. Preserve all other composition, camera, dimensions, background ocean waves, horizon, wooden floor, tiller, mast and warm paper illustration texture. Do NOT change the sea, weather or island, do not add people, tools, labels or UI. Same image, same walkable floor, just repaired dry bilge and a visibly stitched sound sail.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "derived_from": {
+          "file": "crossing.png",
+          "sha256": "3bb36b3190f347f3c3a8858894e0957357de9318ec5e84e088370c479426f4c8"
+        },
+        "walk_bounds_percent": [
+          20,
+          74,
+          80,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 2906148,
+        "sha256": "676c62071ca9a81142748642d853a19aa9233a73061a034a9812c14e21f53c54",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-b09e1c51-9e26-47dd-a0da-4089a47f6065.png",
+      "prompt": "A single exact-framed widescreen 16:9 state variant of the FIRST reference, the blue-grey naturalist gouache boat illustration. FIRST image is the original to edit; a second image, if any, is only a sample for size and position of the state details. Make a highly local edit; preserve pixel framing, architecture, viewpoint, positions, palette, sky, ocean, mast, steering tiller, canvas outline, bottom boom, standing ropes and walking floor from the first reference. Small local new brushwork only, matching fine graphite and naturalist matte gouache style and blue-grey shadow. No zoom or crops, no people or loose items, no symbols or text. Show the repaired version of the boat. Add just one plain small stitched patch to the old off-white flax sail in the upper right, centered precisely at x76%, y13.9% (measured from top-left), about 4.6% of full image width and 6% of image height. Its muted sand-grey rough-cut cloth has a subtly uneven hand-sewn edge, stitched in sparse dark hemp, accepting the same tonal direction as the surrounding billowing sail. No tear visible and no standing puddle in the hull in this state. Keep the floor and sky unaltered from the FIRST blue-grey reference so that the variant snaps to it with no camera movement. Maintain firm uninterrupted planks along the entire hull. SECOND reference only for rough patch size and position; do not borrow the warmer wood or cloudy hills. No new props, no tonal gradients that look like a spotlight."
     },
     {
       "id": "slipway-ready",
       "file": "slipway-ready.png",
-      "source_original_file": "exec-d6b1d320-deb3-47ee-b2bb-3157bf078d6f.png",
-      "prompt": "Edit this exact hand-painted boatbuilding slipway background into a completed ready-to-launch state. Modify ONLY the boat in middle centre-right and its associated rig: finish and seal its upper planking and gunwales so the exposed top ribs become a coherent finished small open sailing boat, with subtle dark caulked seams and smooth wooden interior. Add a simple single wooden mast and a modest cream triangular sailing canvas rigged above this boat, with plain taut lines, fitting into the area above the existing boat without changing the camera or covering the whole sky. The mast should emerge from the boat, not from ground; sail appropriate to a small improvised 1860s sailing dinghy. Keep the boat exactly in its present location and size on the same timber cradles. Preserve EVERY other part: forest, workbench, timber stack, barrel, bay, mountains, continuous empty foreground walking lane, full framing and dimensions, original graphite/ink/gouache texture and muted colour. No people, lettering, UI or added loose tools. This is precisely the same scene after the player completes the boat.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "derived_from": {
-        "file": "slipway.png",
-        "sha256": "e0c2bee202606c2d5e43f899150219d7896dbfc59571f7c90e19b6099236d695"
-      },
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3053204,
-      "sha256": "ae2ff6187b326a73c23bea98ea3b316457a2beb7fe3676e050ce7295e5e166b9",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2848456,
+      "sha256": "20de70b4cc3e93d4cbd0eefd53e6e7018e52f193064faf24d5e18a4217468822",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "slipway-ready.png",
+        "generated_file": "exec-3b1951a5-bce8-4e36-a336-4ada28a6e1a3.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3063315,
+        "sha256": "97944bcd96b67210e15bac02c16542d1aae5db8dcdbbce596371fb94f74dbe34",
+        "previous_sha256": "ae2ff6187b326a73c23bea98ea3b316457a2beb7fe3676e050ce7295e5e166b9",
+        "derived_from": "slipway.png"
+      },
+      "previous_revision": {
+        "id": "slipway-ready",
+        "file": "slipway-ready.png",
+        "source_original_file": "exec-d6b1d320-deb3-47ee-b2bb-3157bf078d6f.png",
+        "prompt": "Edit this exact hand-painted boatbuilding slipway background into a completed ready-to-launch state. Modify ONLY the boat in middle centre-right and its associated rig: finish and seal its upper planking and gunwales so the exposed top ribs become a coherent finished small open sailing boat, with subtle dark caulked seams and smooth wooden interior. Add a simple single wooden mast and a modest cream triangular sailing canvas rigged above this boat, with plain taut lines, fitting into the area above the existing boat without changing the camera or covering the whole sky. The mast should emerge from the boat, not from ground; sail appropriate to a small improvised 1860s sailing dinghy. Keep the boat exactly in its present location and size on the same timber cradles. Preserve EVERY other part: forest, workbench, timber stack, barrel, bay, mountains, continuous empty foreground walking lane, full framing and dimensions, original graphite/ink/gouache texture and muted colour. No people, lettering, UI or added loose tools. This is precisely the same scene after the player completes the boat.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "derived_from": {
+          "file": "slipway.png",
+          "sha256": "e0c2bee202606c2d5e43f899150219d7896dbfc59571f7c90e19b6099236d695"
+        },
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3053204,
+        "sha256": "ae2ff6187b326a73c23bea98ea3b316457a2beb7fe3676e050ce7295e5e166b9",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-3b1951a5-bce8-4e36-a336-4ada28a6e1a3.png",
+      "prompt": "ImageGen edit: slipway-ready.png. Repaint as historical naturalist gouache, preserving fixed composition and anchors; see provenance for generation and reference details.",
+      "seasonal_edit": {
+        "date": "2026-11-18",
+        "generated_file": "exec-fa020399-ae62-467c-8da9-b196cf6e7807.png",
+        "generated_sha256": "8554fdd4c3325a81e26530440801aa391e23620452fb4cf2170d8798a6d67ea2",
+        "prompt": "Remove vivid scarlet rata flowers from winter canopy; replace with muted evergreen leaves and woody seed capsules, retain bark and exact composition.",
+        "reference": "slipway.png before this correction",
+        "reference_sha256": "1a7949c690b08ba2487413efc40b2f3884d483062a8d8e7156cfc60b9bdba27a",
+        "method": "Composite generated canopy over registered base with feathered polygon. In ready state, preserve sail, mast and rigging using protected masks.",
+        "changed_bounds_xyxy_exclusive": [
+          595,
+          0,
+          1672,
+          297
+        ],
+        "prior_runtime": {
+          "sha256": "97944bcd96b67210e15bac02c16542d1aae5db8dcdbbce596371fb94f74dbe34",
+          "bytes": 3063315,
+          "generation": {
+            "file": "slipway-ready.png",
+            "generated_file": "exec-3b1951a5-bce8-4e36-a336-4ada28a6e1a3.png",
+            "size": [
+              1672,
+              941
+            ],
+            "bytes": 3063315,
+            "sha256": "97944bcd96b67210e15bac02c16542d1aae5db8dcdbbce596371fb94f74dbe34",
+            "previous_sha256": "ae2ff6187b326a73c23bea98ea3b316457a2beb7fe3676e050ce7295e5e166b9",
+            "derived_from": "slipway.png"
+          }
+        }
+      }
     },
     {
       "id": "cabin-cold",
       "file": "cabin-cold.png",
-      "source_original_file": "exec-798412b3-174d-420b-a138-9b338e4e620e.png",
-      "prompt": "Edit this exact illustrated castaway timber-cabin interior with just one necessary puzzle-state change: completely extinguish the fireplace at lower left. Remove every flame, orange glow and glowing ember; leave cold black charcoal and ash inside the same stone hearth. Reduce the warm light spilling from that hearth onto immediately adjacent stones, making that corner quietly cold grey-blue, but keep the overall earthy gouache palette and the entire rest of the room as close to unchanged as possible. Do NOT remove or move any furniture, barrel, bed, table, window, patched sailcloth ceiling, walls or floorboards. Preserve exact full16:9 composition, camera and dimensions. Clear entire foreground wooden walkinglane remains identical. No people, objects, words or interface added. This is the SAME room BEFORE a warmingfire has been lit.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "derived_from": {
-        "file": "cabin.png",
-        "sha256": "d1de4528411263bff0afc2af786a9a20c568af0ad8472ccedd0693751a614326"
-      },
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 2977163,
-      "sha256": "3a250fd2b957ee5a874aa0d8b7b9ef1f9d6973b83afef687c0a3bc5c27a3d030",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 3061076,
+      "sha256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "cabin-cold.png",
+        "generated_file": "exec-9e060824-3c48-435a-bc6a-1d7bf5f4bc8b.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3061076,
+        "sha256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785",
+        "previous_sha256": "3a250fd2b957ee5a874aa0d8b7b9ef1f9d6973b83afef687c0a3bc5c27a3d030"
+      },
+      "previous_revision": {
+        "id": "cabin-cold",
+        "file": "cabin-cold.png",
+        "source_original_file": "exec-798412b3-174d-420b-a138-9b338e4e620e.png",
+        "prompt": "Edit this exact illustrated castaway timber-cabin interior with just one necessary puzzle-state change: completely extinguish the fireplace at lower left. Remove every flame, orange glow and glowing ember; leave cold black charcoal and ash inside the same stone hearth. Reduce the warm light spilling from that hearth onto immediately adjacent stones, making that corner quietly cold grey-blue, but keep the overall earthy gouache palette and the entire rest of the room as close to unchanged as possible. Do NOT remove or move any furniture, barrel, bed, table, window, patched sailcloth ceiling, walls or floorboards. Preserve exact full16:9 composition, camera and dimensions. Clear entire foreground wooden walkinglane remains identical. No people, objects, words or interface added. This is the SAME room BEFORE a warmingfire has been lit.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "derived_from": {
+          "file": "cabin.png",
+          "sha256": "d1de4528411263bff0afc2af786a9a20c568af0ad8472ccedd0693751a614326"
+        },
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 2977163,
+        "sha256": "3a250fd2b957ee5a874aa0d8b7b9ef1f9d6973b83afef687c0a3bc5c27a3d030",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-9e060824-3c48-435a-bc6a-1d7bf5f4bc8b.png",
+      "prompt": "ImageGen edit: cabin-cold.png. Repaint as historical naturalist gouache, preserving fixed composition and anchors; see provenance for generation and reference details."
     },
     {
       "id": "crossing-wet",
       "file": "crossing-wet.png",
-      "source_original_file": "exec-0d21148e-ec75-45d9-94dc-28c4fca173b8.png",
-      "prompt": "Make a very localized corrective edit to this exact painted boat interior. The large apparent missing hull panel at middle-right x56–75%, y62–74% must be REPLACED by intact solid weathered wooden planking with the same ribs, like the rest of the gunwale: do not leave any hole through which the ocean can pour. The sea must stay outside the boat. Add instead a SMALL shallow puddle of collected rain/spray lying on the INSIDE floor along the base of that now-solid panel, around x64%, y76%, just a little greyblue water sheen not a breakingwave. The boat is sound but needs bailing. Put a modest narrow ragged tear in the cream sail at x74%,y20%, about one short handspan, so a small canvaspatch can later repair it; no broad destruction. Preserve EVERYTHING else: camera/framing/dimensions, mast, tiller, sea and island, clouds, rigging, hullsize, clear foreground floor, graphite/ink/gouache texture and colour. No people, tools, labels, UI or text. Same image, repaired solid hull with a small interior water puddle and one minor sailtear.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "derived_from": {
-        "file": "crossing.png",
-        "sha256": "3bb36b3190f347f3c3a8858894e0957357de9318ec5e84e088370c479426f4c8"
-      },
-      "walk_bounds_percent": [
-        20,
-        74,
-        80,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 2882669,
-      "sha256": "8a1c4157d42d0b7925066d930a31c61b4cea7eaf32dc8e02cb9f3ec3acfd688c",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2738001,
+      "sha256": "96685a4f8c816187d8ff9079cfb833fbbb6b231400cb55864e46c4e4290c2742",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "id": "crossing-wet",
+        "file": "crossing-wet.png",
+        "generationTool": "OpenAI ImageGen",
+        "generationId": "exec-9762de2a-57b8-462d-8fce-730202654eca",
+        "references": [
+          "redrawn crossing.png",
+          "previous crossing-wet.png"
+        ],
+        "prompt": "A single exact-framed widescreen 16:9 state variant of the FIRST reference, the blue-grey naturalist gouache boat illustration. FIRST image is the original to edit; a second image, if any, is only a sample for size and position of the state details. Make a highly local edit; preserve pixel framing, architecture, viewpoint, positions, palette, sky, ocean, mast, steering tiller, canvas outline, bottom boom, standing ropes and walking floor from the first reference. Small local new brushwork only, matching fine graphite and naturalist matte gouache style and blue-grey shadow. No zoom or crops, no people or loose items, no symbols or text. Show the pre-repair version of the boat. In the off-white canvas in the upper right, add a very small clearly dark ragged diagonal wind tear centered precisely at x76%, y13.9% (from top-left), about 3.5% of overall image width, looking like a real rip with a couple of subtle frayed edges. Do not introduce extra damage elsewhere. Add a single shallow somewhat irregular low puddle of sloshed water only INSIDE the boat, at the seam between the floor and far wooden side, swash hugging the side from about x61.2% to x71.8%, centered at x66.4%, y75.3%, no more than 2.6% in image height, reflecting a couple of cool steel/blue-grey brush marks brighter than plank. The continuous timbers of the solid closed side beneath the rail remain fully visible; no hole or large blue opening in the hull. All other pixels preserve the first blue-grey reference composition and coloring. ZERO new waves on deck or perspective shift. The variant must snap to the first artwork with no camera movement.",
+        "sha256": "96685a4f8c816187d8ff9079cfb833fbbb6b231400cb55864e46c4e4290c2742",
+        "nativeSize": [
+          1672,
+          941
+        ],
+        "localSize": [
+          1672,
+          941
+        ],
+        "finish": "Exact ImageGen PNG bytes"
+      },
+      "previous_revision": {
+        "id": "crossing-wet",
+        "file": "crossing-wet.png",
+        "source_original_file": "exec-0d21148e-ec75-45d9-94dc-28c4fca173b8.png",
+        "prompt": "Make a very localized corrective edit to this exact painted boat interior. The large apparent missing hull panel at middle-right x56–75%, y62–74% must be REPLACED by intact solid weathered wooden planking with the same ribs, like the rest of the gunwale: do not leave any hole through which the ocean can pour. The sea must stay outside the boat. Add instead a SMALL shallow puddle of collected rain/spray lying on the INSIDE floor along the base of that now-solid panel, around x64%, y76%, just a little greyblue water sheen not a breakingwave. The boat is sound but needs bailing. Put a modest narrow ragged tear in the cream sail at x74%,y20%, about one short handspan, so a small canvaspatch can later repair it; no broad destruction. Preserve EVERYTHING else: camera/framing/dimensions, mast, tiller, sea and island, clouds, rigging, hullsize, clear foreground floor, graphite/ink/gouache texture and colour. No people, tools, labels, UI or text. Same image, repaired solid hull with a small interior water puddle and one minor sailtear.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "derived_from": {
+          "file": "crossing.png",
+          "sha256": "3bb36b3190f347f3c3a8858894e0957357de9318ec5e84e088370c479426f4c8"
+        },
+        "walk_bounds_percent": [
+          20,
+          74,
+          80,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 2882669,
+        "sha256": "8a1c4157d42d0b7925066d930a31c61b4cea7eaf32dc8e02cb9f3ec3acfd688c",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-9762de2a-57b8-462d-8fce-730202654eca.png",
+      "prompt": "A single exact-framed widescreen 16:9 state variant of the FIRST reference, the blue-grey naturalist gouache boat illustration. FIRST image is the original to edit; a second image, if any, is only a sample for size and position of the state details. Make a highly local edit; preserve pixel framing, architecture, viewpoint, positions, palette, sky, ocean, mast, steering tiller, canvas outline, bottom boom, standing ropes and walking floor from the first reference. Small local new brushwork only, matching fine graphite and naturalist matte gouache style and blue-grey shadow. No zoom or crops, no people or loose items, no symbols or text. Show the pre-repair version of the boat. In the off-white canvas in the upper right, add a very small clearly dark ragged diagonal wind tear centered precisely at x76%, y13.9% (from top-left), about 3.5% of overall image width, looking like a real rip with a couple of subtle frayed edges. Do not introduce extra damage elsewhere. Add a single shallow somewhat irregular low puddle of sloshed water only INSIDE the boat, at the seam between the floor and far wooden side, swash hugging the side from about x61.2% to x71.8%, centered at x66.4%, y75.3%, no more than 2.6% in image height, reflecting a couple of cool steel/blue-grey brush marks brighter than plank. The continuous timbers of the solid closed side beneath the rail remain fully visible; no hole or large blue opening in the hull. All other pixels preserve the first blue-grey reference composition and coloring. ZERO new waves on deck or perspective shift. The variant must snap to the first artwork with no camera movement."
     },
     {
       "id": "chartroom",
       "file": "chartroom.png",
-      "source_original_file": "exec-a790f3db-84fd-4bbe-b2fc-8392fa141b0c.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Interior of a small maritime merchant's chart office in Invercargill, southern New Zealand, 1865. Plausible modest settled mainlandbuilding, not a castawayhut: simple straightweatherboard walls, a flat timberceiling, smallsquare glass window upperleft showinggreyharbourdaylight. In rear middle band at x50%,y53% stands a broad simple wooden charttable with a large UNMARKED pale unfolded nauticalchart sheet on top, a few faint unreadable coastline-like drawings only. Rolled paper on a shelf highright, anonymous nonlegiblepaper maps hanging on backwall, a closed empty supplybox farleft rear, a simple door at rightedge. Full foreground lowerthird entirely clear level plankfloor acrosswidth, furnitureonlybehindwalkinglane. Quiet warm amber-ocher paper againstweatheredgreywood andcoldbluewindowlight. No fireplace, bed, hammock, sailsroof, decorativepottedplants or fancyoffice. NO readablewordsnumbersletters ANYWHERE, no compasshandheldobject, no people, no toolicons, no UI. Beautifulcohesive graphiteinkgouache illustratedadventureart.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3330411,
-      "sha256": "b376d7b5e7ae36c540a00b78e3bb2990be22ae7d4005f2e8c18732bb83e85aa6",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2993111,
+      "sha256": "7ab20a69c5a48afedce201a220f5e190fdd5cfbfe91fa8a2e113eae072a9ff87",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "chartroom.png",
+        "generated_file": "exec-cae3e033-e11e-4345-9bc0-5f88823ec821.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 2993111,
+        "sha256": "7ab20a69c5a48afedce201a220f5e190fdd5cfbfe91fa8a2e113eae072a9ff87",
+        "previous_sha256": "b376d7b5e7ae36c540a00b78e3bb2990be22ae7d4005f2e8c18732bb83e85aa6"
+      },
+      "previous_revision": {
+        "id": "chartroom",
+        "file": "chartroom.png",
+        "source_original_file": "exec-a790f3db-84fd-4bbe-b2fc-8392fa141b0c.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Interior of a small maritime merchant's chart office in Invercargill, southern New Zealand, 1865. Plausible modest settled mainlandbuilding, not a castawayhut: simple straightweatherboard walls, a flat timberceiling, smallsquare glass window upperleft showinggreyharbourdaylight. In rear middle band at x50%,y53% stands a broad simple wooden charttable with a large UNMARKED pale unfolded nauticalchart sheet on top, a few faint unreadable coastline-like drawings only. Rolled paper on a shelf highright, anonymous nonlegiblepaper maps hanging on backwall, a closed empty supplybox farleft rear, a simple door at rightedge. Full foreground lowerthird entirely clear level plankfloor acrosswidth, furnitureonlybehindwalkinglane. Quiet warm amber-ocher paper againstweatheredgreywood andcoldbluewindowlight. No fireplace, bed, hammock, sailsroof, decorativepottedplants or fancyoffice. NO readablewordsnumbersletters ANYWHERE, no compasshandheldobject, no people, no toolicons, no UI. Beautifulcohesive graphiteinkgouache illustratedadventureart.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3330411,
+        "sha256": "b376d7b5e7ae36c540a00b78e3bb2990be22ae7d4005f2e8c18732bb83e85aa6",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-cae3e033-e11e-4345-9bc0-5f88823ec821.png",
+      "prompt": "ImageGen edit: chartroom.png. Repaint as historical naturalist gouache, preserving fixed composition and anchors; see provenance for generation and reference details."
     },
     {
       "id": "landing",
       "file": "landing.png",
-      "source_original_file": "exec-6cf7f2c2-34db-4a64-a79f-63a6466e1b51.png",
-      "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Return to Carnley Harbour on subantarctic Auckland Island to rescue two waiting castaways. A sheltered gravel landing beach, sideview, coldbrightskylight afterrain. Clear fullwidthlowerthird sandy-gravel walkinglane. A small open wooden rowing boat pulled halfway onto shore at middleleft around x40%,y57%, seen broadside, plainwood simple seats, no people, no sail, no oars lying in foreground. The boat rests BEHIND the emptywalkinglane. A simple tall wooden landing markerpost with a loop of pale rope at middle right x77%,y48%, not a written sign. Beyond beach a calm steelblueinlet and distant small coastal rescuecutter at upperleft, lowdark islandheadlands underbrokencloud, wind-bent southernratatrees frame rightedge. No ruinedschooner, no shipwreck, no bigmarina, no labels, no lettering, no flags, no people. Calm hopeandurgency, weatheredochrewood andslategreys with restrainedolivemoss; fullclearwalkstage.",
-      "transparent_requested": false,
-      "visually_inspected": true,
-      "walk_bounds_percent": [
-        6,
-        74,
-        94,
-        90
-      ],
       "width": 1672,
       "height": 941,
-      "bytes": 3480367,
-      "sha256": "e5100333ed09237ae7f870cbdcda18e5fbf9b6adf6aa76319e0a8c44edcc1270",
-      "mode": "RGB"
+      "mode": "RGB",
+      "bytes": 2865071,
+      "sha256": "e4d06c1c1c512cbd2fb5246cb9cfbc643c13a41a1a2a898cf73b38920fd9be3f",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "id": "landing",
+        "file": "landing.png",
+        "generationTool": "OpenAI ImageGen",
+        "generationId": "exec-4f0a352d-3890-4391-a2a4-ee42f17c2b45",
+        "references": [
+          "previous landing.png"
+        ],
+        "prompt": "Create a substantially redrawn, authentic naturalist illustration in matte opaque gouache over fine graphite on lightly toothy paper. Restained mid-19th century field-sketch character, with deliberate broad shapes in distant weather, brushy watercolor-like edges, occasional pencil strokes that articulate joinery, authentic wood and textiles, soft atmospheric depth, lower contrast less dense detail on walkable foreground to support small inserted game sprites. The reference is a placement template: preserve nearly exact silhouettes, scale and perspective of pinned in-game landmarks and flat floor. Redraw every surface with a distinct palette and original gouache strokes. An uncropped landscape widescreen 16:9 fixed camera game background, original illustration for real 1865 events; no people, lettering, symbols, guide marks, UI, printed coordinates, animals, loose tools, ropes laid as pickups, crates as pickups, bright yellow-green vegetation, heavy global sepia, artificial bloom, cinematic photorealism, current materials, fantasy. Coordinates below are silent approximate percentages [x,y] from upper-left.\nRepaint a sheltered remote Carnley Harbour landing, Auckland Island subantarctic 1865, after rainfall. Preserve original exact game staging. Weathered clinker dinghy beached broadside x20.3 through x54.5 with stern left and raised bow at (54.5,45.5); lip around (40.5,51), keel around y60.5; visible plain thwart span, plausible narrow wooden rowboat, shadow on wet pebbles. Sturdy vertical grey-brown timber mooring stake centered x76.3 from y27 to y63, same diameter as original, a simple loop of tan hemp at y37 to 40, keep post face near y44–48 free for interactive lantern overlay. Remote small one-masted cutter upper-left x5–15 y20–34, low dark hull, furled dull canvas, no porthole line and no flag; bay at y32–56. Keep same outline of low low-relief headlands grouped from left to big sloped weathered ridge behind right, ocean water cool cobalt-slate with subtle silver ripple, no wave cliffs. Right edge wind-pruned southern rātā framing x79–100 mostly above walking strip, small coastal tussock, rock shapes tightly above y65. Ochre-brown strips of kelp by surf near left and behind skiff, cold dusky lavender foreshore, subtle ochre pebble. Readable broad empty gently damp gravel and sand foreground whole width from y65 to 91, keep far right footpath to shelter unobstructed for exit x93 y69, no new rocks in that lane. Slight pearl and silver highlights through broken high clouds, deep blue grey sea, hopeful subdued local daylight instead of glowing sunset, small chlorophyll greens only in foliage.",
+        "sha256": "e4d06c1c1c512cbd2fb5246cb9cfbc643c13a41a1a2a898cf73b38920fd9be3f",
+        "nativeSize": [
+          1671,
+          941
+        ],
+        "localSize": [
+          1672,
+          941
+        ],
+        "finish": "One column of width normalization, nearest-neighbor, RGB PNG"
+      },
+      "previous_revision": {
+        "id": "landing",
+        "file": "landing.png",
+        "source_original_file": "exec-6cf7f2c2-34db-4a64-a79f-63a6466e1b51.png",
+        "prompt": "Create one original beautiful wide 16:9 fixed-camera background for a classic hand-painted point-and-click adventure about five castaway sailors on Auckland Island in the 1860s. Detailed graphite-and-ink contours, softly layered gouache on textured paper, visible fine brush grain, restrained charming storybook proportions, theatrical shallow stage with atmospheric distance. Muted slate blue, weathered warm grey, umber, ochre, warm amber; restrained natural green only where vegetation needs it. NOT photorealism, NOT 3D, not pixel art. No lettering, text, UI, symbols, border, modern objects, people, animals, collectibles or loose hand tools. Important layout: horizon and objects occupy top two-thirds; the whole LOWER THIRD from x0 to x100 is continuous broad unobstructed almost horizontal walkable ground, with a low foreground edge, a readable human-scale playing stage. Return to Carnley Harbour on subantarctic Auckland Island to rescue two waiting castaways. A sheltered gravel landing beach, sideview, coldbrightskylight afterrain. Clear fullwidthlowerthird sandy-gravel walkinglane. A small open wooden rowing boat pulled halfway onto shore at middleleft around x40%,y57%, seen broadside, plainwood simple seats, no people, no sail, no oars lying in foreground. The boat rests BEHIND the emptywalkinglane. A simple tall wooden landing markerpost with a loop of pale rope at middle right x77%,y48%, not a written sign. Beyond beach a calm steelblueinlet and distant small coastal rescuecutter at upperleft, lowdark islandheadlands underbrokencloud, wind-bent southernratatrees frame rightedge. No ruinedschooner, no shipwreck, no bigmarina, no labels, no lettering, no flags, no people. Calm hopeandurgency, weatheredochrewood andslategreys with restrainedolivemoss; fullclearwalkstage.",
+        "transparent_requested": false,
+        "visually_inspected": true,
+        "walk_bounds_percent": [
+          6,
+          74,
+          94,
+          90
+        ],
+        "width": 1672,
+        "height": 941,
+        "bytes": 3480367,
+        "sha256": "e5100333ed09237ae7f870cbdcda18e5fbf9b6adf6aa76319e0a8c44edcc1270",
+        "mode": "RGB"
+      },
+      "source_original_file": "exec-4f0a352d-3890-4391-a2a4-ee42f17c2b45.png",
+      "prompt": "Create a substantially redrawn, authentic naturalist illustration in matte opaque gouache over fine graphite on lightly toothy paper. Restained mid-19th century field-sketch character, with deliberate broad shapes in distant weather, brushy watercolor-like edges, occasional pencil strokes that articulate joinery, authentic wood and textiles, soft atmospheric depth, lower contrast less dense detail on walkable foreground to support small inserted game sprites. The reference is a placement template: preserve nearly exact silhouettes, scale and perspective of pinned in-game landmarks and flat floor. Redraw every surface with a distinct palette and original gouache strokes. An uncropped landscape widescreen 16:9 fixed camera game background, original illustration for real 1865 events; no people, lettering, symbols, guide marks, UI, printed coordinates, animals, loose tools, ropes laid as pickups, crates as pickups, bright yellow-green vegetation, heavy global sepia, artificial bloom, cinematic photorealism, current materials, fantasy. Coordinates below are silent approximate percentages [x,y] from upper-left.\nRepaint a sheltered remote Carnley Harbour landing, Auckland Island subantarctic 1865, after rainfall. Preserve original exact game staging. Weathered clinker dinghy beached broadside x20.3 through x54.5 with stern left and raised bow at (54.5,45.5); lip around (40.5,51), keel around y60.5; visible plain thwart span, plausible narrow wooden rowboat, shadow on wet pebbles. Sturdy vertical grey-brown timber mooring stake centered x76.3 from y27 to y63, same diameter as original, a simple loop of tan hemp at y37 to 40, keep post face near y44–48 free for interactive lantern overlay. Remote small one-masted cutter upper-left x5–15 y20–34, low dark hull, furled dull canvas, no porthole line and no flag; bay at y32–56. Keep same outline of low low-relief headlands grouped from left to big sloped weathered ridge behind right, ocean water cool cobalt-slate with subtle silver ripple, no wave cliffs. Right edge wind-pruned southern rātā framing x79–100 mostly above walking strip, small coastal tussock, rock shapes tightly above y65. Ochre-brown strips of kelp by surf near left and behind skiff, cold dusky lavender foreshore, subtle ochre pebble. Readable broad empty gently damp gravel and sand foreground whole width from y65 to 91, keep far right footpath to shelter unobstructed for exit x93 y69, no new rocks in that lane. Slight pearl and silver highlights through broken high clouds, deep blue grey sea, hopeful subdued local daylight instead of glowing sunset, small chlorophyll greens only in foliage."
+    },
+    {
+      "id": "crossing-bailed",
+      "file": "crossing-bailed.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "bytes": 2473182,
+      "sha256": "cd51c04822c148f88f05bb70945869f44be03d5b2b740ff19a6f2ad8c89c8de4",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "id": "crossing-bailed",
+        "file": "crossing-bailed.png",
+        "generationTool": "OpenAI ImageGen",
+        "generationId": "exec-5256c901-1ce8-417f-a485-3585a99f2433",
+        "generationSourceSha256": "bad1c549fd975997350c3b6dcdf8fea026a65f0736a9c47e32dda3deb10e4c18",
+        "references": [
+          {
+            "file": "crossing-wet.png",
+            "role": "layout reference and unchanged pixel base",
+            "sha256": "96685a4f8c816187d8ff9079cfb833fbbb6b231400cb55864e46c4e4290c2742"
+          },
+          {
+            "file": "crossing-safe.png",
+            "role": "local dry timber color reference",
+            "sha256": "76bd96e1d082e3ff6fd360b712b59685e04ca1f2bfc8e6f73dba9e1bc5fccb59"
+          }
+        ],
+        "prompt": "Create a single pixel-registered frame variant of the FIRST painting (a stormy 1865 small wooden open boat at sea, blue-grey naturalist gouache and fine graphite). ONLY ACTION: the sailors have just bailed away the small pool of free-standing water visible near (x66.4%, y75.3%) at the seam between the deck and inside face of the far gunwale. Paint naturally matched damp brown-grey plank grain to replace only that blue reflective patch; wood there is still dark, wet and salty, but with no reflection, outline or standing water. Preserve the horizontal timber seam exactly, same wear and damp finish and perspective. The SECOND reference depicts the later dry timber location; use that as a local color and position aid only. The WHOLE REST of the FIRST painting must remain absolutely unchanged. Keep the SAME ragged dark tear in the canvas at x76%,y14%; the sail is still torn and not patched at this stage. Keep the mast, tiller, knots, boom, horizon, cloud, swell, headland, low deck and framing exact. No new brushwork anywhere outside the interior shallow bilge puddle. Match raster resolution 1672x941 landscape and full original frame, no crop. No people, tools, lettering, borders or effects. Output as one full painting frame.",
+        "sha256": "cd51c04822c148f88f05bb70945869f44be03d5b2b740ff19a6f2ad8c89c8de4",
+        "nativeSize": [
+          1672,
+          941
+        ],
+        "localSize": [
+          1672,
+          941
+        ],
+        "finish": "Native ImageGen planking inpaint, feathered with an ImageMagick rounded mask at original coordinates over the wet state, 260×62 box only",
+        "validation": {
+          "changedBoundsXYXY": [
+            979,
+            676,
+            1239,
+            738
+          ],
+          "rightAndBottomExclusive": true,
+          "changedPixels": 12702,
+          "identicalPixels": 1560650,
+          "sailPixels": "Identical to wet frame"
+        }
+      },
+      "source_original_file": "exec-5256c901-1ce8-417f-a485-3585a99f2433.png",
+      "prompt": "Create a single pixel-registered frame variant of the FIRST painting (a stormy 1865 small wooden open boat at sea, blue-grey naturalist gouache and fine graphite). ONLY ACTION: the sailors have just bailed away the small pool of free-standing water visible near (x66.4%, y75.3%) at the seam between the deck and inside face of the far gunwale. Paint naturally matched damp brown-grey plank grain to replace only that blue reflective patch; wood there is still dark, wet and salty, but with no reflection, outline or standing water. Preserve the horizontal timber seam exactly, same wear and damp finish and perspective. The SECOND reference depicts the later dry timber location; use that as a local color and position aid only. The WHOLE REST of the FIRST painting must remain absolutely unchanged. Keep the SAME ragged dark tear in the canvas at x76%,y14%; the sail is still torn and not patched at this stage. Keep the mast, tiller, knots, boom, horizon, cloud, swell, headland, low deck and framing exact. No new brushwork anywhere outside the interior shallow bilge puddle. Match raster resolution 1672x941 landscape and full original frame, no crop. No people, tools, lettering, borders or effects. Output as one full painting frame."
+    },
+    {
+      "id": "salvage",
+      "file": "salvage.png",
+      "width": 1671,
+      "height": 941,
+      "mode": "RGB",
+      "bytes": 3413497,
+      "sha256": "c0f6d8e13ea09e23331af338188068fb680b91ce6624a45cac9634b369e65e4b",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "salvage.png",
+        "reference": "wreck.png",
+        "reference_sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+        "native_generated_file": "exec-b0979c30-9267-4be2-86df-ce5b85a42dd9.png",
+        "prompt": "Edit this exact wreck location to show the SAME ship and shore later in 1865, after gradual salvage. Preserve exact full 16:9 frame, viewpoint, hull silhouette and location, fixed boulders, chest at the same position, path, and empty lower walking ground. Keep chest visually anchored but weathered. Show more weathered stripped planking and broken rigging, with a slightly different tide visible only at the left sea edge. Do not move existing major landmarks or introduce loose movable props, tools, people, letters or UI. Restrained 19th-century naturalist field gouache; scene is weathered but recognizable, not a new shipwreck.",
+        "size": [
+          1671,
+          941
+        ],
+        "bytes": 3413497,
+        "sha256": "c0f6d8e13ea09e23331af338188068fb680b91ce6624a45cac9634b369e65e4b",
+        "visual_review": "Inspected source and result at full frame. Major landmarks and walkable floor retained; subject changes are drawn in. No people or lettering."
+      },
+      "source_original_file": "exec-b0979c30-9267-4be2-86df-ce5b85a42dd9.png",
+      "prompt": "Edit this exact wreck location to show the SAME ship and shore later in 1865, after gradual salvage. Preserve exact full 16:9 frame, viewpoint, hull silhouette and location, fixed boulders, chest at the same position, path, and empty lower walking ground. Keep chest visually anchored but weathered. Show more weathered stripped planking and broken rigging, with a slightly different tide visible only at the left sea edge. Do not move existing major landmarks or introduce loose movable props, tools, people, letters or UI. Restrained 19th-century naturalist field gouache; scene is weathered but recognizable, not a new shipwreck."
+    },
+    {
+      "id": "charcoal",
+      "file": "charcoal.png",
+      "width": 1670,
+      "height": 941,
+      "mode": "RGB",
+      "bytes": 3225945,
+      "sha256": "e00be8de72e33a2c75fa3beb3ebc9e9073a08790261b7bc1eb717712f18b4647",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "charcoal.png",
+        "reference": "voyage/scenes/forest.png",
+        "reference_sha256": "ce31d19653a3a1770542a5feac3047dde73cd63e0829abff7de1f47b11cc6182",
+        "native_generated_file": "exec-f551b8c5-fa02-4fa1-be34-8515718b6f67.png",
+        "prompt": "Edit this exact forest location into the separate charcoal working clearing. Keep the full 16:9 frame and viewpoint, the left creek and cascade, large trees and roots, rear path and broad clear lower walking floor at precisely the same positions. At the EXISTING dark low stone-ringed area at right midground, make a modest earth-covered charcoal burn mound with dark earth and faint thin smoke, not a furnace or chimney. A small fixed stack of cut coppice wood behind the mound suggests work; no loose collectible items or tools. Hand-painted naturalist field gouache of 1864 subantarctic island, plausible natural materials, no people, animals, lettering or UI.",
+        "size": [
+          1670,
+          941
+        ],
+        "bytes": 3225945,
+        "sha256": "e00be8de72e33a2c75fa3beb3ebc9e9073a08790261b7bc1eb717712f18b4647",
+        "visual_review": "Inspected source and result at full frame. Major landmarks and walkable floor retained; subject changes are drawn in. No people or lettering.",
+        "intermediate_generated_file": "exec-7ffb6506-926f-4d2c-9bd5-4be13c3f1b3b.png",
+        "intermediate_sha256": "803ddbfa68e9705936b2dc71d7268b3eec71edd10184492c4e65f33c64f91db1",
+        "second_edit_prompt": "Edit ONLY the small red flowering clusters on this existing Auckland Island forest illustration into muted dark green leathery evergreen foliage and brown spent seed capsules, appropriate to winter. Preserve every tree branch, all other foliage, creek, exact earthen charcoal mound and smoke, stacked cut wood, ground and all scene geometry and color/brushwork; do not alter the full-frame composition, add people, text, props, or flowers."
+      },
+      "source_original_file": "exec-f551b8c5-fa02-4fa1-be34-8515718b6f67.png",
+      "prompt": "Edit ONLY the small red flowering clusters on this existing Auckland Island forest illustration into muted dark green leathery evergreen foliage and brown spent seed capsules, appropriate to winter. Preserve every tree branch, all other foliage, creek, exact earthen charcoal mound and smoke, stacked cut wood, ground and all scene geometry and color/brushwork; do not alter the full-frame composition, add people, text, props, or flowers."
+    },
+    {
+      "id": "return-camp",
+      "file": "return-camp.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "bytes": 2623509,
+      "sha256": "6a5d24d22e84172be3517c9728cd2b7fbe1df8399bdcbfb80a7258059fd2cd03",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "return-camp.png",
+        "reference": "voyage/scenes/cabin.png",
+        "reference_sha256": "be9fbcfcfebc2069c99b961f73824e0cfa5d1cc713c60888c4d26c4d7aaa0090",
+        "native_generated_file": "exec-7fd11c98-ce8c-438c-8378-6eaf4227abef.png",
+        "prompt": "Edit this exact hand-painted 1864 Epigwaitt shelter scene into a later August return scene, after two castaways have waited here. Keep the EXACT full-frame 1672x941 view, camera, layout and positions of window, hearth, table, cot, barrel, walls and all existing furniture; maintain the clear empty walking floor and preserve painterly style. Show a quietly repaired roof seam in the existing canvas and subtle wear and lived-in traces in permanent materials, with two neatly separated folds in the same existing bedding suggesting two inhabitants. Subtle cool changed light outside. No people, no letters, no loose movable objects or supplies, no extra furniture or new props, no dramatic additions; respectful restrained historical field gouache.",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 2623509,
+        "sha256": "6a5d24d22e84172be3517c9728cd2b7fbe1df8399bdcbfb80a7258059fd2cd03",
+        "visual_review": "Inspected source and result at full frame. Major landmarks and walkable floor retained; subject changes are drawn in. No people or lettering."
+      },
+      "source_original_file": "exec-7fd11c98-ce8c-438c-8378-6eaf4227abef.png",
+      "prompt": "Edit this exact hand-painted 1864 Epigwaitt shelter scene into a later August return scene, after two castaways have waited here. Keep the EXACT full-frame 1672x941 view, camera, layout and positions of window, hearth, table, cot, barrel, walls and all existing furniture; maintain the clear empty walking floor and preserve painterly style. Show a quietly repaired roof seam in the existing canvas and subtle wear and lived-in traces in permanent materials, with two neatly separated folds in the same existing bedding suggesting two inhabitants. Subtle cool changed light outside. No people, no letters, no loose movable objects or supplies, no extra furniture or new props, no dramatic additions; respectful restrained historical field gouache."
+    },
+    {
+      "id": "forge-lit",
+      "file": "forge-lit.png",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB",
+      "bytes": 2440372,
+      "sha256": "f32ecd4eeaf434dce885397584687f783f3b8be05ca19611178d69c4379fc1ff",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "source_original_file": "exec-5b6b8f9a-7429-4b89-9c41-e5383527d16a.png",
+      "prompt": "Edit this exact fixed-camera 1865 forge illustration to show the charcoal now working. Preserve all framing, geometry, positions, colors and brushwork of the entire scene, including fitted bellows, tuyere, hearth stones, anvil, bench, doorway, roof and empty floor. Change only the existing coal bed inside the hearth: warm restrained deep red-orange embers between the charcoal lumps with a little warm reflected light on the adjacent tuyere and immediate inner stone. No tall flames, sparks, extra tools, people, text, new objects or global relighting. This is a local historical craft fire, not fantasy. Maintain the exact 1672x941 frame and registered stage.",
+      "provenance": {
+        "reference": "forge.png",
+        "reference_sha256": "53dfa8af123225a87d749116d5b76a16cc89699ae9c3243f7bd63800c2aca655",
+        "generated_file": "exec-5b6b8f9a-7429-4b89-9c41-e5383527d16a.png",
+        "generated_sha256": "045b117c41c08ef71ad484a27bc8364ac7cc2d2299f41d8dd32d22ae1d183c27",
+        "method": "Generated lit hearth composited locally over registered fitted-bellows base; rounded rectangle (505,260,880,480), radius 36, Gaussian feather 8px. Outside mask remains original base.",
+        "changed_bounds_xyxy_exclusive": [
+          486,
+          242,
+          898,
+          499
+        ],
+        "visual_review": "Restrained embers with warm inner stone and tuyere; no open flames. Fixed environment preserved."
+      }
     }
   ]
 }

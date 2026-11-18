@@ -12,11 +12,11 @@ Podrobné rozlišení opce na moderní knihu, dobového příběhu a obrazových
 
 - **Příběhová kampaň v `campaign/`:** původní kód, scénář a pět AI generovaných maleb. Prompty a SHA-256 jsou v obrazovém manifestu; grafika je výtvarná interpretace, nikoli historický doklad. Nebyly převzaty moderní obrazové předlohy. Obecná licence nového projektu zůstává nezvolena.
 
-- **Nová adventura v `adventure/`:** tři původní AI generovaná prostředí, hlavní a čtyři vedlejší postavy, malované rekvizity, stavy prostředí, šestiprvkový atlas rozhraní, pět atlasů po šesti krokových pózách, původní anglické repliky a kód. Původ, prompty, editace a hashe jsou v manifestech a dokumentech ART, PEOPLE_ART, PROPS_ART, STATE_ART, UI_ART, WALK_ART a STORIES. Nebyly převzaty assety, postavy ani kód Machinaria.
+- **Adventura v `adventure/`:** malby prostředí a postav, rekvizity, stavové obrazy a materiály rozhraní vytvořené pomocí AI pro tento projekt, původní anglické repliky a kód. Tři původní prostředí první kapitoly, stojící postavy a první atlasy popisuje archiv vydání z 16. listopadu 2026. Nebyly převzaty assety, postavy ani kód Machinaria. [Výtvarné podklady a archiv](adventure/ART.md) · [Původ replik](adventure/STORIES.md)
 
 ## Full point-and-click campaign artwork
 
-The original generated campaign backgrounds and state variants are recorded in [the voyage scene manifest](adventure/dist/assets/voyage/scenes/manifest.json); the original prop atlases and kettle are recorded in [the voyage prop manifest](adventure/dist/assets/voyage/props/manifest.json). Prompts, hashes and edit-parent provenance accompany the unchanged PNGs. These generated interpretations are not copied from modern books or authenticated portraits. New English campaign dialogue and puzzles are original adaptation; factual boundaries and primary-source references are documented in [HISTORICAL_ADAPTATION](adventure/HISTORICAL_ADAPTATION.md).
+The campaign backgrounds, state variants and prop art are generated interpretations made for this project. No artwork was copied from modern books or authenticated portraits. Current manifests record prompts, parent images, hashes and any documented transforms. The technical notes distinguish the direct PNG copies used in the 16 November 2026 version from later registered edits and web derivatives. New English campaign dialogue and puzzles are original adaptation. [Voyage scene manifest](adventure/dist/assets/voyage/scenes/manifest.json) · [Voyage prop manifest](adventure/dist/assets/voyage/props/manifest.json) · [Weather and art review](adventure/reviews/26-weather-and-art.md) · [Historical boundaries and primary sources](adventure/HISTORICAL_ADAPTATION.md)
 
 ## Work surfaces and working figures
 

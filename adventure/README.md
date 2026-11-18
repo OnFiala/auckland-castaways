@@ -34,6 +34,8 @@ The playable viewpoint changes from Alick McLaren to Musgrave for chapters VI–
 
 Walking and the fifteen new standing, reaching and kneeling poses share a ground anchor for each person. Painted floor boundaries keep movement on shore, beside workbenches or inside the boat. A background or actor image stays mounted while its replacement decodes. The ten optional scenery interactions include floating a shaving in a stream and testing fitted bellows. [Spatial study](reviews/24-spatial-study.md) · [Illustrated review](reviews/25-playable-revision.md)
 
+Wind, rain, sleet, wet snow and sea spray occupy local parts of the painting. Securing the camp roof redirects its runoff. A bailed boat shows dry boards while its sail still carries the tear. All fourteen rooms have their own paintings, including the working charcoal ground and the return to Epigwaitt. [See the weather in motion](reviews/weather/weather-in-motion.gif) · [Illustrated release notes](reviews/26-weather-and-art.md) · [Four proposed improvements](design-next.md)
+
 The scene paintings, people, props and English dialogue were created for this project. The Auckland Island outline on the return chart draws on the historical sketch published in Musgrave’s book. The voyage, the people who sailed and the rescue date follow the research ledger. [Chapter sources and dramatization](reviews/24-history-dialogue.md) · [Original work surfaces](artwork/workplates/README.md) · [Working pose provenance](dist/assets/work-poses/manifest.json)
 
 ## Web delivery

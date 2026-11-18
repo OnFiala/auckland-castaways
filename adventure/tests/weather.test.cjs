@@ -1,0 +1,179 @@
+'use strict';
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+const dist=path.resolve(__dirname,'../dist');
+const weather=require('../dist/weather.js');
+const engine=require('../dist/voyage.js');
+
+function fixture({motion=false,context=true,world=null}={}) {
+  let reduced=motion,frameNumber=0,clock=1000,draws=0,timerId=0,pausedDialog=false,bodyReduced=false,paintedSoles=0;
+  const timers=new Map(),frames=new Map(),errors=[],handlers=new Map(),mutations=[],resizes=[];
+  const css={};
+  const ctx=new Proxy({},{
+    get(obj,key) {
+      if(key==='createRadialGradient')return ()=>({addColorStop(){}});
+      if(key==='clearRect')return ()=>{draws++;paintedSoles=0;};
+      if(key==='fill')return ()=>{if(ctx.fillStyle==='#5a4e42'||ctx.fillStyle==='#554c45')paintedSoles++;};
+      if(key in obj)return obj[key];
+      return (...args)=>{if(args.some(a=>typeof a==='number'&&!Number.isFinite(a)))errors.push(key);};
+    }
+  });
+  const document={hidden:false,body:{},
+    createElement: type=>type==='canvas'?{width:300,height:150,getContext:()=>context?ctx:null}:{style:{}},
+    addEventListener:(name,listener)=>handlers.set(name,listener),
+    removeEventListener:name=>handlers.delete(name),
+    querySelector:()=>pausedDialog?{}:null,querySelectorAll:()=>[]};
+  const root={ownerDocument:document,dataset:{},isConnected:true,children:[],style:css,
+    getBoundingClientRect:()=>({width:1600}),closest:name=>name==='.reduced'&&bodyReduced?{}:null,
+    setAttribute(){},replaceChildren(...children){this.children=children;}};
+  const media={get matches(){return reduced;},
+    addEventListener:(name,listener)=>handlers.set('media',listener),removeEventListener:()=>handlers.delete('media')};
+  const host={
+    CastawayWorld:world,devicePixelRatio:2,matchMedia:()=>media,
+    setTimeout(fn){timers.set(++timerId,fn);return timerId;},clearTimeout(id){timers.delete(id);},
+    requestAnimationFrame(fn){frames.set(++frameNumber,fn);return frameNumber;},cancelAnimationFrame(id){frames.delete(id);},
+    MutationObserver:class {constructor(fn){mutations.push(fn);}observe(){}disconnect(){}},
+    ResizeObserver:class {constructor(fn){resizes.push(fn);}observe(){}disconnect(){}}
+  };
+  vm.runInNewContext(fs.readFileSync(path.join(dist,'weather.js'),'utf8'),{window:host});
+  function tick() {
+    for(const [id,fn] of [...timers]){timers.delete(id);fn();}
+    for(const [id,fn] of [...frames]){frames.delete(id);clock+=63;fn(clock);}
+  }
+  return {root,errors,tick,document,handlers,weather:host.CastawayWeather,
+    draw:(scene,flags={})=>{const state={scene,flags};host.CastawayWeather.render(root,state);return state;},
+    hide(hidden){document.hidden=hidden;handlers.get('visibilitychange')();},
+    reduced(on){reduced=on;handlers.get('media')();},
+    pref(on){bodyReduced=on;mutations.forEach(f=>f());},
+    dialog(open){pausedDialog=open;mutations.forEach(f=>f());},
+    get draws(){return draws;},get paintedSoles(){return paintedSoles;},get pending(){return timers.size+frames.size;}};
+}
+
+test('fourteen room weather models use bounded local fields and valid cut registration',()=>{
+  const summary=new Set();
+  for(const scene of engine.SCENES) {
+    const state={scene:scene.id,flags:{}}, m=weather.describe(state);
+    assert.equal(m.chapter,scene.chapter);
+    assert.ok(m.zones.length && m.season && m.weather);
+    assert.ok(m.wind>0 && m.slant>0);
+    assert.equal(new Set(m.zones.map(z=>z.id)).size,m.zones.length);
+    let count=0;
+    for(const field of m.zones){
+      assert.ok(field.points.length>=3);
+      let area=0;
+      for(let i=0;i<field.points.length;i++){
+        const [x,y]=field.points[i],[u,v]=field.points[(i+1)%field.points.length];
+        assert.ok(x>=0&&x<=100&&y>=0&&y<=100);area+=x*v-u*y;
+      }
+      assert.ok(Math.abs(area)/2<2800,scene.id+' full-frame weather');
+      count+=field.count;summary.add(field.medium);
+    }
+    assert.ok(count<=110);
+    const r=fixture();r.draw(scene.id);r.tick();r.tick();
+    assert.equal(r.errors.length,0);
+    const cut=r.root.children[0];
+    if(!cut.hidden){
+      const asset=cut.style.cssText.match(/url\("(.+?)"\)/)[1];
+      assert.ok(fs.existsSync(path.join(dist,asset)));
+      const [x,y,w,h]=m.cut.rect;assert.ok(x>=0&&y>=0&&x+w<=100&&y+h<=100);
+    }
+  }
+  assert.deepEqual([...summary].sort(),['after-rain','rain','sleet','snow','spray']);
+});
+
+test('enclosed rooms receive external precipitation only in the painted openings',()=>{
+  for(const room of ['cabin','return_camp','chartroom','forge']){
+    const m=weather.describe({scene:room,flags:{}});
+    assert.ok(m.indoor);
+    if(room==='forge'){
+      assert.equal(m.zones.length,1);
+      assert.ok(m.zones[0].points.every(([x,y])=>x>=2&&x<11&&y>=16&&y<=58));
+    }else{
+      assert.equal(m.zones.length,4);
+      for(const z of m.zones)assert.ok(z.points.every(([x,y])=>x>=3&&x<=29&&y>=9.5&&y<=38));
+      for (const [i,a] of m.zones.entries())for(const b of m.zones.slice(i+1)){
+        const [ax,ay]=a.points[0],[ar,ab]=a.points[2],[bx,by]=b.points[0],[br,bb]=b.points[2];
+        assert.ok(ar<bx||br<ax||ab<by||bb<ay,'mullion gap');
+      }
+    }
+  }
+});
+
+test('closing a roof redirects rain and equipment controls response without calming the offshore wind',()=>{
+  const describe=(scene,flags={})=>weather.describe({scene,flags});
+  const effect=(m,id)=>m.effects.find(e=>e.id===id);
+  const open=describe('camp'), built=describe('camp',{shelterBuilt:true});
+  assert.ok(open.zones.some(z=>z.id==='through the bare frame'));
+  assert.ok(!built.zones.some(z=>z.id==='through the bare frame'));
+  assert.ok(effect(built,'runoff at the low eave'));assert.equal(open.wind,built.wind);
+  const wet=describe('cabin'),sealed=describe('cabin',{roofSealed:true}),warm=describe('cabin',{roofSealed:true,warmthReady:true});
+  assert.ok(effect(wet,'ripples below leaking seam')&&!effect(sealed,'ripples below leaking seam'));
+  assert.ok(effect(sealed,'damp under seam').strength<effect(wet,'damp under seam').strength);
+  assert.ok(!effect(warm,'damp under seam')&&effect(warm,'hearth reflection'));
+  const loose=describe('crossing'),fast=describe('crossing',{rigSecured:true}),dry=describe('crossing',{rigSecured:true,boatDry:true,sailMended:true});
+  assert.notEqual(loose.cut.motion,fast.cut.motion);assert.equal(loose.wind,dry.wind);
+  assert.ok(effect(loose,'water surging in bilge')&&!effect(dry,'water surging in bilge'));
+  assert.ok(!effect(describe('landing'),'lantern on wet shingle')&&effect(describe('landing',{landingMarked:true}),'lantern on wet shingle'));
+});
+
+test('render retains its bounded canvas and weather clock across unrelated commits',()=>{
+  const f=fixture();f.draw('beach');
+  const canvas=f.root.children[1],initial=f.draws;
+  assert.equal(canvas.width,1152); assert.equal(canvas.height,648);
+  f.draw('beach',{ropeTaken:true});
+  assert.equal(f.draws,initial);
+  f.tick();assert.ok(f.draws>initial);assert.equal(f.pending,1);
+  f.draw('crossing');assert.equal(f.root.children[1],canvas);
+  const tied=f.draw('crossing',{rigSecured:true});assert.equal(f.weather.respond(f.root,tied,'bilge'),false);
+  assert.equal(f.weather.respond(f.root,tied,'rigging'),true);assert.equal(f.weather.respond(f.root,tied,'rigging'),false);
+  const before=JSON.stringify(tied);f.tick();assert.equal(JSON.stringify(tied),before);
+  f.weather.dispose(f.root);assert.equal(f.pending,0);assert.equal(f.root.children.length,0);assert.equal(f.handlers.size,0);
+});
+
+test('hidden, paused, and either reduced-motion preference stop scheduling; returning never replays a storm',()=>{
+  const f=fixture();
+  f.draw('forest');f.tick();assert.equal(f.pending,1);
+  f.hide(true);const quiet=f.draws;assert.equal(f.pending,0);f.tick();assert.equal(f.draws,quiet);
+  f.hide(false);assert.equal(f.pending,1);
+  f.dialog(true);assert.equal(f.pending,0);f.dialog(false);assert.equal(f.pending,1);
+  f.reduced(true);assert.equal(f.pending,0);assert.equal(f.root.dataset.wxStill,'true');
+  f.draw('forge',{bellowsFitted:true});const lit=f.draw('forge',{bellowsFitted:true,forgeLit:true});
+  assert.ok(f.weather.respond(f.root,lit,'furnace'));assert.equal(f.pending,0);
+  f.reduced(false);assert.equal(f.pending,1);f.pref(true);assert.equal(f.pending,0);
+  f.pref(false);assert.equal(f.pending,1);
+  const fallback=fixture({context:false});fallback.draw('beach');
+  assert.equal(fallback.pending,0);assert.equal(fallback.root.children[0].hidden,false);
+});
+
+test('foot contact only marks a matching ground patch and dissolves as the water is bailed',()=>{
+  const f=fixture(),step=(s,x,y)=>f.weather.footfall(f.root,s,x,y);
+  let s=f.draw('forest');assert.ok(step(s,28,73));assert.ok(!step(s,85,80));
+  assert.ok(!step(s,28,73),'resting on one foot must not stamp a second mark');
+  assert.ok(!step(s,NaN,73));
+  for(const room of ['forge','cabin','chartroom','return_camp']){
+    s=f.draw(room);assert.ok(!step(s,28,73),room);assert.equal(f.paintedSoles,0);
+  }
+  s=f.draw('crossing',{rigSecured:true});assert.ok(step(s,64,77));assert.ok(!step(s,16,85));
+  s=f.draw('crossing',{rigSecured:true,boatDry:true});assert.ok(!step(s,64,77));
+  s=f.draw('landing');assert.ok(step(s,32,68));
+  f.pref(true);assert.ok(!step(s,33,68));assert.equal(f.paintedSoles,0);
+  f.pref(false);f.hide(true);assert.ok(!step(s,34,68));
+});
+
+test('short-lived tracks are capped at twelve, then fade without changing a save',()=>{
+  const f=fixture(), s=f.draw('beach'),original=JSON.stringify(s);
+  for(let i=0;i<18;i++)assert.ok(f.weather.footfall(f.root,s,10+i,76));
+  assert.equal(f.paintedSoles,24,'twelve toe and heel pairs');
+  for(let i=0;i<48;i++)f.tick();
+  assert.equal(f.paintedSoles,0);
+  assert.equal(JSON.stringify(s),original);
+});
+
+test('wind cuts follow the current registered plate even if the changing flag has no weather consequence',()=>{
+  const f=fixture({world:{background:s=>s.flags.canvasRecovered?'assets/beach-cleared.png':'assets/beach.png'}});
+  f.draw('beach');assert.match(f.root.children[0].style.cssText,/assets\/beach\.png/);
+  f.draw('beach',{canvasRecovered:true});assert.match(f.root.children[0].style.cssText,/assets\/beach-cleared\.png/);
+});

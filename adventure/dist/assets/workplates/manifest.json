@@ -6,13 +6,13 @@
       "file": "chest.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "d5e0c65767cfb81df3beca29d0b57f890e513769045fe9b4550f9570176df0f4",
-      "sha256": "50b04729b35fe1a67dea3e94c3ed711a67ccca1b7c9b6bbbaa8689042796f62f",
-      "bytes": 593928,
+      "source_sha256": "fc6326b6fbc3d99dd796ef303e26effe0272ca9da308bfbc4a89b9759c574ef7",
+      "sha256": "97949b9dfda8c2cf106bf5e9dd51fc98f1b1d58a41889c98b824584f5a6f98f6",
+      "bytes": 761198,
       "rms_rgb_8bit": [
-        1.915,
-        1.653,
-        2.365
+        2.591,
+        1.846,
+        3.544
       ]
     },
     {
@@ -20,13 +20,13 @@
       "file": "roof.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "941d304c0ceb2655cc24c421054714ff31acda7653e8828b5d07d836e90628a0",
-      "sha256": "0c06c0e00aec1f3516c8ca59bf239df70a56a14b1c7411d09904513bceba9b08",
-      "bytes": 656570,
+      "source_sha256": "b4ac95bedb01df32e94a70d59e721f0797365aa3d62900b348fcd745a42f8381",
+      "sha256": "bf349720bdf3427ae552412a49f6a278a3da01460356d1245eba4217f64c41cd",
+      "bytes": 729284,
       "rms_rgb_8bit": [
-        2.074,
-        1.716,
-        2.853
+        2.3,
+        1.798,
+        3.261
       ]
     },
     {
@@ -34,13 +34,13 @@
       "file": "drill.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "89c00cefc60b9d24a486f6f056702a7d1db1c424cd81153dd6bef33ce8ff7171",
-      "sha256": "b3e00e01cf6e5dea6bf0df592b0ccf529527c555a3c16b7dc63a44c557725abd",
-      "bytes": 580074,
+      "source_sha256": "8bf3b2fd8fe5403ae7ddb361ad33db24a62d7415d925f4a6fa67cf69130ad1b5",
+      "sha256": "f07cf932e4f5852e764c954c1df22af323aa5e051cfc0bb5560f5a377f7c5b2b",
+      "bytes": 764274,
       "rms_rgb_8bit": [
-        1.96,
-        1.649,
-        2.503
+        2.791,
+        1.858,
+        3.951
       ]
     },
     {
@@ -48,13 +48,13 @@
       "file": "hull.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "af0e80520932de3359ac04ea22b9013be50a5355050a7db707e3b19c1d6fbf10",
-      "sha256": "93616e56b68e9d0f3278443607d5d62912380f3a0191ce494e67647b7d3bcf02",
-      "bytes": 679138,
+      "source_sha256": "0aecda621a2aa30f907044c0c25aa37859bc76f5d3e571364423b6f74fee279b",
+      "sha256": "18d245946f9bc56be355c35dde164c7817417e37c84f11716f5c65ee3ba9cd93",
+      "bytes": 795868,
       "rms_rgb_8bit": [
-        2.166,
-        1.743,
-        2.97
+        2.906,
+        1.958,
+        4.142
       ]
     },
     {
@@ -62,13 +62,13 @@
       "file": "rig.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "1110a6e44cc4daedacd13b862255c0842b28f933dece05ec29d62d75f0fa2597",
-      "sha256": "6c5392009e9f91c7bd668346c63019c779f72a3b649cbf6cb45df4de79d48763",
-      "bytes": 360990,
+      "source_sha256": "8f8c7ae1ab60239b1bec07c5bc29b7e49867b9429fb7164a33ffaabc1e6d8b69",
+      "sha256": "d1458b053ad3bcd95655597b041cf9d2bae2f8ee8a8b516505ec64a684d9fdfd",
+      "bytes": 704494,
       "rms_rgb_8bit": [
-        1.771,
-        1.562,
-        2.044
+        2.591,
+        1.835,
+        3.661
       ]
     },
     {
@@ -76,13 +76,13 @@
       "file": "chart.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "30258e37bdba85a86a3d1189c8db554166f94f22b134f59d276e84762b18cc8b",
-      "sha256": "c68b672b20d9c73668aa114b8b0e2886c883098625ac496ba1e485acfe6d3d1c",
-      "bytes": 442050,
+      "source_sha256": "5f9d2a3719e5d617de514741d481b71457f242f3b5384d3a5f03d4f1e532df80",
+      "sha256": "2b43394df62bf47d9247a331154c7534cda3ea339bf13af84c0d4c1ccdd0c043",
+      "bytes": 430962,
       "rms_rgb_8bit": [
-        1.872,
-        1.648,
-        2.229
+        2.196,
+        1.699,
+        2.688
       ]
     },
     {
@@ -90,13 +90,13 @@
       "file": "landing.webp",
       "width": 1536,
       "height": 1024,
-      "source_sha256": "7982b493255f00ffa437d2db7fff3cfc544895ac52948d410fb68ed9a7676ea4",
-      "sha256": "81b2eddc965a764b9b950221b3a1ebabc53d2492e324fa36e776ee0da2b25205",
-      "bytes": 558210,
+      "source_sha256": "ac1e6f6fedcba93e3f6f3c408cf86bf6b054e32f2d9a583d86b9a82641578d30",
+      "sha256": "fa764142b2e50008847e2a21ea3c1eebbb6899da8d4419ccc01a788eeb384cae",
+      "bytes": 756654,
       "rms_rgb_8bit": [
-        2.043,
-        1.726,
-        2.48
+        2.729,
+        1.881,
+        3.795
       ]
     }
   ]

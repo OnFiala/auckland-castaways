@@ -1,19 +1,23 @@
 # Malované vedlejší postavy
 
-Datum vytvoření: 16. listopadu 2026. Čtyři původní postavy byly vytvořeny pomocí `image_gen.imagegen` s místními obrazy hlavního námořníka (`dist/assets/sailor.png`) a tábořiště (`dist/assets/camp.png`) jako výtvarnými referencemi. Cílem je shodná jemná grafitová kresba, texturovaný kvaš, tlumené barvy, modelace tváře a opotřebených oděvů.
+Čtyři stojící malby vedlejších postav jsou fiktivní portréty. Podobu obličejů a jednotlivosti oděvů vytvořil generátor pro tuto hru. Současné stavy chůze a práce vycházejí ze samostatných atlasů. [Manifest stojících postav](dist/assets/people/manifest.json) · [Krokové atlasy](WALK_ART.md) · [Manifest pracovních atlasů](dist/assets/work-poses/manifest.json) · [Výtvarná a povětrnostní kontrola](reviews/26-weather-and-art.md)
+
+## Archiv z 16. listopadu 2026
+
+Čtyři původní postavy vytvořil `image_gen.imagegen`. Výtvarnými referencemi byly tehdejší obrazy hlavního námořníka (`dist/assets/sailor.png`) a tábořiště (`dist/assets/camp.png`). Cílem byla shodná jemná grafitová kresba, texturovaný kvaš, tlumené barvy, modelace tváře a opotřebených oděvů.
 
 - [Thomas Musgrave](dist/assets/people/musgrave.png): starší kapitán, tmavý kabát, šedivějící vous a námořnická čepice.
 - [François Raynal](dist/assets/people/raynal.png): štíhlejší, světlé vlasy a vous, olivový kabát, lehce unavený postoj.
 - [Henry Forgés](dist/assets/people/henry.png): tmavé zvlněné vlasy a krátký vous, šedoolivový kabát, okrová košile.
 - [George Harris](dist/assets/people/george.png): robustnější postava, světlý vous, rezavě hnědý kabát.
 
-Jde o **fiktivní výtvarné obsazení**, nikoli autentické portréty nebo tvrzení o doložené podobě oděvů a tváří. Postavy nevycházejí z převzatých moderních portrétů. Generované originály jsou zachovány beze změny pixelů; použité lokální kopie mají stejné hashe jako výstup generátoru.
+Předlohami byly dřívější malby projektu. Moderní portréty nebyly převzaty. U vydání z 16. listopadu kontrola potvrdila shodu kontrolních součtů použitých PNG s generovanými výstupy.
 
 [Manifest](dist/assets/people/manifest.json) uvádí SHA-256, velikosti, rozměry a kontrolu alfa kanálu. [Úplné prompty](dist/assets/people/prompts.json) zachycují výtvarné zadání.
 
-## Ověření průhlednosti a vložení do hry
+### Tehdejší ověření průhlednosti a vložení do hry
 
-Všechny soubory mají rozměry **1024 × 1536 px**, režim RGBA a všechna čtyři rohová místa zcela průhledná. Plně průhledných je přibližně 64–69 % pixelů. Černá plocha ve výstupu některých prohlížečů obrázků představuje jejich podklad, není pevným obdélníkem uvnitř PNG.
+U všech čtyř souborů byly naměřeny rozměry **1024 × 1536 px**, režim RGBA a všechna čtyři rohová místa zcela průhledná. Plně průhledných bylo přibližně 64–69 % pixelů. Černou plochu ve zobrazení doplňovaly některé prohlížeče obrázků jako pozadí.
 
 | Soubor | Plně průhledné pixely | Obdélník alfa ≥128 (x0,y0,x1,y1) |
 |---|---:|---|
@@ -22,6 +26,6 @@ Všechny soubory mají rozměry **1024 × 1536 px**, režim RGBA a všechna čty
 | henry.png | 67,37 % | 217,12,774,1525 |
 | george.png | 63,60 % | 194,15,794,1524 |
 
-Hra zachovává původní pixely PNG a v registru `dist/art.js` používá individuální výřez siluety (obdélník alfa ≥128 rozšířený o 9 px). SVG zobrazí tuto oblast se zachovaným poměrem stran. Kontejner má ve scéně šířku 8,5 % a výšku 25,5–28 % podle postavy a hloubky; nezávislé ukotvení chodidel tak kompenzuje rozdílné průhledné okraje. Nejde o deformování celé postavy do krabičky bývalé SVG figurky. Každý člověk má jemnou klidovou animaci a vlastní kontaktní stín.
+Tehdejší hra používala individuální výřez siluety z původního PNG (obdélník alfa ≥128 rozšířený o 9 px). SVG zobrazovalo oblast se zachovaným poměrem stran. Kontejner měl ve scéně šířku 8,5 % a výšku 25,5–28 % podle postavy a hloubky. Nezávislé ukotvení chodidel kompenzovalo rozdílné průhledné okraje. Každá postava měla jemnou klidovou animaci a vlastní kontaktní stín.
 
-Samotné postavy byly vizuálně prohlédnuté. Jejich velikost a umístění ve složené scéně musí ověřit integrace; tato kontrola souborů není browserový test hry.
+Tehdejší vizuální kontrola pokrývala jednotlivé obrazy. Umístění ve složené scéně se řeší při herní integraci.

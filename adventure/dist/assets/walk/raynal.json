@@ -1,15 +1,18 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "character": "raynal",
+  "characterName": "François Raynal",
   "image": "raynal.png",
-  "purpose": "Six hand-painted sequential right-facing walking poses for classic adventure game; fictional visual reconstruction, not an authenticated historical portrait.",
-  "generator": "image_gen",
-  "generated_date_utc": "2026-11-16",
+  "generator": "OpenAI ImageGen",
+  "generated_date_utc": "2026-11-18",
+  "kind": "A newly painted, six-frame right-facing walk cycle. Imagined character and costume.",
   "dimensions": {
     "width": 1536,
     "height": 1024
   },
-  "format": "PNG RGBA",
+  "format": "PNG RGBA, 8-bit",
+  "sha256": "44e18949e052c97617c9982d76727991a9cad5a30f22b5e0958024dc3c316845",
+  "byte_length": 1588335,
   "layout": {
     "columns": 3,
     "rows": 2,
@@ -17,11 +20,10 @@
     "cell_height": 512,
     "order": "row-major"
   },
-  "sha256": "0e70851115c81b8d1ed4d8c51d5e38067e8e3ba9a236168bc72efcc7a1884f9d",
-  "byte_length": 1964805,
   "frames": [
     {
       "index": 0,
+      "name": "first-contact",
       "rect": {
         "x": 0,
         "y": 0,
@@ -29,26 +31,29 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        0,
-        0,
-        512,
-        512
+        82,
+        10,
+        445,
+        504
       ],
       "alpha_bbox_gt_8": [
-        87,
+        85,
         12,
         442,
-        497
+        501
       ],
       "alpha_bbox_gt_128": [
-        88,
-        13,
+        86,
+        16,
         441,
-        496
-      ]
+        500
+      ],
+      "medianCrownX": 277,
+      "solidFloorY": 500
     },
     {
       "index": 1,
+      "name": "first-weight",
       "rect": {
         "x": 512,
         "y": 0,
@@ -56,26 +61,29 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        0,
-        7,
-        512,
-        512
+        130,
+        13,
+        365,
+        504
       ],
       "alpha_bbox_gt_8": [
-        113,
-        13,
-        342,
-        500
+        133,
+        15,
+        363,
+        501
       ],
       "alpha_bbox_gt_128": [
-        114,
-        14,
-        341,
-        499
-      ]
+        134,
+        19,
+        362,
+        500
+      ],
+      "medianCrownX": 279,
+      "solidFloorY": 500
     },
     {
       "index": 2,
+      "name": "first-passing",
       "rect": {
         "x": 1024,
         "y": 0,
@@ -83,26 +91,29 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        0,
-        1,
-        488,
-        512
+        153,
+        8,
+        333,
+        504
       ],
       "alpha_bbox_gt_8": [
-        127,
-        12,
-        302,
-        499
+        155,
+        10,
+        331,
+        502
       ],
       "alpha_bbox_gt_128": [
-        128,
-        15,
-        301,
-        498
-      ]
+        157,
+        14,
+        330,
+        501
+      ],
+      "medianCrownX": 278,
+      "solidFloorY": 500
     },
     {
       "index": 3,
+      "name": "opposite-contact",
       "rect": {
         "x": 0,
         "y": 512,
@@ -110,26 +121,29 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        0,
-        0,
-        512,
-        500
+        78,
+        10,
+        449,
+        504
       ],
       "alpha_bbox_gt_8": [
-        87,
+        80,
         12,
-        451,
-        498
+        446,
+        501
       ],
       "alpha_bbox_gt_128": [
-        88,
-        13,
-        450,
-        497
-      ]
+        81,
+        17,
+        445,
+        501
+      ],
+      "medianCrownX": 277,
+      "solidFloorY": 500
     },
     {
       "index": 4,
+      "name": "opposite-weight",
       "rect": {
         "x": 512,
         "y": 512,
@@ -137,26 +151,29 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        1,
-        0,
-        512,
-        512
+        122,
+        13,
+        358,
+        504
       ],
       "alpha_bbox_gt_8": [
-        116,
-        13,
-        347,
-        498
+        125,
+        15,
+        355,
+        502
       ],
       "alpha_bbox_gt_128": [
-        117,
-        15,
-        346,
-        497
-      ]
+        125,
+        19,
+        354,
+        501
+      ],
+      "medianCrownX": 279,
+      "solidFloorY": 500
     },
     {
       "index": 5,
+      "name": "opposite-passing",
       "rect": {
         "x": 1024,
         "y": 512,
@@ -164,33 +181,33 @@
         "height": 512
       },
       "alpha_bbox_gt_0": [
-        0,
-        0,
-        496,
-        512
+        166,
+        8,
+        351,
+        504
       ],
       "alpha_bbox_gt_8": [
-        145,
-        12,
-        324,
-        498
+        169,
+        10,
+        349,
+        501
       ],
       "alpha_bbox_gt_128": [
-        146,
-        14,
-        323,
-        498
-      ]
+        170,
+        13,
+        348,
+        500
+      ],
+      "medianCrownX": 279,
+      "solidFloorY": 500
     }
   ],
-  "bbox_convention": "cell-relative [left, top, right exclusive, bottom exclusive]; alpha_gt_0 preserves low alpha generator noise; alpha_gt_8 defines visible silhouette.",
   "common_crop": {
     "x": 79,
     "y": 4,
     "width": 380,
     "height": 504
   },
-  "common_crop_method": "Union of all six cell-relative alpha>8 bounding boxes, expanded 8 pixels and clipped to 512x512; same crop applied to every frame. Original PNG bytes unchanged.",
   "ground_anchor_in_cell": {
     "x": 256,
     "y": 500
@@ -199,26 +216,120 @@
     "x": 177,
     "y": 496
   },
-  "rendering_note": "Use identical crop dimensions, scale and anchor on every pose. Never fit each alpha bounding box separately. Slight drawn body bob and foot differences are natural generated variations.",
-  "suggested_fps": 7,
-  "frame_sequence": [
-    "left-contact",
-    "left-down",
-    "right-passing",
-    "right-contact",
-    "right-down",
-    "left-passing"
-  ],
-  "visual_qa": {
-    "inspected": true,
-    "assessment": "Six clearly differing leg and arm poses; stable clothing identity, right-facing whole-body figures; opposite-arm stride alternation is visually evident across cycle halves. Generated rather than rigged animation, so small proportions/height differences remain.",
-    "transparent_background": true,
-    "no_image_editing": true
+  "registration": "The generator painted all six poses against the same full-length character model and the previous walking choreography. The 8-bit PNG is a transparent 3 × 2 assembly of newly painted cels. Each native cel was cropped and resampled with Lanczos interpolation onto the existing game canvas, using a shared sole baseline and paired crown heights for the two halves of the gait. The head centre is registered in X, constrained by the existing common clip. The drawing and its colours are retained. Source and destination entries are [left, top, rightExclusive, bottomExclusive] on their respective sheets.",
+  "sourceRegistration": {
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "sourceSha256": "c09c8a779228226393fc6f7acbce5f51c9265671e2d4395f1dce35ebab962e00",
+    "cells": [
+      {
+        "frame": 0,
+        "source": [
+          81,
+          6,
+          448,
+          501
+        ],
+        "destination": [
+          82,
+          10,
+          445,
+          504
+        ]
+      },
+      {
+        "frame": 1,
+        "source": [
+          612,
+          6,
+          856,
+          503
+        ],
+        "destination": [
+          642,
+          13,
+          877,
+          504
+        ]
+      },
+      {
+        "frame": 2,
+        "source": [
+          1135,
+          6,
+          1321,
+          503
+        ],
+        "destination": [
+          1177,
+          8,
+          1357,
+          504
+        ]
+      },
+      {
+        "frame": 3,
+        "source": [
+          80,
+          516,
+          459,
+          1014
+        ],
+        "destination": [
+          78,
+          522,
+          449,
+          1016
+        ]
+      },
+      {
+        "frame": 4,
+        "source": [
+          612,
+          517,
+          854,
+          1015
+        ],
+        "destination": [
+          634,
+          525,
+          870,
+          1016
+        ]
+      },
+      {
+        "frame": 5,
+        "source": [
+          1144,
+          518,
+          1348,
+          1016
+        ],
+        "destination": [
+          1190,
+          520,
+          1375,
+          1016
+        ]
+      }
+    ]
   },
   "reference_images": [
-    "../people/raynal.png",
-    "../camp.png"
+    {
+      "path": "adventure/dist/assets/walk/raynal.png",
+      "sha256": "0e70851115c81b8d1ed4d8c51d5e38067e8e3ba9a236168bc72efcc7a1884f9d",
+      "revision": "42daaa45a061532f8f3e2b8efe1d43881c235dcc"
+    },
+    {
+      "path": "adventure/dist/assets/people/raynal.png",
+      "sha256": "0d7b1a9dc766f54a2bd1e9c4adf11fd8287b673262d790463f33edb27ba705c4"
+    }
   ],
-  "original_generation_file": "/workspace/generated_images/exec-d83a2476-e33c-459a-86c1-adca043adb2f.png",
-  "prompt": "Create a production 2D adventure-game WALK-CYCLE SPRITE SHEET, 1536 pixels wide x 1024 pixels high, transparent RGBA background. EXACT layout: 3 columns x 2 rows of 512x512 pixel cells; six complete FULL BODY figures of THE SAME man, one figure centered within every cell. Use first attached portrait as exact character and clothing reference, second attached camp only as painted art style reference. Character is François Raynal: thin weathered man with tousled sandy brown hair, short sandy beard, long olive brown ragged patched wool coat, green waistcoat, off-white open collar shirt, patched charcoal trousers rolled at cuffs, worn brown lace boots. NO hat. Painterly classic hand-painted realistic adventure-game art, opaque crisp character silhouettes with detailed brushwork matching the supplied camp. All six figures face RIGHT in the same mostly side profile with slight three-quarter visibility. Same head size and full body scale throughout. Top of hair approximately cell y=35, boot ground baseline y=480. Center torso cell x=256. Arms visibly swing freely and legs visibly WALK, no standing portrait pose. Six DIFFERENT sequential frames, reading left to right top row then bottom row: 1 left boot forward/right boot back, wide contact stride, right arm forward; 2 weight down on forward left boot, trailing right heel lifting, knees bent; 3 left support leg under body, right bent leg passing it and raised boot, arms passing torso; 4 right boot forward/left boot back, opposite wide contact stride, left arm forward; 5 weight down on forward right boot, trailing left heel lifting, knees bent; 6 right support leg under body, left bent leg passing it with raised boot, arms passing torso. Alternating front leg MUST be apparent. Anatomy natural and fluid, walking with determined tired life. Keep every head at same height and each figure inside its own cell with at least 20px margin. No background, no atmosphere behind figure, no ground, no cast shadow, no text, no numbers, no frames or grid lines, no extra objects. Output exactly six poses, consistent character."
+  "prompt": "Create a NEW hand-painted production game animation sheet of François Raynal. The first reference is authoritative ONLY for frame order, camera, screen direction, placement and body articulation. The second reference is the NEW authoritative full-resolution costume and face model: carefully repaint EVERY frame in its colours, anatomy, materials and observed naturalist illustration style. The lanky, practical adult with an uncovered head, distinct sandy-brown swept-back hair, light beard and angular nose. Buttoned umber-grey working jacket with long lapels, discreet indigo wool waistcoat, unbleached collar, grey-brown trousers and blackened russet boots. Preserve that distinct narrow frame and lighter hair. No hat, green coat, scarf, bag or accessories. Deliver one 1536×1024 LANDSCAPE walking atlas, SIX individual drawings in EXACTLY TWO rows of THREE equal 512×512 square cells. Read reference 1 frame-by-frame, row-major. Keep the same six limb articulations, same step length and timing, same left and right arm and boot in front, clothing silhouette, walking posture and ground support. Nose to screen RIGHT in all six. Top left long contact stride with near heel leading, top middle weight accepted as trailing boot lifts, top right bent-knee passing step; bottom left the opposite contact stride with the other arm in front, bottom middle opposite weight acceptance, bottom right opposite passing position. The near and far limbs exchange roles; no duplicating the first half. Weight travels over the planted foot. In each square every boot and all the hair stay completely within, with clear transparent gutters. Every bottommost planted boot at the same baseline. Use one anatomical and costume model locked across all six: same skull/face at the same scale and height, exact cap/hair angle, identical seam network and jacket closure, identical trousers, cuffs and boots, left light held fixed, each pigment stable. Torso and head advance smoothly through a restrained 2–3px rise/fall. Arms counterbalance legs naturally. The features must not redraw into six different faces. Re-use the same painted head reference for all six degrees of gait. The animation should read clearly at a 160px-tall display and hold still when paused.\n \nPaint the character with the second reference's crisp graphite underdrawing and rich naturalist 1860s maritime gouache: brushwork held together in broad, legible local colour shapes at reduced size, worn wool, hand-sewn linen, scuffed boots, warm skin under a cool upper-left sky. Preserve pronounced local jacket colour and skin tone across every cell. Keep the same stitches, buttons, creases and cap through all cells; make every mark feel part of the same painted world. Avoid dull uniformly brown or uniformly green wash. No independent character redesign, no changes of coat, expressions or cap. Empty hands, no bags, no separate items, NO text, grid lines, floor, shadow, backdrop or digital airbrush glow; absolutely transparent pixels outside and between the character silhouettes. Historical art direction is an original reconstruction for an adventure game.",
+  "alpha_extrema": [
+    0,
+    255
+  ]
 }

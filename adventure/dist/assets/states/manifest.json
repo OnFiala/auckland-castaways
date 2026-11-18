@@ -3,118 +3,260 @@
   "generator": "image_gen.imagegen",
   "assets": [
     {
-      "name": "camp-shelter",
-      "refs": [
-        "/workspace/auckland-castaways/adventure/dist/assets/camp.png"
-      ],
-      "transparent": false,
-      "prompt": "Edit the provided painted adventure game scene with exactly ONE localized change: cover the existing rough branch shelter frame on the right side with a weathered cream sailcloth canopy, physically draped and tied to its existing poles with small hemp rope ties. The frame is at x54–88%, y28–71% of this exact image. The cloth must convincingly fit the existing perspective and have soft folds, worn weave texture, some stains, soft grounded shadows, restrained pencil outlines and hand-painted gouache matching the original. Keep the left stone fire pit unlit and unchanged. Preserve the EXACT composition, camera, framing, dimensions, all trees, sea, rocks, ground, branches, colours, lighting and style elsewhere. Do not add people, equipment, extra fire, lettering, labels, arrows or UI. The only change is the finished canvas roof over that original frame. Do not redesign the shelter or move the original posts. Retain wide 1672x941 composition.",
-      "source": "/workspace/generated_images/exec-2354d483-8ffe-4e30-98a9-fe91c3d5766b.png",
+      "id": "camp-shelter",
       "file": "camp-shelter.png",
       "width": 1672,
       "height": 941,
       "mode": "RGB",
-      "sha256": "5fa285d1b7ec0cf5953b1d632d88243904141dcf0b97d62b2b7f22099f6fc4ca",
-      "bytes": 3158014
+      "bytes": 3029176,
+      "sha256": "8906c27bdb0bd8cd602f1901ff0e0d15cf07389957464370ad061c0617b36171",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "states/camp-shelter.png",
+        "generated_file": "exec-a3fdc793-a5cc-4f2a-9802-62f80942b800.png",
+        "size": [
+          1672,
+          941
+        ],
+        "bytes": 3029176,
+        "sha256": "8906c27bdb0bd8cd602f1901ff0e0d15cf07389957464370ad061c0617b36171",
+        "previous_sha256": "5fa285d1b7ec0cf5953b1d632d88243904141dcf0b97d62b2b7f22099f6fc4ca",
+        "generated_sha256": "9038730566e6ef7e32f2c6355331a96913788073e3743f9036a8697b44bb859a",
+        "reference": "camp.png",
+        "reference_sha256": "6a6ae1536dc61e0bde9a21cc7a783e3fe66c0e7b4b56a0eebeaaa8a777e4bc29",
+        "changed_pixel_bounds_xyxy_exclusive": [
+          878,
+          234,
+          1495,
+          680
+        ],
+        "prompt": "Make a localized game-state edit of the supplied newly painted 1864 Auckland Island camp. The result must read as THIS EXACT painting after the men have stretched their salvaged sail over the existing shelter poles. Precisely preserve camera, framing, scale, light, colour choices and brushwork of the input, with all scenery outside the shelter visually registered including every tree silhouette, fire-ring stone and fixed pole. The only change is a low completed canvas lean-to on the right, x56–85% of the width and y30–65% height. Lash weathered smoke-oatmeal sail canvas to the existing long top spar from approximately x65%,y36% to x83%,y30%. Lay it over the frame with plausible gravity, three readable creases, one bias seam and subdued rain marks, tidy but hand-lashed corners, a few warm highlights and natural cool shelter shadow. Keep the existing upright support poles visible and frame in precisely the same position; the cloth must leave a low open space beneath for shelter. No bright white tent, added floor, new equipment, campfire, people or text. Preserve all original ground, warm afternoon lighting, cold stone fire ring and centre-left clearing. Output the full original landscape at the reference's 1672x941 aspect ratio edge to edge. Fine hand-painted gouache, local pearly colour variation, crisp edges only at close details."
+      },
+      "previous_revision": {
+        "name": "camp-shelter",
+        "refs": [
+          "/workspace/auckland-castaways/adventure/dist/assets/camp.png"
+        ],
+        "transparent": false,
+        "prompt": "Edit the provided painted adventure game scene with exactly ONE localized change: cover the existing rough branch shelter frame on the right side with a weathered cream sailcloth canopy, physically draped and tied to its existing poles with small hemp rope ties. The frame is at x54–88%, y28–71% of this exact image. The cloth must convincingly fit the existing perspective and have soft folds, worn weave texture, some stains, soft grounded shadows, restrained pencil outlines and hand-painted gouache matching the original. Keep the left stone fire pit unlit and unchanged. Preserve the EXACT composition, camera, framing, dimensions, all trees, sea, rocks, ground, branches, colours, lighting and style elsewhere. Do not add people, equipment, extra fire, lettering, labels, arrows or UI. The only change is the finished canvas roof over that original frame. Do not redesign the shelter or move the original posts. Retain wide 1672x941 composition.",
+        "source": "/workspace/generated_images/exec-2354d483-8ffe-4e30-98a9-fe91c3d5766b.png",
+        "file": "camp-shelter.png",
+        "width": 1672,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "5fa285d1b7ec0cf5953b1d632d88243904141dcf0b97d62b2b7f22099f6fc4ca",
+        "bytes": 3158014
+      }
     },
     {
-      "name": "wreck-open",
-      "refs": [
-        "/workspace/auckland-castaways/adventure/dist/assets/wreck.png"
-      ],
-      "transparent": false,
-      "prompt": "Edit the provided hand-painted adventure game scene with ONE precise localized change: the existing wooden crate at approximately x65–79%, y48–63% is now OPEN. Retain the same exact crate body in the same location, scale and perspective, with its plank lid lifted upward/backward on its far edge so we see a dark empty inner cavity. Its aged wood grain, simple iron nails, gouache textures, muted ochre palette and fine pencil detail must match the existing picture. Do not add any loot or tools. Preserve everything else EXACTLY: same ship, rigging, coastline, rocks, trees, foreground, plank, rope, lighting, painting texture, composition and camera. No people, text, icons, arrows or interface. The only change is opening this particular crate. Keep the original wide 1672x941 framing.",
-      "source": "/workspace/generated_images/exec-b1121b61-a0fa-410d-9e6b-e8de82327207.png",
+      "id": "wreck-open",
       "file": "wreck-open.png",
       "width": 1671,
       "height": 941,
       "mode": "RGB",
-      "sha256": "dac73a8192245696d3102ee1cfe84d67163aabc25d9c14350673dc64578e4693",
-      "bytes": 3276698
+      "bytes": 3235245,
+      "sha256": "2eb4cbeb194e87e537730f48501435ec34de25dcd47f6e1c5e9f329e207c680d",
+      "created": "2026-11-18",
+      "generator": "OpenAI image_gen.imagegen",
+      "provenance": {
+        "file": "states/wreck-open.png",
+        "generated_file": "exec-b325ebbb-3b5f-41ce-8683-5fb1ae18d6a8.png",
+        "size": [
+          1671,
+          941
+        ],
+        "bytes": 3235245,
+        "sha256": "2eb4cbeb194e87e537730f48501435ec34de25dcd47f6e1c5e9f329e207c680d",
+        "previous_sha256": "dac73a8192245696d3102ee1cfe84d67163aabc25d9c14350673dc64578e4693",
+        "generated_sha256": "54967aa05fe329761a55ce58b5fc2cc6eea5eefcde024eff8d65f799914058ab",
+        "reference": "wreck.png",
+        "reference_sha256": "7f2eb997e305f0c469e62f5e8d379cddf71774002eccc85973e56e59e98d9332",
+        "changed_pixel_bounds_xyxy_exclusive": [
+          1059,
+          338,
+          1349,
+          625
+        ],
+        "prompt": "Produce the OPEN CHEST state of the provided finished illustrated adventure backdrop, preserving its composition and the rest of the drawing in exact registration. Make a narrowly localized edit to the SINGLE SMALL CLOSED WOODEN SALVAGE CHEST ON THE RIGHT LEDGE at x65–79% and y49–63%. The base of this particular chest, all four edges, wooden slats, rusty nailheads, old diagonal batten and contact shadow MUST stay in exactly the same pixels. Raise just the existing lid, hinged at the back: angle it back and up into the small empty space immediately over the chest (x66–79%, y37–51%) so its underside, the hinge and the unlit empty interior are plainly readable at small game size. The lid stays attached to the chest, no glowing contents or loose tools. Don't repaint the hull, torn cloth, attached ropes, shelf, light on sand, standing board, coast, sky or trees. The painting must be seamless when toggled with the original as one fixed-camera scene. Hand-drawn contemporary game gouache, cold daylight across muted brown oak wood fibres. No text, UI, figures, decorative framing or new objects. Deliver this exact full 16:9 landscape."
+      },
+      "previous_revision": {
+        "name": "wreck-open",
+        "refs": [
+          "/workspace/auckland-castaways/adventure/dist/assets/wreck.png"
+        ],
+        "transparent": false,
+        "prompt": "Edit the provided hand-painted adventure game scene with ONE precise localized change: the existing wooden crate at approximately x65–79%, y48–63% is now OPEN. Retain the same exact crate body in the same location, scale and perspective, with its plank lid lifted upward/backward on its far edge so we see a dark empty inner cavity. Its aged wood grain, simple iron nails, gouache textures, muted ochre palette and fine pencil detail must match the existing picture. Do not add any loot or tools. Preserve everything else EXACTLY: same ship, rigging, coastline, rocks, trees, foreground, plank, rope, lighting, painting texture, composition and camera. No people, text, icons, arrows or interface. The only change is opening this particular crate. Keep the original wide 1672x941 framing.",
+        "source": "/workspace/generated_images/exec-b1121b61-a0fa-410d-9e6b-e8de82327207.png",
+        "file": "wreck-open.png",
+        "width": 1671,
+        "height": 941,
+        "mode": "RGB",
+        "sha256": "dac73a8192245696d3102ee1cfe84d67163aabc25d9c14350673dc64578e4693",
+        "bytes": 3276698
+      }
     },
     {
       "name": "fire",
       "refs": [
-        "/workspace/auckland-castaways/adventure/dist/assets/camp.png"
+        "states/fire.png"
       ],
       "transparent": true,
-      "prompt": "Create a single transparent game sprite to integrate seamlessly with the reference's graphite-and-gouache hand-painted adventure setting. Isolate a small natural wood campfire seen from the same slightly elevated side-on camera as the existing stone fire pit: 5 or 6 charred short kindling sticks loosely crossed, a dark red ember core, irregular translucent ochre orange and soft golden flames rising gently, a very faint thin wisp of smoke. No stone ring: the reference already has the stones. No ground or environment. No hard opaque glow rectangle. Rich tactile hand-painted texture and fine subtle pencil edges; restrained desaturated ochre and warm amber, natural flames not flat vector symbols, not neon, not comic clipart, not photorealism. Fire sprite centered with enough transparent padding around complete flame and wood, useful vertical composition; transparent background truly empty. No text, UI, frame, people. The reference is only for palette, brushwork and camera; output ONLY the campfire element.",
-      "source": "/workspace/generated_images/exec-fb4565f3-07fa-4c6a-b375-7c7507f803af.png",
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. One small shore campfire of burning driftwood, compact bell of translucent observed orange fire rising from cherry red coals between salt-grey sticks, fine breathing smoke. Preserve position and footprint. Absolutely no other context, no ground or background, transparent glow around dark coals, no unrealistic tall opaque torch silhouette.",
+      "source": "exec-50be138c-03ce-44e3-8b54-088cfd76c4e6.png",
       "file": "fire.png",
       "width": 1229,
       "height": 1280,
       "mode": "RGBA",
-      "sha256": "769e2eb3c12a83c1835f3a19327978e218e24be7158573d9523ec21e268f2817",
-      "bytes": 567020,
+      "sha256": "6cc007c4f189f3a35a96bf793b38362c6d10b6d26e1c77e5da038239aadb7b00",
+      "bytes": 561018,
       "alpha_bbox": [
-        301,
-        426,
-        911,
-        1127
+        305,
+        125,
+        907,
+        1124
       ],
-      "fully_transparent_fraction": 0.8634484336859235,
+      "fully_transparent_fraction": 0.8692388374694874,
       "soft_alpha_bbox": [
-        300,
-        111,
-        912,
-        1128
-      ]
+        304,
+        121,
+        908,
+        1125
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          292,
+          100,
+          918,
+          1136
+        ],
+        "registered_rect": [
+          301,
+          118,
+          610,
+          1010
+        ],
+        "uniform_scale": 0.97444089,
+        "viewBox": [
+          300,
+          111,
+          612,
+          1017
+        ]
+      },
+      "edits": "Rigid registration of a transparent ImageGen cutout to the existing world crop. The two mast states share their ground contact.",
+      "created": "2026-11-18",
+      "original_file": "exec-50be138c-03ce-44e3-8b54-088cfd76c4e6.png",
+      "generated_sha256": "288f37cd0e2a9420e20476ae514167e7d46c1cef9fb5bf6e89d95df50e04863f",
+      "reference_sha256": "769e2eb3c12a83c1835f3a19327978e218e24be7158573d9523ec21e268f2817",
+      "alpha_bbox_minimum": 128,
+      "soft_alpha_bbox_minimum": 16
     },
     {
       "name": "mast-flag",
       "refs": [
-        "/workspace/auckland-castaways/adventure/dist/assets/camp.png"
+        "states/mast-flag.png"
       ],
       "transparent": true,
-      "prompt": "Create a single isolated transparent adventure-game prop: one long upright weathered wooden pole with a modest ragged strip of cream sailcloth tied near its top with rough hemp rope. Entire pole from foot to top visible. Pole is slightly crooked natural driftwood, muted brown worn grain and knots. Small cream flag extends right, its irregular worn edge and gentle wind-folds realistically painted. About five pole lengths to flag width; flag modest, not a giant banner. Seen at the same gentle elevated side-on camera as reference. Exactly match reference graphite pencil contours and textured gouache on worn paper look: intricate wood grain, woven dirty sailcloth, muted ochre/moss/grey palette, fine restrained outline. Output only this one pole and cloth, on genuinely transparent background; no ground, stones, sky, people, border, text, UI, or black/white matte. Keep realistic consistent shading soft diffuse overcast light, no bright icon outline. Vertical composition with entire object safely within canvas.",
-      "source": "/workspace/generated_images/exec-a12f92bf-34f6-4a76-95aa-b7f2b07dc940.png",
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. Single tall spindly signal pole in 1:2 portrait, lashed scrap of light flax sailcloth pointing right at top. Tension from wind, natural cloth folds and tattered edge. Make branch height and foot match source.",
+      "source": "exec-63882c55-84a4-49b9-abf9-81a3d8048874.png",
       "file": "mast-flag.png",
       "width": 887,
       "height": 1774,
       "mode": "RGBA",
-      "sha256": "b1c06f2d8ea8563ce4fea2ad54288e4f77d6698a89a1c2382420a4100e5408b5",
-      "bytes": 485795,
+      "sha256": "395e1ec049b5474ec28816cf16a17062debade68394a91b4257a4b7e0871cc7c",
+      "bytes": 467341,
       "alpha_bbox": [
-        219,
-        25,
-        760,
-        1751
-      ],
-      "fully_transparent_fraction": 0.8992684002547127,
-      "soft_alpha_bbox": [
         218,
-        24,
-        762,
+        36,
+        753,
         1752
-      ]
+      ],
+      "fully_transparent_fraction": 0.8933981893033406,
+      "soft_alpha_bbox": [
+        217,
+        35,
+        761,
+        1753
+      ],
+      "registration": {
+        "source_foot": [
+          274.0,
+          1750
+        ],
+        "registered_foot": [
+          271.5,
+          1751
+        ],
+        "uniform_scale": 0.992,
+        "clockwise_degrees": 0.15,
+        "viewBox": [
+          216,
+          22,
+          546,
+          1732
+        ]
+      },
+      "edits": "Rigid registration of a transparent ImageGen cutout to the existing world crop. The two mast states share their ground contact.",
+      "created": "2026-11-18",
+      "original_file": "exec-63882c55-84a4-49b9-abf9-81a3d8048874.png",
+      "generated_sha256": "cd77f401181d5a0f0c2a7481799a2dd9fcdff63293b176d6bd0978d3e028c2ca",
+      "reference_sha256": "b1c06f2d8ea8563ce4fea2ad54288e4f77d6698a89a1c2382420a4100e5408b5",
+      "alpha_bbox_minimum": 128,
+      "soft_alpha_bbox_minimum": 16
     },
     {
       "name": "mast",
-      "source": "/workspace/generated_images/exec-9c92c778-37db-477a-9e4a-0d525bd8cdd5.png",
-      "prompt": "Edit this isolated transparent game prop with one exact change: REMOVE the cream sailcloth flag completely, leaving the same bare wooden pole and the hemp rope wraps around its upper part. Preserve the exact pole's shape, grain, size, position, perspective, shading and hand-painted texture. Do not move or rescale anything; maintain the same tall canvas dimensions and genuine transparent background. The area where the cloth was must become fully transparent. No new objects, ground, sky, matte colour, outlines, text, or border. Keep the rope wraps but no dangling flag.",
+      "source": "exec-61de0720-1523-49e0-8827-46d85cf539e0.png",
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. Single very tall spindly and slender makeshift signal pole in 1:2 portrait. Credible knotted lashings and salt-grey wood, visibly hewn by castaways; preserve scale and location. No flag at all. Base at bottom centre.",
       "refs": [
-        "/workspace/auckland-castaways/adventure/dist/assets/states/mast-flag.png"
+        "states/mast.png"
       ],
       "transparent": true,
       "file": "mast.png",
       "width": 887,
       "height": 1774,
       "mode": "RGBA",
-      "bytes": 360426,
-      "sha256": "7b52bf8cd55190c939c29e420446af1348210aefb06fcfe63f15989265e6c899",
+      "bytes": 356457,
+      "sha256": "41b622e239870fccca12f9652292d55c52da8b2d77647f1f72b61729a6a487cd",
       "alpha_bbox": [
         217,
-        23,
-        421,
-        1753
+        25,
+        434,
+        1752
       ],
       "soft_alpha_bbox": [
         216,
-        22,
-        422,
-        1754
+        24,
+        435,
+        1753
       ],
-      "fully_transparent_fraction": 0.920924693270833
+      "fully_transparent_fraction": 0.9169057245519333,
+      "registration": {
+        "source_foot": [
+          275.0,
+          1755
+        ],
+        "registered_foot": [
+          271.5,
+          1751
+        ],
+        "uniform_scale": 0.996,
+        "clockwise_degrees": 0.475,
+        "viewBox": [
+          216,
+          22,
+          546,
+          1732
+        ]
+      },
+      "edits": "Rigid registration of a transparent ImageGen cutout to the existing world crop. The two mast states share their ground contact.",
+      "created": "2026-11-18",
+      "original_file": "exec-61de0720-1523-49e0-8827-46d85cf539e0.png",
+      "generated_sha256": "20d3e90014f9242695eb26023586676b6bdff1ed560b82db26dc8bf12392056a",
+      "reference_sha256": "7b52bf8cd55190c939c29e420446af1348210aefb06fcfe63f15989265e6c899",
+      "alpha_bbox_minimum": 128,
+      "soft_alpha_bbox_minimum": 16
     }
   ]
 }

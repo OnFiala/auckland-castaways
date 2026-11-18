@@ -12,7 +12,6 @@
 .scene[data-scene=forest] .sea-glint,.scene[data-scene=charcoal] .sea-glint{display:none}
 .scene[data-scene=crossing] .leaf-drift,.scene[data-scene=harbour] .leaf-drift{display:none}
 .scene[data-scene=crossing] .sea-glint:nth-child(1){left:5%;top:40%;width:20%}.scene[data-scene=crossing] .sea-glint:nth-child(2){left:65%;top:35%;width:20%}.scene[data-scene=crossing] .sea-glint:nth-child(3){left:16%;top:48%;width:12%}
-.scene[data-scene=charcoal] .backdrop{filter:brightness(.8) saturate(.7)}
 .target.fulfilled{filter:sepia(.08) brightness(1.04)}
 .target.fulfilled:before{content:'';position:absolute;right:0;bottom:0;width:7px;height:7px;border:1px solid #dcc797;border-radius:50%;background:#755735;box-shadow:0 0 4px #e6c88c55;pointer-events:none}
 .world-steam{position:absolute;width:4%;height:18%;background:radial-gradient(ellipse,#dad0b050,transparent 65%);filter:blur(9px);animation:steam-rise 6s ease-in-out infinite;pointer-events:none}

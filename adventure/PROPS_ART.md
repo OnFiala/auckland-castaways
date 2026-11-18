@@ -1,19 +1,21 @@
 # Malované předměty — sjednocení výtvarné sady
 
-Datum vytvoření: 16. listopadu 2026.
+Aktuální hra používá samostatně malované rekvizity, které lze sbírat a skrývat podle stavu inventáře. Souborové vlastnosti a výřezy základních rekvizit uvádí jejich manifest. Předměty dalších kapitol mají samostatnou evidenci včetně atlasů, odvozených výřezů a konvice. Pracovní detaily mají vlastní evidenci PNG a herních WebP. [Základní rekvizity](dist/assets/props/manifest.json) · [Rekvizity dalších kapitol](dist/assets/voyage/props/manifest.json) · [Pracovní detaily PNG](artwork/workplates/manifest.json) · [Pracovní detaily WebP](dist/assets/workplates/manifest.json) · [Výtvarná a povětrnostní kontrola](reviews/26-weather-and-art.md)
 
-Dva původní průhledné atlasy nahrazují jednoduché vektorové kresby předmětů. Podoba navazuje na prohlédnutou hlavní postavu a prostředí: kreslený obrys, texturovaný kvaš, tlumené dřevo, konopné provazy, zašlé železo a přirozeně opotřebené plátno. Jde o výtvarné rekonstrukce pro hru, nikoli dochované předměty nebo jejich archeologické vyobrazení.
+## Archiv z 16. listopadu 2026
 
-## Soubory a původ
+Dva původní průhledné atlasy nahradily jednoduché vektorové kresby předmětů. Podobu určovaly tehdejší malby hlavní postavy a prostředí. Výtvarné zadání pracovalo s kresleným obrysem, texturovaným kvašem, tlumeným dřevem, konopnými provazy, zašlým železem a přirozeně opotřebeným plátnem.
+
+### Soubory a původ
 
 - [tools.png](dist/assets/props/tools.png): šest nástrojů a pomůcek, generováno `image_gen.imagegen` s průhledným pozadím.
 - [materials.png](dist/assets/props/materials.png): pět materiálů / objektů a jedna prázdná buňka, stejný postup.
 - [Manifest](dist/assets/props/manifest.json): úplné prompty, jména původních generovaných souborů, rozměry, režim RGBA, počty bajtů, SHA-256 a přesné oblasti jednotlivých předmětů.
 - [Samostatné prompty](dist/assets/props/prompts.json): stejná zadání pro snadné dohledání.
 
-Oba PNG soubory mají 1536 × 1024 pixelů. Původní generované pixely jsou zachované; nedošlo k přemalování ani vyřezávání náhradním editorem. Vizuálně byly prohlédnuté celé atlasy a ověřené hranice jejich položek i průhlednost.
+Oba PNG soubory měly 1536 × 1024 pixelů. Vznikly jako přímé kopie tehdejších výstupů generátoru. Vizuálně byly prohlédnuté celé atlasy a ověřené hranice jejich položek i průhlednost.
 
-## Rozložení
+### Rozložení
 
 Každý atlas obsahuje přesnou mřížku tří sloupců a dvou řádků, buňky mají 512 × 512 pixelů. Mřížka není nakreslená.
 
@@ -28,4 +30,4 @@ Při zobrazení zachovat poměr stran, například SVG s vnořeným obrazem cel�
 
 ## Meze
 
-Historická pravděpodobnost materiálů není potvrzením konkrétních dochovaných kusů. Atlas sám nepotvrzuje správné vložení do herního rozhraní, dotykové ovládání ani animace. To se ověřuje samostatně při integraci.
+Předměty jsou výtvarné interpretace dobových materiálů vytvořené pro hru. Jejich umístění, dotykové ovládání a animace se ověřují samostatně ve hře.

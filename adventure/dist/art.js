@@ -1,4 +1,4 @@
-// Painted art registry. Crops reference unmodified original PNGs; see assets/*/manifest.json.
+// Painted art registry. Crops use registered artwork; see assets/*/manifest.json.
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.AdventureArt=factory();})(typeof window!=='undefined'?window:globalThis,function(){'use strict';return {
   "props": {
     "rope": {

@@ -10,11 +10,11 @@ ROOT = Path(__file__).resolve().parents[2]
 DIST = ROOT / 'dist'
 OUT = Path(__file__).resolve().parent
 JS = r'''
-const E=require('./voyage.js'), S=require('./stage-direction.js'), A=require('./voyage-art.js');
+const E=require('./voyage.js'), S=require('./stage-direction.js'), A=require('./voyage-art.js'), W=require('./voyage-world.js');
 const cases=[['beach',1,'rope'],['cabin',2,'kettle'],['forge',3,'leather'],['crossing',5,'bailer'],['return_camp',7,'campTable'],['slipway',4,'resin']];
 const data=cases.map(([scene,chapter,action])=>{let state=E.createGame();state.scene=scene;state.chapter=chapter;
  let targets=E.getTargets(state).map(t=>S.stageTarget(scene,t,state));
- return {scene,chapter,action,targets,profile:S.profile(scene), companions:[...new Set([...targets.filter(t=>t.kind==='person').map(t=>t.id),...S.companions(scene,state)])].map(id=>({id,...S.workStation(scene,id,state)}))};});
+ return {background:W.background(state)||'assets/'+scene+'.png',scene,chapter,action,targets,profile:S.profile(scene), companions:[...new Set([...targets.filter(t=>t.kind==='person').map(t=>t.id),...S.companions(scene,state)])].map(id=>({id,...S.workStation(scene,id,state)}))};});
 console.log(JSON.stringify({data,art:A.props}));
 '''
 raw = subprocess.check_output(['node', '-e', JS], cwd=DIST)
@@ -23,7 +23,6 @@ manifest = json.loads((DIST/'assets/work-poses/manifest.json').read_text())['ass
 W,H=840,473
 font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',16)
 small=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',12)
-bgs={'beach':'assets/beach.png','cabin':'assets/voyage/scenes/cabin-cold.png','forge':'assets/voyage/scenes/forge-cold.png','crossing':'assets/voyage/scenes/crossing-wet.png','return_camp':'assets/voyage/scenes/cabin.png','slipway':'assets/voyage/scenes/slipway.png'}
 
 def target_art(scene,t):
     if t.get('paint') is False or t.get('kind') == 'person': return None
@@ -54,7 +53,7 @@ def person(im,id,pose,x,y,face,profile):
     im.alpha_composite(src,(round(W*x/100-gx),round(H*y/100-gy)))
 
 def frame(case):
-    im=Image.open(DIST/bgs[case['scene']]).convert('RGBA').resize((W,H),Image.Resampling.LANCZOS)
+    im=Image.open(DIST/case['background']).convert('RGBA').resize((W,H),Image.Resampling.LANCZOS)
     for t in case['targets']: prop(im,t)
     # Workstation poses are a static instant. A target approach demonstrates the player action.
     action=next((t for t in case['targets'] if t['id']==case['action']),None)

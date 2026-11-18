@@ -1,5 +1,5 @@
 {
-  "created": "2026-11-16",
+  "created": "2026-11-18",
   "generator": "image_gen.imagegen",
   "status": "Original painted artistic interpretations, not archaeological evidence.",
   "grid": {
@@ -11,29 +11,33 @@
   "atlases": [
     {
       "file": "tools.png",
-      "original_file": "exec-12e2ed0a-c25a-445a-92da-ef15ee2a649c.png",
+      "original_file": "exec-959e0fba-0c41-4acb-8aec-a6518317e4af.png",
       "width": 1536,
       "height": 1024,
       "mode": "RGBA",
-      "bytes": 2262890,
-      "sha256": "8a0d6fe25cf34d2d90229accb467d805a0559250c61dfbacafc6634eada07b28",
-      "alpha_zero_fraction": 0.17589696248372397,
-      "alpha_below16_fraction": 0.7081807454427084,
-      "prompt": "Hand-painted historical point-and-click adventure game assets, fine graphite and pen contours with richly textured gouache and colored-pencil shading, same sophistication as a lovingly drawn weathered sailor with patched wool coat: muted olive, gray teal, warm ochre, aged parchment, worn brown wood, subdued iron. Tactile natural materials and delicate irregular contour lines, soft painterly volume and directional overcast light from upper left, elegant restrained stylization, realistic 1864 salvage tools but clear readable shapes. Not flat vectors, not emoji, not icon UI graphics, not photorealistic, not 3D renders, no glossy surfaces, no sticker borders, no white outlines. TRUE TRANSPARENT BACKGROUND, no ground plane or backdrop. Each prop isolated with only tiny translucent contact shade. No people, no text, letters or numbers. Create a wide landscape transparent SPRITE ATLAS in an EXACT regular 3-column by 2-row grid of SIX equally sized invisible cells, entire canvas 1536 by 1024 or higher landscape same aspect. Never draw grid lines or frames. Each of the six props stays completely within its own cell with large clear transparent gutters, centered in the cell and never crosses cell boundary; complete object, no cropping. Row 1 left: compact loose coil of thick old frayed hemp rope, warm taupe strands meticulously drawn. Row1 middle: one single long plain weathered wooden pole tilted diagonally lower-left to upper-right, complete ends visible, no rope. Row1 right: one similar complete wooden pole tilted diagonally lower-left to upper-right, with a conspicuous closed loop of hemp rope lashed around its far upper end, loop is clearly circular. Row2 left: one bent old iron prybar, dull charcoal and grey mossy patina, angled diagonally. Row2 middle: one modest 1860s hatchet, short ash handle and steel wedge head, turned slightly three-quarter so wood and iron thickness read. Row2 right: a SMALL half-open rectangular tin tinderbox containing flint and dry fibrous tinder, compact enough to fit a hand, believable brass/iron details but no lettering. Keep the long tools scaled to their own cell, and compact objects somewhat smaller to preserve readable natural silhouettes. Avoid any extra objects.",
-      "edits": "None. Original generated PNG bytes preserved."
+      "bytes": 959079,
+      "sha256": "a8fbd4ad6a0b52c6a2717341d6d79a52e937ae6dc5a944d9f40a28ba5be50ee3",
+      "alpha_zero_fraction": 0.7831522623697916,
+      "alpha_below16_fraction": 0.7980702718098959,
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. Landscape 3 by 2: a coil of hemp, plain diagonal ash pole, lashed loop on a diagonal search pole; bent iron bar, short salvage hatchet, open locking metal tinderbox. Details faithful to everyday mid-19th-century maritime craft, keep all ends intact.",
+      "edits": "Connected paint regions assigned to their original grid cell before scaling to its registered crop, including brushwork crossing a source gridline. Uniform scale, centered width, earlier lower contact. Premultiplied alpha resampling; three-pixel antialias fringe.",
+      "generated_sha256": "e92b5b3350a9aea26fa9acf2ad5386f7046d24de30d8f9d35c2ad0002c074671",
+      "reference_sha256": "8a0d6fe25cf34d2d90229accb467d805a0559250c61dfbacafc6634eada07b28"
     },
     {
       "file": "materials.png",
-      "original_file": "exec-f7163c46-a304-447e-a1b3-a09b1eaf913a.png",
+      "original_file": "exec-7936f7f9-b90e-4f9d-b8fc-f20d68981ca8.png",
       "width": 1536,
       "height": 1024,
       "mode": "RGBA",
-      "bytes": 2234892,
-      "sha256": "fa70361e4287277c16017fc57b6479896615d221a7a32a493b4d990f8a641e5c",
-      "alpha_zero_fraction": 0.6124897003173828,
-      "alpha_below16_fraction": 0.6927267710367838,
-      "prompt": "Hand-painted historical point-and-click adventure game assets, fine graphite and pen contours with richly textured gouache and colored-pencil shading, same sophistication as a lovingly drawn weathered sailor with patched wool coat: muted olive, gray teal, warm ochre, aged parchment, worn brown wood, subdued iron. Tactile natural materials and delicate irregular contour lines, soft painterly volume and directional overcast light from upper left, elegant restrained stylization, realistic 1864 salvage tools but clear readable shapes. Not flat vectors, not emoji, not icon UI graphics, not photorealistic, not 3D renders, no glossy surfaces, no sticker borders, no white outlines. TRUE TRANSPARENT BACKGROUND, no ground plane or backdrop. Each prop isolated with only tiny translucent contact shade. No people, no text, letters or numbers. Create a wide landscape transparent SPRITE ATLAS in an EXACT regular 3-column by 2-row grid of SIX equally sized invisible cells, entire canvas 1536 by 1024 or higher landscape same aspect. Never draw grid lines or frames. Props each stay completely inside their own cell with large clear transparent gutters, centered in the cell and never cross cell boundary; complete object, no cropping. Row1 left: folded piece of worn sail canvas, warm dirty cream linen with stitched seams and fraying edges, loosely folded into an irregular bundle. Row1 middle: small bundle of split dry kindling sticks and wood splinters, readable individual pale fresh wood grain. Row1 right: one long narrow loose strip of off-white sailcloth with frayed edges, curving gently and folded back a little, not a flag on a pole, no emblem. Row2 left: substantial short weathered driftwood log, worn brown-gray ridged bark, rough cut end, lying mostly horizontally in slight three-quarter perspective; it should look like real timber cast up on a wet rocky shore. Row2 middle: a small low mound/base of five or six irregular grey-green shore stones with a small dark socket gap at the center suitable for supporting a pole; no pole yet, no mortar, no symbols. Row2 right MUST REMAIN ENTIRELY EMPTY TRANSPARENT with no object. Avoid anything outside the specified five objects. Consistent painterly rendering and natural volume.",
-      "edits": "None. Original generated PNG bytes preserved."
+      "bytes": 1393044,
+      "sha256": "bc725ed7b75f7463a6b05a2e72d69d3746b86d75510f9a5c0b91db646ac4bfe6",
+      "alpha_zero_fraction": 0.6859671274820963,
+      "alpha_below16_fraction": 0.6986268361409506,
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. 3 by 2 wide: worn stitched flax sail canvas, split dry kindling with pale heartwood, torn ribbon of ordinary sailcloth; long cast-up driftwood showing wet end-grain, loose grey stone cairn with empty centre, empty transparent last cell. Do not add items.",
+      "edits": "Connected paint regions assigned to their original grid cell before scaling to its registered crop, including brushwork crossing a source gridline. Uniform scale, centered width, earlier lower contact. Premultiplied alpha resampling; three-pixel antialias fringe.",
+      "generated_sha256": "c47f62d91c3e282967c71f9d73e797c4eccba38e18df11ed766b648df2678d4d",
+      "reference_sha256": "fa70361e4287277c16017fc57b6479896615d221a7a32a493b4d990f8a641e5c"
     }
   ],
   "sprites": {
@@ -48,15 +52,15 @@
         512
       ],
       "alpha16_bbox": [
-        15,
-        111,
-        496,
-        485
+        35,
+        120,
+        480,
+        476
       ],
       "alpha128_bbox": [
-        31,
+        40,
         123,
-        484,
+        475,
         473
       ],
       "viewBox": [
@@ -64,7 +68,22 @@
         107,
         489,
         382
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          23,
+          106,
+          487,
+          479
+        ],
+        "registered_rect": [
+          32,
+          117,
+          450,
+          362
+        ],
+        "uniform_scale": 0.9695291
+      }
     },
     "pole": {
       "atlas": "tools.png",
@@ -77,14 +96,14 @@
         512
       ],
       "alpha16_bbox": [
-        537,
-        23,
-        1008,
-        506
+        545,
+        31,
+        998,
+        498
       ],
       "alpha128_bbox": [
         545,
-        29,
+        32,
         997,
         497
       ],
@@ -93,7 +112,22 @@
         19,
         479,
         491
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          543,
+          24,
+          1001,
+          496
+        ],
+        "registered_rect": [
+          543,
+          28,
+          458,
+          472
+        ],
+        "uniform_scale": 1.0
+      }
     },
     "loopPole": {
       "atlas": "tools.png",
@@ -106,10 +140,10 @@
         512
       ],
       "alpha16_bbox": [
-        1043,
-        15,
-        1536,
-        506
+        1050,
+        23,
+        1520,
+        500
       ],
       "alpha128_bbox": [
         1051,
@@ -122,7 +156,22 @@
         11,
         497,
         499
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          1048,
+          19,
+          1521,
+          499
+        ],
+        "registered_rect": [
+          1047,
+          20,
+          475,
+          482
+        ],
+        "uniform_scale": 1.0042194
+      }
     },
     "prybar": {
       "atlas": "tools.png",
@@ -135,14 +184,14 @@
         512
       ],
       "alpha16_bbox": [
-        47,
-        531,
-        478,
-        1006
+        51,
+        542,
+        474,
+        998
       ],
       "alpha128_bbox": [
         52,
-        541,
+        543,
         473,
         997
       ],
@@ -151,7 +200,22 @@
         527,
         439,
         483
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          51,
+          537,
+          480,
+          998
+        ],
+        "registered_rect": [
+          48,
+          539,
+          429,
+          461
+        ],
+        "uniform_scale": 1.0
+      }
     },
     "axe": {
       "atlas": "tools.png",
@@ -164,14 +228,14 @@
         512
       ],
       "alpha16_bbox": [
-        537,
-        547,
-        998,
-        1012
+        544,
+        560,
+        992,
+        1000
       ],
       "alpha128_bbox": [
         545,
-        556,
+        561,
         991,
         999
       ],
@@ -180,7 +244,22 @@
         543,
         469,
         473
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          541,
+          552,
+          993,
+          996
+        ],
+        "registered_rect": [
+          541,
+          557,
+          453,
+          445
+        ],
+        "uniform_scale": 1.0022472
+      }
     },
     "tinderbox": {
       "atlas": "tools.png",
@@ -193,14 +272,14 @@
         512
       ],
       "alpha16_bbox": [
-        1105,
-        608,
-        1484,
-        968
+        1115,
+        619,
+        1472,
+        948
       ],
       "alpha128_bbox": [
         1116,
-        616,
+        620,
         1471,
         947
       ],
@@ -209,7 +288,22 @@
         604,
         387,
         368
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          1105,
+          608,
+          1468,
+          945
+        ],
+        "registered_rect": [
+          1114,
+          616,
+          360,
+          334
+        ],
+        "uniform_scale": 0.9916201
+      }
     },
     "canvas": {
       "atlas": "materials.png",
@@ -222,23 +316,38 @@
         512
       ],
       "alpha16_bbox": [
-        13,
-        66,
-        494,
-        473
-      ],
-      "alpha128_bbox": [
         14,
         66,
         493,
-        471
+        474
+      ],
+      "alpha128_bbox": [
+        15,
+        66,
+        492,
+        470
       ],
       "viewBox": [
         9,
         62,
         489,
         415
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          9,
+          62,
+          498,
+          479
+        ],
+        "registered_rect": [
+          11,
+          63,
+          485,
+          414
+        ],
+        "uniform_scale": 0.9928058
+      }
     },
     "firewood": {
       "atlas": "materials.png",
@@ -252,13 +361,13 @@
       ],
       "alpha16_bbox": [
         539,
-        100,
+        101,
         993,
-        423
+        424
       ],
       "alpha128_bbox": [
         540,
-        102,
+        103,
         992,
         423
       ],
@@ -267,7 +376,22 @@
         96,
         462,
         331
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          530,
+          94,
+          1005,
+          434
+        ],
+        "registered_rect": [
+          536,
+          98,
+          460,
+          329
+        ],
+        "uniform_scale": 0.9678801
+      }
     },
     "flagcloth": {
       "atlas": "materials.png",
@@ -280,13 +404,13 @@
         512
       ],
       "alpha16_bbox": [
-        1043,
-        82,
+        1045,
+        81,
         1525,
-        472
+        470
       ],
       "alpha128_bbox": [
-        1044,
+        1045,
         82,
         1523,
         468
@@ -296,7 +420,22 @@
         78,
         490,
         398
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          1038,
+          80,
+          1530,
+          479
+        ],
+        "registered_rect": [
+          1042,
+          78,
+          486,
+          394
+        ],
+        "uniform_scale": 0.9872123
+      }
     },
     "driftwood": {
       "atlas": "materials.png",
@@ -310,9 +449,9 @@
       ],
       "alpha16_bbox": [
         11,
-        627,
+        628,
         493,
-        921
+        922
       ],
       "alpha128_bbox": [
         12,
@@ -325,7 +464,22 @@
         623,
         490,
         302
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          4,
+          622,
+          502,
+          928
+        ],
+        "registered_rect": [
+          9,
+          625,
+          486,
+          299
+        ],
+        "uniform_scale": 0.9756098
+      }
     },
     "cairn": {
       "atlas": "materials.png",
@@ -338,15 +492,15 @@
         512
       ],
       "alpha16_bbox": [
-        533,
+        535,
         612,
-        1004,
+        1003,
         929
       ],
       "alpha128_bbox": [
-        534,
+        536,
         613,
-        1003,
+        1002,
         928
       ],
       "viewBox": [
@@ -354,7 +508,22 @@
         608,
         479,
         325
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          524,
+          606,
+          1012,
+          937
+        ],
+        "registered_rect": [
+          532,
+          610,
+          474,
+          322
+        ],
+        "uniform_scale": 0.9722222
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "created": "2026-11-16",
+  "created": "2026-11-18",
   "generator": "image_gen.imagegen",
   "status": "Original artistic game props, not archaeological evidence.",
   "grid": {
@@ -9,27 +9,31 @@
   "atlases": [
     {
       "file": "workshop.png",
-      "original_file": "exec-96521446-874e-4678-853d-2395b1cb50a8.png",
+      "original_file": "exec-22cc85ec-aa18-4c9a-9176-57830997ad9e.png",
       "width": 1254,
       "height": 1254,
       "mode": "RGBA",
-      "bytes": 2303689,
-      "sha256": "d35c2d09fe19c54e10d6eb41a749aabb18e63e17f8323dba8a846ca9ba69e7a4",
-      "prompt": "Original hand-painted inventory props for a richly illustrated historical point-and-click adventure set among Auckland Island castaways in 1864. Fine irregular graphite and ink outlines, delicate textured gouache and colored-pencil shading, believable material volume, muted warm ochre, charcoal iron, worn brown wood, taupe leather, parchment cream. Match a lovingly drawn weathered sailor in a patched wool coat. Consistent overcast light from upper left. Elegant hand-painted book illustration; NOT flat vectors, NOT emoji, NOT UI icons, NOT a 3D render or photograph. No glossy surfaces, white sticker outlines or modern materials. TRUE TRANSPARENT BACKGROUND; absolutely no opaque backdrop, no gradients filling the canvas, no scenery or floor. Only each isolated prop with a very small translucent contact shade. No people, letters, text, numbers, symbols or gridlines.\nCreate one SQUARE sprite atlas in an EXACT 3-column by 3-row layout of NINE equally sized invisible cells. Prefer 1536x1536 or 1024x1024. Each entire object stays in its own cell, centered with wide clear transparent gutters of at least 12 percent of cell width. Nothing crosses a cell boundary. Objects readable at small size, accurate clear silhouettes, no extra objects.\nROW ONE, left to right: (1) one irregular soft brown cured leather hide, visibly supple edges and tactile grain; (2) a compact stitched brown leather water flask with short wooden stopper and small strap, complete container visible; (3) one short bent dull iron pipe, hollow circular opening visible, 19th century salvaged tubing, angled diagonally.\nROW TWO: (4) a small loosely piled handful of dark charcoal chunks with readable texture and irregular broken facets; (5) three short thick salvaged iron straps laid together, rusty charcoal metal with a couple of old rivet holes, NOT nails; (6) a homemade hand forge bellows with two wooden teardrop boards, brown leather accordion sides, narrow iron nozzle, modest nineteenth-century craft construction, closed compact silhouette.\nROW THREE: (7) a small loose cluster of six hand-forged square boat nails with broad irregular heads, dull iron; (8) three weathered sawn wooden planks overlapping diagonally, complete ends and wood grain; (9) a tangled fibrous bundle of loose tawny oakum from unravelled rope, clearly fibrous caulking material, not a neat rope coil.\nAll nine props painted to the same quality and scale of detail. Keep every prop fully contained and visibly isolated against alpha transparency.",
-      "edits": "None. Original generated PNG bytes preserved.",
-      "alpha_note": "Tiny generated color fringes have alpha below 16. Crops use alpha >=16 bounds with 4-pixel padding; image bytes are unchanged."
+      "bytes": 1944536,
+      "sha256": "e492a7f4c0cbb18f47728019d5a9409581232135c2525c5693ebd2dbf6a48680",
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. 3 by 3 square. Show crumpled cured hide, corked seam-stitched leather water flask, short section of old bent pipe; black charcoal, worn flat scrap iron straps, small handmade leather-and-timber bellows; a handful of square hand-forged boat nails, split boards, teased oakum. Use black iron, oxide, wood, coarse fibres. Correct original layering, don't overwrite missing space.",
+      "edits": "Connected paint regions assigned to their original grid cell before scaling to its registered crop, including brushwork crossing a source gridline. Uniform scale, centered width, earlier lower contact. Premultiplied alpha resampling; three-pixel antialias fringe.",
+      "alpha_note": "RGBA with isolated objects and transparent gutters. alpha16_bbox measures the registered PNG within the stored cell.",
+      "generated_sha256": "9e1f722a37cfcebf52af22f627449467a4069b8552d4f0a6657734083aaeadbb",
+      "reference_sha256": "d35c2d09fe19c54e10d6eb41a749aabb18e63e17f8323dba8a846ca9ba69e7a4"
     },
     {
       "file": "voyage.png",
-      "original_file": "exec-53da8724-0dad-4362-91aa-77755551b6c8.png",
+      "original_file": "exec-3edee06b-06ea-4ac6-830a-9adc55f6a4e8.png",
       "width": 1254,
       "height": 1254,
       "mode": "RGBA",
-      "bytes": 2293156,
-      "sha256": "feb493b00633c36dd90b7eee873351a3f079aa7ec3a33680c570f6cde33e5461",
-      "prompt": "Original hand-painted inventory props for a richly illustrated historical point-and-click adventure set among Auckland Island castaways in 1864. Fine irregular graphite and ink outlines, delicate textured gouache and colored-pencil shading, believable material volume, muted warm ochre, charcoal iron, worn brown wood, taupe leather, parchment cream. Match a lovingly drawn weathered sailor in a patched wool coat. Consistent overcast light from upper left. Elegant hand-painted book illustration; NOT flat vectors, NOT emoji, NOT UI icons, NOT a 3D render or photograph. No glossy surfaces, white sticker outlines or modern materials. TRUE TRANSPARENT BACKGROUND; absolutely no opaque backdrop, no gradients filling the canvas, no scenery or floor. Only each isolated prop with a very small translucent contact shade. No people, letters, text, numbers, gridlines or frames.\nCreate one SQUARE sprite atlas in an EXACT 3-column by 3-row layout of NINE equally sized invisible cells. Prefer 1536x1536 or 1024x1024. Each entire object stays in its own cell, centered with wide clear transparent gutters of at least 12 percent of cell width. Nothing crosses a cell boundary. Objects readable at small size, accurate clear silhouettes, no extra objects.\nROW ONE, left to right: (1) a small squat open earthenware jar holding dark amber resin or pitch, old handmade clay pot with thick dark contents and a wooden stirring stick; (2) a simple carved wooden boat bailer, shallow scoop bowl with one integrated short handle, old weathered timber, 19th century hand tool; (3) a small round brass maritime compass open in a square wooden box, visible single needle and simple unlettered radial marks, no numbers or text.\nROW TWO: (4) a partially unfolded aged parchment sea chart with very faint invented coast contours and a simple dotted curved route, no readable text, no words or lettering, weighted by its own curled corners; (5) a closed weathered leather-bound pocket journal with several cream page edges visible, worn corners and a narrow simple tie, no writing on cover; (6) a compact tied burlap provisions sack, rough taupe cloth, folded neck bound with cord, full and upright, no logos.\nROW THREE: (7) an unlit old brass-and-dark-iron maritime lantern with protective wire bars and glass panes, carrying loop folded upright, modest aged finish, complete lantern; (8) a small rough wooden tray holding a thick lump of black-brown pitch mixed with loose tawny oakum strands, clearly prepared sticky caulking compound, isolated portable working material; (9) a roll of weathered cream sail canvas, tied with two thin cords, modest folded edge showing strong woven textile and stitching, complete rolled cloth.\nAll nine props painted to the same quality and scale of detail. Keep every prop fully contained and visibly isolated against alpha transparency.",
-      "edits": "None. Original generated PNG bytes preserved.",
-      "alpha_note": "Tiny generated color fringes have alpha below 16. Crops use alpha >=16 bounds with 4-pixel padding; image bytes are unchanged."
+      "bytes": 2013553,
+      "sha256": "af2252a9639198c1993cbd4e83a895c5a4024dc8f7872da4730a418303195d47",
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. 3 by 3 square. Pitch pot and stick, carved wooden bailer, brass compass in square open box; creased coastal chart without lettering, pocket journal, cinched provisions sack; period wick lantern, pitch and teased fibre on a shallow tray, roll of canvas sailcloth. Correct orientation, ordinary 1860s maritime tools with distinct material values.",
+      "edits": "Connected paint regions assigned to their original grid cell before scaling to its registered crop, including brushwork crossing a source gridline. Uniform scale, centered width, earlier lower contact. Premultiplied alpha resampling; three-pixel antialias fringe.",
+      "alpha_note": "RGBA with isolated objects and transparent gutters. alpha16_bbox measures the registered PNG within the stored cell.",
+      "generated_sha256": "144879b47e7c60eb66bfeab03905932c9cf20ad89857c83b713e967b27859d97",
+      "reference_sha256": "feb493b00633c36dd90b7eee873351a3f079aa7ec3a33680c570f6cde33e5461"
     }
   ],
   "sprites": {
@@ -44,17 +48,32 @@
         418
       ],
       "alpha16_bbox": [
-        11,
-        57,
-        404,
-        397
+        12,
+        56,
+        403,
+        396
       ],
       "viewBox": [
         7,
         53,
         401,
         348
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          9,
+          49,
+          413,
+          402
+        ],
+        "registered_rect": [
+          10,
+          53,
+          396,
+          346
+        ],
+        "uniform_scale": 0.9797101
+      }
     },
     "flask": {
       "atlas": "workshop.png",
@@ -68,16 +87,31 @@
       ],
       "alpha16_bbox": [
         484,
-        19,
+        26,
         794,
-        405
+        403
       ],
       "viewBox": [
         480,
         15,
         318,
         394
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          478,
+          13,
+          803,
+          409
+        ],
+        "registered_rect": [
+          482,
+          24,
+          314,
+          382
+        ],
+        "uniform_scale": 0.9655172
+      }
     },
     "metalPipe": {
       "atlas": "workshop.png",
@@ -90,8 +124,8 @@
         418
       ],
       "alpha16_bbox": [
-        875,
-        78,
+        874,
+        84,
         1230,
         380
       ],
@@ -100,7 +134,22 @@
         74,
         363,
         310
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          863,
+          75,
+          1237,
+          388
+        ],
+        "registered_rect": [
+          872,
+          81,
+          360,
+          301
+        ],
+        "uniform_scale": 0.9618529
+      }
     },
     "charcoal": {
       "atlas": "workshop.png",
@@ -113,17 +162,32 @@
         418
       ],
       "alpha16_bbox": [
-        19,
+        26,
         499,
-        398,
-        765
+        387,
+        760
       ],
       "viewBox": [
         15,
         495,
         387,
         274
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          12,
+          484,
+          402,
+          766
+        ],
+        "registered_rect": [
+          23,
+          497,
+          367,
+          266
+        ],
+        "uniform_scale": 0.9418182
+      }
     },
     "ironScrap": {
       "atlas": "workshop.png",
@@ -136,17 +200,32 @@
         418
       ],
       "alpha16_bbox": [
-        433,
-        462,
-        808,
-        812
+        435,
+        461,
+        807,
+        810
       ],
       "viewBox": [
         429,
         458,
         383,
         358
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          427,
+          450,
+          819,
+          818
+        ],
+        "registered_rect": [
+          432,
+          458,
+          378,
+          355
+        ],
+        "uniform_scale": 0.9637883
+      }
     },
     "bellows": {
       "atlas": "workshop.png",
@@ -159,17 +238,32 @@
         418
       ],
       "alpha16_bbox": [
-        836,
-        436,
+        838,
+        439,
         1243,
-        804
+        803
       ],
       "viewBox": [
         836,
         432,
         411,
         376
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          828,
+          430,
+          1250,
+          811
+        ],
+        "registered_rect": [
+          836,
+          436,
+          410,
+          370
+        ],
+        "uniform_scale": 0.971564
+      }
     },
     "boatNails": {
       "atlas": "workshop.png",
@@ -182,17 +276,32 @@
         418
       ],
       "alpha16_bbox": [
-        32,
-        866,
-        374,
-        1236
+        36,
+        865,
+        368,
+        1237
       ],
       "viewBox": [
         28,
         862,
         350,
         378
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          27,
+          853,
+          378,
+          1245
+        ],
+        "registered_rect": [
+          34,
+          863,
+          337,
+          377
+        ],
+        "uniform_scale": 0.9609375
+      }
     },
     "planks": {
       "atlas": "workshop.png",
@@ -205,17 +314,32 @@
         418
       ],
       "alpha16_bbox": [
-        418,
-        846,
+        421,
+        847,
         818,
-        1226
+        1224
       ],
       "viewBox": [
         418,
         842,
         404,
         388
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          405,
+          837,
+          823,
+          1234
+        ],
+        "registered_rect": [
+          418,
+          844,
+          403,
+          383
+        ],
+        "uniform_scale": 0.9641148
+      }
     },
     "oakum": {
       "atlas": "workshop.png",
@@ -228,17 +352,32 @@
         418
       ],
       "alpha16_bbox": [
-        836,
-        871,
-        1241,
-        1229
+        845,
+        882,
+        1233,
+        1226
       ],
       "viewBox": [
         836,
         867,
         409,
         366
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          822,
+          867,
+          1246,
+          1245
+        ],
+        "registered_rect": [
+          842,
+          879,
+          393,
+          350
+        ],
+        "uniform_scale": 0.9262295
+      }
     },
     "resin": {
       "atlas": "voyage.png",
@@ -251,17 +390,32 @@
         418
       ],
       "alpha16_bbox": [
-        60,
-        10,
+        59,
+        14,
         347,
-        406
+        401
       ],
       "viewBox": [
         56,
         6,
         295,
         404
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          54,
+          4,
+          355,
+          407
+        ],
+        "registered_rect": [
+          56,
+          11,
+          294,
+          393
+        ],
+        "uniform_scale": 0.9761092
+      }
     },
     "bailer": {
       "atlas": "voyage.png",
@@ -274,17 +428,32 @@
         418
       ],
       "alpha16_bbox": [
-        439,
+        440,
         72,
-        807,
-        363
+        804,
+        358
       ],
       "viewBox": [
         435,
         68,
         376,
         299
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          432,
+          68,
+          813,
+          369
+        ],
+        "registered_rect": [
+          438,
+          69,
+          369,
+          292
+        ],
+        "uniform_scale": 0.9692833
+      }
     },
     "compass": {
       "atlas": "voyage.png",
@@ -298,16 +467,31 @@
       ],
       "alpha16_bbox": [
         878,
-        6,
+        7,
         1205,
-        413
+        410
       ],
       "viewBox": [
         874,
         2,
         335,
         415
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          873,
+          3,
+          1212,
+          420
+        ],
+        "registered_rect": [
+          875,
+          4,
+          333,
+          409
+        ],
+        "uniform_scale": 0.9818731
+      }
     },
     "chart": {
       "atlas": "voyage.png",
@@ -320,17 +504,32 @@
         418
       ],
       "alpha16_bbox": [
-        7,
+        11,
         456,
-        402,
-        836
+        399,
+        776
       ],
       "viewBox": [
         3,
         452,
         403,
         384
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          4,
+          449,
+          409,
+          784
+        ],
+        "registered_rect": [
+          8,
+          454,
+          393,
+          325
+        ],
+        "uniform_scale": 0.9695122
+      }
     },
     "journal": {
       "atlas": "voyage.png",
@@ -344,16 +543,31 @@
       ],
       "alpha16_bbox": [
         457,
-        428,
+        435,
         781,
-        820
+        816
       ],
       "viewBox": [
         453,
         424,
         332,
         400
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          449,
+          422,
+          788,
+          820
+        ],
+        "registered_rect": [
+          454,
+          432,
+          330,
+          387
+        ],
+        "uniform_scale": 0.9728916
+      }
     },
     "provisions": {
       "atlas": "voyage.png",
@@ -367,16 +581,31 @@
       ],
       "alpha16_bbox": [
         873,
-        427,
-        1221,
-        820
+        441,
+        1216,
+        814
       ],
       "viewBox": [
         869,
         423,
         356,
         401
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          855,
+          419,
+          1227,
+          825
+        ],
+        "registered_rect": [
+          870,
+          438,
+          348,
+          379
+        ],
+        "uniform_scale": 0.9342466
+      }
     },
     "lantern": {
       "atlas": "voyage.png",
@@ -389,17 +618,32 @@
         418
       ],
       "alpha16_bbox": [
-        96,
-        836,
-        325,
-        1247
+        98,
+        838,
+        323,
+        1245
       ],
       "viewBox": [
         92,
         836,
         237,
         415
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          93,
+          830,
+          329,
+          1250
+        ],
+        "registered_rect": [
+          95,
+          836,
+          231,
+          411
+        ],
+        "uniform_scale": 0.9782609
+      }
     },
     "caulking": {
       "atlas": "voyage.png",
@@ -412,17 +656,32 @@
         418
       ],
       "alpha16_bbox": [
-        421,
-        908,
-        819,
-        1218
+        423,
+        907,
+        816,
+        1213
       ],
       "viewBox": [
         418,
         904,
         405,
         318
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          412,
+          900,
+          823,
+          1222
+        ],
+        "registered_rect": [
+          420,
+          904,
+          398,
+          312
+        ],
+        "uniform_scale": 0.9681529
+      }
     },
     "sailRoll": {
       "atlas": "voyage.png",
@@ -435,17 +694,32 @@
         418
       ],
       "alpha16_bbox": [
-        839,
+        843,
         915,
-        1246,
-        1199
+        1242,
+        1194
       ],
       "viewBox": [
         836,
         911,
         414,
         292
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          831,
+          909,
+          1251,
+          1204
+        ],
+        "registered_rect": [
+          840,
+          912,
+          405,
+          285
+        ],
+        "uniform_scale": 0.9651568
+      }
     }
   },
   "aliases": {
@@ -468,28 +742,45 @@
     {
       "id": "kettle",
       "file": "kettle.png",
-      "original_file": "exec-f3d3047a-15af-4bf0-a337-3a20f1df9096.png",
+      "original_file": "exec-143ae206-ad5a-4810-ba2e-e05d412ade33.png",
       "width": 1254,
       "height": 1254,
       "mode": "RGBA",
-      "bytes": 1629369,
-      "sha256": "4ac68a3e99784b8d76d5223ff94d35bf8e2385dd315f23b37d6123cfa91e00a7",
-      "prompt": "One beautiful hand-painted historical castaway adventure prop, a modest 1860s BLACK IRON KETTLE standing alone, full complete object. Squat round cast-iron body with short gently curved spout, small fitted round lid and an arched dark metal carrying handle rising above it. Worn charcoal grey iron, restrained rusty brown patina along rim and seams, softly highlighted curved surface; honest old handmade household implement, no modern enamel or plastic. Fine irregular graphite/ink outlines and textured gouache/colored pencil shading, muted warm ochre highlights and natural material grain, same coherent style as a lovingly illustrated 19th-century sailor's salvage tools, realistic volume but slightly storybook shape. Three-quarter side view, spout points left, handle fully visible, readable silhouette at 80px. Overcast light upperleft. Center inside a SQUARE canvas with at least15% clear padding on all sides. TRUE TRANSPARENT BACKGROUND with no backdrop, no floor, no texture outside object, only tiny translucent contact shadow under base. No people, letters, numbers, symbols, frames, secondary objects or steam. Not photo, not3D, notvector, notemoji, no white sticker border.",
+      "bytes": 1436314,
+      "sha256": "56635b5bbaacb2a212c7639f69f9f658023a53b60cee12265192da97505e7584",
+      "prompt": "Redraw the supplied original as a fresh, individually observed nineteenth-century naturalist's bodycolour illustration. Keep the precise number, order, silhouette, angle, scale, camera, transparent gutters and grid/template proportions to support the actual game. Richly model local materials: crisp restrained graphite on paper visible only inside the painted cut-outs, a light broken drybrush, overcast cool reflected light and dark warm contact occlusion. Distinct rust/umber, tarred slate, natural flax and old brass colours. Painted relief rather than plastic shine, no white matte or paper background, no outlines around the tiles, no letters, no extra objects. Strongly reillustrate each material from first principles, do not just tint the original. Export actual transparent background, leave transparent margins, no card, ground plane or shadow halo. A single complete humble soot-black iron kettle with hand-forged bail, spout left. Round three-quarter form, cold daylight/soft smoke-grey glints, fine rust at rivets, silhouette matches. No boiling steam and no ground. Complete on square transparent canvas.",
       "transparent_requested": true,
       "visually_inspected": true,
-      "edits": "None. Original generated PNG bytes preserved.",
+      "edits": "Uniform fit to registered crop, with contact on the earlier kettle baseline. Alpha edges were resampled premultiplied.",
       "alpha16_bbox": [
         80,
-        82,
+        92,
         1091,
-        1156
+        1145
       ],
       "viewBox": [
         76,
         78,
         1019,
         1082
-      ]
+      ],
+      "registration": {
+        "source_paint_bounds": [
+          70,
+          75,
+          1103,
+          1151
+        ],
+        "registered_rect": [
+          77,
+          89,
+          1017,
+          1059
+        ],
+        "uniform_scale": 0.9843902
+      },
+      "generated_sha256": "34901d74c3b1c6c5659524472057ffc952f45cda4b388d22053bd08a73ef84e6",
+      "reference_sha256": "4ac68a3e99784b8d76d5223ff94d35bf8e2385dd315f23b37d6123cfa91e00a7"
     }
   ]
 }

@@ -39,7 +39,7 @@ test('every campaign inventory item and visible pickup has its own painted asset
  for(const [id,painting]of Object.entries(original.props))assert.deepEqual(A.props[id],painting,'base prop changed: '+id);
 });
 
-test('new painted prop originals retain their recorded bytes, transparency and registered cell crops',()=>{
+test('redrawn props retain their full registration, original-generation provenance and alpha crops',()=>{
  const folder=path.join(dist,'assets/voyage/props');
  const manifest=JSON.parse(fs.readFileSync(path.join(folder,'manifest.json'),'utf8'));
  assert.equal(manifest.atlases.length,2);assert.equal(Object.keys(manifest.sprites).length,18);
@@ -49,7 +49,10 @@ test('new painted prop originals retain their recorded bytes, transparency and r
   assert.equal(crypto.createHash('sha256').update(p.bytes).digest('hex'),a.sha256,a.file+' original hash');
   assert.equal(p.bytes.length,a.bytes,a.file+' byte count');
   assert.equal(p.width,a.width);assert.equal(p.height,a.height);assert.equal(p.colorType,6,a.file+' alpha channel');
-  assert(a.prompt&&a.original_file&&a.edits.startsWith('None.'),a.file+' provenance');atlases.set(a.file,a);
+  assert(a.prompt&&a.original_file&&a.edits,a.file+' provenance');
+  assert.match(a.generated_sha256,/^[0-9a-f]{64}$/);assert.match(a.reference_sha256,/^[0-9a-f]{64}$/);
+  assert.notEqual(a.generated_sha256,a.sha256,a.file+' native input and registered runtime are distinct');
+  atlases.set(a.file,a);
  }
  for(const [id,s]of Object.entries(manifest.sprites)){
   const atlas=atlases.get(s.atlas);assert(atlas,id+' atlas');
@@ -59,6 +62,11 @@ test('new painted prop originals retain their recorded bytes, transparency and r
   assert(cx>=0&&cy>=0&&cx+cw<=atlas.width&&cy+ch<=atlas.height,id+' cell bounds');
   assert(x>=cx&&y>=cy&&x+w<=cx+cw&&y+h<=cy+ch,id+' neighboring cell bleed');
   assert(left>=x&&top>=y&&right<=x+w&&bottom<=y+h,id+' meaningful alpha excluded from crop');
+  const [sl,st,sr,sb]=s.registration.source_paint_bounds,[rx,ry,rw,rh]=s.registration.registered_rect;
+  assert(rx>=x&&ry>=y&&rx+rw<=x+w&&ry+rh<=y+h,id+' complete painted silhouette is inside the crop');
+  const scale=s.registration.uniform_scale;
+  assert(Math.abs((sr-sl)*scale-rw)<=.51 && Math.abs((sb-st)*scale-rh)<=.51,id+' uniform aspect-preserving fit');
+  assert((right-left)/w>.86&&(bottom-top)/h>.78,id+' visible object fills the intended crop');
  }
  for(const [alias,source]of Object.entries(manifest.aliases))assert.deepEqual(A.props[alias],A.props[source],alias+' alias');
  for(const [alias,source]of Object.entries(manifest.reused_original_props))assert.deepEqual(A.props[alias],A.props[source],alias+' reused source');

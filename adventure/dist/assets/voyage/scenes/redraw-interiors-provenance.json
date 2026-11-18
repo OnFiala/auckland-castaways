@@ -1,0 +1,89 @@
+{
+  "generator": "OpenAI image_gen.imagegen",
+  "date": "2026-11-18",
+  "method": "Image edits of previous game backgrounds; cold cabin, cold forge, slipway and chartroom first, then fire, bellows and finished boat edits derived from corresponding newly generated base. No resize or compositing. Visual reconstructions, not historical evidence.",
+  "common_prompt": "Repaint referenced fixed composition as 1864 subantarctic naturalist field gouache, preserve positions and proportions of major gameplay anchors, empty floor, no people or text, materials of adzed timber, stone, canvas and iron; slate, ochre and honey.",
+  "assets": [
+    {
+      "file": "cabin-cold.png",
+      "generated_file": "exec-9e060824-3c48-435a-bc6a-1d7bf5f4bc8b.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3061076,
+      "sha256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785",
+      "previous_sha256": "3a250fd2b957ee5a874aa0d8b7b9ef1f9d6973b83afef687c0a3bc5c27a3d030"
+    },
+    {
+      "file": "cabin.png",
+      "generated_file": "exec-e7e709ca-602b-4805-8957-bae5f535ebd5.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 2700779,
+      "sha256": "be9fbcfcfebc2069c99b961f73824e0cfa5d1cc713c60888c4d26c4d7aaa0090",
+      "previous_sha256": "d1de4528411263bff0afc2af786a9a20c568af0ad8472ccedd0693751a614326",
+      "derived_from": "cabin-cold.png"
+    },
+    {
+      "file": "forge-cold.png",
+      "generated_file": "exec-8189eeb8-9824-438d-93b4-cd96b94063cb.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 2988681,
+      "sha256": "7b3661505a3916f6965334ea03a1adb3c2a29eff56354feeebb271dcb1af77e6",
+      "previous_sha256": "544a01f95730e71cd17bf1a16ced10534356cc087cd5aa7bc97006abf11df5fe"
+    },
+    {
+      "file": "forge.png",
+      "generated_file": "exec-321ccdb3-012f-452e-924d-752c04bb558c.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 2630268,
+      "sha256": "1e1f75a2f4feb26ae01f39e2672ddfff5b89b14f8fa558f0c64f025cab33ce91",
+      "previous_sha256": "ed6ca2f8c9ae3a95c49a5930dc6b3d734e016267135b37ee458ccd14fdb780f2",
+      "derived_from": "forge-cold.png"
+    },
+    {
+      "file": "slipway.png",
+      "generated_file": "exec-1791928c-dc3a-4fed-a391-b1ce0bceae75.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3344818,
+      "sha256": "1a7949c690b08ba2487413efc40b2f3884d483062a8d8e7156cfc60b9bdba27a",
+      "previous_sha256": "e0c2bee202606c2d5e43f899150219d7896dbfc59571f7c90e19b6099236d695"
+    },
+    {
+      "file": "slipway-ready.png",
+      "generated_file": "exec-3b1951a5-bce8-4e36-a336-4ada28a6e1a3.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3063315,
+      "sha256": "97944bcd96b67210e15bac02c16542d1aae5db8dcdbbce596371fb94f74dbe34",
+      "previous_sha256": "ae2ff6187b326a73c23bea98ea3b316457a2beb7fe3676e050ce7295e5e166b9",
+      "derived_from": "slipway.png"
+    },
+    {
+      "file": "chartroom.png",
+      "generated_file": "exec-cae3e033-e11e-4345-9bc0-5f88823ec821.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 2993111,
+      "sha256": "7ab20a69c5a48afedce201a220f5e190fdd5cfbfe91fa8a2e113eae072a9ff87",
+      "previous_sha256": "b376d7b5e7ae36c540a00b78e3bb2990be22ae7d4005f2e8c18732bb83e85aa6"
+    }
+  ],
+  "scope": "Native ImageGen outputs at the painting stage. The neighbouring manifest.json records the delivered files, including local state and seasonal registration after generation."
+}

@@ -78,8 +78,12 @@ test('cold, interrupted and completed work each have distinct physical states', 
   assert.ok(f.detail('raised-planking') && !f.detail('sail-on-stocks'));
   f.draw('crossing', {rigSecured: true});
   assert.ok(f.detail('secured-shroud') && f.detail('bilge-water'));
+  f.draw('crossing', {rigSecured: true, boatDry: true});
+  assert.match(f.root.style['--life-plate'], /crossing-bailed/);
+  assert.ok(!f.detail('bilge-water'));
   f.draw('crossing', {rigSecured: true, boatDry: true, sailMended: true});
-  assert.ok(f.detail('dry-boards') && f.detail('sail-repair') && !f.detail('bilge-water'));
+  assert.match(f.root.style['--life-plate'], /crossing-safe/);
+  assert.ok(!f.detail('bilge-water'));
   f.draw('landing', {boatMoored: true});
   assert.ok(f.detail('mooring-line') && !f.detail('lantern-on-post'));
   f.draw('landing', {boatMoored: true, landingMarked: true});

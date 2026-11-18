@@ -4,6 +4,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 let state=E.createGame(),selected=null,player={x:45,y:84},ticket=0,thoughtTimer,captionTimer,revealTimer,completionTimer,saving=true,finalShown=false,modalReturnFocus=null,completionPending=false;
 let targetScene=null,worldMarkup=null,actorFocus=null,dialogue=null,dialogueTimer=null,playerFacing=1,walkDistance=0,lastLiveTime=null;
 const Stage=window.CastawayStage, Life=window.CastawayLife, Work=window.CastawayWorkPoses, Ground=window.CastawayGround, Choreo=window.CastawayChoreography, Bench=window.CastawayBench, Observations=window.CastawayObservations;
+const Weather=window.CastawayWeather;
 const staged=Boolean(CAMPAIGN&&Stage&&Ground&&Choreo);
 let examining=false, playerWork='stand', hintKey='', hintLevel=0;
 const actorHomes=new Map(),actorTracks=new Map(),actorPositions=new Map(),walkImages=new Map();
@@ -150,11 +151,18 @@ async function walkTo(x,y){
   const path=Choreo.walker(player,playerFacing<0?'left':'right',walkDistance);
   path.go(profile().walkPolygon,{x,y},heightAt);
   const ready=await prepareWalk(playerId());if(mine!==ticket)return false;
+  const stepLength=M.STRIDE / 2;
+  let lastContact=Math.floor(walkDistance / stepLength);
   let last=performance.now();$('player').classList.add('walking');
   return new Promise(resolve=>{function tick(now){
    if(mine!==ticket){resolve(false);return;}
    const step=path.tick(now-last,heightAt,{paused:document.hidden,reduced:effectiveReduced()||!ready});last=now;
    player={x:step.x,y:step.y};playerFacing=step.facing==='left'?-1:1;walkDistance=path.stride;updatePlayer();
+   const contact=Math.floor(walkDistance / stepLength);
+   if(step.moving && contact>lastContact){
+    Weather?.footfall($('place-weather'),state,player.x,player.y);
+   }
+   lastContact=contact;
    actorPose(playerId(),$('player-sprite'),step.moving,step.frame,step.facing,path.active?'walk':'stand');
    if(path.active)requestAnimationFrame(tick);else{$('player').classList.remove('walking');resolve(true);}
   }requestAnimationFrame(tick);});
@@ -246,7 +254,11 @@ async function activate(target,inspect=false){
  const pendingState=state;
  const complete=(atBench=false)=>{
   if(state!==pendingState)return;
-  const commit=()=>{apply(r,target);if(['shelter_built','fire_lit'].includes(r.cue))startDialogue('player',true);};
+  const commit=()=>{
+   apply(r,target);
+   if(staged)Weather?.respond($('place-weather'),state,target.id);
+   if(['shelter_built','fire_lit'].includes(r.cue))startDialogue('player',true);
+  };
   if(atBench){
    const marker=ticket;commit();Life?.work($('place-life'),state,target.id);
    if(effectiveReduced())playerPose();else setTimeout(()=>{if(ticket===marker)playerPose();},550);
@@ -315,7 +327,12 @@ function render(){const scene=currentScene(),world=W.scenes?.[state.scene];$('sc
  });
  const stagedExits=exitsFor().map(e=>staged?Stage.stageExit(state.scene,e):e);
  $('exits').innerHTML=stagedExits.map(e=>`<button class="exit" style="left:${e.x}%;top:${e.y}%" data-exit="${e.id}" title="${e.name}" aria-label="${e.name}">${e.x<50?'‹':'›'}</button>`).join('');$('exits').querySelectorAll('[data-exit]').forEach(b=>{const exit=stagedExits.find(x=>x.id===b.dataset.exit);b.onclick=e=>{e.stopPropagation();exitScene(exit);};b.onfocus=b.onmouseenter=()=>label(exit.name);b.onblur=b.onmouseleave=()=>label(selected?E.ITEMS[selected].name+' → …':scene.name);});
- worldChanges();Life?.render($('place-life'),state);renderInventory();updatePlayer();playerPose(playerWork);$('cancel-item').hidden=!selected;$('cursor-item').innerHTML=selected?svg(selected):'';$('cursor-item').style.display=selected?'block':'none';label(selected?E.ITEMS[selected].name+' → …':scene.name);
+ worldChanges();Life?.render($('place-life'),state);
+ if(staged&&Weather){
+  Weather.render($('place-weather'),state);
+  $('scene').setAttribute('aria-description',Weather.describe(state).weather);
+ }
+ renderInventory();updatePlayer();playerPose(playerWork);$('cancel-item').hidden=!selected;$('cursor-item').innerHTML=selected?svg(selected):'';$('cursor-item').style.display=selected?'block':'none';label(selected?E.ITEMS[selected].name+' → …':scene.name);
 }
 function modal(title,html){closeDialogue();cancelWalk();const dialog=$('modal');if(!dialog.open)modalReturnFocus=document.activeElement;$('modal-title').textContent=title;$('modal-body').innerHTML=html;if(!dialog.open)dialog.showModal();}
 $('inspect-mode').onclick=()=>{cancelWalk();if(selected)setSelected(null);setExamine(!examining);label(examining?'Choose something to examine.':currentScene().name);};
@@ -368,7 +385,7 @@ $('credits').onclick=()=>{const end=window.CastawayVoyageStory?.ENDING;modal('Th
 $('scene').onclick=e=>{if(chapterBusy)return;if(e.target.closest('button')||e.target.closest('.dialogue'))return;closeDialogue();$('first-hint').hidden=true;const r=$('scene').getBoundingClientRect();walkTo((e.clientX-r.left)/r.width*100,(e.clientY-r.top)/r.height*100);};
 $('scene').oncontextmenu=e=>e.preventDefault();$('hint').onclick=hint;$('reveal').onclick=reveal;$('settings').onclick=settings;$('help').onclick=help;$('cancel-item').onclick=()=>{cancelWalk();setSelected(null);};$('modal-close').onclick=()=>$('modal').close();$('modal').addEventListener('close',()=>{if(modalReturnFocus?.isConnected)modalReturnFocus.focus();modalReturnFocus=null;if(completionPending)revealCompletion();});$('dismiss-hint').onclick=()=>$('first-hint').hidden=true;$('keep-exploring').onclick=()=>{$('completion').hidden=true;if(!CAMPAIGN)startDialogue('george',true);$('scene').focus();};$('new-game').onclick=restart;
 window.addEventListener('pointermove',e=>{if(!selected)return;$('cursor-item').style.left=e.clientX+14+'px';$('cursor-item').style.top=e.clientY+12+'px';});window.addEventListener('keydown',e=>{if($('modal').open||Bench?.shown())return;if(e.key==='Escape'){setExamine(false);if(dialogue){closeDialogue();return;}cancelWalk();setSelected(null);}if(e.code==='Space'&&!$('modal').open&&!e.target.closest('button')){e.preventDefault();reveal();}});
-$('rain').innerHTML=Array.from({length:28},(_,i)=>`<i style="--x:${i*37%110}%;--speed:${.8+i%5*.12}s;--delay:-${i*.17}s"></i>`).join('');
+if(!staged)$('rain').innerHTML=Array.from({length:28},(_,i)=>`<i style="--x:${i*37%110}%;--speed:${.8+i%5*.12}s;--delay:-${i*.17}s"></i>`).join('');
 $('dialogue-next').onclick=e=>{e.stopPropagation();advanceDialogue();};$('dialogue-close').onclick=e=>{e.stopPropagation();closeDialogue();};document.addEventListener?.('visibilitychange',()=>{lastLiveTime=null;document.body.classList.toggle('inactive',document.hidden);if(document.hidden){closeDialogue();cancelWalk();}});
 if(staged)player=entryPoint();prepareWalk(playerId());savePrefs();save();render();prepareBackground(state);requestAnimationFrame(liveFrame);if(state.actions>0)$('first-hint').hidden=true;if(CAMPAIGN&&state.completed)revealCompletion();else if(CAMPAIGN)showChapterBanner();
 })();
