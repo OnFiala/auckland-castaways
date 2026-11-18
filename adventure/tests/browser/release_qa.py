@@ -21,6 +21,38 @@ def write(path, data):
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def painted_hit(page, rect, u, v):
+    x = rect["x"] + rect["width"] * u / 100
+    y = rect["y"] + rect["height"] * v / 100
+    hit = page.evaluate("([x,y]) => document.elementFromPoint(x,y)?.closest('[data-target]')?.dataset.target",
+                        [x, y])
+    return {"point": [x, y], "hit": hit}
+
+
+def pull_block(page, evidence, touch):
+    leave = page.locator('[data-exit="exit_wreck"]')
+    (leave.tap if touch else leave.click)()
+    page.wait_for_function(f"{READ}.scene === 'wreck'")
+    ready(page)
+    scene = page.locator("#scene")
+    scene.scroll_into_view_if_needed()
+    # Centre of the wooden sheave on the painted plate, away from the action button's centre.
+    hit = painted_hit(page, scene.bounding_box(), 24.88, 71.57)
+    assert hit['hit'] == 'wreck_hawser', hit
+    before = state(page)
+    strip = page.locator('[data-life="wreck_hawser"] .life-strip')
+    expect(strip).to_have_attribute('src', re.compile(r'assets/tactile/reeved-block\.webp$'))
+    assert strip.evaluate("el => el.style.left") == '0%'
+    (page.touchscreen.tap if touch else page.mouse.click)(*hit['point'])
+    selector = '[data-life="wreck_hawser"] .life-strip'
+    loaded = page.wait_for_function(
+        "selector => { const offset = parseFloat(document.querySelector(selector)?.style.left); "
+        "return offset <= -400 && offset; }", arg=selector).json_value()
+    page.wait_for_function("selector => document.querySelector(selector)?.style.left === '0%'", arg=selector)
+    write(evidence / 'reeved-block.json', {**hit, "loadedOffsetPercent": loaded, "restOffsetPercent": 0})
+    assert state(page) == before
+
+
 def shore(page, evidence, touch):
     assert state(page)["actions"] == 0 and state(page)["inventory"] == []
     assert not page.evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches")
@@ -29,16 +61,15 @@ def shore(page, evidence, touch):
     rect = scene.bounding_box()
     hits = {}
     for name, (u, v) in BEACH.items():
-        x = rect["x"] + rect["width"] * u / 100
-        y = rect["y"] + rect["height"] * v / 100
-        hit = page.evaluate("([x,y]) => document.elementFromPoint(x,y)?.closest('[data-target]')?.dataset.target",
-                            [x, y])
-        hits[name] = {"point": [x, y], "hit": hit, "button": target(page, name).bounding_box()}
+        hits[name] = {**painted_hit(page, rect, u, v), "button": target(page, name).bounding_box()}
     write(evidence / 'shore-targets.json', {"stage": rect, "targets": hits})
     assert all(row["hit"] == name for name, row in hits.items()), hits
     page.screenshot(path=evidence / 'shore.png')
 
     # Use physical coordinates without selector dispatch, forced clicks or engine commands.
+    actor = page.locator('#player')
+    read_feet = "el => [parseFloat(el.style.left),parseFloat(el.style.top)]"
+    origin = actor.evaluate(read_feet)
     x, y = hits["rope"]["point"]
     (page.touchscreen.tap if touch else page.mouse.click)(x, y)
     page.wait_for_function("document.querySelector('#player-sprite')?.dataset.moving === 'true'")
@@ -57,13 +88,17 @@ def shore(page, evidence, touch):
       }
       sample();
     })""")
-    write(evidence / 'alick-walk.json', walk)
-    assert len(walk["frames"]) >= 2 and walk["last"][0] > walk["first"][0] + 2, walk
-    assert walk["asset"].endswith("assets/walk/player.webp"), walk
     expect(page.locator('[data-item="rope"]')).to_be_visible()
+    arrival = actor.evaluate(read_feet)
+    walk.update(origin=origin, arrival=arrival)
+    write(evidence / 'alick-walk.json', walk)
+    assert len(walk["frames"]) >= 2 and walk["first"][0] - walk["last"][0] > 2, walk
+    assert abs(origin[0] - 63.6) < 0.25 and abs(arrival[0] - 42.16) < 0.25, walk
+    assert walk["asset"].endswith("assets/walk/player.webp"), walk
     page.reload()
     ready(page)
     assert not target(page, 'rope').count() and "rope" in state(page)["inventory"]
+    pull_block(page, evidence, touch)
 
 
 def retry_scenery(page, evidence, painting):

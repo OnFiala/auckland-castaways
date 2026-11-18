@@ -101,11 +101,37 @@ def inspect_pan(page, evidence):
 
 def check_repair(page):
     before = state(page)
-    target(page, 'tinPan').click()
+    target(page, 'tinPan').scroll_into_view_if_needed()
+    page.mouse.click(*pan_point(page))
     bench = page.locator('#workbench')
     expect(bench.locator('#fw-description')).to_contain_text('rim is dry')
     expect(bench.locator('.fw-drip,.fw-pan-ring,[data-fw-point]')).to_have_count(0)
     bench.locator('[data-fw-close]').first.click()
+    assert state(page) == before
+
+
+def archive(page, evidence):
+    before = state(page)
+    page.locator('#open-epilogue').click()
+    table = page.locator('#witness-archive')
+
+    def file_slip(slip, pocket):
+        table.locator(f'[data-ep-slip="{slip}"]').click()
+        table.locator(f'[data-ep-place="{pocket}"]').click()
+
+    file_slip('matches', 'dalgarno')
+    file_slip('boat', 'smith')
+    table.locator('[data-ep-page="dates"]').click()
+    file_slip('wreck', 'wreckMay')
+    file_slip('rescue', 'rescueMay')
+    file_slip('slope', 'august')
+    table.locator('[data-ep-page="mark"]').click()
+    table.locator('[data-ep-finding="unresolved"]').click()
+    expect(table.locator('.ep-coda')).to_contain_text('Origin unknown')
+    expect(table.locator('.ep-coda')).to_contain_text('George Dalgarno, Andrew Smith and Robert Holding')
+    table.screenshot(path=evidence / 'epilogue.png')
+    table.locator('.ep-coda [data-ep-close]').click()
+    expect(table).not_to_be_visible()
     assert state(page) == before
 
 
@@ -148,6 +174,7 @@ def campaign(page, evidence):
             expect(page.locator('#completion')).to_be_visible()
             expect(page.locator('#ending-portraits figure')).to_have_count(5)
             page.screenshot(path=evidence / 'rescue.png')
+            archive(page, evidence)
             assert chapters == set(range(1, 8)) and completed_work == set(WORK) and pan_checked
             return
         close_if_shown(page, '#cancel-item')
