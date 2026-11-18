@@ -1,6 +1,6 @@
 # Painted walking poses
 
-Walking and resting use the six-pose atlases. The individual atlas records list the current source dimensions, alpha bounds, crop, ground anchor and SHA-256. Hands-on work uses a separate set of poses. [Frame registration](dist/animation.js) · [Working-pose manifest](dist/assets/work-poses/manifest.json) · [Weather and art review](reviews/26-weather-and-art.md)
+Walking uses the six-pose atlases. In the campaign, a stopped person uses the upright drawing from the working sheet. Reaching and kneeling are brief gestures on that same sheet. The individual walk records list the source dimensions, alpha bounds, crop, ground anchor and SHA-256. [Henry walking, working and standing after a reload](reviews/crew/README.md). [Frame registration](dist/animation.js) · [Working-pose manifest](dist/assets/work-poses/manifest.json) · [Weather and art review](reviews/26-weather-and-art.md)
 
 | Character | PNG | Provenance and measurements |
 |---|---|---|

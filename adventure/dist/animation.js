@@ -18,7 +18,9 @@
     george: walk('george', [68, 1, 382, 510], [256, 508])
   };
   // Movement units are body heights, so every person takes the same-sized steps.
-  const REST_FRAME = 1, SPEED = .55, STRIDE = .40;
+  // One complete atlas cycle contains two footfalls. At deck-walking pace
+  // the feet land about 1.6 times per second.
+  const REST_FRAME = 1, SPEED = .55, STRIDE = .88;
   function frameIndex(distanceBodyHeights) {
     return Number.isFinite(distanceBodyHeights)
       ? Math.floor((Math.abs(distanceBodyHeights) + 1e-9) / (STRIDE / 6)) % 6 : 0;
@@ -30,12 +32,16 @@
     const c = a.commoncrop;
     return [(n % 3) * 512 + c[0], Math.floor(n / 3) * 512 + c[1], c[2], c[3]];
   }
+  function centeredClipX(atlas, frame) {
+    const [cropX, , cropWidth] = atlas.commoncrop;
+    return frame[0] + cropX + cropWidth / 2 - atlas.groundanchor[0];
+  }
   function sprite(id, frame = REST_FRAME) {
     const a = WALKS[id], b = frameBox(id, frame);
     if (!a) return '';
     const box = b.join(' ');
     const groundOffset = (a.commoncrop[1] + a.commoncrop[3] - a.groundanchor[1]) / a.commoncrop[3] * 100;
-    return `<svg class="painted walk-painting walk-viewport" style="position:relative;top:${groundOffset}%" viewBox="${box}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><svg class="atlas-clip" x="${b[0]}" y="${b[1]}" width="${b[2]}" height="${b[3]}" viewBox="${box}" overflow="hidden" style="width:${b[2]}px;height:${b[3]}px;overflow:hidden!important"><image href="${a.file}" width="${a.width}" height="${a.height}"/></svg></svg>`;
+    return `<svg class="painted walk-painting walk-viewport" style="position:relative;top:${groundOffset}%" viewBox="${box}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><svg class="atlas-clip" x="${centeredClipX(a, b)}" y="${b[1]}" width="${b[2]}" height="${b[3]}" viewBox="${box}" overflow="hidden" style="width:${b[2]}px;height:${b[3]}px;overflow:hidden!important"><image href="${a.file}" width="${a.width}" height="${a.height}"/></svg></svg>`;
   }
   const mounted = new WeakMap();
   function update(node, id, frame = REST_FRAME) {
@@ -54,7 +60,7 @@
     // Keep the decoded image alive. Only the clipping viewport moves over its atlas.
     record.viewport.setAttribute('viewBox', key);
     record.clip.setAttribute('viewBox', key);
-    record.clip.setAttribute('x', b[0]);
+    record.clip.setAttribute('x', centeredClipX(WALKS[id], b));
     record.clip.setAttribute('y', b[1]);
     record.frame = key;
     return true;

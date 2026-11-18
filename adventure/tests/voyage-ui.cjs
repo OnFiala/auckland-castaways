@@ -41,8 +41,8 @@ async function go(ui,destination){
  assert.equal(ui.state().scene,destination);
 }
 const workMoves={
- chest:['notch','near','press'], roof:['under','left','right','pour'], drill:['fresh','scratch','edge','reclaim'],
- hull:['middle','pack','pack','pitch'], rig:['clew','port','lull','haul'], chart:['origin','east','inlet','verify'], landing:['high','pay','crest','trough']
+ chest:['notch','near','press'], roof:['pan','wetSeam','under','left','right','pour'], drill:['fresh','scratch','edge','reclaim'],
+ fastening:['pressPlank','giveNails','bow','strike','release','proveJoint'], hull:['middle','pack','pack','pitch'], rig:['clew','port','lull','haul'], chart:['origin','east','inlet','verify'], landing:['high','pay','crest','trough']
 };
 const worked=new Set();
 async function doWork(ui){
@@ -66,6 +66,18 @@ async function hintStep(ui){
  }else if(h.itemId){assert(ui.item(h.itemId),`hinted tool ${h.itemId} is owned`);assert(ui.target(h.targetId),`hinted target ${h.targetId} exists`);await ui.use(h.itemId,h.targetId);
  }else{assert(ui.target(h.targetId),`hinted action ${h.targetId} exists`);await ui.pick(h.targetId);}
  await doWork(ui);
+ const sewing=ui.ids.get('repair-roll');
+ if(h.targetId==='campTable' && before.repairRoll && !before.repairRoll.seen){
+  assert.equal(ui.ids.get('dialogue').hidden,false,'Henry gets to speak about the fresh supplies');
+  assert.match(ui.ids.get('dialogue-text').textContent,/parcel/);
+  await ui.click('dialogue-next');
+ }
+ if(sewing.open){
+  assert.equal(ui.state().chapter,7);
+  await ui.click(sewing.querySelector('[data-roll-spot="'+ui.state().repairRoll.place+'"]'));
+  assert(ui.state().repairRoll.seen);
+  await ui.click(sewing.querySelector('[data-roll-leave]'));
+ }
  assert.notEqual(signature(ui.state()),signature(before),`hint makes progress: chapter ${before.chapter}, ${h.text}`);
  assert(E.restore(ui.state()),'each real-handler state is valid');
 }
@@ -74,7 +86,18 @@ function passage(ui){return ui.ids.get('chapter-exit');}
 async function advance(ui){
  await dismiss(ui);const before=ui.state();assert(before.chapterComplete,'chapter must be solved before passage');
  const control=passage(ui);assert(control&&!control.hidden,'solved chapter exposes its in-world passage');await ui.click(control);ui.runTimers();await ui.flush();
- for(let i=0;i<2&&ui.state().chapter===before.chapter;i++){assert.notEqual(ui.state().scene,before.scene,'the ordinary exit must lead toward the chapter departure');await ui.click(passage(ui));ui.runTimers();await ui.flush();}
+ for(let i=0;i<3&&ui.state().chapter===before.chapter;i++){
+  const sewing=ui.ids.get('repair-roll');
+  if(sewing.open){
+   assert.equal(before.chapter,4);
+   await ui.click(sewing.querySelector('[data-roll-spot="peg"]'));
+   await ui.click(sewing.querySelector('[data-roll-leave]'));
+  }else{
+   assert.notEqual(ui.state().scene,before.scene,'the ordinary exit must lead toward the chapter departure');
+   await ui.click(passage(ui));
+  }
+  ui.runTimers();await ui.flush();
+ }
  assert.equal(getChapter(ui.state()),getChapter(before)+1);assert.equal(ui.state().completed,false);assert.equal(ui.state().chapterComplete,false);
  assert.equal(ui.ids.get('completion').hidden,true,'intermediate chapters cannot show the final rescue ending');
 }
@@ -133,6 +156,7 @@ test('the saved finale reopens, credits remain readable, and restart cancels old
  assert.equal(ui.ids.get('ending-portraits').querySelectorAll('img').length,5);
  await ui.click('credits');assert(ui.ids.get('modal').open);assert.match(ui.ids.get('modal-body').innerHTML,/Invercauld/);await ui.click('modal-close');
  await ui.click('keep-exploring');assert(ui.ids.get('completion').hidden);assert.equal(getChapter(ui.state()),7);
+ await ui.click('journey');await ui.click('return-ending');assert(!ui.ids.get('completion').hidden);assert(!ui.ids.get('open-epilogue').hidden);
  await ui.click('new-game');assert(ui.ids.get('modal').open);await ui.click('confirm-restart');ui.runTimers();assert.equal(getChapter(ui.state()),1);assert.equal(ui.state().completed,false);assert.equal(ui.state().chapterComplete,false);assert.deepEqual(canonical(ui.state().inventory),[]);assert(ui.ids.get('completion').hidden);
 });
 
@@ -197,4 +221,79 @@ test('a saved sailing puzzle restores the painting and its physical weather resp
   }
  }
  assert.deepEqual([...expectedPlates], ['crossing-wet','crossing-bailed','crossing-safe']);
+});
+
+test('Alick can put the roll away, change his mind and reload; Musgrave later finds the matching repair',async()=>{
+ const initial=fixture(4,true);
+ let ui=createUi({initial:{[KEY]:JSON.stringify(initial)}});
+ await go(ui,'slipway');await ui.click(passage(ui));
+ let panel=ui.ids.get('repair-roll');assert(panel.open);
+ assert(panel.querySelector('[data-roll-leave]').hidden);
+ await ui.click(panel.querySelector('[data-roll-fold]'));
+ assert.equal(panel.querySelector('.roll-object').dataset.place,'table');
+ assert(!ui.state().repairRoll,'folding alone does not choose a place');
+ await ui.click(panel.querySelector('[data-roll-spot="peg"]'));
+ assert.equal(ui.state().repairRoll.place,'peg');
+ await ui.click(panel.querySelector('[data-roll-spot="board"]'));
+ assert.equal(ui.state().repairRoll.place,'board');
+ await ui.click(panel.querySelector('[data-roll-close]'));
+ assert.equal(ui.state().chapter,4);
+ ui=createUi({initial:canonical(ui.stored)});await ui.click(passage(ui));panel=ui.ids.get('repair-roll');
+ assert(panel.open);assert(!panel.querySelector('[data-roll-leave]').hidden);
+ await ui.click(panel.querySelector('[data-roll-leave]'));assert.equal(ui.state().chapter,5);
+ const august=fixture(7);august.repairRoll=canonical(ui.state().repairRoll);
+ ui=createUi({initial:{[KEY]:JSON.stringify(august)}});await go(ui,'return_camp');
+ await ui.pick('campTable');panel=ui.ids.get('repair-roll');assert(panel.open);
+ assert.match(panel.querySelector('.roll-background').src,/return-board\.webp/);
+ await ui.click(panel.querySelector('[data-roll-spot="peg"]'));assert(!ui.state().repairRoll.seen);
+ await ui.click(panel.querySelector('[data-roll-spot="board"]'));assert(ui.state().repairRoll.seen);
+ assert.match(ui.ids.get('roll-line').textContent,/Henry/);
+ await ui.click(panel.querySelector('[data-roll-close]'));assert(!panel.open);
+ ui=createUi({initial:canonical(ui.stored)});await ui.pick('campTable');assert.match(ui.ids.get('roll-line').textContent,/Henry/);
+ const old=createUi({initial:{[KEY]:JSON.stringify(fixture(7))}});await go(old,'return_camp');await old.pick('campTable');
+ assert(!old.ids.get('repair-roll').open);assert.equal(old.state().repairRoll,undefined);
+});
+
+test('the household keepsake rejects impossible dates and unknown storage locations',()=>{
+ const E=require('../dist/voyage.js'),july=E.travel(fixture(4,true),'slipway').state;
+ const before=july.scene==='slipway'?july:{...july,scene:'slipway'};
+ assert(!E.stowRoll(before,'missing').changed);
+ assert.equal(E.restore({...fixture(3),repairRoll:{place:'board',seen:false}}),null);
+ assert.equal(E.restore({...fixture(5),repairRoll:{place:'peg',seen:true}}),null);
+ assert.equal(E.restore({...fixture(7),repairRoll:{place:'unknown',seen:false}}),null);
+ const held=E.stowRoll(before,'peg').state;
+ assert(held.repairRoll);assert.deepEqual(E.restore(held),held);
+ assert.equal(E.stowRoll(held,'peg').changed,false);
+});
+
+test('placing firewood lets Henry tend it once; on reload the crew is already standing', async () => {
+ const base = require('../dist/engine.js');
+ let state = base.createGame();
+ for (const [method, ...args] of [
+  ['interact','rope','take'], ['interact','pole','take'], ['combine','rope','pole'], ['useItem','loopPole','sail'],
+  ['travel','wreck'], ['interact','prybar','take'], ['useItem','prybar','crate'], ['travel','beach'],
+  ['useItem','axe','driftwood'], ['travel','camp'], ['useItem','canvas','shelter']
+ ]) state = base[method](state,...args).state;
+ const ui = createUi({initial:{'castaways-adventure-v3':JSON.stringify(state)}});
+ function observeHenry(ui) {
+  const poses = [], original = ui.context.CastawayWorkPoses.show;
+  ui.context.CastawayWorkPoses.show = (node,id,pose,facing) => {
+   if (id === 'henry' && poses.at(-1) !== pose) poses.push(pose);
+   return original(node,id,pose,facing);
+  };
+  return poses;
+ }
+ const visible = observeHenry(ui);
+ await ui.flush();
+ await ui.use('firewood','hearth');
+ assert.equal(ui.state().flags.firewoodPlaced,true);
+ assert.deepEqual(visible,['stand','crouch','stand']);
+ const actor = ui.ids.get('person-henry'), foot = actor.dataset.foot;
+ await ui.flush();
+ assert.equal(ui.ids.get('person-henry'),actor);
+ assert.equal(actor.dataset.foot,foot);
+ const again = createUi({initial:canonical(ui.stored)}), restored = observeHenry(again);
+ await again.flush();
+ assert.deepEqual(restored,['stand']);
+ assert.equal(again.ids.get('person-henry').dataset.foot,foot);
 });

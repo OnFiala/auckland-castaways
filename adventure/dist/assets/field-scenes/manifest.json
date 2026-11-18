@@ -1,0 +1,122 @@
+{
+  "description": "Measured crops of existing project paintings. Positions, water, fastenings and held tools are drawn at runtime; the puzzles are fictional reconstructions. Pixel crop rectangles are left, top, right, bottom in the full source.",
+  "assets": [
+    {
+      "file": "slipway.webp",
+      "source": "voyage/scenes/slipway.png",
+      "sourceSHA256": "f93e33d7ffaf3f61a404977efcff7e6be13f13fa3d804ec7de06523836c73068",
+      "crop": [
+        584,
+        225,
+        1508,
+        841
+      ],
+      "size": [
+        924,
+        616
+      ],
+      "sha256": "cfdf5d733cf27e261947ca46744a1df5619c429a3265215143cd4d9f2cdb0cfe"
+    },
+    {
+      "file": "cabin.webp",
+      "source": "voyage/scenes/cabin-cold.png",
+      "sourceSHA256": "c5eec974384b37aa9aaac6660014cff7d0db6b78281fb388685b50a82e3fa785",
+      "crop": [
+        125,
+        0,
+        1325,
+        800
+      ],
+      "size": [
+        1200,
+        800
+      ],
+      "sha256": "fbe6291d787a077b1fca142fcd4470ef73a63df43f15774479f255dd1f18a1c9"
+    },
+    {
+      "file": "timber.webp",
+      "source": "workplates/hull.webp",
+      "sourceSHA256": "18d245946f9bc56be355c35dde164c7817417e37c84f11716f5c65ee3ba9cd93",
+      "crop": [
+        280,
+        364,
+        1000,
+        437
+      ],
+      "size": [
+        720,
+        73
+      ],
+      "sha256": "385ea6d989d4811f759792edc18cb507840b7102b8297b753e6747c3ad44b0cb"
+    },
+    {
+      "file": "player-stand.webp",
+      "source": "work-poses/player.png",
+      "sourceSHA256": "67d120e03375beb530c97558bbe2e358e232c58b87ce89a36e15ab7bf9f4060e",
+      "crop": [
+        244,
+        4,
+        518,
+        718
+      ],
+      "size": [
+        146,
+        380
+      ],
+      "sha256": "4373d984bec62b8c6ef634951a63922fef536f97a3c2e4cc199ec4f832a26a73"
+    },
+    {
+      "file": "player-reach.webp",
+      "source": "work-poses/player.png",
+      "sourceSHA256": "67d120e03375beb530c97558bbe2e358e232c58b87ce89a36e15ab7bf9f4060e",
+      "crop": [
+        854,
+        51,
+        1339,
+        716
+      ],
+      "size": [
+        277,
+        380
+      ],
+      "sha256": "0ea33f86793bbd36bcfc7340329a1e207255f6aeba3d2968735e920ade0402c9"
+    },
+    {
+      "file": "musgrave-stand.webp",
+      "source": "work-poses/musgrave.png",
+      "sourceSHA256": "5d6ca822e99eb1821ee6155da9160a19c8c482ab15467bba32d484c9bb263d30",
+      "crop": [
+        156,
+        6,
+        414,
+        858
+      ],
+      "size": [
+        115,
+        380
+      ],
+      "sha256": "e028375e643cf31931dc23804f5abbbb1a472f139b542446aeb0f9436291bec6"
+    },
+    {
+      "file": "musgrave-reach.webp",
+      "source": "work-poses/musgrave.png",
+      "sourceSHA256": "5d6ca822e99eb1821ee6155da9160a19c8c482ab15467bba32d484c9bb263d30",
+      "crop": [
+        628,
+        64,
+        1134,
+        857
+      ],
+      "size": [
+        242,
+        379
+      ],
+      "sha256": "76a4d9dcab4d1657d2451eb2352758f2fcb9bd17edc1e2d7b283dbb1fd61a42c"
+    }
+  ],
+  "sound": {
+    "file": "drop-in-pan.wav",
+    "sha256": "8e5c941092a909af6fc23d56bf60abc0127765f56b6a709e02962d4469f61f4f",
+    "origin": "Original synthesized contact and ringing tin partials, three staggered drops, stereo with the source right of centre. Played only when the player chooses to listen."
+  }
+}

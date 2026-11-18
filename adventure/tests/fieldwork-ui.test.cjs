@@ -9,6 +9,7 @@ const {app} = require('./ui-contract.cjs');
 
 function workroom(options) {
   const ui = app(options);
+  options?.setup?.(ui);
   for (const name of ['fieldwork.js', 'fieldwork-ui.js']) {
     const file = path.join(__dirname, '../dist', name);
     vm.runInContext(fs.readFileSync(file, 'utf8'), ui.context, {filename: file});
@@ -75,9 +76,9 @@ test('invalid partial saves are discarded, and new-game reset clears work across
   const bad = 'until-we-return.fieldwork.1.roof';
   const room = workroom({initial: {[bad]: JSON.stringify({trail: ['under','no-such-action'], hints: 3, done: true})}});
   room.open('roof');
-  assert.ok(room.dialog.querySelector('[data-fw-point="under"]'));
+  assert.ok(room.dialog.querySelector('[data-fw-point="pan"]'));
   assert.equal(room.dialog.querySelector('.fw-hint-text').textContent, '');
-  await room.point('under');
+  await room.point('pan');
   await room.click('[data-fw-close]');
   room.open('drill');
   await room.point('fresh');
@@ -85,7 +86,7 @@ test('invalid partial saves are discarded, and new-game reset clears work across
   assert.equal(room.bench.shown(), false);
   assert.ok(!Object.keys(room.ui.stored).some(k => k.includes('fieldwork.')));
   room.open('roof');
-  assert.ok(room.dialog.querySelector('[data-fw-point="under"]'));
+  assert.ok(room.dialog.querySelector('[data-fw-point="pan"]'));
 });
 
 test('blocked persistent storage still supports a cancel and resume in the same game', async () => {
@@ -112,4 +113,110 @@ test('a line can be laid by dragging its real endpoints, including cancel, a wro
  assert(!room.dialog.querySelector('[data-fw-finish]'));
  drag(48,31,35,76);await room.point('lull');await room.point('haul');await room.click('[data-fw-finish]');
  assert.equal(room.calls.complete,1);
+});
+
+test('the room survey is available without a patch, and reading the pan works with its sound muted', async () => {
+  const room = workroom();
+  const played=[];
+  room.ui.context.Audio=class { constructor(src){this.src=src;} play(){played.push(this.src);return Promise.resolve();} pause(){} };
+  room.bench.surveyRoof();
+  await room.point('oldMark');
+  assert.match(room.dialog.querySelector('.fw-feedback').textContent,/dry/);
+  await room.point('drySeam');
+  assert.match(room.dialog.querySelector('.fw-feedback').textContent,/pan/);
+  await room.click('[data-fw-sound]');
+  await room.point('listen');
+  assert.match(room.dialog.querySelector('.fw-feedback').textContent,/ring opens/);
+  assert.deepEqual(played,[]);
+  await room.click('[data-fw-sound]');
+  await room.point('listen');
+  assert.deepEqual(played,['assets/field-scenes/drop-in-pan.wav']);
+  await room.point('wetSeam');
+  assert.match(room.dialog.querySelector('#fw-description').textContent,/stitched hide/);
+  assert.equal(room.dialog.querySelector('[data-fw-point="under"]'),null);
+  await room.click('[data-fw-close]');
+  const loaded=workroom({initial:room.ui.stored});
+  loaded.open('roof');
+  await loaded.point('under'); await loaded.point('left'); await loaded.point('right'); await loaded.point('pour');
+  assert.match(loaded.dialog.querySelector('.fw-drawing').innerHTML,/fw-runoff/);
+  assert.doesNotMatch(loaded.dialog.querySelector('.fw-drawing').innerHTML,/fw-pan-ring/);
+  await loaded.click('[data-fw-finish]');
+  assert.equal(loaded.calls.complete,1);
+});
+
+test('a saved roof repair from the former version keeps its working stitches', async () => {
+  const room = workroom({initial: {'until-we-return.fieldwork.1.roof':JSON.stringify({trail:['under','left'],hints:1})}});
+  room.open('roof');
+  assert.equal(room.dialog.querySelector('[data-fw-point="left"]').getAttribute('aria-pressed'),'true');
+  await room.point('right');await room.point('pour');await room.click('[data-fw-finish]');
+  assert.equal(room.calls.complete,1);
+});
+
+test('the two men resume at the last brace and the joint is tested after both step clear', async () => {
+  const room=workroom();room.open('fastening');
+  await room.point('pressPlank');await room.point('giveNails');await room.point('stern');await room.point('strike');
+  assert.match(room.dialog.querySelector('.fw-feedback').textContent,/open air/);
+  const wrong=room.dialog.querySelector('.fw-drawing').innerHTML;
+  await room.click('[data-fw-close]');
+  const loaded=workroom({initial:room.ui.stored});loaded.open('fastening');
+  assert.equal(loaded.dialog.querySelector('[data-fw-point="stern"]').getAttribute('aria-pressed'),'true');
+  await loaded.point('bow');
+  assert.notEqual(loaded.dialog.querySelector('.fw-drawing').innerHTML,wrong);
+  await loaded.point('strike'); assert(!loaded.dialog.querySelector('[data-fw-finish]'));
+  await loaded.point('release'); assert(!loaded.dialog.querySelector('[data-fw-finish]'));
+  await loaded.point('proveJoint');await loaded.click('[data-fw-finish]');
+  assert.equal(loaded.calls.complete,1);
+});
+
+test('the shared six walk frames fit the workplate and pause across a hidden tab', async () => {
+  let doc,visibilityChanged,reduced=false,now=0;
+  const frames=[], viewports=[], phases=[];
+  const room=workroom({setup(ui){
+    const host=ui.context;
+    doc=host.document;
+    doc.addEventListener=(type,cb)=>{ if(type==='visibilitychange') visibilityChanged=cb; };
+    doc.createElementNS=(_ns,tag)=>{
+      const node=doc.createElement(tag);
+      if(tag==='svg') viewports.push(node);
+      return node;
+    };
+    const proto=Object.getPrototypeOf(ui.ids.get('workbench'));
+    proto.after=function(node) {
+      node.parent=this.parent; this.parent.children.splice(this.parent.children.indexOf(this)+1,0,node);
+    };
+    const motion=require('../dist/animation.js');
+    host.CastawayMotion={...motion,frameBox(id,n){phases.push(n);return motion.frameBox(id,n);}};
+    host.requestAnimationFrame=cb=>frames.push(cb);
+    host.matchMedia=()=>({matches:reduced});
+    host.performance={now:()=>now};
+  }});
+  function tick(ms) { now+=ms;for(const cb of frames.splice(0))cb(now); }
+  room.open('fastening');await room.point('pressPlank');await room.point('giveNails');
+  await room.point('bow');const actor=room.dialog.querySelector('[data-fw-actor="player"]');
+  tick(32);const start=Number(actor.dataset.footX);
+  assert.ok(viewports.length);
+  for(const viewport of viewports){
+    assert.match(viewport.style.width,/px$/);assert.match(viewport.style.height,/px$/);
+    assert.notEqual(viewport.style.width,viewport.style.height,'the portrait retains its aspect ratio');
+  }
+  doc.hidden=true;visibilityChanged();tick(10000);
+  doc.hidden=false;visibilityChanged();tick(9000);
+  assert.equal(Number(actor.dataset.footX),start,'hidden time does not move Alick');
+  for(let i=0;i<25;i++)tick(30);
+  assert(Number(actor.dataset.footX)>start);
+  assert.equal(new Set(phases).size,6,'both footfalls use all six atlas phases');
+  reduced=true;tick(16);
+  assert.equal(actor.style.visibility,'');
+  assert(Number(actor.dataset.footX)>80,'a live motion preference change settles Alick beside the bow');
+});
+
+test('leaving the tab stops the sound of the pan immediately', async () => {
+  let doc,visibilityChanged,stops=0;
+  const room=workroom({setup(ui) {
+    doc=ui.context.document;
+    doc.addEventListener=(_,cb)=>{visibilityChanged=cb;};
+    ui.context.Audio=class{play(){return Promise.resolve();}pause(){stops++;}};
+  }});
+  room.bench.surveyRoof();await room.point('listen');
+  doc.hidden=true;visibilityChanged();assert.equal(stops,1);
 });

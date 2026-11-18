@@ -11,7 +11,8 @@ const puzzles = require('../dist/fieldwork.js').puzzles;
 test('every playable surface has a registered WebP, its corresponding unmodified original and measured feature anchors',()=>{
  const source=manifest('artwork','workplates').assets, published=manifest('dist','assets','workplates').assets;
  assert.equal(source.length,7);assert.equal(published.length,7);
- for(const [id,puzzle] of Object.entries(puzzles)){
+ for(const {id} of source){
+  const puzzle=puzzles[id];assert(puzzle);
   const native=source.find(a=>a.id===id), web=published.find(a=>a.id===id);
   const ink=get('artwork','workplates',native.file), plate=get('dist','assets','workplates',web.file);
   assert.equal(hash(ink),native.sha256);assert.equal(web.source_sha256,native.sha256);assert.equal(hash(plate),web.sha256);
@@ -28,4 +29,20 @@ test('all five original work atlases retain their hashes, right-facing registrat
   assert.deepEqual([ink.readUInt32BE(16),ink.readUInt32BE(20)],sheet.size);assert.deepEqual(Object.keys(sheet.poses),['stand','reach','crouch']);
   const high=work.contact(id,'reach'),low=work.contact(id,'crouch');assert(high.x>0&&low.x>0&&high.y>low.y);
  }
+});
+
+test('the boat and cabin details use measured crops of the registered scenes and working actors',()=>{
+ const receipt=manifest('dist','assets','field-scenes');
+ for(const entry of receipt.assets){
+  const original=get('dist','assets',entry.source), crop=get('dist','assets','field-scenes',entry.file);
+  assert.equal(hash(original),entry.sourceSHA256);
+  assert.equal(hash(crop),entry.sha256);
+  assert.equal(crop.toString('ascii',8,12),'WEBP');
+  assert(entry.crop[0]>=0 && entry.crop[2]>entry.crop[0]);
+  assert(entry.crop[1]>=0 && entry.crop[3]>entry.crop[1]);
+ }
+ const sound=get('dist','assets','field-scenes',receipt.sound.file);
+ assert.equal(hash(sound),receipt.sound.sha256);assert.equal(sound.toString('ascii',8,12),'WAVE');
+ assert.equal(sound.readUInt16LE(22),2);
+ assert.equal(puzzles.fastening.flag,'hullFastened');
 });

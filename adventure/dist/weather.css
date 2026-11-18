@@ -21,3 +21,15 @@
 #place-weather[data-wx-paused=true] * { animation-play-state:paused !important; }
 .reduced #place-weather *, #place-weather[data-wx-still=true] * { animation:none !important; }
 @media (prefers-reduced-motion: reduce) { #place-weather * { animation:none !important; } }
+
+/* A prepared moving painting owns these surfaces in the main scene. Material
+   contacts and furniture remain in the stage above it. The small original
+   fragments still serve browsers without a 2D context and the still view. */
+#place-weather[data-landscape="ready"][data-wx-still="false"] ~ #place-life :is(
+  [data-life="surf"], [data-life="outer-water"], [data-life="rock-wash"],
+  [data-life="tattered-cloth"], [data-life="windward-leaves"], [data-life="cove"],
+  [data-life="lean-to"], [data-life="seep"], [data-life="stream-pool"],
+  [data-life="water-at-door"], [data-life="water-beyond-stocks"], [data-life="sail-on-stocks"],
+  [data-life="seaward-swell"], [data-life="port-swell"], [data-life="drawing-sail"],
+  [data-life="sun-path"], [data-life="harbour-water"], [data-life="inlet"], [data-life="chart-corner"]
+) { display:none; }

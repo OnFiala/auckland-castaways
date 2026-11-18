@@ -34,12 +34,18 @@
       }
     },
     roof: {
-      title: 'The leaking lap', place: 'Epigwaitt', item: 'weatherPatch', target: 'roof', scene: 'cabin', flag: 'roofSealed', chapter: 2,
-      description: 'A drop hangs from the upper sheet. A dark track runs down the cloth below. The hide has two loose ties.',
-      resolved: 'The water runs over the hide and clear of the seam. The inside stays dry.',
+      title: 'Rain in Epigwaitt', place: 'Epigwaitt', item: 'weatherPatch', target: 'roof', scene: 'cabin', flag: 'roofSealed', chapter: 2,
+      description: 'Rain rattles against the window. There is an old brown mark on the wall and a tin pan on the floor by the bunk.',
+      patchDescription: 'A drop hangs from the upper sheet. A dark track runs down the cloth below. The hide has two loose ties.',
+      resolved: 'The pan is still. Through the window you can see water spilling clear of the eave.',
       hints: ['Follow the drop downhill from the upper canvas.', 'The upper canvas should shed water onto the face of the hide. Both lower corners must lie flat.', 'Slip the hide underneath the upper sheet, stitch both corners, then pour water.'],
-      start: {lap: '', left: false, right: false},
+      surveyHints: ['Give each place a moment. Look for a change as the next drop falls.', 'The pan rings beside the bunk. Look straight up from its centre.', 'Watch the pan, then trace the join in the canvas above it.'],
+      start: {observed: '', located: false, lap: '', left: false, right: false},
       view(s) {
+        if (!s.located) return {question: 'Where is the rain getting in?', actions: [
+          act('oldMark', 'Feel the mark on the wall', 37, 41), act('pan', 'Watch the tin pan', 66, 75),
+          act('drySeam', 'Trace the seam by the window', 36, 15), act('wetSeam', 'Trace the seam above the bunk', 66, 23),
+          act('listen', 'Listen inside the house', 49, 49)]};
         if (!s.lap) return {question: 'Which way should the hide overlap?', actions: [
           act('under', 'Slip beneath upper sheet', 29, 28), act('over', 'Lay over upper sheet', 58, 40)]};
         return {question: 'Fasten the hide and follow a drop.', actions: [
@@ -47,6 +53,14 @@
           act('pour', 'Pour from above', 28, 29), act('relay', 'Lift and relay hide', 53, 50)]};
       },
       play(s, a) {
+        if (a === 'oldMark') return move(s, {observed: s.observed || 'mark'}, 'The stain feels dry. Its ragged edge stays the same shape as the rain falls.');
+        if (a === 'drySeam') return stay(s, 'You run a finger under the seam by the window. It comes away dry. A little ring spreads across the pan farther along the wall.');
+        if (a === 'pan' || a === 'listen') return move(s, {observed: 'pan'}, a === 'listen'
+          ? 'Tick. A pause, then another tick from the tin beside the bunk. A ring opens in the water with each tap.'
+          : 'A ring crosses the water and touches the rim. Another breaks the surface at the very same spot. There is a bead overhead.');
+        if (a === 'wetSeam') return s.observed === 'pan'
+          ? move(s, {located: true}, 'Above the pan, a bead swells under the overlapping sheets. This is where the hide has to go.')
+          : stay(s, 'Several stitches are dark. Follow a falling drop all the way down to see which seam feeds it.');
         if (a === 'under' || a === 'over') return move(s, {lap: a}, a === 'under' ? 'The upper sheet covers the top of the hide. The two lower corners still lift.' : 'The top edge of the hide faces the falling water. The corners curl away.');
         if (a === 'left' || a === 'right') return move(s, {[a]: true}, s[a] ? 'That corner already lies snug against the canvas.' : 'The tie draws the ' + a + ' corner flat against the roof.');
         if (a === 'relay') return move(s, {lap: '', left: false, right: false}, 'You loosen the ties and lift the hide. The upper seam is accessible again.');
@@ -73,6 +87,35 @@
         if (a === 'scratch') return move(s, {scratch: true}, 'The fibres are rubbed smooth. A fingernail finds no deepening hole.');
         if (a === 'edge') return move(s, {edge: true}, 'A little lip of iron has turned back on itself. The edge gave way under the load.');
         if (!s.scratch || !s.edge) return stay(s, 'Before giving up a tool, compare the new mark with the cutting lip.');
+        return finish(s, this.resolved);
+      }
+    },
+    fastening: {
+      title: 'The last plank', place: 'The slipway', item: 'boatNails', target: 'boatFrame', scene: 'slipway', flag: 'hullFastened', chapter: 4,
+      description: 'The last board lies against the ribs. Alick has the nails in his hand. Musgrave has the hammer.',
+      resolved: 'The board stays against the ribs when Alick puts his weight on it. Musgrave runs his thumb over the head of the nail. The joint is ready for oakum.',
+      hints: ['Push the board and watch the open sliver between the timber and the ribs.', 'Give Musgrave the nails. He needs both of Alick’s hands on the end that sprang clear.', 'Press the plank, pass the nails, brace the bow end and signal Musgrave. Step clear, then push the joint again.'],
+      start: {tested: false, handed: false, brace: '', driven: false, clear: false},
+      view(s) {
+        if (!s.tested) return {question: 'Will the board sit against the ribs?', actions: [act('pressPlank', 'Push the loose board', 43, 43)]};
+        if (!s.handed) return {question: 'Musgrave holds out his hand.', actions: [act('giveNails', 'Pass Musgrave the nails', 44, 39)]};
+        if (s.driven) return s.clear
+          ? {question: 'Will the joint hold on its own?', actions: [act('proveJoint', 'Put weight on the joint', 72, 38)]}
+          : {question: 'Both men still have a hand on the work.', actions: [act('release', 'Take both hands away', 76, 36)]};
+        return {question: 'Where should Alick hold the board?', actions: [
+          act('stern', 'Brace the stern end', 27, 42, s.brace === 'stern'), act('bow', 'Brace the bow end', 76, 35, s.brace === 'bow'),
+          act('strike', 'Signal Musgrave to drive the nail', 60, 35), ...(s.brace ? [act('loosen', 'Let the board go', 42, 55)] : [])]};
+      },
+      play(s, a) {
+        if (a === 'pressPlank') return move(s, {tested: true}, 'Alick pushes. The stern stays put. At the bow, a strip of daylight opens between the plank and the ribs.');
+        if (a === 'giveNails') return move(s, {handed: true}, 'Musgrave takes the nails and steps to the middle rib. Alick has both hands free.');
+        if (a === 'stern') return move(s, {brace: 'stern'}, 'Alick leans on the stern end. The bow still stands proud of the rib at Musgrave’s hand.');
+        if (a === 'bow') return move(s, {brace: 'bow'}, 'Alick leans his weight against the bow end. The sliver of daylight closes under Musgrave’s fingers.');
+        if (a === 'loosen') return move(s, {brace: ''}, 'Alick steps clear. The bow springs out again. Musgrave keeps the nails.');
+        if (a === 'strike') return s.brace === 'bow'
+          ? move(s, {driven: true}, 'Musgrave drives the nail home while Alick holds the plank in place.')
+          : stay(s, 'Musgrave lowers the hammer. The nail would cross open air before it reached the rib. The bow end needs a man on it.');
+        if (a === 'release') return move(s, {clear: true, brace: ''}, 'They take their hands away. The head of the nail is flush. The board stays against the rib.');
         return finish(s, this.resolved);
       }
     },

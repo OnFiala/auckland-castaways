@@ -1,0 +1,110 @@
+{
+  "title": "The Invercauld papers",
+  "date": "2026-11-18",
+  "printed_map": {
+    "id": "A001 / S001 / S032",
+    "title": "Sketch Map of the Auckland Isles, 1865",
+    "edition": "Thomas Musgrave, Castaway on the Auckland Isles, London, 1866, unnumbered foldout, digitized page 16",
+    "holding": "Duke University Libraries / Internet Archive",
+    "url": "https://archive.org/details/castawayonauckla01musg/page/n15/mode/1up",
+    "project_source": "sources/illustrations/musgrave-map-extract.pdf",
+    "project_source_sha256": "7cd1fd75c10b7ab5a0da78790d018e6bec57e4ba5840e7d6aacf31484d101d37",
+    "rights": "Public-domain 1866 map; see sources/ILLUSTRATIONS.md and register S032.",
+    "treatment": "Rasterized with pdftoppm at 1400px on long edge, rotated 90 degrees clockwise. Detail crop normalized left/top/right/bottom [0.31,0.265,0.78,0.43]."
+  },
+  "illustrations": {
+    "method": "New OpenAI ImageGen contact sheet. Six nineteenth-century engraving-style illustrations generated on a plain field from a text prompt without any source image; split, cropped, scaled, converted to grayscale WebP.",
+    "generated_sheet_sha256": "57e8c3d9d8ce6748f17c95fd8591cfd91d7eb975a8707aa20a604ae45715c5a2",
+    "subjects": [
+      "a partly opened matchbox",
+      "a two-person hide boat",
+      "a ship breaking up on rocks",
+      "a sailing ship with a rowing boat",
+      "a distant mountainside in uncertain mist",
+      "a dip pen and ink bottle"
+    ],
+    "rights": "Created for this project. No third-party modern illustration or likeness copied. See RIGHTS.md. The depicted objects and ships are illustrative."
+  },
+  "files": [
+    {
+      "file": "chart-detail.webp",
+      "source": "printed_map",
+      "dimensions": [
+        518,
+        231
+      ],
+      "bytes": 12644,
+      "sha256": "9716e65d71c763370f8e8c98e5052544f01a0e8c95b1eff1d97af2202521be3e"
+    },
+    {
+      "file": "ink.webp",
+      "source": "illustrations",
+      "dimensions": [
+        480,
+        339
+      ],
+      "bytes": 35402,
+      "sha256": "25d9ad42327c87035cd67579e197d8e5ca5fa8d88d526699577b172a1f247bf1"
+    },
+    {
+      "file": "islands-1865.webp",
+      "source": "printed_map",
+      "dimensions": [
+        1102,
+        1400
+      ],
+      "bytes": 166498,
+      "sha256": "93ac7c93e1bdcbd388db3cc3909fea931488f610abce4d1d62bce52fdae360a3"
+    },
+    {
+      "file": "julian.webp",
+      "source": "illustrations",
+      "dimensions": [
+        463,
+        342
+      ],
+      "bytes": 39276,
+      "sha256": "845425e27a61e23e121ce1d1ebda4f0142f8d63dcdf0454aa487b0024b3a997b"
+    },
+    {
+      "file": "matches.webp",
+      "source": "illustrations",
+      "dimensions": [
+        421,
+        337
+      ],
+      "bytes": 39886,
+      "sha256": "f81b4179f67fab0fe9e95e4a3632939bba69e00c086f0ea99a43c970f4a9b7dc"
+    },
+    {
+      "file": "skin-boat.webp",
+      "source": "illustrations",
+      "dimensions": [
+        480,
+        220
+      ],
+      "bytes": 27800,
+      "sha256": "2e4ab03ffe126760b3442108c22bcc62a62c79e6e4d0c7fa3a024ec468bdf0e8"
+    },
+    {
+      "file": "slope.webp",
+      "source": "illustrations",
+      "dimensions": [
+        480,
+        330
+      ],
+      "bytes": 53666,
+      "sha256": "6a640a483283bfa07c45d31d8b0ca3eb96ae54af1404739298b4bb5d693149cc"
+    },
+    {
+      "file": "wreck.webp",
+      "source": "illustrations",
+      "dimensions": [
+        480,
+        339
+      ],
+      "bytes": 66068,
+      "sha256": "0c4493759aa366f66633195ba4716479d7f23fb8d09b81594607f18b926a6c1e"
+    }
+  ]
+}

@@ -12,11 +12,11 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 Sedm kapitol vede přes čtrnáct míst od ztroskotání k záchraně. V každé kapitole se otevře malovaný detail pro práci rukama. Hráč vyčte stopu ze dřeva, plátna či vody, použije nástroj a uvidí výsledek. Postavy mění měřítko podle hloubky, obcházejí překážky a sahají na předměty. Při průzkumu lze například zkusit měch ve výhni nebo pustit třísku po vodě. Dialogy, pozorování i volitelné nápovědy jsou anglicky. [Revize hratelnosti a maleb](adventure/reviews/25-playable-revision.md) · [Šest scén v herním měřítku](adventure/reviews/staging/scene-scale-proof.webp)
 
-Ve všech čtrnácti místech působí vítr a v otevřených částech obrazu déšť, sníh nebo mořská tříšť. Zakrytá střecha odvádí vodu, upevněné lano mění pohyb a v pozdějším vraku je vidět, kolik materiálu už posádka odnesla. [Počasí a nové malby](adventure/reviews/26-weather-and-art.md) · [Krátká animace](adventure/reviews/weather/weather-in-motion.gif) · [Návrhy dalšího rozvoje](adventure/design-next.md)
+Ve čtrnácti obrazech se hýbou přímo koruny, mořská hladina, plachty, kaskády a světlo z ohně. Po vykonané práci se trosečníci narovnají a při rozhovoru se otočí k hráči. [Moře a potok v pohybu](adventure/reviews/living/sea-and-stream.webp) · [Henry u dřeva](adventure/reviews/crew/README.md)
 
-V prvních pěti kapitolách hrajete za Alicka McLarena. Návrat pro Henryho Forgése a George Harrise prožijete z pohledu kapitána Musgravea. Invercauld má vlastní osud v rešerši a v historickém dovětku hry. [Příběh](adventure/FULL_STORY.md) · [Dobové prameny a autorské scény](adventure/reviews/24-history-dialogue.md)
+V zimní chatě lze najít netěsný šev podle kruhů na vodě. Při stavbě člunu spolupracují Alick a Musgrave na stejném prkně. Před červencovým odplutím hráč uloží šicí potřeby pro Henryho a George. Při srpnovém návratu se na totéž místo podívá už jako kapitán. Po záchraně lze složit dva dobové hlasy a časové údaje o jiné posádce na kresleném stole Invercauldu. [Sedm kapitol](adventure/FULL_STORY.md) · [Aktuální vydání hry](adventure/reviews/27-the-crew-at-work.md) · [Prameny archivního epilogu](adventure/EPILOGUE.md)
 
-Automatický průchod dokončil záchranu přes herní ovládání a všech sedm pracovních detailů. Hra průběžně ukládá cestu i rozdělané řešení. Obrazy a prostorové vztahy prošly samostatnou vizuální kontrolou. Přehrání celé animované hry a dotykové hraní čekají na dostupný prohlížečový náhled. [Výsledky testů](adventure/FULL_GAME_TESTING.md)
+Automatický průchod dokončil záchranu přes herní ovládání a osm pracovních úloh. Hra průběžně ukládá cestu i rozdělanou práci. [Výsledky a meze ověření](adventure/FULL_GAME_TESTING.md)
 
 Starší rozhodovací a strategické prototypy níže jsou archivem vývoje.
 

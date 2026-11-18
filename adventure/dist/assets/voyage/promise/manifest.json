@@ -1,0 +1,300 @@
+{
+  "title": "The sailmaker’s fold and the empty house",
+  "date": "2026-11-18",
+  "generator": "OpenAI native ImageGen (image_gen.imagegen)",
+  "rights": "Generated specifically for this project, from own project references. Project-wide license remains unspecified. See adventure/PROMISE_ART.md and RIGHTS.md.",
+  "paths": "Reference paths are relative to adventure/. Output paths are relative to this manifest. Generation references identify the uncompressed input PNG by SHA-256.",
+  "references": {
+    "artwork/workplates/chest.png": {
+      "sha256": "fc6326b6fbc3d99dd796ef303e26effe0272ca9da308bfbc4a89b9759c574ef7",
+      "bytes": 3524885,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB"
+    },
+    "dist/assets/voyage/scenes/return-camp.png": {
+      "sha256": "6a5d24d22e84172be3517c9728cd2b7fbe1df8399bdcbfb80a7258059fd2cd03",
+      "bytes": 2623509,
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "dist/assets/voyage/scenes/landing.png": {
+      "sha256": "e4d06c1c1c512cbd2fb5246cb9cfbc643c13a41a1a2a898cf73b38920fd9be3f",
+      "bytes": 2865071,
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    }
+  },
+  "generations": {
+    "bench": {
+      "generation_id": "ed242609-4d32-4b10-8636-348e07e37623",
+      "sha256": "ad735a02f89f39a7b828cd0deb2d3f358cb3ddeacde8cdea21c4c8bb70025f4b",
+      "bytes": 3460887,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "references": [
+        "artwork/workplates/chest.png",
+        "dist/assets/voyage/scenes/return-camp.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Create a new original horizontal landscape 3:2 painting for this adventure game's inspectable work surfaces. Use references for convincing tactile painterly rendering and the rough hut, not for exact composition. An intimate eye-level/slightly downward still life inside Epigwaitt, a handmade castaways' hut in the subantarctic Auckland Islands in 1865; an extreme close shot of ONE sole continuous hand-hewn pine plank workbench beneath an uneven plank wall. Visible brushwork and granular drybrush highlights on worn edges and soft pigment washes in the shadows; period maritime oil study with indigo and umber shadows, pale oatmeal and muted golden ochre accents, cold left window light from just out of frame and a warmer reflection on the cloth. Raking light follows the grain of the broad plank. Simple asymmetrical three-group composition, painterly negative spaces, right angles and organic torn fabric. At x 24%, y 43%, a small unmistakable blunt naked wooden peg projecting horizontally from the back timber toward us; enough room to hang cloth below it. At x 77%, y 42% a SINGLE short thick rough removable loose slanting board rests against an upright with a generous dark wedge-shaped open cubby BELOW IT at x 76% y 57% easily bright enough to see and place something. These left/right landmarks empty, on same work surface, separated by clear space. Near front center (x 50%, y 75%) a small partly unrolled OATMEAL linen tool fold holding a tiny hand wrapped hank of golden waxed sailmaker's thread and one conspicuous plain steel sail needle, a folded 12 cm square of sailcloth for a patch, ONE faint woven blue selvedge stripe on sailcloth for recognizability. Thrifty field repairs. Those are the only loose things; clear zones at peg and beneath sloping board. Cropped in close, tactile homely signs of work; entire painting fills the frame, no mounts, no annotation, no captions, no text, no UI, no people, no ocean vista, nothing modern. Both peg and sheltered space and the central fold need crisp silhouettes even on phone. Paint a completed original work, no diagram and no multi-panel."
+    },
+    "return-peg": {
+      "generation_id": "0a06ebd0-bed2-432c-9532-92237e6c6674",
+      "sha256": "1608e2ed7ba113de864bafbce72f8d2b5b334a1603456ffc9c35f11134ed2cc6",
+      "bytes": 3034055,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "references": [
+        "generation:bench"
+      ],
+      "transparent_background": false,
+      "prompt": "Edit this original painting as a matching second visit to the same workbench. Exact same 3:2 framing, exact same window, naked peg at x20% y32%, exact same sloping plank and cubby at right, many woodgrain marks, camera and light, continue original oil brushwork. Keep it simple, one single evidence object and otherwise empty flat desk: remove ALL the objects from the foreground center, leaving uninterrupted bare worn planks across that foreground, even the big underlying light sheet must be gone. The same coarse sailcloth with one faded narrow blue selvedge stripe is now USED: a hand-sized square patch visibly attached over a torn corner of a slightly darker piece of everyday brown canvas, with distinct uneven light thread whip stitches around the patch; a short loose golden thread tail remains. Not a large sail or a garment or a towel. This one repaired cloth (now folded and no larger than one-quarter the image width) HANGS by a small cord from the existing LEFT PEG, near x20% y42%, visible as one folded swatch in sidelight; stitches and one blue stripe visible. No other textile or object anywhere and the open cubby beneath the sloping board on the RIGHT must be bare. Keep all working tools/needle offscreen. No people, text, borders, HUD. A completed evocative oil painting."
+    },
+    "return-board": {
+      "generation_id": "00bfd1a2-5df6-41ad-9362-a8517866449d",
+      "sha256": "90a3cd6d631c5478822808a2fd276823b49c76bbbaa8b86767503de84d430fd5",
+      "bytes": 3132503,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "references": [
+        "generation:bench"
+      ],
+      "transparent_background": false,
+      "prompt": "Edit this original painting as a matching second visit to the same workbench. Exact same 3:2 framing, exact same window, naked peg at x20% y32%, exact same sloping plank and cubby at right, many woodgrain marks, camera and light, continue original oil brushwork. Keep it simple, one single evidence object and otherwise empty flat desk: remove ALL the objects from the foreground center, leaving uninterrupted bare worn planks across that foreground, even the big underlying light sheet must be gone. The same coarse sailcloth with one faded narrow blue selvedge stripe is now USED: a hand-sized square patch visibly attached over a torn corner of a slightly darker piece of everyday brown canvas, with distinct uneven light thread whip stitches around the patch; a short loose golden thread tail remains. Not a large sail or a garment or a towel. This single small brown folded cloth, oatmeal patch and its stitches uppermost, rests neatly in the triangular open cubby UNDER THE SLOPING BOARD, at x82% y50% between right post and board. At least half of the small cloth, with stitches and a blue stripe at its edge, can be seen. Width about 19% of frame. The LEFT PEG is bare and the rest of the table is entirely empty. Keep all working tools/needle offscreen. No people, text, borders, HUD. A completed evocative oil painting."
+    },
+    "roll": {
+      "generation_id": "58840bf1-f413-4b3d-810b-39b0f7f8ea3d",
+      "sha256": "8b698621a9e30cd6fc67d597faa959f0eaec58b004ac515f4caea1c547ace88a",
+      "bytes": 2388295,
+      "width": 1860,
+      "height": 846,
+      "mode": "RGBA",
+      "references": [
+        "generation:bench"
+      ],
+      "transparent_background": true,
+      "prompt": "Using the little oatmeal sailmaker's tool fold in the reference as the sole subject, generate a single isolated original painted inventory sprite on a FULLY TRANSPARENT background. ONE finished rolled bundle, all of the tools wrapped inside. Horizontal small rolled oatmeal sailcloth, one faded woven blue selvedge stripe at its right end, tied at its center with golden waxed thread. A small loose loop of the tie rises invitingly above it, for hanging on a peg. Main bundle compact, elliptical roll ends, 2.2:1 width to height, view from front slightly above, light from upper left, hand painted grainy marine still life, lively warm highlights, broad strokes for 80-pixel rendering. No supporting surface, no peg, no separate pieces, no floating shadows, no glow, no labels, no letters/numbers, no borders. Tight fitting landscape image preserving all edges and the hanging loop. Real transparency."
+    },
+    "ending": {
+      "generation_id": "2a6908fa-1560-44dc-989e-267b33af4629",
+      "sha256": "7dc668d924e23932e7079d0c9d7b9974c1422b8e038cce2c9da1493cc8f1f96b",
+      "bytes": 2980096,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "references": [
+        "dist/assets/voyage/scenes/landing.png",
+        "dist/assets/voyage/scenes/return-camp.png"
+      ],
+      "transparent_background": false,
+      "prompt": "Paint an original cinematic horizontal 3:2, approximately 1.6:1, oil and gouache narrative vignette for the last page of the Grafton shipwreck story, Carnley Harbour, Auckland Island, August 1865. A long parting look from within the now unoccupied rough hut Epigwaitt, through its simple OPEN doorway out across a silvery subantarctic inlet. Foreground left: two empty bunk ends with two brown blankets folded down, a few little domestic scuffs on the threshold, modest hearth stones now cold. Only two sleeping places implied, not five men. A little rubbed light catches the rail of one bunk. The spare dark cinder-brown interior frames middle-right water, where far from shore a tiny single-masted cutter Flying Scud, unmistakable cream triangular sail, is beginning to leave; no tall ship, no steamer, no visible identifiable people. Beyond, low round near-black landforms, wind-clipped rata to one side, streaks of late winter cloud, pale late light glimpsed in ash-violet banks, thin gold band of reflection in slate blue sea. Make the boat and open door the visual payoff. This is an evocative imagined closing image, not a literal reconstruction or spatial diagram, and must be a single immersive painting (no montage). Painterly original work with bristle strokes indicating distance, warm/cool colour counterpoint, thoughtful rather than triumphant, tangible maritime material work. Use reference images only for the spirit of the light and the spare hut. No snow-capped pinnacles, no typography, no date, no frame, no logos, no HUD, no portrait. Weight of visual descriptions above should read clearly in a 400px wide card."
+    }
+  },
+  "composites": {
+    "bench-cleared": {
+      "background": "generation:bench",
+      "foreground": "generation:return-board",
+      "description": "Replace only the central tool fold with the clean tabletop from the second painting, keeping the original peg, cubby and window. Both source images are 1536 by 1024 and share pixel coordinates. A feathered mask selects bare lower foreground only.",
+      "mask_polygon_pixels": [
+        [
+          285,
+          791
+        ],
+        [
+          335,
+          720
+        ],
+        [
+          397,
+          638
+        ],
+        [
+          449,
+          563
+        ],
+        [
+          564,
+          563
+        ],
+        [
+          629,
+          605
+        ],
+        [
+          858,
+          580
+        ],
+        [
+          1008,
+          599
+        ],
+        [
+          1078,
+          608
+        ],
+        [
+          1138,
+          642
+        ],
+        [
+          1239,
+          811
+        ],
+        [
+          1250,
+          893
+        ],
+        [
+          1170,
+          930
+        ],
+        [
+          311,
+          930
+        ]
+      ],
+      "mask_blur": "ImageMagick 0x9",
+      "mask_png": {
+        "sha256": "39f417a696dd308b9c68c4d2c8f9e3e28c1bf0798c076894b5a255bc3165c037",
+        "bytes": 181799,
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA"
+      },
+      "before_encoding": {
+        "sha256": "d16e61981efb130f175516d202b7ae411bdd57300e14412b87812976118ee321",
+        "bytes": 2980726,
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB"
+      }
+    }
+  },
+  "delivery": "ImageMagick WebP, quality 87, method 6, stripped metadata. Full-sized paintings. Roll scaled proportionally to 512 px wide with alpha.",
+  "anchor_convention": "Percent of the full image width and height, measured from the top left.",
+  "files": {
+    "bench.webp": {
+      "sha256": "6f4b1431f522758948eb9a61c8c79d2ac0de9bb9966fe735860bc8ada713597a",
+      "bytes": 473554,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "anchors_percent": {
+        "peg": [
+          20,
+          32
+        ],
+        "cubby": [
+          84,
+          49
+        ],
+        "sailmakers_fold": [
+          49,
+          73
+        ]
+      },
+      "source": "generation:bench"
+    },
+    "bench-cleared.webp": {
+      "sha256": "d0d1c9ea52176bf1017e80eb7d8fecd858a39be651ae2a4ec4c38ffa33ffeb13",
+      "bytes": 429040,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "anchors_percent": {
+        "peg": [
+          20,
+          32
+        ],
+        "cubby": [
+          84,
+          49
+        ]
+      },
+      "source": "composite:bench-cleared"
+    },
+    "return-peg.webp": {
+      "sha256": "97ca7dcd38202b3ba3b0e36ceff73ada627e27c86009d0f5c5fe3d36bea17b6d",
+      "bytes": 366050,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "anchors_percent": {
+        "patch": [
+          22,
+          50
+        ],
+        "blue_selvedge": [
+          26,
+          49
+        ],
+        "golden_thread_tail": [
+          26.5,
+          60
+        ]
+      },
+      "source": "generation:return-peg"
+    },
+    "return-board.webp": {
+      "sha256": "b28a4da3f4bc8765e82bf77e3e1f766349da17d76fb2dbae9519bf25b75434c5",
+      "bytes": 398244,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "anchors_percent": {
+        "patch": [
+          83,
+          45
+        ],
+        "loop_of_thread": [
+          85,
+          50
+        ]
+      },
+      "source": "generation:return-board"
+    },
+    "roll.webp": {
+      "sha256": "3cfc808f326519005add9dad0375df51dcff5eba73832a9b073f2ca9ebbf8afa",
+      "bytes": 34492,
+      "width": 512,
+      "height": 233,
+      "mode": "RGBA",
+      "anchors_percent": {
+        "loop": [
+          51,
+          10
+        ]
+      },
+      "source": "generation:roll",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "fully_transparent_pixels": 53843
+    },
+    "ending.webp": {
+      "sha256": "0e64066c3e3561cfa3b7bb66b053188dfbc7f8c4cdf500f8618a7d77ad1f5e38",
+      "bytes": 338224,
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGB",
+      "anchors_percent": {
+        "sail": [
+          72,
+          40
+        ],
+        "two_bunks": [
+          21,
+          66
+        ]
+      },
+      "source": "generation:ending"
+    }
+  }
+}

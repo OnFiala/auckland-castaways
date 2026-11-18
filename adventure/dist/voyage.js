@@ -64,7 +64,7 @@ const RULES=[
  {chapter:4,item:'caulking',target:'seams',flag:'boatSealed',requires:['hullFastened'],consume:['caulking'],text:'The caulking fills the seams between the fastened planks.',blocked:'Fasten the hull before sealing its seams.'},
  {chapter:4,item:'sailcloth',target:'boatMast',flag:'sailRigged',requires:['hullFastened'],consume:['sailcloth'],text:'The sound canvas is bent to the boat’s rig.',blocked:'Finish fastening the boat before setting up the sail.'},
  {chapter:5,item:'stormLine',target:'rigging',flag:'rigSecured',consume:['stormLine'],text:'The line steadies the rig against the sea.'},
- {chapter:5,item:'bailer',target:'bilge',flag:'boatDry',requires:['rigSecured'],text:'The three men take turns bailing until the water is under control.',blocked:'Secure the loose rigging first.'},
+ {chapter:5,item:'bailer',target:'bilge',flag:'boatDry',requires:['rigSecured'],text:'Alick scoops water from the bilge while Musgrave keeps the pump going.',blocked:'Secure the loose rigging first.'},
  {chapter:5,item:'canvasPatch',target:'tornSail',flag:'sailMended',requires:['boatDry'],consume:['canvasPatch'],text:'The patch holds. The sail can draw again.',blocked:'Bail the boat before working on the damaged sail.'},
  {chapter:5,item:'compass',target:'horizon',flag:'courseSet',requires:['rigSecured','boatDry','sailMended'],text:'With the boat ready, the northern bearing can be held.',blocked:'Secure the rig, bail the water and mend the sail before holding a course.'},
  {chapter:6,item:'markedChart',target:'chartTable',flag:'rescueRoute',consume:['markedChart'],text:'The return route leads back to Carnley Harbour.'},
@@ -108,6 +108,26 @@ function interact(s,id,verb='look'){
 function combine(s,a,b){if(chapter(s)===1)return fromBase(s,Base.combine(projectBase(s),a,b));if(a===b||!has(s,a)||!has(s,b))return unchanged(s,'Both different items need to be in the satchel.');const r=RECIPES.find(r=>r.chapter===chapter(s)&&r.items.includes(a)&&r.items.includes(b));return r?applyEvent(s,{...r,consume:r.items,cue:'combine'},null):unchanged(s,'Those items do not fit together.');}
 function useItem(s,item,id){if(chapter(s)===1)return fromBase(s,Base.useItem(projectBase(s),item,id));if(!has(s,item))return unchanged(s,'That item is not in the satchel.');if(has(s,id))return combine(s,item,id);const target=findTarget(s,id);if(!target)return unchanged(s,'We cannot reach that from here.');const matches=RULES.filter(r=>r.chapter===chapter(s)&&r.item===item&&r.target===id);const r=matches.find(r=>!s.flags[r.flag]&&ready(s,r))||matches.find(r=>!s.flags[r.flag])||matches[0];return r?applyEvent(s,r,id):unchanged(s,'Try another item.','wrong',id);}
 function advance(s){if(!complete(s))return unchanged(s,'Finish the work in this chapter before leaving.','blocked');if(chapter(s)===7)return unchanged(s,'All five Grafton castaways survived.','done');const next=clone(s);next.chapter++;next.scene=getChapter(next).entry;next.inventory=[...LOADOUT[next.chapter]];const r=response(s,next,getChapter(next).title,'chapter');r.chapterChanged=true;return r;}
+
+// A small household decision travels with the main save. Older crossings have no
+// recorded roll; their return must never claim the player chose a place for it.
+function stowRoll(s, place) {
+ if (s.chapter !== 4 || s.scene !== 'slipway' || !complete(s) || !['peg','board'].includes(place))
+  return unchanged(s,'We still have work at the boat.','blocked');
+ if (s.repairRoll?.place === place) return unchanged(s,'It is already there.','done');
+ const next = clone(s);
+ next.repairRoll = {place, seen:false};
+ const where = place === 'peg' ? 'on the peg by the door' : 'beneath the loose shelf board';
+ return response(s,next,'Alick leaves the sewing roll ' + where + ' for Henry and George.','done');
+}
+function examineRoll(s, place) {
+ if (s.chapter !== 7 || s.scene !== 'return_camp' || !s.repairRoll || s.repairRoll.place !== place)
+  return unchanged(s,'Only the marks in the wood.','look');
+ if (s.repairRoll.seen) return unchanged(s,'The little repair has held.','look');
+ const next = clone(s); next.repairRoll.seen = true;
+ const trace = place === 'peg' ? 'George shows Musgrave the blue-striped patch on the hanging canvas.' : 'Henry shows Musgrave a square patch stitched into the folded canvas.';
+ return response(s,next,trace,'look');
+}
 // Tutorial ordering is a hint sequence, not a restriction on valid player ordering.
 const STEPS={
  2:[['hideTaken','cabin','hide'],['twineTaken','cabin','twine'],['patchStitched','cabin','roof','hide','twine'],['roofSealed','cabin','roof','weatherPatch'],['flaskTaken','cabin','flask'],['waterFetched','forest','spring','flask'],['waterStored','cabin','kettle','filledFlask'],['warmthReady','cabin','stove','tinderbox']],
@@ -123,6 +143,11 @@ function replayChapter(n,flags){const pending=EVENTS.filter(e=>e.chapter===n&&fl
 function restore(raw){try{
  if(raw?.version===3){const old=Base.restore(raw);if(!old)return null;const next=createGame();for(const k of ['scene','inventory','log','actions'])next[k]=clone(old[k]);for(const k of Base.FLAGS)next.flags[k]=old.flags[k];return normalize(next);}
  if(!raw||raw.version!==VERSION||!Number.isInteger(raw.chapter)||raw.chapter<1||raw.chapter>7||sceneById(raw.scene)?.chapter!==raw.chapter)return null;
+ if(Object.hasOwn(raw,'repairRoll')){
+  const roll=raw.repairRoll;
+  if(!roll || !['peg','board'].includes(roll.place) || typeof roll.seen!=='boolean' ||
+     raw.chapter<4 || (raw.chapter===4&&!complete(raw)) || (roll.seen&&raw.chapter!==7))return null;
+ }
  if(!raw.flags||Object.keys(raw.flags).length!==FLAGS.length||FLAGS.some(f=>typeof raw.flags[f]!=='boolean'))return null;
  if(!Array.isArray(raw.inventory)||new Set(raw.inventory).size!==raw.inventory.length||raw.inventory.some(id=>!ITEMS[id])||raw.inventory.length>12)return null;
  if(!Number.isInteger(raw.actions)||raw.actions<0||raw.actions>100000||!Array.isArray(raw.log)||raw.log.length>80||raw.log.some(e=>!e||typeof e.text!=='string'||e.text.length>1000||typeof e.cue!=='string'||!sceneById(e.scene)))return null;
@@ -136,5 +161,5 @@ function restore(raw){try{
  }
  return clone(raw);
  }catch(_){return null;}}
-return {VERSION,ITEMS,SCENES,FLAGS,CHAPTERS,chapter,getChapter,getExits,createGame,getTargets,interact,useItem,combine,travel,restore,hint,advance};
+return {VERSION,ITEMS,SCENES,FLAGS,CHAPTERS,chapter,getChapter,getExits,createGame,getTargets,interact,useItem,combine,travel,restore,hint,advance,stowRoll,examineRoll};
 });

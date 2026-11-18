@@ -1,6 +1,8 @@
 # Until We Return – návrhy pro další hratelnou verzi
 
-**Doporučení pro příští iteraci je práce ve dvojici u člunu ve IV. kapitole.** Hráč by poprvé řešil úkol, při kterém potřebuje druhého člověka ve scéně. Stačí jediný spoj s viditelným výsledkem, aby se dala ověřit srozumitelnost spolupráce a pohybu obou postav. Současná hra už používá předměty, situační dialogy, stavové změny v obraze a detailní pracovní úlohy. Níže jsou návrhy na další hru, které na nich stavějí. [Současná kampaň](README.md) · [Příběh po kapitolách](FULL_STORY.md)
+Všechny čtyři níže rozepsané návrhy jsou už hratelné. Vydání obsahuje společné upevnění prkna, hledání netěsnosti, šicí svazek se dvěma místy na uložení a archivní epilog. Původní návrh zachovává především kritéria pro další hráčské zkoušky. [Realizace a obrazové doklady](reviews/27-the-crew-at-work.md)
+
+**Původní doporučení začínalo prací ve dvojici u člunu ve IV. kapitole.** Hráč by poprvé řešil úkol, při kterém potřebuje druhého člověka ve scéně. Stačí jediný spoj s viditelným výsledkem, aby se dala ověřit srozumitelnost spolupráce a pohybu obou postav. Současná hra už používá předměty, situační dialogy, stavové změny v obraze a detailní pracovní úlohy. Níže jsou návrhy na další hru, které na nich stavějí. [Současná kampaň](README.md) · [Příběh po kapitolách](FULL_STORY.md)
 
 ## 1. Podržet bok člunu
 

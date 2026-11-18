@@ -7,8 +7,9 @@ const E = require('../dist/voyage.js');
 // Every step below is an exposed action on the painted object or its named control.
 const cases = {
   chest: {actions: ['flat', 'strap', 'notch', 'press', 'far', 'press', 'near', 'press'], before: 7},
-  roof: {actions: ['over', 'right', 'left', 'pour', 'relay', 'under', 'right', 'pour', 'left', 'pour'], before: 9},
+  roof: {actions: ['drySeam','oldMark','wetSeam','listen','pan','wetSeam','over', 'right', 'left', 'pour', 'relay', 'under', 'right', 'pour', 'left', 'pour'], before: 15},
   drill: {actions: ['old', 'fresh', 'reclaim', 'edge', 'reclaim', 'scratch', 'reclaim'], before: 6},
+  fastening: {actions: ['pressPlank','giveNails','strike','stern','strike','loosen','bow','strike','release','proveJoint'], before: 9},
   hull: {actions: ['upper', 'lower', 'middle', 'pitch', 'pack', 'pitch', 'pack', 'pack', 'pitch', 'lift', 'pitch'], before: 10},
   rig: {actions: ['tail', 'clew', 'other', 'lull', 'haul', 'port', 'haul', 'lull', 'haul'], before: 8},
   chart: {actions: ['isles', 'origin', 'west', 'north', 'verify', 'waypoint', 'east', 'verify', 'endpoint', 'inlet', 'verify'], before: 10},

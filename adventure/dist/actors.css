@@ -28,3 +28,17 @@
 
 /* Actor feet share scene depth; scenery repaint never replaces a companion. */
 .targets{z-index:auto}.companions{position:absolute;inset:0;pointer-events:none}
+
+/* A small weight shift pivots on the boot instead of lifting the whole body.
+   The painted working pose stays still while a hand is in contact. */
+.staged .person:not(.speaking) .actor-canvas[data-work-pose="stand"] > .work-viewport {
+  transform-origin: 50% var(--sole-y, 98%);
+  animation: crew-at-rest 8.6s ease-in-out var(--actor-delay, 0s) infinite;
+}
+@keyframes crew-at-rest {
+  0%, 24%, 100% { rotate: 0deg; }
+  64% { rotate: .28deg; }
+}
+body:has(dialog[open]) .staged .person .work-viewport {
+  animation-play-state: paused;
+}

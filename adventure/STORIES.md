@@ -8,11 +8,11 @@ Každá postava má čtyři sady po třech krátkých větách. Celý rozhovor m
 
 | ID | Základ v místních podkladech | Autorské doplnění |
 |---|---|---|
-| `player` | Výtvarná hráčská postava představuje hráčův pohled uvnitř pětice. | Vnitřní hlas „You“, opakované počítání lidí a pocit úlevy jsou fikce. Nepřidává šestého trosečníka ani mu nepřisuzuje další životopis. |
+| `player` | Hráčskou postavou je zde Alick McLaren, jeden z pěti lidí z Graftonu. | Vnitřní hlas „You“, opakované počítání lidí a pocit úlevy jsou fikce. Nepřidává šestého trosečníka ani mu nepřisuzuje další životopis. |
 | `raynal` | Raynalovy paměti zmiňují nemoc při ztroskotání a zkušenosti z dolů; viz S003/S004 a [CREW.md](../research/CREW.md). | Aktuální tělesné pocity, drobný humor, preference střechy a slovní podoba všech vzpomínek. Nemoc není diagnóza a technická zručnost neznamená autorství všech nápadů. |
-| `musgrave` | Kapitán, autor deníku, navigátor; v deníku se objevují i potíže s autoritou. S001, zejména pp. 11–12; [CREW.md](../research/CREW.md). | Pochybnosti, způsob, jakým prožívá odpovědnost, a příslib naslouchání. Jde o dramatickou možnost, ne doložený psychologický profil. Rodinné vzpomínky nejsou přidány. |
+| `musgrave` | Kapitán, autor deníku, navigátor; v deníku se objevují i potíže s autoritou. S001, zejména pp. 11–12; [CREW.md](../research/CREW.md). | Opakované počítání posádky a otázka, zda je u ohně místo i pro něj. Musgrave v deníku skutečně myslel na rodinu v Sydney; herní replika je napsaná nově. |
 | `henry` | Člen pětice, péče o jídlo a společný život; práci si ovšem muži také střídali. S001 pp. 12, 95; S004 pp. 40–43. | Pohostinné drobnosti a humor o místě u ohně. Neobsahují nedoložené vzpomínky na rodinu nebo dětství ani etnický akcent. |
-| `george` | Člen pětice, práce a výpravy; jeho vlastní deník zde není k dispozici. S001, S004; [CREW.md](../research/CREW.md). | Všechny osobní pocity, zdánlivé zavolání z vraku a pozorování vlajky. Žádná replika není autobiografické svědectví skutečného George Harrise. |
+| `george` | Člen pětice, práce a výpravy; jeho vlastní deník zde není k dispozici. S001, S004; [CREW.md](../research/CREW.md). | Všechny osobní pocity, zavolání přes oblázkovou pláž, zdvižená ruka a pozorování vlajky. Žádná replika není autobiografické svědectví skutečného George Harrise. |
 
 Číselné odkazy S001, S003 a S004 odkazují na [registr pramenů](../sources/REGISTER.md). Charakterové směry vycházejí z [příběhové bible](../story/NARRATIVE_BIBLE.md), která rovněž rozlišuje doložené činnosti od vytvořených hlasů. Přesný průběh první noci, komprese stavby přístřešku a předmětové hádanky jsou fikce; tento soubor k nim nepřidává historické potvrzení. Rozhovory nezmiňují Invercauld, kouř druhé skupiny ani setkání obou posádek.
 

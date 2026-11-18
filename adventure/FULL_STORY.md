@@ -1,89 +1,55 @@
-# Until We Return — the complete playable arc
+# Until We Return
 
-The seven chapters follow the Grafton group from the wreck to the rescue of the two men left behind. They form one point-and-click adventure: players walk through painted locations, notice useful objects, combine materials and see their work alter the scene. A chapter ends through its physical departure point after its work is finished. Brief transitions carry the months that cannot sensibly be represented by a few minutes of clicking.
+Five men reach land from the wreck of the Grafton. Alick can call to George across the shingle, but the sea drowns his words. George lifts a hand so Alick can count him. Nineteen months later there is room in the little boat for three. The point of leaving Auckland Island is to put another boat back into that harbour.
 
-The player acts as **Alick McLaren in chapters I–V** and **Captain Thomas Musgrave in VI–VII**. A caption and portrait identify the change. Neither role is an authenticated portrait or a reconstruction of the person's inner life. Their dialogue is original dramatic writing. [Historical boundaries](HISTORICAL_ADAPTATION.md) distinguish events from adaptation.
-
-The playable physical work, visual clues and changes in the rooms are described in the [illustrated revision](reviews/25-playable-revision.md). [Companion dialogue and historical sources](reviews/24-history-dialogue.md) document the voices and the invented actions in each chapter.
+The player is Alick McLaren until Port Adventure. On Stewart Island the role passes to Thomas Musgrave, who must ask strangers to help him get back. The five illustrated portraits at the end bring the two halves of the crew together in memory. The historical reunion aboard *Flying Scud* was between Musgrave, Henry and George. All speech in the game is original drama. [Historical route and witnesses](HISTORICAL_ADAPTATION.md)
 
 ## I. The First Night
 
-**Opening image:** rain crosses the broken Grafton; five people occupy different patches of shore. The player first understands distance by walking, then discovers the rope and pole by their shape in the debris.
+**Carnley Harbour, 3 January 1864.** Water reached the schooner’s cabin table before daylight. Now Alick can walk between the wreck, the beach where Raynal is recovering and the ground Henry means to sleep on. At the wreck Musgrave looks for things the sea has spared. He asks who has seen Raynal. The roles they had aboard have carried them this far. They still have to find out who needs what on shore.
 
-The looped pole retrieves a sail. A lever opens the salvaged chest. The axe exposes dry wood. Canvas becomes a roof and a strip for a signal. The player solves three visible needs—cover, heat and something that can be seen from the sea—by returning between the shore, wreck and camp.
+A loop and a pole reach a corner of sail. Under tension it catches the weather and forms a roof. Henry asks Alick to bring his own shoulder in out of the rain. Levering up a chest lid frees an axe and tinderbox. When Alick opens the soaked log and lights the dry wood inside, he can see the tar in his knuckles again. He gives George his place by the fire. A remnant of sail raised above the shingle gives George something to look back at on his way down. These last two jobs can finish in either order.
 
-**Emotional turn:** five isolated figures become a group with a place to return to. Their conversations offer different concerns: Musgrave keeps looking at the ship, Raynal wants to put his skills to use, Henry thinks about a shared dry place, and George wants to hear a real voice.
+## II. A House Against the Winter
 
-**Closing image:** firelight and a moving scrap of sail. It is enough for this night; it is not a claim that a complete house was built on the first night.
+**Epigwaitt, winter 1864.** Spars that once stood aboard the Grafton now carry a house roof. A small tap keeps getting through the other sounds in the room. Henry explains that moving his boot only moved the trouble onto George. In the roof close-up the player follows the water's visible movement, tries the repair and checks the next drop. Outdoors George remembers slipping on the stream stones and getting the full water skin home anyway.
 
-## II. A Home by the Water
+The fire can warm the kettle once water is in it and the roof is sound. There is room on the dry table to put out the chessmen. The small reward for an afternoon's labour is leisure. Raynal's memoir describes the chessmen he carved and coloured, as well as evening lessons in which the men could teach one another. The game invents this particular game and the argument over whose move it is. [Raynal, 1874, pp. 159–160](../sources/originals/wreckedonareef00rayngoog.pdf)
 
-**Opening image:** the same people, a darker season, the inside of a shelter that needs constant attention. A dripping roof and an empty vessel communicate the work before a line of dialogue does.
+## III. What Iron Can Become
 
-The winter chapter connects materials gathered outside with needs inside: a repaired cover, water brought home and warmth maintained. A container is useful because of where it can be carried and filled. Repairs change the room instead of awarding abstract survival points.
+**Epigwaitt, early 1865.** The men have begun work on a cutter. The keel is laid out and the bolts will need holes. George has a basket of charcoal and a black cuff. Alick recognises the forge block from its previous life as ballast. Their investment in the larger vessel is already lying in the yard when the player brings fuel and air to the furnace.
 
-**Emotional turn:** shelter becomes maintenance rather than a completed achievement. Henry's work is part of everyone's survival, and cooking or keeping a fire is not assigned to him as an innate or comic servant role. George admits that a clear task and an expected return make it easier to leave the house.
+Raynal tests a point against hard timber. The player turns it, looks at what happened to the edge and takes the metal back. Further persistence with the same point will cost them time and steel. Raynal says aloud how many days he has given it. The player leaves the big timbers on their blocks and takes a handful of fastenings to the dinghy. The old plan stays unfinished.
 
-**Closing image:** the men can stop working for a moment. The roof is heard holding against the weather. Time passes toward the next year's more ambitious work.
+## IV. Room for Three
 
-## III. The Last Drill
+**Carnley Harbour, July 1865.** At salvage, Henry distinguishes the plank Alick may take from one the house will need. Musgrave can find work for both his hands on the dinghy, but he still has to ask two people to stay. At the gunwale his help makes a difference the player can feel. A board springs at one end until Alick and the captain take opposite jobs. Once the hands let go, the joint still holds. Alick follows the seams and rigs the sound canvas.
 
-**Opening image:** a workshop of salvaged material. Bellows, fuel and iron each have a different use; the player must bring them together before a furnace can work.
+Henry wants the house kept in working order. At the sewing bench George can point out a peg he can reach on his way out. These invented exchanges give the shore party a say in what happens to their things. In the sewing-roll choice Alick leaves the little bundle by the door or beneath a shelf board. Either choice gives the two men something they can mend with. The documented travelling crew is Musgrave, Raynal and Alick. In Musgrave’s dated sequence Henry and George were back at Epigwaitt on the 13th, six days before the three sailed from Camp Cove. The shore scenes gather the parting into one chapter. [Musgrave, pp. 94–96](../sources/originals/castawayonauckla01musg.pdf)
 
-The first apparent prize is a drill. Testing it is part of the puzzle. Its failure returns information and usable material; it does not erase the run or demand repetition of the same recipe. The remaining metal can serve as fastenings for a smaller undertaking.
+## V. Five Days of Ocean
 
-**Emotional turn:** Raynal's competence includes recognising a limit. Musgrave must release the picture of a larger vessel and listen to what the available tools can actually support. Other people's carrying, fuel preparation and patient help remain visible around the expert work.
+**19–24 July 1865.** Conversation shrinks to what one man can say while another has a hand free. Raynal takes the tiller. Musgrave needs a line to keep his feet at the pump. Alick secures the rigging and takes a scoop to the water slopping across the boards. As soon as boards show again the seams begin to bead. The player can mend the sail and look ahead now. A dark shape holds its place when the boat lifts.
 
-**Closing image:** the failed tool beside useful fastenings. The camera's attention moves from the impossible large project toward the existing boat. The exact workshop sequence is an authored puzzle, not a metallurgical reconstruction.
+After five days and nights the three reach Port Adventure on Stewart Island. Alick first recognises the shore by its smell. He can still ask another man to check what he sees. When Musgrave asks for an arm to get ashore, their captain has to let someone else carry some of his weight. [Musgrave, chapter IX](https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles/Chapter_9)
 
-## IV. Three Places
+## VI. The Promise
 
-**Opening image:** the boat occupies the foreground, with the home that cannot travel behind it. The work is tangible: planks, fastenings, sealing material and sailcloth.
+**Port Adventure and Invercargill, July 1865.** The player changes to Musgrave. Captain Cross’s household and the people at Port Adventure receive the exhausted three. In Musgrave’s account he could manage little of his first meal. Cross takes them to Invercargill. On examining the fresh provisions Musgrave remembers how difficult it was even to swallow. He has a different piece of work ahead.
 
-The player strengthens and prepares the boat through several separate inventory operations. The finished shape is visibly more substantial than the starting one. Completion means the vessel is ready for the passage; it does not imply that it is safe, spacious or able to carry everyone.
-
-**Emotional turn:** there are three places on the voyage. Alick, Raynal and Musgrave leave; Henry and George remain. This is the documented division, not a player vote about whose life matters. Their brief replies make the shore's continuing work part of the plan. The full historical provisioning process is compressed; this chapter does not claim to simulate quantities for nineteen months or the weeks before the return.
-
-**Closing image:** three figures and two. The promise is left unfinished on purpose. Preparing a boat is not the ending.
-
-## V. Five Days at Sea
-
-**Opening image:** a low horizon, the boat close around the player and almost no room for aimless walking. Interactions stay within the boat: line, sail, water and course.
-
-The player secures the rig, removes water, attends to sail damage and establishes the course. The crew respond to the task in front of them. There are no reflex timers that demand repeated frantic clicks or punish the player for stopping to read a short line. The passage's length is carried by light, weather and the transition, not by pretending these few actions literally took five days.
-
-**Emotional turn:** competence has become cooperation at very close quarters. Musgrave and Raynal are present; Henry and George are not ghostly speakers on the boat. The horizon changes only after the necessary work is done.
-
-**Closing image:** Port Adventure. Arrival is relief, but two men are still on Auckland Island.
-
-## VI. Help from the Mainland
-
-**Opening image:** a clear perspective change to Musgrave. The places and people of reception are not a reward chest. They make a second voyage possible.
-
-The sequence compresses the welcome at Port Adventure and the subsequent organising work at Invercargill. A chart and the survivor's record make the destination intelligible; provisions and equipment prepare the return. A short transition identifies the geographical change. The player is not purchasing rescue through an invented personal fortune.
-
-**Emotional turn:** Musgrave has to accept practical help. Captain Cross, John Macpherson and the people who provided hospitality, funds, clothing and supplies deserve credit in the historical ending. The game does not turn them into interchangeable resources or invent biographical dialogue for unnamed Māori residents.
-
-**Closing image:** Flying Scud ready to sail with Cross and Musgrave. Raynal and Alick are not silently added to this return voyage.
+The player places a journal beside a chart in Invercargill. Late in the marooning Musgrave was rationing writing paper. Now the marks on those close-written pages can take somebody else back into Carnley Harbour. John Macpherson sought subscriptions, clothes and blankets in the town; Musgrave remembers his wet walk when loading the cutter. Cross sails south with him aboard *Flying Scud*. Alick and Raynal stay behind. [Musgrave, chapter IX](https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles/Chapter_9)
 
 ## VII. Until We Return
 
-**Opening image:** a familiar shore viewed with new uncertainty. Musgrave knows the place but cannot know what the last weeks have been like for Henry and George.
+**Carnley Harbour, 24 August 1865.** Musgrave knows the entrance by sight. From the water it takes longer to see the house than he remembers. At the landing he has a boat to secure. In the house Henry notices the captain's wet sleeve before he can say the thing he has spent a month thinking about. George takes his hand in both of his own and asks after the two who sailed with him. Musgrave must hear from both before they can leave. The player can visit them in either order.
 
-The landing must be made usable, supplies brought in, and both men found and brought to the rescue point. The playable check accounts for each man separately; finding one cannot finish the chapter. This sequence compresses the actual landing and departure into spatial tasks. It does not invent a new historical disappearance, injury or survival crisis.
+If the sewing roll was left at the door, George can show what he mended. If it was left under the board, Henry has the work to show. A month has passed in their hands too. Their stores ran low, they considered living apart, and they made a working raft of four empty casks. These details come to us through Musgrave. The imagined exchanges leave the pair room for bitterness, practical pride and relief.
 
-**Emotional turn:** the waiting pair answer in their own brief voices. Relief is not used to erase the strain they endured. There is no triumphant lecture that claims good leadership alone explains survival.
+Supplies go onto the shared table. A light at the landing answers the little flag on the first night. When both men board, there are no more names for the captain to call. Musgrave records fish, potatoes, tea and bread and butter at supper in Camp Cove that evening. The ending accounts for each of the five. [Musgrave, pp. 116–118](../sources/originals/castawayonauckla01musg.pdf)
 
-**Closing image:** two empty places in the house, then two occupied places in the rescue. The ending presents **five individual portraits** and the words **“All five survived. The promise was kept.”** It is a montage of the completed rescue, not a picture of all five standing together on Flying Scud.
+## How the story reaches the player
 
-## Dialogue and pacing
-
-[voyage-stories.js](dist/voyage-stories.js) extends the first chapter's [stories.js](dist/stories.js). Each encounter contains three short, optional beats. The module supplies opening and completed-work variants, plus specific reactions to the repaired roof, failed drill, sealed boat, cleared water, prepared rescue route and discovery of either waiting man. Lines do not unlock essential items. The player can stop or leave a conversation without losing progress.
-
-Ordinary play remains visual. Chapter captions are short. The source notes and full historical comparison belong in the project documentation and optional ending material, not in a mandatory succession of essays. English device narration remains optional and does not represent recorded actors or historical voices.
-
-There is one successful ending: both waiting men are rescued. Incorrect item combinations preserve essential objects; a material failure that belongs to the story produces a usable next step. The story's tension comes from what the characters must do and leave behind, not from a hidden irreversible punishment.
-
-## The separate Invercauld story
-
-Invercauld is acknowledged in the historical ending as another ordeal on another part of the same island. It is not a secret camp for the player to discover or a crossover rescue. The initial modern source search and broader research project still matter, but this playable campaign follows the Grafton route. A separate Invercauld campaign would require its own attributed perspectives and cannot be created by swapping names into this one.
+- Each chapter opens with a short place-and-time caption. At a small number of visible changes a person in the scene speaks one line. The line belongs to the act of making a roof, lifting the charcoal, recovering the iron or putting fresh stores on the table. Returning to a room does not repeat it.
+- A conversation opens three short lines from a named person. Examining the same person gives an observable gesture. In the boat, only the three who made the crossing are present. In the final house the two waiting men have their own responses, independent of who is met first.
+- Work can be interrupted. Dialogue can be dismissed. A wrong move in a close-up leaves enough material for another attempt. The audience that wants the two crews’ history can open the archival epilogue after the reunion. The action at Epigwaitt never crosses into the experience of the Invercauld castaways. [Script](dist/voyage-stories.js) · [Object and character observations](dist/observations.js) · [Historical comparison](HISTORICAL_ADAPTATION.md)

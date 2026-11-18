@@ -107,7 +107,7 @@
     camp:['shelterBuilt','firewoodPlaced','fireLit','mastRaised','signalRaised'],
     cabin:['roofSealed','waterStored','warmthReady'], forge:['bellowsFitted','forgeFueled','forgeLit'],
     slipway:['hullPlanked','boatSealed','sailRigged'], crossing:['rigSecured','boatDry','sailMended','courseSet'],
-    landing:['boatMoored','landingMarked']
+    forest:['waterFetched'], harbour:['rescueSupplied','rescueRigged'], landing:['boatMoored','landingMarked','menRescued']
   };
   function describe(state) {
     const scene=state?.scene, base=scenes[scene];
@@ -314,6 +314,9 @@
   }
 
   const responses = {
+    waterFetched:['forest','spring','disturbed-water',21.8,67.1,5.2,1.4],
+    rescueSupplied:['harbour','rescueCutter','disturbed-water',13,64.9,5.2,.76],
+    menRescued:['landing','rescueBoat','disturbed-water',53.1,53.2,4.9,.91],
     shelterBuilt:['camp','shelter','shed-rain',62.4,48.4,2.2,16.5],
     fireLit:['camp','hearth','warmth',23,63,8,4],
     signalRaised:['camp','cairn','drawn-cloth',44.4,26.5,5.8,3.1],
@@ -336,6 +339,14 @@
     if(kind==='warmth') {
       ctx.globalAlpha=.8*Math.sin(p*Math.PI);
       glow(ctx,{x,y,w,h},'rgba(249,181,91,.5)');
+    } else if(kind==='disturbed-water'){
+      ctx.strokeStyle='#cfdbcf';ctx.lineWidth=.97;
+      for(let i=0;i<2;i++){
+        const advance=Math.max(0,(p-.18*i)/(1-.18*i));
+        ctx.globalAlpha=.67*Math.sin(Math.PI*advance)*(1-.5*advance);
+        ctx.beginPath();
+        ctx.ellipse(x*10,y*height/100,1+w*8*advance,.4+h*height/100*advance,0,.16,Math.PI*1.37);ctx.stroke();
+      }
     } else if(kind==='shed-rain'||kind==='last-drop'||kind==='over-rail') {
       const count=kind==='last-drop'?1:6;
       for(let i=0;i<count;i++) {
@@ -360,8 +371,46 @@
     const active=host.CastawayWorld?.background?.(state);
     if(active)return active;
     if(model.scene==='beach') return 'assets/beach.png';
+    if(model.scene==='camp') return state.flags?.shelterBuilt?'assets/states/camp-shelter.png':'assets/camp.png';
+    if(model.scene==='wreck') return state.flags?.crateOpen?'assets/states/wreck-open.png':'assets/wreck.png';
     if(model.scene==='crossing') return 'assets/voyage/scenes/crossing-'+(state.flags.courseSet?'safe':'wet')+'.png';
-    return 'assets/voyage/scenes/forest.png';
+    return 'assets/voyage/scenes/'+(model.scene==='return_camp'?'return-camp':model.scene)+'.png';
+  }
+  // The browser already has this URL for the backdrop. The image handle is
+  // scoped to the current plate; a late load cannot paint the next location.
+  function landscape(r,state,plate) {
+    if(!host.CastawayLandscape||!r.ctx||typeof host.Image!=='function')return;
+    const layers=host.CastawayLandscape.describe(state);
+    const signature=plate+'|'+layers.map(layer=>layer.name+'/'+(layer.power||'')).join('|');
+    if(signature===r.landSignature)return;
+    r.landSignature=signature;r.landLayers=layers;r.landDirty=true;
+    if(plate!==r.landPlate){
+      if(r.landImage)r.landImage.onload=r.landImage.onerror=null;
+      r.landPlate=plate;r.landImage=null;r.landParts=[];
+    }
+    prepareLandscape(r);
+  }
+  function prepareLandscape(r){
+    if(!r.landDirty||r.reduced||r.paused||r.doc.hidden||r.disposed)return;
+    if(r.landImage){
+      if(r.landImage.complete && r.landImage.naturalWidth){
+        r.landParts=host.CastawayLandscape.prepare(r.doc,r.landImage,r.landLayers);
+        r.landDirty=false;r.root.dataset.landscape=r.landParts.length?'ready':'still';
+      }
+      return;
+    }
+    const img=new host.Image();
+    r.landImage=img;
+    img.onload=()=>{
+      if(r.disposed||r.landImage!==img)return;
+      prepareLandscape(r);
+      if(!r.doc.hidden&&!r.paused&&!r.reduced)paint(r);
+    };
+    img.onerror=()=>{
+      if(r.landImage===img){r.landDirty=false;r.landImage=null;r.root.dataset.landscape='still';}
+    };
+    r.root.dataset.landscape='loading';
+    img.src=r.landPlate;
   }
   function texture(node,model,state) {
     const cut=model.cut;
@@ -379,6 +428,7 @@
     const still=r.reduced;
     const t=still?3.8:r.time;
     const gust=weatherCycle(t);
+    if(!still && r.landParts?.length)host.CastawayLandscape.paint(ctx,r.landParts,t,gust);
     for(const region of r.fields) air(ctx,region,model,t,gust,still);
     for(const e of model.effects) surface(ctx,e,t,gust,still);
     while(r.tracks.length && t-r.tracks[0].start>=r.tracks[0].duration)r.tracks.shift();
@@ -416,6 +466,7 @@
       stop(r);r.reduced=reduced;r.paused=paused;
       r.root.dataset.wxStill=String(reduced);r.root.dataset.wxPaused=String(paused);
       if(reduced){r.action=null;r.tracks.length=0;}
+      prepareLandscape(r);
       if(!r.doc.hidden)paint(r);
     }
     schedule(r);
@@ -457,7 +508,7 @@
   function render(root,state) {
     if(!root||!state||!scenes[state.scene])return;
     const r=memory.get(root)||mount(root), keys=controlled[state.scene]||[];
-    const plate=(scenes[state.scene].cut||state.scene==='crossing') ? background({scene:state.scene},state) : '';
+    const plate=background({scene:state.scene},state);
     const signature=state.scene+'|'+keys.map(k=>state.flags?.[k]?'1':'0').join('')+'|'+plate;
     if(r.signature===signature)return;
     const same=r.model?.scene===state.scene, f=state.flags||{};
@@ -468,6 +519,7 @@
     if(!r.model.ground.length)r.tracks.length=0;
     root.dataset.wxRoom=r.model.scene;root.dataset.wxShelter=r.model.shelter;root.dataset.wxRig=r.model.rig;
     texture(r.cut,r.model,state);
+    landscape(r,state,plate);
     if(!r.doc.hidden)paint(r);
     preferences(r);schedule(r);
   }
@@ -499,7 +551,10 @@
   }
   function dispose(root) {
     const r=memory.get(root);if(!r)return;
-    r.disposed=true;stop(r);r.sizeObserver?.disconnect();r.prefObserver?.disconnect();
+    r.disposed=true;
+    if(r.landImage)r.landImage.onload=r.landImage.onerror=null;
+    r.landParts=[];r.landImage=null;
+    stop(r);r.sizeObserver?.disconnect();r.prefObserver?.disconnect();
     r.doc.removeEventListener?.('visibilitychange',r.prefListener);r.media?.removeEventListener?.('change',r.prefListener);
     if(!r.sizeObserver)host.removeEventListener?.('resize',r.sizeListener);
     root.replaceChildren();memory.delete(root);

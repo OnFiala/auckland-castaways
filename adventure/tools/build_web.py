@@ -8,7 +8,7 @@ from pathlib import Path
 from PIL import Image, ImageChops, ImageStat
 
 SOURCE = Path(__file__).resolve().parents[1] / 'dist'
-RUNTIME_TYPES = {'.js', '.html', '.css', '.png', '.webp'}
+RUNTIME_TYPES = {'.js', '.html', '.css', '.png', '.webp', '.wav'}
 
 
 def flatten(image):
@@ -52,7 +52,7 @@ def build(destination):
         output.parent.mkdir(parents=True, exist_ok=True)
         if src.suffix == '.png':
             work.append((src, output))
-        elif src.suffix == '.webp':
+        elif src.suffix in {'.webp', '.wav'}:
             shutil.copyfile(src, output)
         else:
             # Registries include names assembled at runtime, e.g. the five walking atlases.

@@ -222,19 +222,20 @@
       ['sailRigged', position(85.6, 66.1, 'left')]
     ]) },
     salvage: { henry: posting(position(88.5, 73.3, 'left'), [
-      ['planksTaken', position(61.8, 77, 'left')],
+      // The plank has been lifted. Henry checks the exposed hull beside it.
+      ['planksTaken', position(61.8, 77, 'right', 'reach')],
       ['sailclothTaken', position(87.7, 74.1, 'left')]
     ]) },
     crossing: {
-      // The tiller is at screen left. The helmsman stays by its handle.
-      musgrave: posting(position(19.4, 76.9, 'left'), [
-        ['rigSecured', position(18.9, 76.3, 'left', 'reach')],
-        ['courseSet', position(18.7, 76.4, 'left')]
+      // Musgrave's chapter IX puts Alick and Raynal at the helm in turns.
+      // Raynal has the present watch. Musgrave is near the water in the hull.
+      raynal: posting(position(19.4, 76.9, 'left'), [
+        ['rigSecured', position(19.4, 76.9, 'left', 'reach')],
+        ['courseSet', position(19.4, 76.9, 'left')]
       ]),
-      raynal: posting(position(88.5, 78.9, 'right'), [
-        ['rigSecured', position(74.4, 78.9, 'left', 'crouch')],
-        ['boatDry', position(89.3, 79.3, 'left')],
-        ['sailMended', position(72.7, 77.7, 'left')]
+      musgrave: posting(position(78.6, 79.4, 'left'), [
+        ['rigSecured', position(75.2, 79.9, 'left', 'crouch')],
+        ['boatDry', position(75.2, 79.9, 'left')]
       ])
     },
     landing: {

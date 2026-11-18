@@ -4,7 +4,7 @@
   "generator": "OpenAI ImageGen",
   "origin": "Each working strip is a new original painting referenced to one new full-length character model and its earlier project choreography. These are imagined interpretations of the crew.",
   "prompts": "prompts.json",
-  "measurement": "Native pixel coordinates from the upper left. alphaBounds is the largest connected silhouette at alpha ≥32, as [left, top, width, height]. Crop, ground and contact are the retained stage geometry used by work-poses.js. measuredGround and measuredContact audit the actual planted supports and extended hand after registration. Contact is positive forward and upward in the game API.",
+  "measurement": "Native pixel coordinates from the upper left. alphaBounds is the largest connected silhouette at alpha ≥32, as [left, top, width, height]. Crop, ground and contact record the original registration. work-poses.js uses the crop together with measuredGround and measuredContact to anchor the visible planted supports and extended hand. Contact is positive forward and upward in the game API.",
   "registration": "The native RGB and alpha painting is cropped and resampled into the original transparent game canvas. Each pose uses four contiguous rectangles with shared vertical and horizontal divisions at the boot-support x and reaching-hand y. This keeps the complete pose, its feet and its interactions inside the same work station. There are no colour filters, procedural limb poses or additional art layers. sourceRegistration records native generator SHA-256, native dimensions and exact source/destination cut lines.",
   "assets": {
     "player": {
