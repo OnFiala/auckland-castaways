@@ -2,6 +2,8 @@
 
 Hra začíná setkáním Alicka s Raynalem na pobřeží a končí návratem pro Henryho a George. Anglické dialogy doprovázejí sedm kapitol, čtrnáct míst a osm pracovních detailů. Po záchraně lze otevřít archivní stůl se svědectvími posádky Invercauldu. Ve staženém vydání rozbalte celý ZIP a otevřete soubor `index.html`. [Vydání ke stažení](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14) · [Ovládání a návod v angličtině](../../PLAY.txt) · [Časová osa a dramatizace](../../HISTORICAL_ADAPTATION.md)
 
+![Sedm kapitol, návrat všech pěti trosečníků a archiv Invercauldu v Chromiu](prubeh.webp)
+
 ## Co se změnilo při hraní
 
 - **Cesta k vraku.** Alick zůstane na pláži se správnými předměty i počasím, dokud prohlížeč nerozbalí malbu vraku. Po výpadku umožní **Retry** pokračovat a **Stay here** zůstat. Stejnou ochranu má přechod kapitoly i práce, která mění malbu místnosti. Dokončenou práci lze po přerušení obnovit.
@@ -23,4 +25,10 @@ Jedno vydání používá vlastní adresář s otiskem obsahu. Ze stejného adre
 
 Zkoušky načítání přerušují načtení a dekódování obrazu při prvním otevření, při cestě, při změně kapitoly i po dokončení práce v detailu. Zkoušky chůze sledují polohu po výpadku, novou volbu cíle a přechod mezi Alickem a Musgravem. Samostatný test zahraje celou logickou cestu přes skutečné obsluhy tlačítek v testovacím DOM. [Načítání](../../tests/scene-loading.test.cjs) · [Chůze a návrat](../../tests/walk-recovery.test.cjs) · [Aktivní plochy](../../tests/hotspots.test.cjs) · [Kampaň](../../tests/voyage-ui.cjs)
 
-Nezávislá výstupní zkouška pro Chromium začíná v rozbaleném ZIPu s čistým profilem. Používá běžné ovládací prvky a ukládá záběry spolu s výsledky. Spravovaný interaktivní náhled vypršel při otevírání spojení na port 4173. [Scénáře prohlížeče](../../tests/browser/README.md)
+V rozbaleném ZIPu prošlo Chromium všech sedm kapitol, osm pracovních detailů, návrat pro oba muže a roztřídění svědectví v epilogu. Po obnovení stránky se vrátila stejná pozice. V tomto průchodu prohlížeč neohlásil chybu skriptu, chybějící soubor ani požadavek na vzdálený server. Na samostatných návštěvách pobřeží skutečný klik a emulovaný dotyk zasáhly malované předměty ve výřezech 1280 × 800 a 390 × 844. Při chůzi k lanu prohlížeč v obou případech zaznamenal 91 měření polohy během přibližně 1,5 sekundy. [Průchod v Chromiu](https://github.com/OnFiala/auckland-castaways/actions/runs/44371517887/job/135039255644) · [Scénáře](../../tests/browser/README.md)
+
+Srovnání paluby používá snímek z běhu, ve kterém nešla sebrat záplata, a snímek skutečně opravené hry ve stejné situaci. Oba vznikly v čerstvém profilu nad veřejně šiřitelným ZIPem. Spravovaný náhled nedokázal navázat spojení s hráčovou soukromou kartou. Mobilní vstupy se zkoušely emulací dotyku. [Srovnání paluby](preplavba.webp)
+
+Druhý úplný průchod ponechal chůzi zapnutou. V prvních pěti kapitolách sledoval Alickovy kroky, v závěrečných dvou Musgraveovy. Na skluzu i při návratu vznikl snímek mezi dvěma různými polohami nohou. Při setkání s Henrym prohlížeč ověřil anglickou repliku, jméno mluvčího a načtený portrét. [Záznam animovaného průchodu](https://github.com/OnFiala/auckland-castaways/actions/runs/44371517887/job/135040118782)
+
+Stažitelný archiv má 31 365 494 bajtů. Jeho SHA-256 je `16425bf938e6a01d3df1f0c1687c07462df7bf3fb5e842a269ec0645473794e3`. [Testovaný zdrojový commit](https://github.com/OnFiala/auckland-castaways/commit/59eef6ba8c23c3a4a90fe9627fd577018e150276)

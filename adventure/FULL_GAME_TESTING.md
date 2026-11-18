@@ -2,6 +2,14 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## Playable edition 14, 18 November 2026
+
+All 183 source tests passed, together with the separate first-night walkthrough and the packaging regression. The release ZIP contains 145 hashed game files, its manifest and the player guide. The hosted package also preserves 143 prior resource URLs for previously opened sessions.
+
+A fresh offline Chromium profile completed all seven chapters, the eight work surfaces, the rescue and the witness table using the public ZIP. The browser confirmed save restoration on reload. Separate mouse and touch-emulation sessions checked four painted shore targets, Alick's walk and the wreck's pulley. Another session removed the wreck painting from a disposable copy, stayed ashore, restored the file and entered the wreck on retry. [Browser QA](https://github.com/OnFiala/auckland-castaways/actions/runs/44371517887/job/135039255644) · [Screenshots from the chapters](reviews/release-14/prubeh.webp) · [Crossing deck before and after](reviews/release-14/preplavba.webp)
+
+A second full voyage used ordinary motion. Visible gait phases and foot positions were sampled from the painted actor at runtime. The browser recorded Alick in chapters I–V and Musgrave in VI–VII, including the captain's conversation at the return camp. The two walking screenshots bracket actual movement at the slipway and the landing. [Animated voyage](https://github.com/OnFiala/auckland-castaways/actions/runs/44371517887/job/135040118782)
+
 ## The five castaways, 18 November 2026
 
 All 153 source checks passed. The compact web edition passed 55 checks with no skips. Both copies also reached the separate first-night ending. The campaign walkthrough used the production event handlers for all seven chapters, 71 inventory, travel and passage actions, eight work surfaces and the rescue. Restoring a save during a puzzle, the change of protagonist and closing a conversation during optional spoken narration were exercised. The nature and timing of human choices still call for a player session. [Dialogue and entrances](tests/conversation-ui.test.cjs) · [Boatbuilder handoffs](tests/plank-company.test.cjs) · [Campaign handlers](tests/voyage-ui.cjs)
