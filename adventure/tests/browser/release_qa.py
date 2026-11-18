@@ -12,6 +12,7 @@ from playwright.sync_api import expect, sync_playwright
 
 from campaign import READ, campaign, ready, state, target
 from diagnostics import LISTEN, failure_view, print_snapshot
+from keyboard_route import keyboard_beach, keyboard_ready
 
 # Independently measured centres on the painted first shore, in stage percentages.
 BEACH = {"rope": (34, 71.6), "pole": (48.4, 75.4), "sail": (70.1, 37.6),
@@ -159,7 +160,7 @@ def retry_scenery(page, evidence, painting):
     assert state(page)["actions"] == before["actions"] + 1
 
 
-def run(browser, index, folder, name, scenario, *, touch=False, reduced=False, touch_input=False):
+def run(browser, index, folder, name, scenario, *, touch=False, reduced=False, touch_input=False, prepare=ready):
     folder.mkdir(parents=True, exist_ok=True)
     view = {"width": 390, "height": 844} if touch else {"width": 1280, "height": 800}
     ctx = browser.new_context(viewport=view, is_mobile=touch, has_touch=touch or touch_input,
@@ -183,7 +184,7 @@ def run(browser, index, folder, name, scenario, *, touch=False, reduced=False, t
         page.goto(index.as_uri())
         release = page.locator('meta[name="game-release"]').get_attribute('content')
         assert release and release.strip(), 'the published page must identify its release'
-        ready(page)
+        prepare(page)
         assert state(page)['actions'] == 0 and state(page)['chapter'] == 1
         print(f"Release {release}: {name}", flush=True)
         write(folder / 'edition.json', {"release":release, "scenario":name, "viewport":view, "offline":True})
@@ -238,6 +239,7 @@ def main():
                 name = 'touch-shore' if touch else 'desktop-shore'
                 check(index, args.evidence / name, name,
                       lambda page, folder: shore(page, folder, touch), touch=touch)
+            check(index, args.evidence / 'keyboard', 'keyboard beach', keyboard_beach, prepare=keyboard_ready)
             if not check(index, args.evidence / 'campaign', 'seven chapters', campaign, reduced=True, touch_input=True):
                 check(index, args.evidence / 'diagnostic', 'keyboard continuation', diagnose_campaign, reduced=True, touch_input=True)
             with TemporaryDirectory() as temp:

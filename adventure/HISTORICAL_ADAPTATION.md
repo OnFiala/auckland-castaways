@@ -59,7 +59,9 @@ The rescue includes people outside the five: Captain Cross and his household, pe
 
 ## Invercauld and the smoke question
 
-The groups occupied different parts of Auckland Island and did not meet during their marooning (E048). Invercauld's three survivors had already been rescued in May 1865. Musgrave's August smoke observation and the appendix's later speculation are chronologically problematic; they are not evidence of a secret encounter or a mission to find an Invercauld camp. The playable Grafton campaign does not turn that uncertainty into a discovery.
+The two crews lived on different parts of Auckland Island throughout their marooning (E048). *Julian* took Dalgarno, Smith and Holding away in May 1865 (E036). On 23 August, Cross felt sure he saw smoke from *Flying Scud*. Musgrave recorded his own uncertainty. On 24 August he recorded Henry and George’s account that neither had been up the mountains since his departure (E038, E041). The chart puzzle leaves the origin of the mark open. [Musgrave, entries for 23–24 August, printed pp. 114–117](../sources/originals/castawayonauckla01musg.pdf#page=130)
+
+In Appendix III of *Castaway on the Auckland Isles* (1866), Dalgarno’s letter ends on printed p. 173. A new heading, “Note by the Publishers”, introduces a report credited to the *Melbourne Illustrated Post* of 25 October 1865. On p. 174 that report attributes the smoke to the Invercauld camp (S002, E044). The game asks the player to weigh that October claim against the May rescue and the August journal entries. [1866 edition, printed pp. 173–174 (PDF pages 189–190)](../sources/originals/castawayonauckla01musg.pdf#page=189)
 
 The different survival outcomes cannot be reduced to a controlled comparison of leadership. Equipment, access to the wreck, conditions and other circumstances differed. See [CONFLICTS](../research/CONFLICTS.md) and [FACT_INFERENCE_FICTION](../research/FACT_INFERENCE_FICTION.md).
 

@@ -74,10 +74,15 @@ test('the archive files both witnesses and three events, corrects errors, and ke
   await a.click('page', 'mark');
   assert.match(a.html(), /23 August/);
   assert.match(a.html(), /chart-detail.webp/);
+  // S002, “Note by the Publishers”, printed pp. 173–174 (local PDF pages 189–190).
+  assert.match(a.html(), /Melbourne Illustrated Post of 25 October 1865 attributed the smoke/);
+  assert.match(a.html(), /publishers reprinted the report in 1866/);
+  assert.match(a.html(), /left aboard Julian in May 1865/);
   await a.click('finding', 'fire');
   assert.match(a.message(), /did not establish/);
   await a.click('finding', 'camp');
   assert.match(a.message(), /reached Callao/);
+  assert.match(a.message(), /Melbourne Illustrated Post.*later reprinted in Musgrave’s book/);
   assert.equal(a.find('.ep-coda'), null);
   await a.click('finding', 'unresolved');
   assert.match(a.html(), /George Dalgarno, Andrew Smith and Robert Holding/);

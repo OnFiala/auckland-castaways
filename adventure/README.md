@@ -2,7 +2,7 @@
 
 A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
 
-[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14) · [Edition 14](reviews/release-14/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
+[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v15) · [Edition 15](reviews/release-15/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
 ## Play
 
@@ -49,4 +49,4 @@ node --test adventure/tests/*.test.js adventure/tests/*.test.cjs adventure/tests
 node adventure/tests/ui-contract.cjs
 ```
 
-The release tests exercise the complete journey, all eight work surfaces, interruptions, an unfinished close-up through reload, optional field observations, and old saves. Every one of the 705 reachable campaign inventory states has a path to chapter completion. The release includes targeted failures of a scene image, unfinished screen transitions and walking atlases. Native Canvas checks fixed rock, rope and wood against the water. [Edition 14 release and verification](reviews/release-14/README.md) · [Past test runs](FULL_GAME_TESTING.md) · [Artwork comparison](reviews/staging/scene-scale-proof.webp)
+The release tests exercise the complete journey, all eight work surfaces, interruptions, an unfinished close-up through reload, optional field observations, and old saves. Every one of the 705 reachable campaign inventory states has a path to chapter completion. The release includes targeted failures of a scene image, unfinished screen transitions and walking atlases. Native Canvas checks fixed rock, rope and wood against the water. [Current release and verification](reviews/release-15/README.md) · [Past test runs](FULL_GAME_TESTING.md) · [Artwork comparison](reviews/staging/scene-scale-proof.webp)

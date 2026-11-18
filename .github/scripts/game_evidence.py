@@ -61,7 +61,8 @@ def prepare(archive, evidence, edition, output):
 
     summary = {'edition': edition, 'build': verified['build'], 'zip_sha256': digest,
                'zip_bytes': archive.stat().st_size, 'verified_files': verified['current_files'], 'scenarios': {}}
-    for name in SCENARIOS:
+    scenarios = SCENARIOS + (('keyboard',) if int(edition) >= 15 else ())
+    for name in scenarios:
         folder = evidence / name
         details = read_json(folder / 'edition.json')
         browser = read_json(folder / 'browser.json')
@@ -76,6 +77,13 @@ def prepare(archive, evidence, edition, output):
             row.update(walk_ms=walk['sampledMs'], walk_samples=walk['samples'], distinct_walk_frames=len(set(walk['frames'])),
                        shore_targets_hit=sum(key == hit['hit'] for key, hit in targets.items()),
                        block_loaded_offset_percent=block['loadedOffsetPercent'])
+        if name == 'keyboard':
+            keyboard = read_json(folder / 'keyboard-route.json')
+            transferred = [observation['item'] for observation in keyboard['pickupsAndCombination']]
+            if transferred != ['rope', 'pole', 'loopPole'] or keyboard['restored']['item'] != 'loopPole':
+                raise ValueError('Incomplete keyboard pickup, crafting or reload evidence')
+            row.update(focus_after_actions=transferred, following_tab=keyboard['nextTab']['label'],
+                       focus_after_reload=keyboard['restored']['item'])
         summary['scenarios'][name] = row
 
     output.mkdir(parents=True, exist_ok=True)

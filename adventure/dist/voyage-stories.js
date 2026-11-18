@@ -216,18 +216,28 @@
 
   function homecoming(id, room, f) {
     if (room === 'landing') {
+      const invitation = 'Then come aboard. Cross has places at supper for all three of us.';
+      if (f.menRescued) {
+        if (id === Henry) return exchange(Henry, Musgrave, 'I can still feel the grain of that post in my palm.',
+          'Can you open your hand, Henry?', 'Wide enough for a cup of tea.');
+        if (id === George) return exchange(George, Musgrave, 'I owe Alick a handshake when we see him.',
+          'And Raynal?', 'One for each hand, then.');
+        return [turn(Musgrave, 'When Alick asks, I can tell him I brought them both back.')];
+      }
       if (id === Henry) return exchange(Henry, Musgrave, 'Does Cross mind us coming down slowly?', 'He’s waited on worse things than two men walking.',
         'Good. I thought I’d run this whole way when the day came.');
+      if (id === George && f.landingMarked) return exchange(George, Musgrave, 'I’ve got Henry’s arm. Is that everything, Captain?',
+        invitation, 'You heard him, Henry. Hold on to me.');
       if (id === George) return exchange(George, Musgrave, 'Let me have the side of the boat. Henry, you can lean on me.',
         'I’ve got the line. She’ll keep still for you.', 'All right. It’s a long step after a month wishing for it.');
-      if (f.henryFound && f.georgeFound && f.boatMoored && f.suppliesShared) {
-        if (!f.landingMarked) return exchange(Musgrave, George, 'Can Cross see this landing from the cutter?',
-          'He’ll lose it against the trees when the light goes.', 'Then hold her here, George. I’ll put the lantern up before we leave.');
-        return exchange(Musgrave, George, 'Both men here. Is Henry clear of the line?', 'Yes. I’ve got his arm.',
-          'Then come aboard. Cross has places at supper for all three of us.');
-      }
-      return [turn(Musgrave, f.boatMoored ? 'She’ll hold there. Up to the house now. I want to see their faces.'
-        : 'There’s the way up to Epigwaitt. Steady this boat first. Two men will have to get into her.')];
+      if (!f.boatMoored) return [turn(Musgrave, 'Steady this boat first. Two men will have to get into her.')];
+      if (!f.henryFound && !f.georgeFound) return [turn(Musgrave, 'She’ll hold there. I want a word with Henry and George.')];
+      if (!f.georgeFound) return [turn(Musgrave, 'Henry’s on his feet. I want a word with George.')];
+      if (!f.henryFound) return [turn(Musgrave, 'George has heard the news. I’ll speak to Henry myself.')];
+      if (!f.suppliesShared) return [turn(Musgrave, 'I’ll take the provisions up to the house. Those two have carried enough.')];
+      if (!f.landingMarked) return exchange(Musgrave, George, 'Can Cross see this landing from the cutter?',
+        'He’ll lose it against the trees when the light goes.', 'Then hold her here, George. I’ll put the lantern up before we leave.');
+      return exchange(Musgrave, George, 'Both men here. Is Henry clear of the line?', 'Yes. I’ve got his arm.', invitation);
     }
     if (id === Musgrave) {
       if (f.henryFound && f.georgeFound) return exchange(Musgrave, Henry, 'Both men in front of me at last. Have you got what you want to bring?',

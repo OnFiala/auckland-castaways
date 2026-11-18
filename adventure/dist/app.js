@@ -157,6 +157,7 @@ function paintThen(next, commit) {
  }
  const panel = $('scene-loading'), retry = $('scene-retry'), stay = $('scene-stay');
  const status = $('scene-load-message');
+ const previousFocus = document.activeElement;
  const name = E.SCENES.find(scene => scene.id === next.scene).name;
  const pending = {image: null, timer: null, attempts: 0};
  pendingPainting = pending;
@@ -184,12 +185,16 @@ function paintThen(next, commit) {
    clearRequest();
    pendingPainting = null;
    chapterBusy = false;
+   const loadingHadFocus = panel.contains(document.activeElement);
    panel.close();
+   if (loadingHadFocus && document.activeElement === document.body &&
+       previousFocus !== document.body && previousFocus?.isConnected && !previousFocus.hidden) {
+    previousFocus.focus({preventScroll:true});
+   }
    if (image) {
     mountPainting(file, image);
     commit();
    }
-   if (document.activeElement === document.body) $('scene').focus();
    resolve(Boolean(image));
   }
   function request() {
@@ -454,18 +459,18 @@ function cancelWalk(){ticket++;if(!dialogue)actorFocus=null;$('player').classLis
 function flyItem(id,origin){if(prefs.reduced)return;const item=$('inventory').querySelector(`[data-item="${id}"]`);if(!item)return;const r=item.getBoundingClientRect(),s=$('scene').getBoundingClientRect(),x=s.left+s.width*(origin?.x||player.x)/100,y=s.top+s.height*(origin?.y||player.y)/100;const el=document.createElement('div');el.className='cursor-item flying';el.style.cssText=`display:block;left:${x}px;top:${y}px;width:44px;height:44px`;el.innerHTML=svg(id);document.body.appendChild(el);const animation=el.animate([{transform:'translate(-22px,-22px) scale(1.4)',opacity:1},{transform:`translate(${r.left-x+10}px,${r.top-y+10}px) scale(.75)`,opacity:.8}],{duration:650,easing:'ease-in-out'});animation.onfinish=()=>el.remove();}
 function revealCompletion(){if(!state.completed)return;if($('modal').open){completionPending=true;return;}completionPending=false;closeDialogue();$('completion').hidden=false;
  if(CAMPAIGN){$('completion-title').focus({preventScroll:true});$('completion').scrollTop=0;}else $('keep-exploring').focus();}
-function apply(response,origin,usedItem=null,after){
+function apply(response,{origin,source,usedItem,after}={}){
  return paintThen(response.state,()=>{
   // Release the hand only when its successful action and required painting commit.
   if(usedItem && usedItem===selected)selected=null;
-  applyReady(response,origin);
+  applyReady(response,origin,source);
   after?.();
  });
 }
-function applyReady(response,origin){
+function applyReady(response,origin,source){
  const wasDone=state.completed,wasChapterDone=state.chapterComplete,oldFlags=state.flags;
  state=response.state;if(selected&&!state.inventory.includes(selected))selected=null;
- save();render();showCue(response.cue,response.text,response.gained);
+ save();render({source,gainedItem:response.gained[0]});showCue(response.cue,response.text,response.gained);
  response.gained.forEach(id=>flyItem(id,origin));
  if(CAMPAIGN&&!state.completed){
   const beat=S.workBeat?.(oldFlags,state);
@@ -516,7 +521,7 @@ function roomAction(target,action,tool){
  }
  requestAnimationFrame(frame);
 }
-async function activate(target,inspect=false){
+async function activate(target,source,inspect=false){
  if(chapterBusy||Bench?.shown())return;
  closeDialogue();$('first-hint').hidden=true;
  inspect=inspect||examining;if(examining)setExamine(false);
@@ -532,7 +537,7 @@ async function activate(target,inspect=false){
  if(person&&!inspect){
   if(item){showCue('talk','Put the tool away to speak.',[],true);actorFocus=null;return;}
   const beforeTalk=state;
-  if(E.getTargets(state).some(t=>t.id===target.id)){const reply=E.interact(state,target.id,'talk');if(reply.changed||!CAMPAIGN)apply(reply,target);}
+  if(E.getTargets(state).some(t=>t.id===target.id)){const reply=E.interact(state,target.id,'talk');if(reply.changed||!CAMPAIGN)apply(reply,{origin:target,source});}
   startDialogue(target.id,false,null,beforeTalk);return;
  }
  if(person&&inspect&&!Observations){startDialogue(target.id,true);return;}
@@ -547,13 +552,14 @@ async function activate(target,inspect=false){
  const r=inspect?E.interact(state,target.id,'look'):item?E.useItem(state,item,target.id):E.interact(state,target.id,'use');
  if(!r.changed){
   actorFocus=null;
+  if(state.scene==='landing'&&target.id==='rescueBoat'&&!inspect&&!item){startDialogue('player');return;}
   const looking=inspect||!item;const text=looking&&Observations?Observations.look(state,target.id,r.text):r.text;
   showCue(looking?'eye':r.cue,text,[],Boolean(Observations));return;
  }
  const pendingState=state;
  const complete=(atBench=false)=>{
   if(state!==pendingState)return false;
-  const commit=()=>apply(r,target,inspect?null:item,()=>{
+  const commit=()=>apply(r,{origin:target,source,usedItem:inspect?null:item,after:()=>{
    if(staged)Life?.work($('place-life'),state,target.id);
    if(staged)Weather?.respond($('place-weather'),state,target.id);
    if(!CAMPAIGN&&['shelter_built','fire_lit'].includes(r.cue))startDialogue('player',true);
@@ -561,7 +567,7 @@ async function activate(target,inspect=false){
     if(dialogue)dialogue.after=lookAtSewingBench;else lookAtSewingBench();
    }
    if(atBench)playerPose();
-  });
+  }});
   if(atBench||!staged)return commit();
   roomAction(target,commit,item);
  };
@@ -571,7 +577,7 @@ async function activate(target,inspect=false){
   Bench.open(id,{complete:()=>complete(true),close:()=>{if(state===pendingState)playerPose();}});
  }else complete();
 }
-async function exitScene(exit){
+async function exitScene(exit,source){
  if(chapterBusy)return;
  closeDialogue();$('first-hint').hidden=true;
  const departure=staged?exit.approach:null;
@@ -584,7 +590,7 @@ async function exitScene(exit){
   player=staged?entryPoint(exit.x<50?'right':'left',from):{x:exit.x<50?84:16,y:84};
   const bounds=W.scenes?.[state.scene]?.walk;
   if(!staged&&bounds)player.x=Math.max(bounds[0],Math.min(bounds[1],player.x));
-  $('arrival').classList.add('cover');save();render();
+  $('arrival').classList.add('cover');save();render({source,sceneChanged:true});
   setTimeout(()=>$('arrival').classList.remove('cover'),prefs.reduced?0:240);
  });
 
@@ -614,14 +620,27 @@ function syncCompanions(){
   const markup=`<button id="person-${id}" class="change companion person" data-story-person="${id}" aria-label="Talk to ${S.speakerInfo(id,state).speaker}" title="Talk to ${S.speakerInfo(id,state).speaker}" style="left:${x}%;top:${y-h/2}%;width:${staged?actorWidth(h):8.5}%;height:${h}%;--canvas-width:${staged?h*.60/actorWidth(h)*100:160}%;--actor-delay:-${x/17}s;z-index:${Math.round(y)}">${person(id)}</button>`;
   if(companionMarkup.get(id)!==markup){container.querySelector(`[data-story-person="${id}"]`)?.remove();container.insertAdjacentHTML('beforeend',markup);companionMarkup.set(id,markup);}
   const b=container.querySelector(`[data-story-person="${id}"]`);
-  b.onclick=e=>{e.stopPropagation();activate({id,name:S.speakerInfo(id,state).speaker,kind:'person',x,y});};
+  b.onclick=e=>{e.stopPropagation();activate({id,name:S.speakerInfo(id,state).speaker,kind:'person',x,y},b);};
   bindActionLabel(b,()=>targetLabel(S.speakerInfo(id,state).speaker));
  }
 }
 
 function inspectKey(event,inspect){if(event.key==='ContextMenu'||(event.key==='F10'&&event.shiftKey)){event.preventDefault();event.stopPropagation();inspect();}}
-function renderInventory(){const empty=Math.max(0,8-state.inventory.length);$('inventory').innerHTML=state.inventory.map(id=>`<button class="item ${id===selected?'selected':''}" data-item="${id}" aria-label="${esc(E.ITEMS[id].name)}" aria-pressed="${id===selected}" title="${esc(E.ITEMS[id].name)}">${svg(id)}</button>`).join('')+Array.from({length:empty},()=>'<div class="item empty" aria-hidden="true"></div>').join('');$('inventory').querySelectorAll('[data-item]').forEach(b=>{const id=b.dataset.item;b.onclick=()=>{cancelWalk();if(selected&&selected!==id){const response=E.combine(state,selected,id);if(response.changed){selected=null;apply(response);}else{showCue('wrong',response.text);setSelected(id);}}else setSelected(selected===id?null:id);};bindActionLabel(b,()=>selected&&selected!==id?`${E.ITEMS[selected].name} + ${E.ITEMS[id].name}`:E.ITEMS[id].name);b.onkeydown=e=>inspectKey(e,()=>showCue(id,E.ITEMS[id].description));b.oncontextmenu=e=>{e.preventDefault();showCue(id,E.ITEMS[id].description);};});}
-function render(){const scene=currentScene(),world=W.scenes?.[state.scene];$('scene').dataset.scene=state.scene;$('scene').dataset.chapter=String(chapterNumber());$('scene').dataset.indoor=String(Boolean(world?.indoor));$('scene').dataset.shelter=String(state.flags.shelterBuilt);$('scene').dataset.crate=String(state.flags.crateOpen);$('scene').classList.toggle('warm',(state.scene==='camp'&&state.flags.fireLit)||Boolean(state.flags.forgeLit&&state.scene==='forge'));const location=staged&&chapterNumber()===1&&state.scene==='beach'?'Grafton wreck · Carnley Harbour, January 1864':scene.name;
+function renderInventory(){const empty=Math.max(0,8-state.inventory.length);$('inventory').innerHTML=state.inventory.map(id=>`<button class="item ${id===selected?'selected':''}" data-item="${id}" aria-label="${esc(E.ITEMS[id].name)}" aria-pressed="${id===selected}" title="${esc(E.ITEMS[id].name)}">${svg(id)}</button>`).join('')+Array.from({length:empty},()=>'<div class="item empty" aria-hidden="true"></div>').join('');$('inventory').querySelectorAll('[data-item]').forEach(b=>{const id=b.dataset.item;b.onclick=()=>{cancelWalk();if(selected&&selected!==id){const response=E.combine(state,selected,id);if(response.changed){selected=null;apply(response,{source:b});}else{showCue('wrong',response.text);setSelected(id);}}else setSelected(selected===id?null:id);};bindActionLabel(b,()=>selected&&selected!==id?`${E.ITEMS[selected].name} + ${E.ITEMS[id].name}`:E.ITEMS[id].name);b.onkeydown=e=>inspectKey(e,()=>showCue(id,E.ITEMS[id].description));b.oncontextmenu=e=>{e.preventDefault();showCue(id,E.ITEMS[id].description);};});}
+function restoreRenderFocus(previous,source,gainedItem,sceneChanged){
+ if(!previous || previous===document.body || (previous.isConnected && !previous.hidden))return;
+ if(document.activeElement!==document.body && document.activeElement!==previous)return;
+ // A walk can finish after the player has already moved focus to another control.
+ const wasSource=previous===source;
+ if(wasSource && sceneChanged){$('scene').focus({preventScroll:true});return;}
+ const item=wasSource && gainedItem || previous.dataset.item;
+ const {target,exit}=previous.dataset;
+ const replacement=item?$('inventory').querySelector(`[data-item="${item}"]`):
+  target?$('targets').querySelector(`[data-target="${target}"]`):
+  exit?$('exits').querySelector(`[data-exit="${exit}"]`):null;
+ (replacement||(wasSource?$('scene'):null))?.focus({preventScroll:true});
+}
+function render({source,gainedItem,sceneChanged=false}={}){const previousFocus=document.activeElement,scene=currentScene(),world=W.scenes?.[state.scene];$('scene').dataset.scene=state.scene;$('scene').dataset.chapter=String(chapterNumber());$('scene').dataset.indoor=String(Boolean(world?.indoor));$('scene').dataset.shelter=String(state.flags.shelterBuilt);$('scene').dataset.crate=String(state.flags.crateOpen);$('scene').classList.toggle('warm',(state.scene==='camp'&&state.flags.fireLit)||Boolean(state.flags.forgeLit&&state.scene==='forge'));const location=staged&&chapterNumber()===1&&state.scene==='beach'?'Grafton wreck · Carnley Harbour, January 1864':scene.name;
  $('scene').setAttribute('aria-label',location);$('scene-label').textContent=location;
  $('scene').classList.toggle('staged',staged);$('inspect-mode').hidden=!staged;
  const goals=CAMPAIGN?E.getChapter(state).goals:[{icon:'shelter',flag:'shelterBuilt',label:'Shelter'},{icon:'fire',flag:'fireLit',label:'Fire'},{icon:'signal',flag:'signalRaised',label:'Signal'}];
@@ -658,16 +677,16 @@ function render(){const scene=currentScene(),world=W.scenes?.[state.scene];$('sc
     $('actor-'+t.id).style.transform=`scaleX(${pose.facing==='left'?-1:1})`;
    }
   }
-  const b=container.querySelector(`[data-target="${t.id}"]`);b.onclick=e=>{e.stopPropagation();activate(t);};b.oncontextmenu=e=>{e.preventDefault();e.stopPropagation();activate(t,true);};b.onkeydown=e=>inspectKey(e,()=>activate(t,true));bindActionLabel(b,()=>t.id==='tinPan'?t.name:targetLabel(t.name));
+  const b=container.querySelector(`[data-target="${t.id}"]`);b.onclick=e=>{e.stopPropagation();activate(t,b);};b.oncontextmenu=e=>{e.preventDefault();e.stopPropagation();activate(t,b,true);};b.onkeydown=e=>inspectKey(e,()=>activate(t,b,true));bindActionLabel(b,()=>t.id==='tinPan'?t.name:targetLabel(t.name));
  });
  const stagedExits=exitsFor().map(e=>staged?Stage.stageExit(state.scene,e):e);
- $('exits').innerHTML=stagedExits.map(e=>`<button class="exit" style="left:${e.x}%;top:${e.y}%" data-exit="${e.id}" title="${e.name}" aria-label="${e.name}">${e.x<50?'‹':'›'}</button>`).join('');$('exits').querySelectorAll('[data-exit]').forEach(b=>{const exit=stagedExits.find(x=>x.id===b.dataset.exit);b.onclick=e=>{e.stopPropagation();exitScene(exit);};bindActionLabel(b,()=>exit.name);});
+ $('exits').innerHTML=stagedExits.map(e=>`<button class="exit" style="left:${e.x}%;top:${e.y}%" data-exit="${e.id}" title="${e.name}" aria-label="${e.name}">${e.x<50?'‹':'›'}</button>`).join('');$('exits').querySelectorAll('[data-exit]').forEach(b=>{const exit=stagedExits.find(x=>x.id===b.dataset.exit);b.onclick=e=>{e.stopPropagation();exitScene(exit,b);};bindActionLabel(b,()=>exit.name);});
  worldChanges();Life?.render($('place-life'),state);
  if(staged&&Weather){
   Weather.render($('place-weather'),state);
   $('scene').setAttribute('aria-description',Weather.caption?.($('place-weather'),state)||Weather.describe(state).weather);
  }
- renderInventory();updatePlayer();playerPose(playerWork);$('cancel-item').hidden=!selected;$('cursor-item').innerHTML=selected?svg(selected):'';$('cursor-item').style.display=selected?'block':'none';refreshActionLabel();
+ renderInventory();updatePlayer();playerPose(playerWork);$('cancel-item').hidden=!selected;$('cursor-item').innerHTML=selected?svg(selected):'';$('cursor-item').style.display=selected?'block':'none';restoreRenderFocus(previousFocus,source,gainedItem,sceneChanged);refreshActionLabel();
 }
 function modal(title,html){closeDialogue();cancelWalk();const dialog=$('modal');if(!dialog.open)modalReturnFocus=document.activeElement;$('modal-title').textContent=title;$('modal-body').innerHTML=html;if(!dialog.open)dialog.showModal();}
 $('inspect-mode').onclick=()=>{cancelWalk();if(selected)setSelected(null);setExamine(!examining);refreshActionLabel();};
@@ -726,7 +745,7 @@ function showChapterBanner(){
 }
 async function advanceChapter(){
  if(!CAMPAIGN||chapterBusy||!state.chapterComplete||state.completed)return;
- const passage=departure();if(passage?.exit){await exitScene(passage.exit);return;}chapterBusy=true;closeDialogue();selected=null;clearTimeout(completionTimer);
+ const source=$('chapter-exit'),passage=departure();if(passage?.exit){await exitScene(passage.exit,source);return;}chapterBusy=true;closeDialogue();selected=null;clearTimeout(completionTimer);
  if(!await walkTo(passage?.x??94,passage?.y??84)){chapterBusy=false;return;}
  cancelWalk();
  if(chapterNumber()===4&&window.CastawayRepairRoll){
@@ -734,19 +753,19 @@ async function advanceChapter(){
   window.CastawayRepairRoll.open({
    phase:'departure',place:state.repairRoll?.place,
    store:place=>{const response=E.stowRoll(state,place);if(response.changed){state=response.state;save();}},
-   depart:()=>{if(chapterBusy||chapterNumber()!==4||!state.repairRoll)return;chapterBusy=true;makePassage();}
+   depart:()=>{if(chapterBusy||chapterNumber()!==4||!state.repairRoll)return;chapterBusy=true;makePassage(source);}
   });
   return;
  }
- await makePassage();
+ await makePassage(source);
 }
-async function makePassage(){
+async function makePassage(source){
  const response=E.advance(state);if(!response.changed){chapterBusy=false;return;}
  return paintThen(response.state,()=>{
   $('arrival').classList.add('cover');state=response.state;player=staged?entryPoint():{x:22,y:84};
   setExamine(false);actorTracks.clear();actorPositions.clear();walkDistance=0;
-  save();render();prepareWalk(playerId());showChapterBanner();
-  setTimeout(()=>$('arrival').classList.remove('cover'),effectiveReduced()?0:400);$('scene').focus();
+  save();render({source,sceneChanged:true});prepareWalk(playerId());showChapterBanner();
+  setTimeout(()=>$('arrival').classList.remove('cover'),effectiveReduced()?0:400);
  });
 }
 function journey(){
@@ -767,6 +786,7 @@ if(staged)player=entryPoint();
 prepareWalk(playerId());savePrefs();
 paintThen(state,()=>{
  save();render();requestAnimationFrame(liveFrame);
+ if(document.activeElement===document.body)$('scene').focus({preventScroll:true});
  if(state.actions>0)$('first-hint').hidden=true;
  if(CAMPAIGN&&state.completed)revealCompletion();
  else if(newVoyage)openingConversation();

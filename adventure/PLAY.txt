@@ -16,6 +16,7 @@ open Working controls. Tab, Enter and Escape work throughout the game.
 Settings shows the release number. Motion follows your system preference,
 and you can reduce it in the game. Brief reaction captions and English
 narration start off. Narration uses a voice supplied by your browser.
+For offline narration, your device needs an installed English voice.
 
 The story follows the Grafton from its wreck in 1864 to the rescue in 1865.
 You play Alick McLaren in the first five chapters and Captain Thomas Musgrave

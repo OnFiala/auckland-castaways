@@ -8,9 +8,9 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 ## Aktuální hra: Until We Return
 
-**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v14)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
+**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v15)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
 
-Ve vydání 14 se scéna, předměty a uložené místo přepínají společně. V chýši lze přímo ohledat misku pod kapající střechou. Každá vydaná sada maleb má vlastní adresy, takže rozehraná verze může dál používat svoje soubory. Stažený ZIP stačí celý rozbalit a otevřít `index.html`. [Opravy a ověření vydání 14](adventure/reviews/release-14/README.md) · [Původní záznam závad](adventure/reviews/browser-13/README.md)
+Ve vydání 15 si Musgrave pamatuje, se kterým z obou mužů už při záchraně mluvil. Na palubě se Alick dostane k záplatě i během vybírání vody. V chýši lze přímo prohlédnout misku pod kapající střechou. Stažený ZIP celý rozbalte a otevřete `index.html`. [Vydání 15 a jeho ověření](adventure/reviews/release-15/README.md) · [Obrazový průchod a opravy vydání 14](adventure/reviews/release-14/README.md)
 
 Sedm anglicky vyprávěných kapitol vede přes čtrnáct míst od ztroskotání k záchraně. Na pláži se Raynal nejprve ujistí, že se George dostal na břeh. Teprve z rozhovoru s Alickem vyplyne, proč je potřeba plachta zachycená v koruně stromu. Každý z pěti mužů má vlastní tvář a při práci jiné držení těla. Jejich rozhovor lze pod obrazem číst vlastním tempem. [Aktuální vydání a obrazové ukázky](adventure/reviews/29-na-doslech.md) · [Porovnání ve dvou velikostech](adventure/reviews/company/README.md)
 

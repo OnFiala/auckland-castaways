@@ -74,6 +74,7 @@ async function hintStep(ui){
  }
  if(sewing.open){
   assert.equal(ui.state().chapter,7);
+  assert.match(sewing.innerHTML,/<h2 id="roll-title">Where Alick left it<\/h2>/);
   await ui.click(sewing.querySelector('[data-roll-spot="'+ui.state().repairRoll.place+'"]'));
   assert(ui.state().repairRoll.seen);
   await ui.click(sewing.querySelector('[data-roll-leave]'));
@@ -235,6 +236,7 @@ test('Alick can put the roll away, change his mind and reload; Musgrave later fi
  let ui=createUi({initial:{[KEY]:JSON.stringify(initial)}});
  await go(ui,'slipway');await ui.click(passage(ui));
  let panel=ui.ids.get('repair-roll');assert(panel.open);
+ assert.match(panel.innerHTML,/<h2 id="roll-title">For the two who stay<\/h2>/);
  assert(panel.querySelector('[data-roll-leave]').hidden);
  await ui.click(panel.querySelector('[data-roll-fold]'));
  assert.equal(panel.querySelector('.roll-object').dataset.place,'table');
@@ -251,6 +253,7 @@ test('Alick can put the roll away, change his mind and reload; Musgrave later fi
  const august=fixture(7);august.repairRoll=canonical(ui.state().repairRoll);
  ui=createUi({initial:{[KEY]:JSON.stringify(august)}});await go(ui,'return_camp');
  await ui.pick('campTable');panel=ui.ids.get('repair-roll');assert(panel.open);
+ assert.match(panel.innerHTML,/<h2 id="roll-title">Where Alick left it<\/h2>/);
  assert.match(panel.querySelector('.roll-background').src,/return-board\.webp/);
  await ui.click(panel.querySelector('[data-roll-spot="peg"]'));assert(!ui.state().repairRoll.seen);
  await ui.click(panel.querySelector('[data-roll-spot="board"]'));assert(ui.state().repairRoll.seen);
@@ -259,6 +262,26 @@ test('Alick can put the roll away, change his mind and reload; Musgrave later fi
  ui=createUi({initial:canonical(ui.stored)});await ui.pick('campTable');assert.match(ui.ids.get('roll-line').textContent,/Henry/);
  const old=createUi({initial:{[KEY]:JSON.stringify(fixture(7))}});await go(old,'return_camp');await old.pick('campTable');
  assert(!old.ids.get('repair-roll').open);assert.equal(old.state().repairRoll,undefined);
+});
+
+test('the landing boat recalls early greetings; George invites a reply and the boat still boards directly',async()=>{
+ const ui=createUi({initial:{[KEY]:JSON.stringify(fixture(7))}});
+ const line=()=>ui.ids.get('dialogue-text').textContent;
+ await ui.pick('rescueLine');await ui.use('rescueLine','rescueBoat');await doWork(ui);
+ await go(ui,'return_camp');await ui.pick('george');await go(ui,'landing');
+ await ui.pick('rescueBoat');assert.match(line(),/speak to Henry/);
+ await go(ui,'return_camp');await ui.pick('henry');await go(ui,'landing');
+ const before=canonical(ui.state());
+ await ui.pick('rescueBoat');assert.match(line(),/provisions/);assert.deepEqual(canonical(ui.state()),before);
+ await dismiss(ui);await ui.click('inspect-mode');await ui.pick('rescueBoat');
+ assert(ui.ids.get('dialogue').hidden);assert.deepEqual(canonical(ui.state()),before);
+ assert.match(ui.ids.get('caption').textContent,/comes back against the line/);
+ await ui.pick('rescueProvisions');await go(ui,'return_camp');await ui.use('rescueProvisions','campTable');await go(ui,'landing');
+ await ui.pick('rescueBoat');assert.match(line(),/see this landing/);
+ await dismiss(ui);await ui.pick('lantern');await ui.use('lantern','signalPost');
+ await dismiss(ui);await ui.click('person-george');assert.match(line(),/Henry’s arm/);
+ await ui.click('dialogue-next');assert.match(line(),/come aboard/i);
+ await dismiss(ui);await ui.pick('rescueBoat');assert(ui.state().completed);
 });
 
 test('the household keepsake rejects impossible dates and unknown storage locations',()=>{

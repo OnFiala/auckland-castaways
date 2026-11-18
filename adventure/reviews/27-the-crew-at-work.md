@@ -14,7 +14,7 @@ Ve čtrnácti lokacích se při pohybu vykreslují vybrané části skutečné p
 
 | Kde | Činnost a odezva |
 | --- | --- |
-| II · Zimní chata | V plechové nádobě se objeví kruh a je slyšet kapka. Stará skvrna vedle zůstává klidná. Hráč vypátrá vadný šev, opraví ho a zkontroluje odtok. Stopy lze sledovat také se ztlumeným zvukem. |
+| II · Zimní chata | V plechové nádobě se objeví kruh. Po volbě **Listen** se ozvou tři kapky. Stará skvrna vedle zůstává klidná. Hráč vypátrá vadný šev, opraví ho a zkontroluje odtok. Stopy lze sledovat také se ztlumeným zvukem. |
 | IV · Člun na břehu | Při tlakové zkoušce se jeden konec prkna zvedá. Alick předá hřeby Musgraveovi a přejde k pružícímu konci. Musgrave upevní protější spoj. Po uvolnění rukou může hráč ověřit, že prkno drží. |
 | IV a VII · Věci pro dva | Před odplutím Alick může složit náčiní do plátna a uloží je na kolík nebo pod desku. Po návratu tam kapitán nachází opravené plátno. Na kolíku visí záplata s modrým proužkem, pod deskou leží čtvercová záplata. George nebo Henry poví, k čemu nit posloužila. Starší uložení z doby po vyplutí žádnou volbu za hráče zpětně nedosazuje. |
 | Po záchraně · Invercauld | Na archivním stole hráč přiřadí předměty ke dvěma svědectvím. Kalendář klade květnovou záchranu před návrat Flying Scud v srpnu. U značky na dobové mapě může hráč zaznamenat, že původ případného kouře zůstává otevřený. Stůl lze znovu otevřít přes zakončení v deníku cesty. |

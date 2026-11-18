@@ -5,6 +5,7 @@ from pathlib import Path
 from playwright.sync_api import TimeoutError as PlaywrightTimeout, expect, sync_playwright
 
 from campaign import campaign, state
+from late_reunion import reunion_step
 from release_qa import run, write
 
 
@@ -44,6 +45,7 @@ def animated(page, evidence):
     samples = []
     shots = {}
     dialogue = {}
+    reunion = {}
     assert not page.evaluate("matchMedia('(prefers-reduced-motion:reduce)').matches")
     def remember_pose(sample):
         samples.append(sample)
@@ -93,7 +95,8 @@ def animated(page, evidence):
             page.screenshot(path=evidence / 'spoken-exchange.png')
 
     try:
-        campaign(page, evidence, activate)
+        campaign(page, evidence, activate,
+                 reunion=lambda page, before, use: reunion_step(page, before, use, evidence, reunion))
     finally:
         chapters = {}
         for sample in samples:
@@ -104,7 +107,7 @@ def animated(page, evidence):
                 track['phases'].append(sample['phase'])
         write(evidence / 'animated-route.json', {'chapters':chapters, 'samples':samples,
               'walkingScreenshots':shots, 'conversation':dialogue})
-    assert shots.keys() == {4, 7} and dialogue
+    assert shots.keys() == {4, 7} and dialogue and reunion.keys() == {'beforeSupplies', 'boardingExchange'}
     for chapter in range(1, 8):
         actor, role = ('player', 'Alick McLaren') if chapter <= 5 else ('musgrave', 'Captain Musgrave')
         moving = [s for s in samples if s['chapter'] == chapter and s['player']]

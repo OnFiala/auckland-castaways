@@ -189,15 +189,44 @@ test('Raynal and Musgrave change rooms once, in either puzzle order and after a 
   }
 });
 
-test('the return is provisioned in Invercargill and the boarding invitation waits for the light',()=>{
+test('the return is provisioned in Invercargill',()=>{
  const wharf=E.SCENES.find(room=>room.id==='harbour');
  assert.equal(wharf.name,'Invercargill Wharf');
  assert.match(S.CHAPTER_BEATS[5].caption,/Port Adventure.*Invercargill/);
- const landing={chapter:7,scene:'landing',flags:{henryFound:true,georgeFound:true,boatMoored:true,suppliesShared:true}};
- let reply=S.conversation('player',landing).map(turn=>turn.text).join(' ');
- assert.match(reply,/lantern/);
- assert.doesNotMatch(reply,/come aboard/i);
- landing.flags.landingMarked=true;
- reply=S.conversation('player',landing).map(turn=>turn.text).join(' ');
- assert.match(reply,/come aboard/i);
+});
+
+test('Musgrave remembers both greetings independently of when the boat, provisions and lantern are ready',()=>{
+ const greetings=[
+  {henryFound:false,georgeFound:false,next:/word with Henry and George/},
+  {henryFound:true,georgeFound:false,next:/word with George/},
+  {henryFound:false,georgeFound:true,next:/speak to Henry/},
+  {henryFound:true,georgeFound:true}
+ ];
+ // Marking the landing requires a moored boat. The greetings and provisions are independent.
+ for(const [boatMoored,landingMarked] of [[false,false],[true,false],[true,true]]){
+  for(const suppliesShared of [false,true]){
+   for(const {henryFound,georgeFound,next} of greetings){
+    const flags={henryFound,georgeFound,boatMoored,suppliesShared,landingMarked};
+    const landing={chapter:7,scene:'landing',flags};
+    const turns=S.conversation('player',landing);
+    const speech=turns.map(turn=>turn.text).join(' ');
+    const expected=!boatMoored ? /steady this boat/i : next || (!suppliesShared ? /provisions/ : !landingMarked ? /lantern/ : /come aboard/i);
+    assert.match(speech,expected,JSON.stringify(flags));
+    assert.equal(/come aboard/i.test(speech),Object.values(flags).every(Boolean));
+    const crew=['musgrave',...Stage.companions('landing',landing)];
+    assert(turns.every(turn=>crew.includes(turn.id)));
+   }
+  }
+ }
+});
+
+test('revisiting the landing after boarding keeps the reunion in the past',()=>{
+ const flags={henryFound:true,georgeFound:true,boatMoored:true,suppliesShared:true,landingMarked:true,menRescued:true};
+ const landing={chapter:7,scene:'landing',flags};
+ assert.match(S.conversation('player',landing)[0].text,/brought them both back/);
+ for(const id of Stage.companions('landing',landing)){
+  const turns=S.conversation(id,landing);
+  assert.deepEqual(turns.map(turn=>turn.id),[id,'musgrave',id]);
+  assert.doesNotMatch(turns.map(turn=>turn.text).join(' '),/coming down|hold the line|long step|come aboard/i);
+ }
 });

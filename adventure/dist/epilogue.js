@@ -119,7 +119,7 @@
     return `<div class="ep-leaf ep-mark">${title('The mark on the chart')}
       <figure class="ep-chart-crop"><img src="${art}chart-detail.webp" alt="Detail of the original printed chart. An asterisk by the eastern shore is labelled Smoke seen."><figcaption>Detail from the 1866 plate</figcaption></figure>
       <p>On 23 August, Captain Cross felt sure he saw smoke. Musgrave, on the same deck, was uncertain. In his next entry, Musgrave says Henry and George had stayed off the mountains since he left.</p>
-      <p>The publishers reprinted a suggestion that the smoke came from Invercauld’s camp. Her three known survivors had already sailed away in May.</p>
+      <p>The Melbourne Illustrated Post of 25 October 1865 attributed the smoke to Invercauld’s camp. Musgrave’s publishers reprinted the report in 1866. The three known survivors had already left aboard Julian in May 1865.</p>
       <fieldset class="ep-annotations"><legend>Which note belongs beside the printed mark?</legend>
       <button type="button" data-ep-finding="camp">Signal from Invercauld</button>
       <button type="button" data-ep-finding="unresolved">Possible smoke · origin unknown</button>
@@ -135,7 +135,7 @@
       <p>The two crews spent a winter on the same island without knowing each other. Even Henry and George, waiting together in the south, came close to parting. The crews meet only here, where their papers have reached the same table.</p>
       <details class="ep-sources"><summary>Read the witnesses</summary>
       <p>Each slip is a new summary. The object drawings are modern illustrations. The chart is reproduced from the published journal.</p>
-      <ul><li><a href="${book}Appendix_3" target="_blank" rel="noopener noreferrer">Dalgarno’s letter and the publishers’ note ↗</a></li>
+      <ul><li><a href="${book}Appendix_3" target="_blank" rel="noopener noreferrer">Dalgarno’s letter and “Note by the Publishers” · newspaper reprint, pp. 173–174 ↗</a></li>
       <li><a href="https://paperspast.natlib.govt.nz/newspapers/ODT18651021.2.18" target="_blank" rel="noopener noreferrer">Smith’s letter to his wife · Otago Daily Times, 21 October 1865 ↗</a></li>
       <li><a href="${book}Chapter_10" target="_blank" rel="noopener noreferrer">Musgrave aboard Flying Scud · journal, 23 August ↗</a></li>
       <li><a href="https://archive.org/details/castawayonauckla01musg/page/117/mode/1up" target="_blank" rel="noopener noreferrer">Musgrave speaks to Henry and George · 24 August ↗</a></li>
@@ -192,7 +192,7 @@
       const finding = b.dataset.epFinding;
       if (finding === 'unresolved') { goTo('conclusion'); return; }
       setMessage(finding === 'camp' ?
-        'Check the year. By August the three known Invercauld survivors had reached Callao. The publishers supplied the connection.' :
+        'Julian took the three known survivors away in May. By August they had reached Callao. The link to the camp appeared in the Melbourne Illustrated Post and was later reprinted in Musgrave’s book.' :
         'Musgrave put that question to Henry and George. Their answer did not establish who or what he had seen.');
     }
   }

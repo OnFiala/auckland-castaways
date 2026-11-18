@@ -169,7 +169,7 @@ def next_move(page):
     }}""")
 
 
-def campaign(page, evidence, activate=click):
+def campaign(page, evidence, activate=click, reunion=None):
     chapters = set()
     completed_work = set()
     pan_checked = False
@@ -204,6 +204,8 @@ def campaign(page, evidence, activate=click):
             print(f"Put away {selected.get_attribute('data-item')} at {before['scene']}", flush=True)
             page.locator('#cancel-item').click()
             expect(selected).to_have_count(0)
+        if chapter == 7 and reunion and reunion(page, before, activate):
+            continue
         if before['chapterComplete']:
             activate(page.locator('#chapter-exit'))
             page.wait_for_function(f"(n) => {READ}.actions > n || document.querySelector('#repair-roll').open",

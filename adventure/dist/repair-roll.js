@@ -30,7 +30,7 @@
     session = options;
     dialog.innerHTML = '<section class="roll-frame">' +
       '<header class="roll-header"><div><small>Epigwaitt · ' + (returning ? 'August' : 'July') +
-      ' 1865</small><h2 id="roll-title">' + (returning ? 'Where you left it' : 'For the two who stay') +
+      ' 1865</small><h2 id="roll-title">' + (returning ? 'Where Alick left it' : 'For the two who stay') +
       '</h2></div><button type="button" data-roll-close aria-label="Back to the scene">×</button></header>' +
       '<div class="roll-paint"><img class="roll-background" alt=""><img class="roll-object" src="' + art +
       'roll.webp" alt="" hidden>' + (returning ? '' :
