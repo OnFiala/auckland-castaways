@@ -76,6 +76,18 @@ AUDIO_OBSERVER = """(() => {
   };
 })();"""
 
+# Deterministic autoplay policy for CI browsers which sometimes start the sound freely.
+# After a real click all decoding, pixels, sound and timing come from the unmodified media element.
+SOUND_POLICY = """(() => {
+  localStorage.setItem('castaways-film-prefs-v1', JSON.stringify({captions:false}));
+  const play = HTMLMediaElement.prototype.play;
+  HTMLMediaElement.prototype.play = function(...args) {
+    if (this.id === 'film-video' && !this.muted && !window.qaTrustedInputs)
+      return Promise.reject(new DOMException('User activation required', 'NotAllowedError'));
+    return play.apply(this, args);
+  };
+})();"""
+
 # There is no trust token, running Site, local server or external request in this
 # fixture. It models the actual Site's whole-file 200 from the exact distributed bytes.
 class Delivery:
@@ -126,6 +138,8 @@ def visit(browser, index, *, faults=None, reduced=False):
     errors = []
     page.set_default_timeout(15000)
     page.add_init_script(AUDIO_OBSERVER)
+    if faults == 'sound-policy':
+        page.add_init_script(SOUND_POLICY)
     page.on('pageerror', lambda exc: errors.append(str(exc)))
     try:
         page.goto(ORIGIN, wait_until='domcontentloaded')
@@ -338,6 +352,44 @@ def recovery(browser, index, output, fault):
         return result
 
 
+def gesture_and_visibility(browser, index, output):
+    with visit(browser, index, faults='sound-policy') as (page, _):
+        film = story_film(page, 'prologue')
+        video = film.locator('#film-video')
+        expect(film).to_have_attribute('data-sound-locked', 'true')
+        active_renderer(page, compatible=False)
+        initial = video.evaluate('v => ({source:v.currentSrc, muted:v.muted})')
+        assert initial['muted'] and initial['source']
+        before = started_without_gesture(page, 'prologue', compatible=False)
+        expect(film).to_have_attribute('data-sound-locked', 'false')
+        assert video.evaluate('v => !v.muted && !v.paused && v.currentSrc') == initial['source']
+        result = movement(page, 'prologue', output, 'sound-unlock', compatible=False)
+        # Headless Chromium keeps every tab visible, even when another one comes to front.
+        # Feed visibility changes into the real player and check its real decoder clock.
+        def visibility(hidden):
+            page.evaluate("""value => {
+              Object.defineProperty(document,'hidden',{value, configurable:true});
+              document.dispatchEvent(new Event('visibilitychange'));
+            }""", hidden)
+
+        visibility(True)
+        expect(film.locator('#film-pause')).to_have_attribute('aria-pressed', 'true')
+        held = clock(page)
+        page.wait_for_timeout(600)
+        assert abs(clock(page) - held) < .08
+        visibility(False)
+        page.wait_for_function('t => window.CastawayFilm.position() > t + .4', arg=held)
+        wake(film)
+        film.locator('#film-pause').click()
+        visibility(True)
+        visibility(False)
+        page.wait_for_timeout(450)
+        assert video.evaluate('v => v.paused')
+        exit_to_game(page, 'prologue')
+        return {'beforeFirstGesture':before, 'unlocked':result, 'visibilityInput':'emulated page visibility',
+                'suspendedPlayback':True, 'manualPausePreserved':True}
+
+
 def reduced_and_skipped(browser, index, output):
     with visit(browser, index, reduced=True) as (page, delivery):
         film = story_film(page, 'prologue')
@@ -400,6 +452,8 @@ def main():
             scenarios['pendingNative'] = recovery(browser, index, args.evidence, 'pending')
             scenarios['mediaPolicy'] = recovery(browser, index, args.evidence, 'policy')
             scenarios['reducedMotion'] = reduced_and_skipped(browser, index, args.evidence)
+            if args.browser == 'chromium':
+                scenarios['soundPolicy'] = gesture_and_visibility(browser, index, args.evidence)
             report = {'edition':manifest['release'], 'build':manifest['build'][:20], 'zip_sha256':checksum,
                       'browser':args.browser, 'browserVersion':browser.version,
                       'delivery':'intercepted HTTPS, full 200 responses from the exact ZIP',

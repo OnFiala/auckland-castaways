@@ -73,7 +73,8 @@ def read_cues(path):
 @contextmanager
 def view(browser, evidence, label, *, touch=False, reduced=False, expected_missing=()):
     viewport = {'width': 390, 'height': 844} if touch else {'width': 1280, 'height': 800}
-    context = browser.new_context(viewport=viewport, is_mobile=touch, has_touch=touch, offline=True,
+    # The full desktop campaign also exercises the room's pan hotspot by touch.
+    context = browser.new_context(viewport=viewport, is_mobile=touch, has_touch=touch or label=='desktop', offline=True,
                                   reduced_motion='reduce' if reduced else 'no-preference')
     requests, errors, failed = [], [], []
     page = context.new_page()
