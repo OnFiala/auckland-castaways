@@ -33,3 +33,7 @@ The centred reading sits above a stereo environment. A single gain per reel targ
 ## Release measurements
 
 The 16 distributed chapter files were decoded and metered after encoding. Integrated loudness ranges from −17.12 to −16.98 LUFS and the highest true peak is −1.83 dBTP. Every chapter has continuous stereo audio and a quiet fade at each end. The MP4 picture streams match the approved silent picture streams byte for byte. Three seeks per chapter covered the opening, middle and final seconds in both formats. The WebM container duration includes eight milliseconds of Opus timing overhead per reel.
+
+## Playback on devices with limited video support
+
+Edition 18 also includes 448 × 252 painted frames sampled at 8 fps from the finished MP4 reels. Its mono soundtrack is a 22,050 Hz G.711 µ-law encoding of the same English mix. Web Audio plays it at the current film position, including after a pause or an in-place switch from native video. Reduced motion holds one representative frame for each of the 23 editorial shots. Rebuilding all eight reels produced the same 126 WebP sheets and eight audio files byte for byte. [Encoding script](../../tools/make_film_compat.py) · [Playback implementation](../../dist/story-film-compat.js)

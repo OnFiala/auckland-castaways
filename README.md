@@ -1,8 +1,8 @@
 # Auckland Castaways
 
-**Rešerše a návrh historické hry o trosečnících lodí Grafton a Invercauld na Aucklandových ostrovech v letech 1864–1865.** Hlavní texty jsou česky; bibliografická metadata zachovávají původní názvy a anglické pracovní popisy.
+**Until We Return je anglická malovaná adventura o pěti mužích z lodi Grafton.** V sedmi kapitolách prožiješ ztroskotání na Aucklandově ostrově, společnou práci, plavbu k obydleným břehům a návrat pro Henryho a George.
 
-Tento repozitář obsahuje historickou rešerši a **anglickou malovanou point-and-click adventuru Until We Return: sedm hratelných kapitol od ztroskotání po návrat pro oba čekající muže**. Rešeršní část obsahuje 53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek a dobové materiály. Není tvrzením, že byly nalezeny všechny prameny. U zdrojů se rozlišuje čtený text, vybrané pasáže, OCR, metadata a neověřené stopy.
+Český historický archiv sleduje obě ztroskotání z let 1864–1865, Grafton i Invercauld. Zahrnuje 53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek a dobové materiály. U každého pramene je uvedeno, zda jsme prošli jeho text, vybrané pasáže, OCR nebo bibliografický záznam. Otevřené stopy jsou součástí další rešerše.
 
 Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
 
@@ -10,7 +10,7 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 **[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v18)** · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v18/until-we-return-story-film.mp4) · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
 
-Vydání 18 začíná odplutím ze Sydney. Když se po ztroskotání rozední, přebíráš na břehu Alicka a slyšíš první slova jeho druhů. Po zimě v Epigwaittu, práci u výhně a opravě člunu přinese plavba tři muže k lidem. Jako kapitán Musgrave se vrátíš pro zbývající dva. Úvod, šest mezikapitol a závěrečný film se přehrávají přímo při průchodu. Hra si při zavření karty pamatuje i místo v rozběhnutém filmu. Anglické vyprávění, hudba, ruchy a titulky jsou součástí offline vydání. [Průvodce hrou](adventure/README.md) · [Prameny k jednotlivým záběrům](adventure/artwork/story-film/HISTORY.md)
+Vydání 18 začíná odplutím ze Sydney. Když se po ztroskotání rozední, přebíráš na břehu Alicka a slyšíš první slova jeho druhů. Po zimě v Epigwaittu, práci u výhně a opravě člunu přinese plavba tři muže k lidem. Jako kapitán Musgrave se vrátíš pro zbývající dva. Úvod, šest mezikapitol a závěrečný film se přehrávají přímo při průchodu. Hra si při zavření karty pamatuje i místo v rozběhnutém filmu. Anglické vyprávění, hudba, ruchy a titulky jsou součástí offline vydání. [Ukázky úvodu a návaznosti kapitol](adventure/reviews/release-18/README.md) · [Průvodce hrou](adventure/README.md) · [Prameny k jednotlivým záběrům](adventure/artwork/story-film/HISTORY.md)
 
 Ve vydání 16 se na mokrém písku odráží právě ten krok, který Alick dělá. Světlo z okna, ohně nebo lucerny dopadá na materiály jinak než na tváře posádky. Původní malbu si lze kdykoli zvolit v Settings → Scene lighting. Stažený ZIP celý rozbalte a otevřete `index.html`. [Světlo a srovnání obrazů](adventure/reviews/release-16/README.md) · [Vydání 15 a jeho ověření](adventure/reviews/release-15/README.md) · [Obrazový průchod a opravy vydání 14](adventure/reviews/release-14/README.md)
 
