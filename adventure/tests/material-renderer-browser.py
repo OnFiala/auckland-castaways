@@ -85,11 +85,23 @@ def run(page, file):
     assert page.evaluate("render({width:320,height:180,aa:'auto'}).history") == 1
     assert page.evaluate("render({reduced:true}).antialias") == "fxaa"
     assert page.evaluate("(()=>{const a=r.status.frames;render({time:1.62});return r.status.frames===a})()")
-    assert page.evaluate("render({flags:{forgeLit:true}}).state") == "loading"
-    assert page.evaluate("sampler().top") == [0, 0, 0, 0]
+    # The decoder may finish between two Playwright calls. Present the old plate,
+    # switch the repair and read the cleared framebuffer in one JavaScript turn.
+    transition = page.evaluate("""()=>{
+      const before=render({reduced:false,time:1.65});
+      const previous=sampler();
+      const loading=render({flags:{forgeLit:true},reduced:true});
+      return {before,previous,loading,cleared:sampler()};
+    }""")
+    before, loading = transition["before"], transition["loading"]
+    assert before["state"] == "ready" and before["key"] == "test-dry", transition
+    assert transition["previous"]["top"][3] > 0, transition
+    assert loading["state"] == "loading" and loading["key"] == "test-lit", transition
+    assert loading["frames"] == before["frames"] and loading["history"] == 0, transition
+    assert all(pixel == [0,0,0,0] for pixel in transition["cleared"].values()), transition
     page.wait_for_function("r.status.state==='ready' && r.status.key==='test-lit'")
     assert page.evaluate("render({reduced:false,aa:'off'}).antialias") == "off"
-    new_pixels = page.evaluate("""()=>{render({time:1.69});return sampler()}""")
+    new_pixels = page.evaluate("""()=>{render({time:1.81});return sampler()}""")
     assert visible(new_pixels["bottom"], painted)[0] > visible(pixels["bottom"], painted)[0]+16, (pixels, new_pixels)
     assert page.evaluate("gl.getError()") == 0
 
