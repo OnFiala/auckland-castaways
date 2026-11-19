@@ -47,7 +47,7 @@ def make_gallery(evidence, edition, output):
 
 def verified_film(folder, output, manifest, archive_sha):
     report = read_json(folder / 'story-film.json')
-    if (str(report['edition']) != manifest['release'] or report['build'] != manifest['build']
+    if (str(report['edition']) != manifest['release'] or report['build'] != manifest['build'][:20]
             or report['zip_sha256'] != archive_sha or report['offline'] is not True
             or report['errors'] or tuple(report['reels']) != REELS
             or set(report['webmFallback']['replays']) != set(REELS)):
