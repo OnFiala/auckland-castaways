@@ -160,6 +160,33 @@ def measure(diff):
             'maxChannelDelta':maximum.getextrema()[1]}
 
 
+def tonal_change(original, cinematic):
+    # Display-referred BT.709 luma, in 8-bit code values. Use Original to assign
+    # pixels to groups so that a changed shadow cannot leave its own sample.
+    matrix = (.2126, .7152, .0722, 0)
+    before, after = (im.convert('L', matrix) for im in (original, cinematic))
+    hist = {'shadowsBelow40': [0]*511, 'highlightsAbove210': [0]*511}
+    for a,b in zip(before.tobytes(), after.tobytes()):
+        if a < 40:
+            hist['shadowsBelow40'][b-a+255] += 1
+        elif a > 210:
+            hist['highlightsAbove210'][b-a+255] += 1
+    summary = {}
+    for name, counts in hist.items():
+        total, running, middle = sum(counts), 0, []
+        for delta, count in enumerate(counts, -255):
+            for index in ((total-1)//2, total//2):
+                if running <= index < running+count:
+                    middle.append(delta)
+            running += count
+        summary[name] = {'pixels':total, 'medianDelta':sum(middle)/2 if total else None}
+    initial = ImageStat.Stat(before).stddev[0]
+    final = ImageStat.Stat(after).stddev[0]
+    summary.update(originalLumaSD=round(initial, 3), cinematicLumaSD=round(final, 3),
+                   lumaSDRatio=round(final/initial, 4))
+    return summary
+
+
 def compare(page, key, saved, out):
     stage_save(page, saved)
     select_mode(page, 'original')
@@ -178,6 +205,13 @@ def compare(page, key, saved, out):
     assert shift < .51, (key, 'control or actor shifted', shift)
     assert state(page) == saved
     delta = ImageChops.difference(original, lit)
+    tone = tonal_change(original, lit)
+    # Half a stop above neutral sRGB code 40 is 48.39. A 9-code median lift
+    # across populated shadows therefore triggers review even at the bright
+    # edge of the shadow group. Individual local highlights remain unrestricted.
+    shadows = tone['shadowsBelow40']
+    if shadows['pixels'] >= 64:
+        assert shadows['medianDelta'] <= 9, (key, 'broad shadow lift', tone)
     probes = {name:measure(region(delta, box)) for name, box in PLATES[key][1].items()}
     whole = measure(delta)
     assert whole['fractionOver4'] > .015 and whole['meanRGB'] > .65, (key, whole)
@@ -208,10 +242,10 @@ def compare(page, key, saved, out):
         expect(reflection_layer).to_have_attribute('data-surface','bilge')
     if key == 'crossing-dry':
         expect(reflection_layer).not_to_be_visible()
-    print(key, 'change', whole, 'same-mode drift', drift, flush=True)
+    print(key, 'change', whole, 'same-mode drift', drift, 'tonal change', tone, flush=True)
     return {'source':'staged reachable save', 'chapter':saved['chapter'], 'actions':saved['actions'],
             'scene':saved['scene'], 'weatherTimeSeconds':watch['time'], 'material':material, 'scenePixels':list(lit.size),
-            'maxGeometryShiftCSSPx':shift, 'originalVsCinematic':whole, 'cinematicRepeat':drift,
+            'maxGeometryShiftCSSPx':shift, 'originalVsCinematic':whole, 'cinematicRepeat':drift,'tonalChange':tone,
             'regions':{k:{'boxPercent':b, **probes[k]} for k,b in PLATES[key][1].items()}}, (original, lit)
 
 

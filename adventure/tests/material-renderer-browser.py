@@ -38,6 +38,8 @@ def synthetic():
                 surface=png(w, h, lambda x, y: (100 if x < 16 else 150, 150,
                                                 190 if x < 10 else 128, 100)),
                 medium=png(w, h, lambda x, y: (0, 230 if y < 9 else 0, 255 if x < 20 else 30, 0)),
+                pigment=png(w, h, lambda x, y: (125, 113, 94, 255) if x < 27
+                            else (240, 240, 240, 255) if y < 9 else (12, 12, 12, 255)),
                 light=png(w, h, lambda x, y: (150, 155, 158, 180 if y < 9 else 0)))
     wet = dict(base, key="test-lit",
                medium=png(w, h, lambda x, y: (15, 230 if y < 9 else 0, 255, 230 if y > 8 else 0)))
@@ -52,7 +54,7 @@ def run(page, file):
       window.c=document.querySelector('canvas');window.r=CastawayMaterialRenderer.create(c);
       window.render=(changes={})=>{f={...f,...changes};r.render(f);return r.status};
       window.gl=c.getContext('webgl2');
-      window.sampler=()=>{let out={};for(const [name,x,y] of [['top',30,150],['bottom',30,30],['shadow',260,30]]){
+      window.sampler=()=>{let out={};for(const [name,x,y] of [['top',30,150],['bottom',30,30],['shadow',260,30],['ink',304,30],['paper',304,150]]){
         const v=new Uint8Array(4);gl.readPixels(x,y,1,1,gl.RGBA,gl.UNSIGNED_BYTE,v);out[name]=[...v];
       }return out};
       render();
@@ -61,20 +63,34 @@ def run(page, file):
     status = page.evaluate("r.status")
     assert status["state"] == "ready", status
     pixels = page.evaluate("""()=>{render({time:1.11});return sampler()}""")
+    def visible(rgba, pigment):
+        return [col + base * (1 - rgba[3] / 255) for col, base in zip(rgba[:3], pigment)]
+
+    painted = (125, 113, 94)
+    top = visible(pixels["top"], painted)
+    shadow = visible(pixels["shadow"], painted)
     assert pixels["top"][3] > 0 and pixels["top"] != pixels["bottom"], pixels
-    assert pixels["top"][0] > pixels["shadow"][0] + 10, pixels
-    assert page.evaluate("r.status.antialias") == "taau"
+    assert top[2] - shadow[2] > 7 and top[0] - shadow[0] > 5, (top, shadow)
+    for probe, level in (("ink",12), ("paper",240)):
+        assert max(abs(c - level) for c in visible(pixels[probe], [level]*3)) < 7, (probe,pixels)
+    assert page.evaluate("r.status.antialias") == "taa"
     assert page.evaluate("render({time:1.24}).history") == 3
     assert page.evaluate("render({motionKey:'turn',time:1.37}).history") == 1
     assert page.evaluate("render({weather:{shade:.9,rain:.95},time:1.49}).history") == 1
+    large = page.evaluate("render({width:960,height:540})")
+    assert large["antialias"] == "taau" and large["history"] == 1, large
+    assert page.evaluate("render({time:1.60}).history") == 2
+    native = page.evaluate("render({aa:'taa'})")
+    assert native["antialias"] == "taa" and native["history"] == 1, native
+    assert page.evaluate("render({width:320,height:180,aa:'auto'}).history") == 1
     assert page.evaluate("render({reduced:true}).antialias") == "fxaa"
-    assert page.evaluate("(()=>{const a=r.status.frames;render({time:1.55});return r.status.frames===a})()")
+    assert page.evaluate("(()=>{const a=r.status.frames;render({time:1.62});return r.status.frames===a})()")
     assert page.evaluate("render({flags:{forgeLit:true}}).state") == "loading"
     assert page.evaluate("sampler().top") == [0, 0, 0, 0]
     page.wait_for_function("r.status.state==='ready' && r.status.key==='test-lit'")
     assert page.evaluate("render({reduced:false,aa:'off'}).antialias") == "off"
     new_pixels = page.evaluate("""()=>{render({time:1.69});return sampler()}""")
-    assert new_pixels["bottom"][0] > pixels["bottom"][0]+5, (pixels, new_pixels)
+    assert visible(new_pixels["bottom"], painted)[0] > visible(pixels["bottom"], painted)[0]+16, (pixels, new_pixels)
     assert page.evaluate("gl.getError()") == 0
 
     # Trigger two transitions before the first decode completes.

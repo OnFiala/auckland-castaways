@@ -15,7 +15,7 @@
   precision highp float;
   in vec2 uv;
   out vec4 pixel;
-  uniform sampler2D surfaceMap, mediumMap, lightMap;
+  uniform sampler2D surfaceMap, mediumMap, lightMap, pigmentMap;
   uniform vec2 jitter, lightOrigin, heatOrigin;
   uniform vec3 keyColor, heatColor;
   uniform vec4 optics; // exposure, edge falloff, bloom, volume
@@ -30,10 +30,12 @@
   vec3 displayColor(vec3 c) {
     return mix(12.92*c,1.055*pow(max(c,vec3(0)),vec3(1./2.4))-.055,step(vec3(.0031308),c));
   }
-  vec3 film(vec3 x) {
-    // ACES fitted display curve; the lighting computation may exceed 1.
-    return clamp((x*(2.51*x+.03))/(x*(2.43*x+.59)+.14),0.,1.);
-  }
+  // Invert a soft shoulder to put display-referred pigment into a relative
+  // scene-linear working range. The matching forward transform below preserves
+  // the original value at unit illumination, including very bright brushwork.
+  vec3 liftPigment(vec3 linearRGB) {return linearRGB/max(1.-linearRGB,vec3(.0001));}
+  vec3 film(vec3 radiance) {return radiance/(1.+radiance);}
+  float largest(vec3 v) {return max(v.r,max(v.g,v.b));}
   vec2 reliefUV(vec2 p, float height, vec3 view) {
     // 128 is the exact flat code outside authored solid material. Use a small
     // view-dependent ray with five layers. Refine the crossing by interpolation.
@@ -90,11 +92,13 @@
     vec3 sky=keyColor*mix(vec3(.75,.86,1.),vec3(1.),clear)*daylight;
     vec3 dielectric=(1.-f0)*(1.-metal);
     vec3 diffuse=dielectric*nl/PI;
-    vec3 direct=sky*(diffuse+specBRDF(n,v,l,f0,rough));
+    vec3 direct=sky*diffuse;
+    vec3 glint=sky*specBRDF(n,v,l,f0,rough);
     vec3 fdir=normalize(vec3((heatOrigin.x-p.x)*aspect,p.y-heatOrigin.y,.15));
     float lampFalloff=heat/(1.+3./max(.003,heatRadius*heatRadius)*dot((p-heatOrigin)*vec2(aspect,1.),(p-heatOrigin)*vec2(aspect,1.)));
     vec3 lamp=heatColor*5.*lampFalloff;
-    vec3 local=lamp*(dielectric*max(dot(n,fdir),0.)/PI+specBRDF(n,v,fdir,f0,rough));
+    vec3 local=lamp*dielectric*max(dot(n,fdir),0.)/PI;
+    glint+=lamp*specBRDF(n,v,fdir,f0,rough);
 
     // Wet receivers reflect the local baked light field. Sampling its mirrored
     // elevation gives the water a broken reflection without sampling actors.
@@ -102,9 +106,10 @@
     if(receiver>.015) {
       float ripple=sin(p.y*330.+time*1.08+sin(p.x*25.))*.004*wet;
       vec2 skyUV=clamp(vec2(p.x+xy.x*.046+ripple, .57-.57*p.y+xy.y*.028),.01,.99);
-      vec3 environment=linearize(texture(lightMap,skyUV).rgb)*1.6+sky*.31;
+      vec3 reflectedPaint=linearize(texture(pigmentMap,skyUV).rgb);
+      vec3 environment=linearize(texture(lightMap,skyUV).rgb)+sky*.36+reflectedPaint*.68;
       float grazing=pow(1.-clamp(abs(n.y+.27),0.,1.),5.);
-      reflection=environment*wet*(.16+.84*grazing)*(1.-.55*rough);
+      reflection=environment*wet*(.37+.63*grazing)*(1.-.48*rough);
     }
 
     // A baked shaft stores integrated path density / occlusion, not a screen-
@@ -125,22 +130,39 @@
     }
     // Small bloom from the bright emissive field, before exposure and film.
     vec3 bloom=heatColor*optics.z*12.*max(halo-.06,0.)*ao;
-    vec3 hdr=(direct+local+reflection)*ao+ambient*ambientGain+shaft+emitted+bloom;
+    vec3 pigment=texture(pigmentMap,p).rgb;
+    vec3 base=linearize(pigment);
+    float value=luminance(base);
+    vec3 painted=liftPigment(base);
+    // The original already contains daylight. Relight relative to a flat
+    // painted surface under this same key, so a painted cloud retains its white.
+    vec3 flatDiffuse=sky*dielectric*l.z/PI;
+    vec3 gain=1.+1.65*(direct-flatDiffuse)*ao+.95*local*ao;
+    gain+=.24*ambientGain*(ambient/.214041-1.)+.17*(ao-1.);
+    gain+=.13*(sky-luminance(sky));
     float edge=dot((p-.5)*vec2(1.15,.86),(p-.5)*vec2(1.15,.86));
-    float exposure=optics.x*(1.-optics.y*edge);
-    hdr*=vec3(1.+warmth,1.,1.-warmth);
-    vec3 lit=displayColor(film(hdr*exposure));
-    float glint=luminance(specBRDF(n,v,l,f0,rough)*sky);
-    float volume=luminance(shaft), shine=luminance(reflection);
-    float bounce=clamp(luminance(ambient)-.215,-.20,.55);
-    float litAlpha=(.022+.086*nl+.13*max(0.,bounce)+.22*shine+
-      .19*min(glint,1.)+.25*volume+.25*emission+.13*lampFalloff+.11*halo)*ao;
-    float shadeAlpha=optics.y*.58*edge+.12*(1.-ao)+.084*weather.x+.064*max(0.,l.z-nl);
-    litAlpha=clamp(litAlpha*strength,0.,.55);
-    shadeAlpha=clamp(shadeAlpha*strength,0.,.29);
-    // Source-over, premultiplied sRGB for the DOM compositor.
-    vec3 color=lit*litAlpha+vec3(.047,.069,.093)*shadeAlpha*(1.-litAlpha);
-    pixel=vec4(color,litAlpha+shadeAlpha*(1.-litAlpha));
+    gain*=mix(1.,optics.x,.40)*(1.-.42*optics.y*edge);
+    gain*=vec3(1.+.32*warmth,1.,1.-.32*warmth)*(1.-.08*wet);
+    gain=mix(gain,vec3(1.),.71*smoothstep(.42,.90,value));
+    // Scattered window light contributes little on dark masonry. Specular
+    // transport and emission can still appear on explicitly marked receivers.
+    float paintResponse=sqrt(value);
+    vec3 added=reflection*(.028+.32*paintResponse)*ao;
+    added+=(glint/(1.+glint))*(.015+.12*paintResponse)*ao;
+    added+=shaft*(.004+.068*paintResponse)+.21*emitted+.13*bloom;
+    vec3 hdr=painted*clamp(gain,.54,1.85)+added;
+    vec3 result=displayColor(film(hdr));
+    // Solve target = source + pigment*(1-alpha) for the minimum valid alpha.
+    // A zero light change yields a transparent texel. The compositor keeps the
+    // full-resolution plate, including brushwork too fine for the pigment map.
+    vec3 delta=(result-pigment)*strength;
+    vec3 needed=max(delta/max(1.-pigment,vec3(.0001)),-delta/max(pigment,vec3(.0001)));
+    float alpha=clamp(largest(needed),0.,1.);
+    float boundary=smoothstep(.06,.32,max(abs(dFdx(luminance(pigment)))*texel.x/max(fwidth(p.x),.00001),
+                                          abs(dFdy(luminance(pigment)))*texel.y/max(fwidth(p.y),.00001)));
+    float limit=(.19+.12*receiver+.14*emission+.04*metal)*(1.-.48*boundary);
+    float capped=min(1.,limit/max(.0001,alpha));
+    pixel=vec4(clamp(delta+pigment*alpha,vec3(0.),vec3(alpha)),alpha)*capped;
   }`;
   const resolve = `#version 300 es
   precision highp float;
@@ -283,7 +305,7 @@
         gl=canvas.getContext('webgl2',{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,
           stencil:false,preserveDrawingBuffer:false,powerPreference:'low-power'});
         if(!gl){unsupported='no-webgl2';return;}
-        const light=program(gl,lighting,'surfaceMap mediumMap lightMap jitter lightOrigin heatOrigin keyColor heatColor optics ambientGain warmth heatRadius weather time inside heat detail strength aspect');
+        const light=program(gl,lighting,'surfaceMap mediumMap lightMap pigmentMap jitter lightOrigin heatOrigin keyColor heatColor optics ambientGain warmth heatRadius weather time inside heat detail strength aspect');
         try {shaders={light,resolve:program(gl,resolve,'frame history stepUV pastWeight filterMode')};}
         catch(error){gl.deleteProgram(light.handle);throw error;}
         vao=gl.createVertexArray();gl.bindVertexArray(vao);
@@ -292,7 +314,7 @@
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);
         gl.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL,gl.NONE);
         gl.useProgram(shaders.light.handle);
-        ['surfaceMap','mediumMap','lightMap'].forEach((name,i)=>gl.uniform1i(shaders.light.u[name],i));
+        ['surfaceMap','mediumMap','lightMap','pigmentMap'].forEach((name,i)=>gl.uniform1i(shaders.light.u[name],i));
         gl.useProgram(shaders.resolve.handle);
         gl.uniform1i(shaders.resolve.u.frame,0);gl.uniform1i(shaders.resolve.u.history,1);
         unsupported='';
@@ -302,11 +324,11 @@
       gl.activeTexture(gl.TEXTURE0+index);gl.bindTexture(gl.TEXTURE_2D,tex);
     }
     async function loadMap(atlas,request) {
-      const results=await Promise.allSettled([atlas.surface,atlas.medium,atlas.light].map(decode));
+      const results=await Promise.allSettled([atlas.surface,atlas.medium,atlas.light,atlas.pigment].map(decode));
       const images=results.filter(r=>r.status==='fulfilled').map(r=>r.value);
       try {
         if(dead||request!==epoch||lost)return;
-        if(images.length!==3)throw Error('atlas decode');
+        if(images.length!==4)throw Error('atlas decode');
         for(const img of images) {
           if(!img.width||img.width!==atlas.width||img.height!==atlas.height)throw Error('atlas dimensions');
           const tex=texture(gl);maps.push(tex);
@@ -326,19 +348,21 @@
       return {key:{x:.25,y:.20,color:[.83,.87,.92],intensity:.70}, practical:null,
         exposure:.98,warmth:0,ambient:.68,lens:.1,bloom:.08,volume:.12};
     }
-    function sizeFrame(f,quality,aa) {
+    function dimensions(f,quality) {
       const ratio=clamp(value(f.dpr,host.devicePixelRatio||1),.5,quality==='high'?1.5:1);
       const cssW=value(f.width,canvas.clientWidth||640),cssH=value(f.height,canvas.clientHeight||360);
       const limit=quality==='high'?1216:quality==='low'?576:896;
       const scale=Math.min(ratio,limit/Math.max(1,cssW,cssH));
-      const w=Math.max(1,Math.round(cssW*scale)),h=Math.max(1,Math.round(cssH*scale));
+      return [Math.max(1,Math.round(cssW*scale)),Math.max(1,Math.round(cssH*scale))];
+    }
+    function sizeFrame([w,h],aa,temporal) {
       const internal=aa==='taau'?.74:1;
       const id=w+'x'+h+'@'+internal+aa;
       if(id===signature)return;
       freeBuffers();resetHistory();
       canvas.width=w;canvas.height=h;
       buffers.push(target(gl,Math.max(1,Math.round(w*internal)),Math.max(1,Math.round(h*internal))));
-      if(aa==='taau') {
+      if(temporal) {
         for(let i=0;i<2;i++){const b=target(gl,w,h);buffers.push(b);history.push(b);}
       }
       signature=id;
@@ -351,8 +375,9 @@
       if(mode==='high'||mode==='cinematic')return 'high';
       return mode==='low'?'low':'balanced';
     }
-    function draw(f,quality,aa) {
-      sizeFrame(f,quality,aa);
+    function draw(f,quality,aa,size) {
+      const temporal=aa==='taa'||aa==='taau';
+      sizeFrame(size,aa,temporal);
       const frame=buffers[0], still=!!(f.paused||f.reduced||quality==='low');
       const w=f.weather||{}, cloud=clamp(value(w.shade,.18),0,1), rain=clamp(value(w.rain,0),0,1);
       const damp=clamp(value(f.damp,value(w.damp,rain)),0,1);
@@ -369,7 +394,7 @@
       // Leave the game loop responsive and the plate and actors at full detail.
       if(!jump&&t-previousDraw<1/(quality==='high'?20:13))return;
       previousDraw=t;
-      const sample=aa==='taau'?samples[sampleCount%4]:[0,0],light=shaders.light.u;
+      const sample=temporal?samples[sampleCount%4]:[0,0],light=shaders.light.u;
       gl.bindVertexArray(vao);gl.useProgram(shaders.light.handle);
       gl.bindFramebuffer(gl.FRAMEBUFFER,frame.fb);gl.viewport(0,0,frame.w,frame.h);
       maps.forEach(bind);
@@ -391,7 +416,7 @@
       gl.uniform1f(light.aspect,frame.w/frame.h);
       gl.drawArrays(gl.TRIANGLES,0,3);
 
-      const temporal=aa==='taau', final=temporal?history[0]:null;
+      const final=temporal?history[0]:null;
       gl.bindFramebuffer(gl.FRAMEBUFFER,final?.fb||null);
       gl.viewport(0,0,canvas.width,canvas.height);gl.useProgram(shaders.resolve.handle);
       bind(frame.tex,0);bind(temporal?history[1].tex:frame.tex,1);
@@ -434,10 +459,15 @@
       if(!atlas||unsupported||lost){fallback(lost?'context-lost':unsupported||'no-atlas');return;}
       if(mapKey!==atlas.key)return;
       const quality=qualityOf(f.mode), still=f.paused||f.reduced||quality==='low';
+      const size=dimensions(f,quality);
       let aa='fxaa';
       if(f.aa==='off')aa='off';
-      else if(quality==='high'&&!still&&f.aa!=='fxaa')aa='taau';
-      try {draw(f,quality,aa);}
+      else if(quality==='high'&&!still&&f.aa!=='fxaa') {
+        // Small plates can accumulate at native resolution. Larger ones upsample
+        // the jittered material buffer into a full display-resolution history.
+        aa=f.aa==='taa'||(size[0]<=640&&f.aa!=='taau')?'taa':'taau';
+      }
+      try {draw(f,quality,aa,size);}
       catch(_){unsupported='draw-unavailable';clear();fallback(unsupported);}
     }
     function onLost(e) {

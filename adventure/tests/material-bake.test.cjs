@@ -10,7 +10,7 @@ const atlas = require('../dist/material-atlas.js');
 const world = require('../dist/voyage-world.js');
 const manifest = require('../dist/assets/materials/manifest.json');
 
-const maps = ['surface','medium','light'];
+const maps = ['surface','medium','light','pigment'];
 const dist = path.join(__dirname, '../dist');
 const sha = value => createHash('sha256').update(value).digest('hex');
 const buffers = new Map();
@@ -22,15 +22,22 @@ function png(uri) {
   assert.equal(bytes.subarray(0,8).toString('hex'), '89504e470d0a1a0a');
   const width = bytes.readUInt32BE(16);
   const height = bytes.readUInt32BE(20);
-  assert.deepEqual([...bytes.subarray(24,29)], [8,6,0,0,0]); // 8-bit straight RGBA.
+  const indexed = bytes[25] === 3;
+  const channels = indexed ? 1 : 4;
+  let palette;
+  assert.deepEqual([...bytes.subarray(24,29)], [8,indexed ? 3 : 6,0,0,0]);
   const chunks = [];
   for (let cursor = 8; cursor < bytes.length;) {
     const length = bytes.readUInt32BE(cursor);
-    if (bytes.toString('ascii',cursor+4,cursor+8) === 'IDAT') chunks.push(bytes.subarray(cursor+8,cursor+8+length));
+    const type = bytes.toString('ascii',cursor+4,cursor+8);
+    const payload = bytes.subarray(cursor+8,cursor+8+length);
+    if (type === 'IDAT') chunks.push(payload);
+    if (type === 'PLTE') palette = payload;
+    assert.notEqual(type,'tRNS','the palette reference must stay opaque');
     cursor += 12 + length;
   }
   const packed = inflateSync(Buffer.concat(chunks));
-  const stride = width*4;
+  const stride = width*channels;
   assert.equal(packed.length, height*(stride+1));
   const data = Buffer.alloc(height*stride);
   function paeth(a,b,c) {
@@ -42,14 +49,16 @@ function png(uri) {
     const filter = packed[y*(stride+1)];
     assert.ok(filter<=4);
     for (let i=0; i<stride; i++) {
-      const j=y*stride+i, left=i>=4 ? data[j-4] : 0, up=y ? data[j-stride] : 0;
-      const corner=y && i>=4 ? data[j-stride-4] : 0;
+      const j=y*stride+i, left=i>=channels ? data[j-channels] : 0, up=y ? data[j-stride] : 0;
+      const corner=y && i>=channels ? data[j-stride-channels] : 0;
       const prediction=[0,left,up,(left+up)>>1,paeth(left,up,corner)][filter];
       data[j]=packed[y*(stride+1)+1+i]+prediction;
     }
   }
-  const bitmap={width,height,digest:sha(bytes),at(x,y) {
-    const i=4*(Math.round(height*y/100)*width + Math.round(width*x/100));
+  if (indexed) assert.equal(palette.length,3*256);
+  const bitmap={width,height,indexed,digest:sha(bytes),at(x,y) {
+    const i=channels*(Math.round(height*y/100)*width + Math.round(width*x/100));
+    if (indexed) return [...palette.subarray(data[i]*3,data[i]*3+3),255];
     return [...data.subarray(i,i+4)];
   }};
   buffers.set(uri,bitmap);
@@ -84,11 +93,14 @@ test('all room states agree with the displayed plate and use verified inline los
         const image=png(layout[map]);
         assert.deepEqual([image.width,image.height],[256,144]);
         assert.equal(image.digest,record.png_sha256[map]);
+        assert.equal(image.indexed,map === 'pigment');
       }
     }
   }
   assert.equal(seen.size,25);
   assert.equal(buffers.size,manifest.png_count);
+  assert.equal(manifest.png_count,94);
+  assert.equal(manifest.pigment.count,22);
   assert.equal(sha(fs.readFileSync(path.join(dist,'material-atlas.js'))),manifest.atlas_sha256);
   assert.ok(manifest.atlas_bytes<3_000_000);
   assert.equal(atlas.get('constructor'),null);
@@ -143,4 +155,27 @@ test('local sources follow state and cast copper-coloured indirect light outside
   assert.ok(hot[0]>cold[0]+25 && hot[0]>hot[2]+25,'warm masonry beside fire');
   assert.ok(sample('chartroom',{},'light',40,43)[3]>70);
   assert.equal(sample('chartroom',{},'light',90,88)[3],0);
+});
+
+test('opaque pigment references preserve dark hearths and the actual plate variants',()=>{
+  // Values measured on the actual registered plate after the 256×144 resize.
+  // The per-plate palette may move an individual channel by a few codes.
+  for (const [scene,flags,x,y,expected,tolerance] of [
+    ['forge',{},40,38,[28,31,37],3],
+    ['forge',{forgeLit:true},40,38,[70,30,20],5],
+    ['cabin',{},11,62,[27,30,35],3],
+    ['cabin',{warmthReady:true},11,62,[134,64,16],4],
+    ['wreck',{},73.5,42,[114,122,131],4],
+    ['wreck',{crateOpen:true},73.5,42,[147,108,76],6],
+    ['crossing',{},68,81,[78,61,51],4],
+    ['crossing',{boatDry:true},68,81,[65,48,35],4]
+  ]) {
+    const rgba=sample(scene,flags,'pigment',x,y);
+    assert.equal(rgba[3],255);
+    assert.ok(expected.every((value,i)=>Math.abs(value-rgba[i])<=tolerance),scene+' '+rgba);
+  }
+  for (const [scene,flags] of [['camp',{fireLit:true}],['landing',{landingMarked:true}]]) {
+    assert.equal(atlas.get(scene,{}).pigment,atlas.get(scene,flags).pigment);
+    assert.notEqual(atlas.get(scene,{}).medium,atlas.get(scene,flags).medium);
+  }
 });

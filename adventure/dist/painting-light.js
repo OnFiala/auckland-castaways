@@ -18,6 +18,31 @@
     return limited || width < 750 ? 'balanced' : 'high';
   }
 
+  // Sample the game's existing animation clock, including the time spent by
+  // the compositor. Ignore opening a room, background tabs and modal pauses.
+  // One slow frame must never change the look halfway through a movement.
+  function frameBudget() {
+    let scene, last, warmed = 0, elapsed = 0, samples = 0, windows = 0, slow = false;
+    return (now, place, running) => {
+      if (!running || place !== scene || last === undefined || now-last > 400) {
+        scene=place;last=running?now:undefined;warmed=0;elapsed=0;samples=0;windows=0;
+        return slow;
+      }
+      const dt=now-last;
+      last=now;
+      if (dt<=0 || slow) return slow;
+      warmed+=dt;
+      if (warmed<1200) return false;
+      elapsed+=dt;samples++;
+      if (elapsed>=950) {
+        windows=elapsed/samples>42 ? windows+1 : 0;
+        slow=windows>=2;
+        elapsed=0;samples=0;
+      }
+      return slow;
+    };
+  }
+
   // A standing figure receives light at chest height. An ember cannot light a
   // distant face. The original outline and alpha of every drawing stay intact.
   function subjectLight(direction, footX, sampleY) {
@@ -43,6 +68,7 @@
   function create(scene, canvas, onStatus) {
     if (!scene || !canvas) return null;
     const subjects = new WeakMap();
+    const monitor = frameBudget();
     const colors = host.matchMedia?.('(forced-colors: active)');
     let size, backend, lastFrame = -Infinity, lastCast = -Infinity;
     let lastMode = '', width = 0, height = 0;
@@ -70,7 +96,9 @@
     function frame({state, choice, now, paused, reduced, weatherRoot, player, actors, force = false}) {
       if (!width || !height) measure();
       if (!width || !height || !state || host.document?.hidden) return;
-      const mode = quality(preference(choice), width, host.navigator, colors?.matches);
+      const preferred = quality(preference(choice), width, host.navigator, colors?.matches);
+      const slow = monitor(now,state.scene,choice==='auto' && preferred==='high' && !paused && !reduced);
+      const mode = choice==='auto' && preferred==='high' && slow ? 'balanced' : preferred;
       const changed = lastMode !== mode;
       if (!force && !changed && now - lastFrame < (paused || reduced ? 155 : 55)) return;
       lastFrame = now;
@@ -80,6 +108,7 @@
       const doc = scene.ownerDocument || host.document;
       const playerSprite = doc.getElementById('player-sprite');
       host.CastawayReflections?.update(scene, state, player, playerSprite, actors, mode !== 'off');
+      if (mode === 'off' && !changed && canvas.dataset.materialState === 'off') return;
       if (mode === 'off' && !backend) {
         if (canvas.dataset.materialState !== 'off') {
           canvas.dataset.materialState = 'off';
@@ -115,5 +144,5 @@
     }
     return {frame, dispose};
   }
-  return {create, preference, quality, subjectLight};
+  return {create, preference, quality, subjectLight, frameBudget};
 });

@@ -59,3 +59,18 @@ test('a delayed mask cannot be installed after switching back to the original po
   assert.equal(node.style.maskImage,'');
   assert.equal(node.dataset.coverage,'polygon');
 });
+
+test('Automatic keeps the high pass through room changes and recovers budget on sustained slow playback', () => {
+  const monitor=lighting.frameBudget();
+  let now=5;
+  for(let i=0;i<100;i++) assert.equal(monitor(now+=16,'beach',true),false);
+  assert.equal(monitor(now+=2800,'beach',true),false);
+  for(let i=0;i<22;i++)assert.equal(monitor(now+=48,'beach',true),false);
+  assert.equal(monitor(now+=15,'beach',false),false);
+  for(let i=0;i<21;i++)assert.equal(monitor(now+=55,'wreck',true),false);
+  let slow=false;
+  for(let i=0;i<85;i++)slow=monitor(now+=54,'wreck',true);
+  assert.equal(slow,true);
+  assert.equal(monitor(now+=16,'camp',true),true);
+  assert.equal(lighting.quality('cinematic',1024,{},false),'high');
+});

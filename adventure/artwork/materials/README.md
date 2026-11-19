@@ -19,15 +19,18 @@ V atlasu je 14 místností, 22 rozdílných maleb a 25 světelných stavů. K ob
 
 ## Rozhraní pro zobrazení
 
-Klasický skript vystaví `window.CastawayMaterialAtlas.get(sceneId, flags)` a podporuje také CommonJS. Výsledkem je vždy stejný objekt pro stejnou kombinaci obrazu a světla. Obsahuje `key`, cestu k pozadí v `plate`, rozměry `width` a `height` a tři datové adresy PNG. Pro neznámou místnost vrátí `null`. Adresy jsou součástí skriptu i při spuštění přes `file://`. Shodné PNG se v balíku ukládá jen jednou.
+Klasický skript vystaví `window.CastawayMaterialAtlas.get(sceneId, flags)` a podporuje také CommonJS. Výsledkem je vždy stejný objekt pro stejnou kombinaci obrazu a světla. Obsahuje `key`, cestu k pozadí v `plate`, rozměry `width` a `height` a čtyři datové adresy PNG. Pro neznámou místnost vrátí `null`. Adresy jsou součástí skriptu i při spuštění přes `file://`. Shodné PNG se v balíku ukládá jen jednou.
 
 | Mapa | R | G | B | A |
 |---|---|---|---|---|
 | `surface` | Normála směrem doprava | Normála směrem nahoru | Výška, kód 128 mimo reliéf dřeva a kamene | Drsnost |
 | `medium` | Podíl kovu | Síla rovinného odrazu na vodorovném mokrém povrchu | Nezakrytá část okolí, 255 znamená otevřeno | Místní zdroj světla |
 | `light` | Červená složka | Zelená složka | Modrá složka | Měkká maska paprsků ve vzduchu |
+| `pigment` | Červená v malbě | Zelená v malbě | Modrá v malbě | Po rozbalení vždy 255 |
 
-Normála míří kladnou osou Z k pozorovateli. Normála bez náklonu má R i G rovné 128. Všechny kanály kromě RGB mapy `light` jsou lineární data. RGB této mapy nese ambientní a nepřímé osvětlení po přenosové funkci sRGB. Neutrální obloha má hodnotu 128, přibližně 0,214 po převodu do lineárního prostoru. Nulová alfa nechává ostatní tři datové kanály platné. Při dekódování PNG se proto musí zachovat RGB bez násobení alfou a bez barevné konverze.
+Normála míří kladnou osou Z k pozorovateli. Normála bez náklonu má R i G rovné 128. Mapy `surface` a `medium` a alfa mapy `light` obsahují lineární data. RGB této mapy nese ambientní a nepřímé osvětlení po přenosové funkci sRGB. Neutrální obloha má hodnotu 128, přibližně 0,214 po převodu do lineárního prostoru. Nulová alfa nechává ostatní tři datové kanály platné. Při dekódování PNG se proto musí zachovat RGB bez násobení alfou a bez barevné konverze.
+
+Každý z 22 skutečných malovaných podkladů má vlastní referenci `pigment` o rozměru 256 × 144. Celá scéna se zmenší Lanczosovým filtrem a převede na paletu 256 barev přizpůsobenou jednotlivé malbě. Výběr palety používá median cut a následující zpřesnění metodou k-means, bez ditheringu. Výsledný indexovaný PNG (typ 3) je neprůhledný. Jeho RGB se při výpočtu osvětlení převádí z sRGB stejně jako barva malby. Reference obsahuje i původní namalované stíny a jejich místní barevnost. Oheň sestavený ze samostatné rekvizity v táboře a zavěšená lampa používají společný pigment se stejnou podkladovou malbou bez zapálení. Všechny reference dohromady zvětšily soubor JavaScriptu o 942 212 bajtů.
 
 ## Ověření
 
@@ -39,7 +42,7 @@ Normála míří kladnou osou Z k pozorovateli. Normála bez náklonu má R i G 
 | Výheň, 41 / 43 | Podíl emise vzroste z 0 na 186. Vedle ústí v bodě 41 / 51 zůstává emise nulová, odražené světlo však přejde z RGB (114, 112, 112) na (198, 126, 112). |
 | Pláž, 22 / 21 | V obloze má normála hodnotu (128, 128), maska odrazu i lokální emise jsou nulové. Světlo má RGB (128, 128, 128). |
 
-Test Node dekóduje uložené PNG nezávisle na generátoru, ověří otisky všech 72 map a maleb a projde kombinace příznaků ve 14 místnostech. Výpočetní test navíc osvětlí barevnou plochu vedle neutrálního povrchu. Měří přenos za dosahem jednoho skoku a jeho zeslabení po vložení prostorové překážky.
+Test Node dekóduje uložené PNG nezávisle na generátoru, ověří otisky 72 datových map, 22 barevných referencí a vstupních maleb a projde kombinace příznaků ve 14 místnostech. Test v Pythonu srovnává dodané barvy po pixelech se zmenšenými vstupy. V každé malbě zůstala průměrná absolutní chyba jednotlivých kanálů pod čtyřmi stupni z 255. U nejtmavší pětiny obrazu byla absolutní průměrná odchylka jasu pod dvěma stupni. Například chladné ohniště v chatě má na malbě v bodě 11 / 62 barvu (27, 30, 35) a v referenci (28, 30, 33). Po roztopení jsou hodnoty (134, 64, 16) a (133, 61, 15). Výpočetní test navíc osvětlí barevnou plochu vedle neutrálního povrchu. Měří přenos za dosahem jednoho skoku a jeho zeslabení po vložení prostorové překážky.
 
 Z adresáře `adventure` spusťte následující příkazy. Výpočet využívá Node, Python, NumPy, SciPy a Pillow. Pro běh vydané hry jsou mapy již součástí atlasu. Výchozí výstup byl ověřen s NumPy 2.3.5, SciPy 1.17.0 a Pillow 13.0.0.
 
