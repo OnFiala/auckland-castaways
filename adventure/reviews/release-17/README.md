@@ -4,6 +4,8 @@ Na přístavním molu v Sydney se do bedny ukládá pánev na hledání cínu. O
 
 Vydání 17 propojilo všech sedm hratelných kapitol osmi filmovými částmi. Úvod trvá 1 minutu 6 sekund. Celý anglicky namluvený film má 4 minuty 8 sekund včetně závěrečného návratu ke kamenům v Carnley Harbour. Lze jej přehrát i samostatně s anglickými titulky a výběrem kapitol. [Hra pro hraní offline](https://github.com/OnFiala/auckland-castaways/releases/download/game-v17/until-we-return-edition-17.zip) · [Samostatný film v MP4](https://github.com/OnFiala/auckland-castaways/releases/download/game-v17/until-we-return-story-film.mp4) · [Obrazová ukázka](https://github.com/OnFiala/auckland-castaways/releases/download/game-v17/filmstrip.webp)
 
+[Jen úvodní film *Soundings* v MP4, 66 sekund](https://raw.githubusercontent.com/OnFiala/auckland-castaways/13bf293aea3ea2a6f13898d0dd01a4e41f3e6ec8/adventure/dist/assets/story-film/prologue.mp4)
+
 ![Dvacet políček z filmu sleduje cestu od nakládání lodi v Sydney přes kovárnu a záchrannou plavbu až k dnešním pozůstatkům krbu v Carnley Harbour.](strih.webp)
 
 ## První spuštění a návrat do rozehrané hry
@@ -30,3 +32,14 @@ Na sever ostrova vstupujeme prostřednictvím dopisů. Obě posádky se během p
 ## Obraz a zvuk
 
 Pět nových maleb doplňuje obrazy z hratelných místností. Animace od sebe odděluje vodu, plachtoví, světlo zavěšené lampy, měchy a papír s ilustracemi. Lokalitu a datum uvádějí krátké nápisy v obraze. Vyprávění má vlastní anglický syntetický hlas. Hudba, příboj, plátno, pumpa i kov vznikly pro hru. Offline balíček obsahuje obraz i zvuk ve formátech MP4 a WebM, anglické titulky WebVTT a jejich místní kopii pro hraní přímo z disku. [Pět obrazových předloh](../../artwork/story-film/plates/artist.json) · [Hlas, hudba a ruchy](../../artwork/story-film/AUDIO.md) · [Střih a animace](../../tools/render_story_film.py)
+
+## Ověřený průchod
+
+V Chromu doběhl úvod po 66 sekundách na břeh, kde hráč mohl hned zvednout lano. Z rozbalené hry šlo projít všech sedm kapitol až k záchraně, znovu pustit odemčené scény a po dokončení přehrát celé vyprávění. Druhý prohlížeč přehrál všech osm částí pomocí WebM. Na emulovaném telefonu fungovalo přehrávání i ruční listování šesti malbami prologu. Test zkontroloval také návrat k uložené hře před filmem i po něm. [Průchod a ovládání filmu](../../FULL_GAME_TESTING.md) · [Kontrolní součty stažitelných souborů](https://github.com/OnFiala/auckland-castaways/releases/download/game-v17/SHA256SUMS.txt)
+
+| Soubor ve vydání 17 | Velikost v bajtech | SHA-256 |
+| --- | ---: | --- |
+| Hra pro hraní offline | 109 223 414 | `b4a1501ff3f6f531ff55ba52c36030bfebcec7315f0ccaf0a400b6d7187b44bb` |
+| Film se zvukem, osmi kapitolami a anglickými titulky | 42 284 951 | `6e1eb8305efa0e4bb4bd693ca0341ff9b126164b9bac3819da7adf9954b1ffc9` |
+
+Oba soubory vycházejí ze stejného herního vydání. [Veřejné vydání 17](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v17) · [Záznam sestavení a testů](https://github.com/OnFiala/auckland-castaways/actions/runs/44583330196)
