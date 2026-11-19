@@ -1,0 +1,72 @@
+.planar-reflections,
+.planar-reflection__receiver,
+.planar-reflection__post {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Keep the return under weather, scenery props and the actor depth layers. */
+.planar-reflections {
+  z-index: 2;
+  overflow: hidden;
+  user-select: none;
+}
+
+.planar-reflections[hidden] {
+  display: none;
+}
+
+.planar-reflection__receiver {
+  --reflection-depth: -.39;
+  --reflection-opacity: .37;
+  --reflection-color: saturate(.65) brightness(.86) blur(.55px);
+}
+
+[data-surface="wet-wharf"] .planar-reflection__receiver {
+  --reflection-depth: -.34;
+  --reflection-opacity: .29;
+  --reflection-color: sepia(.18) saturate(.74) brightness(.83) blur(.6px);
+}
+
+[data-surface="bilge"] .planar-reflection__receiver {
+  --reflection-depth: -.37;
+  --reflection-opacity: .42;
+  --reflection-color: saturate(.62) brightness(.85) blur(.44px);
+}
+
+.planar-reflection__projection {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  transform: translate(-50%, -100%) scale(var(--reflection-facing, 1), var(--reflection-depth));
+  opacity: var(--reflection-opacity);
+  filter: var(--reflection-color);
+  /* The artwork is upright in this box. Its distant crown fades after projection. */
+  mask-image: linear-gradient(transparent 2%, #0003 24%, #0009 53%, #000 96%);
+}
+
+.planar-reflection__projection > svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  overflow: visible;
+}
+
+.planar-reflection__post {
+  background: url('assets/tidepaint/harbour.webp') 0 0 / 100% 100%;
+  clip-path: polygon(52.7% 60.5%, 53.4% 60.1%, 54.65% 60.1%, 55.05% 60.6%,
+    55.1% 62.2%, 55.38% 62.7%, 55.52% 63.9%, 55.17% 64.4%, 55.12% 69.75%,
+    54.66% 70.15%, 52.82% 70.15%, 52.57% 69.1%, 52.7% 64.45%, 52.28% 63.6%,
+    52.35% 62.72%, 52.63% 62.29%);
+  transform-origin: 50% 70.15%;
+  transform: scaleY(-.55);
+  mask-image: linear-gradient(transparent 60%, #0005 64%, #000b 68%, #000 70.2%);
+  opacity: .29;
+  filter: saturate(.7) brightness(.8) blur(.65px);
+}
+
+@media (forced-colors: active) {
+  .planar-reflections { display: none; }
+}

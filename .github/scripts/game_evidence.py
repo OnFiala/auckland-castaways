@@ -88,6 +88,24 @@ def prepare(archive, evidence, edition, output):
 
     output.mkdir(parents=True, exist_ok=True)
     make_gallery(evidence, edition, output / 'review-game.webp')
+    if int(edition) >= 16:
+        report = read_json(evidence / 'lighting' / 'lighting-study.json')
+        source = evidence / 'lighting' / 'lighting-study.webp'
+        with source.open('rb') as stream:
+            sheet_sha = hashlib.file_digest(stream, 'sha256').hexdigest()
+        required = {'beach', 'cabin', 'forge', 'crossing-wet', 'crossing-dry'}
+        if (report['edition'] != edition or report['build'] != verified['build']
+                or report['zip_sha256'] != digest or report['sheet_sha256'] != sheet_sha
+                or report['offline'] is not True or report['errors'] or report['remoteRequests'] or report['failedRequests']
+                or set(report['plates']) != required or report['contextLoss']['restored']['state'] != 'ready'
+                or report['phone']['item'] != 'rope'):
+            raise ValueError('Lighting study does not match this tested offline edition')
+        with Image.open(source, formats=['WEBP']) as study:
+            if study.width < 2048 or study.height < 2500:
+                raise ValueError('The five paired scenes must be readable at full size')
+            study.verify()
+        shutil.copyfile(source, output / source.name)
+        summary['lighting'] = report
     filename = f'until-we-return-edition-{edition}.zip'
     shutil.copyfile(archive, output / filename)
     (output / 'SHA256SUMS.txt').write_text(f'{digest}  {filename}\n', encoding='ascii')

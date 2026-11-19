@@ -445,6 +445,13 @@
     if(!r?.model||r.model.scene!==state.scene)return describe(state)?.weather||'';
     return conditions(r.model.chapter,r.time).phase+' '+r.model.weather;
   }
+  // The painted light and the rain must see the same break in the cloud. A
+  // modal or reduced motion freezes this watch for both layers.
+  function illumination(root,state) {
+    const r=memory.get(root);
+    if(!r?.model||r.model.scene!==state.scene)return null;
+    return {...conditions(r.model.chapter,r.time), time:r.time, damp:r.damp};
+  }
   function paint(r) {
     if(!r.ctx||!r.model)return;
     const {ctx,canvas,model}=r;
@@ -608,5 +615,5 @@
     if(!r.sizeObserver)host.removeEventListener?.('resize',r.sizeListener);
     root.replaceChildren();memory.delete(root);
   }
-  return {describe,conditions,caption,velocity,render,respond,footfall,dispose};
+  return {describe,conditions,caption,illumination,velocity,render,respond,footfall,dispose};
 });

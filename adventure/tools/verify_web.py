@@ -58,7 +58,7 @@ def verify(directory, previous=None):
                 raise ValueError(f'Broken stylesheet image {sheet.name}: {url}')
     for script in (directory / edition).rglob('*.js'):
         source = script.read_text(encoding='utf-8')
-        if re.search(r'(?<![\w./:-])assets/', source) or 'asset:assets/' in source:
+        if re.search(r'(?<![\w.+/:-])assets/', source) or 'asset:assets/' in source:
             raise ValueError(f'An unpinned resource remains in {script.name}')
         for painting in re.findall(r"""['"]asset:([^'"]+)['"]""", source):
             if not painting.startswith(edition) or painting not in current_files:

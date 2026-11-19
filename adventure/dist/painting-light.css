@@ -1,0 +1,36 @@
+/* All optical work sits on the stage. Text, dialogue portraits and the
+   inventory are independent of scene exposure and display resolution. */
+#material-lighting {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  display: block;
+}
+.staged:is([data-lighting-mode="cinematic"], [data-lighting-mode="balanced"]) :is(.actor-canvas, .player-sprite, .scene-prop, #held-tool) {
+  filter: var(--cast-light) var(--incident-light, brightness(1));
+}
+.staged:is([data-lighting-mode="cinematic"], [data-lighting-mode="balanced"]) :is(.player-shadow, .actor-shadow) {
+  translate: var(--shadow-offset, 0%) 0;
+}
+.setting label { cursor: pointer; }
+#lighting-quality {
+  color-scheme: light;
+  color: #382d25;
+  background-color: #f4e8d1;
+  border: 1px solid #8a7157;
+  border-radius: 3px;
+  padding: .5em .65em;
+  font: inherit;
+  max-width: 62%;
+  cursor: pointer;
+}
+#lighting-quality:focus-visible { outline: 2px solid #734922; outline-offset: 2px; }
+#lighting-status { margin: .35em 0 .8em; }
+#lighting-status:empty { display: none; }
+@media (forced-colors: active) {
+  #material-lighting, #planar-reflections { visibility: hidden; }
+}

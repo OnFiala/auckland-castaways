@@ -1,0 +1,262 @@
+{
+  "format": 1,
+  "canvas_px": [
+    256,
+    144
+  ],
+  "png_count": 72,
+  "atlas_bytes": 1845097,
+  "atlas_sha256": "deba6b39dc9de4ec25305ac0817638023424b8e24b54c407c5f93f588d3fa510",
+  "layouts": {
+    "beach": {
+      "scene": "beach",
+      "plate": "assets/tidepaint/beach.webp",
+      "plate_sha256": "0663e6fa24bed611d4757f5c500ca79778016fc25cb3c487c12ea966cc1b36cf",
+      "png_sha256": {
+        "surface": "022485651374e81bc580c618d297311620df4d518a545dd96fe32c52b59f865c",
+        "medium": "7a67623949b52bdd77cf4d5c3a4255905359e35fc3ddc34cc6e162f4a6e22789",
+        "light": "e1b63935f17b4a748b72a4b1d9166555346cdc0384cfd8dfbf4a5a3e6f079c96"
+      }
+    },
+    "wreck-open": {
+      "scene": "wreck",
+      "plate": "assets/tidepaint/wreck-open.webp",
+      "plate_sha256": "df774ba7e84a9abeac10e912aed17fb404a9c0f8c0204a79084725c19b893982",
+      "png_sha256": {
+        "surface": "49a38f5521d52f1decc4ce138186beb9d70a50e4be4a7f2f9bc9f7bb5b07be1c",
+        "medium": "61fe38936e87c9bcc4ca2182eb1b656a81237aee1d94dcb185b79d59971fac13",
+        "light": "89e902e856e42160afed76dba1c0f3601d7f70f50da723997e1f818fa2720541"
+      }
+    },
+    "wreck": {
+      "scene": "wreck",
+      "plate": "assets/tidepaint/wreck.webp",
+      "plate_sha256": "291a317ec606d1bc41b29519e0d6585f911da4b2c870ee40419877e1d30f8f36",
+      "png_sha256": {
+        "surface": "185efa23cea2d76a24960319845ced31d0020fdbdcbb4ecb639a5cd5fd83f480",
+        "medium": "b32a79620624b3b741d34fadf6cd6164c85bc5ebb930ab469df5c9d969fc2d9b",
+        "light": "fd36e1d24c2a96297b1856788adfa14ca60d5ca0abecfa80fe7854ce3f599a36"
+      }
+    },
+    "camp-shelter-fire": {
+      "scene": "camp",
+      "plate": "assets/tidepaint/camp-shelter.webp",
+      "plate_sha256": "4f70b0a2c89f53a12512fc799ad16f96fd4a4b17edd7e294fe26193419db4bde",
+      "png_sha256": {
+        "surface": "30b954bd2d6ab5b4e1ff55b8b3b2100cd18c1973da798cd01f475d8ce207e766",
+        "medium": "5e34074adfae784b8a0114b292dc9ff1134765d06c05e6625ab70cf1065f8828",
+        "light": "c67ecedd8666d0cafc45b29bba244055f77b392175c5712a3a4f756cfa6ad5a5"
+      }
+    },
+    "camp-fire": {
+      "scene": "camp",
+      "plate": "assets/tidepaint/camp.webp",
+      "plate_sha256": "b2b027c08ee9906a6fb3a153f6b87fbee8fb2e2e92eab8917929468b68cc7a4b",
+      "png_sha256": {
+        "surface": "906f6d69055d6c5df1ddfb6ab1381992b729ec91300a46f3bc479d9054460a69",
+        "medium": "a756d02e6ee8c2a0a9779e8b4182a66da447545eb4277f17d3a7fdd8d8b9ca81",
+        "light": "ce3b49a58cb3bf99a2dc4f5c4ed7fbee13849d8e860ab666d05ba1816c5e8b0d"
+      }
+    },
+    "camp-shelter": {
+      "scene": "camp",
+      "plate": "assets/tidepaint/camp-shelter.webp",
+      "plate_sha256": "4f70b0a2c89f53a12512fc799ad16f96fd4a4b17edd7e294fe26193419db4bde",
+      "png_sha256": {
+        "surface": "30b954bd2d6ab5b4e1ff55b8b3b2100cd18c1973da798cd01f475d8ce207e766",
+        "medium": "9fba64ca297390b931f5d7ccbcd1bfb8637fbbae46480e1e35c27271ea141b40",
+        "light": "f4ce1aba2e4ff62ce65f79676d273980866c41aab65ac0546368444cbfeda22c"
+      }
+    },
+    "camp": {
+      "scene": "camp",
+      "plate": "assets/tidepaint/camp.webp",
+      "plate_sha256": "b2b027c08ee9906a6fb3a153f6b87fbee8fb2e2e92eab8917929468b68cc7a4b",
+      "png_sha256": {
+        "surface": "906f6d69055d6c5df1ddfb6ab1381992b729ec91300a46f3bc479d9054460a69",
+        "medium": "e11fb1175545ff3b635ddbf4187af6832094781f633186797ca22bbe881eaf1d",
+        "light": "ad1f1d4d68bb788367cf5549e3df5ca906d5ffbf36793e5e4ed5385d270bbbbd"
+      }
+    },
+    "forest": {
+      "scene": "forest",
+      "plate": "assets/tidepaint/forest.webp",
+      "plate_sha256": "923037023afe41096e2a729c9ab9a20d6b5b3403f41b67bce848ab044388be5b",
+      "png_sha256": {
+        "surface": "9e510b6b2cd34e71d7e241d7a88465fe818a7fecae246e17a1b1739fd9b7cbb7",
+        "medium": "3d2b987d7cefcd9fafdb31248f3a6089b941bc1cc8b9018e77fe02d1bbc02d91",
+        "light": "b65c03fe0126d74040b68acad86eeb164247a7234c867bad3e900085300cd090"
+      }
+    },
+    "cabin": {
+      "scene": "cabin",
+      "plate": "assets/tidepaint/cabin.webp",
+      "plate_sha256": "6cb92d1a86cc7528e80a3606d0d43599a0529dcafbc6f5d37ed257a47676be5f",
+      "png_sha256": {
+        "surface": "74493b04fd94313d4fc39fc8572b0c0e3e215e74d94085e6997eb8d9ee4fa7e9",
+        "medium": "02821d0f461f36f26ff54cb842f7c457707f6bff7ce4c6d66e94b0eaf21adfdc",
+        "light": "8a9edb8b6051febf7069d34cf70cd2daf52ec57582db4c5e9db7a2bd05d42ea4"
+      }
+    },
+    "cabin-cold": {
+      "scene": "cabin",
+      "plate": "assets/tidepaint/cabin-cold.webp",
+      "plate_sha256": "0048599cde551071f053b5fdda87477ff0c2666ad8ba26eaccb88c078c6703ec",
+      "png_sha256": {
+        "surface": "bfead21b101715c8862e29792c32f89bd97b4067810c581475f595bf6952016b",
+        "medium": "f43d0a87280c1682eada31fa83ebc0cb8b92f8dc702b57ae672a5874668d845e",
+        "light": "30df513f686213d5066af58676cb85e2709f61a6c0dd78090da600d6f6c55df2"
+      }
+    },
+    "charcoal": {
+      "scene": "charcoal",
+      "plate": "assets/tidepaint/charcoal.webp",
+      "plate_sha256": "e6890a9f1c7c06761dfe24d00a990c49180a7c27b60c76bcc5f429c69fe037d2",
+      "png_sha256": {
+        "surface": "da190d6dd72b02972a0fdcb1cc8e5d7cb21a4c559d5f26093577e7baed4977ec",
+        "medium": "b8ed68b6135eaa3937b28028b70e214428ba3009024a0f14a3c29ef346e09f6d",
+        "light": "2acf765efe1c90a49ba959a654baf115778371152449ac7313572681a32ffa98"
+      }
+    },
+    "forge-lit": {
+      "scene": "forge",
+      "plate": "assets/tidepaint/forge-lit.webp",
+      "plate_sha256": "d6c47df5936d1754e3305a06fa228e14035fd08493efc8de1fed13f46f581a88",
+      "png_sha256": {
+        "surface": "517c47c0c7926fd8c38fc5d011e5e5341f7c04bb426527b2f3f0a5277c93e3a4",
+        "medium": "4564237483c7db19edaae7f692a7dde8ac5c7bf8da49c35e39b4b5b210c716cf",
+        "light": "3018f84a23f6b5563fe8c1aeca69829ac152bbc9aadce4db364aa36a033e4f93"
+      }
+    },
+    "forge": {
+      "scene": "forge",
+      "plate": "assets/tidepaint/forge.webp",
+      "plate_sha256": "ac635e770b3c21852200508f4661ef3e3a16cfab1f18a5435b9f701d42fd00bf",
+      "png_sha256": {
+        "surface": "8a7bdae227c992e6a6f00efb6ae2ef87da7a4305cdf6cf5c4f4f9c2de8af238a",
+        "medium": "418717ffae9c30f01eee21ee6c9503fea1cc3c346019464a88fb152f16f3399a",
+        "light": "fb14190dcf6e2bc5cd9ecb8b81eb55e9328cb82d31c47b156b5542d1ddb047d6"
+      }
+    },
+    "forge-cold": {
+      "scene": "forge",
+      "plate": "assets/tidepaint/forge-cold.webp",
+      "plate_sha256": "1e81b682dc57c8b8eb08aaaa624a1a4059a66dc0b88f540b1d85d19e493134b7",
+      "png_sha256": {
+        "surface": "e08655e34d5e8b43492e1568865c1da0f1576801a4e9cf4b9631f0d4178b4a04",
+        "medium": "1373d943e2284f0215df16d48682e3ee15748047642a228cceaa9537324f9428",
+        "light": "07228238e9f277238eb08591ba2f32004e20ecc30f2c0715d05845dc86d17a71"
+      }
+    },
+    "slipway-ready": {
+      "scene": "slipway",
+      "plate": "assets/tidepaint/slipway-ready.webp",
+      "plate_sha256": "385754089d515d41a7a0a0973b90ca86994bbd5966bde849582721a55b439d69",
+      "png_sha256": {
+        "surface": "b85f9df7abbab6c5a8dd43b2f20a80c6095c7d4be93672edef283d72b511bfd9",
+        "medium": "142d538ebf4c9c2361674b60531044dcd06201a3a75ac4c3d37b27f44b4f6a07",
+        "light": "7c1c4081736dc804f1739e27d87107c6a7fa4d063fd62f98f96f3b134a40332e"
+      }
+    },
+    "slipway": {
+      "scene": "slipway",
+      "plate": "assets/tidepaint/slipway.webp",
+      "plate_sha256": "ada7885071acce49df0850300fe518b3f268479cd6961834c1aa0b5113510bb1",
+      "png_sha256": {
+        "surface": "501259777b7e167caf19735165a07f670695689969ecaa175e5dbe10392d11df",
+        "medium": "9788c630050036989b825cae72c7e38f2f4cd9877bec2899d3a1577de32f665b",
+        "light": "147b476fe1594a949258202b301cffec1004f365bc48ee57ca9632623d1b62c9"
+      }
+    },
+    "salvage": {
+      "scene": "salvage",
+      "plate": "assets/tidepaint/salvage.webp",
+      "plate_sha256": "b6c22a2779fe42a65a45c19b6a6e19f63f88c6de4cbf7defeb48cfe22041648c",
+      "png_sha256": {
+        "surface": "928d30a338b719e9dbd8f1b407b3f569dbcdbf3e63f18276359108d7121dffad",
+        "medium": "d4c0e3dbff4cea8c952365bf59f708898a6a830f38cf0d83592c2c0c2399d3d7",
+        "light": "27a00fab9fc9994ae2fefe7d325b4a7e1184eb5f7fe6a32d741e9da8a0a1da1f"
+      }
+    },
+    "crossing-safe": {
+      "scene": "crossing",
+      "plate": "assets/tidepaint/crossing-safe.webp",
+      "plate_sha256": "fb255daddea57953a50ce1c47f4e7245c62accd88d496bff75d5b143827a7d57",
+      "png_sha256": {
+        "surface": "1f6de5ca48d91f4700c043d7323b60f39eae331c7e4b92e9379111b6fe7097ff",
+        "medium": "57c595dd78a9ee037f9fdd956cc51256d89ca17f5f7f1ac046c3958bb07fb09e",
+        "light": "fe2d6cfe75fe7d33980075e23b11a7217d429e074052c6e55dce1e35290d5d29"
+      }
+    },
+    "crossing-bailed": {
+      "scene": "crossing",
+      "plate": "assets/tidepaint/crossing-bailed.webp",
+      "plate_sha256": "ba63d40decb7ffd8e754eb7509b3fc815874fae4db1aeca975cdacffe07df31f",
+      "png_sha256": {
+        "surface": "782c32b186ce7999f70a603c9652e80fcf51148258e01740e3650dc37174a5a0",
+        "medium": "4b64b8151bcaf862083472fbc9b27fd078f2abb7b4b8af33df46710f56787f21",
+        "light": "6eea29861ac4beb2e87b2539e54ff69e462bd0211a0a0afd8ce9ca631d81212f"
+      }
+    },
+    "crossing-wet": {
+      "scene": "crossing",
+      "plate": "assets/tidepaint/crossing-wet.webp",
+      "plate_sha256": "a00f60fd8dfa3973f347ff03c2662411dd238f164bd68adc8047ac5157192cb8",
+      "png_sha256": {
+        "surface": "f048f2d1489be5d6fc29874a19b55e515d70f508662d3879f28ed5792d186fea",
+        "medium": "5fc95c0f9f1826ecf4045a22e002b8eb23a6b72923848afd5a67eefa6187a843",
+        "light": "3a36bd2d58a4ee47c0b1d2c9e8ea16d6aaed71c6743edaa77af5050f6679af12"
+      }
+    },
+    "harbour": {
+      "scene": "harbour",
+      "plate": "assets/tidepaint/harbour.webp",
+      "plate_sha256": "8b4d89461d12308edf56ac794f2192f9f53f204b450b07e5351faba10b0fd20f",
+      "png_sha256": {
+        "surface": "bf2f6bca20b7ba9d2d7671a2fbf1c2394e7ec549f3fae6806dc910e371b874eb",
+        "medium": "bb039c261e611635ba8a4f260daf0d969a344bf82ef624a56b6cfbc97fd5204f",
+        "light": "d6ff24678ecf2f6e6c607377b15a9bce65ae71dcfeac964b6dfdca2140d6897e"
+      }
+    },
+    "chartroom": {
+      "scene": "chartroom",
+      "plate": "assets/tidepaint/chartroom.webp",
+      "plate_sha256": "55f2c4fc94f3dee1bb4b3652b0c45ea7c876f64718e0c06f1bc80c3c72f55c5a",
+      "png_sha256": {
+        "surface": "67d9453f67537d46485a940a1943efa179caceb2431dcf3e69b0a2097cde0877",
+        "medium": "01176c1c5d926ab1c86ab4fa4105e89eb0fda8f4254e63d66dd49cccd09c17e9",
+        "light": "3a7686567e2bad2933425661241e9ee320dc7b257e9deaed64ec2d1d8d82e03d"
+      }
+    },
+    "landing-lamp": {
+      "scene": "landing",
+      "plate": "assets/tidepaint/landing.webp",
+      "plate_sha256": "333f38ecdf7c5eb29cdb0ab75c11b873a0fdb9ae0c764f82c5951effdb4a8634",
+      "png_sha256": {
+        "surface": "1e058a647d2b228b3723e4ab8dd69d1895855ba43af6efc700b7419cde34bd6b",
+        "medium": "459acda5dd00109492973c701c3cfb9afc4426372e10fc5e373831ec6d0942e0",
+        "light": "74d83060981622e2153330a78ff7b176f8d8b9bb9efd55fd6628f0394d4795b3"
+      }
+    },
+    "landing": {
+      "scene": "landing",
+      "plate": "assets/tidepaint/landing.webp",
+      "plate_sha256": "333f38ecdf7c5eb29cdb0ab75c11b873a0fdb9ae0c764f82c5951effdb4a8634",
+      "png_sha256": {
+        "surface": "1e058a647d2b228b3723e4ab8dd69d1895855ba43af6efc700b7419cde34bd6b",
+        "medium": "021647509bf17b33f2ae35e3351a6528de9551f9ef0a92ef3a442c606ffa79e6",
+        "light": "6f769da9ae4dc6ead3f80214e092ac9405b369244d6c7c23c20ba9036d64403a"
+      }
+    },
+    "return-camp": {
+      "scene": "return_camp",
+      "plate": "assets/tidepaint/return-camp.webp",
+      "plate_sha256": "63c551356cd693a2244b3dcdb2547915bfa4077a0e2040bc5bb7e8b7c890f412",
+      "png_sha256": {
+        "surface": "934315f42be6bca0a729080d6f3c8add751418f7cf20f58d424bfee18304035f",
+        "medium": "da84cd8964bf844423f100a186b029596eabbd529f949944e3f5b68d2221314f",
+        "light": "858a0d63209fc6322b6f84efc9083331563dc9ac4d9eb5115143296b8d2c6516"
+      }
+    }
+  }
+}

@@ -130,7 +130,9 @@ def write_edition(flat, output):
             # The living scenery uses asset:<path> to distinguish paintings
             # from drawn marks. Its renderer removes the tag before loading.
             script = script.replace('asset:assets/', 'asset:' + prefix + 'assets/')
-            script = re.sub(r'(?<![\w./:-])assets/', prefix + 'assets/', script)
+            # The inline image atlas uses base64. Its alphabet includes '+'
+            # and '/', so even '+assets/' can be part of an image payload.
+            script = re.sub(r'(?<![\w.+/:-])assets/', prefix + 'assets/', script)
             dest.write_text(script, encoding='utf-8')
         else:
             shutil.copyfile(src, dest)

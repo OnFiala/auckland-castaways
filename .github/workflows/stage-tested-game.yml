@@ -38,6 +38,10 @@ jobs:
         with:
           name: chromium-evidence
           path: ${{ runner.temp }}/qa-evidence
+      - uses: actions/download-artifact@v4
+        with:
+          name: material-evidence
+          path: ${{ runner.temp }}/qa-evidence/lighting
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -55,7 +59,7 @@ jobs:
           path: ${{ runner.temp }}/stage/qa-summary.json
           if-no-files-found: error
           overwrite: true
-      - name: Stage the three assets on the existing draft
+      - name: Stage the verified assets on the existing draft
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -88,16 +92,17 @@ jobs:
             fi
           }
 
-          for asset in "$zip" review-game.webp SHA256SUMS.txt; do
+          assets=("$zip" review-game.webp lighting-study.webp SHA256SUMS.txt)
+          for asset in "${assets[@]}"; do
             guard_draft
             gh release upload "$tag" "$asset" --repo "$GH_REPO" --clobber
           done
           guard_draft
           gh api --paginate "$repo/releases/$id/assets?per_page=100" > "$RUNNER_TEMP/staged-assets.json"
-          for asset in "$zip" review-game.webp SHA256SUMS.txt; do
+          for asset in "${assets[@]}"; do
             digest=$(sha256sum "$asset" | cut -d' ' -f1)
             jq -se --arg name "$asset" --arg digest "sha256:$digest" '
               [.[][] | select(.name == $name and .state == "uploaded" and .digest == $digest)] | length == 1
             ' "$RUNNER_TEMP/staged-assets.json" > /dev/null
           done
-          echo "Verified three assets on draft $tag at $GITHUB_SHA." >> "$GITHUB_STEP_SUMMARY"
+          echo "Verified ${#assets[@]} assets on draft $tag at $GITHUB_SHA." >> "$GITHUB_STEP_SUMMARY"

@@ -13,7 +13,10 @@ it in the satchel and click another object to combine or use it. The magnifier
 examines a painting. The eye briefly reveals interactive areas. The question
 mark gives a hint in stages. In close-ups you can use the painted parts or
 open Working controls. Tab, Enter and Escape work throughout the game.
-Settings shows the release number. Motion follows your system preference,
+Settings shows the release number. Under Scene lighting, Automatic adapts to
+your display, Cinematic gives the full moving light, Balanced reduces the
+work, and Original painting restores the earlier look.
+Motion follows your system preference,
 and you can reduce it in the game. Brief reaction captions and English
 narration start off. Narration uses a voice supplied by your browser.
 For offline narration, your device needs an installed English voice.

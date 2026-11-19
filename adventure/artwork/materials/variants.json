@@ -1,0 +1,52 @@
+{
+  "layouts": {
+    "beach":[["beach"]],
+    "wreck":[["wreck-open","crateOpen"],["wreck"]],
+    "camp":[["camp-shelter-fire","shelterBuilt","fireLit"],["camp-fire","fireLit"],["camp-shelter","shelterBuilt"],["camp"]],
+    "forest":[["forest"]],
+    "cabin":[["cabin","warmthReady"],["cabin-cold"]],
+    "charcoal":[["charcoal"]],
+    "forge":[["forge-lit","forgeLit"],["forge","bellowsFitted"],["forge-cold"]],
+    "slipway":[["slipway-ready","sailRigged"],["slipway"]],
+    "salvage":[["salvage"]],
+    "crossing":[["crossing-safe","sailMended"],["crossing-safe","courseSet"],["crossing-bailed","boatDry"],["crossing-wet"]],
+    "harbour":[["harbour"]],
+    "chartroom":[["chartroom"]],
+    "landing":[["landing-lamp","landingMarked"],["landing"]],
+    "return_camp":[["return-camp"]]
+  },
+  "plates": {
+    "camp-fire":"camp","camp-shelter-fire":"camp-shelter","landing-lamp":"landing"
+  },
+  "details": {
+    "wreck-open":[["wood","Raised chest lid","69.2,50.1 70.2,34.2 79.8,34 79.4,49.7"],["cavity","Chest interior inside rim","67.5,51.6 70,49.8 79,49.9 76.7,53.5 68.3,53.3"],["iron","Latch on raised lid","73.9,35 75.1,34.8 75,38.5 74.3,39"]],
+    "camp-shelter":[["cloth","Sailcloth tied over frame","56.5,57.6 64.5,38.2 70.8,37.6 81.6,33.8 79.7,60.6 70.8,59.1 62.8,57.8"]],
+    "cabin":[["stone","Fireplace lip","5.8,65.1 10,65.8 17.3,64.3 19.4,65.5 15.4,67.8 6.6,68"]],
+    "forge":[["leather","Fitted bellows folds","14,34.3 16.5,33.5 22,35.1 27,39.1 31.5,42.4 29.2,45.6 24.7,47 21.4,51.2 18.9,54.4 16.9,50.8 15.2,43"],["wood","Bellows top board","13.8,34.8 15.4,32.5 22,32.4 26.1,35.5 30.8,39.8 31.2,41.7 27.7,41.8 21.8,39.1 16.5,36.6"],["iron","Iron nozzle into hearth","30.2,41.8 33.4,42.5 34.1,42.9 33.8,44.3 30.3,44.4"]],
+    "slipway-ready":[["cloth","Triangular sail bent to boat","42,41 50.8,32.6 59.5,21.3 65.7,12 65.8,42.4 54.6,42.3"]]
+  },
+  "inheritDetails":{"camp-shelter-fire":"camp-shelter","forge-lit":"forge"},
+  "lamps": {
+    "camp-fire":[["overlayFire",27.4,63.8,16,0.91,"ff9244"]],
+    "camp-shelter-fire":[["overlayFire",27.4,63.8,16,0.91,"ff9244"]],
+    "cabin":[["flame",11.7,61.2,24,1.72,"ff903e"]],
+    "forge-lit":[["coals",41.5,43.8,26,2.1,"ff882d"]],
+    "landing-lamp":[["lantern",77.85,35.4,8,0.80,"ffc078"]]
+  },
+  "shafts": {
+    "forest":[["37,13 41,13 30,52 24,64 25,51",0.35],["51,12 57,10 42,44 37,47",0.27]],
+    "charcoal":[["24,17 28,16 43,49 44,55 37,48",0.37],["32,14 35,13 48,40 49,43",0.27]],
+    "cabin":[["15,21 21,22 48,49 54,58 45,53 24,33",0.70],["23,23 27,24 49,42 52,47",0.40]],
+    "return_camp":[["15,21 21,22 47,48 53,57 44,51 24,33",0.52]],
+    "forge":[["2,28 7,29 25,51 34,61 27,59 11,43",0.67]],
+    "chartroom":[["5,18 12,20 37,39 45,48 35,46 15,30",0.72]],
+    "harbour":[["3,38 14,38 27,54 18,56 7,49",0.14]],
+    "beach":[["9,28 15,23 25,57 26,63 21,62",0.12]],
+    "camp":[["32,19 37,19 53,46 60,59 51,54 41,39",0.14]],
+    "wreck":[["70,14 77,12 74,41 66,45",0.11]],
+    "salvage":[["70,14 77,12 74,41 66,45",0.11]],
+    "slipway":[["17,18 26,15 35,39 47,56 36,49 27,36",0.14]],
+    "landing":[["30,17 36,16 41,34 41,47 36,40",0.14]],
+    "crossing":[["12,28 20,28 18,40 13,50 9,51",0.10]]
+  }
+}

@@ -2,7 +2,7 @@
 
 A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
 
-[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v15) · [Edition 15](reviews/release-15/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
+[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v16) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
 ## Play
 

@@ -6,11 +6,12 @@ let targetScene=null,worldMarkup=null,actorFocus=null,dialogue=null,dialogueTime
 const Stage=window.CastawayStage, Life=window.CastawayLife, Work=window.CastawayWorkPoses, Ground=window.CastawayGround, Choreo=window.CastawayChoreography, Bench=window.CastawayBench, Observations=window.CastawayObservations;
 const Weather=window.CastawayWeather;
 const staged=Boolean(CAMPAIGN&&Stage&&Ground&&Choreo);
+const lighting = staged ? window.CastawayPaintingLight?.create($('scene'), $('material-lighting'), updateLightingStatus) : null;
 let examining=false, playerWork='stand', hintKey='', hintLevel=0;
 const actorHomes=new Map(),actorTracks=new Map(),actorPositions=new Map(),walkImages=new Map();
 const voiceAvailable=Boolean(window.speechSynthesis&&window.SpeechSynthesisUtterance);
 const targetMarkup=new Map(),companionMarkup=new Map(),displayStates=new WeakMap();
-let prefs={narration:false,captions:false,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches};
+let prefs={narration:false,captions:false,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,lighting:'auto'};
 try{state=E.restore(JSON.parse(localStorage.getItem(KEY)))||state;}catch(_){}
 if(CAMPAIGN&&!localStorageSafe(KEY)){try{state=E.restore(JSON.parse(localStorage.getItem('castaways-adventure-v3')))||state;}catch(_){}}
 function localStorageSafe(key){try{return localStorage.getItem(key);}catch(_){return null;}}
@@ -19,7 +20,7 @@ const currentScene=()=>E.SCENES.find(s=>s.id===state.scene);
 const exitsFor=()=>E.getExits?E.getExits(state):currentScene().exits;
 let chapterTimer,chapterBusy=false;
 const newVoyage = CAMPAIGN && !localStorageSafe(KEY) && !localStorageSafe('castaways-adventure-v3');
-try{const p=JSON.parse(localStorage.getItem(PREF));if(p){prefs.narration=Boolean(p.narration);prefs.captions=Boolean(p.captions);prefs.reduced=prefs.reduced||Boolean(p.reduced);}}catch(_){}
+try{const p=JSON.parse(localStorage.getItem(PREF));if(p){prefs.narration=Boolean(p.narration);prefs.captions=Boolean(p.captions);prefs.reduced=prefs.reduced||Boolean(p.reduced);prefs.lighting=window.CastawayPaintingLight?.preference(p.lighting)||'auto';}}catch(_){}
 const drawings={
  shelter:'<path d="m4 53 23-42 30 41M27 11l-3 42M5 52h52M27 11l21-4 12 34" fill="none" stroke-width="4"/>',
  signal:'<path d="M17 58V5M7 58h22M18 6q14-6 32 1l-8 11 7 10q-17-8-31-1" fill="none" stroke-width="3"/>',
@@ -358,6 +359,10 @@ function placeCrew(button,id,x,y,h){
   button.dataset.foot=`${x},${y}`;actorPositions.set(id,{x,y});
  }
 }
+function lightFrame(now, paused, reduced, force=false) {
+ if(lighting) lighting.frame({state,choice:prefs.lighting,now,paused,reduced,force,
+   weatherRoot:$('place-weather'),player,actors:actorPositions});
+}
 function liveFrame(now){
  const dt=lastLiveTime===null?0:Math.max(0,Math.min(100,now-lastLiveTime));lastLiveTime=now;
  const paused=Boolean(document.hidden||$('modal').open||Bench?.shown()||window.CastawayRepairRoll?.shown()||
@@ -382,6 +387,7 @@ function liveFrame(now){
   actorPose(id,canvas,pose.moving,pose.frame,pose.facing,pose.posture);
   button.classList.toggle('speaking',dialogue?.id===id);
  }
+ lightFrame(now,paused,reduced);
  requestAnimationFrame(liveFrame);
 }
 
@@ -688,6 +694,7 @@ function render({source,gainedItem,sceneChanged=false}={}){const previousFocus=d
   $('scene').setAttribute('aria-description',Weather.caption?.($('place-weather'),state)||Weather.describe(state).weather);
  }
  renderInventory();updatePlayer();playerPose(playerWork);$('cancel-item').hidden=!selected;$('cursor-item').innerHTML=selected?svg(selected):'';$('cursor-item').style.display=selected?'block':'none';restoreRenderFocus(previousFocus,source,gainedItem,sceneChanged);refreshActionLabel();
+ lightFrame(performance.now(),true,effectiveReduced(),true);
 }
 function modal(title,html){closeDialogue();cancelWalk();const dialog=$('modal');if(!dialog.open)modalReturnFocus=document.activeElement;$('modal-title').textContent=title;$('modal-body').innerHTML=html;if(!dialog.open)dialog.showModal();}
 $('inspect-mode').onclick=()=>{cancelWalk();if(selected)setSelected(null);setExamine(!examining);refreshActionLabel();};
@@ -707,10 +714,32 @@ function hint(){
  const parts=h.combineItems||['rope','pole'];
  modal('A little hint',h.cue==='combine'?`<div class="hint-icons">${parts.map(id=>svg(id)).join('<span>+</span>')}</div>`:`<div class="hint-icons">${svg(h.itemId||(h.cue==='take'?'hand':h.cue))}<span>→</span>${svg(targetIcon)}</div><p style="text-align:center">${esc(scene.name)}</p>`);$('modal-body').insertAdjacentHTML('beforeend',`<p class="${prefs.captions||CAMPAIGN?'small':'sr-only'}">${esc(h.text)}</p>`);
 }
+function updateLightingStatus() {
+ const note=$('lighting-status');
+ if(!note)return;
+ const fallback=$('material-lighting')?.dataset.materialState==='fallback';
+ note.textContent=fallback && prefs.lighting!=='original'?'Using the still light study for this display.':'';
+}
 function settings(){
  const release=document.head?.querySelector('meta[name="game-release"]')?.content?.trim();
+ const lightChoice=lighting?`<div class="setting"><label for="lighting-quality">Scene lighting</label><select id="lighting-quality">
+   <option value="auto">Automatic</option><option value="cinematic">Cinematic</option>
+   <option value="balanced">Balanced</option><option value="original">Original painting</option>
+   </select></div><p class="small" role="status" id="lighting-status"></p>`:'';
  const releaseNote=release?`<p class="settings-release">Game release ${esc(release)}</p>`:'';
- modal('Settings',`<div class="setting"><span id="captions-label">Brief reaction captions</span><button id="toggle-captions" aria-labelledby="captions-label" aria-pressed="${prefs.captions}">${prefs.captions?'On':'Off'}</button></div><div class="setting"><span id="motion-label">Reduce motion</span><button id="toggle-motion" aria-labelledby="motion-label" aria-pressed="${prefs.reduced}">${prefs.reduced?'Reduced':'On'}</button></div>${voiceAvailable?`<div class="setting"><span id="narration-label">Narration · device voice</span><button id="toggle-narration" aria-labelledby="narration-label" aria-pressed="${prefs.narration}">${prefs.narration?'On':'Off'}</button></div>`:''}<div class="setting"><span>Return to the shore</span><button id="restart">New game</button></div><p class="small">An original adventure inspired by the Grafton castaways. Puzzles and dialogue are fictional; the historical rescue is documented in the project sources. Artwork was generated with AI.</p><p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/adventure" target="_blank" rel="noopener noreferrer">Sources and project files ↗</a></p>${releaseNote}`);$('toggle-captions').onclick=()=>{prefs.captions=!prefs.captions;savePrefs();settings();$('toggle-captions').focus();};$('toggle-motion').onclick=()=>{prefs.reduced=!prefs.reduced;savePrefs();settings();$('toggle-motion').focus();};if($('toggle-narration'))$('toggle-narration').onclick=()=>{prefs.narration=!prefs.narration;savePrefs();settings();$('toggle-narration').focus();};$('restart').onclick=restart;}
+ modal('Settings',`${lightChoice}<div class="setting"><span id="captions-label">Brief reaction captions</span><button id="toggle-captions" aria-labelledby="captions-label" aria-pressed="${prefs.captions}">${prefs.captions?'On':'Off'}</button></div><div class="setting"><span id="motion-label">Reduce motion</span><button id="toggle-motion" aria-labelledby="motion-label" aria-pressed="${prefs.reduced}">${prefs.reduced?'Reduced':'On'}</button></div>${voiceAvailable?`<div class="setting"><span id="narration-label">Narration · device voice</span><button id="toggle-narration" aria-labelledby="narration-label" aria-pressed="${prefs.narration}">${prefs.narration?'On':'Off'}</button></div>`:''}<div class="setting"><span>Return to the shore</span><button id="restart">New game</button></div><p class="small">An original adventure inspired by the Grafton castaways. Puzzles and dialogue are fictional; the historical rescue is documented in the project sources. Artwork was generated with AI.</p><p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/adventure" target="_blank" rel="noopener noreferrer">Sources and project files ↗</a></p>${releaseNote}`);$('toggle-captions').onclick=()=>{prefs.captions=!prefs.captions;savePrefs();settings();$('toggle-captions').focus();};$('toggle-motion').onclick=()=>{prefs.reduced=!prefs.reduced;savePrefs();settings();$('toggle-motion').focus();};if($('toggle-narration'))$('toggle-narration').onclick=()=>{prefs.narration=!prefs.narration;savePrefs();settings();$('toggle-narration').focus();};$('restart').onclick=restart;
+ const selector=$('lighting-quality');
+ if(selector) {
+  selector.value=prefs.lighting;
+  selector.onchange=()=>{
+   prefs.lighting=window.CastawayPaintingLight.preference(selector.value);
+   savePrefs();
+   lightFrame(performance.now(),true,effectiveReduced(),true);
+   updateLightingStatus();
+  };
+  updateLightingStatus();
+ }
+}
 function restart(){
  modal('Return to the shore?',`<p class="small">This will replace your current progress.</p><button class="dialog-button" id="confirm-restart">Start again</button>`);
  $('confirm-restart').onclick=()=>{

@@ -449,6 +449,9 @@
       previousFeet.set(actor.dataset.fwActor, [Number(actor.dataset.footX),Number(actor.dataset.footY)]);
     }
     d.querySelector('.fw-drawing').innerHTML = surveyEnd ? tinAndStain(false,'survey') : artFor(id, state, action);
+    const lightMode = d.ownerDocument?.getElementById('scene')?.dataset.lightingMode;
+    root.CastawayWorkLighting?.update(d, id, {...state, surveyEnd, review: active.review},
+      lightMode === 'balanced' || lightMode === 'cinematic');
     if (previousFeet.size) walkCrew(d, previousFeet);
     d.querySelector('.fw-points').innerHTML = v.actions.map(a =>
       `<button type="button" class="fw-point" data-fw-point="${a.id}" aria-label="${a.label}" style="left:${a.x}%;top:${a.y}%" ${a.selected === undefined ? '' : 'aria-pressed="' + a.selected + '"'}><span aria-hidden="true"></span></button>`).join('');
