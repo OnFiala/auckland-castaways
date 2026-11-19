@@ -11,7 +11,7 @@ from urllib.parse import urlsplit
 from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageStat
 from playwright.sync_api import expect, sync_playwright
 
-from campaign import READ, SAVE, ready, ready_initial, state
+from campaign import READ, SAVE, ready, state
 
 
 # Values are stage percentages, from the registered painting, independent of the renderer.
@@ -382,9 +382,7 @@ def motion_modes(browser, index, errors, external, failed):
     ctx = browser.new_context(viewport={'width':960,'height':720}, offline=True)
     try:
         page = ctx.new_page()
-        listen(page, errors, external, failed)
-        page.goto(index.as_uri())
-        ready_initial(page)
+        open_lighting_scene(page, index, errors, external, failed)
         select_mode(page, 'cinematic')
         page.wait_for_function("document.querySelector('#material-lighting').dataset.materialHistory === '4'")
         temporal = renderer(page, 'ready')
@@ -426,9 +424,7 @@ def phone(browser, index, folder, errors, external, failed):
                               is_mobile=True,has_touch=True,offline=True,reduced_motion='reduce')
     try:
         page = ctx.new_page()
-        listen(page, errors, external, failed)
-        page.goto(index.as_uri())
-        ready_initial(page)
+        open_lighting_scene(page, index, errors, external, failed)
         select_mode(page, 'cinematic')
         page.locator('#settings').tap()
         expect(page.locator(QUALITY)).to_have_value('cinematic')
@@ -442,11 +438,20 @@ def phone(browser, index, folder, errors, external, failed):
         ctx.close()
 
 
-def listen(page, errors, external, failed):
+def open_lighting_scene(page, index, errors, external, failed):
     page.set_default_timeout(20000)
     page.on('pageerror', lambda err: errors.append(str(err)))
     page.on('request', lambda req: external.append(req.url) if urlsplit(req.url).scheme in ('http','https') else None)
     page.on('requestfailed', lambda req: failed.append({'file':Path(urlsplit(req.url).path).name,'reason':req.failure}))
+    # Start each fresh lighting profile with the same skip setting a player can save.
+    page.add_init_script("""(() => {
+        const key = 'castaways-film-prefs-v1';
+        if (localStorage.getItem(key) === null) {
+            localStorage.setItem(key, JSON.stringify({chapters:'skip'}));
+        }
+    })()""")
+    page.goto(index.as_uri())
+    ready(page)
 
 
 def sheet(plates, detail, edition, path):
@@ -498,9 +503,7 @@ def main():
         try:
             ctx=browser.new_context(viewport={'width':1440,'height':1050},offline=True,reduced_motion='reduce')
             page=ctx.new_page()
-            listen(page, errors, external, failed)
-            page.goto(index.as_uri())
-            ready_initial(page)
+            open_lighting_scene(page, index, errors, external, failed)
             edition=page.locator('meta[name="game-release"]').get_attribute('content')
             build=page.locator('meta[name="game-build"]').get_attribute('content')
             assert int(edition)>=16 and edition == manifest['release'] and build == manifest['build'][:20]
