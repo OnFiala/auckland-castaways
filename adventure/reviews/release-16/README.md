@@ -29,6 +29,8 @@ Při ručním hraní v samostatném Chromu na první pláži Alick skutečně do
 
 ## Prohlédnout a hrát
 
+Přenos rozehrané hry jsme vyzkoušeli na stejné adrese v jednom prohlížeči. Vydání 15 uložilo tyč se smyčkou a zapnuté omezení pohybu. Po načtení vydání 16 šlo stejnou tyčí stáhnout plachtu a uložit ji do brašny.
+
 Offline ZIP má 33 498 454 bajtů. Jeho SHA-256 je `c8ad003005839986d57262d787d1a03b5074a2391e7f5354347de9d3bce1827b`.
 
 [Stáhnout vydání 16](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v16) · [Porovnání obrazů z hraní](https://github.com/OnFiala/auckland-castaways/releases/download/game-v16/lighting-study.webp) · [Ověření celé hry](../../FULL_GAME_TESTING.md)
