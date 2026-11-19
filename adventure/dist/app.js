@@ -392,7 +392,14 @@ function liveFrame(now){
 }
 
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));saving=true;}catch(_){saving=false;} $('saved').style.color=saving?'#c4b08a':'#d6a177';$('saved').title=saving?'Saved in this browser':'Saving is unavailable';$('saved').setAttribute('aria-label',$('saved').title);$('saved').textContent=saving?'●':'!';}
-function savePrefs(){document.body.classList.toggle('reduced',prefs.reduced);try{localStorage.setItem(PREF,JSON.stringify(prefs));}catch(_){}}
+function savePrefs(){
+ document.body.classList.toggle('reduced',prefs.reduced);
+ const {lighting:choice,...saved}=prefs;
+ // The first-night standalone shares this key. Auto is the absence of an
+ // override, just as it was for every save created before scene lighting.
+ if(choice!=='auto')saved.lighting=choice;
+ try{localStorage.setItem(PREF,JSON.stringify(saved));}catch(_){}
+}
 // Place and viewpoint already have their own labels. The action line follows the
 // object under the pointer, the keyboard target or the item the player is holding.
 const controlLabels=new WeakMap();

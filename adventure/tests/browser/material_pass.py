@@ -220,17 +220,29 @@ def wet_walk(page, saved, mode, out):
     select_mode(page, mode)
     before = pixels(page)
     stage = page.locator('#scene').bounding_box()
-    # The driftwood target is directly above this strip of wet ground.
+    # Pick open ground using the real button hit areas, inside the registered wet receiver.
+    # Its visible return must also fit on the sand below both boots.
     point = page.evaluate("""r => {
-      for(const v of [73,74,75,76,77]) for(const u of [27,28,29,26,25]){
-        const x=r.x+r.width*u/100,y=r.y+r.height*v/100;
-        if(!document.elementFromPoint(x,y).closest('button')) return [x,y];
+      const surface = CastawayReflections.surfaceFor({scene:'beach'});
+      const polygon = CastawayStage.profile('beach').walkPolygon;
+      for (const v of [77.5,76.5,75.5,74.5,73.5]) {
+        for (const u of [35,37,38,33,32,31,30,29,28,27,25,23,21,19,17,15]) {
+          const x = r.x+r.width*u/100, y = r.y+r.height*v/100;
+          const hit = document.elementFromPoint(x,y);
+          if (!hit?.closest('#scene') || hit.closest('button')) continue;
+          const onSand = [[u,v],[u-2.2,v+8],[u+2.2,v+8]].every(([x,y]) =>
+            CastawayGround.contains(surface.points, {x,y}));
+          if (onSand && CastawayGround.contains(polygon,{x:u,y:v})) return {x,y,u,v};
+        }
       }
-      throw Error('No reachable strip of wet ground');
+      throw Error('No open sand under the painted hotspot bounds');
     }""", stage)
-    page.mouse.click(*point)
-    page.wait_for_function("parseFloat(document.querySelector('#player').style.left) < 32"
-                           " && document.querySelector('#player-sprite').dataset.moving!=='true'")
+    page.mouse.click(point['x'], point['y'])
+    page.wait_for_function("""p => {
+      const actor=document.querySelector('#player');
+      return Math.abs(parseFloat(actor.style.left)-p.u)<.25 && Math.abs(parseFloat(actor.style.top)-p.v)<.25
+        && document.querySelector('#player-sprite').dataset.moving!=='true';
+    }""", arg=point)
     if mode == 'cinematic':
         expect(page.locator('#planar-reflections .planar-reflection--player > svg')).to_be_visible()
     page.mouse.move(1, 1)
