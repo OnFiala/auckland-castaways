@@ -10,16 +10,17 @@
   const track = byId('film-track');
   const directory = 'assets/story-film/';
   const key = 'castaways-film-prefs-v1';
-  const modes = ['ask', 'watch', 'skip'];
-  let prefs = {chapters:'ask', muted:false, captions:true};
+  const modes = ['watch', 'skip'];
+  let prefs = {chapters:'watch', muted:false, captions:true};
   try {
     const p = JSON.parse(localStorage.getItem(key));
-    if (p) prefs = {chapters:modes.includes(p.chapters) ? p.chapters : 'ask', muted:p.muted === true, captions:p.captions !== false};
+    if (p) prefs = {chapters:p.chapters === 'skip' ? 'skip' : 'watch', muted:p.muted === true, captions:p.captions !== false};
   } catch (_) { /* The same controls work for this tab when storage is unavailable. */ }
 
   let session = null;
-  let attempt = 0;
-  let waitTimer, clearHandoff;
+  let native = null, projection = null, preferProjection = false, mediaGeneration = 0;
+  let wantsPlay = false, resumeOnVisible = false, waitTimer, stallTimer, clearHandoff;
+  const compatibility = () => window.CastawayFilmFallback;
   const watch = byId('film-play'), read = byId('film-read'), pause = byId('film-pause');
   const mute = byId('film-mute'), captions = byId('film-captions'), skip = byId('film-skip');
   const previous = byId('film-prev'), next = byId('film-next'), forward = byId('film-forward');
@@ -42,25 +43,32 @@
     savePreferences();
   }
   function updateToggles() {
-    video.muted = prefs.muted;
-    mute.setAttribute('aria-pressed', String(prefs.muted));
-    mute.textContent = prefs.muted ? 'Sound off' : 'Sound on';
-    captions.setAttribute('aria-pressed', String(prefs.captions));
-    captions.textContent = prefs.captions ? 'Captions on' : 'Captions off';
+    const locked = Boolean(session?.soundBlocked) && !prefs.muted;
+    const quiet = prefs.muted || locked, subtitlesOn = captionsEnabled();
+    video.muted = quiet;
+    dialog.dataset.soundLocked = String(locked);
+    mute.setAttribute('aria-label', locked ? 'Enable sound' : quiet ? 'Turn film sound on' : 'Mute film');
+    mute.setAttribute('aria-pressed', String(quiet));
+    mute.textContent = locked ? 'Enable sound' : prefs.muted ? 'Sound off' : 'Sound on';
+    captions.setAttribute('aria-pressed', String(subtitlesOn));
+    captions.textContent = subtitlesOn ? 'Captions on' : 'Captions off';
+  }
+  function captionsEnabled() {
+    return prefs.captions || ((session?.soundBlocked || session?.soundUnavailable) && !prefs.muted) || dialog.dataset.player === 'paintings';
   }
   function showCaption() {
     let line = '';
-    if (session?.mode === 'movie' && prefs.captions) {
-      const cue = window.storyFilmCaptions?.[session.reel.id]?.find(
-        item => item.start <= video.currentTime && video.currentTime < item.end
-      );
-      line = cue?.text || '';
+    if (session?.mode === 'movie' && captionsEnabled()) {
+      const time = filmTime();
+      const cues = window.storyFilmCaptions?.[session.reel.id];
+      const cue = cues?.find(item => item.start <= time && time < item.end);
+      line = cue?.text || (!cues && dialog.dataset.player === 'paintings' ? session.reel.shots[Number(dialog.dataset.shot)]?.line : '') || '';
     }
     if (subtitle.textContent !== line) subtitle.textContent = line;
     subtitle.hidden = !line;
   }
   function updatePause() {
-    const stopped = video.paused;
+    const stopped = !wantsPlay;
     pause.textContent = stopped ? 'Resume' : 'Pause';
     pause.setAttribute('aria-pressed', String(stopped));
   }
@@ -76,21 +84,38 @@
     pause.hidden = !movie;
     captions.hidden = !movie;
     mute.hidden = still;
-    read.hidden = still;
+    read.hidden = mode !== 'poster';
     previous.hidden = next.hidden = !still;
     byId('film-reading').hidden = !still;
     byId('film-credit').hidden = movie;
     updateToggles();
     showCaption();
   }
-  function releaseVideo() {
-    ++attempt;
+  function filmTime() {
+    if (projection) return projection.currentTime;
+    if (native?.attached && !native.seek && Number.isFinite(video.currentTime)) return video.currentTime;
+    return session?.position || 0;
+  }
+  function clearTimers() {
     clearTimeout(waitTimer);
-    if (!video.hasAttribute('src')) return;
-    video.pause();
-    video.removeAttribute('src');
-    track.removeAttribute('src');
-    video.load();
+    clearTimeout(stallTimer);
+  }
+  function releaseVideo() {
+    mediaGeneration++;
+    clearTimers();
+    const old = native;
+    native = null;
+    old?.request?.abort();
+    const retiring = projection;
+    projection = null;
+    retiring?.stop();
+    if (video.hasAttribute('src')) {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    }
+    if (track.hasAttribute('src')) track.removeAttribute('src');
+    if (old?.objectURL) URL.revokeObjectURL(old.objectURL);
   }
   function setPlate(src, fallback) {
     plate.hidden = false;
@@ -105,11 +130,22 @@
     releaseVideo();
     session.index = index;
     session.page = 0;
-    session.source = 0;
+    wantsPlay = false;
+    resumeOnVisible = false;
+    session.position = 0;
+    session.triedProjection = false;
+    session.soundBlocked = false;
+    session.soundUnavailable = false;
+    session.route = -1;
+    delete dialog.dataset.player;
+    delete dialog.dataset.shot;
     const canDecode = type => Boolean(video.canPlayType?.(type));
     const webmFirst = !canDecode('video/mp4; codecs="avc1.64001F, mp4a.40.2"') &&
       canDecode('video/webm; codecs="vp9, opus"');
-    session.formats = webmFirst ? ['webm','mp4'] : ['mp4','webm'];
+    const formats = webmFirst ? ['webm','mp4'] : ['mp4','webm'];
+    const buffered = /^https?:$/.test(window.location?.protocol) && typeof window.fetch === 'function' &&
+      typeof window.URL?.createObjectURL === 'function' && typeof window.AbortController === 'function';
+    session.routes = formats.flatMap(format => buffered ? [{format, buffered:true}, {format}] : [{format}]);
     const reel = session.reels[index];
     session.reel = reel;
     const label = labels[timeline.indexOf(reel)];
@@ -127,18 +163,21 @@
     setPlate(directory + reel.id + '.webp', picturePath(reel.shots[0]));
   }
   function dissolveIntoScene() {
-    if (session.replay || session.reduced || document.hidden ||
-        matchMedia('(prefers-reduced-motion: reduce)').matches ||
-        !video.videoWidth || !video.videoHeight || video.readyState < 2) return;
-    const from = video.getBoundingClientRect(), to = byId('scene').getBoundingClientRect();
+    if (session.replay || session.reduced || document.hidden || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const painted = dialog.dataset.player === 'paintings';
+    const source = painted ? plate : projection ? byId('film-compat-canvas') : video;
+    const width = painted ? plate.naturalWidth : projection ? source?.width : video.videoWidth;
+    const height = painted ? plate.naturalHeight : projection ? source?.height : video.videoHeight;
+    if (!width || !height || (!projection && video.readyState < 2)) return;
+    const from = source.getBoundingClientRect(), to = byId('scene').getBoundingClientRect();
     if (!from.width || !from.height || !to.width || !to.height) return;
     const frame = document.createElement('canvas');
-    frame.width = video.videoWidth;
-    frame.height = video.videoHeight;
+    frame.width = width;
+    frame.height = height;
     try {
       const ctx = frame.getContext('2d');
       if (!ctx) return;
-      ctx.drawImage(video, 0, 0);
+      ctx.drawImage(source, 0, 0);
     } catch (_) { return; }
     frame.className = 'film-handoff';
     frame.setAttribute('aria-hidden', 'true');
@@ -179,6 +218,7 @@
     const shots = session.reel.shots;
     if (page < 0 || page >= shots.length) return;
     releaseVideo();
+    wantsPlay = false;
     session.page = page;
     status.textContent = '';
     setMode('still');
@@ -190,58 +230,225 @@
     next.textContent = last ? (session.index + 1 < session.reels.length ? 'Next film' : 'Finish reading') : 'Next still';
     (focus.disabled ? next : focus).focus({preventScroll:true});
   }
-  function playbackFailed(message) {
-    if (!session || session.mode !== 'movie') return;
-    showReel(session.index);
-    status.textContent = message;
-    (session.reduced ? read : watch).focus({preventScroll:true});
-  }
-  function retryFormat() {
-    if (session.source + 1 === session.formats.length) {
-      playbackFailed('This film could not load. Read the stills or continue.');
-      return;
-    }
-    session.source++;
-    releaseVideo();
-    play(false);
-  }
-  async function play(explicit) {
-    if (!session) return;
-    if (explicit && !session.replay) setChapterMode('watch');
-    const number = ++attempt;
-    setMode('movie');
-    const file = session.reel.id;
-    if (!video.hasAttribute('src')) {
-      video.poster = directory + file + '.webp';
-      // Browsers can block file:// text tracks. The identical packaged cue table
-      // drives the visible captions on disk and HTTPS, including after a seek.
-      if (/^https?:$/.test(window.location?.protocol)) {
-        track.src = directory + file + '.vtt';
-        if (track.track) track.track.mode = 'hidden';
+  function armWatchdog(state) {
+    clearTimeout(stallTimer);
+    if (!wantsPlay || document.hidden) return;
+    const lastTime = video.currentTime;
+    const lastFrames = video.getVideoPlaybackQuality?.().totalVideoFrames;
+    stallTimer = setTimeout(() => {
+      if (native !== state || !wantsPlay || document.hidden) return;
+      const frames = video.getVideoPlaybackQuality?.().totalVideoFrames;
+      if (state.attached && video.currentTime > lastTime + .04 && (lastFrames == null || frames > lastFrames)) {
+        armWatchdog(state);
+        return;
       }
-      session.file = directory + file + '.' + session.formats[session.source];
-      video.src = session.file;
-    }
+      // Some embedded WebViews leave play() pending forever and never dispatch an error.
+      // A decoder can also stop producing frames halfway through a reel.
+      if (!startProjection()) nextSource();
+    }, state.attached ? 6000 : Math.max(0, Math.min(6000, 16000 - (performance.now() - state.started))));
+  }
+  function startPaintings() {
+    // A media outage still has a timed ending. Use the locally packaged plates
+    // and caption times, with the same clock and controls as the other players.
+    const owner = session, reel = owner.reel;
+    let offset = filmTime(), started = performance.now(), running = wantsPlay, timer, shot = -1;
+    releaseVideo();
+    const generation = mediaGeneration;
+    setMode('movie');
+    dialog.dataset.player = 'paintings';
+    owner.soundBlocked = false;
+    video.hidden = mute.hidden = true;
+    plate.hidden = read.hidden = false;
     status.textContent = '';
+    const duration = reel.shots.reduce((sum, item) => sum + item.seconds, 0);
+    const time = () => Math.min(duration, offset + (running ? (performance.now() - started) / 1000 : 0));
+    const render = () => {
+      if (generation !== mediaGeneration) return;
+      const elapsed = time();
+      if (elapsed >= duration) { continueReels(false, true); return; }
+      let boundary = 0;
+      const index = reel.shots.findIndex(item => (boundary += item.seconds) > elapsed);
+      if (index !== shot) {
+        shot = index;
+        dialog.dataset.shot = String(index);
+        setPlate(picturePath(reel.shots[index]), directory + reel.id + '.webp');
+      }
+      showCaption();
+      if (running) timer = setTimeout(render, Math.min(150, (boundary - elapsed) * 1000 + 1));
+    };
+    projection = {
+      get currentTime() { return time(); },
+      stop() { clearTimeout(timer); },
+      pause() { offset = time(); running = false; clearTimeout(timer); },
+      resume() { if (!running) { started = performance.now(); running = true; render(); } },
+      setMuted() {}
+    };
+    updateToggles();
     updatePause();
-    pause.focus({preventScroll:true});
-    clearTimeout(waitTimer);
-    waitTimer = setTimeout(() => {
-      if (number === attempt) status.textContent = 'Loading film. You can also read the stills.';
-    }, 800);
+    render();
+  }
+  function startProjection() {
+    const owner = session;
+    if (!owner || !compatibility() || owner.triedProjection) return false;
+    owner.position = filmTime();
+    owner.triedProjection = true;
+    releaseVideo();
+    const generation = mediaGeneration;
+    setMode('movie');
+    dialog.dataset.player = 'compatible';
+    video.hidden = true;
+    plate.hidden = false;
+    status.textContent = 'Loading painted film…';
+    updatePause();
+    // The handle can outlive this reel if the player skips while a sheet or sound is loading.
+    const current = () => generation === mediaGeneration;
+    const failed = () => {
+      if (!current()) return;
+      preferProjection = false;
+      if (owner.reduced) startPaintings();
+      else nextSource();
+    };
+    try {
+      const handle = compatibility().start({
+        reel:owner.reel, element:plate, time:owner.position, muted:prefs.muted, paused:!wantsPlay, reduced:owner.reduced,
+        onReady() { if (current()) { if (!owner.reduced) preferProjection = true; status.textContent = ''; } },
+        onTime() { if (current()) showCaption(); },
+        onSound(available, reason) {
+          if (!current()) return;
+          owner.soundUnavailable = !available && reason === 'unavailable';
+          owner.soundBlocked = !available && !owner.soundUnavailable;
+          mute.hidden = owner.soundUnavailable;
+          updateToggles();
+          showCaption();
+        },
+        onEnd() { if (current()) continueReels(false, true); },
+        onError:failed
+      });
+      if (current()) projection = handle;
+      else handle?.stop();
+    } catch (_) { failed(); }
+    return true;
+  }
+  async function runNative(state) {
+    if (native !== state || !state.attached || !wantsPlay) return;
+    const sequence = ++state.plays;
+    armWatchdog(state);
     try {
       await video.play();
-      if (number !== attempt) return;
+      if (native !== state || sequence !== state.plays || !wantsPlay) return;
       clearTimeout(waitTimer);
-      status.textContent = '';
+      if (status.textContent.startsWith('Loading')) status.textContent = '';
       updatePause();
     } catch (error) {
-      if (number !== attempt) return;
-      if (error.name === 'NotAllowedError') playbackFailed('Choose Watch film to begin playback.');
-      else if (error.name !== 'AbortError') retryFormat();
+      if (native !== state || sequence !== state.plays || !wantsPlay) return;
+      if (error.name === 'NotAllowedError') {
+        // Keep the same element, source and playback position. Embeds may require
+        // a real gesture for narration but can immediately play the muted picture.
+        if (!video.muted) {
+          session.soundBlocked = true;
+          updateToggles();
+          showCaption();
+          runNative(state);
+        } else if (!startProjection()) nextSource();
+      } else if (error.name !== 'AbortError') nextSource();
+      // Unexpected native AbortError without a subsequent pause is covered by the watchdog.
     }
   }
-  function open(ids, {reduced=false, replay=false, auto=false, focus=document.activeElement, after}={}) {
+  function attach(state, url) {
+    if (native !== state) return;
+    state.attached = true;
+    state.url = url;
+    video.src = url;
+    if (wantsPlay) runNative(state);
+  }
+  async function bufferReel(state) {
+    try {
+      const response = await fetch(state.file, {credentials:'same-origin', mode:'same-origin', signal:state.request.signal});
+      if (native !== state) return;
+      if (!response.ok || /^(?:text\/|application\/(?:json|xhtml))/i.test(response.headers.get('Content-Type') || '')) {
+        throw new Error('Film response did not contain media');
+      }
+      const type = state.format === 'mp4' ? 'video/mp4' : 'video/webm';
+      let blob;
+      if (response.body?.getReader) {
+        const reader = response.body.getReader(), parts = [];
+        for (;;) {
+          const {done, value} = await reader.read();
+          if (native !== state) return;
+          if (done) break;
+          parts.push(value);
+          armWatchdog(state);
+        }
+        blob = new Blob(parts, {type});
+      } else {
+        blob = new Blob([await response.arrayBuffer()], {type});
+      }
+      if (native !== state) return;
+      if (!blob.size) throw new Error('Empty film response');
+      // A same-origin full GET works on static hosts that answer a Range request
+      // with the entire movie. A local Blob gives the decoder a seekable source.
+      state.objectURL = URL.createObjectURL(blob);
+      attach(state, state.objectURL);
+    } catch (_) { if (native === state) nextSource(); }
+  }
+  function nextSource() {
+    if (!session) return;
+    session.position = filmTime();
+    releaseVideo();
+    const route = session.routes[++session.route];
+    if (!route) {
+      if (!startProjection()) startPaintings();
+      return;
+    }
+    const file = directory + session.reel.id + '.' + route.format;
+    const state = {file, format:route.format, seek:session.position, plays:0, started:performance.now()};
+    native = state;
+    session.soundBlocked = session.soundUnavailable = false;
+    setMode('movie');
+    dialog.dataset.player = route.buffered ? 'buffered' : 'native';
+    status.textContent = '';
+    video.poster = directory + session.reel.id + '.webp';
+    // An embedded copy of these same cues drives captions both online and offline.
+    if (/^https?:$/.test(window.location?.protocol)) {
+      track.src = directory + session.reel.id + '.vtt';
+      if (track.track) track.track.mode = 'hidden';
+    }
+    updatePause();
+    waitTimer = setTimeout(() => {
+      if (native === state && wantsPlay) status.textContent = 'Loading film…';
+    }, 900);
+    armWatchdog(state);
+    if (route.buffered) {
+      state.request = new AbortController();
+      bufferReel(state);
+    } else attach(state, file);
+  }
+  function play(explicit) {
+    if (!session) return;
+    if (explicit) {
+      compatibility()?.prime();
+      if (!session.replay) setChapterMode('watch');
+    }
+    wantsPlay = true;
+    if (projection) projection.resume();
+    else if (native) {
+      native.started = performance.now();
+      armWatchdog(native);
+      runNative(native);
+    } else if (session.reduced) {
+      if (!startProjection()) startPaintings();
+    } else if (!preferProjection || !startProjection()) nextSource();
+    updatePause();
+  }
+  function pauseFilm() {
+    wantsPlay = false;
+    resumeOnVisible = false;
+    clearTimers();
+    if (projection) projection.pause();
+    else if (native?.attached) video.pause();
+    updatePause();
+  }
+  function open(ids, {reduced=false, replay=false, auto=true, startAt=0, focus=document.activeElement, after}={}) {
     if (session) return false;
     const reels = ids.map(id => timeline.find(reel => reel.id === id));
     if (!reels.length || reels.some(reel => !reel)) return false;
@@ -249,14 +456,19 @@
     session = {reels, reduced, replay, focus, after, playlist:reels.length > 1};
     dialog.dataset.entry = replay ? 'replay' : 'campaign';
     showReel(0);
+    const duration = reels[0].shots.reduce((sum, shot) => sum + shot.seconds, 0);
+    session.position = Number.isFinite(startAt) ? Math.max(0, Math.min(duration - .25, startAt)) : 0;
     dialog.showModal();
-    if (auto && !reduced) play(false);
-    else (reduced ? read : watch).focus({preventScroll:true});
+    if (auto) {
+      if (replay) compatibility()?.prime();
+      play(false);
+      if (document.hidden) { pauseFilm(); resumeOnVisible = true; }
+    } else (reduced ? read : watch).focus({preventScroll:true});
     return true;
   }
   watch.onclick = () => play(true);
   read.onclick = () => {
-    const time = session.mode === 'movie' ? video.currentTime || 0 : 0;
+    const time = session.mode === 'movie' ? filmTime() : 0;
     let boundary = 0;
     const page = session.reel.shots.findIndex(shot => {
       boundary += shot.seconds;
@@ -270,26 +482,47 @@
     if (session.page + 1 < session.reel.shots.length) showStill(session.page + 1);
     else continueReels(true);
   };
-  forward.onclick = () => continueReels(session.mode === 'still' || session.reduced);
+  forward.onclick = () => continueReels(session.mode === 'still');
   pause.onclick = () => {
-    if (video.paused) play(false);
-    else { clearTimeout(waitTimer); video.pause(); }
+    if (wantsPlay) pauseFilm();
+    else { compatibility()?.prime(); play(false); }
   };
-  mute.onclick = () => { prefs.muted = !prefs.muted; savePreferences(); updateToggles(); };
+  mute.onclick = () => {
+    const unlock = session.soundBlocked;
+    prefs.muted = unlock ? false : !prefs.muted;
+    session.soundBlocked = false;
+    if (!prefs.muted) compatibility()?.prime();
+    savePreferences();
+    updateToggles();
+    if (projection) projection.setMuted(prefs.muted);
+    else if (unlock && native && wantsPlay) runNative(native);
+    showCaption();
+  };
   captions.onclick = () => { prefs.captions = !prefs.captions; savePreferences(); updateToggles(); showCaption(); };
   video.ontimeupdate = video.onseeked = showCaption;
   video.onpause = video.onplay = updatePause;
-  video.onended = () => { if (session?.mode === 'movie' && video.ended) continueReels(false, true); };
+  video.onloadedmetadata = () => {
+    if (native?.seek > 0) {
+      video.currentTime = Math.min(native.seek, video.duration || native.seek);
+      native.seek = 0;
+    }
+  };
+  video.onended = () => { if (native?.attached && session?.mode === 'movie' && video.ended) continueReels(false, true); };
   video.onerror = () => {
-    if (session?.mode !== 'movie' || !video.error || !video.hasAttribute('src')) return;
-    // The media error and the rejected play() can both report one failed URL.
-    // Only the current resource may consume the alternate format.
-    if (!video.currentSrc || video.currentSrc.endsWith('/' + session.file)) retryFormat();
+    if (!native?.attached || session?.mode !== 'movie' || !video.error) return;
+    if (!video.currentSrc || video.currentSrc === native.url || (!native.objectURL && video.currentSrc.endsWith('/' + native.file))) nextSource();
   };
   dialog.oncancel = event => { event.preventDefault(); finish(); };
   dialog.onclose = () => { if (!dialog.open) finish(); };
   document.addEventListener?.('visibilitychange', () => {
-    if (document.hidden && session?.mode === 'movie') video.pause();
+    if (session?.mode !== 'movie') return;
+    if (document.hidden && wantsPlay) {
+      pauseFilm();
+      resumeOnVisible = true;
+    } else if (!document.hidden && resumeOnVisible) {
+      resumeOnVisible = false;
+      play(false);
+    }
   });
-  window.CastawayFilm = {open, shown:() => Boolean(session), timeline, chapterMode:() => prefs.chapters, setChapterMode};
+  window.CastawayFilm = {open, position:filmTime, shown:() => Boolean(session), timeline, chapterMode:() => prefs.chapters, setChapterMode};
 })();

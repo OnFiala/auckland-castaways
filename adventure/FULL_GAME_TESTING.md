@@ -2,6 +2,14 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## Edition 18 · The journey from the first frame
+
+The opening starts before the shore painting finishes loading. Each chapter film hands control back to someone present in the room. The ending follows boarding the rescue boat. A separate film bookmark records the reel and time. An older save with a tool already picked up resumes in its room. An untouched first shore can receive the opening. The optional journal plays an unlocked reel with one click. [Campaign integration](dist/app.js) · [Story and save regressions](tests/story-film.test.cjs)
+
+On the previous edition, selecting a journal film opened a second cover. A stalled video request could leave an unchanged painting on screen indefinitely. The hosted site returned full HTTP 200 files even for two different byte ranges. Chrome could decode those same full files in a control run. Playback checks now sample pixels inside the artwork and measure the soundtrack while exercising full responses, interrupted transport, sound permissions and a restored bookmark in Chromium and WebKit. [Browser regression](tests/browser/hosted_film_pass.py)
+
+When native video is unavailable, the alternative uses 1,984 frames from the original edit and a mono copy of its soundtrack. Reduced motion holds one representative frame per shot and keeps the original timing. The build verifies all 134 supporting files. Controls were exercised at desktop, portrait and landscape sizes, including a 320-pixel-wide phone layout. [Reproducible image and sound conversion](tools/make_film_compat.py) · [Release verification](tools/verify_web.py)
+
 ## Playable edition 17, 19 November 2026
 
 The seven playable chapters now share a 66-second prologue, six short interludes and a 59-second epilogue. The film brings Alick to the playable shore, then returns to the characters when the player has finished the work of each chapter. An existing save enters its current room. The compass opens the films the player has reached. [Illustrated edition notes](reviews/release-17/README.md) · [Shot-by-shot historical notes](artwork/story-film/HISTORY.md)

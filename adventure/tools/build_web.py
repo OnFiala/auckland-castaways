@@ -10,6 +10,7 @@ import tempfile
 from pathlib import Path
 
 from PIL import Image, ImageChops, ImageStat
+from verify_web import FILM_AUDIO_PACK
 
 SOURCE = Path(__file__).resolve().parents[1] / 'dist'
 PASSTHROUGH_TYPES = {'.webp', '.wav', '.woff2', '.txt', '.mp4', '.webm', '.vtt'}
@@ -67,7 +68,7 @@ def encode_runtime(destination):
         output.parent.mkdir(parents=True, exist_ok=True)
         if src.suffix == '.png':
             work.append((src, output))
-        elif src.suffix in PASSTHROUGH_TYPES:
+        elif src.suffix in PASSTHROUGH_TYPES or src.match(FILM_AUDIO_PACK):
             shutil.copyfile(src, output)
         else:
             # Registries include names assembled at runtime, e.g. the five walking atlases.
@@ -123,7 +124,7 @@ def write_edition(flat, output):
             continue
         dest = edition / name
         dest.parent.mkdir(parents=True, exist_ok=True)
-        if src.suffix == '.js':
+        if src.suffix == '.js' and not src.match(FILM_AUDIO_PACK):
             # Game scripts write URLs into document elements (including SVG)
             # and use path fragments such as 'assets/walk/' + actor + '.webp'.
             # Stylesheets already resolve their resources against their own URL.

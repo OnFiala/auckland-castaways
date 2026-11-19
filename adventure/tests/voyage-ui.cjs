@@ -155,10 +155,11 @@ function fixture(chapter,finished=false){
 test('the saved finale reopens, credits remain readable, and restart cancels old ending state',async()=>{
  const ui=createUi({initial:{[KEY]:JSON.stringify(fixture(7,true))}});await ui.flush();assert(ui.state().completed);assert.equal(ui.ids.get('completion').hidden,false);assert.match(ui.ids.get('completion-title').textContent,/all five/i);
  assert.equal(ui.ids.get('ending-portraits').querySelectorAll('img').length,5);
- await ui.click('credits');assert(ui.ids.get('modal').open);assert.match(ui.ids.get('modal-body').innerHTML,/Invercauld/);await ui.click('modal-close');
+ assert(ui.ids.get('credits').hidden&&ui.ids.get('new-game').hidden);
+ await ui.click('journey');await ui.click('journey-credits');assert(ui.ids.get('modal').open);assert.match(ui.ids.get('modal-body').innerHTML,/Invercauld/);await ui.click('modal-close');
  await ui.click('keep-exploring');assert(ui.ids.get('completion').hidden);assert.equal(getChapter(ui.state()),7);
  await ui.click('journey');await ui.click('return-ending');assert(!ui.ids.get('completion').hidden);assert(!ui.ids.get('open-epilogue').hidden);
- await ui.click('new-game');assert(ui.ids.get('modal').open);await ui.click('confirm-restart');ui.runTimers();assert.equal(getChapter(ui.state()),1);assert.equal(ui.state().completed,false);assert.equal(ui.state().chapterComplete,false);assert.deepEqual(canonical(ui.state().inventory),[]);assert(ui.ids.get('completion').hidden);
+ await ui.click('settings');await ui.click('restart');assert(ui.ids.get('modal').open);await ui.click('confirm-restart');ui.runTimers();assert.equal(getChapter(ui.state()),1);assert.equal(ui.state().completed,false);assert.equal(ui.state().chapterComplete,false);assert.deepEqual(canonical(ui.state().inventory),[]);assert(ui.ids.get('completion').hidden);
 });
 
 test('journey map shows seven chapters but cannot skip unsolved work',async()=>{

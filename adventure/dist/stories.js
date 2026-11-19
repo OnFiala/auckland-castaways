@@ -25,7 +25,7 @@
     return [
       turn('raynal', 'Here, Alick. Let me sit a moment. Did George come through?'),
       turn('player', 'He did. He and Henry are making a place for you up the beach.'),
-      turn('raynal', 'They’ll want a roof. That’s our sail in the branches. I can see the loose corner from here.')
+      turn('raynal', 'There’s the sail we hauled ashore. The wind’s caught it in those branches. Can you reach that corner?')
     ];
   }
 

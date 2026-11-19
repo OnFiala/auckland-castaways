@@ -63,11 +63,27 @@ test('the crossing and the two-person reunion use the witnesses’ roles',()=>{
   }
 });
 
-test('chapter banners agree with the names in the journey and identify the passage',()=>{
+test('the journey entries name each chapter and locate the passage',()=>{
   assert.deepEqual(S.CHAPTER_BEATS.map(x=>x.title),E.CHAPTERS.map(x=>x.title));
   assert.match(S.CHAPTER_BEATS[4].caption,/19–24 July 1865.*Camp Cove/);
   assert.match(S.CHAPTER_BEATS[5].caption,/Port Adventure.*Invercargill/);
   assert.match(S.CHAPTER_BEATS[6].caption,/24 August 1865/);
+});
+
+test('a new chapter opens with one brief line from someone already in the entry room', () => {
+  const first = E.createGame();
+  assert.equal(S.chapterArrival(first), null, 'the opening beach has its own exchange');
+  for (const chapter of E.CHAPTERS.slice(1)) {
+    const state = {...first, chapter:chapter.id, scene:chapter.entry};
+    const line = S.chapterArrival(state);
+    const room = E.getTargets(state).filter(target => target.kind === 'person').map(target => target.id);
+    const speakers = [S.perspective(state).id, ...room, ...Stage.companions(state.scene,state)];
+    assert(line && speakers.includes(line.id), `No arriving speaker in ${state.scene}`);
+    assert(line.text.length > 0 && line.text.length <= 100, line.text);
+    assert.equal(S.chapterArrival({...state, scene:'beach'}), null);
+    assert.equal(S.chapterArrival({...state, chapterComplete:true}), null);
+    assert.equal(S.chapterArrival({...state, completed:true}), null);
+  }
 });
 
 test('every talk target has a responsive exchange with only the people on its stage', () => {

@@ -7,6 +7,10 @@ import re
 from html.parser import HTMLParser
 from pathlib import Path
 
+# These data-only scripts carry the film sound through both HTTP and file://.
+# Encoded samples can contain text that resembles a relative asset address.
+FILM_AUDIO_PACK = 'assets/story-film-compat/*-audio.js'
+
 
 class Entry(HTMLParser):
     def __init__(self):
@@ -57,6 +61,8 @@ def verify(directory, previous=None):
             if not target.is_relative_to(directory / edition) or not target.is_file():
                 raise ValueError(f'Broken stylesheet image {sheet.name}: {url}')
     for script in (directory / edition).rglob('*.js'):
+        if script.match(FILM_AUDIO_PACK):
+            continue
         source = script.read_text(encoding='utf-8')
         if re.search(r'(?<![\w.+/:-])assets/', source) or 'asset:assets/' in source:
             raise ValueError(f'An unpinned resource remains in {script.name}')

@@ -18,7 +18,7 @@ def tab_to(page, control):
 
 def keyboard_ready(page):
     ready_scene(page)
-    for name in ('dialogue-close', 'chapter-banner-close', 'dismiss-hint'):
+    for name in ('dialogue-close', 'dismiss-hint'):
         control = page.locator(f'#{name}')
         if control.is_visible():
             tab_to(page, control)

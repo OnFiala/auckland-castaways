@@ -10,3 +10,4 @@ sources/illustrations/** -text
 *.geojson text eol=lf
 # Each WebVTT cue, including the last one, is followed by an empty separator line.
 *.vtt text eol=lf whitespace=-blank-at-eof
+adventure/dist/assets/story-film-compat/*-audio.js -diff linguist-generated=true

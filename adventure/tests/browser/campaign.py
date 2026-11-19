@@ -55,6 +55,7 @@ def story_film(page, reel):
 
 def skip_story_film(page, reel):
     film = story_film(page, reel)
+    film.locator('.film-picture').click()
     film.locator('#film-skip').click()
     expect(film).not_to_be_visible()
 
@@ -68,7 +69,6 @@ def ready_initial(page):
 def ready(page):
     ready_scene(page)
     close_if_shown(page, '#dialogue-close')
-    close_if_shown(page, '#chapter-banner-close')
     close_if_shown(page, '#dismiss-hint')
 
 

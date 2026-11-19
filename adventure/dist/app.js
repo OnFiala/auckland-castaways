@@ -7,17 +7,6 @@ const Stage=window.CastawayStage, Life=window.CastawayLife, Work=window.Castaway
 const Weather=window.CastawayWeather;
 const Film=CAMPAIGN ? window.CastawayFilm : null;
 let endingFilmDue=false;
-
-function chapterFilm(id, after, opening=false) {
- if(Film && (opening || Film.chapterMode()!=='skip')){
-  const opened=Film.open([id],{
-   reduced:effectiveReduced(), auto:!opening && Film.chapterMode()==='watch', focus:$('scene'), after
-  });
-  if(opened)return;
- }
- after();
-}
-function firstScene(){chapterFilm('prologue',openingConversation,true);}
 const staged=Boolean(CAMPAIGN&&Stage&&Ground&&Choreo);
 const lighting = staged ? window.CastawayPaintingLight?.create($('scene'), $('material-lighting'), updateLightingStatus) : null;
 let examining=false, playerWork='stand', hintKey='', hintLevel=0;
@@ -31,8 +20,60 @@ function localStorageSafe(key){try{return localStorage.getItem(key);}catch(_){re
 const chapterNumber=()=>state.chapter||1,playerId=()=>CAMPAIGN&&chapterNumber()>=6?'musgrave':'player';
 const currentScene=()=>E.SCENES.find(s=>s.id===state.scene);
 const exitsFor=()=>E.getExits?E.getExits(state):currentScene().exits;
-let chapterTimer,chapterBusy=false;
-const newVoyage = CAMPAIGN && !localStorageSafe(KEY) && !localStorageSafe('castaways-adventure-v3');
+let chapterBusy=false;
+// A film sits between two playable moments. The separate bookmark also lets
+// earlier saves keep their chapter, inventory and puzzle progress intact.
+const STORY_KEY='castaways-story-v1';
+const hasGameSave=Boolean(localStorageSafe(KEY)||localStorageSafe('castaways-adventure-v3'));
+let story={openingSeen:false,pending:null},activeReel=null;
+if(Film){
+ try{
+  const stored=JSON.parse(localStorageSafe(STORY_KEY));
+  if(stored&&(hasGameSave||(!stored.openingSeen&&stored.pending?.reel==='prologue'))){
+   story={openingSeen:stored.openingSeen===true,pending:stored.pending||null};
+  }
+ }catch(_){}
+}
+function saveStory(){
+ try{localStorage.setItem(STORY_KEY,JSON.stringify(story));}catch(_){}
+}
+function bookmark(reel,position=0){
+ return {reel,position,chapter:chapterNumber(),scene:state.scene,actions:state.actions};
+}
+function entryFilm(){
+ if(!Film)return null;
+ const pending=story.pending;
+ const expected=state.completed?'epilogue':Film.timeline[chapterNumber()-1]?.id;
+ if(pending?.reel===expected&&pending.chapter===chapterNumber()&&pending.scene===state.scene&&pending.actions===state.actions){
+  return pending;
+ }
+ if(!story.openingSeen&&chapterNumber()===1&&state.actions===0&&state.scene==='beach')return bookmark('prologue');
+ return null;
+}
+function retainFilmPosition(){
+ if(activeReel&&story.pending?.reel===activeReel){
+  story.pending.position=Film.position();
+  saveStory();
+ }
+}
+function chapterFilm(id,after,startAt=0){
+ if(!Film||!id){after();return;}
+ function enterScene(){
+  activeReel=null;
+  if(id==='prologue')story.openingSeen=true;
+  story.pending=null;saveStory();
+  after();
+ }
+ if(Film.chapterMode()!=='skip'){
+  activeReel=id;story.pending=bookmark(id,startAt);saveStory();
+  if(Film.open([id],{auto:true,startAt,reduced:effectiveReduced(),focus:$('scene'),after:enterScene}))return;
+ }
+ enterScene();
+}
+function chapterArrival(){
+ const beat=S.chapterArrival?.(state);
+ if(beat)startDialogue(beat.id,true,beat.text);
+}
 try{const p=JSON.parse(localStorage.getItem(PREF));if(p){prefs.narration=Boolean(p.narration);prefs.captions=Boolean(p.captions);prefs.reduced=prefs.reduced||Boolean(p.reduced);prefs.lighting=window.CastawayPaintingLight?.preference(p.lighting)||'auto';}}catch(_){}
 const drawings={
  shelter:'<path d="m4 53 23-42 30 41M27 11l-3 42M5 52h52M27 11l21-4 12 34" fill="none" stroke-width="4"/>',
@@ -509,7 +550,11 @@ function applyReady(response,origin,source){
   if(beat)startDialogue(beat.id,true,beat.text);
   else if(chapterNumber()>1&&!wasChapterDone&&state.chapterComplete)startDialogue('player',true);
  }
- if(!wasDone&&state.completed){finalShown=true;endingFilmDue=Boolean(Film);completionTimer=setTimeout(revealCompletion,prefs.reduced?0:1800);}
+ if(!wasDone&&state.completed){
+  finalShown=true;endingFilmDue=Boolean(Film);
+  if(Film){story.pending=bookmark('epilogue');saveStory();}
+  completionTimer=setTimeout(revealCompletion,prefs.reduced?0:1800);
+ }
 }
 
 function lookAtSewingBench(){
@@ -753,10 +798,9 @@ function settings(){
    <option value="balanced">Balanced</option><option value="original">Original painting</option>
    </select></div><p class="small" role="status" id="lighting-status"></p>`:'';
  const releaseNote=release?`<p class="settings-release">Game release ${esc(release)}</p>`:'';
- const filmChoice=Film?`<div class="setting"><label for="film-chapter-mode">Chapter films</label><select id="film-chapter-mode"><option value="ask">Ask before playing</option><option value="watch">Play at chapter changes</option><option value="skip">Skip at chapter changes</option></select></div><div class="setting"><span>Unlocked films</span><button type="button" id="film-library">Open journey</button></div>`:'';
+ const filmChoice=Film?`<div class="setting"><label for="film-chapter-mode">Chapter films</label><select id="film-chapter-mode"><option value="watch">Play with the story</option><option value="skip">Skip films</option></select></div>`:'';
  modal('Settings',`${filmChoice}${lightChoice}<div class="setting"><span id="captions-label">Brief reaction captions</span><button id="toggle-captions" aria-labelledby="captions-label" aria-pressed="${prefs.captions}">${prefs.captions?'On':'Off'}</button></div><div class="setting"><span id="motion-label">Reduce motion</span><button id="toggle-motion" aria-labelledby="motion-label" aria-pressed="${prefs.reduced}">${prefs.reduced?'Reduced':'On'}</button></div>${voiceAvailable?`<div class="setting"><span id="narration-label">Narration · device voice</span><button id="toggle-narration" aria-labelledby="narration-label" aria-pressed="${prefs.narration}">${prefs.narration?'On':'Off'}</button></div>`:''}<div class="setting"><span>Return to the shore</span><button id="restart">New game</button></div><p class="small">An original adventure inspired by the Grafton castaways. Puzzles and dialogue are fictional; the historical rescue is documented in the project sources. Artwork was generated with AI.</p><p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/adventure" target="_blank" rel="noopener noreferrer">Sources and project files ↗</a></p>${releaseNote}`);$('toggle-captions').onclick=()=>{prefs.captions=!prefs.captions;savePrefs();settings();$('toggle-captions').focus();};$('toggle-motion').onclick=()=>{prefs.reduced=!prefs.reduced;savePrefs();settings();$('toggle-motion').focus();};if($('toggle-narration'))$('toggle-narration').onclick=()=>{prefs.narration=!prefs.narration;savePrefs();settings();$('toggle-narration').focus();};$('restart').onclick=restart;
  if(Film){
-  $('film-library').onclick=()=>{journey();($('modal-body').querySelector('[data-replay-film]')||$('modal-close')).focus();};
   const mode=$('film-chapter-mode');mode.value=Film.chapterMode();mode.onchange=()=>Film.setChapterMode(mode.value);
  }
  const selector=$('lighting-quality');
@@ -777,12 +821,13 @@ function restart(){
   if(pendingPainting)return;
   const fresh=E.createGame();cancelWalk();modalReturnFocus=null;$('modal').close();
   paintThen(fresh,()=>{
-   clearTimeout(completionTimer);clearTimeout(chapterTimer);$('chapter-banner').hidden=true;
+   clearTimeout(completionTimer);
    completionPending=false;endingFilmDue=false;closeDialogue();actorTracks.clear();actorPositions.clear();
    Bench?.reset();window.CastawayEpilogue?.reset?.();hintKey='';hintLevel=0;walkDistance=0;
    playerWork='stand';setExamine(false);state=fresh;selected=null;
    player=staged?entryPoint():{x:45,y:84};finalShown=false;$('completion').hidden=true;
-   save();render();$('scene').focus();if(CAMPAIGN)firstScene();
+   if(Film){story={openingSeen:false,pending:null};saveStory();}
+   save();render();$('scene').focus();if(CAMPAIGN)chapterFilm('prologue',openingConversation);
   });
  };
 }
@@ -796,13 +841,10 @@ function renderChapterUI(){
  $('player').dataset.identity=playerId();$('perspective-label').textContent=chapterNumber()>=6?'Captain Musgrave':'Alick McLaren';
  if(state.completed){
  const illustration=$('homeward-illustration');illustration.src='assets/voyage/promise/ending.webp';illustration.hidden=false;
+ $('new-game').hidden=true;$('credits').hidden=true;
  $('open-epilogue').hidden=!window.CastawayEpilogue;
  const end=window.CastawayVoyageStory?.ENDING;$('completion-title').textContent=end?.title||'The promise kept.';$('completion-copy').textContent=end?.line||'Henry and George are aboard. The return is complete.';$('completion-note').textContent='The end · Auckland Islands, 1864–1865';$('keep-exploring').textContent='Revisit the landing';
  $('ending-portraits').innerHTML=['musgrave','raynal','player','henry','george'].map(id=>`<figure><img src="assets/cast-portraits/${id}.webp" alt="${esc(({musgrave:'Thomas Musgrave',raynal:'François Raynal',player:'Alick McLaren',henry:'Henry Forgés',george:'George Harris'})[id])}"><figcaption>${({musgrave:'Musgrave',raynal:'Raynal',player:'Alick',henry:'Henry',george:'George'})[id]}</figcaption></figure>`).join('');}
-}
-function showChapterBanner(){
- if(!CAMPAIGN)return;clearTimeout(chapterTimer);const c=E.getChapter(state),beat=window.CastawayVoyageStory?.CHAPTER_BEATS?.find(x=>x.chapter===chapterNumber());
- $('chapter-banner-title').textContent=c.title;$('chapter-banner-caption').textContent=beat?.caption||c.subtitle||'';$('chapter-banner-role').textContent=chapterNumber()>=6?'Playing as Captain Musgrave':'Playing as Alick McLaren';$('chapter-banner').hidden=false;chapterTimer=setTimeout(()=>$('chapter-banner').hidden=true,Math.max(6500,(beat?.caption||'').length*85));
 }
 async function advanceChapter(){
  if(!CAMPAIGN||chapterBusy||!state.chapterComplete||state.completed)return;
@@ -826,7 +868,7 @@ async function makePassage(source){
   $('arrival').classList.add('cover');state=response.state;player=staged?entryPoint():{x:22,y:84};
   setExamine(false);actorTracks.clear();actorPositions.clear();walkDistance=0;
   save();render({source,sceneChanged:true});prepareWalk(playerId());
-  chapterFilm(Film?.timeline[chapterNumber()-1]?.id,showChapterBanner);
+  chapterFilm(Film?.timeline[chapterNumber()-1]?.id,chapterArrival);
   setTimeout(()=>$('arrival').classList.remove('cover'),effectiveReduced()?0:400);
  });
 }
@@ -844,29 +886,42 @@ function journey(){
  if(state.completed&&Film)entries.push(`<li class="past"><span>✓</span><div><strong>Epilogue</strong><small>The names that came home</small></div>${replayButton(Film.timeline.at(-1))}</li>`);
  modal('Our journey',`<ol class="journey-map">${entries.join('')}</ol><p class="small">Progress saves automatically. Complete the work in each place to open the next passage.</p><p class="small">Chapters I–V: Alick McLaren. Chapters VI–VII: Captain Musgrave.</p>${state.completed&&Film?'<button type="button" id="film-feature" class="dialog-button">Watch the whole story</button>':''}${state.completed?'<button id="return-ending" class="dialog-button">Revisit the ending</button>':''}`);
  for(const button of $('modal-body').querySelectorAll('[data-replay-film]')){
-  button.onclick=()=>Film.open([button.dataset.replayFilm],{replay:true,reduced:effectiveReduced(),focus:button});
+  button.onclick=()=>Film.open([button.dataset.replayFilm],{replay:true,auto:true,reduced:effectiveReduced(),focus:button});
  }
  if(state.completed&&Film)$('film-feature').onclick=()=>Film.open(Film.timeline.map(r=>r.id),{
   replay:true,reduced:effectiveReduced(),auto:true,focus:$('film-feature')
  });
- if(state.completed)$('return-ending').onclick=()=>{$('modal').close();revealCompletion();};
+ if(state.completed){
+  $('modal-body').insertAdjacentHTML('beforeend','<button id="journey-credits" class="dialog-button">Historical notes</button>');
+  $('journey-credits').onclick=showCredits;
+  $('return-ending').onclick=()=>{$('modal').close();revealCompletion();};
+ }
 }
-$('chapter-exit').onclick=e=>{e.stopPropagation();advanceChapter();};$('journey').onclick=journey;$('chapter-banner-close').onclick=()=>$('chapter-banner').hidden=true;
+$('chapter-exit').onclick=e=>{e.stopPropagation();advanceChapter();};$('journey').onclick=journey;
 $('open-epilogue').onclick=()=>{if(CAMPAIGN&&state.completed)window.CastawayEpilogue?.open();};
-$('credits').onclick=()=>{const end=window.CastawayVoyageStory?.ENDING;modal('The people behind the story',`<p class="small">An original adaptation of the Grafton castaways’ accounts. The playable puzzles, dialogue and portraits are interpretations.</p><p class="small">The films draw on Thomas Musgrave, François Raynal, George Dalgarno and Andrew Smith. English narration was synthesized with Kokoro-82M. Music and sound effects were composed for Until We Return.</p>${(end?.facts||[]).map(f=>`<p class="small">${esc(f.text)}</p>`).join('')}<p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/research" target="_blank" rel="noopener noreferrer">Historical sources and adaptation notes ↗</a></p>`);};
+function showCredits(){const end=window.CastawayVoyageStory?.ENDING;modal('The people behind the story',`<p class="small">An original adaptation of the Grafton castaways’ accounts. The playable puzzles, dialogue and portraits are interpretations.</p><p class="small">The films draw on Thomas Musgrave, François Raynal, George Dalgarno and Andrew Smith. English narration was synthesized with Kokoro-82M. Music and sound effects were composed for Until We Return.</p>${(end?.facts||[]).map(f=>`<p class="small">${esc(f.text)}</p>`).join('')}<p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/research" target="_blank" rel="noopener noreferrer">Historical sources and adaptation notes ↗</a></p>`);}
+$('credits').onclick=showCredits;
 $('scene').onclick=e=>{if(chapterBusy)return;if(e.target.closest('button')||e.target.closest('.dialogue'))return;closeDialogue();$('first-hint').hidden=true;const r=$('scene').getBoundingClientRect();walkTo((e.clientX-r.left)/r.width*100,(e.clientY-r.top)/r.height*100);};
 $('scene').oncontextmenu=e=>e.preventDefault();$('hint').onclick=hint;$('reveal').onclick=reveal;$('settings').onclick=settings;$('help').onclick=help;$('cancel-item').onclick=()=>{cancelWalk();setSelected(null);};$('modal-close').onclick=()=>$('modal').close();$('modal').addEventListener('close',()=>{if(modalReturnFocus?.isConnected)modalReturnFocus.focus();modalReturnFocus=null;if(completionPending)revealCompletion();});$('dismiss-hint').onclick=()=>$('first-hint').hidden=true;$('keep-exploring').onclick=()=>{$('completion').hidden=true;if(!CAMPAIGN)startDialogue('george',true);$('scene').focus();};$('new-game').onclick=restart;
 window.addEventListener('pointermove',e=>{if(!selected)return;$('cursor-item').style.left=e.clientX+14+'px';$('cursor-item').style.top=e.clientY+12+'px';});window.addEventListener('keydown',e=>{if(pendingPainting||Film?.shown()||$('modal').open||Bench?.shown()||window.CastawayRepairRoll?.shown()||window.CastawayEpilogue?.shown?.())return;if(e.key==='Escape'){setExamine(false);if(dialogue){closeDialogue();return;}cancelWalk();setSelected(null);}if(e.code==='Space'&&!$('modal').open&&!e.target.closest('button')){e.preventDefault();reveal();}});
 if(!staged)$('rain').innerHTML=Array.from({length:28},(_,i)=>`<i style="--x:${i*37%110}%;--speed:${.8+i%5*.12}s;--delay:-${i*.17}s"></i>`).join('');
-$('dialogue-pause').onclick=e=>{e.stopPropagation();pauseDialogue();};$('dialogue-next').onclick=e=>{e.stopPropagation();advanceDialogue();};$('dialogue-close').onclick=e=>{e.stopPropagation();closeDialogue(true);};document.addEventListener?.('visibilitychange',()=>{lastLiveTime=null;document.body.classList.toggle('inactive',document.hidden);if(document.hidden){closeDialogue();cancelWalk();}});
+$('dialogue-pause').onclick=e=>{e.stopPropagation();pauseDialogue();};$('dialogue-next').onclick=e=>{e.stopPropagation();advanceDialogue();};$('dialogue-close').onclick=e=>{e.stopPropagation();closeDialogue(true);};document.addEventListener?.('visibilitychange',()=>{lastLiveTime=null;document.body.classList.toggle('inactive',document.hidden);if(document.hidden){retainFilmPosition();closeDialogue();cancelWalk();}});
+window.addEventListener('pagehide',retainFilmPosition);
 if(staged)player=entryPoint();
 prepareWalk(playerId());savePrefs();
+const entry=entryFilm();
+let roomReady=false,filmReady=!entry;
+function enterVoyage(){
+ if(!roomReady||!filmReady)return;
+ if(CAMPAIGN&&state.completed)revealCompletion();
+ else if(entry?.reel==='prologue')openingConversation();
+ else if(entry)chapterArrival();
+ if(document.activeElement===document.body)$('scene').focus({preventScroll:true});
+}
 paintThen(state,()=>{
  save();render();requestAnimationFrame(liveFrame);
- if(document.activeElement===document.body)$('scene').focus({preventScroll:true});
  if(state.actions>0)$('first-hint').hidden=true;
- if(CAMPAIGN&&state.completed)revealCompletion();
- else if(newVoyage)firstScene();
- else if(CAMPAIGN&&state.actions===0)showChapterBanner();
+ roomReady=true;enterVoyage();
 });
+if(entry)chapterFilm(entry.reel,()=>{filmReady=true;enterVoyage();},entry.position);
 })();

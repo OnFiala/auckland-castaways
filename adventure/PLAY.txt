@@ -16,11 +16,16 @@ open Working controls. Tab, Enter and Escape work throughout the game.
 Settings shows the release number. Under Scene lighting, Automatic adapts to
 your display, Cinematic gives the full moving light, Balanced reduces the
 work, and Original painting restores the earlier look.
-A new game opens on the prologue. Choose Watch film for the spoken story,
-Read stills to advance at your own pace, or Play adventure to start walking.
-You can pause, mute, switch English captions or skip during playback.
-The compass opens Our journey. It keeps the films you have reached and
-offers the whole story after the ending. An existing save resumes quietly.
+The opening film follows the Grafton from Sydney to the wreck. At daylight
+you take over on the shore. Six short films connect the seven chapters.
+The final film follows the rescue. All eight play as part of the story.
+Move the pointer, tap the picture or use Tab for pause, sound, captions
+and skip. If the browser needs a gesture for sound, English captions appear
+and you can choose Enable sound. Reduced motion holds each painted shot.
+If native video stalls, the game can continue with images and audio from
+the same edit. Closing the tab saves your place in the current chapter
+film. The compass opens Our journey to revisit a film you have reached.
+After the ending you can watch the whole film in sequence.
 
 Motion follows your system preference and can be reduced in Settings.
 The eight films include their own English voice, music and sound effects.

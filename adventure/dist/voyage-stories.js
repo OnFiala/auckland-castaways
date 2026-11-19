@@ -10,11 +10,11 @@
   const CHAPTER_BEATS=[
     {chapter:1,title:'The First Night',caption:'3 January 1864. The sea has reached the Grafton’s cabin table. At daylight, all five get ashore.'},
     {chapter:2,title:'A House Against the Winter',caption:'Winter, 1864. Ship’s spars now hold up the roof at Epigwaitt. Tonight, water has found a way in.'},
-    {chapter:3,title:'What Iron Can Become',caption:'Early 1865. A year ashore. On the blocks lies the beginning of a new cutter. It still needs tools.'},
-    {chapter:4,title:'Room for Three',caption:'July 1865. The old dinghy must cross open sea. Henry and George will stay at Epigwaitt.'},
+    {chapter:3,title:'What Iron Can Become',caption:'Early 1865. The keel of a new cutter lies on the blocks. Raynal has made chisels and a saw. How will they bore the bolt holes?'},
+    {chapter:4,title:'Room for Three',caption:'July 1865. The old dinghy has room for three. Alick brings the new nails down to finish her sides.'},
     {chapter:5,title:'Five Days of Ocean',caption:'19–24 July 1865. The three sail from Camp Cove. Alick and Raynal spell each other at the helm. Musgrave works the pump.'},
-    {chapter:6,title:'The Promise',caption:'July 1865. At Port Adventure, people help the three ashore. Cross takes them on to Invercargill.'},
-    {chapter:7,title:'Until We Return',caption:'24 August 1865. The wind eases. Flying Scud sails up from Camp Cove. Musgrave watches for the roof of Epigwaitt.'}
+    {chapter:6,title:'The Promise',caption:'Late July 1865. From Port Adventure the three have reached Invercargill. Musgrave helps load the cutter for the return to Henry and George.'},
+    {chapter:7,title:'Until We Return',caption:'24 August 1865. Henry and George have seen the cutter. Musgrave and Cross land while Flying Scud keeps under sail.'}
   ];
   const PERSPECTIVES={
     1:{id:'player',name:'Alick McLaren',label:'Playing as Alick McLaren',portrait:'assets/cast-portraits/player.webp'},
@@ -29,7 +29,7 @@
   const PRESENT={1:['player','raynal','musgrave','henry','george'],2:['player','raynal','musgrave','henry','george'],3:['player','raynal','musgrave','henry','george'],4:['player','raynal','musgrave','henry','george'],5:['player','raynal','musgrave'],6:['musgrave','raynal'],7:['musgrave','henry','george']};
   const ENDING={
     title:'All five survived.',
-    line:'The promise was kept.',
+    line:'Three of Grafton’s crew reached Port Adventure in July. On 24 August 1865, Henry and George came aboard Flying Scud.',
     caption:'Musgrave, Raynal, Alick, Henry and George survived. Their rescue was completed on 24 August 1865.',
     crew:Object.keys(NAMES).map(id=>({id,name:NAMES[id],portrait:id==='player'?'assets/sailor.png':`assets/people/${id}.png`})),
     facts:[
@@ -41,6 +41,20 @@
     ],
     note:'Puzzles, conversations, character likenesses and precise staging are fictional. The historical outcome is documented.'
   };
+  // The film leaves on an image. The first voice belongs to someone in the room.
+  const chapterArrivals = {
+    cabin:   {chapter:2, id:'henry', text:'Found your red knight, Alick. He was sitting in half an inch of water.'},
+    forge:   {chapter:3, id:'raynal', text:'The hearth’s stone cold, Alick. Think we can make a drill before we lose the light?'},
+    slipway: {chapter:4, id:'musgrave', text:'Those nails of yours will do, Alick. Come round here and sight along this seam with me.'},
+    crossing:{chapter:5, id:'musgrave', text:'I’ve got the pump. Alick, mind that loose end by the tiller!'},
+    harbour: {chapter:6, id:'raynal', text:'You’ll see Henry before I do, Captain. Let’s get these supplies aboard.'},
+    landing: {chapter:7, id:'musgrave', text:'Henry and George have gone up for their things. I’ll make the boat fast and go after them.'}
+  };
+  function chapterArrival(state) {
+    const line = chapterArrivals[state?.scene];
+    if (!line || line.chapter !== state.chapter || state.chapterComplete || state.completed) return null;
+    return {id:line.id, text:line.text};
+  }
   // One breath of dialogue at the work itself. Only the rising edge speaks, so
   // returning to a room or looking twice never repeats an automatic line.
   const workBeats={
@@ -75,7 +89,7 @@
       ['rescueSupplied','musgrave','Macpherson walked the wet streets for those blankets. I’ll tell the men where they came from.']
     ],
     7:[
-      ['boatMoored','musgrave','Last time I made fast here I had to leave them.'],
+      ['boatMoored','musgrave','That’ll hold. We can carry whatever Henry and George want to take with them.'],
       ['suppliesShared','henry','A whole parcel. We’d got into the habit of putting half of everything back.'],
       ['landingMarked','musgrave','A light above the shore again. This time there’s a boat to see it.']
     ]
@@ -116,8 +130,8 @@
       'Keep the water for drinking. I’ll go up and find the leak.', 'Stand where I’m standing first. You can see the drops against the light.');
     if (f.patchStitched) return exchange(Henry, Alick, 'Will that piece cover it?', 'If I can find where the water gets in.',
       'Watch one drop all the way down. It doesn’t come straight through.');
-    return exchange(Henry, Alick, 'Did you sleep through that tapping? I put my boot under it. By morning I could pour it out.',
-      'Show me where. I can’t see a hole from here.', 'Look up when the next drop falls. I’ll move the bedding clear.');
+    return exchange(Henry, Alick, 'A drop hit the board just as you moved your knight last night. Listen. There goes another.',
+      'Where’s it coming in? I can’t see a hole from here.', 'Watch the next drop against the window. I’ll move the bedding clear.');
   }
 
   function iron(id, room, f) {
@@ -143,8 +157,8 @@
       'One for every bolt in the big boat.', 'Then our first piece had better be something to bore them with.');
     if (f.bellowsFitted) return exchange(Raynal, Alick, 'Hold your palm by the mouth while I squeeze.', 'I feel it right at the bottom.',
       f.forgeFueled ? 'That should bring the charcoal up once we have a spark.' : 'Good. That’s where George’s charcoal has to burn.');
-    return exchange(Raynal, Alick, 'Alick, blow across the forge. See where the dust goes?', 'Over the top. Hardly any gets down inside.',
-      'That’s what’s wrong. Bring the leather over here. I want to put the air through the bottom.');
+    return exchange(Raynal, Alick, 'A thin chisel heats through in this fire. The middle of that thick piece stayed cold.',
+      'Where do you want the draught, then?', 'Down through the coals. Bring that leather over and I’ll show you.');
   }
 
   function boatyard(id, room, f) {
@@ -167,8 +181,8 @@
       'Good. Let’s see how she takes the sail.');
     if (f.hullPlanked) return exchange(Musgrave, Alick, 'Press here with your palm. Feel the other end spring?',
       'I can’t hold them both and drive a nail.', 'Give me the nails. You hold her where she springs and I’ll drive one through at the rib.');
-    return exchange(Musgrave, Alick, 'Stand beside me, Alick. Where would another man put his knees?', 'With five aboard? Somebody would have to sit on the rail.',
-      'I owe Henry and George a way home too. Help me get these sides high enough for the three going out.');
+    return exchange(Musgrave, Alick, 'Stand here, Alick. Run your hand down the side we’ve raised. Feel where the wood runs out?',
+      'Right here, at the rib. Henry has some straight boards under cover.', 'Bring them down. I’ll hold the ends while you fit the last length.');
   }
 
   function passage(id, f) {
@@ -210,8 +224,9 @@
       'Tell him about the people who opened their doors, too.');
     if (f.provisionsTaken) return exchange(Raynal, Musgrave, 'Keep that bundle where you can reach it.', 'Are you thinking of the landing?',
       'Of Henry. He’ll want to help carry everything before he’s had anything to eat.');
-    return exchange(Raynal, Musgrave, 'How much can you take back to them, Captain?', 'Cross has room. Once we have a passage, what would you send first?',
-      'Food they can manage straight away. Remember the plate they put before us? It looked enough to eat for a week.');
+    return exchange(Raynal, Musgrave, 'Macpherson’s blankets are here, Captain. Have you room for food as well?',
+      'Plenty. At Port Adventure I could scarcely eat the breakfast they gave me.',
+      'Pack a little where you can reach it. They may want a bite the moment you step ashore.');
   }
 
   function homecoming(id, room, f) {
@@ -230,7 +245,7 @@
         invitation, 'You heard him, Henry. Hold on to me.');
       if (id === George) return exchange(George, Musgrave, 'Let me have the side of the boat. Henry, you can lean on me.',
         'I’ve got the line. She’ll keep still for you.', 'All right. It’s a long step after a month wishing for it.');
-      if (!f.boatMoored) return [turn(Musgrave, 'Steady this boat first. Two men will have to get into her.')];
+      if (!f.boatMoored) return [turn(Musgrave, 'Flying Scud has to keep under sail. Steady this boat while I get the line.')];
       if (!f.henryFound && !f.georgeFound) return [turn(Musgrave, 'She’ll hold there. I want a word with Henry and George.')];
       if (!f.georgeFound) return [turn(Musgrave, 'Henry’s on his feet. I want a word with George.')];
       if (!f.henryFound) return [turn(Musgrave, 'George has heard the news. I’ll speak to Henry myself.')];
@@ -246,18 +261,18 @@
         'I have. And he’s been waiting on word of the others.');
       if (f.georgeFound) return exchange(Musgrave, George, 'George, can Henry walk down?', 'Let him tell you. He’s had me answering for him long enough.',
         'Fair enough. I’ll go to him.');
-      return exchange(Musgrave, George, 'George? Is that really you?', 'It’s us, Captain. Look at Henry holding on to that post.',
-        'Give me a minute. I’ve thought about walking into this room every day since we left.');
+      return exchange(Musgrave, George, 'Got your breath back, George? You nearly shook my arm off down on the beach.',
+        'I’ve got mine, Captain. Give Henry a moment.', 'Of course. I’ve thought about walking into this room every day since we left.');
     }
     if (id === Henry) {
       if (!f.henryFound) return exchange(Henry, Musgrave, 'Your sleeve is wet, Captain. I can feel it through mine.', 'I’ll move over. Here, take my arm.',
-        'Leave it there a moment. I’ve had hold of this post ever since I saw you.');
+        'Leave it there a moment. When you stepped ashore I had to steady myself against a post.');
       if (f.suppliesShared) return exchange(Henry, Musgrave, 'Hanging on your sleeve again. I used to carry my end of a raft, you know.',
         'You made a raft?', 'Four empty casks. George and I got more work out of them than either of us could do alone.');
       return exchange(Henry, Musgrave, 'How much are we to take down?', 'What you want to keep. There’s room in the cutter.',
         'Then give me time to look along that shelf. A month ago I’d have said there was nothing here worth keeping.');
     }
-    if (!f.georgeFound) return exchange(George, Musgrave, 'Captain! Give me your hand. Where are Alick and Raynal?',
+    if (!f.georgeFound) return exchange(George, Musgrave, 'I shook your hand so hard I forgot to ask. Where are Alick and Raynal?',
       'Both safe. We reached Port Adventure together.', 'Both? Right. You can have your hand back now.');
     if (f.suppliesShared) return exchange(George, Musgrave, 'Look at the size of that parcel. We were down to counting every handful.',
       'How did the two of you manage?', 'Badly some days. We came near to going our own ways. But we got that raft afloat together.');
@@ -296,5 +311,5 @@
   }
   function ambient(id, state) { return conversation(id, state)[0].text; }
   return {lines, ambient, conversation, arrival:base.arrival, speakerInfo,
-    workBeat, perspective, present, CHAPTER_BEATS, PERSPECTIVES, ENDING};
+    chapterArrival, workBeat, perspective, present, CHAPTER_BEATS, PERSPECTIVES, ENDING};
 });

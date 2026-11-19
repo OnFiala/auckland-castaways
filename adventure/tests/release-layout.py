@@ -6,6 +6,7 @@ import unittest
 from unittest.mock import patch
 import sys
 import zipfile
+from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from build_web import retain_open_editions, write_edition
@@ -15,6 +16,34 @@ from verify_web import verify
 
 
 class EditionLayout(unittest.TestCase):
+    def test_film_fallback_keeps_audio_samples_and_versions_the_frame_directory(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / 'source'
+            fallback = source / 'assets' / 'story-film-compat'
+            fallback.mkdir(parents=True)
+            (source / 'index.html').write_text('<meta name="game-release" content="18"><script src="film.js"></script>')
+            (source / 'film.js').write_text("const directory = 'assets/story-film-compat/';")
+            # A valid sample payload can begin with the same characters as an asset URL.
+            samples = b'window.samples = "assets/A";\n'
+            (fallback / 'prologue-audio.js').write_bytes(samples)
+            sheet = fallback / 'prologue-01.webp'
+            Image.new('RGB', (2, 1), '#243456').save(sheet, lossless=True)
+            result = root / 'built'
+            with patch.object(build_web, 'SOURCE', source):
+                build_web.build(result)
+            archive = root / 'game.zip'
+            package(result, archive)
+            with zipfile.ZipFile(archive) as reader:
+                prefix = json.loads(reader.read('release.json'))['directory']
+                folder = prefix + 'assets/story-film-compat/'
+                self.assertIn(folder.encode(), reader.read(prefix + 'film.js'))
+                self.assertEqual(reader.read(folder + 'prologue-01.webp'), sheet.read_bytes())
+                self.assertEqual(reader.read(folder + 'prologue-audio.js'), samples)
+            (result / folder / 'prologue-audio.js').write_bytes(samples + b'changed')
+            with self.assertRaisesRegex(ValueError, 'Content hash mismatch'):
+                verify(result)
+
     def test_movie_and_caption_bytes_are_preserved_in_the_extracted_game(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
