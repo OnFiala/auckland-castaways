@@ -1,17 +1,44 @@
 """Release isolation, offline paths and preservation of an already opened edition."""
+import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import sys
 import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from build_web import retain_open_editions, write_edition
+import build_web
 from package_download import package
 from verify_web import verify
 
 
 class EditionLayout(unittest.TestCase):
+    def test_movie_and_caption_bytes_are_preserved_in_the_extracted_game(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / 'source'
+            film = source / 'assets' / 'story-film'
+            film.mkdir(parents=True)
+            (source / 'index.html').write_text('<meta name="game-release" content="17"><script src="player.js"></script>')
+            (source / 'player.js').write_text("const directory = 'assets/story-film/';")
+            clip = b'\x00\x00\x00\x20ftypisom\xff\x00.paint.png'
+            captions = 'WEBVTT\n\n00:00:01.000 --> 00:00:03.000\nFrançois holds the line.\n'.encode()
+            (film / 'prologue.mp4').write_bytes(clip)
+            (film / 'prologue.vtt').write_bytes(captions)
+            result = root / 'built'
+            with patch.object(build_web, 'SOURCE', source):
+                build_web.build(result)
+            self.assertEqual(verify(result)['current_files'], 4)
+            archive = root / 'game.zip'
+            package(result, archive)
+            with zipfile.ZipFile(archive) as reader:
+                prefix = json.loads(reader.read('release.json'))['directory']
+                self.assertIn((prefix + 'assets/story-film/').encode(), reader.read(prefix + 'player.js'))
+                self.assertEqual(reader.read(prefix + 'assets/story-film/prologue.mp4'), clip)
+                self.assertEqual(reader.read(prefix + 'assets/story-film/prologue.vtt'), captions)
+
     def test_scene_code_painting_and_previous_open_tab(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

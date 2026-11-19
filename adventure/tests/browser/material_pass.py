@@ -11,7 +11,7 @@ from urllib.parse import urlsplit
 from PIL import Image, ImageChops, ImageDraw, ImageFont, ImageStat
 from playwright.sync_api import expect, sync_playwright
 
-from campaign import READ, SAVE, ready, state
+from campaign import READ, SAVE, ready, ready_initial, state
 
 
 # Values are stage percentages, from the registered painting, independent of the renderer.
@@ -384,7 +384,7 @@ def motion_modes(browser, index, errors, external, failed):
         page = ctx.new_page()
         listen(page, errors, external, failed)
         page.goto(index.as_uri())
-        ready(page)
+        ready_initial(page)
         select_mode(page, 'cinematic')
         page.wait_for_function("document.querySelector('#material-lighting').dataset.materialHistory === '4'")
         temporal = renderer(page, 'ready')
@@ -428,7 +428,7 @@ def phone(browser, index, folder, errors, external, failed):
         page = ctx.new_page()
         listen(page, errors, external, failed)
         page.goto(index.as_uri())
-        ready(page)
+        ready_initial(page)
         select_mode(page, 'cinematic')
         page.locator('#settings').tap()
         expect(page.locator(QUALITY)).to_have_value('cinematic')
@@ -500,7 +500,7 @@ def main():
             page=ctx.new_page()
             listen(page, errors, external, failed)
             page.goto(index.as_uri())
-            ready(page)
+            ready_initial(page)
             edition=page.locator('meta[name="game-release"]').get_attribute('content')
             build=page.locator('meta[name="game-build"]').get_attribute('content')
             assert int(edition)>=16 and edition == manifest['release'] and build == manifest['build'][:20]

@@ -8,7 +8,9 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 ## Aktuální hra: Until We Return
 
-**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v16)** · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
+**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v17)** · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v17/until-we-return-story-film.mp4) · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
+
+Vydání 17 otevírá malovaný film. V Sydney námořník ukládá výstroj na cestu. O několik týdnů později už do kajuty proniká moře. Film předá hráči Alicka na břehu a vrací se mezi kapitolami, když uběhnou měsíce nebo se cesta přesune jinam. Osm částí má původní anglické vyprávění, hudbu, ruchy i titulky. Celý příběh vyšel také jako samostatný film s kapitolami. [Film, ovládání a obrazové ukázky](adventure/reviews/release-17/README.md) · [Prameny k jednotlivým záběrům](adventure/artwork/story-film/HISTORY.md)
 
 Ve vydání 16 se na mokrém písku odráží právě ten krok, který Alick dělá. Světlo z okna, ohně nebo lucerny dopadá na materiály jinak než na tváře posádky. Původní malbu si lze kdykoli zvolit v Settings → Scene lighting. Stažený ZIP celý rozbalte a otevřete `index.html`. [Světlo a srovnání obrazů](adventure/reviews/release-16/README.md) · [Vydání 15 a jeho ověření](adventure/reviews/release-15/README.md) · [Obrazový průchod a opravy vydání 14](adventure/reviews/release-14/README.md)
 

@@ -1,0 +1,87 @@
+{
+  "title": "Until We Return — nové malby k prologu a epilogu",
+  "created": "2026-11-19",
+  "generator": "OpenAI ImageGen (image_gen.imagegen)",
+  "origin": "Každý obraz vznikl samostatně z níže uloženého textového zadání. Výtvarným vodítkem při psaní zadání byly místní herní malby adventure/dist/assets/beach.png a wreck.png. Všechny generace měly pouze textový vstup.",
+  "historical_context": "Musgrave, Castaway on the Auckland Isles (1866), kap. I, popisuje vodu ve výši desky stolu, kamenitý břeh i záchranu hlavní plachty a ráhna. Tvar kajuty, světlo lucerny, poloha lidí a počasí na plátně jsou výtvarné volby. Obraz schooner zobrazuje volné moře před ztroskotáním.",
+  "historical_source": "../../../../sources/originals/musgrave-1866-pdftotext.txt",
+  "rights": "Původní generované ilustrace určené pro publikaci ve hře a jejím veřejném repozitáři. Projekt pro svůj nový obsah dosud nevybral obecnou veřejnou licenci. Prohlášení projektu je v RIGHTS.md.",
+  "rights_record": "../../../../RIGHTS.md",
+  "processing": "Výchozí RGB PNG 1672 × 941 px. Převod pomocí Pillow na RGB WebP 1600 × 900 px bez ořezu, filtr Lanczos, quality=90, method=6. Souřadnice se měří od levého horního rohu.",
+  "assets": [
+    {
+      "id": "outfit",
+      "file": "outfit.webp",
+      "description": "Ruce ukládají prostou kovovou rýžovací pánev do bedny vedle lana. Světlo na vzdáleném molu v Sydney.",
+      "camera": "Pánev x 0,40–0,74 a y 0,42–0,70. Ruce drží okraj pánve (0,62; 0,44) a bedny (0,77; 0,63). Klidná voda je vidět vlevo mezi piloty.",
+      "evidence": "DOC dokládá výpravu sydneyských obchodníků za cínem a tuleni na Campbellův ostrov. Konkrétní pánev a způsob nakládky jsou scénické detaily.",
+      "references": [
+        "https://www.doc.govt.nz/parks-and-recreation/places-to-go/southland/places/subantarctic-islands/auckland-islands/heritage-sites/grafton-wreck-and-epigwaitt/"
+      ],
+      "original_file": "exec-584f906b-5bd7-418e-8faf-0dfec3c4762e.png",
+      "original_sha256": "b74466fa006fc03d001d3511b3495b0831744d754ebc9fabd3b6ea6684e24c71",
+      "sha256": "f89db8d52be2f09629eae5176b3605c34e1a4ca0b8911b2867e5d52fc45cc506",
+      "bytes": 420988,
+      "width": 1600,
+      "height": 900,
+      "prompt": "Original widescreen 16:9 full bleed single cinematic landscape-format oil painting, same historical story world as paintings of a weathered blue-green 1860s timber schooner and a dawn Auckland Island shore. Hand-brushed naturalistic textures on timber, subdued slate and muted ochre, directional oil strokes, developed natural forms, convincing materials, strong foreground and atmospheric distance. No text, no frame, no caption. Do not stylise into a storybook or glossy photo. Sydney working wharf, November 1863, a morning before departure. Tight intimate low viewpoint beside a worn small schooner's rail. Two roofer-rough salt-worn sailor's bare hands with rolled, coarse linen or wool sleeves enter from the right at upper-middle; anatomically natural, one guides a shallow dull hammered iron prospector’s washing pan (wide shallow conical plain simple 1860s sheet iron pan, NO long handle, no modern ridges) into an open, low, weathered wooden cargo box, the other steadies the box lid or rim. This small pan and manual action are the quiet visual centre at x.53, y.58, not shiny treasure. A genuine coil of dark tarry hemp rests in the box to the side, a little undyed folded canvas and a timber pin on the close lower rail. Dawn in 1863 Sydney harbour, muted gold sun on quiet water left behind rough wharf piles, distant low modest colonial storehouses only softly brushed, working lines of two-masted schooner as a suggestion far right behind the hands. Subtle layered cinematic focal hierarchy. The narrative is the loading of equipment for a modest commercial tin-prospecting voyage, not a gold rush. No silhouettes of famous buildings, skyline, steamer, steel ships, cranes, modern packaging, inscriptions, map, guns, jewellery or face. No seasickness nor storm in this shot. Compose for camera move ending on the hands; leave quiet margins. Bright weather and colours differ clearly from subsequent storm at sea."
+    },
+    {
+      "id": "schooner",
+      "file": "schooner.webp",
+      "description": "Celkový pohled na škuner na otevřené vodě. Přední stěžeň a hlavní stěžeň, přídí vlevo, v popředí široká tmavá vlna.",
+      "camera": "Trup a čelen x 0,34–0,91 a y 0,54–0,67. Hlavní stěžeň dosahuje y 0,02; široký záběr s horním okrajem v obraze. Horizont y 0,58.",
+      "original_file": "exec-d7c39461-73be-4a12-9856-91049a0d9def.png",
+      "original_sha256": "34cd48739ad208447ce1a17bf5131af24ab94c15576e3a8e4c5bf78aebd0a635",
+      "sha256": "5d801bab96b044552980e2f70e82e707ac988b9e885f42a88b67e14a528f74f1",
+      "bytes": 238560,
+      "width": 1600,
+      "height": 900,
+      "prompt": "Paint a single original, cinematic 16:9 edge-to-edge horizontal canvas, without captions, lettering, framing, borders, vignettes or collage. In the visual world of a hand-painted historical adventure, fine directional oil brushwork, sparing impasto, worked grain, restrained marine palette, weathered timber, period realism, atmospheric perspective and clear silhouettes. Avoid camera or lens effects. Maintain at least 8% breathing room on the edges for an animated crop. No modern items. Southern Ocean, 1863, at the opening of a voyage. Seen from low over the swell, with a full view of a small 19th-century two-masted Australian working fore-and-aft schooner, weathered dark teal-painted wooden hull, warm wood rail, two distinct slightly raked masts (aft mainmast a little taller), two gaff sails of visibly reefed, patched flax-colored canvas and jib toward the bow. Traditional hemp shrouds. No steam, square-sailed rig, warship superstructure or second ship. Depict the single sturdy small vessel underway across the middle third from right to left, bow on the LEFT with bowsprit, tiny indistinct crew. Visual anchor at x=58%, y=52%. Wide unoccupied sea at left, horizon crossing y=53%, enormous dark blue-green near swell sweeps across lower fifth, cold fine spindrift, pale sea fog behind her. Wind pushing solid volumes of grey cloud, a cut in the weather gilding just the lit edge of the sails and troughs of wind-torn sea. Sea and sky appear different distances. Alive, resolute, remote. Wide composition, read in silhouette at thumbnail size."
+    },
+    {
+      "id": "cabin-table",
+      "file": "cabin-table.webp",
+      "description": "Voda v nakloněné kajutě se přelévá u hrany stolu. Zavěšená lucerna osvětluje mokrá prkna.",
+      "camera": "Plamen x 0,616 a y 0,305. Stůl x 0,23–0,81 a y 0,40–0,72. Volná hladina v dolní čtvrtině, chladné světlo v průlezu vlevo.",
+      "original_file": "exec-b1a27e5e-8d81-413d-9367-c5caea4e34fe.png",
+      "original_sha256": "f842fe3db4c546687585165ace1cf90772340693b8a2b53f804baab8bd358794",
+      "sha256": "e7fe405b57ba5b24830944e8a071c2d1c720db6a5a1989793a1c1fdb640b118d",
+      "bytes": 289684,
+      "width": 1600,
+      "height": 900,
+      "prompt": "Paint a single original, cinematic 16:9 edge-to-edge horizontal canvas, without captions, lettering, framing, borders, vignettes or collage. In the visual world of a hand-painted historical adventure, fine directional oil brushwork, sparing impasto, worked grain, restrained marine palette, weathered timber, period realism, atmospheric perspective and clear silhouettes. Avoid camera or lens effects. Maintain at least 8% breathing room on the edges for an animated crop. No modern items. Inside the cramped low wooden cabin of a small working schooner hard aground in the dark, approaching 3 January 1864, Auckland Island. Intimate composition from just inside the hatch, looking slightly down at a heavy fixed plain plank table in the centre, its top above incoming seawater, bolted through a rough planked floor, benches tucked close. The tide has washed well into the tiny space and almost reaches the table top at its lower end. A modest enclosed ship's oil lantern hanging from a plain overhead beam just right of centre at x=61%, y=34%, one warm amber light kept perfectly vertical by gravity while the vessel, deck, cabin table and waterline clearly list in different directions. One long bench to the side, no grand dining room, no staged kitchen set or literary props, no people or implied bodies. Sea water in the lower half breathes with broad rippling reflections of brass-honey and deep peacock green; open side of companionway at far left admits a single slash of cold blue night. Vision emerges through the darkness. Thick real grain and pegs in wood, soot-dark ceiling beams, resistant forms and restrained horizontal water streaks. A silent ordeal. Keep table and flame within middle 70%."
+    },
+    {
+      "id": "shore-dawn",
+      "file": "shore-dawn.webp",
+      "description": "Na kamenitém břehu je pět mužů. Dvojice se sklání nad plátnem. V popředí leží ráhno a lano.",
+      "camera": "Pět hlav mezi x 0,40–0,65 a y 0,49–0,57. Nohy po y 0,63. Vzdálený břeh y 0,445. Dřevo a závity lana dole vpravo.",
+      "original_file": "exec-5ac43d96-262b-4d91-b997-d591dd4d7210.png",
+      "original_sha256": "3e390c681a08dbd21f65194b07281bdf5e1d8b96cfa78833c5cbe8a9a56dead5",
+      "sha256": "debcd373c44970042f6cf0a8cb00adfbbc0994bc230d565480cee3c1428d3a27",
+      "bytes": 378312,
+      "width": 1600,
+      "height": 900,
+      "prompt": "Paint a single original, cinematic 16:9 edge-to-edge horizontal canvas, without captions, lettering, framing, borders, vignettes or collage. In the visual world of a hand-painted historical adventure, fine directional oil brushwork, sparing impasto, worked grain, restrained marine palette, weathered timber, period realism, atmospheric perspective and clear silhouettes. Avoid camera or lens effects. Maintain at least 8% breathing room on the edges for an animated crop. No modern items. Wide quiet establishing view along the shingle margin of Carnley Harbour on subantarctic Auckland Island, the morning after a storm in early January. Five tiny, individually readable 1860s castaways, exactly five, heads separately visible, plain damp muted wool clothes, scattered in a loose group within the central strip, at x=43%, 47%, 53%, 58%, 63% in the mid-ground around 60% image height; two together, one standing alone, two unstooping and gathering hand-carried salvage together. Minuscule figures, about 5% of frame height. Render the whole landscape at human eye level along wet grey pebbles, with a quiet sheet of blue-green water occupying most of the left, a thrown length of natural hemp rigging and a single drifted wooden spar among dark shingle in the lower foreground, low mossy boulders, wind-shaped southern rata with modest dark green crowns at the far right (no tropical plants). In the distance a low jagged hillside and cloud-veiled bluffs. Pale peach and silver daylight under sulky grey cloud, reflecting from wet stone. Black shadows lift towards olive. No buildings, beacons, encampment, second ship, other party or figures on horizon. Collect the eye softly on the five living silhouettes with a quiet break of light on the water behind them. Put grounded right foreground and distant left water in distinctly separable visual planes."
+    },
+    {
+      "id": "hearth-remains",
+      "file": "hearth-remains.webp",
+      "description": "Zbytek kamenného ohniště v mechu a kapradí, průhled k vodě mezi větvemi.",
+      "camera": "Zdivo x 0,12–0,64 a y 0,35–0,78. Malá volná plocha vzdálené vody x 0,81–0,89 a y 0,305–0,345.",
+      "evidence": "DOC zaznamenává pozůstatek kamenného ohniště. Jeho fotografie posloužila ke kontrole nízkého nepravidelného zdiva porostlého mechem. Úhel pohledu, průhled k moři a uspořádání kamenů výtvarně dotvářejí scénu; obraz nelze použít jako měřický záznam.",
+      "references": [
+        "https://www.doc.govt.nz/parks-and-recreation/places-to-go/southland/places/subantarctic-islands/auckland-islands/heritage-sites/grafton-wreck-and-epigwaitt/",
+        "https://www.doc.govt.nz/contentassets/1ec299b1d14d4b5bb3d3ea45decebce2/88710026.jpg"
+      ],
+      "original_file": "exec-3f2d4c7f-e155-4067-a0d2-c9897af9126f.png",
+      "original_sha256": "ce8a34ba8241eece99a452323a3c6a84f1961eea9fe9b1c9002ea95dd9d25729",
+      "sha256": "a8f86868c46b44e051a0d39e5fe1a1a38204f416638c2a02151ad98f67e0d6a4",
+      "bytes": 469996,
+      "width": 1600,
+      "height": 900,
+      "prompt": "Original widescreen 16:9 full bleed single cinematic landscape-format oil painting, same historical story world as paintings of a weathered blue-green 1860s timber schooner and a dawn Auckland Island shore. Hand-brushed naturalistic textures on timber, subdued slate and muted ochre, directional oil strokes, developed natural forms, convincing materials, strong foreground and atmospheric distance. No text, no frame, no caption. Do not stylise into a storybook or glossy photo. Carnley Harbour, Auckland Island today. An unrecorded original view from knee height and to one side, at a small, sheltered, level clearing in low coastal scrub under an overcast dawn sky. A SMALL, partly tumbled historic nineteenth-century fieldstone fireplace remnant, old and low, occupies the close centre-left (x.46,y.64). Real basic form: a short ragged low back and stub of one cheek formed from a few uneven courses of dark, flattened rounded fieldstones and larger irregular capstones, moss growing well into the joints and across top, tiny ferns and wet leaf litter in the former hearth, low scattered stones at its foot. Only a broken fragment of masonry rising slightly over the ferns, about knee height in its tallest place: NO upright chimney, NO stone arch/lintel, NO circular campfire pit, NO brick, NO theatrical black opening, NO intact fireplace, NO cabin remnants, NO fire and NO people. Close wet olive green native fern and sedge, leaning scrub, an opening BETWEEN foliage at far upper RIGHT x.78,y.35 gives a small separate glimpse of pale, still salt water and a distant weathered blue bluff. Sea out there, plants entirely surround stones; no shingle or surf around masonry. Intimate elegiac material study, caught side light on a damp near stone brow and red-brown leaf litter, background in mist. Deliberately modest quiet trace of human labour. The modest surviving stone courses should remain readable small amid greens. Croppable 10% margins. No modern props. Do not imitate any published photograph; invent the angle, field relationships and framing."
+    }
+  ]
+}

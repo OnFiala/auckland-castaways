@@ -16,10 +16,16 @@ open Working controls. Tab, Enter and Escape work throughout the game.
 Settings shows the release number. Under Scene lighting, Automatic adapts to
 your display, Cinematic gives the full moving light, Balanced reduces the
 work, and Original painting restores the earlier look.
-Motion follows your system preference,
-and you can reduce it in the game. Brief reaction captions and English
-narration start off. Narration uses a voice supplied by your browser.
-For offline narration, your device needs an installed English voice.
+A new game opens on the prologue. Choose Watch film for the spoken story,
+Read stills to advance at your own pace, or Play adventure to start walking.
+You can pause, mute, switch English captions or skip during playback.
+The compass opens Our journey. It keeps the films you have reached and
+offers the whole story after the ending. An existing save resumes quietly.
+
+Motion follows your system preference and can be reduced in Settings.
+The eight films include their own English voice, music and sound effects.
+Spoken dialogue during play is a separate setting. It starts off and uses
+your browser's voice. An installed English voice works offline.
 
 The story follows the Grafton from its wreck in 1864 to the rescue in 1865.
 You play Alick McLaren in the first five chapters and Captain Thomas Musgrave

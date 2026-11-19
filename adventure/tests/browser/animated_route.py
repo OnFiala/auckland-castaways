@@ -122,12 +122,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('index', type=Path)
     parser.add_argument('evidence', type=Path)
+    parser.add_argument('--chromium', help='Local Chromium executable; CI uses the pinned Playwright build')
     args = parser.parse_args()
     index = args.index.resolve(strict=True)
     if index.name != 'index.html':
         parser.error('pass the root index.html of the extracted edition')
     with sync_playwright() as pw:
-        browser = pw.chromium.launch()
+        browser = pw.chromium.launch(executable_path=args.chromium)
         try:
             run(browser, index, args.evidence, 'animated seven chapters', animated, reduced=False, touch_input=True)
         finally:

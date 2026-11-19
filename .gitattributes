@@ -8,3 +8,5 @@ sources/illustrations/** -text
 *.py text eol=lf
 *.svg text eol=lf
 *.geojson text eol=lf
+# Each WebVTT cue, including the last one, is followed by an empty separator line.
+*.vtt text eol=lf whitespace=-blank-at-eof

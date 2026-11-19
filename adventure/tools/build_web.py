@@ -12,7 +12,8 @@ from pathlib import Path
 from PIL import Image, ImageChops, ImageStat
 
 SOURCE = Path(__file__).resolve().parents[1] / 'dist'
-RUNTIME_TYPES = {'.js', '.html', '.css', '.png', '.webp', '.wav', '.woff2', '.txt'}
+PASSTHROUGH_TYPES = {'.webp', '.wav', '.woff2', '.txt', '.mp4', '.webm', '.vtt'}
+RUNTIME_TYPES = PASSTHROUGH_TYPES | {'.js', '.html', '.css', '.png'}
 
 
 def flatten(image):
@@ -66,7 +67,7 @@ def encode_runtime(destination):
         output.parent.mkdir(parents=True, exist_ok=True)
         if src.suffix == '.png':
             work.append((src, output))
-        elif src.suffix in {'.webp', '.wav', '.woff2', '.txt'}:
+        elif src.suffix in PASSTHROUGH_TYPES:
             shutil.copyfile(src, output)
         else:
             # Registries include names assembled at runtime, e.g. the five walking atlases.

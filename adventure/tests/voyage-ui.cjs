@@ -163,7 +163,9 @@ test('the saved finale reopens, credits remain readable, and restart cancels old
 
 test('journey map shows seven chapters but cannot skip unsolved work',async()=>{
  const ui=createUi({initial:{[KEY]:JSON.stringify(fixture(4))}}),before=canonical(ui.state());await ui.click('journey');
- const markup=ui.ids.get('modal-body').innerHTML;assert.equal((markup.match(/<li\b/g)||[]).length,7);assert.match(markup,/class="current"/);assert(!/<button\b/.test(markup),'chapter map has no skip controls');
+ const markup=ui.ids.get('modal-body').innerHTML;assert.equal((markup.match(/<li\b/g)||[]).length,7);assert.match(markup,/class="current"/);const buttons=ui.ids.get('modal-body').querySelectorAll('button');
+ assert.deepEqual(Array.from(buttons,b=>b.dataset.replayFilm),['prologue','winter','forge','boat'],'only unlocked film replay controls');
+ await ui.click(buttons[0]);assert.deepEqual(canonical(ui.state()),before,'replay cannot advance the chapter');
  for(const c of engine(ui).CHAPTERS)assert(markup.includes(c.title));await ui.click('modal-close');assert.deepEqual(canonical(ui.state()),before);
 });
 

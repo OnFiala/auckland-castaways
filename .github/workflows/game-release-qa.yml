@@ -7,6 +7,7 @@ on:
       - 'adventure/tools/build_web.py'
       - 'adventure/tools/package_download.py'
       - 'adventure/tools/verify_web.py'
+      - 'adventure/tools/assemble_story_film.py'
       - 'adventure/PLAY.txt'
       - 'adventure/tests/browser/**'
       - 'adventure/tests/material-renderer-browser.py'
@@ -143,8 +144,58 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+  story-film:
+    needs: chromium
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            adventure/tests/browser
+            adventure/tools
+            .github/scripts
+      - uses: actions/download-artifact@v4
+        with:
+          name: until-we-return-zip
+          path: ${{ runner.temp }}/tested
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install media verification tools
+        run: |
+          python -m pip install 'Pillow==11.3.0' 'playwright==1.56.0'
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y ffmpeg; fi
+          if ! command -v google-chrome >/dev/null; then python -m playwright install --with-deps chrome; fi
+          bash .github/scripts/game_chromium.sh
+      - name: Watch the offline game reels and verify their controls
+        run: |
+          mkdir "$RUNNER_TEMP/unpacked" "$RUNNER_TEMP/film-evidence" "$RUNNER_TEMP/film-master"
+          unzip -q "$RUNNER_TEMP/tested/until-we-return.zip" -d "$RUNNER_TEMP/unpacked"
+          python adventure/tests/browser/story_film_pass.py "$RUNNER_TEMP/unpacked/index.html" \
+            "$RUNNER_TEMP/tested/until-we-return.zip" "$RUNNER_TEMP/film-evidence" \
+            --chromium "$(command -v google-chrome)" --check-webm-shell
+      - name: Assemble the standalone film from the tested reels
+        run: |
+          python adventure/tools/assemble_story_film.py "$RUNNER_TEMP/unpacked" \
+            "$RUNNER_TEMP/film-master/until-we-return-story-film.mp4" --report "$RUNNER_TEMP/film-master/master.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: story-film-master
+          path: ${{ runner.temp }}/film-master
+          compression-level: 0
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: story-film-evidence
+          path: ${{ runner.temp }}/film-evidence
+          if-no-files-found: warn
+          retention-days: 14
+
   stage-draft:
-    needs: [chromium, animated-voyage, lighting-study]
+    needs: [chromium, animated-voyage, lighting-study, story-film]
     if: github.repository == 'OnFiala/auckland-castaways' && github.ref_type == 'branch' && startsWith(github.ref_name, 'release/edition-')
     permissions:
       contents: write

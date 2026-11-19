@@ -1,0 +1,130 @@
+#story-film {
+  --film-ink: #0d191c;
+  --film-paper: #f6ebd5;
+  --film-brass: #d6ba82;
+  width: min(94vw, 1160px, calc((100dvh - 124px) * 1.7778));
+  max-width: 100vw;
+  max-height: 96dvh;
+  padding: 0;
+  border: 1px solid #938468;
+  border-radius: 2px;
+  overflow: auto;
+  color: var(--film-paper);
+  background: var(--film-ink);
+  box-shadow: 0 18px 80px #000a;
+  font-family: Spectral, Georgia, serif;
+}
+#story-film[open] { display: block; }
+#story-film [hidden] { display: none !important; }
+#story-film::backdrop { background: #081112e8; backdrop-filter: none; }
+.film-picture {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1e3037 url('assets/tidepaint/beach.webp') center / cover;
+}
+#film-video, #film-plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+#film-video { background: #0b1112; }
+.film-heading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(20px, 4.5vw, 72px);
+  background: linear-gradient(to top, #071218ed, #0f1c247a 38%, transparent 71%);
+  text-shadow: 0 2px 18px #050c0f;
+}
+#film-reel { margin: 0 0 .8em; font: 600 clamp(.67rem, 1.05vw, .88rem)/1.4 system-ui, sans-serif; color: #f3d4a0; text-transform: uppercase; letter-spacing: .16em; }
+#story-film h2 { font: 400 clamp(2.3rem, 6.2vw, 5.6rem)/1 Spectral, Georgia, serif; margin: 0; color: #fff3dd; max-width: 20ch; text-wrap: balance; }
+#film-dateline { margin: .7em 0 0; font: 400 clamp(.84rem, 1.65vw, 1.24rem)/1.28 Spectral, Georgia, serif; color: #f1e6d1; }
+#story-film:not([data-mode="poster"]) .film-heading {
+  position: absolute; inset: auto; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%);
+}
+#film-caption {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: max-content;
+  max-width: 92%;
+  text-wrap: balance;
+  white-space: pre-line;
+  padding: .22em .65em;
+  border-radius: 2px;
+  color: #fffaf0;
+  background: #071013d9;
+  text-align: center;
+  font: 500 clamp(.95rem, 2.2vw, 1.6rem)/1.3 system-ui, sans-serif;
+}
+.film-deck {
+  background: linear-gradient(110deg, #213031ef, #142123f5), url('assets/ui/materials/canvas.webp') center / cover;
+  border-top: 1px solid #ab936a;
+  padding: 12px clamp(14px, 2.8vw, 42px);
+}
+.film-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 8px; }
+#story-film button, .journey-map .film-replay {
+  min-height: 44px; border-radius: 2px; padding: .46em .94em;
+  border: 1px solid #9c98816b; color: #f4eada; background: #0e1d2088;
+  font: 600 clamp(.82rem, 1.3vw, 1rem)/1.3 Spectral, Georgia, serif;
+}
+#story-film button:hover, #story-film button:focus-visible { border-color: #ebcf99; background: #334041; }
+#story-film button:focus-visible { outline: 2px solid #f7dc9b; outline-offset: 2px; }
+#story-film .film-primary, #story-film[data-mode="poster"][data-reduced="true"] #film-read {
+  color: #272721; background: #e6cfa1; border-color: #e6cfa1;
+}
+#story-film button.film-primary:hover, #story-film button.film-primary:focus-visible { background: #f7e4bb; color: #272721; }
+#story-film[data-mode="poster"][data-reduced="true"] #film-play { color: #f4eada; background: transparent; }
+#film-play span { display: inline-block; width: 0; height: 0; border-block: .32em solid transparent; border-left: .5em solid currentColor; margin-right: .37em; }
+#story-film #film-skip { margin-left: auto; border-color: transparent; background: transparent; text-decoration: underline; text-underline-offset: .24em; }
+#story-film button[disabled] { opacity: .48; }
+#film-credit { margin: .72em 0 0; color: #c2bfaf; font: 400 .74rem/1.3 Spectral, Georgia, serif; }
+#film-status { margin: 0 0 .65em; color: #f3dec0; font: .86rem/1.35 system-ui, sans-serif; }
+#film-status:empty { display: none; }
+#film-page { color: #e1c898; font: 600 .76rem/1.3 system-ui, sans-serif; letter-spacing: .05em; }
+#film-line { max-width: 67ch; margin: .3em 0 .75em; font: 400 clamp(1rem, 2vw, 1.32rem)/1.4 Spectral, Georgia, serif; }
+#story-film[data-mode="still"] .film-picture { max-height: 52dvh; background: #101d1f; }
+.journey-map .film-replay { flex: none; margin-left: auto; font-size: .8rem; min-height: 40px; padding: .3em .65em; background: #e9d9b9; color: #493a2d; border-color: #927d5c; }
+#film-feature { margin: 0 .5rem .5rem 0; }
+@media (max-width: 600px) and (orientation: portrait) {
+  #story-film { width: 96vw; }
+  .film-picture { aspect-ratio: 4 / 3; }
+  #film-plate { object-fit: cover; }
+  #story-film:not([data-mode="poster"]) .film-picture { aspect-ratio: 16 / 9; }
+  #story-film:not([data-mode="poster"]) #film-plate { object-fit: contain; }
+  .film-heading { padding: 16px 18px; }
+  #film-reel { margin-bottom: .45em; }
+  .film-deck { padding: 10px; }
+  .film-actions { gap: 4px; }
+  #story-film[data-mode="poster"] .film-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #story-film[data-mode="poster"] #film-skip { margin-left: 0; }
+  #story-film button { padding-inline: .6em; }
+  #film-caption { font-size: .9rem; bottom: 4%; }
+}
+@media (max-height: 485px) and (orientation: landscape) {
+  #story-film { width: min(96vw, calc((100dvh - 66px) * 1.7778)); max-height: 99dvh; }
+  .film-deck { padding-block: 4px; }
+  #film-credit { display: none; }
+  .film-heading { padding: 4%; }
+  #story-film h2 { font-size: clamp(2rem, 7vh, 3rem); }
+}
+
+/* A decoded frame bridges the two rectangles while the room is already interactive. */
+.film-handoff {
+  position: fixed; z-index: 500; display: block; pointer-events: none;
+  transform-origin: top left;
+  animation: film-to-room 420ms cubic-bezier(.24,.62,.38,1) both;
+}
+@keyframes film-to-room {
+  from { transform: var(--film-origin); opacity: 1; }
+  to { transform: none; opacity: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #story-film[open][data-entry="campaign"][data-reduced="false"],
+  #story-film[open][data-entry="campaign"][data-reduced="false"]::backdrop {
+    animation: film-curtain-in 210ms ease-out both;
+  }
+}
+@keyframes film-curtain-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .film-handoff { display: none; } }

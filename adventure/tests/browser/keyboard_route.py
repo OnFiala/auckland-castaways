@@ -3,7 +3,7 @@ import json
 
 from playwright.sync_api import expect
 
-from campaign import item, state, target
+from campaign import item, ready_scene, state, story_film, target
 
 
 def tab_to(page, control):
@@ -17,13 +17,20 @@ def tab_to(page, control):
 
 
 def keyboard_ready(page):
-    page.wait_for_function("document.querySelector('#backdrop img')?.naturalWidth > 0")
-    page.locator('#scene-loading').wait_for(state='hidden')
+    ready_scene(page)
     for name in ('dialogue-close', 'chapter-banner-close', 'dismiss-hint'):
         control = page.locator(f'#{name}')
         if control.is_visible():
             tab_to(page, control)
             page.keyboard.press('Enter')
+
+
+def keyboard_initial(page):
+    film = story_film(page, 'prologue')
+    tab_to(page, film.locator('#film-skip'))
+    page.keyboard.press('Enter')
+    expect(film).not_to_be_visible()
+    keyboard_ready(page)
 
 
 def visible_focus(control):

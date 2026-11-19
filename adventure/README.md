@@ -2,7 +2,7 @@
 
 A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
 
-[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v16) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
+[Download the game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v17) · [Watch the complete story film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v17/until-we-return-story-film.mp4) · [Film and historical sources](artwork/story-film/HISTORY.md) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
 ## Play
 
@@ -13,6 +13,8 @@ Extract the downloadable ZIP and open its root `index.html`. Keep the `editions`
 - At the eight work surfaces, use the painted parts directly. You can drag a line or chart leg, or make the same move with individual clicks. Tab and Enter work on the picture. **Working controls** opens an optional list of the same actions. **Stand back** keeps unfinished work.
 - Use the magnifying glass for touch inspection. A right-click or Shift+F10 also examines a place. The eye or Space briefly reveals interactive areas. The question mark offers an observation, then a direction, then the next move if requested.
 - The compass shows the journey. Finish the work and follow the chapter passage. Settings include reduced motion, reaction captions and optional English narration using the device voice.
+
+On a new game, choose **Watch film** to follow the five men from Sydney to the first playable shore. Six short films carry the journey between chapters. A final film follows the rescue, opens the separate Invercauld record and returns to the remains at Carnley Harbour today. English narration, music and captions ship in the download. The compass opens **Our journey**, where an existing player can revisit the opening or an unlocked film. After the ending the whole film can play in sequence.
 
 The campaign and partial workbench solutions save in the current browser. A version-3 first-night save can continue into winter, and earlier version-4 campaign saves retain their progress.
 

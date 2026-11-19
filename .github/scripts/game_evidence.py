@@ -15,6 +15,7 @@ CHAPTERS = (
     'Room for Three', 'Five Days of Ocean', 'The Promise', 'Until We Return',
 )
 SCENARIOS = ('desktop-shore', 'touch-shore', 'campaign', 'retry')
+REELS = ('prologue', 'winter', 'forge', 'boat', 'crossing', 'promise', 'return', 'epilogue')
 
 
 def read_json(path):
@@ -42,6 +43,35 @@ def make_gallery(evidence, edition, output):
         canvas.paste(frame, (x + (width - frame.width) // 2, y + (height - frame.height) // 2))
         draw.text((x, y + height + 12), caption, font=caption_font, fill='#382d27')
     canvas.save(output, format='WEBP', quality=88, method=6)
+
+
+def verified_film(folder, output, manifest, archive_sha):
+    report = read_json(folder / 'story-film.json')
+    if (str(report['edition']) != manifest['release'] or report['build'] != manifest['build']
+            or report['zip_sha256'] != archive_sha or report['offline'] is not True
+            or report['errors'] or tuple(report['reels']) != REELS
+            or set(report['webmFallback']['replays']) != set(REELS)):
+        raise ValueError('Film playback did not verify every reel of the tested edition')
+    master = read_json(folder / 'master.json')
+    if [entry['id'] for entry in master['chapters']] != list(REELS):
+        raise ValueError('The standalone film needs the full recorded voyage')
+    for entry in master['chapters']:
+        rel = manifest['directory'] + f"assets/story-film/{entry['id']}.mp4"
+        if entry['clip_sha256'] != manifest['files'][rel]:
+            raise ValueError(f'{rel} differs from the source of the standalone film')
+    movie = folder / 'until-we-return-story-film.mp4'
+    with movie.open('rb') as stream:
+        if master['sha256'] != hashlib.file_digest(stream, 'sha256').hexdigest():
+            raise ValueError('Standalone download differs from the measured film')
+    sheet = folder / 'filmstrip.webp'
+    with sheet.open('rb') as stream:
+        if report['gallery_sha256'] != hashlib.file_digest(stream, 'sha256').hexdigest():
+            raise ValueError('Filmstrip differs from the checked browser captures')
+    with Image.open(sheet, formats=['WEBP']) as gallery:
+        gallery.verify()
+    for item in (movie, sheet):
+        shutil.copyfile(item, output / item.name)
+    return master
 
 
 def prepare(archive, evidence, edition, output):
@@ -108,7 +138,12 @@ def prepare(archive, evidence, edition, output):
         summary['lighting'] = report
     filename = f'until-we-return-edition-{edition}.zip'
     shutil.copyfile(archive, output / filename)
-    (output / 'SHA256SUMS.txt').write_text(f'{digest}  {filename}\n', encoding='ascii')
+    checksums = [f'{digest}  {filename}']
+    if int(edition) >= 17:
+        master = verified_film(evidence / 'film', output, manifest, digest)
+        summary['film'] = master
+        checksums.append(f"{master['sha256']}  until-we-return-story-film.mp4")
+    (output / 'SHA256SUMS.txt').write_text('\n'.join(checksums) + '\n', encoding='ascii')
     (output / 'qa-summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
 
 

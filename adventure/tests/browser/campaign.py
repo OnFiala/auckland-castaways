@@ -3,6 +3,7 @@ from playwright.sync_api import expect
 
 SAVE = "castaways-adventure-v4"
 READ = f"JSON.parse(localStorage.getItem('{SAVE}'))"
+OPENING_REELS = ('prologue', 'winter', 'forge', 'boat', 'crossing', 'promise', 'return')
 WORK = {
     "chest": "notch near press",
     "roof": "pan wetSeam under left right pour",
@@ -40,10 +41,32 @@ def target(page, name):
     return page.locator(f'[data-target="{name}"]')
 
 
-def ready(page):
+def ready_scene(page):
     expect(page.locator('#backdrop > img')).to_be_visible()
     page.wait_for_function("document.querySelector('#backdrop img')?.naturalWidth > 0")
     page.locator('#scene-loading').wait_for(state='hidden')
+
+
+def story_film(page, reel):
+    film = page.locator(f'#story-film[open][data-film="{reel}"]')
+    expect(film).to_be_visible(timeout=15000)
+    return film
+
+
+def skip_story_film(page, reel):
+    film = story_film(page, reel)
+    film.locator('#film-skip').click()
+    expect(film).not_to_be_visible()
+
+
+def ready_initial(page):
+    ready_scene(page)
+    skip_story_film(page, OPENING_REELS[0])
+    ready(page)
+
+
+def ready(page):
+    ready_scene(page)
     close_if_shown(page, '#dialogue-close')
     close_if_shown(page, '#chapter-banner-close')
     close_if_shown(page, '#dismiss-hint')
@@ -169,15 +192,22 @@ def next_move(page):
     }}""")
 
 
-def campaign(page, evidence, activate=click, reunion=None):
+def campaign(page, evidence, activate=click, reunion=None, film=skip_story_film):
     chapters = set()
     completed_work = set()
     pan_checked = False
     for _ in range(160):
-        ready(page)
         before = state(page)
         chapter = before['chapter']
-        if chapter not in chapters:
+        new_chapter = chapter not in chapters
+        if new_chapter and chapter > 1:
+            film(page, OPENING_REELS[chapter - 1])
+            assert state(page) == before, 'a chapter film must preserve gameplay progress'
+        if before['completed']:
+            film(page, 'epilogue')
+            assert state(page) == before, 'the ending film must preserve the completed voyage'
+        ready(page)
+        if new_chapter:
             chapters.add(chapter)
             page.screenshot(path=evidence / f'chapter-{chapter}.png')
             if chapter == 2:

@@ -42,6 +42,14 @@ jobs:
         with:
           name: material-evidence
           path: ${{ runner.temp }}/qa-evidence/lighting
+      - uses: actions/download-artifact@v4
+        with:
+          name: story-film-evidence
+          path: ${{ runner.temp }}/qa-evidence/film
+      - uses: actions/download-artifact@v4
+        with:
+          name: story-film-master
+          path: ${{ runner.temp }}/qa-evidence/film
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -92,7 +100,7 @@ jobs:
             fi
           }
 
-          assets=("$zip" review-game.webp lighting-study.webp SHA256SUMS.txt)
+          assets=("$zip" review-game.webp lighting-study.webp filmstrip.webp until-we-return-story-film.mp4 SHA256SUMS.txt)
           for asset in "${assets[@]}"; do
             guard_draft
             gh release upload "$tag" "$asset" --repo "$GH_REPO" --clobber
