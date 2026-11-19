@@ -143,6 +143,23 @@ def prepare(archive, evidence, edition, output):
         master = verified_film(evidence / 'film', output, manifest, digest)
         summary['film'] = master
         checksums.append(f"{master['sha256']}  until-we-return-story-film.mp4")
+    if int(edition) >= 18:
+        summary['hosted_film'] = {}
+        for browser in ('chromium', 'webkit'):
+            report = read_json(evidence / f'hosted-film-{browser}' / 'hosted-film.json')
+            if (report['browser'] != browser or report['edition'] != edition or report['errors']
+                    or report['build'] != verified['build'] or report['zip_sha256'] != digest):
+                raise ValueError(f'Hosted playback evidence from {browser} does not match this ZIP')
+            scenes = report['scenarios']
+            for key in ('opening', 'reloaded', 'journey', 'chapter', 'playlist', 'nextReel', 'pendingNative', 'mediaPolicy'):
+                if scenes[key]['changedPixels'] <= 30 or scenes[key]['decodedAudioPeak'] <= 0.0002:
+                    raise ValueError(f'{browser} recorded an inaudible or motionless film in {key}')
+            if not scenes['reducedMotion']['heldShot'] or not scenes['reducedMotion']['timedCaptions']:
+                raise ValueError(f'{browser} did not demonstrate reduced-motion playback')
+            summary['hosted_film'][browser] = {'version': report['browserVersion'],
+                                               'bookmark_seconds': scenes['reloaded']['bookmarkSeconds'],
+                                               'opening_player': scenes['opening']['player'],
+                                               'stalled_player': scenes['pendingNative']['player']}
     (output / 'SHA256SUMS.txt').write_text('\n'.join(checksums) + '\n', encoding='ascii')
     (output / 'qa-summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
 

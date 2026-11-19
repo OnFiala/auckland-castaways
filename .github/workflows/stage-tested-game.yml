@@ -50,6 +50,10 @@ jobs:
         with:
           name: story-film-master
           path: ${{ runner.temp }}/qa-evidence/film
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: hosted-film-*
+          path: ${{ runner.temp }}/qa-evidence
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

@@ -194,8 +194,54 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+  hosted-film:
+    needs: chromium
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: adventure/tests/browser
+      - uses: actions/download-artifact@v4
+        with:
+          name: until-we-return-zip
+          path: ${{ runner.temp }}/tested
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the browser and playback test dependencies
+        env:
+          ENGINE: ${{ matrix.browser }}
+        run: |
+          python -m pip install 'Pillow==11.3.0' 'playwright==1.56.0'
+          if [[ "$ENGINE" == webkit ]]; then
+            python -m playwright install --with-deps webkit
+          elif ! command -v google-chrome >/dev/null; then
+            python -m playwright install --with-deps chrome
+          fi
+      - name: Watch films with full HTTP responses and stalled media requests
+        env:
+          ENGINE: ${{ matrix.browser }}
+        run: |
+          mkdir "$RUNNER_TEMP/unpacked" "$RUNNER_TEMP/hosted-film"
+          unzip -q "$RUNNER_TEMP/tested/until-we-return.zip" -d "$RUNNER_TEMP/unpacked"
+          python adventure/tests/browser/hosted_film_pass.py "$RUNNER_TEMP/unpacked/index.html" \
+            "$RUNNER_TEMP/tested/until-we-return.zip" "$RUNNER_TEMP/hosted-film" --browser "$ENGINE"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hosted-film-${{ matrix.browser }}
+          path: ${{ runner.temp }}/hosted-film
+          if-no-files-found: warn
+          retention-days: 14
+
   stage-draft:
-    needs: [chromium, animated-voyage, lighting-study, story-film]
+    needs: [chromium, animated-voyage, lighting-study, story-film, hosted-film]
     if: github.repository == 'OnFiala/auckland-castaways' && github.ref_type == 'branch' && startsWith(github.ref_name, 'release/edition-')
     permissions:
       contents: write

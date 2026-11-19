@@ -41,11 +41,7 @@ def stage_archive(index, archive):
         raw = source.read('release.json')
         assert (index.parent / 'release.json').read_bytes() == raw
         manifest = json.loads(raw)
-        directory = manifest['directory']
-        members = ['index.html'] + [f'{directory}assets/story-film/{reel}.{extension}'
-                                    for reel in REELS for extension in (*MEDIA_FORMATS, 'vtt')]
-        for relative in members:
-            expected = manifest['files'][relative]
+        for relative, expected in manifest['files'].items():
             with source.open(relative) as zipped:
                 assert hashlib.file_digest(zipped, 'sha256').hexdigest() == expected, relative
             assert digest(index.parent / relative) == expected, relative
@@ -77,7 +73,7 @@ def read_cues(path):
 @contextmanager
 def view(browser, evidence, label, *, touch=False, reduced=False, expected_missing=()):
     viewport = {'width': 390, 'height': 844} if touch else {'width': 1280, 'height': 800}
-    context = browser.new_context(viewport=viewport, is_mobile=touch, has_touch=True, offline=True,
+    context = browser.new_context(viewport=viewport, is_mobile=touch, has_touch=touch, offline=True,
                                   reduced_motion='reduce' if reduced else 'no-preference')
     requests, errors, failed = [], [], []
     page = context.new_page()
@@ -104,6 +100,12 @@ def view(browser, evidence, label, *, touch=False, reduced=False, expected_missi
 def button_with_key(page, film, name):
     tab_to(page, film.locator(f'#film-{name}'))
     page.keyboard.press('Enter')
+
+
+def wake(film):
+    picture = film.locator('.film-picture')
+    picture.hover(position={'x': 31, 'y': 35})
+    picture.hover(position={'x': 55, 'y': 60})
 
 
 def read_live_video(page, reel, extension='mp4'):
@@ -135,13 +137,12 @@ def curtain(page, reel, cues, evidence, measurements):
     film = story_film(page, reel)
     saved = state(page)
     title = film.locator('#film-title').text_content()
-    # Ordinary motion remembers the first Watch choice. A fresh guest instead gets the poster.
-    if film.get_attribute('data-mode') == 'poster':
-        film.locator('#film-play').click()
+    expect(film).to_have_attribute('data-mode', 'movie')
     native = read_live_video(page, reel)
     verify_timeline(page, reel, native, cues)
-    verify_cue(page, film, cues[0])
+    next_cue(page, film, cues)
     page.screenshot(path=evidence / f'frame-{reel}.png')
+    wake(film)
     film.locator('#film-skip').click()
     expect(film).not_to_be_visible()
     assert state(page) == saved
@@ -159,6 +160,18 @@ def verify_cue(page, film, cue):
     return clock
 
 
+def next_cue(page, film, cues):
+    now = film.locator('#film-video').evaluate('v => v.currentTime')
+    cue = next(cue for cue in cues if cue['end'] > now + .7)
+    return verify_cue(page, film, cue)
+
+
+def enable_sound(film):
+    button = film.locator('#film-mute')
+    if 'enable sound' in button.inner_text().lower():
+        button.click()
+
+
 def prologue(page, cues, evidence):
     film = story_film(page, 'prologue')
     before = state(page)
@@ -169,13 +182,14 @@ def prologue(page, cues, evidence):
     expect(film.locator('#film-track')).to_have_attribute('kind', 'captions')
     expect(film.locator('#film-captions')).to_have_attribute('aria-pressed', 'true')
     video = film.locator('#film-video')
-    assert video.evaluate('video => video.paused && video.currentTime === 0')
-    page.screenshot(path=evidence / 'prologue-poster.png')
-    button_with_key(page, film, 'play')
+    expect(film).to_have_attribute('data-mode', 'movie')
+    page.wait_for_function("!document.querySelector('#film-video').paused && document.querySelector('#film-video').currentTime > .15")
+    page.screenshot(path=evidence / 'prologue-automatic.png')
+    enable_sound(film)
     native = read_live_video(page, 'prologue')
     verify_timeline(page, 'prologue', native, cues)
     assert not native['muted']
-    first = verify_cue(page, film, cues[0])
+    first = next_cue(page, film, cues)
     button_with_key(page, film, 'pause')
     expect(film.locator('#film-pause')).to_have_attribute('aria-pressed', 'true')
     assert video.evaluate('video => video.paused')
@@ -215,11 +229,9 @@ def prologue(page, cues, evidence):
             'handoff': 'natural end', 'chapter': before['chapter']}
 
 
-def replay(page, unlocked, *, settings=False):
+def replay(page, unlocked, *, escape=False):
     before = state(page)
-    page.locator('#settings' if settings else '#journey').click()
-    if settings:
-        page.locator('#film-library').click()
+    page.locator('#journey').click()
     journey = page.locator('#modal[open]')
     expect(journey).to_be_visible()
     buttons = journey.locator('[data-replay-film]:not(:disabled)')
@@ -228,9 +240,11 @@ def replay(page, unlocked, *, settings=False):
     original = journey.locator(f'[data-replay-film="{unlocked[-1]}"]')
     original.click()
     film = story_film(page, unlocked[-1])
-    if settings:
+    read_live_video(page, unlocked[-1])  # The journey's View film click starts the movie.
+    if escape:
         page.keyboard.press('Escape')
     else:
+        wake(film)
         film.locator('#film-skip').click()
     expect(film).to_be_hidden()
     expect(journey).to_be_visible()
@@ -240,9 +254,11 @@ def replay(page, unlocked, *, settings=False):
         journey.locator('#film-feature').click()
         first = story_film(page, 'prologue')
         read_live_video(page, 'prologue')
+        wake(first)
         first.locator('#film-forward').click()
         following = story_film(page, 'winter')
         read_live_video(page, 'winter')
+        wake(following)
         following.locator('#film-skip').click()
         expect(following).to_be_hidden()
         expect(journey).to_be_visible()
@@ -255,7 +271,7 @@ def archive_campaign(page, index, evidence, all_cues):
     page.goto(index.as_uri())
     ready_scene(page)
     measurements = {'prologue': prologue(page, all_cues['prologue'], evidence)}
-    initial = replay(page, OPENING_REELS[:1], settings=True)
+    initial = replay(page, OPENING_REELS[:1], escape=True)
     target(page, 'rope').click()
     page.wait_for_function(f"{READ}.inventory.includes('rope')")
     saved = state(page)
@@ -324,33 +340,48 @@ def read_stills(page, film):
 def phone_and_reduced(page, index, evidence):
     page.goto(index.as_uri())
     film = story_film(page, 'prologue')
-    expect(film.locator('#film-read')).to_be_focused()
+    expect(film).to_have_attribute('data-player', 'compatible', timeout=25000)
     expect(film.locator('#film-video')).to_be_hidden()
     assert page.evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches")
-    film.locator('#film-read').tap()
-    expect(film).to_have_attribute('data-mode', 'still')
+    canvas = film.locator('#film-compat-canvas')
+    expect(canvas).to_have_attribute('data-ready', 'true', timeout=15000)
+    caption = film.locator('#film-caption')
+    expect(caption).to_be_visible(timeout=15000)
+    first = caption.inner_text()
+    frame = canvas.get_attribute('data-frame')
+    page.wait_for_timeout(600)
+    assert canvas.get_attribute('data-frame') == frame
+    page.wait_for_function("""first => {
+      const line=document.querySelector('#film-caption');
+      return line.offsetWidth && line.textContent && line.textContent!==first;
+    }""", arg=first, timeout=12000)
     assert film.evaluate('el => el.scrollWidth <= el.clientWidth')
-    opening = film.locator('#film-line').inner_text()
-    film.locator('#film-next').tap()
-    expect(film.locator('#film-line')).not_to_have_text(opening)
-    film.locator('#film-prev').tap()
-    expect(film.locator('#film-line')).to_have_text(opening)
-    page.screenshot(path=evidence / 'phone-stills.png')
-    seen = read_stills(page, film)
+    page.screenshot(path=evidence / 'phone-timed-stills.png')
+    # The first tap on a hidden control should only reveal it. Mobile browsers
+    # can retarget the click once the button under the finger becomes visible.
+    hidden_skip = film.locator('#film-skip')
+    expect(hidden_skip).to_have_css('opacity', '0')
+    bounds = hidden_skip.bounding_box()
+    page.touchscreen.tap(bounds['x'] + bounds['width'] / 2, bounds['y'] + bounds['height'] / 2)
+    expect(film).to_be_visible()
+    expect(hidden_skip).to_have_css('opacity', '1')
+    hidden_skip.tap()
     ready(page)
     target(page, 'rope').tap()
     page.wait_for_function(f"{READ}.inventory.includes('rope')")
-    return {'viewport': [390, 844], 'reducedMotion': True, 'stillPages': seen, 'shoreInput': 'tap rope'}
+    return {'viewport':[390, 844], 'reducedMotion':True, 'timedStills':True, 'shoreInput':'tap rope'}
 
 
 def phone_movie(page, index, cues, evidence):
     page.goto(index.as_uri())
     film = story_film(page, 'prologue')
-    film.locator('#film-play').tap()
+    expect(film).to_have_attribute('data-mode', 'movie')
+    enable_sound(film)
     native = read_live_video(page, 'prologue')
-    verify_cue(page, film, cues[0])
+    next_cue(page, film, cues)
     assert film.evaluate('el => el.scrollWidth <= el.clientWidth')
     page.screenshot(path=evidence / 'phone-movie.png')
+    film.locator('.film-picture').tap()
     film.locator('#film-skip').tap()
     expect(film).to_be_hidden()
     ready(page)
@@ -361,16 +392,13 @@ def phone_movie(page, index, cues, evidence):
 def missing_media(page, index, evidence):
     page.goto(index.as_uri())
     film = story_film(page, 'prologue')
+    ready_scene(page)
     before = state(page)
-    film.locator('#film-play').click()
-    expect(film.locator('#film-status')).to_contain_text(re.compile(r'(could|failed|unavailable)', re.I))
-    expect(film.locator('#film-read')).to_be_visible()
-    expect(film.locator('#film-skip')).to_be_visible()
+    expect(film).to_have_attribute('data-player', 'compatible', timeout=30000)
+    page.wait_for_function("Number(document.querySelector('#film-compat-canvas')?.dataset.frame)>3")
+    expect(film.locator('#film-caption')).to_be_visible(timeout=15000)
     page.screenshot(path=evidence / 'missing-film.png')
-    film.locator('#film-read').click()
-    expect(film).to_have_attribute('data-mode', 'still')
-    expect(film.locator('#film-line')).to_be_visible()
-    page.wait_for_function("document.querySelector('#film-plate')?.naturalWidth > 0")
+    wake(film)
     film.locator('#film-skip').click()
     expect(film).to_be_hidden()
     assert before == state(page)
@@ -378,15 +406,35 @@ def missing_media(page, index, evidence):
     target(page, 'rope').click()
     page.wait_for_function(f"{READ}.inventory.includes('rope')")
     return {'missing': [f'prologue.{ext}' for ext in MEDIA_FORMATS],
-            'fallback': 'readable still and exit to playable shore'}
+            'fallback': 'automatic moving compatible film and exit to playable shore'}
+
+
+def last_resort(page, index, evidence):
+    page.goto(index.as_uri())
+    film = story_film(page, 'prologue')
+    ready_scene(page)
+    before = state(page)
+    expect(film).to_have_attribute('data-player', 'paintings', timeout=35000)
+    expect(film.locator('#film-plate')).to_be_visible()
+    expect(film.locator('#film-caption')).to_be_visible(timeout=15000)
+    page.screenshot(path=evidence / 'last-resort.png')
+    # The damaged copy still carries the six original stills and an exit to the actual shore.
+    film.locator('.film-picture').tap()
+    film.locator('#film-read').tap()
+    pages = read_stills(page, film)
+    ready(page)
+    assert state(page) == before
+    return {'stillPages': pages, 'handoff':'shore'}
 
 
 def webm_intro(page, index):
     page.goto(index.as_uri())
     film = story_film(page, 'prologue')
-    film.locator('#film-play').click()
+    expect(film).to_have_attribute('data-mode', 'movie')
     page.wait_for_function("document.querySelector('#film-video')?.currentSrc.endsWith('/prologue.webm')")
+    enable_sound(film)
     result = read_live_video(page, 'prologue', 'webm')
+    wake(film)
     film.locator('#film-skip').click()
     expect(film).to_be_hidden()
     ready(page)
@@ -409,9 +457,9 @@ def webm_fallback(browser, index, evidence, saved):
         for reel in REELS:
             library.locator(f'[data-replay-film="{reel}"]').click()
             film = story_film(page, reel)
-            if film.get_attribute('data-mode') == 'poster':
-                film.locator('#film-play').click()
+            expect(film).to_have_attribute('data-mode', 'movie')
             replays[reel] = read_live_video(page, reel, 'webm')
+            wake(film)
             film.locator('#film-skip').click()
             expect(film).to_be_hidden()
         assert state(page) == saved
@@ -471,6 +519,11 @@ def main():
                 (broken_media / missing[1]).unlink()
                 with view(browser, args.evidence, 'missing-media', expected_missing=missing) as page:
                     recovery = missing_media(page, broken / 'index.html', args.evidence)
+                first_sheet = 'prologue-01.webp'
+                (broken / manifest['directory'] / 'assets/story-film-compat' / first_sheet).unlink()
+                with view(browser, args.evidence, 'all-movies-missing', touch=True,
+                          expected_missing=(*missing, first_sheet)) as page:
+                    recovery['lastResort'] = last_resort(page, broken / 'index.html', args.evidence)
             report = {
                 'edition': manifest['release'], 'build': manifest['build'][:20], 'zip_sha256': digest(args.archive),
                 'offline': True, 'chromium': browser.version, 'reels': list(measurements), 'errors': [],
