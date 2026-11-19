@@ -14,6 +14,8 @@ Two clean builds produced the same 140,819,577-byte ZIP with SHA-256 `56392289ff
 
 The production service returned the same manifest and all 332 game files as the tested ZIP. Playback controls and decoding were exercised in browser profiles using those exact packaged bytes and the hosting service’s full-response delivery behavior. The owner’s signed-in browser session was unavailable for direct observation. The deployment retains all 195 versioned file paths used by edition 17. Tabs still running editions 13–16 can reload at the same address and the game will read the existing browser save.
 
+GitHub release `game-v18` points to `0e98496bf017ef70149267d87f42e0e765da6c9d`. After publication an anonymous client downloaded and verified all six assets. The standalone MP4 decoded all 5,952 frames, eight chapters and 69 English subtitle cues. [Release and downloads](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v18) · [Checksums](https://github.com/OnFiala/auckland-castaways/releases/download/game-v18/SHA256SUMS.txt) · [Completed release checks](https://github.com/OnFiala/auckland-castaways/actions/runs/44608134683)
+
 ## Playable edition 17, 19 November 2026
 
 The seven playable chapters now share a 66-second prologue, six short interludes and a 59-second epilogue. The film brings Alick to the playable shore, then returns to the characters when the player has finished the work of each chapter. An existing save enters its current room. The compass opens the films the player has reached. [Illustrated edition notes](reviews/release-17/README.md) · [Shot-by-shot historical notes](artwork/story-film/HISTORY.md)
