@@ -8,7 +8,7 @@ Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-cas
 
 ## Aktuální hra: Until We Return
 
-**[Stáhnout anglickou hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v18)** · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v18/until-we-return-story-film.mp4) · [Návod](adventure/README.md) · [Zdrojové soubory pro místní spuštění](adventure/dist/index.html)
+**[Hrát v prohlížeči bez přihlášení](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Stáhnout offline hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v18) · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v18/until-we-return-story-film.mp4) · [Návod](adventure/README.md)
 
 Vydání 18 začíná odplutím ze Sydney. Když se po ztroskotání rozední, přebíráš na břehu Alicka a slyšíš první slova jeho druhů. Po zimě v Epigwaittu, práci u výhně a opravě člunu přinese plavba tři muže k lidem. Jako kapitán Musgrave se vrátíš pro zbývající dva. Úvod, šest mezikapitol a závěrečný film se přehrávají přímo při průchodu. Hra si při zavření karty pamatuje i místo v rozběhnutém filmu. Anglické vyprávění, hudba, ruchy a titulky jsou součástí offline vydání. [Ukázky úvodu a návaznosti kapitol](adventure/reviews/release-18/README.md) · [Průvodce hrou](adventure/README.md) · [Prameny k jednotlivým záběrům](adventure/artwork/story-film/HISTORY.md)
 

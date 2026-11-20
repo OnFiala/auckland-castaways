@@ -11,11 +11,42 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 from build_web import retain_open_editions, write_edition
 import build_web
+from build_public_site import build as build_public_site
 from package_download import package
 from verify_web import verify
 
 
 class EditionLayout(unittest.TestCase):
+    def test_public_link_preview_is_in_the_entry_and_preserves_open_game_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / 'source'
+            source.mkdir()
+            (source / 'index.html').write_text('<html><head><meta name="game-release" content="18">'
+                                               '<script src="game.js"></script></head><body>Game</body></html>')
+            (source / 'game.js').write_text('void 0;')
+            offline, first, second = (root / name for name in ('offline', 'first', 'second'))
+            original = write_edition(source, offline)
+            previous = Path('editions/17-previous/film.js')
+            (offline / previous).parent.mkdir()
+            (offline / previous).write_bytes(b'old tab')
+            build_public_site(offline, first, 'https://game.example')
+            build_public_site(first, second, 'https://game.example/')
+            head = (second / 'index.html').read_text().partition('</head>')[0]
+            self.assertEqual(head.count('name="twitter:card" content="summary_large_image"'), 1)
+            self.assertIn('property="og:url" content="https://game.example/"', head)
+            image_url = 'https://game.example/share/until-we-return-cover.jpg?v='
+            self.assertIn('name="twitter:image" content="' + image_url, head)
+            self.assertIn('property="og:image" content="' + image_url, head)
+            self.assertIn('name="twitter:image:alt"', head)
+            self.assertEqual((second / 'index.html').read_bytes(), (first / 'index.html').read_bytes())
+            self.assertEqual(verify(second)['build'], original['build'][:20])
+            self.assertEqual((second / previous).read_bytes(), b'old tab')
+            self.assertNotIn('twitter:card', (offline / 'index.html').read_text())
+            with Image.open(second / 'share/until-we-return-cover.jpg') as image:
+                self.assertEqual((image.format, image.size), ('JPEG', (1200, 600)))
+            self.assertIn('Allow: /', (second / 'robots.txt').read_text())
+
     def test_film_fallback_keeps_audio_samples_and_versions_the_frame_directory(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
