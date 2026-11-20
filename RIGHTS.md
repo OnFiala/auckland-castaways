@@ -31,3 +31,5 @@ Rozhovorové písmo Spectral od Production Type je součástí adventury ve dvou
 ## Filmové vyprávění ve vydání 17
 
 Anglický scénář vznikl z dobových svědectví. Pět nových maleb, animace, hudební motivy i ruchy vznikly pro toto zpracování. Hlas vypravěče je syntetický. Vydání obsahuje hotovou zvukovou stopu. Tvůrce modelu Kokoro zveřejnil jeho váhy pod licencí Apache 2.0. Kredity a otisky výrobních podkladů jsou v dokumentaci. [Prameny a inscenace](adventure/artwork/story-film/HISTORY.md) · [Původ nových maleb](adventure/artwork/story-film/plates/artist.json) · [Hlas, hudba a licence](adventure/artwork/story-film/AUDIO.md)
+
+Hudební doprovod hratelných kapitol tvoří sedm původních skladeb a čtyři krátké hudební odpovědi. Zvuky flétny, smyčců, drnkaných strun a kovu vznikají syntézou podle partitury přiložené v repozitáři. [Nahrávky a popis nástrojů](adventure/artwork/ISLAND_SCORE.md) · [Partitura a výroba zvuku](adventure/tools/render_island_score.py)

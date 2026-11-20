@@ -17,6 +17,61 @@ from verify_web import verify
 
 
 class EditionLayout(unittest.TestCase):
+    def test_hosted_patches_keep_shared_films_and_repin_the_new_music_and_paintings(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / 'source'
+            film = source / 'assets/story-film/prologue.mp4'
+            painting = source / 'assets/panels/camp.webp'
+            music = source / 'assets/island-score/shore.mp3'
+            data = source / 'assets/story-film-compat/prologue-audio.js'
+            for asset in (film, painting, music, data):
+                asset.parent.mkdir(parents=True)
+            film.write_bytes(b'old reel')
+            data.write_bytes(b'window.samples="assets/samples";')
+            painting.write_bytes(b'old camp')
+            (source / 'index.html').write_text(
+                '<html><head><meta name="game-release" content="18"><link href="sheet.css">'
+                '<link href="assets/story-film/prologue.mp4"><script src="game.js"></script></head></html>')
+            (source / 'sheet.css').write_text(
+                'a{background:url("assets/panels/camp.webp")}b{background:url(assets/story-film/prologue.mp4)}')
+            script = source / 'game.js'
+            script.write_text("const reel='assets/story-film/'+id+'.mp4';")
+            first_game, second_game = root / 'offline-one', root / 'offline-two'
+            previous, hosted, duplicate = root / 'public-one', root / 'public-two', root / 'public-again'
+            with patch.object(build_web, 'SOURCE', source):
+                build_web.build(first_game)
+                build_public_site(first_game, previous, 'https://game.example')
+                prior = json.loads((previous / 'release.json').read_text())['directory']
+                painting.write_bytes(b'repainted camp')
+                music.write_bytes(b'ID3\x00\xff\xfb\x00.paint.png')
+                script.write_text(script.read_text() + "const score='assets/island-score/'+id+'.mp3';")
+                build_web.build(second_game)
+
+            url = 'https://game.example'
+            build_public_site(second_game, hosted, url, previous=previous)
+            manifest = json.loads((hosted / 'release.json').read_text())
+            current = manifest['directory']
+            self.assertEqual(manifest['shared'], {
+                'assets/story-film/': prior + 'assets/story-film/',
+                'assets/story-film-compat/': prior + 'assets/story-film-compat/'})
+            self.assertEqual(len(list(hosted.rglob('prologue.mp4'))), 1)
+            self.assertIn(prior + 'assets/story-film/prologue.mp4', (hosted / 'index.html').read_text())
+            self.assertIn(prior + 'assets/story-film/', (hosted / current / 'game.js').read_text())
+            self.assertIn(current + 'assets/island-score/', (hosted / current / 'game.js').read_text())
+            self.assertIn('../' + prior.split('/')[1] + '/assets/story-film/prologue.mp4',
+                          (hosted / current / 'sheet.css').read_text())
+            self.assertEqual((hosted / current / 'assets/island-score/shore.mp3').read_bytes(), music.read_bytes())
+            self.assertEqual((hosted / current / 'assets/panels/camp.webp').read_bytes(), b'repainted camp')
+            self.assertEqual((hosted / prior / 'assets/panels/camp.webp').read_bytes(), b'old camp')
+            self.assertEqual(verify(hosted, previous)['current_files'], len(manifest['files']))
+            build_public_site(second_game, duplicate, url, previous=hosted)
+            self.assertEqual((hosted / 'release.json').read_bytes(), (duplicate / 'release.json').read_bytes())
+            self.assertEqual((hosted / 'index.html').read_bytes(), (duplicate / 'index.html').read_bytes())
+            (hosted / prior / 'assets/story-film/prologue.mp4').write_bytes(b'altered retained movie')
+            with self.assertRaisesRegex(ValueError, 'Content hash mismatch'):
+                verify(hosted)
+
     def test_public_link_preview_is_in_the_entry_and_preserves_open_game_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

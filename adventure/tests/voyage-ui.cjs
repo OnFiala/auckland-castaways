@@ -103,11 +103,24 @@ async function advance(ui){
  assert.equal(ui.ids.get('completion').hidden,true,'intermediate chapters cannot show the final rescue ending');
 }
 const checkpoints=[];
+function checkJournalGoals(ui){
+ const journal=ui.ids.get('goals'),state=ui.state();
+ const drawings=journal.querySelectorAll('[role="listitem"]');
+ const goals=engine(ui).getChapter(state).goals;
+ assert.equal(journal.getAttribute('role'),'list');
+ assert.equal(drawings.length,goals.length);
+ goals.forEach((goal,i)=>{
+  const completed=Boolean(state.flags[goal.flag]);
+  assert.equal(drawings[i].getAttribute('title'),goal.label+(completed?' · Complete':' · Still needed'));
+  assert.equal(drawings[i].matches('.done'),completed);
+ });
+ assert.equal(journal.querySelectorAll('button').length,0);
+}
 test('real UI handlers complete all seven chapters with hints, inventory puzzles, travel and reloads',async()=>{
  let ui=createUi(),steps=0;assert.equal(engine(ui).VERSION,4);assert.equal(getChapter(ui.state()),1);
  const visits=new Set(),dialogues=new Set();
  while(!ui.state().completed&&steps++<160){
-  const s=ui.state(),ch=getChapter(s);visits.add(ch);
+  const s=ui.state(),ch=getChapter(s);visits.add(ch);checkJournalGoals(ui);
   if(!dialogues.has(ch)){
    await ui.flush();const portrait=ui.ids.get('player-sprite').querySelector('image');assert(portrait,'protagonist has a painted image');
    const actorId=ch>=6?'musgrave':'player';
@@ -122,7 +135,7 @@ test('real UI handlers complete all seven chapters with hints, inventory puzzles
   await hintStep(ui);
   if(steps%5===0){const before=canonical(ui.state());ui=createUi({initial:canonical(ui.stored)});assert.deepEqual(canonical(ui.state()),before,'partly solved chapter survives reload');}
  }
- assert(ui.state().completed,'full rescue must be reachable in fewer than160 meaningful actions');assert.equal(getChapter(ui.state()),7);assert.deepEqual([...visits],[1,2,3,4,5,6,7]);
+ assert(ui.state().completed,'full rescue must be reachable in fewer than160 meaningful actions');checkJournalGoals(ui);assert.equal(getChapter(ui.state()),7);assert.deepEqual([...visits],[1,2,3,4,5,6,7]);
  assert.deepEqual([...worked],Object.keys(workMoves));checkpoints.push(canonical(ui.state()));ui.runTimers();assert.equal(ui.ids.get('completion').hidden,false,'final rescue is visibly presented');
  console.log(JSON.stringify({campaignUi:true,chapters:[...visits],progressStepsIncludingPassages:steps,chapterCheckpoints:checkpoints.length,midCampaignReloads:true,protagonistSwitch:true,limitation:'DOM contract only; no browser rendering or animation playback.'}));
 });

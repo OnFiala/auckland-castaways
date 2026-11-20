@@ -45,3 +45,83 @@ dialog h2{font-size:28px;letter-spacing:-.4px;margin-bottom:24px}dialog .setting
 @keyframes crew-settle{from{opacity:0}to{opacity:1}}
 @media(max-width:700px){.brand span{font-size:8px;letter-spacing:.6px}.help span{font-size:9px}}
 @media(max-height:500px) and (orientation:landscape){.help span{font-size:9px}}
+
+/* Seven leaves of the expedition journal, one painted row for each chapter. */
+header.game-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(max-content, 1fr);
+  column-gap: clamp(5px, 1.5vw, 20px);
+  container: journal-header / inline-size;
+}
+.game-header > .brand { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.game-header > nav { justify-self: end; margin-left: 0; }
+.game-header > #goals {
+  --piece-size: clamp(23px, 6cqi, 44px);
+  position: relative;
+  left: auto;
+  transform: none;
+  justify-self: center;
+  gap: clamp(3px, 1.1cqi, 12px);
+}
+#goals .goal {
+  display: block;
+  position: relative;
+  width: var(--piece-size);
+  height: var(--piece-size);
+  opacity: 1;
+  filter: none;
+}
+#goals .goal-painting {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url('assets/ui/journal-goals.webp') var(--journal-col, 0%) var(--journal-row, 0%) / 300% 700% no-repeat;
+  filter: saturate(.84) drop-shadow(0 1px 1px #160f0c);
+}
+#goals .goal:nth-child(2) { --journal-col: 50%; }
+#goals .goal:nth-child(3) { --journal-col: 100%; }
+#goals .done .goal-painting { filter: drop-shadow(0 1px 1px #160f0c); }
+#goals .done::before, #goals .done::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  box-sizing: border-box;
+}
+#goals .done::before {
+  width: max(11px, 35%);
+  aspect-ratio: 1;
+  right: -1px;
+  bottom: -1px;
+  border: 1px solid #cda87b;
+  border-radius: 50%;
+  background: #39291f;
+}
+#goals .done::after {
+  width: max(4px, 11%);
+  height: max(7px, 22%);
+  bottom: max(2px, 6%);
+  right: max(2px, 8%);
+  border: solid #fff0c9;
+  border-width: 0 1.7px 1.7px 0;
+  transform: rotate(42deg);
+}
+@container journal-header (max-width: 345px) {
+  .game-header > #goals { --piece-size: 22px; gap: 2px; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .game-header > #goals { --piece-size: clamp(22px, 5.5cqi, 30px); }
+}
+@media (forced-colors: active) {
+  #goals .done::before { background: Canvas; border-color: CanvasText; }
+  #goals .done::after { border-color: CanvasText; }
+  #goals .goal-painting { forced-color-adjust: none; }
+}
+.setting.music-setting {
+  display: grid;
+  grid-template-columns: minmax(7em, 1fr) minmax(4.5em, 8.5em) 3em;
+  align-items: center;
+  column-gap: .65rem;
+}
+.music-setting input { width: 100%; min-width: 0; margin: 0; accent-color: #76552f; cursor: pointer; }
+.music-setting input:focus-visible { outline: 2px solid #76552f; outline-offset: 3px; }
+.music-setting output { text-align: right; font-variant-numeric: tabular-nums; }

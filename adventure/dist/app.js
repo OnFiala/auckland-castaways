@@ -13,7 +13,8 @@ let examining=false, playerWork='stand', hintKey='', hintLevel=0;
 const actorHomes=new Map(),actorTracks=new Map(),actorPositions=new Map(),walkImages=new Map();
 const voiceAvailable=Boolean(window.speechSynthesis&&window.SpeechSynthesisUtterance);
 const targetMarkup=new Map(),companionMarkup=new Map(),displayStates=new WeakMap();
-let prefs={narration:false,captions:false,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,lighting:'auto'};
+const defaultMusicVolume=65;
+let prefs={narration:false,captions:false,music:defaultMusicVolume,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,lighting:'auto'};
 try{state=E.restore(JSON.parse(localStorage.getItem(KEY)))||state;}catch(_){}
 if(CAMPAIGN&&!localStorageSafe(KEY)){try{state=E.restore(JSON.parse(localStorage.getItem('castaways-adventure-v3')))||state;}catch(_){}}
 function localStorageSafe(key){try{return localStorage.getItem(key);}catch(_){return null;}}
@@ -66,15 +67,25 @@ function chapterFilm(id,after,startAt=0){
  }
  if(Film.chapterMode()!=='skip'){
   activeReel=id;story.pending=bookmark(id,startAt);saveStory();
-  if(Film.open([id],{auto:true,startAt,reduced:effectiveReduced(),focus:$('scene'),after:enterScene}))return;
+  if(openFilm([id],{auto:true,startAt,reduced:effectiveReduced(),focus:$('scene'),after:enterScene}))return;
  }
  enterScene();
 }
 function chapterArrival(){
+ score?.setChapter(chapterNumber());
  const beat=S.chapterArrival?.(state);
  if(beat)startDialogue(beat.id,true,beat.text);
 }
-try{const p=JSON.parse(localStorage.getItem(PREF));if(p){prefs.narration=Boolean(p.narration);prefs.captions=Boolean(p.captions);prefs.reduced=prefs.reduced||Boolean(p.reduced);prefs.lighting=window.CastawayPaintingLight?.preference(p.lighting)||'auto';}}catch(_){}
+try{const p=JSON.parse(localStorage.getItem(PREF));if(p){if(Number.isFinite(p.music))prefs.music=Math.max(0,Math.min(100,p.music));prefs.narration=Boolean(p.narration);prefs.captions=Boolean(p.captions);prefs.reduced=prefs.reduced||Boolean(p.reduced);prefs.lighting=window.CastawayPaintingLight?.preference(p.lighting)||'auto';}}catch(_){}
+const score=window.CastawayScore?.create({bed:$('score-bed'),accent:$('score-accent'),volume:prefs.music});
+function openFilm(ids,options){
+ score?.setFilm(true);
+ const opened=Film.open(ids,{...options,after:()=>{
+  try{options.after?.();}finally{score?.setFilm(Film.shown());}
+ }});
+ if(!opened)score?.setFilm(Film.shown());
+ return opened;
+}
 const drawings={
  shelter:'<path d="m4 53 23-42 30 41M27 11l-3 42M5 52h52M27 11l21-4 12 34" fill="none" stroke-width="4"/>',
  signal:'<path d="M17 58V5M7 58h22M18 6q14-6 32 1l-8 11 7 10q-17-8-31-1" fill="none" stroke-width="3"/>',
@@ -319,6 +330,7 @@ function closeDialogue(finished=false){
  $('dialogue').hidden=true;
  delete $('command-dock').dataset.mode;
  $('inventory-bar').inert=false;
+ if(previous)score?.setDialogue(false);
  if(previous&&voiceAvailable)window.speechSynthesis.cancel();
  if(previous && $('dialogue').contains(document.activeElement)){
   const target=previous.partner && $('person-'+previous.partner);
@@ -367,6 +379,7 @@ function showDialogueLine(){
  const next=index===turns.length-1?'Finish conversation':'Continue conversation';
  $('dialogue-next').setAttribute('aria-label',next);$('dialogue-next').title=next;
  $('dialogue-pause').setAttribute('aria-pressed',String(dialogue.paused));
+ score?.setDialogue(true);
  rail.dataset.speaker=turn.id;rail.dataset.mode=mode;rail.hidden=false;
  $('command-dock').dataset.mode=mode;$('inventory-bar').inert=mode==='exchange';
  scheduleDialogue();
@@ -389,6 +402,7 @@ function startDialogue(id,short=false,spokenLine=null,storyState=state){
  beginExchange(short?turns.slice(0,1):turns,who===playerId()?null:who,short?'aside':'exchange');
 }
 function openingConversation(){
+ score?.setChapter(chapterNumber());
  const turns=S.arrival?.(state);
  if(!turns?.length)return;
  $('first-hint').hidden=true;
@@ -452,6 +466,7 @@ function savePrefs(){
  // The first-night standalone shares this key. Auto is the absence of an
  // override, just as it was for every save created before scene lighting.
  if(choice!=='auto')saved.lighting=choice;
+ if(saved.music===defaultMusicVolume)delete saved.music;
  try{localStorage.setItem(PREF,JSON.stringify(saved));}catch(_){}
 }
 // Place and viewpoint already have their own labels. The action line follows the
@@ -543,6 +558,7 @@ function apply(response,{origin,source,usedItem,after}={}){
 function applyReady(response,origin,source){
  const wasDone=state.completed,wasChapterDone=state.chapterComplete,oldFlags=state.flags;
  state=response.state;if(selected&&!state.inventory.includes(selected))selected=null;
+ if(response.changed)score?.resolved(oldFlags,state.flags);
  save();render({source,gainedItem:response.gained[0]});showCue(response.cue,response.text,response.gained);
  response.gained.forEach(id=>flyItem(id,origin));
  if(CAMPAIGN&&!state.completed){
@@ -721,8 +737,21 @@ function restoreRenderFocus(previous,source,gainedItem,sceneChanged){
 function render({source,gainedItem,sceneChanged=false}={}){const previousFocus=document.activeElement,scene=currentScene(),world=W.scenes?.[state.scene];$('scene').dataset.scene=state.scene;$('scene').dataset.chapter=String(chapterNumber());$('scene').dataset.indoor=String(Boolean(world?.indoor));$('scene').dataset.shelter=String(state.flags.shelterBuilt);$('scene').dataset.crate=String(state.flags.crateOpen);$('scene').classList.toggle('warm',(state.scene==='camp'&&state.flags.fireLit)||Boolean(state.flags.forgeLit&&state.scene==='forge'));const location=staged&&chapterNumber()===1&&state.scene==='beach'?'Grafton wreck · Carnley Harbour, January 1864':scene.name;
  $('scene').setAttribute('aria-label',location);$('scene-label').textContent=location;
  $('scene').classList.toggle('staged',staged);$('inspect-mode').hidden=!staged;
- const goals=CAMPAIGN?E.getChapter(state).goals:[{icon:'shelter',flag:'shelterBuilt',label:'Shelter'},{icon:'fire',flag:'fireLit',label:'Fire'},{icon:'signal',flag:'signalRaised',label:'Signal'}];
- $('goals').setAttribute('aria-label','Chapter goals');$('goals').innerHTML=goals.map(g=>`<span class="goal ${state.flags[g.flag]?'done':''}" title="${esc(g.label)}" aria-label="${esc(g.label)}: ${state.flags[g.flag]?'done':'still needed'}">${svg(g.icon==='fire'?'fireGlyph':g.icon)}</span>`).join('');renderChapterUI();
+ const goals=CAMPAIGN?E.getChapter(state).goals:[{flag:'shelterBuilt',label:'Shelter'},{flag:'fireLit',label:'Fire'},{flag:'signalRaised',label:'Signal'}];
+ const journal=$('goals'),chapter=chapterNumber();
+ const progress=chapter+'-'+goals.map(goal=>Number(Boolean(state.flags[goal.flag]))).join('');
+ if(journal.dataset.progress!==progress){
+  journal.dataset.progress=progress;
+  journal.setAttribute('role','list');
+  journal.setAttribute('aria-label','Chapter goals');
+  journal.style.setProperty('--journal-row',((chapter-1)*100/6)+'%');
+  journal.innerHTML=goals.map(goal=>{
+   const complete=Boolean(state.flags[goal.flag]);
+   const description=esc(goal.label)+(complete?' · Complete':' · Still needed');
+   return `<span class="goal${complete?' done':''}" role="listitem" title="${description}"><span class="goal-painting" aria-hidden="true"></span><span class="sr-only">${description}</span></span>`;
+  }).join('');
+ }
+ renderChapterUI();
  actorHomes.clear();const targets=E.getTargets(state).map(t=>{const base=W.stageTarget?W.stageTarget(t,state):t;return staged?Stage.stageTarget(state.scene,base,state):base;}).filter(t=>CAMPAIGN||!state.completed||state.scene==='camp'||t.kind!=='person'),container=$('targets');
  const enteredRoom=targetScene!==state.scene;
  if(enteredRoom){container.innerHTML='';targetMarkup.clear();actorTracks.clear();actorPositions.clear();targetScene=state.scene;}
@@ -799,7 +828,16 @@ function settings(){
    </select></div><p class="small" role="status" id="lighting-status"></p>`:'';
  const releaseNote=release?`<p class="settings-release">Game release ${esc(release)}</p>`:'';
  const filmChoice=Film?`<div class="setting"><label for="film-chapter-mode">Chapter films</label><select id="film-chapter-mode"><option value="watch">Play with the story</option><option value="skip">Skip films</option></select></div>`:'';
- modal('Settings',`${filmChoice}${lightChoice}<div class="setting"><span id="captions-label">Brief reaction captions</span><button id="toggle-captions" aria-labelledby="captions-label" aria-pressed="${prefs.captions}">${prefs.captions?'On':'Off'}</button></div><div class="setting"><span id="motion-label">Reduce motion</span><button id="toggle-motion" aria-labelledby="motion-label" aria-pressed="${prefs.reduced}">${prefs.reduced?'Reduced':'On'}</button></div>${voiceAvailable?`<div class="setting"><span id="narration-label">Narration · device voice</span><button id="toggle-narration" aria-labelledby="narration-label" aria-pressed="${prefs.narration}">${prefs.narration?'On':'Off'}</button></div>`:''}<div class="setting"><span>Return to the shore</span><button id="restart">New game</button></div><p class="small">An original adventure inspired by the Grafton castaways. Puzzles and dialogue are fictional; the historical rescue is documented in the project sources. Artwork was generated with AI.</p><p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/adventure" target="_blank" rel="noopener noreferrer">Sources and project files ↗</a></p>${releaseNote}`);$('toggle-captions').onclick=()=>{prefs.captions=!prefs.captions;savePrefs();settings();$('toggle-captions').focus();};$('toggle-motion').onclick=()=>{prefs.reduced=!prefs.reduced;savePrefs();settings();$('toggle-motion').focus();};if($('toggle-narration'))$('toggle-narration').onclick=()=>{prefs.narration=!prefs.narration;savePrefs();settings();$('toggle-narration').focus();};$('restart').onclick=restart;
+ const musicChoice=score?'<div class="setting music-setting"><label for="music-volume">Music volume</label><input type="range" id="music-volume" min="0" max="100" step="1"><output for="music-volume" id="music-value" aria-hidden="true"></output></div>':'';
+ modal('Settings',`${filmChoice}${musicChoice}${lightChoice}<div class="setting"><span id="captions-label">Brief reaction captions</span><button id="toggle-captions" aria-labelledby="captions-label" aria-pressed="${prefs.captions}">${prefs.captions?'On':'Off'}</button></div><div class="setting"><span id="motion-label">Reduce motion</span><button id="toggle-motion" aria-labelledby="motion-label" aria-pressed="${prefs.reduced}">${prefs.reduced?'Reduced':'On'}</button></div>${voiceAvailable?`<div class="setting"><span id="narration-label">Narration · device voice</span><button id="toggle-narration" aria-labelledby="narration-label" aria-pressed="${prefs.narration}">${prefs.narration?'On':'Off'}</button></div>`:''}<div class="setting"><span>Return to the shore</span><button id="restart">New game</button></div><p class="small">An original adventure inspired by the Grafton castaways. Puzzles and dialogue are fictional; the historical rescue is documented in the project sources. Artwork was generated with AI.</p><p class="small"><a href="https://github.com/OnFiala/auckland-castaways/tree/main/adventure" target="_blank" rel="noopener noreferrer">Sources and project files ↗</a></p>${releaseNote}`);$('toggle-captions').onclick=()=>{prefs.captions=!prefs.captions;savePrefs();settings();$('toggle-captions').focus();};$('toggle-motion').onclick=()=>{prefs.reduced=!prefs.reduced;savePrefs();settings();$('toggle-motion').focus();};if($('toggle-narration'))$('toggle-narration').onclick=()=>{prefs.narration=!prefs.narration;savePrefs();settings();$('toggle-narration').focus();};$('restart').onclick=restart;
+ if(score){
+  const slider=$('music-volume'),readout=$('music-value');
+  const display=()=>{const value=prefs.music?prefs.music+'%':'Off';readout.textContent=value;slider.setAttribute('aria-valuetext',value);};
+  slider.value=String(prefs.music);display();
+  slider.oninput=()=>{
+   prefs.music=Number(slider.value);display();score.setVolume(prefs.music);savePrefs();
+  };
+ }
  if(Film){
   const mode=$('film-chapter-mode');mode.value=Film.chapterMode();mode.onchange=()=>Film.setChapterMode(mode.value);
  }
@@ -886,9 +924,9 @@ function journey(){
  if(state.completed&&Film)entries.push(`<li class="past"><span>✓</span><div><strong>Epilogue</strong><small>The names that came home</small></div>${replayButton(Film.timeline.at(-1))}</li>`);
  modal('Our journey',`<ol class="journey-map">${entries.join('')}</ol><p class="small">Progress saves automatically. Complete the work in each place to open the next passage.</p><p class="small">Chapters I–V: Alick McLaren. Chapters VI–VII: Captain Musgrave.</p>${state.completed&&Film?'<button type="button" id="film-feature" class="dialog-button">Watch the whole story</button>':''}${state.completed?'<button id="return-ending" class="dialog-button">Revisit the ending</button>':''}`);
  for(const button of $('modal-body').querySelectorAll('[data-replay-film]')){
-  button.onclick=()=>Film.open([button.dataset.replayFilm],{replay:true,auto:true,reduced:effectiveReduced(),focus:button});
+  button.onclick=()=>openFilm([button.dataset.replayFilm],{replay:true,auto:true,reduced:effectiveReduced(),focus:button});
  }
- if(state.completed&&Film)$('film-feature').onclick=()=>Film.open(Film.timeline.map(r=>r.id),{
+ if(state.completed&&Film)$('film-feature').onclick=()=>openFilm(Film.timeline.map(r=>r.id),{
   replay:true,reduced:effectiveReduced(),auto:true,focus:$('film-feature')
  });
  if(state.completed){
@@ -913,6 +951,7 @@ const entry=entryFilm();
 let roomReady=false,filmReady=!entry;
 function enterVoyage(){
  if(!roomReady||!filmReady)return;
+ score?.setChapter(chapterNumber());
  if(CAMPAIGN&&state.completed)revealCompletion();
  else if(entry?.reel==='prologue')openingConversation();
  else if(entry)chapterArrival();

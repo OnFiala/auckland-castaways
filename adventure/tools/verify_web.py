@@ -10,6 +10,10 @@ from pathlib import Path
 # These data-only scripts carry the film sound through both HTTP and file://.
 # Encoded samples can contain text that resembles a relative asset address.
 FILM_AUDIO_PACK = 'assets/story-film-compat/*-audio.js'
+EDITION = r'editions/[0-9]+-[a-f0-9]{20}/'
+CSS_URL = re.compile(r'url\(\s*([\'"]?)(.*?)\1\s*\)', re.S)
+JS_ASSET = re.compile(r"""(['"`])(?:asset:)?(""" + EDITION +
+                      r"""assets/[\w./-]*)(?=\1|\$\{)""")
 
 
 class Entry(HTMLParser):
@@ -35,10 +39,24 @@ def verify(directory, previous=None):
     info = json.loads((directory / 'release.json').read_text(encoding='utf-8'))
     edition = info['directory']
     expected = f"editions/{info['release']}-{info['build'][:20]}/"
-    if edition != expected or not re.fullmatch(r'editions/[0-9]+-[a-f0-9]{20}/', edition):
+    if edition != expected or not re.fullmatch(EDITION, edition):
         raise ValueError('Mismatched edition directory')
     expected_files = info['files']
     current_files = {'index.html'} | {f.relative_to(directory).as_posix() for f in (directory / edition).rglob('*') if f.is_file()}
+    for group, address in info.get('shared', {}).items():
+        if (not re.fullmatch(r'assets/(?:[\w.-]+/?)?', group) or '..' in group.split('/') or
+                not re.fullmatch(EDITION + re.escape(group), address) or address.startswith(edition)):
+            raise ValueError(f'Invalid shared asset group: {address}')
+        original = directory / address
+        if group.endswith('/') and original.is_dir():
+            files = [p for p in original.rglob('*') if p.is_file()]
+        elif not group.endswith('/') and original.is_file():
+            files = [original]
+        else:
+            files = []
+        if not files or (directory / edition / group).exists():
+            raise ValueError(f'Missing or ambiguous shared asset group: {address}')
+        current_files.update(p.relative_to(directory).as_posix() for p in files)
     if current_files != set(expected_files):
         raise ValueError('Current release tree differs from its manifest')
     for name in current_files:
@@ -49,26 +67,37 @@ def verify(directory, previous=None):
     if entry.meta.get('game-release') != info['release'] or entry.meta.get('game-build') != info['build'][:20]:
         raise ValueError('Entry release label differs from the served files')
     for link in entry.resources:
-        if not link.startswith(edition) or link not in current_files:
+        if not re.match(EDITION, link) or link not in current_files:
             raise ValueError(f'Entry references an unpinned or missing file: {link}')
 
-    for sheet in (directory / edition).rglob('*.css'):
-        for match in re.finditer(r'url\(\s*([\'"]?)(.*?)\1\s*\)', sheet.read_text(encoding='utf-8'), re.S):
+    for sheet in (directory / file for file in current_files if file.endswith('.css')):
+        for match in CSS_URL.finditer(sheet.read_text(encoding='utf-8')):
             url = match[2].strip()
             if url.startswith(('data:', '#')):
                 continue
             target = (sheet.parent / url).resolve()
-            if not target.is_relative_to(directory / edition) or not target.is_file():
+            if not target.is_relative_to(directory) or target.relative_to(directory).as_posix() not in current_files:
                 raise ValueError(f'Broken stylesheet image {sheet.name}: {url}')
-    for script in (directory / edition).rglob('*.js'):
+    for script in (directory / file for file in current_files if file.endswith('.js')):
         if script.match(FILM_AUDIO_PACK):
             continue
         source = script.read_text(encoding='utf-8')
         if re.search(r'(?<![\w.+/:-])assets/', source) or 'asset:assets/' in source:
             raise ValueError(f'An unpinned resource remains in {script.name}')
         for painting in re.findall(r"""['"]asset:([^'"]+)['"]""", source):
-            if not painting.startswith(edition) or painting not in current_files:
+            if painting not in current_files:
                 raise ValueError(f'Missing scene detail in {script.name}: {painting}')
+        for match in JS_ASSET.finditer(source):
+            address = match[2]
+            if address in current_files:
+                continue
+            # Directory and filename-prefix literals are used to load individual
+            # actors, reels or sprites. Verify they lead into the same manifest.
+            tail = source[match.end():]
+            if ((address.endswith('/') or tail.startswith('${') or re.match(r"""['"`]\s*\+""", tail))
+                    and any(file.startswith(address) for file in current_files)):
+                continue
+            raise ValueError(f'Missing script asset in {script.name}: {address}')
     retained = 0
     if previous:
         for prior in (p for p in previous.rglob('*') if p.is_file()):

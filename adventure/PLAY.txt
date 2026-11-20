@@ -13,7 +13,8 @@ it in the satchel and click another object to combine or use it. The magnifier
 examines a painting. The eye briefly reveals interactive areas. The question
 mark gives a hint in stages. In close-ups you can use the painted parts or
 open Working controls. Tab, Enter and Escape work throughout the game.
-Settings shows the release number. Under Scene lighting, Automatic adapts to
+Three small paintings above the scene show the work ahead. A check marks
+each finished objective. Settings shows the release number. Under Scene lighting, Automatic adapts to
 your display, Cinematic gives the full moving light, Balanced reduces the
 work, and Original painting restores the earlier look.
 The opening film follows the Grafton from Sydney to the wreck. At daylight
@@ -29,6 +30,9 @@ After the ending you can watch the whole film in sequence.
 
 Motion follows your system preference and can be reduced in Settings.
 The eight films include their own English voice, music and sound effects.
+While you play, a quiet instrumental score changes with each chapter.
+A few discoveries and repairs bring a short musical response. Music volume
+in Settings adjusts the score and these phrases. Move it to 0 for silence.
 Spoken dialogue during play is a separate setting. It starts off and uses
 your browser's voice. An installed English voice works offline.
 

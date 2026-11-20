@@ -13,7 +13,7 @@ from PIL import Image, ImageChops, ImageStat
 from verify_web import FILM_AUDIO_PACK
 
 SOURCE = Path(__file__).resolve().parents[1] / 'dist'
-PASSTHROUGH_TYPES = {'.webp', '.wav', '.woff2', '.txt', '.mp4', '.webm', '.vtt'}
+PASSTHROUGH_TYPES = {'.webp', '.wav', '.mp3', '.woff2', '.txt', '.mp4', '.webm', '.vtt'}
 RUNTIME_TYPES = PASSTHROUGH_TYPES | {'.js', '.html', '.css', '.png'}
 
 

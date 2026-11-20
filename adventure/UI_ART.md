@@ -2,6 +2,12 @@
 
 Šest materiálů rozhraní má vlastní atlas. Jeho souborové vlastnosti, souřadnice a prahové hodnoty alfa kanálu uvádí manifest. Text a obsah inventáře doplňuje aplikace. Malby prostředí a pracovní detaily jsou evidované zvlášť. [Manifest atlasu rozhraní](dist/assets/ui/atlas.json) · [Výtvarná a povětrnostní kontrola](reviews/26-weather-and-art.md)
 
+## Cíle v lodním deníku
+
+Uprostřed dřevěné lišty jsou vždy tři kvašové miniatury. První noc představují přístřešek ze zachráněné plachty, oheň na polenech a světlý cíp plátna uvázaný na tyči. V kovárně jejich místo zaujmou měch, žhavé železo v kleštích a tři vykované hřeby. Po splnění dostane příslušná kresba světlou fajfku na tmavé pečeti. Anglický název cíle a jeho stav jsou dostupné také čtečce a při podržení ukazatele.
+
+Jednadvacet ilustrací vzniklo pro tuto hru pomocí ImageGen. Při malbě signálu, měchu na vodu a mapy sloužily jako předloha skutečné výtvarné podklady hry. Průhledný atlas WebP má 432 × 1008 px, sedm řádků odpovídá sedmi kapitolám. Každá miniatura má vlastní buňku 144 × 144 px. [Atlas cílů](dist/assets/ui/journal-goals.webp)
+
 ## Archiv z 16. listopadu 2026
 
 Výtvarné zadání navázalo na jemné grafitové obrysy, kvašovou kresbu a opotřebené materiály tehdejších ilustrací `sailor.png` a `camp.png`. Výsledný atlas obsahoval tmavé lodní dřevo, plátno s koženým okrajem, list papíru, zavřenou brašnu, prázdné mosazné tlačítko a papírový štítek. Povrchy byly záměrně klidné, aby na nich zůstal čitelný text a inventář.
