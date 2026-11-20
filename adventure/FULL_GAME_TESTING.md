@@ -2,6 +2,14 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## Edition 19 · Music and the painted journal
+
+Chromium and WebKit played the hosted distribution from its exact release files. In a saved camp with dry kindling ready, using the tinderbox lit the hearth and produced a separate audible musical phrase. A passive Web Audio analyser measured both the chapter music and the new phrase after the game applied its volume. During the following line of dialogue, the music settled at 38% of its exploring level. Ending the conversation restored the level. Moving **Music volume** to **Off** produced zero output in both engines. The regression suite also covers film replay, blocked autoplay, delayed downloads, old saves and changes of chapter. [Score tests](tests/island-score.test.cjs) · [Recordings and mastering](artwork/ISLAND_SCORE.md)
+
+The extracted ZIP was played through all seven chapters in Chromium. The desktop, touch and keyboard paths, a saved inventory combination and recovery from a missing painting were also exercised. In the public game, the first shore displayed all three labelled objectives and the volume setting opened at 65%. Header checks ran from 320 to 1280 pixels, including a saved game with one completed objective. [Header screenshots at playing size](UI_ART.md)
+
+An anonymous download of the public ZIP matched the tested archive. Both contained 144,701,761 bytes and had SHA-256 `e1feab4e07973b65b2b38f50a20f20d9b7d466c490b1065d8ded2a36ddf34400`. The release checks passed for the complete voyage, the standalone film and hosted film playback in Chromium and WebKit. [Edition 19 downloads](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v19) · [Completed release checks](https://github.com/OnFiala/auckland-castaways/actions/runs/44794989147)
+
 ## Edition 18 · The journey from the first frame
 
 The opening starts before the shore painting finishes loading. Each chapter film hands control back to someone present in the room. The ending follows boarding the rescue boat. A separate film bookmark records the reel and time. An older save with a tool already picked up resumes in its room. An untouched first shore can receive the opening. The optional journal plays an unlocked reel with one click. [Campaign integration](dist/app.js) · [Story and save regressions](tests/story-film.test.cjs)
