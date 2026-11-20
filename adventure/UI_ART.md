@@ -8,6 +8,10 @@ Uprostřed dřevěné lišty jsou vždy tři kvašové miniatury. První noc př
 
 Jednadvacet ilustrací vzniklo pro tuto hru pomocí ImageGen. Při malbě signálu, měchu na vodu a mapy sloužily jako předloha skutečné výtvarné podklady hry. Průhledný atlas WebP má 432 × 1008 px, sedm řádků odpovídá sedmi kapitolám. Každá miniatura má vlastní buňku 144 × 144 px. [Atlas cílů](dist/assets/ui/journal-goals.webp)
 
+Na začátku první noci ukazuje veřejná hra přístřešek z plachty, oheň a signál na břehu.
+
+![Horní lišta ve zveřejněné hře před prvním úkolem.](reviews/journal-first-night.jpg)
+
 Skutečná lišta po postavení přístřešku při šířce okna 724 px. V Chromiu jsme kontrolovali také rozložení při šířkách 320, 375, 640, 844 a 1280 px.
 
 ![První noc. U přístřešku je fajfka, oheň a signál ještě čekají.](reviews/journal-goals.webp)
