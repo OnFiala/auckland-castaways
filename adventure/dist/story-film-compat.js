@@ -39,11 +39,17 @@
     element.after(canvas);
     const pen = canvas.getContext('2d', {alpha: false});
     let duration = 0;
-    const shots = reel.shots.map(shot => {
+    const passages = reel.shots.map(passage => {
       const start = duration;
-      duration += shot.seconds;
-      // Let a dissolve settle before holding a painting in reduced-motion mode.
-      return {end: duration, frame: Math.floor((start + Math.min(1, shot.seconds / 2)) * fps)};
+      duration += passage.seconds;
+      return start;
+    });
+    // A held painting changes on the same edit as the movie, even during a sentence.
+    const cuts = window.CastawayFilmCuts?.[reel.id] || passages;
+    const shots = cuts.map((start, index) => {
+      const end = cuts[index + 1] ?? duration;
+      const heldTime = start + Math.min(1, (end - start) / 2);
+      return {end, frame: Math.floor(heldTime * fps)};
     });
     const frameCount = Math.round(duration * fps);
     const sheets = new Map();

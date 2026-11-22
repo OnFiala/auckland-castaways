@@ -1,0 +1,124 @@
+{
+  "title": "Until We Return · Moving objects and hands",
+  "created": "2026-11-22",
+  "generator": "OpenAI ImageGen",
+  "record": "Two original text-directed painting sessions made for this film. The cleaned backgrounds and alpha-defined foreground cels are the source artwork read by the renderer.",
+  "rights": "Original project art. See the repository rights assessment.",
+  "rights_record": "../../../../../RIGHTS.md",
+  "historical_basis": {
+    "source": "../../../../../sources/originals/musgrave-1866-pdftotext.txt",
+    "source_id": "S001",
+    "facts": "Musgrave records sounding in Carnley Harbour, flooding to the top of the cabin table, an iron ballast block for an anvil, and hundreds of handmade fastenings for the dinghy.",
+    "reconstruction": "The angle of view, lamp design and swing, shape of the lead, tools, colours, arm movements and number of blows are staged reconstructions. The painted arms represent the work and are not portraits."
+  },
+  "sheets": {
+    "settings": {
+      "generation": "exec-62145727-2441-41a9-9729-680fc5b3a3f1",
+      "sha256": "92fe1cade286277e027823293e12d75e132d399370db84b7e3c404fb152bf306",
+      "pixels": [
+        1672,
+        941
+      ],
+      "art_direction": "Four clean plates of the sea beside a schooner, an improvised anvil, a dinghy strake and a flooded wooden cabin. No foreground hands or tools were requested in the clean plates."
+    },
+    "foreground": {
+      "generation": "exec-9cf43f0d-18c5-4cbd-b267-d93a6c81263d",
+      "sha256": "9e3f67e80c4e044a80635a443bcae4a4478082c4bfc52d36afb37fad0640891d",
+      "pixels": [
+        1312,
+        1199
+      ],
+      "art_direction": "Four isolated painted cels on transparent ground. A navy-sleeved arm grips an iron smith’s hammer, a rolled tan sleeve holds a shipwright’s mallet, and a lead and burning oil lamp hang vertically."
+    }
+  },
+  "images": [
+    {
+      "file": "sounding-sea.webp",
+      "sheet": "settings",
+      "crop_xywh": [
+        2,
+        1,
+        832,
+        468
+      ],
+      "sha256": "d300b121da7f0535ed2f2425902f8eba38fb6273350026f76b294a2889f8e05a"
+    },
+    {
+      "file": "ballast-anvil.webp",
+      "sheet": "settings",
+      "crop_xywh": [
+        838,
+        1,
+        832,
+        468
+      ],
+      "sha256": "cf48ab202ef91ed6a098692f0b80f1a3fc90ee28e1a8b42617d253842f0c28f8"
+    },
+    {
+      "file": "dinghy-strake.webp",
+      "sheet": "settings",
+      "crop_xywh": [
+        2,
+        472,
+        832,
+        468
+      ],
+      "sha256": "819825db76e286d77737d02a2d3c8311389337597fca054160c62186bf2e6347"
+    },
+    {
+      "file": "flooded-cabin.webp",
+      "sheet": "settings",
+      "crop_xywh": [
+        838,
+        472,
+        832,
+        468
+      ],
+      "sha256": "b543a9b1b62a6249f560734e3b9b6157a7068ce07324c59c951c916dfc0d968b"
+    },
+    {
+      "file": "smith-arm.webp",
+      "sheet": "foreground",
+      "crop_xywh": [
+        11,
+        72,
+        630,
+        271
+      ],
+      "sha256": "c1b6a26dd46fae57fbddc7b286511cd1d00871d50ccba1e6d910bee6445bc7f9"
+    },
+    {
+      "file": "boatwright-arm.webp",
+      "sheet": "foreground",
+      "crop_xywh": [
+        671,
+        71,
+        634,
+        272
+      ],
+      "sha256": "fd473c432b0eea6518cff9f28f1567d66bb2cce5ea8f98886debe12d411e2bbd"
+    },
+    {
+      "file": "sounding-lead.webp",
+      "sheet": "foreground",
+      "crop_xywh": [
+        173,
+        396,
+        307,
+        772
+      ],
+      "sha256": "e478bc81e56bbccbee6d58b90b217d4f0def1d0b6bf52909dea5f2d710c7dc67"
+    },
+    {
+      "file": "ships-lamp.webp",
+      "sheet": "foreground",
+      "crop_xywh": [
+        836,
+        383,
+        300,
+        785
+      ],
+      "sha256": "6a3c53e71d719aec7169c2381954ea26397b4d54851cc219c12bd2b4623ae455"
+    }
+  ]
+}

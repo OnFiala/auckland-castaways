@@ -407,6 +407,19 @@ def reduced_and_skipped(browser, index, output):
           const el = document.getElementById('film-caption');
           return el.offsetWidth && el.textContent && el.textContent !== first;
         }""", arg=first, timeout=16000)
+        second_picture = None
+        if int(page.locator('meta[name="game-release"]').get_attribute('content')) >= 20:
+            # The first sentence block contains several compositions. Follow the
+            # first picture cut while the reduced-motion renderer holds each one.
+            cuts = page.evaluate('window.CastawayFilmCuts.prologue.slice(0, 3)')
+            passage_end = page.evaluate('window.CastawayFilmScript.timeline[0].shots[0].seconds')
+            assert len(cuts) == 3 and cuts[0] == 0 < cuts[1] < cuts[2] <= passage_end
+            held = int((cuts[1] + min(1, (cuts[2] - cuts[1]) / 2)) * 8)
+            page.wait_for_function("n => Number(document.querySelector('#film-compat-canvas')?.dataset.frame) === n",
+                                   arg=held, timeout=16000)
+            shown = picture(page)
+            changed, _ = compare(b, shown)
+            second_picture = {'seconds': cuts[1], 'heldFrame': held, 'changedPixels': changed}
         assert not delivery.media, 'Reduced motion need not fetch a moving video'
         exit_to_game(page, 'prologue')
         assert state(page) == before
@@ -426,7 +439,7 @@ def reduced_and_skipped(browser, index, output):
         page.wait_for_function("JSON.parse(localStorage.getItem('castaways-adventure-v4')).chapter===2")
         expect(page.locator('#dialogue')).to_be_visible()
         expect(page.locator('#story-film')).to_be_hidden()
-        return {'heldShot':True, 'timedCaptions':True, 'savedSkipChapter':state(page)['chapter']}
+        return {'heldShot':True, 'timedCaptions':True, 'firstEdit':second_picture, 'savedSkipChapter':state(page)['chapter']}
 
 
 def main():

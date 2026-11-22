@@ -1,0 +1,102 @@
+{
+  "departure": {
+    "backing": "departure-back.webp",
+    "matte": "departure-matte.png",
+    "use": "Only the narrow area revealed by the moving original is taken from the painted backing. The actor, fittings and vessel all retain the original brushwork.",
+    "generator": "OpenAI ImageGen, image edit referenced to the original painting",
+    "prompt": "Make a registered clean background plate to composite an animation shot. Edit the supplied existing painting in place, keeping precisely its original 16:9 framing, camera position, horizon, light, style, texture, spatial landmarks and every individual pixel outside the former boat. The finished file is the SAME hand-painted landscape but with NO vessel, people, spars, rigging, reflections of boat, or wake anywhere. Only paint in what would have been occluded behind the vessel; continue the nearby mountains perfectly across its silhouette and continue the adjacent water with the same depth, colours and brushwork. Absolutely no rearrangement or rescaling, no text, no border, no new human objects, no changes to land shape, sky or light. Remove the centrally placed little open dinghy with its three men, small sail, mast, ropes, bow, and all visible wake; replace where the people and hull were with the continuous soft horizontal horizon line and grey sea, where sail was with the same sunlit and shadowed hills to left and right.",
+    "generated_sha256": "2cd8c02980d1c014fdd0a261ac5b5992f33404a97fb959a21080152438800d5a",
+    "original_sha256": "dfdb682acf9eba321d1ed0340b3a3d6a6bac78a4ed4e391ff324c2e5c7c19076",
+    "backing_sha256": "46e66b6e85a3167b1777f6ce18a9cd6f3ff8263033b8a17304627268ba34366b",
+    "matte_sha256": "b3fc315939edafe6befe15048daaa6cf33f9669b291918e164b4a8bc136dd8ba",
+    "registration": "Robust similarity transform on static landscape or cabin features. Artist-traced contours were refined with the clean backing and seeded graph cut. Fine rigging was restored to the foreground.",
+    "affine": [
+      [
+        0.9997163371624106,
+        -3.1142605040866564e-05,
+        0.3946435821185015
+      ],
+      [
+        3.1142605040866564e-05,
+        0.9997163371624106,
+        0.01700576622817571
+      ]
+    ],
+    "inliers": 244
+  },
+  "approach": {
+    "backing": "approach-back.webp",
+    "matte": "approach-matte.png",
+    "use": "Only the narrow area revealed by the moving original is taken from the painted backing. The actor, fittings and vessel all retain the original brushwork.",
+    "generator": "OpenAI ImageGen, image edit referenced to the original painting",
+    "prompt": "Make a registered clean background plate to composite an animation shot. Edit the supplied existing painting in place, keeping precisely its original 16:9 framing, camera position, horizon, light, style, texture, spatial landmarks and every individual pixel outside the former boat. The finished file is the SAME hand-painted landscape but with NO vessel, people, spars, rigging, reflections of boat, or wake anywhere. Only paint in what would have been occluded behind the vessel; continue the nearby mountains perfectly across its silhouette and continue the adjacent water with the same depth, colours and brushwork. Absolutely no rearrangement or rescaling, no text, no border, no new human objects, no changes to land shape, sky or light. Remove the one small single-masted cutter seen left of center. The original dark headland on the left must slope naturally behind the mainsail; continue it toward the water and keep its visual contrast. Carry the distant horizon behind the cutter. The right hand rocky headland and all near beach rocks, straw and shingle stay exactly as original.",
+    "generated_sha256": "6abcad6a147eec19c4581dce0f8fc4df1186c0b7284e266bd08785097397df69",
+    "original_sha256": "03e3ba9421b13b46c139cfc2fd366d3a2a6400fc4646700ed9c8fed05c24f7e3",
+    "backing_sha256": "21ee82f7458c51db3dc4b1b7a8a567a5d07ea538d3255b9bed24ba005920440e",
+    "matte_sha256": "73c0a3eb6a85f63ec08f3d7da2f32c3dd312bbeaaef03f87bddc2979b017c009",
+    "registration": "Robust similarity transform on static landscape or cabin features. Artist-traced contours were refined with the clean backing and seeded graph cut. Fine rigging was restored to the foreground.",
+    "affine": [
+      [
+        1.000083342925246,
+        -1.367163802447087e-05,
+        0.30501575427968536
+      ],
+      [
+        1.367163802447087e-05,
+        1.000083342925246,
+        -0.05496290620432249
+      ]
+    ],
+    "inliers": 241
+  },
+  "helm": {
+    "backing": "helm-back.webp",
+    "matte": "helm-matte.png",
+    "use": "Only the narrow area revealed by the moving original is taken from the painted backing. The actor, fittings and vessel all retain the original brushwork.",
+    "generator": "OpenAI ImageGen, image edit referenced to the original painting",
+    "prompt": "Edit this exact artwork as a clean background layer for animation. Exactly same painting: 16:9 framing, perspective, size, sky, background, identical 1860s maritime oil brushwork, lighting and colors. Touch only the specified movable object. Show what is normally hidden underneath. Do not change the camera or any other material, no framing, no typography, one full canvas.Erase only the sailor’s entire blue arm crossing the upper left, his hand and the long golden horizontal steering tiller. Fill the resulting narrow space with the same storm sea and white spray at the same angle, continue the gunwale across the obscured gap in exactly the same place. The separate upright reddish wooden rudder post on the right and its bracket STAY. The lower dark knee is also untouched. No new person or tool.",
+    "generated_sha256": "162e24d54db6be5fa9849035c9fe59b1f631a1c4f618aa4ad402b816a3783303",
+    "original_sha256": "0a5014f6aab77462358f4606927822dde12dbc055295cd0066df6f2c333161ea",
+    "backing_sha256": "f5137e8a0823a4b1f06f63587ae71526374be278abf017396806f8910e7832ee",
+    "matte_sha256": "1f55bd4fbb0c5612ac70c51b1db9b4ab2741786f7ebd0507acedaf6218c42b40",
+    "registration": "Robust similarity transform on static landscape or cabin features. Artist-traced contours were refined with the clean backing and seeded graph cut. Fine rigging was restored to the foreground.",
+    "affine": [
+      [
+        0.9996365933075119,
+        -0.00020935477619272343,
+        1.3852328782370302
+      ],
+      [
+        0.00020935477619272343,
+        0.9996365933075119,
+        0.6413722511887189
+      ]
+    ],
+    "inliers": 188
+  },
+  "pump": {
+    "backing": "pump-back.webp",
+    "matte": "pump-matte.png",
+    "use": "Only the narrow area revealed by the moving original is taken from the painted backing. The actor, fittings and vessel all retain the original brushwork.",
+    "generator": "OpenAI ImageGen, image edit referenced to the original painting",
+    "prompt": "Edit this exact artwork as a clean background layer for animation. Exactly same painting: 16:9 framing, perspective, size, sky, background, identical 1860s maritime oil brushwork, lighting and colors. Touch only the specified movable object. Show what is normally hidden underneath. Do not change the camera or any other material, no framing, no typography, one full canvas.Lift out the long movable pump handle and the two forearms and hands holding it, up to the blue sleeves. Continue the warm timber surfaces, a fold of dark trousers and lamp-lit shadows that would be behind the removed arm/handle. Preserve pump housing, foot, discharge at the left, original pivot, everything from the man’s shoulders upward, the contours of his upright seated-looking body and the boots, trousers, light and flood below. No extra handle, arms, exposed skin or lettering in the cleared area. It is a compositing clean plate, the arms are added back by the animator.",
+    "generated_sha256": "dfbf40417858bc27aebfa279ef73003c6f630d25fd1e067f32ee05b8766a9696",
+    "original_sha256": "71ff5b6646aca532c1652f2679db6805a2584dcf596271f0fcb8f1ef42676336",
+    "backing_sha256": "8d8f6a2306448a593d9b5277007e4102555ce70172ab31f201216e3fa3ffbf3a",
+    "matte_sha256": "d5786c88d486847d6523f0fc998dff30cea63663f644c9c7d8f9d900f6b9e492",
+    "registration": "Robust similarity transform on static landscape or cabin features. Artist-traced contours were refined with the clean backing and seeded graph cut. Fine rigging was restored to the foreground.",
+    "affine": [
+      [
+        1.0001840673206206,
+        3.02028670273607e-06,
+        0.1606872532998316
+      ],
+      [
+        -3.02028670273607e-06,
+        1.0001840673206206,
+        0.2288647565258841
+      ]
+    ],
+    "inliers": 290
+  }
+}

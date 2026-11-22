@@ -19,29 +19,29 @@ VOICES_HASH = 'bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d'
 
 # Each new cue starts on these words. The full spoken/captioned text stays in the script.
 CUTS = {
-    'outfit': ['to look for tin', 'They found none.', 'They took'],
-    'hearth-remains': ['in the shingle', 'Nearby,', 'mark where'],
-    'schooner': ['Close under', 'twenty fathoms'],
-    'wreck': ['The other'],
-    'cabin-table': ['the sea was'],
-    'shore-dawn': ['Thomas Musgrave', 'with Alick'],
-    'beach': ['From the wreck', 'That night'],
-    'camp-shelter': ['and set them', 'By winter'],
-    'cabin': ['At the table', 'from thin'],
-    'forge-cold': ['became the'],
-    'forge-lit': ['Out in the yard', 'he still'],
-    'slipway': ['an auger', 'There was still'],
-    'slipway-ready': ['Henry and George'],
-    'crossing-wet': ['sailed from', 'The gale'],
-    'crossing-bailed': ['Musgrave held', 'and pumped'],
-    'harbour': ['Musgrave needed', 'He could'],
-    'chartroom': ['collecting money', 'People gave'],
-    'landing': ['aboard Flying', 'The house', 'when they'],
-    'return-camp': ['to tell', 'Both came'],
-    'ending': ['aboard Flying', 'All five'],
-    'invercauld-wreck': ['the Invercauld', 'Nineteen of'],
-    'skin-boat': ['Andrew Smith', 'Two could'],
-    'julian': ['the Julian', 'Only George', 'and Robert'],
+    'outfit': ['If the Grafton', 'friends would', 'Five men sailed'],
+    'hearth-remains': ['A few ribs', 'On shore,'],
+    'schooner': ['On New Year’s Day', 'Twenty fathoms'],
+    'wreck': ['Each swell', 'At midnight'],
+    'cabin-table': ['The men abandoned', 'A quarter of an hour later'],
+    'shore-dawn': ['Thomas Musgrave', 'Alick McLaren', 'Their boat'],
+    'beach': ['He walked', 'from the beach'],
+    'camp-shelter': ['Wind still', 'so the men'],
+    'cabin': ['Raynal carved', 'He used soot'],
+    'forge-cold': ['They made', 'They would'],
+    'forge-lit': ['The keel', 'All the steel'],
+    'slipway': ['It still', 'They turned', 'the Grafton’s'],
+    'slipway-ready': ['On trial', 'Three could', 'Henry and George'],
+    'crossing-wet': ['left Camp Cove', 'Within twenty'],
+    'crossing-bailed': ['Musgrave pumped', 'Nearly half'],
+    'harbour': ['Captain Cross', 'Next morning'],
+    'chartroom': ['By the second', 'with blankets'],
+    'landing': ['Under shortened', 'Captain Cross and Musgrave', 'The house'],
+    'return-camp': ['Cross and Musgrave', 'The cutter', 'It was too'],
+    'ending': ['Bread and butter', 'After nearly'],
+    'invercauld-wreck': ['Captain Dalgarno', 'Of twenty-five'],
+    'skin-boat': ['Smith wrote', 'two men crossed'],
+    'julian': ['Only George', 'survived to sail'],
 }
 # Pronunciations for the narrator's English reading. No surviving voice recording is presumed.
 NAME_SOUNDS = {
@@ -142,19 +142,24 @@ def render_voice(voice, shot, chunks):
             raise ValueError(f"Review narration density at {shot['plate']}: {speed:.2f}")
         samples, starts = voice.render(chunks, speed)
     if closing:
-        # Rest between the beach and hearth observations. Cut inside the existing sentence pause.
-        boundary = round(starts[2] * RATE)
-        candidates = range(boundary - int(.28*RATE), boundary - int(.012*RATE), int(.005*RATE))
-        cut = min(candidates, key=lambda i: np.mean(samples[i-60:i+60]**2))
-        pause = .92
-        samples = np.concatenate([samples[:cut], np.zeros(round(pause*RATE)), samples[cut:]])
-        starts = [t + (pause if i >= 2 else 0) for i, t in enumerate(starts)]
+        # Give the last observation a breath at its actual sentence boundary. Retain the
+        # room tone at the tail even if a future reading runs longer than this one.
+        boundary_index = next((i for i in reversed(range(1, len(chunks)))
+                               if chunks[i-1].endswith(('.', '?', '!'))), None)
+        pause = min(.86, max(0, seconds - len(samples) / RATE - 2.35))
+        if boundary_index is not None and pause > .1:
+            boundary = round(starts[boundary_index] * RATE)
+            candidates = range(max(120, boundary - int(.28 * RATE)), boundary - int(.012 * RATE),
+                               int(.005 * RATE))
+            cut = min(candidates, key=lambda i: np.mean(samples[i - 60:i + 60] ** 2))
+            samples = np.concatenate([samples[:cut], np.zeros(round(pause * RATE)), samples[cut:]])
+            starts = [t + (pause if i >= boundary_index else 0) for i, t in enumerate(starts)]
     duration = len(samples) / RATE
     if duration > target:
         raise ValueError(f"Voice exceeds shot at {shot['plate']}")
     delay = min(1.36, max(.64, (seconds - duration) * .40))
     if closing:
-        delay = min(2.05, seconds - duration - 1.67)
+        delay = min(1.5, max(.50, seconds - duration - 1.55))
     # Equalize the close-miked reading gently before mixing all sound into the same acoustic space.
     samples = signal.sosfilt(signal.butter(2, 65, 'highpass', fs=RATE, output='sos'), samples)
     active = samples[np.abs(samples) > .017]
@@ -210,13 +215,13 @@ def write_cues(path, cues):
 
 
 def audio_cache(shot, work):
-    key = json.dumps([shot, cue_text(shot), NAME_SOUNDS, STYLE, 'closing-2' if shot['plate'] == 'hearth-remains' else 'reading-1'], ensure_ascii=False)
+    key = json.dumps([shot, cue_text(shot), NAME_SOUNDS, STYLE, 'closing-3' if shot['plate'] == 'hearth-remains' else 'reading-1'], ensure_ascii=False)
     tag = hashlib.sha256(key.encode()).hexdigest()[:14]
     return work / f"{shot['plate']}-{tag}.npz"
 
 
 def build_audio(timeline, args, out):
-    from story_film_foley import chapter_bed
+    from story_film_foley import chapter_bed, mix_narration
 
     narrator = None
     all_cues = {}
@@ -237,7 +242,7 @@ def build_audio(timeline, args, out):
             cursor += shot['seconds']
         voice = np.concatenate(speech)
         bed = chapter_bed(chapter, ci, RATE)
-        soundtrack = bed + voice[:, None]
+        soundtrack = mix_narration(bed, voice, RATE)
         raw = args.work / (chapter['id'] + '-mix.wav')
         tmp = raw.with_suffix('.tmp.wav')
         wavfile.write(tmp, RATE, soundtrack.astype(np.float32))

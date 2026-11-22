@@ -7,7 +7,7 @@
     "kind": "primary_edited_journal",
     "url": "https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles",
     "inspection_status": "inspected_passages",
-    "inspected_scope": "Title, introduction, chapters I–XIII: targeted reading of wreck, food, authority, forge, boat, departure, return; appendices I–III. Complete scan acquired, not every line proofread. Visual check: PDF page 16 historical map; text locators use printed pagination. Additional comparison: 10 and 29 May1864 entries, printed pp.31,35, on the fermented drink.",
+    "inspected_scope": "Title, introduction, chapters I–XIII: targeted reading of wreck, food, authority, forge, boat, departure, return; appendices I–III. Complete scan acquired, not every line proofread. Visual check: PDF page 16 historical map; text locators use printed pagination. Additional comparison: 10 and 29 May1864 entries, printed pp.31,35, on the fermented drink. For the filmed account, the original page images of Appendix III, pp. 171–172 (PDF pp. 187–188), were checked against both displayed stills. See S002.",
     "rights": "Underlying 1866 publication public domain; Commons PD statement S032; preserved Duke/IA scan.",
     "dependency_group": "MUSGRAVE",
     "notes": "London: Lockwood. x + 174 printed pages, plus front matter and publisher advertisements. Journal contains editor notes: distinguish voices.",
@@ -15,7 +15,7 @@
       "sources/originals/castawayonauckla01musg.pdf",
       "sources/originals/musgrave-1866-pdftotext.txt"
     ],
-    "checked_at": "2026-11-15"
+    "checked_at": "2026-11-22"
   },
   {
     "source_id": "S002",
@@ -25,12 +25,15 @@
     "kind": "primary_reprinted_letters",
     "url": "https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles/Appendix_3",
     "inspection_status": "inspected_text",
-    "inspected_scope": "Printed pp.171–174; captain letter and separate publisher note read in full. Revision oldid=11365299.",
+    "inspected_scope": "Printed pp. 171–174. The captain’s letter and separate publisher note were read in full. Wikisource revision oldid=11365299. The two film images were compared directly with pp. 171–172 of the 1866 edition (PDF pp. 187–188).",
     "rights": "1866 text public domain; Wikisource transcription credits and CC BY-SA apply to contributions. No bulk web transcription copied.",
     "dependency_group": "DALGARNO_PRESS",
     "notes": "Not independent of newspaper reprints; smoke speculation is the publishers’ addition, not Dalgarno eyewitness testimony.",
-    "local_files": [],
-    "checked_at": "2026-11-15"
+    "local_files": [
+      "adventure/artwork/story-film/second-cut/archive/dalgarno-1866.jpg",
+      "adventure/artwork/story-film/second-cut/archive/rescue-letter-1866.jpg"
+    ],
+    "checked_at": "2026-11-22"
   },
   {
     "source_id": "S003",
@@ -55,7 +58,7 @@
     "kind": "primary_translated_memoir",
     "url": "https://archive.org/details/wreckedonareef00rayngoog",
     "inspection_status": "inspected_passages",
-    "inspected_scope": "Title/preface; pp.40–43, 110–160, 228–285, 286–327 and contents/appendices searched. Complete PDF and raw OCR acquired; scan has 363 digital pages. Visual spot checks: digital PDF pages 1 (Google notice), 13 (crew frontispiece), 16 (title), 21 (contents), 24 (introduction), 50 (narrative). Passage reading otherwise uses raw OCR, not a full facsimile collation. Additional OCR reading: pp.152–154 (cook exemption),164–165 (cards),177–179 (fermented drink).",
+    "inspected_scope": "Title/preface; pp.40–43, 110–160, 228–285, 286–327 and contents/appendices searched. Complete PDF and raw OCR acquired; scan has 363 digital pages. Visual spot checks: digital PDF pages 1 (Google notice), 13 (crew frontispiece), 16 (title), 21 (contents), 24 (introduction), 50 (narrative). Passage reading otherwise uses raw OCR, not a full facsimile collation. Additional OCR reading: pp.152–154 (cook exemption),164–165 (cards),177–179 (fermented drink). In November 2026 the printed pages 38–39 (PDF pages 49–50) and page 160 (PDF page 167) were checked against the images for provisions, the pre-departure agreement, and chessmaking.",
     "rights": "IA NOT_IN_COPYRIGHT (US); 1874 original text and engravings PD. Google front sheet requests non-commercial file use and retained watermark: research copy, no blanket production-art clearance.",
     "dependency_group": "RAYNAL",
     "notes": "London: T. Nelson & Sons; Oxford copy digitized by Google. Retrospective account, several years after events. OCR is unreliable for numerals and accents.",
@@ -63,7 +66,7 @@
       "sources/originals/wreckedonareef00rayngoog.pdf",
       "sources/originals/wreckedonareef00rayngoog_djvu.txt"
     ],
-    "checked_at": "2026-11-15"
+    "checked_at": "2026-11-22"
   },
   {
     "source_id": "S005",
@@ -88,12 +91,12 @@
     "kind": "archaeology_report",
     "url": "https://www.doc.govt.nz/Documents/science-and-technical/has1entire.pdf",
     "inspection_status": "inspected_passages",
-    "inspected_scope": "Heritage Assessment Series 1, 34 printed pages /38 PDF pages; sources, chronology, structures, collections, references; figures inspected selectively. ISBN 978-0-478-15082-7.",
+    "inspected_scope": "Heritage Assessment Series 1, 34 printed pages /38 PDF pages; sources, chronology, structures, collections, references; figures inspected selectively. ISBN 978-0-478-15082-7. Figures 11 and 12 on printed p. 10 were compared visually with the two UW photographs (A004 and A005). Newspaper dates and catalogue identifiers were checked in the figure captions.",
     "rights": "Copyright DOC July 2016; report explicitly restricts reproduction of images without owners’ permission. No full report or modern images in repo.",
     "dependency_group": "PETCHEY_ARCHAEOLOGY",
     "notes": "Physical observations are independent evidence; narrative often cites Musgrave/Raynal/Druett. See short reading note, not a substitute copy.",
     "local_files": [],
-    "checked_at": "2026-11-15"
+    "checked_at": "2026-11-22"
   },
   {
     "source_id": "S007",
@@ -322,18 +325,21 @@
   },
   {
     "source_id": "S022",
-    "title": "FMIB 50706: Remains of the Grafton Wreck, Carnley Harbour",
-    "creator": "Charles Chilton volume; Freshwater and Marine Image Bank, University of Washington",
-    "date": "1909 publication",
-    "kind": "historical_image_record",
-    "url": "https://commons.wikimedia.org/wiki/File:FMIB_50706_Remains,_of_the_%22Grafton%22_Wreck,_Carnley_Harbour,_Auckland_Islands.jpeg",
-    "inspection_status": "inspected_metadata",
-    "inspected_scope": "Original 1148×771 JPEG; Commons oldid=1239700885; original publication source and PD statement checked.",
-    "rights": "PD-UWASH-FMIB. Acknowledge Freshwater and Marine Image Bank.",
-    "dependency_group": "HISTORICAL_IMAGE",
-    "notes": "Download of original JPEG returned 403; image NOT present locally. Publication date is not a verified shutter date.",
-    "local_files": [],
-    "checked_at": "2026-11-15"
+    "title": "FMIB 50706 — Remains, of the \"Grafton\" Wreck, Carnley Harbour, Auckland Islands",
+    "creator": "Canterbury scientific expedition photograph, in the volume edited by Charles Chilton. Scan by University of Washington Libraries.",
+    "date": "1907 expedition photograph, published in the 1909 volume",
+    "kind": "historical_photograph",
+    "url": "https://digitalcollections.lib.washington.edu/digital/collection/fishimages/id/50706/",
+    "inspection_status": "inspected_image",
+    "inspected_scope": "Full 1148 × 771 institutional JPEG, catalogue fields including rights, and published page reference. A standing figure next to exposed hull timbers on the shingle. Composition matched visually with S006, p. 10, figure 12.",
+    "rights": "The University of Washington identifies all Freshwater and Marine Image Bank materials as public domain and requests acknowledgement of that collection.",
+    "dependency_group": "CHILTON_1909_PHOTOGRAPHS",
+    "notes": "Chas. Chilton (ed.), The Subantarctic Islands of New Zealand, vol. I, Wellington, John Mackay, 1909, p. xxv, figure 8. S006 attributes the earlier newspaper appearance to Auckland Weekly News, 26 December 1907, Auckland Libraries AWNS-19071226-8-2. The 1909 catalogue year refers to the book. The caption gives no personal photographer credit.",
+    "local_files": [
+      "adventure/artwork/story-film/second-cut/archive/grafton-1909.jpg",
+      "sources/metadata/uw-fmib-50706.json"
+    ],
+    "checked_at": "2026-11-22"
   },
   {
     "source_id": "S023",
@@ -799,5 +805,23 @@
     "notes": "Useful pointer to Smith NLA copy. Sensational title is not evidence for allegations.",
     "local_files": [],
     "checked_at": "2026-11-15"
+  },
+  {
+    "source_id": "S054",
+    "title": "FMIB 50707 — Remains of Musgrave's Hut, \"Epigwait,\" Carnley Harbour, Auckland Islands",
+    "creator": "Canterbury scientific expedition photograph, in the volume edited by Charles Chilton. Scan by University of Washington Libraries.",
+    "date": "1907 expedition photograph, published in the 1909 volume",
+    "kind": "historical_photograph",
+    "url": "https://digitalcollections.lib.washington.edu/digital/collection/fishimages/id/50707/",
+    "inspection_status": "inspected_image",
+    "inspected_scope": "Full 1165 × 772 institutional JPEG, catalogue fields including rights, and published page reference. Stonework, fallen timber and a stove at the overgrown hut site. Composition matched visually with S006, p. 10, figure 11.",
+    "rights": "The University of Washington identifies all Freshwater and Marine Image Bank materials as public domain and requests acknowledgement of that collection.",
+    "dependency_group": "CHILTON_1909_PHOTOGRAPHS",
+    "notes": "Chas. Chilton (ed.), The Subantarctic Islands of New Zealand, vol. I, Wellington, John Mackay, 1909, p. xxvi, figure 9. S006 attributes the earlier newspaper appearance to Auckland Weekly News, 2 January 1908, Auckland Libraries AWNS-19080102-15-1. The 1909 catalogue year refers to the book. The caption gives no personal photographer credit.",
+    "local_files": [
+      "adventure/artwork/story-film/second-cut/archive/epigwaitt-1909.jpg",
+      "sources/metadata/uw-fmib-50707.json"
+    ],
+    "checked_at": "2026-11-22"
   }
 ]

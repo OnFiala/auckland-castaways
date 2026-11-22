@@ -1,0 +1,219 @@
+{
+  "title": "Eight new paintings for the second cut of Until We Return",
+  "date": "2026-11-22",
+  "generator": "OpenAI ImageGen",
+  "provenance": "Each shot was commissioned as an individual full-frame painting using the original text prompt stored with its record. The artists’ visual brief was informed by existing game and film paintings. No external painting, scan or photograph was submitted to the generator.",
+  "rights": "../../../../../RIGHTS.md",
+  "historical_notes": "../../HISTORY.md",
+  "sources": {
+    "S001": "../../../../../sources/originals/musgrave-1866-pdftotext.txt",
+    "S004": "../../../../../sources/originals/wreckedonareef00rayngoog_djvu.txt"
+  },
+  "acquisition": "Original 1672 × 941 RGB PNG images, center-fitted to 1600 × 900 with Pillow Lanczos and encoded as RGB WebP at quality 92, method 6. Coordinates are fractions of the released frame measured from its upper left. Each output was decoded and visually reviewed. A preliminary auger composition was replaced before the final edit.",
+  "paintings": [
+    {
+      "id": "rafters",
+      "file": "rafters.webp",
+      "composition": "Three men carry a round spar up to a forked upright at the edge of the new house.",
+      "evidence_and_staging": "S001, chapter II, pp. 15–16, records the use of salvaged spars. The raising gesture, three workers and choice of joint are staged. Their names are unspecified.",
+      "anchors": {
+        "beam-seat": [
+          0.74,
+          0.12
+        ],
+        "leading-hands": [
+          0.55,
+          0.23
+        ],
+        "middle-horizon": [
+          0.58,
+          0.52
+        ]
+      },
+      "source_sha256": "b812acac41e2c3126ecbcdaded135a41a5cf3af02fb69776e738b129c6034d2f",
+      "sha256": "d6c4ea83cd8e3a670608aaf2ba478296527536c6eea67b693456550c573c6536",
+      "bytes": 532222,
+      "prompt": "Produce ONE original fine-art painting, edge to edge. Native WIDESCREEN 16:9 single composition. For a closely observed historical motion-picture of the Auckland Island Grafton castaways, 1864–65. Optical realism drawn and painted in oil by hand. Visible restrained directional strokes, scraped light in worn timber, grounded figures, luminous material detail, soft maritime distance. Film palette of near-black indigo, unbleached sail, brown umber, mineral grey light, touches of copper and muted ochre. Human clothes are plain, deteriorated wool or linen, old shirts with simple collar, wool cap, simple high-waisted trousers with braces. Restrained, uncontrived composition with a precise center of interest. Intelligible on a small screen, enough tonal and color range; never overwhelmingly murky. No text, typographic elements, frames, borders, dashboards, antique parchment or fake scratches. Natural brushwork, not CGI, cartoon or digital fantasy. Camera fixed, do not simulate motion blur. Hands and tools have correct anatomy and mechanics. Compose for a 16:9 frame with objects retained inside a modest 7% outer safety margin. An exterior daytime action seen from shoulder height at Carnley Harbour in a break in the weather, the framing of a rough house beside native trees. Strong diagonals; a worn light-colored salvaged round spar is being passed up into a fork in a new upright. Three mariners actually share the weight, carrying the spar at different points: nearer man in faded blue wool in lower left seen from back, taller man in oatmeal shirt (sleeves up) at middle, third partly obscured behind near the upright at right steadying it. Their hands are directly in contact with its underside, footwork and weight credible. Sail ties, one improvised timber trestle, plain wood. The beam must enter from the middle of the frame, not through a face. It is one small single-storey wreck-survivor hut, no preexisting building, no heavy modern machinery, no mass of loose scaffolding. In straw grass behind them are sparse southern rātā, a horizontal glimpse of a cold grey inlet and distant worn headland. Thick pale limber timber cutting across dark blue foliage, restrained warm sunlight on sleeves. A deliberate story moment of the heavy beam entering its notch; not a group portrait."
+    },
+    {
+      "id": "chess",
+      "file": "chess.webp",
+      "composition": "A thumb and forefinger lift a little pale pawn above red and white figures cut from slats.",
+      "evidence_and_staging": "S004, p. 160, records a soot-and-lime board, red and white chessmen and a pocketknife. Board position, window and pawns’ silhouettes are staging.",
+      "anchors": {
+        "pawn": [
+          0.49,
+          0.46
+        ],
+        "fingertips": [
+          0.5,
+          0.37
+        ],
+        "squares": [
+          0.38,
+          0.73
+        ]
+      },
+      "source_sha256": "45e182ab53ba69f7159faca50597bcd74faa70fe5c844017b114d4711f7b4711",
+      "sha256": "906f9268122589823c2489be31e4e82d55abbf7f9f6578561a2cfb112b41a6de",
+      "bytes": 335310,
+      "prompt": "Produce ONE original fine-art painting, edge to edge. Native WIDESCREEN 16:9 single composition. For a closely observed historical motion-picture of the Auckland Island Grafton castaways, 1864–65. Optical realism drawn and painted in oil by hand. Visible restrained directional strokes, scraped light in worn timber, grounded figures, luminous material detail, soft maritime distance. Film palette of near-black indigo, unbleached sail, brown umber, mineral grey light, touches of copper and muted ochre. Human clothes are plain, deteriorated wool or linen, old shirts with simple collar, wool cap, simple high-waisted trousers with braces. Restrained, uncontrived composition with a precise center of interest. Intelligible on a small screen, enough tonal and color range; never overwhelmingly murky. No text, typographic elements, frames, borders, dashboards, antique parchment or fake scratches. Natural brushwork, not CGI, cartoon or digital fantasy. Camera fixed, do not simulate motion blur. Hands and tools have correct anatomy and mechanics. Compose for a 16:9 frame with objects retained inside a modest 7% outer safety margin. A calm, intimate close camera in the rough ship-timber hut. On a scuffed warm wooden tabletop, in cool square window light from the left, a sailor’s one thumb and index finger lift a very simple ivory-coloured roughly whittled pawn made from wood. Only the hand and a worn dusk-blue woollen cuff at right are visible, no faces needed. Several different chess pieces cut from thin wooden slats stand on a small unadorned checkered board in the low middle-left, some simply dyed brick red, others bare pale wood. All feel knife-whittled by castaways: pieces are flattish, NOT turned, polished, painted plastic or carved like a modern Staunton set. Two small curls of shaving and a plain closed folding knife off to the side. The raised tiny pawn shows a rough facet catching a glancing streak of clear winter light, hand foreshortening/human nails credible; keep held piece readable against a dark backdrop. Close-up still life of making and leisure; rich warm wood against quiet winter grey, no ornaments or busy set dressing."
+    },
+    {
+      "id": "ballast",
+      "file": "ballast.webp",
+      "composition": "A hand sets a wedge against a rectangular ballast bar supported by timber.",
+      "evidence_and_staging": "S001, chapter VII, pp. 79–80, records using iron ballast as an anvil. S004, chapter XVIII, describes a flat four-sided bar roughly fourteen inches long in a timber frame. The wedge and gesture are staging.",
+      "anchors": {
+        "wedge": [
+          0.75,
+          0.46
+        ],
+        "forefinger": [
+          0.81,
+          0.42
+        ],
+        "bar-face": [
+          0.35,
+          0.49
+        ]
+      },
+      "source_sha256": "8eeccc7819d6c918a7c39d06645e2232ccd41515269936cf2e8956476610690d",
+      "sha256": "3e48c87a89b4d5ffbdb522bfd740a545f91c95814c0cb9048d126102dc02b60d",
+      "bytes": 412866,
+      "prompt": "Produce ONE original fine-art painting, edge to edge. Native WIDESCREEN 16:9 single composition. For a closely observed historical motion-picture of the Auckland Island Grafton castaways, 1864–65. Optical realism drawn and painted in oil by hand. Visible restrained directional strokes, scraped light in worn timber, grounded figures, luminous material detail, soft maritime distance. Film palette of near-black indigo, unbleached sail, brown umber, mineral grey light, touches of copper and muted ochre. Human clothes are plain, deteriorated wool or linen, old shirts with simple collar, wool cap, simple high-waisted trousers with braces. Restrained, uncontrived composition with a precise center of interest. Intelligible on a small screen, enough tonal and color range; never overwhelmingly murky. No text, typographic elements, frames, borders, dashboards, antique parchment or fake scratches. Natural brushwork, not CGI, cartoon or digital fantasy. Camera fixed, do not simulate motion blur. Hands and tools have correct anatomy and mechanics. Compose for a 16:9 frame with objects retained inside a modest 7% outer safety margin. Close detailed three-quarter view inside a makeshift sea-worn shed near the survivors’ hut; daylight comes down onto a roughly fourteen-inch-long, square-section salvaged dark iron ship-ballast bar, 14 × 3½ × 3½ inches in life, smooth four-sided straight RECTANGULAR bar horizontal, plain flat ends, neither an anvil horn nor modern blacksmith anvil. It rests firmly in a solid mortise in a stout low improvised frame of rough-hewn timber. A sailor's cropped dark sleeve and one rough hand at far right, the thumb and forefinger push a short worn wooden packing wedge into its seat to secure it. Look lengthwise along the edge of the metallic bar from low foreground-left to center-right; darker old iron on lighter splintered grey timber, polished ochre grazing light on its upper edges. Simple visual drama of making a solid surface from the remains of a ship. A few blurred charcoal pieces and a humble brick edge in background, readable even small. Quiet fireless or very faint warm reflected light, no factory, outsized tools, logo or steam."
+    },
+    {
+      "id": "bellows",
+      "file": "bellows.webp",
+      "composition": "Two hands work a skin-and-timber bellows whose tapering nozzle reaches the charcoal.",
+      "evidence_and_staging": "S004, chapter XVIII, describes the sealskin joints and covering, three wooden panels, copper tube, masonry and bricks, and a salvaged copper-sheet roof. Hand placement and the view through the shed are staged.",
+      "anchors": {
+        "hands": [
+          0.12,
+          0.57
+        ],
+        "bellows-tail": [
+          0.23,
+          0.53
+        ],
+        "nozzle": [
+          0.7,
+          0.58
+        ],
+        "charcoal": [
+          0.8,
+          0.6
+        ]
+      },
+      "source_sha256": "16646efdd05363c92e83495d8197271cb7f9341d03b38b9a60bd252494ec616c",
+      "sha256": "62ae67d2e76dc03e322f6aa688026ddec9b2c2e0111aa1249c30d5658827cc0e",
+      "bytes": 398226,
+      "prompt": "Produce ONE original fine-art painting, edge to edge. Native WIDESCREEN 16:9 single composition. For a closely observed historical motion-picture of the Auckland Island Grafton castaways, 1864–65. Optical realism drawn and painted in oil by hand. Visible restrained directional strokes, scraped light in worn timber, grounded figures, luminous material detail, soft maritime distance. Film palette of near-black indigo, unbleached sail, brown umber, mineral grey light, touches of copper and muted ochre. Human clothes are plain, deteriorated wool or linen, old shirts with simple collar, wool cap, simple high-waisted trousers with braces. Restrained, uncontrived composition with a precise center of interest. Intelligible on a small screen, enough tonal and color range; never overwhelmingly murky. No text, typographic elements, frames, borders, dashboards, antique parchment or fake scratches. Natural brushwork, not CGI, cartoon or digital fantasy. Camera fixed, do not simulate motion blur. Hands and tools have correct anatomy and mechanics. Compose for a 16:9 frame with objects retained inside a modest 7% outer safety margin. Waist-height crosswise view of the improvised working forge at Epigwaitt. At lower left a pair of worn cropped hands and forearm operates the tail of a substantial horizontal EARLY double wooden-panel bellows, shoulder and elbow cropped by left edge. Bellows left-center sideview, roughly triangular or teardrop profile with three wooden boards and dark flexible brown skin between, brass/copper tapering nose actually directed into the charcoal fire on the SMALL stone-and-brick forge platform in middle-right, a direct intuitively clear physical connection and airflow. Alive modest orange charcoal, some light ash and sparks, not a roaring bonfire. A blue-grey sliver of shoreline through a wall opening at far right and deep timber tones under makeshift salvaged sheet-copper shelter. No factory piping, goggles, sculpted iron anvil, uniforms, multiple spare bellows, modern firebricks or big machinery. Stage clear silhouettes, dramatic warm/cool light, hands at the handle, sturdy timber support under bellows. Low close framing, one strong visual line, practical labor rather than performance."
+    },
+    {
+      "id": "auger",
+      "file": "auger.webp",
+      "composition": "The iron end of an improvised hand auger rests on a thick timber beside a shallow unfinished recess and pale shavings.",
+      "evidence_and_staging": "S001, chapter VII, pp. 81–83, records the failure to make an auger suitable for the heavy frames. The spoon-shaped tip, trial piece and shallow recess illustrate that problem. The precise design of the failed tool is unrecorded here.",
+      "anchors": {
+        "blunt-tip": [
+          0.14,
+          0.65
+        ],
+        "wood-curls": [
+          0.48,
+          0.68
+        ],
+        "unfinished-recess": [
+          0.68,
+          0.62
+        ]
+      },
+      "source_sha256": "04a196e482bce0d03a787e2949cda4bb2305a695264041732f4f102a5b48639c",
+      "sha256": "c940cdec1de94f201f84cf6e6a8e61ff6e58c5c38b1b035a390d66ce35eebba8",
+      "bytes": 316488,
+      "prompt": "Compose a single fine-art oil painting in 16:9 widescreen as a close insert in a historical ship-carpenter’s film. A windowless corner of a timber shed in 1865. EXACTLY the tactile workbench still life visible within the composition: one worn improvised hand auger with a dark wrought-iron spoon-shaped end and a simple wooden crossbar handle, lying diagonally on a big rough beam beside its unfinished shallow circular recess and a few fresh shavings. Backdrop is exclusively the dark weathered timber wall inside the shed, gently out of focus. Frame so tightly that there is no source of light visible, only indirect daylight falling across the objects from off-camera left. No outdoors is visible through any part of the room. The iron and fresh shavings are the visual focus. Work in similar dark indigo-ochre muted tones to a serious naturalist maritime oil painting, fine tactile brush marks, weathered surfaces, no bright filter. Side lighting on the dulled silvery end. Horizontal composition set at the carpenter's eye level, elegant stillness, no signage, no hands, no people, no lettering, no framing border."
+    },
+    {
+      "id": "gunwale",
+      "file": "gunwale.webp",
+      "composition": "A plank is held fair along the dinghy’s older sheer while a second worker seats a fastening.",
+      "evidence_and_staging": "S001, chapters VII–VIII, describes raising and trying the old dinghy. The camera angle, tools in these men’s hands, and the first fastening chosen are reconstructions.",
+      "anchors": {
+        "supporting-hand": [
+          0.35,
+          0.55
+        ],
+        "mallet-head": [
+          0.73,
+          0.32
+        ],
+        "fastening": [
+          0.7,
+          0.43
+        ]
+      },
+      "source_sha256": "86036fa3a87cdc064989a4b984f8b259425a0967db588f55c958162abc6a7c30",
+      "sha256": "8e4699be060f915a113ac487233e98d0085c920e26bbf0bdcb216b8498ddc539",
+      "bytes": 405820,
+      "prompt": "Produce ONE original fine-art painting, edge to edge. Native WIDESCREEN 16:9 single composition. For a closely observed historical motion-picture of the Auckland Island Grafton castaways, 1864–65. Optical realism drawn and painted in oil by hand. Visible restrained directional strokes, scraped light in worn timber, grounded figures, luminous material detail, soft maritime distance. Film palette of near-black indigo, unbleached sail, brown umber, mineral grey light, touches of copper and muted ochre. Human clothes are plain, deteriorated wool or linen, old shirts with simple collar, wool cap, simple high-waisted trousers with braces. Restrained, uncontrived composition with a precise center of interest. Intelligible on a small screen, enough tonal and color range; never overwhelmingly murky. No text, typographic elements, frames, borders, dashboards, antique parchment or fake scratches. Natural brushwork, not CGI, cartoon or digital fantasy. Camera fixed, do not simulate motion blur. Hands and tools have correct anatomy and mechanics. Compose for a 16:9 frame with objects retained inside a modest 7% outer safety margin. Looking lengthwise along the curved sheer of the Grafton’s little wooden ship's dinghy beached upright in a rough timber cradle at Carnley Harbour, before the ocean attempt in 1865. Paint a tactile MEDIUM-CLOSE shot at boat-builder’s eye height. Two sailors’ hands work together: one weather-beaten hand stretches the long new lighter side plank flush along the existing upper strake, the other worker's small plain wooden mallet angled to seat a fastening or light spacer. The board is visibly being added ON TOP of the older dark side to raise freeboard, continuous and properly following the hull curve. Lower body of hull and its parallel overlapping strakes at bottom, old grey oar resting inside, thin band of sea and scrub shore softly glimpsed at top left. Hands and wrists arise from opposite sides, sleeves worn navy and oatmeal, no floating arms. A little warm side light on the pale plank after rain; intimate material study with evidence of the original hull. No full ship scale, propeller, power tools, nontechnical ropes crossed across the work or modern screws."
+    },
+    {
+      "id": "collection",
+      "file": "collection.webp",
+      "composition": "A donor and a civilian at a shop counter take the weight of a folded wool blanket between them. The doorway opens onto wet streets.",
+      "evidence_and_staging": "S001, chapter IX, pp. 98–99, records Invercargill residents contributing clothes and blankets for the two remaining men. The donor, clerk, shop, garment colours and handoff are anonymous staging.",
+      "anchors": {
+        "blanket": [
+          0.54,
+          0.56
+        ],
+        "giver-hand": [
+          0.43,
+          0.62
+        ],
+        "receiver-hand": [
+          0.63,
+          0.65
+        ],
+        "wet-street": [
+          0.12,
+          0.64
+        ]
+      },
+      "source_sha256": "6c8f9d82b4c7172c91db5528cb5df8844e66d39da7ce0653b84243f2cc70b8a7",
+      "sha256": "226b23fc4b06538ed3acf24f3c4b6e3b565e53627545376703290270e1669240",
+      "bytes": 447520,
+      "prompt": "Produce ONE original fine-art painting, edge to edge. Native WIDESCREEN 16:9 single composition. For a closely observed historical motion-picture of the Auckland Island Grafton castaways, 1864–65. Optical realism drawn and painted in oil by hand. Visible restrained directional strokes, scraped light in worn timber, grounded figures, luminous material detail, soft maritime distance. Film palette of near-black indigo, unbleached sail, brown umber, mineral grey light, touches of copper and muted ochre. Human clothes are plain, deteriorated wool or linen, old shirts with simple collar, wool cap, simple high-waisted trousers with braces. Restrained, uncontrived composition with a precise center of interest. Intelligible on a small screen, enough tonal and color range; never overwhelmingly murky. No text, typographic elements, frames, borders, dashboards, antique parchment or fake scratches. Natural brushwork, not CGI, cartoon or digital fantasy. Camera fixed, do not simulate motion blur. Hands and tools have correct anatomy and mechanics. Compose for a 16:9 frame with objects retained inside a modest 7% outer safety margin. Invercargill, New Zealand, winter July 1865. A modest timber merchant’s room READING AS A SMALL WORKING SOUTHERN PORT. Middle-ground action, a civilian wool-clad woman at left places a folded scrap-edged blue-grey wool blanket from her arms into the waiting hands of a clerk or merchant in a simple brown waistcoat and rolled shirt sleeves to the right of the counter. A second folded rust-brown blanket underneath. Her pale bonnet tied under chin, cloak in dark umber and wind-damp shoulders, sober expressions of concentration. A view of wet muddy ruts and a barrel through open door behind her catches a silver stripe of rain; a ledger lying shut at far right, no readable writing. Three-quarter to side body angles, realistic handoff, their attention on the cloth instead of viewer, blanket between the people, not around someone's neck. Main focus the grip of hands through the wool. Soft late winter daytime light from left with a subtle warm reflection. The donor’s identity is invented; no plaque, named signage, uniform, soldiers, official fundraising poster or flag. Intimate humanity in an ordinary rebuilt port, restrained naturalist historical painting."
+    },
+    {
+      "id": "table",
+      "file": "table.webp",
+      "composition": "A seated man draws his supper toward himself; at the far edge of the small table a hand sets down a tin mug.",
+      "evidence_and_staging": "S001, chapter XI, pp. 117–118, records the meal of fish and potatoes aboard Flying Scud. Service, lighting, crockery, cabin and poses are reconstructed.",
+      "anchors": {
+        "near-plate": [
+          0.47,
+          0.74
+        ],
+        "far-plate": [
+          0.69,
+          0.56
+        ],
+        "lantern-flame": [
+          0.86,
+          0.16
+        ],
+        "mug": [
+          0.86,
+          0.59
+        ]
+      },
+      "source_sha256": "9d5954030f54a0943b157b5286695c96dde0ca96a811c53f2115752d47a86f5a",
+      "sha256": "4ca0b683e122b35f7beb2fb5fc3d1b10c2730b99486dea42bf46e784f061b331",
+      "bytes": 302348,
+      "prompt": "Produce ONE original fine-art painting, edge to edge. Native WIDESCREEN 16:9 single composition. For a closely observed historical motion-picture of the Auckland Island Grafton castaways, 1864–65. Optical realism drawn and painted in oil by hand. Visible restrained directional strokes, scraped light in worn timber, grounded figures, luminous material detail, soft maritime distance. Film palette of near-black indigo, unbleached sail, brown umber, mineral grey light, touches of copper and muted ochre. Human clothes are plain, deteriorated wool or linen, old shirts with simple collar, wool cap, simple high-waisted trousers with braces. Restrained, uncontrived composition with a precise center of interest. Intelligible on a small screen, enough tonal and color range; never overwhelmingly murky. No text, typographic elements, frames, borders, dashboards, antique parchment or fake scratches. Natural brushwork, not CGI, cartoon or digital fantasy. Camera fixed, do not simulate motion blur. Hands and tools have correct anatomy and mechanics. Compose for a 16:9 frame with objects retained inside a modest 7% outer safety margin. Very intimate, warm eveningside view at table height on the small rescue cutter Flying Scud moored in Camp Cove in August 1865. A small worn shipboard deal table near the hull’s ribs. Two humble plates of cooked locally caught FISH and boiled uneven potatoes, simple tin mugs, open small tin or plain ordinary crockery, practical cutlery. At left a seaman's hand in a worn grey-blue coat draws a warm plate of cooked fish and potatoes toward him; a second hand at far right quietly sets a fresh mug near the plate farther away. Only hands/cuffs and partial torso, never faces, anatomically clear. One hanging 1860s enclosed oil lantern upper RIGHT softly lights the steam and burnishes the fish; through a tiny open companionway on left an afterglow over very still Camp Cove. Honest small meal, no feast, avoid glossy food advertising and round bright plates overwhelming the scene. Some breathing negative space just above table for rising steam. Restrained copper rim light, midnight blue far water, warmly lit ivory potatoes, unposed signs of lives starting again. Simple, tactile, memorable last supper without religious symbolism, no letters or inscriptions."
+    }
+  ]
+}

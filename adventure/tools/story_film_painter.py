@@ -545,7 +545,10 @@ class Stage:
         self.light = Light(key, FIRELIGHT[key]) if key in FIRELIGHT else None
         self.bellows = Bellows() if key in ("forge-lit", "workshop-detail") else None
         self.air = Air(key)
-        self.start, self.end = CAMERA[key]
+        # The two positions in the original composition notes delimit a usable
+        # frame. Choose one composition and let the cast and materials carry it.
+        start, end = CAMERA[key]
+        self.composition = tuple(a + .36 * (b - a) for a, b in zip(start, end))
 
     def frame(self, t, fraction, dims):
         frame = self.base.copy()
@@ -559,27 +562,19 @@ class Stage:
             self.bellows.render(frame, t)
         if self.key == "crossing-bailed":
             draw_pump(frame, t)
-        # A cut-in starts a new camera beat. The men remain on the shore after
-        # the interior cut regardless of the voice cue's original time offset.
-        actor_t = t - 4.32 if self.key == "reunion" else t
         for actor in self.performers:
             actor.render(frame, t)
         for walker in self.walkers:
-            walker.render(frame, actor_t)
+            walker.render(frame, t)
         if self.light:
             self.light.render(frame, t)
         self.air.render(frame, t)
-        f = float(
-            softstep(
-                min(1, fraction * 1.34) if self.key == "hearth-remains" else fraction
-            )
-        )
-        fx, fy, z = (a + (b - a) * f for a, b in zip(self.start, self.end))
+        fx, fy, z = self.composition
         roll = 0.0
         if self.key == "schooner":
             fy = 0.5 / z  # Pin the camera above the mainmast for the whole heave.
         if self.key in ("crossing-wet", "crossing-bailed", "rig-detail", "cabin-table"):
-            strength = 0.58 if self.key == "cabin-table" else 1.32
+            strength = 0.38 if self.key == "cabin-table" else 0.82
             phase = 1.11 * t + (0.85 if self.key == "rig-detail" else 0)
             roll = strength * (math.sin(phase) + 0.17 * math.sin(1.92 * phase + 0.3))
             fx += 0.0025 * math.sin(phase + 0.3)

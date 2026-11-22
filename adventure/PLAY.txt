@@ -22,7 +22,8 @@ you take over on the shore. Six short films connect the seven chapters.
 The final film follows the rescue. All eight play as part of the story.
 Move the pointer, tap the picture or use Tab for pause, sound, captions
 and skip. If the browser needs a gesture for sound, English captions appear
-and you can choose Enable sound. Reduced motion holds each painted shot.
+and you can choose Enable sound. With reduced motion, the picture stays still
+until the next camera cut. The narration, captions and music continue.
 If native video stalls, the game can continue with images and audio from
 the same edit. Closing the tab saves your place in the current chapter
 film. The compass opens Our journey to revisit a film you have reached.

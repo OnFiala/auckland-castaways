@@ -7,7 +7,7 @@
   'use strict';
 
   return {
-    version: 1,
+    version: 2,
     timeline: [
       {
         id: 'prologue',
@@ -15,28 +15,28 @@
         dateline: 'Sydney, November 1863 · Carnley Harbour, 1–3 January 1864',
         shots: [
           {
-            plate: 'outfit', dateline: 'Sydney · November 1863', seconds: 14, action: 'wind',
-            line: 'In November eighteen sixty-three, five men left Sydney to look for tin on Campbell Island. They found none. They took a few skins and turned for home.'
+            plate: 'outfit', dateline: 'Sydney · 12 November 1863', seconds: 14, action: 'wind',
+            line: 'They loaded four months of food in Sydney. If the Grafton was still missing then, friends would send help. Five men sailed south for Campbell Island in search of tin.'
           },
           {
             plate: 'schooner', dateline: 'Carnley Harbour · 1 January 1864', seconds: 11, action: 'sea',
-            line: 'On New Year’s Day the Grafton entered Carnley Harbour. Close under the rocks, twenty fathoms of line still found no bottom.'
+            line: 'They found no tin. On New Year’s Day the Grafton entered Carnley Harbour. Twenty fathoms of line hung beside the cliffs without touching bottom.'
           },
           {
             plate: 'wreck', seconds: 10, action: 'wind',
-            line: 'By the second evening one anchor chain had snapped. The other dragged. At midnight the schooner struck.'
+            line: 'An anchor chain snapped at seven the next evening. Each swell brought the schooner nearer the rocks. At midnight she struck.'
           },
           {
             plate: 'cabin-table', seconds: 10, action: 'lantern',
-            line: 'A quarter of an hour after the men left the pumps, the sea was level with the cabin table.'
+            line: 'Pieces of keel floated past. The men abandoned the pumps to save their food. A quarter of an hour later the sea had reached the cabin table.'
           },
           {
             plate: 'shore-dawn', seconds: 11, action: 'sea',
-            line: 'In daylight all five made it onto the stones. Thomas Musgrave and François Raynal came ashore with Alick McLaren, Henry Forgés and George Harris.'
+            line: 'In daylight all five reached the beach. Thomas Musgrave, François Raynal, Alick McLaren, Henry Forgés and George Harris. Their boat survived the landing too.'
           },
           {
             plate: 'beach', seconds: 10, action: 'wind',
-            line: 'Raynal could scarcely walk. From the wreck the men brought the mainsail. That night they would sleep under it.'
+            line: 'Raynal was ill. He walked a hundred yards that day, from the beach to their shelter under the Grafton’s own mainsail.'
           }
         ]
       },
@@ -47,11 +47,11 @@
         shots: [
           {
             plate: 'camp-shelter', dateline: 'Epigwaitt · Winter 1864', seconds: 10, action: 'rain',
-            line: 'They took the spars down from the Grafton and set them in the ground. By winter they had a house.'
+            line: 'They planted ship’s spars three feet deep. Wind still came through the walls, so the men tied up bundles of grass for thatch.'
           },
           {
             plate: 'cabin', seconds: 11, action: 'hearth',
-            line: 'Two squares of cabin glass let in the daylight. At the table Raynal carved chessmen from thin strips of wood, red against white.'
+            line: 'Two panes from the cabin let in daylight. Raynal carved chessmen with his pocketknife. He used soot for the black squares and lime for the white.'
           }
         ]
       },
@@ -62,11 +62,11 @@
         shots: [
           {
             plate: 'forge-cold', dateline: 'Epigwaitt · Early 1865', seconds: 9, action: 'still',
-            line: 'A block of iron that once lay in the schooner’s belly became the anvil for another vessel.'
+            line: 'A year went by without a rescue ship. They made an anvil of iron ballast. They would build a vessel themselves.'
           },
           {
             plate: 'forge-lit', seconds: 11, action: 'ember',
-            line: 'Raynal could make chisels and a saw. Out in the yard lay the heavy timbers he still had to bore for bolts.'
+            line: 'Raynal made a saw and chisels. The keel was ready, but its bolts needed deep holes. All the steel he had came from their mining tools.'
           }
         ]
       },
@@ -77,11 +77,11 @@
         shots: [
           {
             plate: 'slipway', dateline: 'Carnley Harbour · July 1865', seconds: 10, action: 'wind',
-            line: 'Three days at the forge had failed to produce an auger for those timbers. There was still the schooner’s dinghy.'
+            line: 'Raynal gave the auger three days. It still would not bore the timber. They turned to a boat already built, the Grafton’s dinghy.'
           },
           {
             plate: 'slipway-ready', seconds: 10, action: 'sail',
-            line: 'They raised her sides. She would carry three. Henry and George would need another boat to come back for them.'
+            line: 'They raised her sides. On trial, a shift of weight nearly tipped her over. Three could sail. Henry and George would have to stay.'
           }
         ]
       },
@@ -92,11 +92,11 @@
         shots: [
           {
             plate: 'crossing-wet', dateline: 'Camp Cove · 19 July 1865', seconds: 11, action: 'sea',
-            line: 'On the nineteenth of July, Musgrave, Raynal and Alick sailed from Camp Cove. The gale caught them within twenty miles of the island.'
+            line: 'On July the nineteenth, Musgrave, Raynal and Alick left Camp Cove on a fair wind. Within twenty miles it had risen to a gale.'
           },
           {
             plate: 'crossing-bailed', seconds: 10, action: 'sail',
-            line: 'Raynal and Alick took turns at the helm. Musgrave held a rope with one hand and pumped with the other.'
+            line: 'Raynal and Alick steered in turns. Musgrave pumped one-handed, clinging to a rope. Nearly half their time went into simply riding out the storm.'
           }
         ]
       },
@@ -107,11 +107,11 @@
         shots: [
           {
             plate: 'harbour', dateline: 'Port Adventure · 24 July 1865', seconds: 11, action: 'sea',
-            line: 'Five days and nights brought them to Port Adventure. Musgrave needed an arm to reach Captain Cross’s house. He could barely eat.'
+            line: 'Five nights later they reached Stewart Island. Captain Cross took them in. Next morning Musgrave gave him the little boat that had carried them.'
           },
           {
             plate: 'chartroom', dateline: 'Invercargill · Late July 1865', seconds: 11, action: 'chart',
-            line: 'In Invercargill, John Macpherson walked the wet streets collecting money for the return. People gave blankets and clothes for the two men.'
+            line: 'In Invercargill, John Macpherson walked the muddy streets for Henry and George. By the second evening he had raised over a hundred pounds, with blankets besides.'
           }
         ]
       },
@@ -122,11 +122,11 @@
         shots: [
           {
             plate: 'landing', dateline: 'Carnley Harbour · 24 August 1865', seconds: 10, action: 'sea',
-            line: 'Musgrave came back with Captain Cross aboard Flying Scud. The house only came into view when they were about a mile off.'
+            line: 'The wind eased. Under shortened sail, Flying Scud carried Captain Cross and Musgrave up the harbour. The house appeared a mile ahead.'
           },
           {
             plate: 'return-camp', seconds: 9, action: 'hearth',
-            line: 'One man saw the cutter and ran inside to tell the other. Both came down to the beach.'
+            line: 'One man ran indoors for the other. Cross and Musgrave landed. The cutter stayed under sail. It was too rough to anchor.'
           }
         ]
       },
@@ -137,23 +137,23 @@
         shots: [
           {
             plate: 'ending', seconds: 10, action: 'still',
-            line: 'That night Henry and George ate fish and potatoes aboard Flying Scud. All five who left the Grafton had survived.'
+            line: 'Now Henry and George could sit down to fish and potatoes. Bread and butter, too. After nearly twenty months, all five were safe.'
           },
           {
             plate: 'invercauld-wreck', dateline: 'Northern Auckland Island · 10 May 1864', seconds: 12, action: 'wind',
-            line: 'On the tenth of May the year before, the Invercauld had broken up on the island’s northern coast. Nineteen of twenty-five reached land.'
+            line: 'The year before, the Invercauld had struck the northern coast. Captain Dalgarno reckoned she broke up in twenty minutes. Of twenty-five men, nineteen reached the rocks.'
           },
           {
             plate: 'skin-boat', seconds: 11, action: 'still',
-            line: 'Neither crew knew of the other. Andrew Smith wrote to his wife about their sealskin boat. Two could take it out for food.'
+            line: 'Neither crew knew of the other. Smith wrote to his wife that on calm days two men crossed to nearby islands for seals in a boat of skins.'
           },
           {
             plate: 'julian', dateline: 'Northern Auckland Island · May 1865', seconds: 12, action: 'sea',
-            line: 'In May of eighteen sixty-five, the Julian put in for repairs. Only George Dalgarno, Andrew Smith and Robert Holding lived to go aboard.'
+            line: 'In May a leaking ship, the Julian, sent a boat ashore. Only George Dalgarno, Andrew Smith and Robert Holding survived to sail with her to Callao.'
           },
           {
-            plate: 'hearth-remains', dateline: 'Carnley Harbour · Present day', seconds: 14, action: 'still',
-            line: 'A few ribs of the Grafton still lie in the shingle at Carnley Harbour. Nearby, the stones of the hearth mark where the five made their home.'
+            plate: 'hearth-remains', dateline: 'Carnley Harbour · Then and now', seconds: 14, action: 'still',
+            line: 'The Grafton’s anchors are still there, under the water. A few ribs lie in the shingle. On shore, the stones of a hearth mark where the five made a home.'
           }
         ]
       }

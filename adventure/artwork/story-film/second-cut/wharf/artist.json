@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-22",
+  "medium": "Original digital paintings generated for this film using OpenAI ImageGen. Existing game art informed the visual brief. No modern external illustration was supplied.",
+  "use": "Production film artwork. Documentary references identify the underlying historical event. The painted compositions are reconstructions.",
+  "assets": [
+    {
+      "file": "sydney.webp",
+      "sha256": "574fc9a821caf66504e54a9aadd48e9ca94a504186882522f9b5c8f4368acb40",
+      "description": "Sydney quayside and cargo boom. The berth, distant landscape and people are reconstructed. Raynal records loading the schooner for the expedition (S004, pp. 38–39)."
+    },
+    {
+      "file": "stores.webp",
+      "sha256": "da8e91531c774df8258a302f35def0edfbcc5dc6de953e659fbf1150abd6467b",
+      "description": "An original isolated cargo case, canvas and two slings. The ropes tighten and the load rises from its shadow. The precise packing and hoist are staged."
+    }
+  ]
+}

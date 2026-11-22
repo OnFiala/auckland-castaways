@@ -2,13 +2,15 @@
 
 **Until We Return je anglická malovaná adventura o pěti mužích z lodi Grafton.** V sedmi kapitolách prožiješ ztroskotání na Aucklandově ostrově, společnou práci, plavbu k obydleným břehům a návrat pro Henryho a George.
 
-Český historický archiv sleduje obě ztroskotání z let 1864–1865, Grafton i Invercauld. Zahrnuje 53 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek a dobové materiály. U každého pramene je uvedeno, zda jsme prošli jeho text, vybrané pasáže, OCR nebo bibliografický záznam. Otevřené stopy jsou součástí další rešerše.
+Český historický archiv sleduje obě ztroskotání z let 1864–1865, Grafton i Invercauld. Zahrnuje 54 záznamů pramenů a stop, 55 evidenčních položek, pracovní seznam 30 členů obou posádek a dobové materiály. U každého pramene je uvedeno, zda jsme prošli jeho text, vybrané pasáže, fotografii, OCR nebo bibliografický záznam. Otevřené stopy jsou součástí další rešerše.
 
-Stav rešerše: **15. listopadu 2026**. Veřejný projekt: [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
+Poslední pramenné doplnění proběhlo **22. listopadu 2026**. [OnFiala/auckland-castaways](https://github.com/OnFiala/auckland-castaways).
 
 ## Aktuální hra: Until We Return
 
-**[Hrát v prohlížeči bez přihlášení](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Stáhnout offline hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v19) · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v18/until-we-return-story-film.mp4) · [Návod](adventure/README.md)
+**[Hrát v prohlížeči bez přihlášení](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Stáhnout offline hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v20) · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v20/until-we-return-story-film.mp4) · [Návod](adventure/README.md)
+
+Film začíná u zásob, které posádka nakládá v Sydney. V Carnley Harbour se přes bok lodě spouští olovnice. V dílně pak záběr drží na kovadlině, takže vidíš, kam Raynalův úder dopadne. U člunu je zblízka vidět, jak hřeb s každým úderem zajíždí do bočnice. Závěr otevírá Dalgarnův dopis a ukazuje fotografie pozůstatků vraku a obydlí. Při omezení pohybu se obrazy mění ve stejných místech střihu a anglické vyprávění pokračuje. [Svědectví k jednotlivým scénám](adventure/artwork/story-film/HISTORY.md)
 
 Sedm variací jedné námořní melodie doprovází hru od prvního večera po návrat. Když posádka rozžehne oheň, přidá se teplejší odpověď. Zkouška nepovedeného vrtáku končí otevřenou frází. Při rozhovoru hudba ztichne a její hlasitost si lze nastavit v **Settings → Music volume**. Tři malované předměty uprostřed horní lišty ukazují cíle kapitoly. Splněný úkol získá fajfku. [Hudba všech sedmi kapitol](adventure/artwork/ISLAND_SCORE.md) · [Malby v lodním deníku](adventure/UI_ART.md)
 
@@ -75,10 +77,10 @@ První řez **Poslední vrták** má na malé scéně ověřit práci, odpočine
 
 - [Musgrave 1866 — úplný PDF sken](sources/originals/castawayonauckla01musg.pdf) a [strojový text](sources/originals/musgrave-1866-pdftotext.txt).
 - [Raynal 1874 — úplný anglický PDF sken](sources/originals/wreckedonareef00rayngoog.pdf) a [surové OCR](sources/originals/wreckedonareef00rayngoog_djvu.txt).
-- [Dobová mapa a frontispis](sources/ILLUSTRATIONS.md), [manifest akvizic s SHA-256](sources/acquisition-manifest.json) a [návod ke čtení souborů](sources/ACQUISITION.md).
+- [Dobová mapa, frontispis, snímky expedice z roku 1907 a tištěný dopis](sources/ILLUSTRATIONS.md), [manifest akvizic s SHA-256](sources/acquisition-manifest.json) a [návod ke čtení souborů](sources/ACQUISITION.md).
 - [Prameny JSON](data/sources.json), [evidence CSV](data/evidence.csv), [posádky CSV](data/crew.csv), [tvrzení CSV](data/claims.csv), [místa GeoJSON](data/places.geojson), [návrhové události JSON](data/events.json).
 
-Moderní knihy ani muzejní fotografie nejsou celé přebírány. Smithova samostatná kniha *The Castaways* (1866) je bibliograficky potvrzená, ale její nalezené skeny se nepodařilo zpřístupnit. Srovnání jeho hlasu s Dalgarnem zde stojí na novinovém dopise. Francouzský Raynalův seriál byl čten na webu; celá francouzská knižní vydání zatím nebyla získána.
+U novodobých knih a současných muzejních fotografií najdeš odkazy a vlastní rešeršní poznámky. Smithova samostatná kniha *The Castaways* (1866) je bibliograficky potvrzená, ale její nalezené skeny se nepodařilo zpřístupnit. Srovnání jeho hlasu s Dalgarnem zde stojí na novinovém dopise. Francouzský Raynalův seriál byl čten na webu; celá francouzská knižní vydání zatím nebyla získána.
 
 ## Důležitý nález o adaptacích
 

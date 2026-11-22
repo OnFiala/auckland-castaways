@@ -1,0 +1,433 @@
+{
+  "title": "Eight maritime paintings for the second film cut",
+  "created": "2026-11-22",
+  "generator": "OpenAI ImageGen, eight independent text-to-image generations",
+  "origin": "Each painting is an original interpretation for Until We Return. The generating prompts follow the existing schooner, shore, harbour and crew art in the game. Local references were inspected visually before writing the prompts. No outside image or copyrighted film frame was used.",
+  "history": "../../HISTORY.md",
+  "primary_edition": "../../../../../sources/originals/musgrave-1866-pdftotext.txt",
+  "rights": "../../../../../RIGHTS.md",
+  "format": "Each RGB source measured 1672 × 941. A centred, subpixel 16:9 crop and Lanczos resampling produced 1600 × 900 RGB WebP masters at quality 92. Each master is a complete individual painting.",
+  "coordinates": "Normalised (x,y) from the upper-left corner of the final master. The water polygon marks one unobstructed patch, not the full water mask.",
+  "paintings": [
+    {
+      "id": "sounding",
+      "file": "sounding.webp",
+      "title": "The lead over the side",
+      "basis": "Carnley Harbour on 1 January 1864. Musgrave records a sounding of twenty fathoms that did not reach bottom near the rocks.",
+      "source": "S001, chapter I, pp. 2–3",
+      "setting": "Afternoon. The line belongs to the schooner’s deck. This angle, the shape of the weight and the silver light reconstruct the scene.",
+      "camera": "Sea-level medium close-up alongside the schooner. Sailor and dark hull occupy the left, open water and volcanic headland the right.",
+      "points": {
+        "fingers": [
+          0.406,
+          0.293
+        ],
+        "top_of_weight": [
+          0.409,
+          0.635
+        ],
+        "bottom_of_weight": [
+          0.411,
+          0.859
+        ],
+        "reflection": [
+          0.416,
+          0.927
+        ]
+      },
+      "water": [
+        [
+          0.615,
+          0.465
+        ],
+        [
+          0.982,
+          0.465
+        ],
+        [
+          0.982,
+          0.973
+        ],
+        [
+          0.53,
+          0.973
+        ]
+      ],
+      "lock": "Gunwale and distant headland stay locked. A sounding lead falls vertically, under tension from the lower hand.",
+      "bytes": 348594,
+      "sha256": "ca1f1431f574caf3e757ec22204481b74aa4ba958564b22be34bdde06ff42741",
+      "original_sha256": "9156a8df3cfa327d1ca43209047d90c1dc51fae28607bd5b51fef614354745f5",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. New Year’s day 1864, early overcast afternoon aboard the modest two-masted black-and-blue-green timber schooner Grafton. The camera is OUTSIDE looking back at the weathered hull. At upper left a sailor with dark wool sleeve steadies a small coil and feeds one thin supple SOUNDING LINE over the near rail with his other open hand; the two hands naturally connected to a single body off-frame. At mid-left the line hangs straight into the lowest segment of its swing about to enter deep water. It carries ONE dull grey elongated traditional cast lead plummet, roughly a forearm long, nearly cylindrical, slightly wider at bottom, one hole for rope at pointed top, unmistakable. Quiet blue-green water immediately underneath is the picture's broad lower/right negative space where a small dark reflection glimmers. Far right above the low horizon an austere distant cliff. Sparse finely drawn rigging and a hint of canvas; no anchor or chain anywhere. Compose as an intimate medium close-up, the lead and the small coil sufficiently legible in each third, lit by sharp silver afternoon light. Sailor remains on deck."
+    },
+    {
+      "id": "chain",
+      "file": "chain.webp",
+      "title": "The last hold",
+      "basis": "One anchor chain broke on the evening of 2 January and the other anchor dragged.",
+      "source": "S001, chapter I, pp. 3–4",
+      "setting": "The picture shows the strain on a chain before the loss. The deck arrangement, warm reflection and rain pattern are reconstructed.",
+      "camera": "Deck-level macro in the rising gale. The run of chain connects the foreground timber bitt to the hawse at upper right.",
+      "points": {
+        "bitt": [
+          0.11,
+          0.658
+        ],
+        "bright_link": [
+          0.506,
+          0.621
+        ],
+        "hawse": [
+          0.832,
+          0.46
+        ],
+        "spray": [
+          0.525,
+          0.286
+        ]
+      },
+      "water": [
+        [
+          0.204,
+          0.224
+        ],
+        [
+          0.373,
+          0.21
+        ],
+        [
+          0.36,
+          0.355
+        ],
+        [
+          0.202,
+          0.415
+        ]
+      ],
+      "lock": "Hawse, bitt, rail and cliff are stationary relative to the deck. Spray clears the rail in the upper central gap.",
+      "bytes": 369768,
+      "sha256": "c81a52b314371ec58d53ada532c67cf178958579ff3a1114018de955755391c5",
+      "original_sha256": "f06183d23836e19a36ac962b082d46e72eef7bc36160a23d3c2ddc38d7dabb12",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. The schooner Grafton dragging anchor on a rain-dark night, January 1864. Dynamic low three-quarter cinematic extreme close shot on her FOREDECK: a single taut run of thick ordinary forged oval stud-link anchor chain enters from lower left near a simple timber ship's bitt and travels diagonally across the wet, canted still-timber deck into a dark hawsehole cut in the rail at middle right. Chain at the visual centre, one wet iron oval link glinting. Credibly sized links for a small merchant schooner, not enormous shipyard chains. A small puddle picks up a warm reflection from a lamp outside the frame. A burst of cold spray hangs just above rail behind it, distant storm-black sea. A rough boot tip or dark blurred sleeve at the far edge suggests the crew's presence but no staged figure, spare functional ship. No ship's wheel, no steam machinery, no dramatically floating chain segment; resolve where chain exits through hawsepipe. Bold chiaroscuro: blue iron, amber rain and charcoal. Readable in a dark cinema."
+    },
+    {
+      "id": "pump",
+      "file": "pump.webp",
+      "title": "The pump stroke",
+      "basis": "Musgrave records work at the pumps before the flooding reached the top of the cabin table.",
+      "source": "S001, chapter I, pp. 3–4",
+      "setting": "Pump design, hand placement, discharge and lamp are plausible staging. The exact installation is undocumented.",
+      "camera": "Side camera at a human working height. Slit of storm light at upper left, two joined hands on one lever, water discharging at the foot of the pump.",
+      "points": {
+        "pivot": [
+          0.247,
+          0.211
+        ],
+        "grip_left": [
+          0.673,
+          0.359
+        ],
+        "grip_right": [
+          0.794,
+          0.405
+        ],
+        "spout": [
+          0.178,
+          0.72
+        ],
+        "discharge": [
+          0.081,
+          0.91
+        ]
+      },
+      "water": [
+        [
+          0.36,
+          0.849
+        ],
+        [
+          0.523,
+          0.847
+        ],
+        [
+          0.447,
+          0.955
+        ],
+        [
+          0.308,
+          0.957
+        ]
+      ],
+      "lock": "Keep the discharge attached to the spout. Lever and both hands travel together about the pin, the timber barrel stays fixed.",
+      "bytes": 442304,
+      "sha256": "71ff5b6646aca532c1652f2679db6805a2584dcf596271f0fcb8f1ef42676336",
+      "original_sha256": "4cac90d9a5e1bf81c146148255ec686c1d210d56ba0f7933387b4d263690763d",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. Shallow-ceiling timber ship interior at night, physically plausible side aisle by Grafton's hatch and under the low half-deck, seawater at ankle to lower calf height. Tight side view with a handmade nineteenth-century wooden PISTON BILGE PUMP at left/centre: oak upright cylindrical pump barrel, an iron strap and pin at its head, a long horizontal weathered lever projecting toward one sailor to the right. One pair of naturally proportioned hands with spread fingers grips this wooden handle while the sailor braces his legs against the slippery deck. Worn indigo wool sleeves and tawny work shirt, face mostly outside frame. Show the pivot-pin and the clearly joined lever and shaft. Low slit of storm-blue light from hatch at far left and warm practical lamp reflected in moving shallow water thrown across floorboards. The water has not reached the lever. Tactile detail but a simple readable mechanical silhouette. No modern fittings, no separate metal pump stanchions or wheels. No one suffering; an image of hard coordinated work."
+    },
+    {
+      "id": "shoreline",
+      "file": "shoreline.webp",
+      "title": "A sail passed from hand to hand",
+      "basis": "All five people reached shore on 3 January. The schooner’s mainsail and boom were among their first means of shelter.",
+      "source": "S001, chapter I, pp. 4–5",
+      "setting": "The staging of this specific handoff on wet shingle is an interpretation. Three people from the group are in frame.",
+      "camera": "View from the waterline. The tender remains aground, with a kneeling sailor holding the painter at the lower right and two other sailors sharing the rolled sail.",
+      "points": {
+        "sail_centre": [
+          0.511,
+          0.373
+        ],
+        "giver_grip": [
+          0.43,
+          0.398
+        ],
+        "receiver_grip": [
+          0.588,
+          0.419
+        ],
+        "bow": [
+          0.517,
+          0.547
+        ],
+        "painter_hand": [
+          0.698,
+          0.8
+        ]
+      },
+      "water": [
+        [
+          0.007,
+          0.392
+        ],
+        [
+          0.208,
+          0.39
+        ],
+        [
+          0.166,
+          0.575
+        ],
+        [
+          0.005,
+          0.607
+        ]
+      ],
+      "lock": "The rolled sail belongs to both sets of hands. Do not translate the ground, people’s planted boots or shore rocks with the surf.",
+      "bytes": 479290,
+      "sha256": "f2563dd012a3b1eea53123af7bb2e0212353233a89f91c295b02b900208ddf31",
+      "original_sha256": "0317f890b841665f2163a48c6c197c37d6043bbe24a367d340922c3f760d30ff",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. Low camera almost at the breaking edge of Carnley Harbour at first light on 3 January 1864. Focus on transfer from small open wooden tender to shore: two tired 1860s working sailors, seen as modest side and back views, guide the grounded BOW of the small low clinker dinghy from foam onto wet, dark beach shingle. One is kneeling at a safe position on stones pulling its short painter; the other stands in the boat passing a rolled heavy flax-coloured sail to a third sailor on shore. Cover different depths and clearly planted wet boots, naturally connected hands, each person engaged in a clear task. The rest of the party can be outside frame to avoid headcount claim. A low cap over dark hair and muted ochre work clothes. In the distant mist well out to the left the stranded SMALL TWO-MASTED SCHOONER canted on shoal is only a faint silhouette. Far cloud parts to peach-pink dawn, softly luminous steel-coloured nearshore foam seen strongly against the black shingle; bent rata and tussocks along the right bank. Distinct from postcard scenery: make the sail bundle, boat-bow contact and surf the visual story, intimate camera near hands and boat. No flags, cabins, duplicate craft, no modern emergency kit."
+    },
+    {
+      "id": "departure",
+      "file": "departure.webp",
+      "title": "Three places in the old dinghy",
+      "basis": "On 19 July 1865 Musgrave, Raynal and Alick left Camp Cove in the converted dinghy. Henry and George stayed on the island.",
+      "source": "S001, chapters VIII–IX, pp. 90–97",
+      "setting": "Relative seating, sail cut, colours and viewing position reconstruct the departure. The open cockpit and raised sides carry the history.",
+      "camera": "Quiet full profile from the coast. Exactly three men in one small, single-masted boat, bow facing left. The sail is set against the land, the keel against the water.",
+      "points": {
+        "masthead": [
+          0.373,
+          0.148
+        ],
+        "bow": [
+          0.2,
+          0.522
+        ],
+        "stern": [
+          0.694,
+          0.548
+        ],
+        "hull_centre": [
+          0.473,
+          0.609
+        ],
+        "waterline": [
+          0.481,
+          0.646
+        ]
+      },
+      "water": [
+        [
+          0.012,
+          0.674
+        ],
+        [
+          0.714,
+          0.677
+        ],
+        [
+          0.608,
+          0.86
+        ],
+        [
+          0.017,
+          0.936
+        ]
+      ],
+      "lock": "The three men, hull, mast and sail share one waterline. Shore rocks, tussock and headlands stay fixed.",
+      "bytes": 417038,
+      "sha256": "dfdb682acf9eba321d1ed0340b3a3d6a6bac78a4ed4e391ff324c2e5c7c19076",
+      "original_sha256": "4b2c8b6c38bb760ff936ad22ab284ad57ee3e175635849001dbed92976f0cde7",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. July 1865. The three sailors finally leave Camp Cove in a very small converted wooden schooner's dinghy, lapped clinker side strakes raised with two higher planks, modest canvas splash cover over the forward portion, low OPEN working cockpit. A SINGLE short mast and a simple pale gaff/lug sail, no second mast, no cabin or wheel. The dinghy must look genuinely vulnerable and small on the Southern Ocean. Exactly THREE adult men visible in the dinghy: the captain with dark close beard and navy wool cap aft, a slight French seaman with ginger-brown hair and olive waistcoat amidships and an early-thirties dark-haired seaman with indigo wool cap near the mast. Back or side views, naturally proportioned. Wide low view from the sheltered shore across pewter water, hazy dark hills of Carnley Harbour, cool shafts of morning light. The dinghy is fully visible in long side/three-quarter view mid-frame heading LEFT from shelter into wider water, at about x=.51 y=.55, lower half quiet ripples, narrow golden light on sail. Do not confuse this craft with a schooner: one small mast only, no glamour or ship's wheel; no other people on shore. Distinct, dignified stillness of departure."
+    },
+    {
+      "id": "helm",
+      "file": "helm.webp",
+      "title": "A hand on the tiller",
+      "basis": "Alick and Raynal took turns steering while Musgrave worked the pump. The gale caught them by Musgrave’s estimate within twenty miles of the island.",
+      "source": "S001, chapter IX, pp. 96–97",
+      "setting": "This is an anonymous watch at the tiller with a coast still visible. No claim is made about the hand, the precise sea state or the tiller’s metalwork.",
+      "camera": "Crop from inside the dinghy concentrates on a human grip. The wave crest is directly outside the rail. The lever runs across the bottom of the frame and turns at the rudder head on the right.",
+      "points": {
+        "grip": [
+          0.265,
+          0.527
+        ],
+        "tiller_centre": [
+          0.57,
+          0.587
+        ],
+        "rudder_head": [
+          0.869,
+          0.655
+        ],
+        "wave_crest": [
+          0.58,
+          0.198
+        ]
+      },
+      "water": [
+        [
+          0.343,
+          0.3
+        ],
+        [
+          0.971,
+          0.27
+        ],
+        [
+          0.964,
+          0.489
+        ],
+        [
+          0.687,
+          0.545
+        ],
+        [
+          0.399,
+          0.459
+        ]
+      ],
+      "lock": "Hand, sleeve and tiller are coupled. The left-to-right ridge behind them is moving sea. Do not distort the distant mountains.",
+      "bytes": 406936,
+      "sha256": "0a5014f6aab77462358f4606927822dde12dbc055295cd0066df6f2c333161ea",
+      "original_sha256": "c86176ec3ef703b328e24cbdaccea2bf666d25b048a6bcd66942374b9f98fd6d",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. July 1865, rough Southern Ocean, onboard a tiny high-sided open clinker dinghy. A tight low subjective camera is directly beside the man at the helm, facing across the stern. A sturdy simple wooden rudder tiller pivots near the starboard-facing transom and extends diagonally into the cockpit; THREE-DIMENSIONAL warm honey-coloured lever with a gripped end and an anatomically natural worn hand, one sailor’s dark-blue wool-sleeved forearm entering from upper-left with a sober deep-ochre cuff; two hands maximum and simple confident silhouette. A modest rebate and a small iron strap show how tiller connects to rudder head. Immediately behind the low gunwale a large sloping blue-green swell fills the upper half with a softly brushing white crest. Horizon is visible but not absurdly tilted, winter light through a cloud, wind and salt spray, no ship's wheel, no engine, no steel guard-rail, no large deck or house or cabin, no multiple boats, no lettering. An intimate warm/cold composition, clear eye-line to that decision made by hand, not a generic ship picture."
+    },
+    {
+      "id": "approach",
+      "file": "approach.webp",
+      "title": "Flying Scud inside the heads",
+      "basis": "On 24 August 1865 Musgrave returned with Captain Cross aboard Flying Scud. They came to within about a mile before seeing the house.",
+      "source": "S001, chapter XI, pp. 116–117",
+      "setting": "The shore-to-water countershot and cutter’s sail plan are illustrative. Musgrave’s distance relates to the view of the house from the cutter.",
+      "camera": "Shingle foreground forms a shallow crescent with open water behind. The small one-masted gaff cutter is broadside in three-quarter view, bow to the right.",
+      "points": {
+        "masthead": [
+          0.311,
+          0.149
+        ],
+        "bowsprit": [
+          0.417,
+          0.423
+        ],
+        "stern": [
+          0.242,
+          0.463
+        ],
+        "waterline": [
+          0.321,
+          0.507
+        ]
+      },
+      "water": [
+        [
+          0.439,
+          0.472
+        ],
+        [
+          0.793,
+          0.469
+        ],
+        [
+          0.929,
+          0.638
+        ],
+        [
+          0.875,
+          0.722
+        ],
+        [
+          0.441,
+          0.693
+        ]
+      ],
+      "lock": "Translate the cutter and its sail together across the distant harbour, and let the wake follow the stern. Keep both headlands and foreground stones still.",
+      "bytes": 518598,
+      "sha256": "03e3ba9421b13b46c139cfc2fd366d3a2a6400fc4646700ed9c8fed05c24f7e3",
+      "original_sha256": "b0c1d445152960015beeec0a1d028161399bf032b0ce8010de8dd7bd006a9b18",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. 24 August 1865 inside Carnley Harbour. Long landscape shot looking seaward low from the moist shingle shore between two dark tussock-covered volcanic headlands. The rescue cutter FLYING SCUD is a small, appreciably seaworthy colonial sailing CUTTER of the 1860s, with a single mast, well-proportioned gaff mainsail behind the mast and two proportionate jibs running to a modest bowsprit; pale linen partly set, dark wooden hull. Paint the complete cutter seen at a low three-quarter angle moving toward us from frame left across the middle distance, its hull one sixth canvas width and distinct against glimmers of bright steel-blue water. A curling line of disturbed water in its wake. Horizon at y=.43, late Southern winter soft ivory sky, only very subdued tufts at lower-right and close shingle edge grounded lower left. No yacht fittings, no motor, no steamer, no other boat, no person at the foreground, no smoke or flags, no pier. Wild low native forest far back, shadowed coast at side and water carrying the most light. The first glimpse of rescue deserves majestic space and a specific recognizable ship."
+    },
+    {
+      "id": "signal",
+      "file": "signal.webp",
+      "title": "He sees a sail",
+      "basis": "Musgrave describes one man seeing Flying Scud and going inside to tell the other. He does not identify which man first saw the boat.",
+      "source": "S001, chapter XI, p. 117",
+      "setting": "The film does not identify the first witness. The hand at the door and the view from the house are reconstructed.",
+      "camera": "A quiet reverse shot from near the door. One man is seen from behind to the right. A bright triangle in the bay at left is the distant cutter.",
+      "points": {
+        "witness_head": [
+          0.755,
+          0.23
+        ],
+        "hand_on_post": [
+          0.926,
+          0.419
+        ],
+        "distant_sail": [
+          0.225,
+          0.435
+        ],
+        "distant_waterline": [
+          0.226,
+          0.471
+        ]
+      },
+      "water": [
+        [
+          0.26,
+          0.48
+        ],
+        [
+          0.597,
+          0.476
+        ],
+        [
+          0.56,
+          0.559
+        ],
+        [
+          0.292,
+          0.57
+        ]
+      ],
+      "lock": "Human shoulder can shift minutely with recognition. Keep the door, tree and coast still. No signal flag or smoke belongs to this event.",
+      "bytes": 465892,
+      "sha256": "0dd1eeeb6d86193a334b57a2775c05cef55eb96a8885889792a6cfdd00efb1ad",
+      "original_sha256": "08348f4fabcf35f714e088fca95c718a87a6b92934032b4d5a15438537a95a3f",
+      "prompt": "A single original full-bleed 16:9 widescreen cinematic oil and gouache painting for a sophisticated hand-painted 2.5D historical game. Directional brushmarks describe form the way a finished nineteenth-century maritime oil study does; tactile wet timber, tarred hemp, oxidised iron, wool with body, extraordinarily lovely observed daylight, clear silhouettes, rich tonal design. Portray the subantarctic Auckland Islands south of New Zealand in the 1860s accurately: eroded volcanic slopes, pale grasses and low wind-sheared southern rata forest, no palms, no glaciers, no lighthouse. Consistent colours across the film: deep ultramarine shadows, pewter silver, burnt umber, ochre and grey-blue, small warm highlights. A genuinely different composition with human-scale detail. No writing of any sort, no title, border or collage, no mockup, no glossy rendering. Fill one horizontal painting. 24 August 1865, Carnley Harbour on Auckland Island. A quiet, specifically blocked scene of somebody SEEING a sail after weeks ashore. Camera just behind one member of the Grafton party, away from his face. A young adult seaman, bare dark curls partly under a faded wool cap, in a worn umber and ochre vest over linen sleeves and dark trousers, has stopped short at the RIGHT edge and lightly steadies himself with his left hand on the weathered, upright door-frame timber of a very simple split-wood shelter. His shoulder turns toward the water; head seen three-quarter back, no identifiable features. Hands down, no salute. Through an open space in brush and the doorway's view we see a tiny white single-sailed cutter in the far left centre below middle reaching the calm cove, only one vessel, soft cold daylight against muted walnut shadows. Between them wet shingle and flax, distant volcanic bluffs. This is a countershot to the cutter offshore, full environment at a natural scale. One human figure only, no emblem, no script, no inland fires/smoke or artificial alarm. Understatement, warm rim across jacket, fingers curled naturally around beam at chest-height, a moment of recognition rather than posed heroism."
+    }
+  ]
+}

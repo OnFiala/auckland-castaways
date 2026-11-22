@@ -151,17 +151,6 @@ CAST = {
     ],
 }
 
-# Additional editorial cuts use the original work-detail paintings or reframe
-# the same registered stage. Fractions locate the insert in its spoken cue.
-INSERT = {
-    "cabin": (0.53, "table-detail"),
-    "return-camp": (0.48, "reunion"),
-    "chartroom": (0.50, "collections"),
-    "forge-lit": (0.52, "workshop-detail"),
-    "slipway": (0.58, "hull-detail"),
-    "crossing-wet": (0.67, "rig-detail"),
-}
-
 FIRELIGHT = {
     "cabin": (0.116, 0.605, 0.205, 0.24),
     "table-detail": (0.116, 0.605, 0.205, 0.24),

@@ -1,0 +1,67 @@
+{
+  "title": "Binding the walls and pumping the dinghy",
+  "created": "2026-11-22",
+  "generator": "OpenAI ImageGen. Each frame and its registered clean background were newly painted for this film.",
+  "historical_basis": "Musgrave (S001), 1864 diary on upright timbers and bundles of grass thatched around the outside walls, and his account after reaching Port Adventure on 24 July 1865, standing with one hand on a rope and the other at the pump. The knot, particular strokes and pump design are artistic reconstructions.",
+  "source": "../../../../../sources/originals/musgrave-1866-pdftotext.txt",
+  "rights": "Original project artwork. The face and costume use the game’s existing Musgrave model.",
+  "rights_record": "../../../../../RIGHTS.md",
+  "poses": {
+    "thatch": {
+      "generation_ids": [
+        "exec-a6c2066b-3c0f-48d0-afda-210e6af81220",
+        "exec-0699917c-1866-41eb-b179-b63aa983cb24"
+      ],
+      "generated_sha256": [
+        "08e4f10dedb57b13b7d59b6db7343f8957e94bd35b3c0947f7b60d8edb9d66b7",
+        "453d4fce74c04a9285e6fbecd04c11159fb67171e185e7f7cb2e3230fa7f6cee"
+      ],
+      "canvas": [
+        1440,
+        810
+      ],
+      "moving_box_xywh": [
+        0,
+        416,
+        739,
+        394
+      ],
+      "game_files": {
+        "thatch-matte.png": "bf5c358cf6aa67c6842f72efb184e17e5879193b8a5ab3d85342fb40f4f79c3a",
+        "thatch-under.webp": "d7f8bb99f894aac0ec25165745ff81d409173aefa224d569d2b6f6021bede16b",
+        "thatch.webp": "af6f16e13a325ec31ae007ce2493fd46d78cf9265b219d5792632cc5c959d707"
+      }
+    },
+    "hand-pump": {
+      "generation_ids": [
+        "exec-60a56548-d181-49ba-8d9e-084424ef9bff",
+        "exec-6e8c4b43-481b-4642-8aac-fd6a874d4bf6"
+      ],
+      "generated_sha256": [
+        "1ee13144024db7235604e11b81b20bb84a2fe79aaace0ab9a9949ff4807d25dd",
+        "ea2448eef5ca864021105e07d2af5817a1eb730100b824217b3ecad077592c3a"
+      ],
+      "canvas": [
+        1440,
+        810
+      ],
+      "moving_box_xywh": [
+        637,
+        93,
+        251,
+        422
+      ],
+      "game_files": {
+        "hand-pump-matte.png": "3011288e5f42defcdc1e2cf57a9b4681d02571d3a32db04965b4eb73c68f5075",
+        "hand-pump-under.webp": "e2a763c993e3da79cb59367a19792cdfe357ee5cafa7b6dc0d6f78472b46d19b",
+        "hand-pump.webp": "f6e3d0376046d3a77d83546ad6c2fe589119fef47475bd36f75323e08bda9a55"
+      },
+      "reference": {
+        "game_portrait": "../../../portraits/musgrave.png",
+        "intermediate_generation": "exec-fea510c1-cbe4-406f-a3b4-451a466a7d39",
+        "intermediate_sha256": "74fea2edcc6be1f4ed6abf1f5feb8b2135904934150a2f84b4bdc5774df314d0",
+        "revision": "The staging was redrawn to put Musgrave on his feet and carry the pump discharge over the side of the dinghy."
+      }
+    }
+  }
+}

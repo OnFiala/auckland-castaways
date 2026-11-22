@@ -180,6 +180,10 @@ jobs:
         run: |
           python adventure/tools/assemble_story_film.py "$RUNNER_TEMP/unpacked" \
             "$RUNNER_TEMP/film-master/until-we-return-story-film.mp4" --report "$RUNNER_TEMP/film-master/master.json"
+      - name: Compare the edit in every playback format
+        run: |
+          python adventure/tests/browser/media_cut_parity.py "$RUNNER_TEMP/unpacked" \
+            "$RUNNER_TEMP/film-master/until-we-return-story-film.mp4" --report "$RUNNER_TEMP/film-evidence/cut-parity.json"
       - uses: actions/upload-artifact@v4
         with:
           name: story-film-master

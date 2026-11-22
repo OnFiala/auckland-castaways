@@ -3,362 +3,392 @@ globalThis.storyFilmCaptions = {
   "prologue": [
     {
       "start": 1.36,
-      "end": 4.629,
-      "text": "In November eighteen sixty-three,\nfive men left Sydney"
+      "end": 4.206,
+      "text": "They loaded four months\nof food in Sydney."
     },
     {
-      "start": 4.629,
-      "end": 6.904,
-      "text": "to look for tin on Campbell Island."
+      "start": 4.206,
+      "end": 6.181,
+      "text": "If the Grafton was still missing then,"
     },
     {
-      "start": 6.904,
-      "end": 8.229,
-      "text": "They found none."
+      "start": 6.181,
+      "end": 8.006,
+      "text": "friends would send help."
     },
     {
-      "start": 8.229,
-      "end": 10.537,
-      "text": "They took a few skins\nand turned for home."
+      "start": 8.006,
+      "end": 11.595,
+      "text": "Five men sailed south\nfor Campbell Island in search of tin."
     },
     {
-      "start": 15.36,
-      "end": 18.704,
+      "start": 15.154,
+      "end": 16.759,
+      "text": "They found no tin."
+    },
+    {
+      "start": 16.759,
+      "end": 19.884,
       "text": "On New Year’s Day the Grafton\nentered Carnley Harbour."
     },
     {
-      "start": 18.704,
-      "end": 19.954,
-      "text": "Close under the rocks,"
+      "start": 19.884,
+      "end": 23.499,
+      "text": "Twenty fathoms of line hung beside\nthe cliffs without touching bottom."
     },
     {
-      "start": 19.954,
-      "end": 22.541,
-      "text": "twenty fathoms of line\nstill found no bottom."
+      "start": 26.252,
+      "end": 29.337,
+      "text": "An anchor chain snapped\nat seven the next evening."
     },
     {
-      "start": 26.36,
-      "end": 29.158,
-      "text": "By the second evening one\nanchor chain had snapped."
+      "start": 29.337,
+      "end": 31.912,
+      "text": "Each swell brought\nthe schooner nearer the rocks."
     },
     {
-      "start": 29.158,
-      "end": 32.203,
-      "text": "The other dragged.\nAt midnight the schooner struck."
+      "start": 31.912,
+      "end": 33.352,
+      "text": "At midnight she struck."
     },
     {
-      "start": 36.36,
-      "end": 39.174,
-      "text": "A quarter of an hour after\nthe men left the pumps,"
+      "start": 35.654,
+      "end": 38.037,
+      "text": "Pieces of keel floated past."
     },
     {
-      "start": 39.174,
-      "end": 41.363,
-      "text": "the sea was level with the cabin table."
+      "start": 38.037,
+      "end": 40.787,
+      "text": "The men abandoned the pumps\nto save their food."
     },
     {
-      "start": 45.807,
-      "end": 49.024,
-      "text": "In daylight all five\nmade it onto the stones."
+      "start": 40.787,
+      "end": 44.25,
+      "text": "A quarter of an hour later the sea\nhad reached the cabin table."
     },
     {
-      "start": 49.024,
-      "end": 51.549,
-      "text": "Thomas Musgrave\nand François Raynal came ashore"
+      "start": 45.64,
+      "end": 48.257,
+      "text": "In daylight all five reached the beach."
     },
     {
-      "start": 51.549,
-      "end": 55.02,
-      "text": "with Alick McLaren, Henry Forgés\nand George Harris."
+      "start": 48.257,
+      "end": 50.357,
+      "text": "Thomas Musgrave, François Raynal,"
     },
     {
-      "start": 57.36,
-      "end": 59.386,
-      "text": "Raynal could scarcely walk."
+      "start": 50.357,
+      "end": 53.632,
+      "text": "Alick McLaren, Henry Forgés\nand George Harris."
     },
     {
-      "start": 59.386,
-      "end": 61.661,
-      "text": "From the wreck the men\nbrought the mainsail."
+      "start": 53.632,
+      "end": 55.693,
+      "text": "Their boat survived the landing too."
     },
     {
-      "start": 61.661,
-      "end": 63.509,
-      "text": "That night they would sleep under it."
+      "start": 57.314,
+      "end": 59.036,
+      "text": "Raynal was ill."
+    },
+    {
+      "start": 59.036,
+      "end": 61.011,
+      "text": "He walked a hundred yards that day,"
+    },
+    {
+      "start": 61.011,
+      "end": 64.259,
+      "text": "from the beach to their shelter\nunder the Grafton’s own mainsail."
     }
   ],
   "winter": [
     {
-      "start": 1.36,
-      "end": 3.373,
-      "text": "They took the spars\ndown from the Grafton"
+      "start": 1.121,
+      "end": 4.05,
+      "text": "They planted ship’s\nspars three feet deep."
     },
     {
-      "start": 3.373,
-      "end": 5.023,
-      "text": "and set them in the ground."
+      "start": 4.05,
+      "end": 5.9,
+      "text": "Wind still came through the walls,"
     },
     {
-      "start": 5.023,
-      "end": 6.859,
-      "text": "By winter they had a house."
+      "start": 5.9,
+      "end": 8.548,
+      "text": "so the men tied up bundles\nof grass for thatch."
     },
     {
-      "start": 11.271,
-      "end": 14.453,
-      "text": "Two squares of cabin\nglass let in the daylight."
+      "start": 11.102,
+      "end": 13.914,
+      "text": "Two panes from the cabin\nlet in daylight."
     },
     {
-      "start": 14.453,
-      "end": 16.403,
-      "text": "At the table Raynal carved chessmen"
+      "start": 13.914,
+      "end": 16.514,
+      "text": "Raynal carved chessmen\nwith his pocketknife."
     },
     {
-      "start": 16.403,
-      "end": 19.323,
-      "text": "from thin strips of wood,\nred against white."
+      "start": 16.514,
+      "end": 19.577,
+      "text": "He used soot for the black\nsquares and lime for the white."
     }
   ],
   "forge": [
     {
-      "start": 1.36,
-      "end": 4.246,
-      "text": "A block of iron that once\nlay in the schooner’s belly"
+      "start": 0.978,
+      "end": 3.526,
+      "text": "A year went by without a rescue ship."
     },
     {
-      "start": 4.246,
-      "end": 6.343,
-      "text": "became the anvil for another vessel."
+      "start": 3.526,
+      "end": 5.801,
+      "text": "They made an anvil of iron ballast."
     },
     {
-      "start": 10.36,
-      "end": 13.119,
-      "text": "Raynal could make chisels and a saw."
+      "start": 5.801,
+      "end": 7.762,
+      "text": "They would build a vessel themselves."
     },
     {
-      "start": 13.119,
-      "end": 14.894,
-      "text": "Out in the yard lay the heavy timbers"
+      "start": 10.114,
+      "end": 12.435,
+      "text": "Raynal made a saw and chisels."
     },
     {
-      "start": 14.894,
-      "end": 16.781,
-      "text": "he still had to bore for bolts."
+      "start": 12.435,
+      "end": 15.96,
+      "text": "The keel was ready,\nbut its bolts needed deep holes."
+    },
+    {
+      "start": 15.96,
+      "end": 18.559,
+      "text": "All the steel he had came\nfrom their mining tools."
     }
   ],
   "boat": [
     {
-      "start": 1.36,
-      "end": 3.606,
-      "text": "Three days at the forge\nhad failed to produce"
+      "start": 1.088,
+      "end": 3.437,
+      "text": "Raynal gave the auger three days."
     },
     {
-      "start": 3.606,
-      "end": 5.481,
-      "text": "an auger for those timbers."
+      "start": 3.437,
+      "end": 5.462,
+      "text": "It still would not bore the timber."
     },
     {
-      "start": 5.481,
-      "end": 7.323,
-      "text": "There was still the schooner’s dinghy."
+      "start": 5.462,
+      "end": 7.187,
+      "text": "They turned to a boat already built,"
     },
     {
-      "start": 11.36,
-      "end": 14.55,
-      "text": "They raised her sides.\nShe would carry three."
+      "start": 7.187,
+      "end": 8.598,
+      "text": "the Grafton’s dinghy."
     },
     {
-      "start": 14.55,
-      "end": 17.587,
-      "text": "Henry and George would need\nanother boat to come back for them."
+      "start": 10.97,
+      "end": 12.708,
+      "text": "They raised her sides."
+    },
+    {
+      "start": 12.708,
+      "end": 15.533,
+      "text": "On trial, a shift of weight\nnearly tipped her over."
+    },
+    {
+      "start": 15.533,
+      "end": 16.858,
+      "text": "Three could sail."
+    },
+    {
+      "start": 16.858,
+      "end": 18.774,
+      "text": "Henry and George would have to stay."
     }
   ],
   "crossing": [
     {
-      "start": 1.289,
-      "end": 4.605,
-      "text": "On the nineteenth of July,\nMusgrave, Raynal and Alick"
+      "start": 1.252,
+      "end": 4.541,
+      "text": "On July the nineteenth,\nMusgrave, Raynal and Alick"
     },
     {
-      "start": 4.605,
-      "end": 6.43,
-      "text": "sailed from Camp Cove."
+      "start": 4.541,
+      "end": 6.866,
+      "text": "left Camp Cove on a fair wind."
     },
     {
-      "start": 6.43,
-      "end": 9.297,
-      "text": "The gale caught them within\ntwenty miles of the island."
+      "start": 6.866,
+      "end": 9.352,
+      "text": "Within twenty miles it\nhad risen to a gale."
     },
     {
-      "start": 12.36,
-      "end": 15.181,
-      "text": "Raynal and Alick took turns at the helm."
+      "start": 11.64,
+      "end": 14.234,
+      "text": "Raynal and Alick steered in turns."
     },
     {
-      "start": 15.181,
-      "end": 17.156,
-      "text": "Musgrave held a rope with one hand"
+      "start": 14.234,
+      "end": 17.459,
+      "text": "Musgrave pumped one-handed,\nclinging to a rope."
     },
     {
-      "start": 17.156,
-      "end": 18.501,
-      "text": "and pumped with the other."
+      "start": 17.459,
+      "end": 20.628,
+      "text": "Nearly half their time went into\nsimply riding out the storm."
     }
   ],
   "promise": [
     {
-      "start": 1.36,
-      "end": 4.464,
-      "text": "Five days and nights brought\nthem to Port Adventure."
+      "start": 1.221,
+      "end": 4.126,
+      "text": "Five nights later they\nreached Stewart Island."
     },
     {
-      "start": 4.464,
-      "end": 7.714,
-      "text": "Musgrave needed an arm\nto reach Captain Cross’s house."
+      "start": 4.126,
+      "end": 6.001,
+      "text": "Captain Cross took them in."
     },
     {
-      "start": 7.714,
-      "end": 9.041,
-      "text": "He could barely eat."
+      "start": 6.001,
+      "end": 9.398,
+      "text": "Next morning Musgrave gave him\nthe little boat that had carried them."
     },
     {
-      "start": 12.331,
-      "end": 15.347,
-      "text": "In Invercargill, John Macpherson\nwalked the wet streets"
+      "start": 11.735,
+      "end": 16.524,
+      "text": "In Invercargill, John Macpherson walked\nthe muddy streets for Henry and George."
     },
     {
-      "start": 15.347,
-      "end": 17.397,
-      "text": "collecting money for the return."
+      "start": 16.524,
+      "end": 19.524,
+      "text": "By the second evening he had\nraised over a hundred pounds,"
     },
     {
-      "start": 17.397,
-      "end": 20.234,
-      "text": "People gave blankets\nand clothes for the two men."
+      "start": 19.524,
+      "end": 21.128,
+      "text": "with blankets besides."
     }
   ],
   "return": [
     {
-      "start": 1.278,
-      "end": 3.53,
-      "text": "Musgrave came back with Captain Cross"
+      "start": 0.853,
+      "end": 2.314,
+      "text": "The wind eased."
     },
     {
-      "start": 3.53,
-      "end": 5.305,
-      "text": "aboard Flying Scud."
+      "start": 2.314,
+      "end": 4.714,
+      "text": "Under shortened sail,\nFlying Scud carried"
     },
     {
-      "start": 5.305,
-      "end": 6.705,
-      "text": "The house only came into view"
+      "start": 4.714,
+      "end": 7.164,
+      "text": "Captain Cross and Musgrave\nup the harbour."
     },
     {
-      "start": 6.705,
-      "end": 8.313,
-      "text": "when they were about a mile off."
+      "start": 7.164,
+      "end": 8.951,
+      "text": "The house appeared a mile ahead."
     },
     {
-      "start": 11.36,
-      "end": 13.638,
-      "text": "One man saw the cutter and ran inside"
+      "start": 10.732,
+      "end": 12.984,
+      "text": "One man ran indoors for the other."
     },
     {
-      "start": 13.638,
-      "end": 14.938,
-      "text": "to tell the other."
+      "start": 12.984,
+      "end": 15.059,
+      "text": "Cross and Musgrave landed."
     },
     {
-      "start": 14.938,
-      "end": 16.699,
-      "text": "Both came down to the beach."
+      "start": 15.059,
+      "end": 16.634,
+      "text": "The cutter stayed under sail."
+    },
+    {
+      "start": 16.634,
+      "end": 18.132,
+      "text": "It was too rough to anchor."
     }
   ],
   "epilogue": [
     {
-      "start": 1.114,
-      "end": 4.134,
-      "text": "That night Henry and George\nate fish and potatoes"
+      "start": 0.918,
+      "end": 4.523,
+      "text": "Now Henry and George could\nsit down to fish and potatoes."
     },
     {
-      "start": 4.134,
-      "end": 5.959,
-      "text": "aboard Flying Scud."
+      "start": 4.523,
+      "end": 6.123,
+      "text": "Bread and butter, too."
     },
     {
-      "start": 5.959,
-      "end": 8.559,
-      "text": "All five who left\nthe Grafton had survived."
+      "start": 6.123,
+      "end": 8.854,
+      "text": "After nearly twenty months,\nall five were safe."
     },
     {
-      "start": 11.36,
-      "end": 13.381,
-      "text": "On the tenth of May the year before,"
+      "start": 10.95,
+      "end": 14.637,
+      "text": "The year before, the Invercauld\nhad struck the northern coast."
     },
     {
-      "start": 13.381,
-      "end": 17.056,
-      "text": "the Invercauld had broken up\non the island’s northern coast."
+      "start": 14.637,
+      "end": 17.862,
+      "text": "Captain Dalgarno reckoned she\nbroke up in twenty minutes."
     },
     {
-      "start": 17.056,
-      "end": 19.394,
-      "text": "Nineteen of twenty-five reached land."
+      "start": 17.862,
+      "end": 20.805,
+      "text": "Of twenty-five men,\nnineteen reached the rocks."
     },
     {
-      "start": 23.36,
-      "end": 25.318,
+      "start": 23.24,
+      "end": 25.316,
       "text": "Neither crew knew of the other."
     },
     {
-      "start": 25.318,
-      "end": 28.793,
-      "text": "Andrew Smith wrote to his wife\nabout their sealskin boat."
+      "start": 25.316,
+      "end": 27.716,
+      "text": "Smith wrote to his\nwife that on calm days"
     },
     {
-      "start": 28.793,
-      "end": 30.406,
-      "text": "Two could take it out for food."
+      "start": 27.716,
+      "end": 31.37,
+      "text": "two men crossed to nearby islands\nfor seals in a boat of skins."
     },
     {
-      "start": 34.36,
-      "end": 36.382,
-      "text": "In May of eighteen sixty-five,"
+      "start": 34.349,
+      "end": 38.118,
+      "text": "In May a leaking ship,\nthe Julian, sent a boat ashore."
     },
     {
-      "start": 36.382,
-      "end": 38.657,
-      "text": "the Julian put in for repairs."
+      "start": 38.118,
+      "end": 41.293,
+      "text": "Only George Dalgarno, Andrew Smith\nand Robert Holding"
     },
     {
-      "start": 38.657,
-      "end": 40.832,
-      "text": "Only George Dalgarno, Andrew Smith"
+      "start": 41.293,
+      "end": 43.206,
+      "text": "survived to sail with her to Callao."
     },
     {
-      "start": 40.832,
-      "end": 43.022,
-      "text": "and Robert Holding lived to go aboard."
+      "start": 46.5,
+      "end": 49.789,
+      "text": "The Grafton’s anchors are\nstill there, under the water."
     },
     {
-      "start": 47.05,
-      "end": 49.119,
-      "text": "A few ribs of the Grafton still lie"
+      "start": 49.789,
+      "end": 52.749,
+      "text": "A few ribs lie in the shingle."
     },
     {
-      "start": 49.119,
-      "end": 52.289,
-      "text": "in the shingle at Carnley Harbour."
-    },
-    {
-      "start": 52.289,
-      "end": 54.314,
-      "text": "Nearby, the stones of the hearth"
-    },
-    {
-      "start": 54.314,
-      "end": 56.475,
-      "text": "mark where the five made their home."
+      "start": 52.749,
+      "end": 56.66,
+      "text": "On shore, the stones of a hearth\nmark where the five made a home."
     }
   ]
 };

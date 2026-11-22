@@ -63,6 +63,16 @@ def verified_film(folder, output, manifest, archive_sha):
     with movie.open('rb') as stream:
         if master['sha256'] != hashlib.file_digest(stream, 'sha256').hexdigest():
             raise ValueError('Standalone download differs from the measured film')
+    if int(manifest['release']) >= 20:
+        cut = read_json(folder / 'cut-parity.json')
+        if (cut['edition'] != manifest['release'] or cut['build'] != manifest['build'][:20]
+                or cut['standalone_sha256'] != master['sha256']
+                or [row['id'] for row in cut['reels']] != list(REELS)
+                or cut['compared_frames'] * 1000 != master['duration_ms'] * cut['samples_per_second']
+                or set(cut['working_shots']) != {'cast-lead', 'strike-iron', 'drive-fastening', 'swing-lantern'}
+                or not all(row['standalone_matches'] for row in cut['reels'])):
+            raise ValueError('The alternate playback formats do not match the tested film edit')
+        master['verified_picture_samples'] = cut['compared_frames']
     sheet = folder / 'filmstrip.webp'
     with sheet.open('rb') as stream:
         if report['gallery_sha256'] != hashlib.file_digest(stream, 'sha256').hexdigest():

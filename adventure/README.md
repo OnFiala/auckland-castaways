@@ -2,7 +2,7 @@
 
 A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
 
-[Play in your browser](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Download the offline game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v19) · [Watch the complete story film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v18/until-we-return-story-film.mp4) · [Film and historical sources](artwork/story-film/HISTORY.md) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
+[Play in your browser](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Download the offline game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v20) · [Watch the complete story film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v20/until-we-return-story-film.mp4) · [Film and historical sources](artwork/story-film/HISTORY.md) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
 ## Play
 
@@ -17,6 +17,8 @@ Extract the downloadable ZIP and open its root `index.html`. Keep the `editions`
 The three painted objects in the header show the work of the current chapter. Each finished task receives a check mark. A quiet instrumental theme follows you through each chapter. The first fire, the failed drill and the return course each have their own musical answer. Music softens when someone speaks, and the films have their own soundtrack. Adjust **Settings → Music volume**, down to **Off**. [Listen to the chapter themes](artwork/ISLAND_SCORE.md)
 
 The prologue starts as the game opens. Follow the men from Sydney to the wreck. At daylight the picture gives way to the shore, where Alick and Raynal speak and you can move or pick up the first length of rope. Six films bridge the work between chapters. After Musgrave brings Henry and George aboard, the epilogue opens the separate Invercauld record and returns to Carnley Harbour today.
+
+Watch the sounding lead descend from the rail, the lantern swing over the flooded cabin and the hammer meet hot iron. The boatbuilder’s mallet drives a fastening into the dinghy as its sides are raised. The closing sequence turns to Dalgarno’s letter and archival photographs of the wreck and the house site. With reduced motion, every camera cut brings a new held picture while the narration continues. [Historical witnesses and painted reconstructions](artwork/story-film/HISTORY.md)
 
 The campaign, unfinished work at the bench and your place in a chapter film are saved in the current browser. Earlier saves keep their progress. The compass opens **Our journey** to revisit any film you have reached. After the ending the whole film can play in sequence.
 

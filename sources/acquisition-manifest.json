@@ -114,8 +114,8 @@
     {
       "source_id": "S022",
       "url": "https://commons.wikimedia.org/wiki/File:FMIB_50706_Remains,_of_the_%22Grafton%22_Wreck,_Carnley_Harbour,_Auckland_Islands.jpeg",
-      "acquisition_status": "not_acquired",
-      "reason": "PD record inspected; image download returned403",
+      "acquisition_status": "failed",
+      "reason": "Earlier Commons route returned HTTP 403. The institutional IIIF image was subsequently obtained from the University of Washington.",
       "checked_at": "2026-11-15"
     },
     {
@@ -138,6 +138,85 @@
       "acquisition_status": "not_acquired",
       "reason": "Viewer returned Anubis Access Denied; scan uninspected",
       "checked_at": "2026-11-15"
+    },
+    {
+      "source_id": "S022",
+      "illustration_id": "A004",
+      "url": "https://digitalcollections.lib.washington.edu/digital/iiif/fishimages/50706/full/full/0/default.jpg",
+      "final_url": "https://digitalcollections.lib.washington.edu/digital/iiif/fishimages/50706/full/full/0/default.jpg",
+      "record_url": "https://digitalcollections.lib.washington.edu/digital/collection/fishimages/id/50706/",
+      "path": "adventure/artwork/story-film/second-cut/archive/grafton-1909.jpg",
+      "bytes": 189444,
+      "sha256": "1a5b2c1bed9371ef32b46b68248bb58d694ad68d65c2db6fed884cf32ecf5f12",
+      "retrieved_at": "2026-11-22T18:43:51.913150+00:00",
+      "status": 200,
+      "acquisition_status": "downloaded",
+      "rights_basis": "Public domain per the Copyright field in the UW item record. Acknowledge the Freshwater and Marine Image Bank, University of Washington Libraries.",
+      "inspection_note": "Institutional JPEG retained byte for byte. 1148 × 771. Publication date 1909, accession FMIB 50706. Visually matched with S006, figure 12, p. 10."
+    },
+    {
+      "source_id": "S022",
+      "url": "https://digitalcollections.lib.washington.edu/digital/api/singleitem/collection/fishimages/id/50706",
+      "final_url": "https://digitalcollections.lib.washington.edu/digital/api/singleitem/collection/fishimages/id/50706",
+      "path": "sources/metadata/uw-fmib-50706.json",
+      "bytes": 3344,
+      "sha256": "22a8afa3abaf67cc13455c93feba5f5042615dedc4854e678d5e096af6b0edb8",
+      "retrieved_at": "2026-11-22T18:43:51.913150+00:00",
+      "status": 200,
+      "acquisition_status": "downloaded",
+      "inspection_note": "Full institutional item metadata in original response bytes, including the image identifier, volume, page and public-domain statement."
+    },
+    {
+      "source_id": "S054",
+      "illustration_id": "A005",
+      "url": "https://digitalcollections.lib.washington.edu/digital/iiif/fishimages/50707/full/full/0/default.jpg",
+      "final_url": "https://digitalcollections.lib.washington.edu/digital/iiif/fishimages/50707/full/full/0/default.jpg",
+      "record_url": "https://digitalcollections.lib.washington.edu/digital/collection/fishimages/id/50707/",
+      "path": "adventure/artwork/story-film/second-cut/archive/epigwaitt-1909.jpg",
+      "bytes": 282842,
+      "sha256": "f3dae93a35007e7dad406c5c9a5f277d383f66f1b8d37b640e031be9f5770418",
+      "retrieved_at": "2026-11-22T18:43:51.913150+00:00",
+      "status": 200,
+      "acquisition_status": "downloaded",
+      "rights_basis": "Public domain per the Copyright field in the UW item record. Acknowledge the Freshwater and Marine Image Bank, University of Washington Libraries.",
+      "inspection_note": "Institutional JPEG retained byte for byte. 1165 × 772. Publication date 1909, accession FMIB 50707. Visually matched with S006, figure 11, p. 10."
+    },
+    {
+      "source_id": "S054",
+      "url": "https://digitalcollections.lib.washington.edu/digital/api/singleitem/collection/fishimages/id/50707",
+      "final_url": "https://digitalcollections.lib.washington.edu/digital/api/singleitem/collection/fishimages/id/50707",
+      "path": "sources/metadata/uw-fmib-50707.json",
+      "bytes": 3363,
+      "sha256": "7a0bffa0925c695d0e8ab4a4cf8905a89d2fa5bcfb4b46a52452bb67b3d9a3f5",
+      "retrieved_at": "2026-11-22T18:43:51.913150+00:00",
+      "status": 200,
+      "acquisition_status": "downloaded",
+      "inspection_note": "Full institutional item metadata in original response bytes, including the image identifier, volume, page and public-domain statement."
+    },
+    {
+      "source_id": "S002",
+      "illustration_id": "A006",
+      "derived_from": "sources/originals/castawayonauckla01musg.pdf",
+      "acquisition_status": "derived",
+      "operation": "RGB JPEG raster of printed p. 171, digital page 187 (one-based) of S001. Full unaltered leaf, 937×1600. Visually compared with the parent PDF.",
+      "path": "adventure/artwork/story-film/second-cut/archive/dalgarno-1866.jpg",
+      "bytes": 294006,
+      "sha256": "ce1cd735c84925c7e9f6033363b71c56d1578f1c465ed2e1e7b317cac2f3ed30",
+      "recorded_at": "2026-11-22T18:43:51.913150+00:00",
+      "rights_basis": "S001/S032. London 1866 edition, public-domain scan. This is a typeset reprint of Dalgarno’s letter, not a manuscript."
+    },
+    {
+      "source_id": "S002",
+      "illustration_id": "A006",
+      "derived_from": "sources/originals/castawayonauckla01musg.pdf",
+      "acquisition_status": "derived",
+      "operation": "RGB JPEG raster of printed p. 172, digital page 188 (one-based) of S001. Full unaltered leaf, 937×1600. Visually compared with the parent PDF.",
+      "path": "adventure/artwork/story-film/second-cut/archive/rescue-letter-1866.jpg",
+      "bytes": 451516,
+      "sha256": "423dec7e73458232f9b1bd53e313145f336973e94bf60bb15f515a40879b24ef",
+      "recorded_at": "2026-11-22T18:43:51.913150+00:00",
+      "rights_basis": "S001/S032. London 1866 edition, public-domain scan. This is a typeset reprint of Dalgarno’s letter, not a manuscript."
     }
-  ]
+  ],
+  "updated_at": "2026-11-22T18:43:51.913150+00:00"
 }

@@ -1,5 +1,11 @@
 # Výsledek ověření
 
+## Archivní obrazové prameny, 22. listopadu 2026
+
+Výzkumný validátor prošel s 54 zdrojovými ID a 14 uloženými kontrolními součty. U dvou nových fotografických souborů byly pořízeny nezávislé, shodné kopie z oficiální služby IIIF. Univerzitní metadata i oba snímky v plném rozlišení odpověděly HTTP 200. Dvě stránky Dalgarnova dopisu byly porovnány se skenem vydání z roku 1866. [Manifest včetně URL a SHA-256](../sources/acquisition-manifest.json) · [Kontrolované obrazové položky](../sources/ILLUSTRATIONS.md)
+
+## Kontrola prvního vydání rešerše, 15. listopadu 2026
+
 Datum: 2026-11-15T15:17:18.666514+00:00.
 
 Offline integrita: **PASS**. [Strojový výsledek](validation.json). Kontrolováno 53 zdrojových ID, 55 evidenčních položek, 30 řádků posádek (5 + 25), 34 tvrzení, 8 návrhových událostí a SHA-256 u 8 získaných/odvozených souborů. Místní odkazy existují, vztahy mezi ID jsou platné. Kontrola vzorů přihlašovacích údajů v publikovaných textových souborech nic nezachytila; není to záruka úplného bezpečnostního auditu.

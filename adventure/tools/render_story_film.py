@@ -10,7 +10,6 @@ Run from any directory, e.g.
 
 import argparse
 import json
-import math
 import subprocess
 from collections import OrderedDict
 from functools import lru_cache
@@ -19,7 +18,9 @@ from pathlib import Path
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
-from story_film_direction import INSERT
+from film_documentary import RECORDS, lift_frame, passage_frame, record_frame
+from film_working_actions import ACTIONS, action_frame
+from story_film_cut import cut_at
 from story_film_painter import PRINTS, ROOT, Stage, softstep
 
 
@@ -42,66 +43,32 @@ class Visuals:
         self.dims = dims
 
     def frame(self, key, t, fraction):
+        if key in ACTIONS:
+            return action_frame(key, fraction, self.dims)
+        if key in RECORDS:
+            return record_frame(key, fraction, self.dims)
+        if key == "sydney-lift":
+            return lift_frame(t, self.dims)
+        if key.startswith("passage/"):
+            return passage_frame(key.split("/")[1], t, self.dims)
+        if key.startswith("sea/"):
+            from film_sea_paint import sea_frame
+
+            return sea_frame(key.split("/")[1], t, fraction, self.dims)
+        if key.startswith("land/"):
+            from film_land_paint import land_frame
+
+            return land_frame(key.split("/")[1], t, fraction, self.dims)
+        if key.startswith("detail/"):
+            from film_detail_paint import detail_frame
+
+            return detail_frame(key.split("/")[1], t, fraction, self.dims)
         if key not in self.stages:
             self.stages[key] = Stage(key)
             if len(self.stages) > 3:
                 self.stages.popitem(last=False)
         self.stages.move_to_end(key)
         return self.stages[key].frame(t, fraction, self.dims)
-
-
-def edit(shot, t):
-    key = shot["plate"]
-    span = shot["seconds"]
-    if key in INSERT:
-        cut, other = INSERT[key]
-        cut *= span
-        if t >= cut:
-            return other, (t - cut) / (span - cut)
-        return key, t / cut
-    return key, t / span
-
-
-def paper_turn(left, right, fraction):
-    """A curling leaf travels across the lit chart table from its outer edge."""
-    h, w = left.shape[:2]
-    yy, xx = np.indices((h, w), dtype="float32")
-    p = float(softstep(fraction))
-    edge = (
-        w * (1.14 - 1.30 * p)
-        + w * 0.095 * (yy / h - 0.5)
-        + w * 0.022 * np.sin(yy / h * math.pi)
-    )
-    width = w * 0.084 * math.sin(math.pi * p)
-    delta = xx - edge
-    alpha = np.clip(delta / max(1, width), 0, 1)
-    out = np.where((delta < 0)[:, :, None], left, right).astype("float32")
-    if width > 1:
-        # Foreshortened reverse of the lifted leaf catches the window light.
-        back = cv2.remap(
-            left,
-            np.clip(edge - delta * 0.68, 0, w - 1).astype("float32"),
-            yy,
-            cv2.INTER_LINEAR,
-            borderMode=cv2.BORDER_REPLICATE,
-        )
-        grey = cv2.cvtColor(back, cv2.COLOR_BGR2GRAY)[:, :, None].astype("float32")
-        curl = (
-            grey * 0.15
-            + np.array((142, 171, 188), dtype="float32")
-            + 26 * np.sin(alpha * math.pi)[:, :, None]
-        )
-        active = (delta >= 0) & (delta < width)
-        out[active] = curl[active]
-        out *= (
-            1
-            - (
-                0.14
-                * np.exp(-(((delta - width) / (w * 0.029)) ** 2))
-                * (delta >= width)
-            )[:, :, None]
-        )
-    return np.clip(out, 0, 255).astype("uint8")
 
 
 @lru_cache(maxsize=2)
@@ -130,7 +97,7 @@ def title_plate(dims):
 
 
 def title_frame(frame, t):
-    alpha = float(softstep((t - 0.75) / 1.6)) * float(softstep((8.7 - t) / 1.35))
+    alpha = float(softstep((t - 0.12) / 0.62)) * float(softstep((5.4 - t) / 0.64))
     if alpha == 0:
         return frame
     ink, shadow = title_plate((frame.shape[1], frame.shape[0]))
@@ -236,11 +203,11 @@ def render(reel, output, posters, dims, fps):
         "-preset",
         "fast",
         "-crf",
-        "22",
+        "20",
         "-maxrate",
-        "2300k",
+        "3100k",
         "-bufsize",
-        "4200k",
+        "5800k",
         "-pix_fmt",
         "yuv420p",
         "-color_primaries",
@@ -260,34 +227,26 @@ def render(reel, output, posters, dims, fps):
     try:
         for index, shot in enumerate(shots):
             count = round(shot["seconds"] * fps)
-            boundary = round(0.76 * fps)
-            printed = (
-                shot["plate"] in PRINTS
-                and index
-                and shots[index - 1]["plate"] in PRINTS
+            # Cross time or witness with a short dissolve. Changes of action are straight cuts.
+            boundary = (
+                round(0.42 * fps)
+                if index
+                and shot["plate"]
+                in ("shore-dawn", "invercauld-wreck", "hearth-remains")
+                else 0
             )
-            if printed:
-                boundary = round(1.02 * fps)
             for n in range(count):
                 t = n / fps
-                plate, fraction = edit(shot, t)
-                frame = visual.frame(plate, t, fraction)
-                if index and n < boundary:
+                plate, local, fraction = cut_at(shot["plate"], t, shot["seconds"])
+                frame = visual.frame(plate, local, fraction)
+                if n < boundary:
                     prev = shots[index - 1]
-                    old, old_fraction = edit(prev, prev["seconds"] + t)
-                    left = visual.frame(old, prev["seconds"] + t, old_fraction)
-                    phase = (n + 1) / boundary
-                    frame = (
-                        paper_turn(left, frame, phase)
-                        if printed
-                        else cv2.addWeighted(
-                            left,
-                            1 - float(softstep(phase)),
-                            frame,
-                            float(softstep(phase)),
-                            0,
-                        )
+                    old, last, old_fraction = cut_at(
+                        prev["plate"], prev["seconds"], prev["seconds"]
                     )
+                    outgoing = visual.frame(old, last, old_fraction)
+                    mix = float(softstep((n + 1) / boundary))
+                    frame = cv2.addWeighted(outgoing, 1 - mix, frame, mix, 0)
                 # The application sets its own title and date over posters.
                 cover = (
                     (shot["plate"] == "schooner") if key == "prologue" else (index == 0)
@@ -302,9 +261,13 @@ def render(reel, output, posters, dims, fps):
                     )
                 ):
                     raise OSError("Unable to save poster")
-                if shot["plate"] == "outfit":
-                    frame = title_frame(frame, t)
-                if shot.get("dateline"):
+                if plate == "outfit":
+                    frame = title_frame(frame, local)
+                if plate == "hearth-remains":
+                    print_dateline(frame, "Carnley Harbour · Present day", plate, local)
+                elif plate == "invercauld-wreck":
+                    print_dateline(frame, "Painted reconstruction · 10 May 1864", plate, local)
+                elif shot.get("dateline") and plate not in RECORDS:
                     print_dateline(frame, shot["dateline"], shot["plate"], t)
                 if shot["plate"] == "hearth-remains" and t >= shot["seconds"] - 1.40:
                     fade = float(
@@ -332,7 +295,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--posters", type=Path, default=ROOT / "dist/assets/story-film")
     parser.add_argument("--chapter", action="append")
-    parser.add_argument("--width", type=int, default=1152)
+    parser.add_argument("--width", type=int, default=1280)
     parser.add_argument("--fps", type=int, default=24)
     args = parser.parse_args()
     reels = metadata()

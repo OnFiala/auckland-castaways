@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-22",
+  "medium": "Original digital paintings generated for this film using OpenAI ImageGen. Existing game art informed the visual brief. No modern external illustration was supplied.",
+  "use": "Production film artwork. Documentary references identify the underlying historical event. The painted compositions are reconstructions.",
+  "assets": [
+    {
+      "file": "outward.webp",
+      "sha256": "801ae3bae981d691c39aac6244c21ab324e28cd4b30e60d55486365eb371362c",
+      "description": "Departing from Sydney heads. Slight crop removes an invented margin heading. The rig, angle and weather are a reconstruction of departure, S003/S004."
+    },
+    {
+      "file": "impact.webp",
+      "sha256": "5de3c5e13546fdc766f117cada87b71075fd5b1761fd18982dcf7fe8da5f079d",
+      "description": "Grafton approaching the rocks at midnight. Read with Musgrave’s account of the second anchor dragging (S001, pp. 2–5)."
+    },
+    {
+      "file": "squall.webp",
+      "sha256": "c991cf718d05bce61d4de4df4823823f92cca5b24bc1029f3a098f7aff5f5769",
+      "description": "Crew bracing below the reefed sail in a small open boat. A gale caught the three men soon after their departure (S001, p. 96)."
+    },
+    {
+      "file": "storm.webp",
+      "sha256": "18719b2ac4fd7c4b1d68b4bcbbb4ff59ee7b1e45ca790cd9614dd6fc173daf97",
+      "description": "Three occupants in their open dinghy during the crossing. The particular night, moon, clothing and disposition of the crew are illustrative (S001, pp. 96–97)."
+    },
+    {
+      "file": "stewart.webp",
+      "sha256": "46b1494c1cc8a700fb83081eae717c97b789865befef28567ca71ec7879a11d4",
+      "description": "A man supports the exhausted Musgrave at Port Adventure. The approach, view and clothing are reconstructed from an episode in S001, pp. 96–97."
+    },
+    {
+      "file": "cross-house.webp",
+      "sha256": "5b286817d673b4d301a76e7fb7927f2a45d3833b56f3c937fb79587532a72a2c",
+      "description": "An interior crop focuses on hands, cups and food offered at Captain Cross’s house. Utensils, seating and gestures are an interpretation (S001, pp. 96–97)."
+    },
+    {
+      "file": "skin.webp",
+      "sha256": "a943e3f0c8494d37420855ab472ae489b89b8e887df3f380fbe18e8946d52a0f",
+      "description": "Two Invercauld survivors travel in a small skin boat. The joins, paddle and angle are reconstructed from Smith’s published letter (S038), not a surviving portrait of his boat."
+    }
+  ]
+}

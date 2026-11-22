@@ -1,8 +1,8 @@
 # Registr pramenů
 
-Stav rešerše: 15. listopadu 2026. 53 položek; ID jsou stabilní, nové se přidávají na konec. Čtené úseky nejsou totéž jako celé přečtené knihy. Stažení úplného skenu neznamená kontrolu každé stránky.
+Registr obsahuje 54 položek. Poslední kontrola vybraných záznamů proběhla 2026-11-22. ID jsou stabilní a nové prameny se přidávají na konec. Rozsah četby nebo prohlídky uvádíme jednotlivě.
 
-**Stavy:** `inspected_text` = uvedený krátký text přečten celý; `inspected_passages` = cílené pasáže; `inspected_indexed_ocr` = text čten přes index, bez kontroly sazby; `inspected_metadata` = jen katalog/anotace; `inspected_indexed_excerpt` / `inspected_indexed_metadata` = jen indexovaný úryvek / metadata; `discovered_*` = stopa, nikoli přečtený pramen.
+**Stavy:** `inspected_text` = uvedený krátký text přečten celý; `inspected_passages` = cílené pasáže; `inspected_indexed_ocr` = text čten přes index, bez kontroly sazby; `inspected_metadata` = jen katalog/anotace; `inspected_image` = celý obraz a jeho knihovní záznam; `inspected_indexed_excerpt` / `inspected_indexed_metadata` = jen indexovaný úryvek / metadata; `discovered_*` = stopa, nikoli přečtený pramen.
 
 Stejná `dependency_group` upozorňuje na sdílené svědectví: přetisky jednoho dopisu nejsou nezávislí svědkové. [Strojová data](../data/sources.json) · [Čtenářské poznámky](notes/READING_NOTES.md) · [Akvizice](ACQUISITION.md).
 
@@ -13,7 +13,7 @@ Thomas Musgrave; editor John J. Shillinglaw · 1866 · `primary_edited_journal`
 [Otevřít pramen](https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles)
 
 - Stav: `inspected_passages`.
-- Prohlédnutý rozsah: Title, introduction, chapters I–XIII: targeted reading of wreck, food, authority, forge, boat, departure, return; appendices I–III. Complete scan acquired, not every line proofread. Visual check: PDF page 16 historical map; text locators use printed pagination. Additional comparison: 10 and 29 May1864 entries, printed pp.31,35, on the fermented drink.
+- Prohlédnutý rozsah: Title, introduction, chapters I–XIII: targeted reading of wreck, food, authority, forge, boat, departure, return; appendices I–III. Complete scan acquired, not every line proofread. Visual check: PDF page 16 historical map; text locators use printed pagination. Additional comparison: 10 and 29 May1864 entries, printed pp.31,35, on the fermented drink. For the filmed account, the original page images of Appendix III, pp. 171–172 (PDF pp. 187–188), were checked against both displayed stills. See S002.
 - Práva: Underlying 1866 publication public domain; Commons PD statement S032; preserved Duke/IA scan.
 - Závislost: `MUSGRAVE`.
 - Poznámka: London: Lockwood. x + 174 printed pages, plus front matter and publisher advertisements. Journal contains editor notes: distinguish voices.
@@ -27,10 +27,12 @@ George Dalgarno; newspaper/publisher additions · 1866 [letters 1865] · `primar
 [Otevřít pramen](https://en.wikisource.org/wiki/Castaway_on_the_Auckland_Isles/Appendix_3)
 
 - Stav: `inspected_text`.
-- Prohlédnutý rozsah: Printed pp.171–174; captain letter and separate publisher note read in full. Revision oldid=11365299.
+- Prohlédnutý rozsah: Printed pp. 171–174. The captain’s letter and separate publisher note were read in full. Wikisource revision oldid=11365299. The two film images were compared directly with pp. 171–172 of the 1866 edition (PDF pp. 187–188).
 - Práva: 1866 text public domain; Wikisource transcription credits and CC BY-SA apply to contributions. No bulk web transcription copied.
 - Závislost: `DALGARNO_PRESS`.
 - Poznámka: Not independent of newspaper reprints; smoke speculation is the publishers’ addition, not Dalgarno eyewitness testimony.
+- Lokálně: [dalgarno-1866.jpg](../adventure/artwork/story-film/second-cut/archive/dalgarno-1866.jpg).
+- Lokálně: [rescue-letter-1866.jpg](../adventure/artwork/story-film/second-cut/archive/rescue-letter-1866.jpg).
 
 ## S003 — Les naufragés des Auckland
 
@@ -51,7 +53,7 @@ F. E. Raynal; English translator not named on inspected title; Alfred de Neuvill
 [Otevřít pramen](https://archive.org/details/wreckedonareef00rayngoog)
 
 - Stav: `inspected_passages`.
-- Prohlédnutý rozsah: Title/preface; pp.40–43, 110–160, 228–285, 286–327 and contents/appendices searched. Complete PDF and raw OCR acquired; scan has 363 digital pages. Visual spot checks: digital PDF pages 1 (Google notice), 13 (crew frontispiece), 16 (title), 21 (contents), 24 (introduction), 50 (narrative). Passage reading otherwise uses raw OCR, not a full facsimile collation. Additional OCR reading: pp.152–154 (cook exemption),164–165 (cards),177–179 (fermented drink).
+- Prohlédnutý rozsah: Title/preface; pp.40–43, 110–160, 228–285, 286–327 and contents/appendices searched. Complete PDF and raw OCR acquired; scan has 363 digital pages. Visual spot checks: digital PDF pages 1 (Google notice), 13 (crew frontispiece), 16 (title), 21 (contents), 24 (introduction), 50 (narrative). Passage reading otherwise uses raw OCR, not a full facsimile collation. Additional OCR reading: pp.152–154 (cook exemption),164–165 (cards),177–179 (fermented drink). In November 2026 the printed pages 38–39 (PDF pages 49–50) and page 160 (PDF page 167) were checked against the images for provisions, the pre-departure agreement, and chessmaking.
 - Práva: IA NOT_IN_COPYRIGHT (US); 1874 original text and engravings PD. Google front sheet requests non-commercial file use and retained watermark: research copy, no blanket production-art clearance.
 - Závislost: `RAYNAL`.
 - Poznámka: London: T. Nelson & Sons; Oxford copy digitized by Google. Retrospective account, several years after events. OCR is unreliable for numerals and accents.
@@ -77,7 +79,7 @@ Peter Petchey; Department of Conservation · 2016 [assessment 2014] · `archaeol
 [Otevřít pramen](https://www.doc.govt.nz/Documents/science-and-technical/has1entire.pdf)
 
 - Stav: `inspected_passages`.
-- Prohlédnutý rozsah: Heritage Assessment Series 1, 34 printed pages /38 PDF pages; sources, chronology, structures, collections, references; figures inspected selectively. ISBN 978-0-478-15082-7.
+- Prohlédnutý rozsah: Heritage Assessment Series 1, 34 printed pages /38 PDF pages; sources, chronology, structures, collections, references; figures inspected selectively. ISBN 978-0-478-15082-7. Figures 11 and 12 on printed p. 10 were compared visually with the two UW photographs (A004 and A005). Newspaper dates and catalogue identifiers were checked in the figure captions.
 - Práva: Copyright DOC July 2016; report explicitly restricts reproduction of images without owners’ permission. No full report or modern images in repo.
 - Závislost: `PETCHEY_ARCHAEOLOGY`.
 - Poznámka: Physical observations are independent evidence; narrative often cites Musgrave/Raynal/Druett. See short reading note, not a substitute copy.
@@ -262,17 +264,19 @@ Museum of New Zealand Te Papa Tongarewa · object c.1864; gift 1973 · `museum_o
 - Závislost: `OBJECT_RECORD`.
 - Poznámka: —
 
-## S022 — FMIB 50706: Remains of the Grafton Wreck, Carnley Harbour
+## S022 — FMIB 50706 — Remains, of the "Grafton" Wreck, Carnley Harbour, Auckland Islands
 
-Charles Chilton volume; Freshwater and Marine Image Bank, University of Washington · 1909 publication · `historical_image_record`
+Canterbury scientific expedition photograph, in the volume edited by Charles Chilton. Scan by University of Washington Libraries. · 1907 expedition photograph, published in the 1909 volume · `historical_photograph`
 
-[Otevřít pramen](https://commons.wikimedia.org/wiki/File:FMIB_50706_Remains,_of_the_%22Grafton%22_Wreck,_Carnley_Harbour,_Auckland_Islands.jpeg)
+[Otevřít pramen](https://digitalcollections.lib.washington.edu/digital/collection/fishimages/id/50706/)
 
-- Stav: `inspected_metadata`.
-- Prohlédnutý rozsah: Original 1148×771 JPEG; Commons oldid=1239700885; original publication source and PD statement checked.
-- Práva: PD-UWASH-FMIB. Acknowledge Freshwater and Marine Image Bank.
-- Závislost: `HISTORICAL_IMAGE`.
-- Poznámka: Download of original JPEG returned 403; image NOT present locally. Publication date is not a verified shutter date.
+- Stav: `inspected_image`.
+- Prohlédnutý rozsah: Full 1148 × 771 institutional JPEG, catalogue fields including rights, and published page reference. A standing figure next to exposed hull timbers on the shingle. Composition matched visually with S006, p. 10, figure 12.
+- Práva: The University of Washington identifies all Freshwater and Marine Image Bank materials as public domain and requests acknowledgement of that collection.
+- Závislost: `CHILTON_1909_PHOTOGRAPHS`.
+- Poznámka: Chas. Chilton (ed.), The Subantarctic Islands of New Zealand, vol. I, Wellington, John Mackay, 1909, p. xxv, figure 8. S006 attributes the earlier newspaper appearance to Auckland Weekly News, 26 December 1907, Auckland Libraries AWNS-19071226-8-2. The 1909 catalogue year refers to the book. The caption gives no personal photographer credit.
+- Lokálně: [grafton-1909.jpg](../adventure/artwork/story-film/second-cut/archive/grafton-1909.jpg).
+- Lokálně: [uw-fmib-50706.json](../sources/metadata/uw-fmib-50706.json).
 
 ## S023 — Les naufragés, ou Vingt mois sur un récif des iles Auckland [2nd edition]
 
@@ -645,3 +649,17 @@ Casting Lots: A Survival Cannibalism Podcast · 2021/2022 [exact date not checke
 - Práva: Modern audio copyright; links only.
 - Závislost: `ONLINE_RECEPTION`.
 - Poznámka: Useful pointer to Smith NLA copy. Sensational title is not evidence for allegations.
+
+## S054 — FMIB 50707 — Remains of Musgrave's Hut, "Epigwait," Carnley Harbour, Auckland Islands
+
+Canterbury scientific expedition photograph, in the volume edited by Charles Chilton. Scan by University of Washington Libraries. · 1907 expedition photograph, published in the 1909 volume · `historical_photograph`
+
+[Otevřít pramen](https://digitalcollections.lib.washington.edu/digital/collection/fishimages/id/50707/)
+
+- Stav: `inspected_image`.
+- Prohlédnutý rozsah: Full 1165 × 772 institutional JPEG, catalogue fields including rights, and published page reference. Stonework, fallen timber and a stove at the overgrown hut site. Composition matched visually with S006, p. 10, figure 11.
+- Práva: The University of Washington identifies all Freshwater and Marine Image Bank materials as public domain and requests acknowledgement of that collection.
+- Závislost: `CHILTON_1909_PHOTOGRAPHS`.
+- Poznámka: Chas. Chilton (ed.), The Subantarctic Islands of New Zealand, vol. I, Wellington, John Mackay, 1909, p. xxvi, figure 9. S006 attributes the earlier newspaper appearance to Auckland Weekly News, 2 January 1908, Auckland Libraries AWNS-19080102-15-1. The 1909 catalogue year refers to the book. The caption gives no personal photographer credit.
+- Lokálně: [epigwaitt-1909.jpg](../adventure/artwork/story-film/second-cut/archive/epigwaitt-1909.jpg).
+- Lokálně: [uw-fmib-50707.json](../sources/metadata/uw-fmib-50707.json).
