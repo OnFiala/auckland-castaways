@@ -2,6 +2,14 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## Edition 20 · The castaways on film
+
+Chromium played the eight H.264 reels with sound from the extracted offline game. The 66-second opening reached the landing by daylight, then returned control on the shore. The rescue led to the 59-second epilogue and the witness table. A second pass opened all eight WebM files. With reduced motion selected, Chromium and WebKit held the wharf painting until the first cut, then showed the next shot while the narration continued. [In-game landing at daybreak](reviews/release-20/landfall-in-game.png) · [Browser playback test](tests/browser/hosted_film_pass.py)
+
+Across the 248-second cut we compared 1,984 picture samples from the game’s MP4s, the standalone film, the WebM edition and the painted-frame player. The MP4 samples matched the standalone film pixel for pixel. Local motion checks covered the sounding lead, hanging lantern, forge hammer and boat fastening, with a stationary part of the painting as a reference in each shot. The English soundtrack fits all 75 subtitles. [Moving excerpt and picture notes](reviews/release-20/README.md) · [Sound and speech measurements](artwork/story-film/AUDIO.md)
+
+The published tag `game-v20` points to `712eabeef80f0e03044a0eb8ab93394e7891afc8`. All six release assets were downloaded anonymously. The MP4 (31,922,330 bytes) and game ZIP (125,775,202 bytes) matched the tested originals and the published SHA-256 checksums. A separate signed-out browser opened the public release and its moving excerpt. At the time of this check, the separate hosted game’s manifest still identified edition 19. [Verified downloads](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v20) · [Release checks](https://github.com/OnFiala/auckland-castaways/actions/runs/45058047483) · [Frame from the public excerpt](reviews/release-20/forge-in-browser.jpg)
+
 ## Edition 19 · Music and the painted journal
 
 Chromium and WebKit played the hosted distribution from its exact release files. In a saved camp with dry kindling ready, using the tinderbox lit the hearth and produced a separate audible musical phrase. A passive Web Audio analyser measured both the chapter music and the new phrase after the game applied its volume. During the following line of dialogue, the music settled at 38% of its exploring level. Ending the conversation restored the level. Moving **Music volume** to **Off** produced zero output in both engines. The regression suite also covers film replay, blocked autoplay, delayed downloads, old saves and changes of chapter. [Score tests](tests/island-score.test.cjs) · [Recordings and mastering](artwork/ISLAND_SCORE.md)
