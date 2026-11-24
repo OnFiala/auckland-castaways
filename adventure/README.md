@@ -4,6 +4,8 @@ A complete, compact seven-chapter painted point-and-click adventure inspired by 
 
 [Play in your browser](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Download the offline game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v20) · [Watch the complete story film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v20/until-we-return-story-film.mp4) · [Film and historical sources](artwork/story-film/HISTORY.md) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
+**Downloadable edition: 20.** The hosted game has its own release: when edition 20 was published on **22 November 2026**, the browser address still served edition 19.
+
 ## Play
 
 Extract the downloadable ZIP and open its root `index.html`. Keep the `editions` folder beside it. Returning to the same folder and browser gives the game access to the same save where local-file storage is available. The hosted edition saves on its own origin. A source checkout also runs directly from [dist/index.html](dist/index.html).
@@ -59,4 +61,4 @@ node --test adventure/tests/*.test.js adventure/tests/*.test.cjs adventure/tests
 node adventure/tests/ui-contract.cjs
 ```
 
-The release tests exercise the complete journey, all eight work surfaces, interruptions, an unfinished close-up through reload, optional field observations, and old saves. Every one of the 705 reachable campaign inventory states has a path to chapter completion. The release includes targeted failures of a scene image, unfinished screen transitions and walking atlases. Native Canvas checks fixed rock, rope and wood against the water. [Current release and verification](reviews/release-15/README.md) · [Past test runs](FULL_GAME_TESTING.md) · [Artwork comparison](reviews/staging/scene-scale-proof.webp)
+The release tests exercise the complete journey, all eight work surfaces, interruptions, an unfinished close-up through reload, optional field observations, and old saves. Every one of the 705 reachable campaign inventory states has a path to chapter completion. The release includes targeted failures of a scene image, unfinished screen transitions and walking atlases. Native Canvas checks fixed rock, rope and wood against the water. [Edition 20 notes](reviews/release-20/README.md) · [Verification by edition](FULL_GAME_TESTING.md) · [Artwork comparison](reviews/staging/scene-scale-proof.webp)

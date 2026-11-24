@@ -10,7 +10,7 @@ Poslední pramenné doplnění proběhlo **22. listopadu 2026**. [OnFiala/auckla
 
 **[Hrát v prohlížeči bez přihlášení](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Stáhnout offline hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v20) · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v20/until-we-return-story-film.mp4) · [Návod](adventure/README.md)
 
-Nový film patří ke stažitelnému vydání **20**. Při jeho zveřejnění 22. listopadu se na herní adrese ještě hrálo vydání 19. Stažený ZIP celý rozbal a otevři `index.html`.
+**Ke stažení je vydání 20** s novým filmem. Hostovaná hra má vlastní vydání: při zveřejnění filmu **22. listopadu 2026** se na herní adrese hrálo vydání 19. Stažený ZIP celý rozbal a otevři `index.html`.
 
 Film začíná u zásob, které posádka nakládá v Sydney. V Carnley Harbour se přes bok lodě spouští olovnice. V dílně pak záběr drží na kovadlině, takže vidíš, kam Raynalův úder dopadne. U člunu je zblízka vidět, jak hřeb s každým úderem zajíždí do bočnice. Závěr otevírá Dalgarnův dopis a ukazuje fotografie pozůstatků vraku a obydlí. Při omezení pohybu se obrazy mění ve stejných místech střihu a anglické vyprávění pokračuje. [Svědectví k jednotlivým scénám](adventure/artwork/story-film/HISTORY.md)
 
@@ -18,13 +18,15 @@ Sedm variací jedné námořní melodie doprovází hru od prvního večera po n
 
 Příběh začíná odplutím ze Sydney. Když se po ztroskotání rozední, přebíráš na břehu Alicka a slyšíš první slova jeho druhů. Po zimě v Epigwaittu, práci u výhně a opravě člunu přinese plavba tři muže k lidem. Jako kapitán Musgrave se vrátíš pro zbývající dva. Úvod, šest mezikapitol a závěrečný film se přehrávají přímo při průchodu. Hra si při zavření karty pamatuje i místo v rozběhnutém filmu. Anglické vyprávění, hudba, ruchy a titulky jsou součástí offline vydání. [Pohyblivá ukázka filmu a vylodění v herním přehrávači](adventure/reviews/release-20/README.md) · [Průvodce hrou](adventure/README.md) · [Prameny k jednotlivým záběrům](adventure/artwork/story-film/HISTORY.md)
 
-Ve vydání 16 se na mokrém písku odráží právě ten krok, který Alick dělá. Světlo z okna, ohně nebo lucerny dopadá na materiály jinak než na tváře posádky. Původní malbu si lze kdykoli zvolit v Settings → Scene lighting. Stažený ZIP celý rozbalte a otevřete `index.html`. [Světlo a srovnání obrazů](adventure/reviews/release-16/README.md) · [Vydání 15 a jeho ověření](adventure/reviews/release-15/README.md) · [Obrazový průchod a opravy vydání 14](adventure/reviews/release-14/README.md)
-
-Sedm anglicky vyprávěných kapitol vede přes čtrnáct míst od ztroskotání k záchraně. Na pláži se Raynal nejprve ujistí, že se George dostal na břeh. Teprve z rozhovoru s Alickem vyplyne, proč je potřeba plachta zachycená v koruně stromu. Každý z pěti mužů má vlastní tvář a při práci jiné držení těla. Jejich rozhovor lze pod obrazem číst vlastním tempem. [Aktuální vydání a obrazové ukázky](adventure/reviews/29-na-doslech.md) · [Porovnání ve dvou velikostech](adventure/reviews/company/README.md)
+Sedm anglicky vyprávěných kapitol vede přes čtrnáct míst od ztroskotání k záchraně. Na pláži se Raynal nejprve ujistí, že se George dostal na břeh. Teprve z rozhovoru s Alickem vyplyne, proč je potřeba plachta zachycená v koruně stromu. Každý z pěti mužů má vlastní tvář a při práci jiné držení těla. Jejich rozhovor lze pod obrazem číst vlastním tempem. [Malby a rozhovory posádky](adventure/reviews/29-na-doslech.md) · [Porovnání ve dvou velikostech](adventure/reviews/company/README.md)
 
 U vraku může hráč vzít do ruky volný konec lana a roztočit kladku. V Epigwaittu jej kapka dopadající do plechové nádoby dovede k netěsnému švu. V loděnici Alick s Musgravem drží společné prkno. Na červencovém moři pracují s vodou uvnitř člunu, zatímco v dálce pokračuje přeháňka. [Jednotlivé kapitoly](adventure/FULL_STORY.md) · [Malby rekvizit](adventure/reviews/tactile/at-work.webp) · [Pohyblivá ukázka pobřeží a moře](adventure/reviews/tide/watch/wind-and-water.webp)
 
 Před odplutím hráč uloží šicí potřeby pro Henryho a George. V srpnu se ke stejnému místu vrátí už jako kapitán. Po záchraně lze porovnat svědectví trosečníků Invercauldu na archivním stole. Hra ukládá i rozdělanou práci. [Prameny a interpretace](adventure/HISTORICAL_ADAPTATION.md) · [Výsledky a meze ověření](adventure/FULL_GAME_TESTING.md)
+
+## Historie vydání a prototypů
+
+Ve vydání 16 se na mokrém písku odráží právě ten krok, který Alick dělá. Světlo z okna, ohně nebo lucerny dopadá na materiály jinak než na tváře posádky. Původní malbu si lze kdykoli zvolit v Settings → Scene lighting. [Světlo a srovnání obrazů](adventure/reviews/release-16/README.md) · [Vydání 15 a jeho ověření](adventure/reviews/release-15/README.md) · [Obrazový průchod a opravy vydání 14](adventure/reviews/release-14/README.md)
 
 Starší rozhodovací a strategické prototypy níže jsou archivem vývoje.
 
@@ -69,9 +71,9 @@ Invercauld ztroskotal **10.5.1864** u severního konce ostrova. Z **25** lidí s
 
 Srpen 1865 přináší Musgraveovo **nejisté pozorování kouře**. Vydavatelský dodatek jej spojuje s Invercauldem, jehož tři známí přeživší však byli zachráněni už v květnu. Původ kouře není vyřešen. Herní setkání nebo objevení cizího tábora během pobytu na ostrově by bylo alternativní historií. [Rozbor](research/CONFLICTS.md).
 
-## Tvůrčí návrh
+## Původní tvůrčí návrh
 
-Doporučena je narativní strategie o udržení pěti lidí, práce a společných závazků. Finále tvoří **návrat pro ty, kteří zůstali**, ne jen první únik z ostrova. Invercauld dostává připsaná svědectví a archivní mezihry, které zachovávají rozdílné podmínky a nejistotu.
+Výchozím návrhem byla narativní strategie o udržení pěti lidí, práce a společných závazků. Finále tvoří **návrat pro ty, kteří zůstali**, ne jen první únik z ostrova. Invercauld dostává připsaná svědectví a archivní mezihry, které zachovávají rozdílné podmínky a nejistotu.
 
 První řez **Poslední vrták** má na malé scéně ověřit práci, odpočinek, zásoby, dohody a změnu nefunkčního plánu. První kratší implementace už obsahuje pět zhuštěných dnů; původních 30–45 minut zůstává návrhovým cílem většího řezu, nikoli změřenou délkou prototypu. Dialogy, číselné hodnoty, událostní karty a část pořadí scén jsou vlastní fikce, nikoli rekonstruované zápisy skutečných lidí.
 
