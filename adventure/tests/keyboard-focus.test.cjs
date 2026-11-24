@@ -58,7 +58,10 @@ function game({loadPaintings = false} = {}) {
   for (const script of scripts) vm.runInContext(read(script), ui.context, {filename: script});
   // This harness starts the app after installing its focus double. Enter the
   // first scene before setting up the keyboard action under test.
-  if (element('story-film').open) element('film-skip').onclick();
+  if (element('story-film').open) {
+    if (element('story-film').dataset.mode === 'foreword') element('film-begin').onclick();
+    element('film-skip').onclick();
+  }
   const focusAndActivate = async control => { control.focus(); await ui.click(control); };
   const acceptPainting = async () => { paintRequests.at(-1).onload(); await ui.flush(12); };
   return {ui, element, focusAndActivate, acceptPainting, paintRequests};

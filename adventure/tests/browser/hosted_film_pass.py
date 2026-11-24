@@ -11,7 +11,7 @@ from urllib.parse import unquote, urlsplit
 from PIL import Image, ImageChops, ImageStat
 from playwright.sync_api import Error as PlaywrightError, expect, sync_playwright
 
-from campaign import ready, state, story_film
+from campaign import foreword, ready, state, story_film
 from release_qa import write
 from story_film_pass import OLD_FLAGS, stage_archive, wake
 
@@ -164,11 +164,13 @@ def initial_save(page):
     return state(page)
 
 
-def picture(page):
+def picture(page, *, harbour=False):
     image = Image.open(io.BytesIO(page.locator('.film-picture').screenshot(animations='allow'))).convert('RGB')
-    # Exclude both title and subtitle areas. A changing loading label cannot pass the motion test.
+    # Measure the harbour's moving lantern reflection during the title. For the
+    # documentary shots use the centre, away from the title and subtitle areas.
     w, h = image.size
-    return image.crop((int(w * .15), int(h * .33), int(w * .89), int(h * .69))).resize((128, 64))
+    box = (.773, .735, .888, .847) if harbour else (.15, .33, .89, .69)
+    return image.crop(tuple(int(v * size) for v, size in zip(box, (w, h, w, h)))).resize((128, 64))
 
 
 def compare(before, after):
@@ -205,9 +207,10 @@ def movement(page, reel, output, label, *, compatible=None, timeout=30000):
       return peak > .0002 ? {renderer, peak} : false;
     }""", arg=compatible, timeout=timeout).json_value()
     first = clock(page)
-    before = picture(page)
+    harbour = reel == 'prologue' and first < 14
+    before = picture(page, harbour=harbour)
     page.wait_for_function("old => window.CastawayFilm.position() >= old + 1.0", arg=first, timeout=10000)
-    after = picture(page)
+    after = picture(page, harbour=harbour)
     current = clock(page)
     pixels, average = compare(before, after)
     assert current > first, (label, first, current)
@@ -217,18 +220,21 @@ def movement(page, reel, output, label, *, compatible=None, timeout=30000):
     return measurement
 
 
-def started_without_gesture(page, reel, *, compatible=None):
-    """The unopened profile must already be showing moving frames before any sound-unlock click."""
+def opening_in_motion(page, reel, *, inputs, compatible=None):
+    """Having begun or resumed, the opening runs without another player input."""
     film = story_film(page, reel)
     active_renderer(page, compatible)
     first = clock(page)
-    before = picture(page)
+    harbour = reel == 'prologue' and first < 14
+    before = picture(page, harbour=harbour)
     page.wait_for_function('t => window.CastawayFilm.position() >= t + .9', arg=first)
-    pixels, _ = compare(before, picture(page))
+    pixels, _ = compare(before, picture(page, harbour=harbour))
     input_count = page.evaluate('window.qaTrustedInputs')
-    assert input_count == 0, 'the opening must start before user input'
+    assert input_count == inputs, 'a running film must continue without a second gesture'
     start = clock(page)
-    expect(film.locator('#film-caption')).to_be_visible(timeout=13000)
+    if start < 14:
+        expect(film.locator('#film-card-text')).not_to_have_text('')
+        expect(film.locator('#film-caption')).to_be_hidden()
     # Some platforms permit sound immediately, others require a player gesture.
     control = film.locator('#film-mute')
     if 'enable sound' in control.inner_text().lower():
@@ -268,9 +274,15 @@ def standard_entrypoints(browser, index, output):
     with visit(browser, index) as (page, delivery):
         film = story_film(page, 'prologue')
         original = initial_save(page)
-        started = started_without_gesture(page, 'prologue')
+        begin = foreword(page)
+        assert not delivery.media and page.evaluate('window.qaTrustedInputs') == 0
+        page.screenshot(path=output/'before-the-voyage.png')
+        begin.click()
+        inputs = page.evaluate('window.qaTrustedInputs')
+        assert inputs > 0
+        started = opening_in_motion(page, 'prologue', inputs=inputs)
         report['opening'] = movement(page, 'prologue', output, 'opening')
-        report['opening']['beforeFirstGesture'] = started
+        report['opening']['afterForeword'] = started
         report['resume'] = pause_and_resume(page, 'prologue', output, 'resume')
         page.wait_for_function('window.CastawayFilm.position() >= 4.5')
         last = clock(page)
@@ -278,7 +290,7 @@ def standard_entrypoints(browser, index, output):
         film = story_film(page, 'prologue')
         stored = page.evaluate("JSON.parse(localStorage.getItem('castaways-story-v1')).pending")
         assert stored['reel'] == 'prologue' and last - .4 <= stored['position'] <= last + 2.2, (last, stored)
-        restarted = started_without_gesture(page, 'prologue')
+        restarted = opening_in_motion(page, 'prologue', inputs=0)
         assert restarted['clock'] >= stored['position'] - .25, (stored, restarted)
         report['reloaded'] = movement(page, 'prologue', output, 'reloaded')
         report['reloaded']['bookmarkSeconds'] = stored['position']
@@ -339,11 +351,12 @@ def recovery(browser, index, output, fault):
     with visit(browser, index, faults=fault) as (page, delivery):
         film = story_film(page, 'prologue')
         original = initial_save(page)
-        started = started_without_gesture(page, 'prologue', compatible=True)
+        foreword(page).click()
+        started = opening_in_motion(page, 'prologue', inputs=page.evaluate('window.qaTrustedInputs'), compatible=True)
         result = movement(page, 'prologue', output, f'{fault}-recovery', compatible=True, timeout=48000)
-        result['beforeFirstGesture'] = started
+        result['afterForeword'] = started
         result['resume'] = pause_and_resume(page, 'prologue', output, f'{fault}-resume', compatible=True)
-        expect(film.locator('#film-caption')).to_be_visible(timeout=12000)
+        expect(film.locator('#film-caption')).to_be_visible(timeout=22000)
         exit_to_game(page, 'prologue')
         assert state(page) == original
         result['movieRequests'] = delivery.media
@@ -354,13 +367,18 @@ def recovery(browser, index, output, fault):
 
 def gesture_and_visibility(browser, index, output):
     with visit(browser, index, faults='sound-policy') as (page, _):
+        foreword(page).click()
+        # An accepted foreword survives a reload. This time no player gesture
+        # authorizes the new page's sound, so a real muted-autoplay retry is needed.
+        page.wait_for_function('window.CastawayFilm.position() > 2.5')
+        page.reload(wait_until='domcontentloaded')
         film = story_film(page, 'prologue')
         video = film.locator('#film-video')
         expect(film).to_have_attribute('data-sound-locked', 'true')
         active_renderer(page, compatible=False)
         initial = video.evaluate('v => ({source:v.currentSrc, muted:v.muted})')
         assert initial['muted'] and initial['source']
-        before = started_without_gesture(page, 'prologue', compatible=False)
+        before = opening_in_motion(page, 'prologue', inputs=0, compatible=False)
         expect(film).to_have_attribute('data-sound-locked', 'false')
         assert video.evaluate('v => !v.muted && !v.paused && v.currentSrc') == initial['source']
         result = movement(page, 'prologue', output, 'sound-unlock', compatible=False)
@@ -392,34 +410,38 @@ def gesture_and_visibility(browser, index, output):
 
 def reduced_and_skipped(browser, index, output):
     with visit(browser, index, reduced=True) as (page, delivery):
+        foreword(page).click()
         film = story_film(page, 'prologue')
         expect(film).to_have_attribute('data-reduced', 'true')
         expect(film.locator('#film-video')).to_be_hidden()
         before = initial_save(page)
-        caption = film.locator('#film-caption')
-        expect(caption).to_be_visible(timeout=20000)
-        first = caption.inner_text()
+        canvas = film.locator('#film-compat-canvas')
+        expect(canvas).to_have_attribute('data-ready', 'true', timeout=20000)
+        initial_frame = int(canvas.get_attribute('data-frame'))
         a = picture(page)
         page.wait_for_timeout(650)
         b = picture(page)
-        assert ImageChops.difference(a, b).getbbox() is None, 'Reduced motion must hold the painted shot'
+        assert ImageChops.difference(a, b).getbbox() is None and int(canvas.get_attribute('data-frame')) == initial_frame
+
+        cards = page.evaluate('window.CastawayFilmScript.timeline[0].shots.slice(0, 2)')
+        assert all(shot['titleCard'] for shot in cards)
+        expect(film.locator('#film-card-text')).to_have_text(cards[1]['line'], timeout=15000)
+        page.wait_for_function("previous => Number(document.querySelector('#film-compat-canvas').dataset.frame) > previous",
+                               arg=initial_frame)
+        held = int(canvas.get_attribute('data-frame'))
+        assert held > initial_frame, 'The second wordless title must get a new held frame'
+        expect(film.locator('#film-caption')).to_be_hidden()
+        page.screenshot(path=output/'quiet-foreword.png')
+        caption = film.locator('#film-caption')
+        expect(caption).to_be_visible(timeout=20000)
+        first = caption.inner_text()
+        changed, _ = compare(b, picture(page))
+        assert int(canvas.get_attribute('data-frame')) > held
         page.wait_for_function("""first => {
           const el = document.getElementById('film-caption');
           return el.offsetWidth && el.textContent && el.textContent !== first;
         }""", arg=first, timeout=16000)
-        second_picture = None
-        if int(page.locator('meta[name="game-release"]').get_attribute('content')) >= 20:
-            # The first sentence block contains several compositions. Follow the
-            # first picture cut while the reduced-motion renderer holds each one.
-            cuts = page.evaluate('window.CastawayFilmCuts.prologue.slice(0, 3)')
-            passage_end = page.evaluate('window.CastawayFilmScript.timeline[0].shots[0].seconds')
-            assert len(cuts) == 3 and cuts[0] == 0 < cuts[1] < cuts[2] <= passage_end
-            held = int((cuts[1] + min(1, (cuts[2] - cuts[1]) / 2)) * 8)
-            page.wait_for_function("n => Number(document.querySelector('#film-compat-canvas')?.dataset.frame) === n",
-                                   arg=held, timeout=16000)
-            shown = picture(page)
-            changed, _ = compare(b, shown)
-            second_picture = {'seconds': cuts[1], 'heldFrame': held, 'changedPixels': changed}
+        second_picture = {'seconds': cards[0]['seconds'], 'heldFrame': held, 'changedPixelsToNarrative': changed}
         assert not delivery.media, 'Reduced motion need not fetch a moving video'
         exit_to_game(page, 'prologue')
         assert state(page) == before

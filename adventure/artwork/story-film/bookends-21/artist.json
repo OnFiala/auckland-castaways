@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-24",
+  "medium": "Two original digital paintings generated with OpenAI ImageGen from written briefs for Until We Return. Both use a maritime oil-painting treatment. The typeset English titles and credits are separate.",
+  "rights": "New project artwork under the terms in RIGHTS.md. Historical plates and their collection credits are documented separately in sources/ILLUSTRATIONS.md.",
+  "assets": [
+    {
+      "file": "opening.webp",
+      "sha256": "a24507de344e092bb12ad33682f9ee369cffe8a68b0d6c21be330a0ed7b1daa7",
+      "size": [1600, 900],
+      "description": "A moored schooner shows one warm lantern against the blue-grey water in Sydney Harbour. The masts rise over the full frame when the foreword gives way to the film.",
+      "evidence": "S004, Raynal, English edition, pp. 38–39, and E001 place the expedition's departure in Sydney in November 1863. The berth, hour, weather, hull details, wharf and lantern were composed for the film.",
+      "composition": "Display text over the dark harbour to the left. The lantern hangs at 85.2% across, 55% down. Its reflection falls between 77.3% and 88.8% across and 73.5% and 84.7% down, clear of the ship's hull and wharf."
+    },
+    {
+      "file": "closing.webp",
+      "sha256": "a209e224d46c672889123ef3ac0dc0c51b6d3a1e261ce3457548df0c16068b54",
+      "size": [1600, 900],
+      "description": "A bench and an open wooden door look out from the empty shelter at Carnley Harbour after Henry and George have left.",
+      "evidence": "S001, Musgrave, ch. II, pp. 15–16, describes the house's timber and salvaged spars. Chapter XI, pp. 116–118, and E039 record Musgrave and Cross returning for the remaining two men on 24 August 1865. The camera position, doorway, bench, sunset and view are painted reconstructions.",
+      "composition": "The dark timber at left carries the closing words. A narrow area of distant water appears through the door, between 67.6% and 74.4% across and 53.7% and 57% down."
+    },
+    {
+      "file": "../../../dist/assets/story-film/foreword.webp",
+      "sha256": "106e680231a103f70cf09af282fde003b62cefce304b57924b2e1624f208c9d2",
+      "size": [1280, 720],
+      "description": "Still harbour detail behind the first-visit foreword. Cropped from opening.webp at x 430, y 230, width 1120, height 630, then resized. The text is set by the game."
+    }
+  ]
+}

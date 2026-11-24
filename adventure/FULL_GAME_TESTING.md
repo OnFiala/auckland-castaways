@@ -2,6 +2,12 @@
 
 The campaign extends the existing point-and-click chapter through winter, the forge, boatbuilding, the crossing, Stewart Island and the return for Henry and George. It retains the original first-night engine as a separately testable module.
 
+## Edition 21 · Before the voyage
+
+A fresh Chromium profile held the English foreword until its single **Begin the voyage** action was activated. This also worked with the keyboard and with the main script delayed. The check covered 1280 × 800, 390 × 844, 320 × 568, 844 × 390 and 568 × 320. The game and inventory stayed out of view and the browser requested no sound or film before the player began. [Desktop, portrait and landscape captures](reviews/release-21/README.md)
+
+The opening has 16 seconds of titles and score before the Sydney scene. The closing credits add 18 seconds at the empty shelter after the last documentary scene. Across the 4:42 edit, 2,256 decoded samples from the eight game MP4s matched the standalone MP4 picture for picture. The five new title and credit cards were also checked in WebM and in the painted-frame player. [Closing frame](reviews/release-21/coda.jpg) · [Picture comparison](tests/browser/media_cut_parity.py)
+
 ## Edition 20 · The castaways on film
 
 Chromium played the eight H.264 reels with sound from the extracted offline game. The 66-second opening reached the landing by daylight, then returned control on the shore. The rescue led to the 59-second epilogue and the witness table. A second pass opened all eight WebM files. With reduced motion selected, Chromium and WebKit held the wharf painting until the first cut, then showed the next shot while the narration continued. [In-game landing at daybreak](reviews/release-20/landfall-in-game.png) · [Browser playback test](tests/browser/hosted_film_pass.py)

@@ -25,13 +25,27 @@ let chapterBusy=false;
 // A film sits between two playable moments. The separate bookmark also lets
 // earlier saves keep their chapter, inventory and puzzle progress intact.
 const STORY_KEY='castaways-story-v1';
+const STORY_VERSION=2;
 const hasGameSave=Boolean(localStorageSafe(KEY)||localStorageSafe('castaways-adventure-v3'));
-let story={openingSeen:false,pending:null},activeReel=null;
+const newStory=()=>({version:STORY_VERSION,openingSeen:false,forewordRead:false,pending:null});
+let story=newStory(),activeReel=null;
 if(Film){
  try{
   const stored=JSON.parse(localStorageSafe(STORY_KEY));
   if(stored&&(hasGameSave||(!stored.openingSeen&&stored.pending?.reel==='prologue'))){
-   story={openingSeen:stored.openingSeen===true,pending:stored.pending||null};
+   const latest=stored.version===STORY_VERSION;
+   const pending=stored.pending||null;
+   const oldPrologue=!latest&&pending?.reel==='prologue'&&pending.chapter===chapterNumber()&&
+    pending.scene===state.scene&&pending.actions===state.actions&&Number.isFinite(pending.position)&&pending.position>0;
+   if(oldPrologue){
+    // Old bookmarks count from the Sydney narration. The current reel begins with its title cards.
+    for(const shot of Film.timeline[0].shots){
+     if(!shot.titleCard)break;
+     pending.position+=shot.seconds;
+    }
+   }
+   story={version:STORY_VERSION,openingSeen:latest&&stored.openingSeen===true,
+    forewordRead:(latest&&stored.forewordRead===true)||oldPrologue,pending};
   }
  }catch(_){}
 }
@@ -61,13 +75,16 @@ function chapterFilm(id,after,startAt=0){
  if(!Film||!id){after();return;}
  function enterScene(){
   activeReel=null;
-  if(id==='prologue')story.openingSeen=true;
+  if(id==='prologue'){story.openingSeen=true;story.forewordRead=true;}
   story.pending=null;saveStory();
   after();
  }
  if(Film.chapterMode()!=='skip'){
   activeReel=id;story.pending=bookmark(id,startAt);saveStory();
-  if(openFilm([id],{auto:true,startAt,reduced:effectiveReduced(),focus:$('scene'),after:enterScene}))return;
+  const foreword=id==='prologue'&&!story.forewordRead&&startAt===0;
+  if(openFilm([id],{auto:true,startAt,foreword,
+   onBegin:()=>{story.forewordRead=true;saveStory();},
+   reduced:effectiveReduced(),focus:$('scene'),after:enterScene}))return;
  }
  enterScene();
 }
@@ -864,7 +881,7 @@ function restart(){
    Bench?.reset();window.CastawayEpilogue?.reset?.();hintKey='';hintLevel=0;walkDistance=0;
    playerWork='stand';setExamine(false);state=fresh;selected=null;
    player=staged?entryPoint():{x:45,y:84};finalShown=false;$('completion').hidden=true;
-   if(Film){story={openingSeen:false,pending:null};saveStory();}
+   if(Film){story=newStory();saveStory();}
    save();render();$('scene').focus();if(CAMPAIGN)chapterFilm('prologue',openingConversation);
   });
  };
@@ -919,10 +936,12 @@ function journey(){
  const entries=chapters.map(c=>{
   const unlocked=c.id<=chapterNumber();
   const film=unlocked?Film?.timeline[c.id-1]:null;
-  return `<li class="${c.id<chapterNumber()?'past':c.id===chapterNumber()?'current':'ahead'}"><span>${c.id<chapterNumber()?'✓':c.id}</span><div><strong>${esc(c.title)}</strong><small>${esc((unlocked&&beats.find(b=>b.chapter===c.id)?.caption)||c.subtitle||'')}</small></div>${replayButton(film)}</li>`;
+  const summary=(unlocked&&beats.find(b=>b.chapter===c.id)?.caption)||c.subtitle||'';
+  const perspective=c.id===1?' You come ashore as Alick McLaren.':'';
+  return `<li class="${c.id<chapterNumber()?'past':c.id===chapterNumber()?'current':'ahead'}"><span>${c.id<chapterNumber()?'✓':c.id}</span><div><strong>${esc(c.title)}</strong><small>${esc(summary+perspective)}</small></div>${replayButton(film)}</li>`;
  });
  if(state.completed&&Film)entries.push(`<li class="past"><span>✓</span><div><strong>Epilogue</strong><small>The names that came home</small></div>${replayButton(Film.timeline.at(-1))}</li>`);
- modal('Our journey',`<ol class="journey-map">${entries.join('')}</ol><p class="small">Progress saves automatically. Complete the work in each place to open the next passage.</p><p class="small">Chapters I–V: Alick McLaren. Chapters VI–VII: Captain Musgrave.</p>${state.completed&&Film?'<button type="button" id="film-feature" class="dialog-button">Watch the whole story</button>':''}${state.completed?'<button id="return-ending" class="dialog-button">Revisit the ending</button>':''}`);
+ modal('Our journey',`<ol class="journey-map">${entries.join('')}</ol><p class="small">Progress saves automatically. After the crossing, you take Captain Musgrave’s place and return for the men still ashore.</p>${state.completed&&Film?'<button type="button" id="film-feature" class="dialog-button">Watch the whole story</button>':''}${state.completed?'<button id="return-ending" class="dialog-button">Revisit the ending</button>':''}`);
  for(const button of $('modal-body').querySelectorAll('[data-replay-film]')){
   button.onclick=()=>openFilm([button.dataset.replayFilm],{replay:true,auto:true,reduced:effectiveReduced(),focus:button});
  }
@@ -951,6 +970,8 @@ const entry=entryFilm();
 let roomReady=false,filmReady=!entry;
 function enterVoyage(){
  if(!roomReady||!filmReady)return;
+ $('game').style.visibility='';
+ $('game').setAttribute('aria-busy','false');
  score?.setChapter(chapterNumber());
  if(CAMPAIGN&&state.completed)revealCompletion();
  else if(entry?.reel==='prologue')openingConversation();

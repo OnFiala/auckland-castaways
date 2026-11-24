@@ -22,6 +22,7 @@
   let wantsPlay = false, resumeOnVisible = false, waitTimer, stallTimer, clearHandoff;
   const compatibility = () => window.CastawayFilmFallback;
   const watch = byId('film-play'), read = byId('film-read'), pause = byId('film-pause');
+  const begin = byId('film-begin'), cardText = byId('film-card-text');
   const mute = byId('film-mute'), captions = byId('film-captions'), skip = byId('film-skip');
   const previous = byId('film-prev'), next = byId('film-next'), forward = byId('film-forward');
   const subtitle = byId('film-caption'), status = byId('film-status');
@@ -32,7 +33,7 @@
     'shore-dawn':directory + 'shore-dawn.webp', ending:'assets/voyage/promise/ending.webp',
     'invercauld-wreck':'assets/epilogue/wreck.webp', 'skin-boat':'assets/epilogue/skin-boat.webp', julian:'assets/epilogue/julian.webp'
   };
-  const picturePath = shot => specialPlates[shot.plate] || 'assets/tidepaint/' + shot.plate + '.webp';
+  const picturePath = shot => shot.poster || specialPlates[shot.plate] || 'assets/tidepaint/' + shot.plate + '.webp';
 
   function savePreferences() {
     try { localStorage.setItem(key, JSON.stringify(prefs)); } catch (_) {}
@@ -58,8 +59,12 @@
   }
   function showCaption() {
     let line = '';
-    if (session?.mode === 'movie' && captionsEnabled()) {
-      const time = filmTime();
+    const movie = session?.mode === 'movie';
+    const time = movie ? filmTime() : 0;
+    const card = movie && session.cards.find(card => card.start <= time && time < card.end);
+    const words = card ? card.text : '';
+    if (cardText.textContent !== words) cardText.textContent = words;
+    if (movie && !card && captionsEnabled()) {
       const cues = window.storyFilmCaptions?.[session.reel.id];
       const cue = cues?.find(item => item.start <= time && time < item.end);
       line = cue?.text || (!cues && dialog.dataset.player === 'paintings' ? session.reel.shots[Number(dialog.dataset.shot)]?.line : '') || '';
@@ -75,7 +80,12 @@
   function setMode(mode) {
     session.mode = mode;
     dialog.dataset.mode = mode;
-    const movie = mode === 'movie', still = mode === 'still';
+    const movie = mode === 'movie', still = mode === 'still', foreword = mode === 'foreword';
+    byId('film-foreword').hidden = !foreword;
+    byId('film-heading').hidden = foreword;
+    dialog.setAttribute('aria-labelledby', foreword ? 'foreword-title' : 'film-title');
+    dialog.setAttribute('aria-describedby', foreword ? 'foreword-copy' : 'film-dateline');
+    skip.hidden = foreword;
     skip.textContent = session.replay ? 'Back to journey' : mode !== 'poster' ? 'Skip film' :
       session.reel.id === 'prologue' ? 'Play adventure' : session.reel.id === 'epilogue' ? 'Continue to ending' : 'Play chapter';
     video.hidden = !movie;
@@ -83,11 +93,11 @@
     watch.hidden = mode !== 'poster';
     pause.hidden = !movie;
     captions.hidden = !movie;
-    mute.hidden = still;
+    mute.hidden = still || foreword;
     read.hidden = mode !== 'poster';
     previous.hidden = next.hidden = !still;
     byId('film-reading').hidden = !still;
-    byId('film-credit').hidden = movie;
+    byId('film-credit').hidden = movie || foreword;
     updateToggles();
     showCaption();
   }
@@ -126,7 +136,7 @@
     };
     plate.src = src;
   }
-  function showReel(index) {
+  function showReel(index, foreword=false) {
     releaseVideo();
     session.index = index;
     session.page = 0;
@@ -148,9 +158,17 @@
     session.routes = formats.flatMap(format => buffered ? [{format, buffered:true}, {format}] : [{format}]);
     const reel = session.reels[index];
     session.reel = reel;
+    session.cards = [];
+    let start = 0;
+    for (const shot of reel.shots) {
+      const end = start + shot.seconds;
+      if (shot.titleCard) session.cards.push({start, end, text:shot.line});
+      start = end;
+    }
     const label = labels[timeline.indexOf(reel)];
     dialog.dataset.film = reel.id;
     dialog.dataset.reduced = String(session.reduced);
+    dialog.dataset.titlePoster = String(Boolean(reel.shots[0].titleCard));
     byId('film-reel').textContent = reel.id === 'prologue' ? label + ' · ' + reel.title : label;
     byId('film-title').textContent = reel.id === 'prologue' ? 'Until We Return' : reel.title;
     byId('film-dateline').textContent = reel.dateline;
@@ -159,8 +177,9 @@
       : 'Painted reconstruction from the castaways’ accounts';
     forward.hidden = !session.playlist || index === session.reels.length - 1;
     status.textContent = '';
-    setMode('poster');
-    setPlate(directory + reel.id + '.webp', picturePath(reel.shots[0]));
+    setMode(foreword ? 'foreword' : 'poster');
+    if (foreword) setPlate(directory + 'foreword.webp', specialPlates.outfit);
+    else setPlate(directory + reel.id + '.webp', picturePath(reel.shots[0]));
   }
   function dissolveIntoScene() {
     if (session.replay || session.reduced || document.hidden || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -448,24 +467,34 @@
     else if (native?.attached) video.pause();
     updatePause();
   }
-  function open(ids, {reduced=false, replay=false, auto=true, startAt=0, focus=document.activeElement, after}={}) {
+  function open(ids, {reduced=false, replay=false, auto=true, startAt=0, foreword=false, onBegin, focus=document.activeElement, after}={}) {
     if (session) return false;
     const reels = ids.map(id => timeline.find(reel => reel.id === id));
     if (!reels.length || reels.some(reel => !reel)) return false;
     clearHandoff?.();
-    session = {reels, reduced, replay, focus, after, playlist:reels.length > 1};
+    const showForeword = foreword && !replay && reels[0].id === 'prologue' && startAt === 0;
+    session = {reels, reduced, replay, focus, after, onBegin, playlist:reels.length > 1};
     dialog.dataset.entry = replay ? 'replay' : 'campaign';
-    showReel(0);
+    showReel(0, showForeword);
     const duration = reels[0].shots.reduce((sum, shot) => sum + shot.seconds, 0);
     session.position = Number.isFinite(startAt) ? Math.max(0, Math.min(duration - .25, startAt)) : 0;
     dialog.showModal();
-    if (auto) {
+    if (showForeword) {
+      begin.focus({preventScroll:true});
+    } else if (auto) {
       if (replay) compatibility()?.prime();
       play(false);
       if (document.hidden) { pauseFilm(); resumeOnVisible = true; }
     } else (reduced ? read : watch).focus({preventScroll:true});
     return true;
   }
+  begin.onclick = () => {
+    if (session?.mode !== 'foreword') return;
+    session.onBegin?.();
+    setPlate(directory + session.reel.id + '.webp', picturePath(session.reel.shots[0]));
+    play(true);
+    byId('film-picture').focus({preventScroll:true});
+  };
   watch.onclick = () => play(true);
   read.onclick = () => {
     const time = session.mode === 'movie' ? filmTime() : 0;
@@ -512,7 +541,10 @@
     if (!native?.attached || session?.mode !== 'movie' || !video.error) return;
     if (!video.currentSrc || video.currentSrc === native.url || (!native.objectURL && video.currentSrc.endsWith('/' + native.file))) nextSource();
   };
-  dialog.oncancel = event => { event.preventDefault(); finish(); };
+  dialog.oncancel = event => {
+    event.preventDefault();
+    if (session?.mode !== 'foreword') finish();
+  };
   dialog.onclose = () => { if (!dialog.open) finish(); };
   document.addEventListener?.('visibilitychange', () => {
     if (session?.mode !== 'movie') return;

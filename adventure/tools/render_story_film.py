@@ -19,6 +19,7 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from film_documentary import RECORDS, lift_frame, passage_frame, record_frame
+from film_title_cards import card_frame
 from film_working_actions import ACTIONS, action_frame
 from story_film_cut import cut_at
 from story_film_painter import PRINTS, ROOT, Stage, softstep
@@ -69,49 +70,6 @@ class Visuals:
                 self.stages.popitem(last=False)
         self.stages.move_to_end(key)
         return self.stages[key].frame(t, fraction, self.dims)
-
-
-@lru_cache(maxsize=2)
-def title_plate(dims):
-    """Optical title set over the empty shadow inside the raised chest lid."""
-    w, h = dims
-    scale = w / 1152
-    face = ROOT / "dist/assets/lettering/spectral-400.woff2"
-    ink = Image.new("L", dims)
-    pen = ImageDraw.Draw(ink)
-    for label, pt, tracking, fraction in [
-        ("UNTIL WE", 23, 5.0, 0.309),
-        ("RETURN", 54, 5.1, 0.395),
-    ]:
-        font = ImageFont.truetype(str(face), max(1, round(pt * scale)))
-        widths = [font.getlength(letter) for letter in label]
-        spacing = tracking * scale
-        x = w * 0.440 - (sum(widths) + spacing * (len(widths) - 1)) / 2
-        for letter, width in zip(label, widths):
-            pen.text((x, h * fraction), letter, fill=255, font=font, anchor="ls")
-            x += width + spacing
-    shadow = ink.filter(ImageFilter.GaussianBlur(2.2 * scale))
-    return np.asarray(ink, dtype="float32") / 255, np.asarray(
-        shadow, dtype="float32"
-    ) / 255
-
-
-def title_frame(frame, t):
-    alpha = float(softstep((t - 0.12) / 0.62)) * float(softstep((5.4 - t) / 0.64))
-    if alpha == 0:
-        return frame
-    ink, shadow = title_plate((frame.shape[1], frame.shape[0]))
-    x, y, w, h = cv2.boundingRect((ink * 255).astype("uint8"))
-    area = np.s_[max(0, x - 10) : min(frame.shape[1], x + w + 10)]
-    band = np.s_[max(0, y - 9) : min(frame.shape[0], y + h + 9)]
-    mask = ink[band, area, None] * alpha
-    inset = frame[band, area].astype("float32") * (
-        1 - shadow[band, area, None] * alpha * 0.60
-    )
-    frame[band, area] = np.clip(
-        inset * (1 - mask) + np.array((193, 220, 237)) * mask, 0, 255
-    ).astype("uint8")
-    return frame
 
 
 @lru_cache(maxsize=30)
@@ -237,6 +195,16 @@ def render(reel, output, posters, dims, fps):
             )
             for n in range(count):
                 t = n / fps
+                if shot.get("titleCard"):
+                    frame = card_frame(shot, t, dims)
+                    if n == round(2.5 * fps):
+                        path = posters / Path(shot["poster"]).name
+                        if not cv2.imwrite(str(path), frame, [cv2.IMWRITE_WEBP_QUALITY, 90]):
+                            raise OSError(f"Unable to save {path.name}")
+                        if shot["plate"] == "film-title":
+                            (posters / "prologue.webp").write_bytes(path.read_bytes())
+                    proc.stdin.write(frame.tobytes())
+                    continue
                 plate, local, fraction = cut_at(shot["plate"], t, shot["seconds"])
                 frame = visual.frame(plate, local, fraction)
                 if n < boundary:
@@ -248,9 +216,7 @@ def render(reel, output, posters, dims, fps):
                     mix = float(softstep((n + 1) / boundary))
                     frame = cv2.addWeighted(outgoing, 1 - mix, frame, mix, 0)
                 # The application sets its own title and date over posters.
-                cover = (
-                    (shot["plate"] == "schooner") if key == "prologue" else (index == 0)
-                )
+                cover = index == 0 and key != "prologue"
                 if (
                     cover
                     and n == round(2.5 * fps)
@@ -261,8 +227,6 @@ def render(reel, output, posters, dims, fps):
                     )
                 ):
                     raise OSError("Unable to save poster")
-                if plate == "outfit":
-                    frame = title_frame(frame, local)
                 if plate == "hearth-remains":
                     print_dateline(frame, "Carnley Harbour · Present day", plate, local)
                 elif plate == "invercauld-wreck":

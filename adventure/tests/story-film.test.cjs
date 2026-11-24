@@ -9,11 +9,15 @@ const dist = path.join(__dirname, '../dist');
 const html = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const appScript = fs.readFileSync(path.join(dist, 'app.js'), 'utf8');
 const gameKey = 'castaways-adventure-v4', filmKey = 'castaways-film-prefs-v1';
+const storyKey = 'castaways-story-v1';
+const timeline = require('../dist/story-film-script.js').timeline;
+const firstCards = timeline[0].shots.filter(shot => shot.titleCard);
+const introLead = firstCards.reduce((sum, shot) => sum + shot.seconds, 0);
 // Install a controllable native media element before the campaign starts the first reel.
 const scripts = [...html.matchAll(/<script defer src="([^"]+)"/g)].map(m => m[1])
   .filter(name => !['interface.js','story-film-captions.js','story-film-compat.js','film-interface.js','app.js'].includes(name));
 
-function mount(initial = {}, setup = () => {}) {
+function mount(initial = {}, setup = () => {}, begin = true) {
   const ui = app({initial, scripts, saveKey:gameKey, skipFilms:false});
   const {context} = ui, el = id => ui.ids.get(id), video = el('film-video'), track = el('film-track');
   for (const node of [video, track]) {
@@ -29,11 +33,13 @@ function mount(initial = {}, setup = () => {}) {
   video.pause = () => { video.paused = true; video.onpause(); };
   context.location = {protocol:'file:'};
   context.storyFilmCaptions = {prologue:[
-    {start:.4,end:2,text:'First phrase'}, {start:2,end:4.5,text:'Second phrase'}
+    {start:introLead+.4,end:introLead+2,text:'First phrase'},
+    {start:introLead+2,end:introLead+4.5,text:'Second phrase'}
   ]};
   const parts = {ui, context, el, video, track, panel:el('story-film'), permitPlay, unloaded:() => unloaded};
   setup(parts);
   vm.runInContext(appScript, context, {filename:'app.js'});
+  if (begin && parts.panel.dataset.mode === 'foreword') el('film-begin').onclick();
   return parts;
 }
 
@@ -54,14 +60,27 @@ function useProjection(context, projections) {
   };
 }
 
-test('fresh game and unlocked journey films start without a second cover; existing saves return to play', async () => {
-  const {ui,el,video,panel} = mount();
+test('a fresh game holds a silent foreword for the reader and the journal replays the film directly', async () => {
+  const {ui,el,video,panel} = mount({}, () => {}, false);
   assert(panel.open);
   assert.equal(panel.dataset.film, 'prologue');
+  assert.equal(panel.dataset.mode, 'foreword');
+  assert.equal(panel.getAttribute('aria-labelledby'), 'foreword-title');
+  assert.equal(ui.activeElement(),el('film-begin'));
+  assert.equal(video.src, null);
+  assert(video.paused && el('film-skip').hidden && el('film-play').hidden);
+  ui.runTimers();
+  assert.equal(panel.dataset.mode, 'foreword');
+  const held = mount(ui.stored, () => {}, false);
+  assert.equal(held.panel.dataset.mode, 'foreword', 'reloading an unread page keeps it open');
+  await ui.click('film-begin');
   assert.equal(panel.dataset.mode, 'movie');
+  assert.equal(panel.getAttribute('aria-labelledby'), 'film-title');
+  assert.equal(el('film-card-text').textContent, firstCards[0].line);
   assert.equal(video.src, 'assets/story-film/prologue.mp4');
   assert.equal(video.paused, false);
   assert(el('film-play').hidden && el('film-read').hidden);
+  assert.equal(mount(ui.stored, () => {}, false).panel.dataset.mode, 'movie', 'accepted at exactly zero resumes playback');
   const before = ui.stored[gameKey];
   await ui.click('film-skip');
   assert(!panel.open);
@@ -85,10 +104,14 @@ test('captions track native boundaries, pauses, seeks, mute and a natural end', 
   await ui.click('film-mute');
   assert.equal(track.src,null,'offline captions use the packaged cue table');
   assert(video.muted);
-  for (const [time,line] of [[0,''],[.4,'First phrase'],[2,'Second phrase'],[4.5,''],[1,'First phrase']]) {
-    video.currentTime = time; video.onseeked();
+  video.currentTime = firstCards[0].seconds; video.onseeked();
+  assert.equal(el('film-card-text').textContent,firstCards[1].line);
+  assert(el('film-caption').hidden);
+  for (const [offset,line] of [[0,''],[.4,'First phrase'],[2,'Second phrase'],[4.5,''],[1,'First phrase']]) {
+    video.currentTime = introLead + offset; video.onseeked();
     assert.equal(el('film-caption').textContent,line);
     assert.equal(el('film-caption').hidden,!line);
+    assert.equal(el('film-card-text').textContent,'');
   }
   await ui.click('film-pause');
   assert(video.paused);
@@ -104,9 +127,13 @@ test('captions track native boundaries, pauses, seeks, mute and a natural end', 
 });
 
 test('the first shore in an older save starts its film once and an interrupted campaign resumes in place', async () => {
-  const checkpoint = 'castaways-story-v1';
+  const checkpoint = storyKey;
   const fresh = mount();
   const original = fresh.ui.stored[gameKey];
+  const previousVersion = {[gameKey]:original, [checkpoint]:JSON.stringify({openingSeen:true,pending:null})};
+  assert.equal(mount(previousVersion, () => {}, false).panel.dataset.mode,'foreword','the new foreword reaches an untouched old shore');
+  const optedOut = mount({...previousVersion,[filmKey]:JSON.stringify({chapters:'skip'})}, () => {}, false);
+  assert(!optedOut.panel.open,'the saved preference to skip films is honoured');
   let leave;
   const migrated = mount({[gameKey]:original}, ({context}) => {
     const listen = context.addEventListener;
@@ -121,7 +148,7 @@ test('the first shore in an older save starts its film once and an interrupted c
   assert.equal(JSON.parse(migrated.ui.stored[checkpoint]).pending.position,21.375);
   const resumed = mount(migrated.ui.stored);
   assert.equal(resumed.context.CastawayFilm.position(),21.375);
-  resumed.video.duration=66;
+  resumed.video.duration=66+introLead;
   resumed.video.onloadedmetadata();
   assert.equal(resumed.video.currentTime,21.375);
   await resumed.ui.click('film-skip');
@@ -134,6 +161,35 @@ test('the first shore in an older save starts its film once and an interrupted c
   const inProgress = mount({[gameKey]:reopened.ui.stored[gameKey], [checkpoint]:migrated.ui.stored[checkpoint]});
   assert(!inProgress.panel.open,'stale film cannot override later work at the shore');
   assert.deepEqual(inProgress.ui.state().inventory,['rope']);
+});
+
+test('an interrupted older opening resumes at its narrated scene once', () => {
+  const game = mount({}, () => {}, false).ui.stored[gameKey];
+  const pending = {reel:'prologue',position:21.375,chapter:1,scene:'beach',actions:0};
+  const oldStory = JSON.stringify({openingSeen:false,pending});
+  const first = mount({[gameKey]:game,[storyKey]:oldStory}, () => {}, false);
+  assert.equal(first.panel.dataset.mode,'movie');
+  assert.equal(first.context.CastawayFilm.position(),21.375+introLead);
+  assert.equal(mount(first.ui.stored, () => {}, false).context.CastawayFilm.position(),21.375+introLead);
+  const untouched = mount({[gameKey]:game,[storyKey]:JSON.stringify({openingSeen:false,pending:{...pending,position:0}})}, () => {}, false);
+  assert.equal(untouched.panel.dataset.mode,'foreword');
+});
+
+test('dedication, witnesses and end credits have a screen-reader equivalent at the correct picture', async () => {
+  const {ui,el,panel,video,context} = mount();
+  await ui.click('film-skip');
+  const epilogue=timeline.find(reel=>reel.id==='epilogue');
+  context.CastawayFilm.open([epilogue.id], {replay:true});
+  let time=0;
+  for (const shot of epilogue.shots) {
+    video.currentTime=time+.1; video.ontimeupdate();
+    assert.equal(el('film-card-text').textContent,shot.titleCard?shot.line:'');
+    if(shot.titleCard)assert(el('film-caption').hidden, 'there is a single visual copy of the baked lettering');
+    time+=shot.seconds;
+  }
+  assert.equal(time,77);
+  video.ended=true;video.onended();
+  assert(!panel.open);
 });
 
 test('blocked autoplay immediately retries muted, captions override saved silence and a tap restores narration in place', async () => {
@@ -150,12 +206,12 @@ test('blocked autoplay immediately retries muted, captions override saved silenc
   assert.equal(panel.dataset.soundLocked,'true');
   assert.equal(el('film-mute').textContent,'Enable sound');
   assert.equal(ui.context.CastawayFilm.chapterMode(),'watch');
-  video.currentTime = 1; video.ontimeupdate();
+  video.currentTime = introLead+1; video.ontimeupdate();
   assert.equal(el('film-caption').textContent,'First phrase');
   gesture = true;
   await ui.click('film-mute');
   assert(!video.muted && !video.paused);
-  assert.equal(video.currentTime,1);
+  assert.equal(video.currentTime,introLead+1);
   assert.equal(panel.dataset.soundLocked,'false');
   assert(el('film-caption').hidden);
   assert.equal(JSON.parse(ui.stored[filmKey]).muted,false);
@@ -169,7 +225,7 @@ test('reduced motion starts a timed, still, narrated projection and never initia
   assert.equal(video.src,null);
   assert.equal(panel.dataset.player,'compatible');
   film.onReady();
-  film.currentTime=2.1; film.onTime(film.currentTime);
+  film.currentTime=introLead+2.1; film.onTime(film.currentTime);
   assert.equal(el('film-caption').textContent,'Second phrase');
   await ui.click('film-pause');
   assert(film.paused);
@@ -264,10 +320,13 @@ test('unsupported formats advance only once and a total media failure still ends
   assert(!el('film-plate').hidden);
   // Advance the mock monotonic clock, then run the same timer callbacks as the browser.
   const now = context.performance.now();
-  context.performance.now = () => now + 16000;
+  assert.equal(el('film-plate').src,firstCards[0].poster);
+  context.performance.now = () => now + (firstCards[0].seconds + .25) * 1000;
   ui.runTimers();
   assert.equal(panel.dataset.shot,'1');
-  context.performance.now = () => now + 67000;
+  assert.equal(el('film-plate').src,firstCards[1].poster);
+  assert.equal(el('film-card-text').textContent,firstCards[1].line);
+  context.performance.now = () => now + (67 + introLead) * 1000;
   ui.runTimers();
   assert(!panel.open);
   assert.equal(el('dialogue').dataset.speaker,'raynal');

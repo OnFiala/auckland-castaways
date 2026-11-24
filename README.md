@@ -8,11 +8,11 @@ Poslední pramenné doplnění proběhlo **22. listopadu 2026**. [OnFiala/auckla
 
 ## Aktuální hra: Until We Return
 
-**[Hrát v prohlížeči bez přihlášení](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Stáhnout offline hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v20) · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v20/until-we-return-story-film.mp4) · [Návod](adventure/README.md)
+**[Hrát v prohlížeči bez přihlášení](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/)** · [Stáhnout offline hru](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v21) · [Stáhnout vyprávěný film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v21/until-we-return-story-film.mp4) · [Návod](adventure/README.md)
 
-**Ke stažení je vydání 20** s novým filmem. Hostovaná hra má vlastní vydání: při zveřejnění filmu **22. listopadu 2026** se na herní adrese hrálo vydání 19. Stažený ZIP celý rozbal a otevři `index.html`.
+**Vydání 21** začíná anglickým úvodníkem *Before the voyage*. Před prvním řádkem vypravěče máš čas přečíst si, koho budeš hrát. Tlačítko **Begin the voyage** otevře malovaný přístav v Sydney a spustí hudbu. Stažený ZIP celý rozbal a otevři `index.html`. [Úvod, kapitoly a závěrečné titulky](adventure/reviews/release-21/README.md)
 
-Film začíná u zásob, které posádka nakládá v Sydney. V Carnley Harbour se přes bok lodě spouští olovnice. V dílně pak záběr drží na kovadlině, takže vidíš, kam Raynalův úder dopadne. U člunu je zblízka vidět, jak hřeb s každým úderem zajíždí do bočnice. Závěr otevírá Dalgarnův dopis a ukazuje fotografie pozůstatků vraku a obydlí. Při omezení pohybu se obrazy mění ve stejných místech střihu a anglické vyprávění pokračuje. [Svědectví k jednotlivým scénám](adventure/artwork/story-film/HISTORY.md)
+Při vyplutí se nejprve představí posádka. Na nábřeží pak muži nakládají zásoby. V Carnley Harbour se přes bok lodě spouští olovnice. V dílně pak záběr drží na kovadlině, takže vidíš, kam Raynalův úder dopadne. U člunu je zblízka vidět, jak hřeb s každým úderem zajíždí do bočnice. Závěr otevírá Dalgarnův dopis a ukazuje fotografie pozůstatků vraku a obydlí. Při omezení pohybu se obrazy mění ve stejných místech střihu a anglické vyprávění pokračuje. [Svědectví k jednotlivým scénám](adventure/artwork/story-film/HISTORY.md)
 
 Sedm variací jedné námořní melodie doprovází hru od prvního večera po návrat. Když posádka rozžehne oheň, přidá se teplejší odpověď. Zkouška nepovedeného vrtáku končí otevřenou frází. Při rozhovoru hudba ztichne a její hlasitost si lze nastavit v **Settings → Music volume**. Tři malované předměty uprostřed horní lišty ukazují cíle kapitoly. Splněný úkol získá fajfku. [Hudba všech sedmi kapitol](adventure/artwork/ISLAND_SCORE.md) · [Malby v lodním deníku](adventure/UI_ART.md)
 

@@ -52,6 +52,17 @@ def verified_film(folder, output, manifest, archive_sha):
             or report['errors'] or tuple(report['reels']) != REELS
             or set(report['webmFallback']['replays']) != set(REELS)):
         raise ValueError('Film playback did not verify every reel of the tested edition')
+    if int(manifest['release']) >= 21:
+        for reel in REELS:
+            played = report['playback'][reel]
+            end = played.get('ended', {})
+            if (played['handoff'] != 'natural end' or end.get('reel') != reel
+                    or end.get('trusted') is not True or abs(end['time'] - played['seconds']) > .15):
+                raise ValueError(f'The playthrough did not reach the end of {reel}')
+        for reel in ('prologue', 'epilogue'):
+            cards = report['playback'][reel]['cards']
+            if not cards or any(not (folder / card['screenshot']).is_file() for card in cards):
+                raise ValueError(f'Missing in-game title cards for {reel}')
     master = read_json(folder / 'master.json')
     if [entry['id'] for entry in master['chapters']] != list(REELS):
         raise ValueError('The standalone film needs the full recorded voyage')

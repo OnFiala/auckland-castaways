@@ -9,6 +9,8 @@ from bisect import bisect_right
 
 
 PICTURE_EDIT = {
+    "film-title": ((0, "film-title"),),
+    "film-foreword": ((0, "film-foreword"),),
     "outfit": ((0, "sydney-lift"), (5.2, "outfit"), (10.6, "passage/outward")),
     "schooner": ((0, "schooner"), (4.7, "sea/sounding"), (7.0, "cast-lead")),
     "wreck": ((0, "sea/chain"), (3.25, "wreck"), (7.35, "passage/impact")),
@@ -56,6 +58,9 @@ PICTURE_EDIT = {
         (4.55, "photo-hearth"),
         (9.3, "hearth-remains"),
     ),
+    "film-home": ((0, "film-home"),),
+    "film-witnesses": ((0, "film-witnesses"),),
+    "film-credits": ((0, "film-credits"),),
 }
 
 

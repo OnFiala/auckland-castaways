@@ -262,6 +262,8 @@ test('the real prologue and journey replay yield to the first playable chapter a
   const ui = mountCampaign();
   assert.ok(ui.ids.get('story-film').open);
   assert.equal(ui.bed.plays.length, 0, 'the shore music waits for the playable picture');
+  await ui.click('film-begin');
+  assert.equal(ui.bed.plays.length, 0, 'beginning the film keeps its overture clear of the shore music');
   await ui.click('film-skip');
   assert.equal(ui.bed.plays.length, 1);
   assert.ok(ui.bed.currentSrc.endsWith('/' + track('shore')));

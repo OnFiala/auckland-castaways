@@ -2,9 +2,9 @@
 
 A complete, compact seven-chapter painted point-and-click adventure inspired by the Grafton castaways. Walk through fourteen locations, salvage and combine objects, repair a home, forge tools, rebuild a boat, cross the ocean and return for the two men left behind.
 
-[Play in your browser](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Download the offline game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v20) · [Watch the complete story film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v20/until-we-return-story-film.mp4) · [Film and historical sources](artwork/story-film/HISTORY.md) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
+[Play in your browser](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/) · [Download the offline game](https://github.com/OnFiala/auckland-castaways/releases/tag/game-v21) · [Watch the complete story film](https://github.com/OnFiala/auckland-castaways/releases/download/game-v21/until-we-return-story-film.mp4) · [Film and historical sources](artwork/story-film/HISTORY.md) · [Light and materials in edition 16](reviews/release-16/README.md) · [New paintings and dialogue](reviews/29-na-doslech.md) · [Complete story](FULL_STORY.md) · [Historical adaptation](HISTORICAL_ADAPTATION.md)
 
-**Downloadable edition: 20.** The hosted game has its own release: when edition 20 was published on **22 November 2026**, the browser address still served edition 19.
+**Edition 21** opens with a foreword and closes with a dedication to both crews. The complete English film runs 4 minutes 42 seconds. [Opening, closing credits and the seven chapters](reviews/release-21/README.md)
 
 ## Play
 
@@ -18,7 +18,7 @@ Extract the downloadable ZIP and open its root `index.html`. Keep the `editions`
 
 The three painted objects in the header show the work of the current chapter. Each finished task receives a check mark. A quiet instrumental theme follows you through each chapter. The first fire, the failed drill and the return course each have their own musical answer. Music softens when someone speaks, and the films have their own soundtrack. Adjust **Settings → Music volume**, down to **Off**. [Listen to the chapter themes](artwork/ISLAND_SCORE.md)
 
-The prologue starts as the game opens. Follow the men from Sydney to the wreck. At daylight the picture gives way to the shore, where Alick and Raynal speak and you can move or pick up the first length of rope. Six films bridge the work between chapters. After Musgrave brings Henry and George aboard, the epilogue opens the separate Invercauld record and returns to Carnley Harbour today.
+On a first visit, *Before the voyage* introduces Alick and his sick shipmate Raynal. The page waits for **Begin the voyage**. Over a painted view of Sydney Harbour, the score and titles introduce the departure and the five men before the narrator speaks. Follow them from Sydney to the wreck. At daylight the picture gives way to the shore, where Alick and Raynal speak and you can move or pick up the first length of rope. Six films bridge the work between chapters. After Musgrave brings Henry and George aboard, the epilogue opens the separate Invercauld record and returns to Carnley Harbour today. The final painting of their empty home holds through the dedication, the witness and photograph credits, and *The End*.
 
 Watch the sounding lead descend from the rail, the lantern swing over the flooded cabin and the hammer meet hot iron. The boatbuilder’s mallet drives a fastening into the dinghy as its sides are raised. The closing sequence turns to Dalgarno’s letter and archival photographs of the wreck and the house site. With reduced motion, every camera cut brings a new held picture while the narration continues. [Historical witnesses and painted reconstructions](artwork/story-film/HISTORY.md)
 
@@ -61,4 +61,4 @@ node --test adventure/tests/*.test.js adventure/tests/*.test.cjs adventure/tests
 node adventure/tests/ui-contract.cjs
 ```
 
-The release tests exercise the complete journey, all eight work surfaces, interruptions, an unfinished close-up through reload, optional field observations, and old saves. Every one of the 705 reachable campaign inventory states has a path to chapter completion. The release includes targeted failures of a scene image, unfinished screen transitions and walking atlases. Native Canvas checks fixed rock, rope and wood against the water. [Edition 20 notes](reviews/release-20/README.md) · [Verification by edition](FULL_GAME_TESTING.md) · [Artwork comparison](reviews/staging/scene-scale-proof.webp)
+The release tests exercise the complete journey, all eight work surfaces, interruptions, an unfinished close-up through reload, optional field observations, and old saves. Every one of the 705 reachable campaign inventory states has a path to chapter completion. The release includes targeted failures of a scene image, unfinished screen transitions and walking atlases. Native Canvas checks fixed rock, rope and wood against the water. [Edition 21 notes](reviews/release-21/README.md) · [Verification by edition](FULL_GAME_TESTING.md) · [Artwork comparison](reviews/staging/scene-scale-proof.webp)

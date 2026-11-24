@@ -13,11 +13,12 @@ from zipfile import ZipFile
 from PIL import Image, ImageDraw, ImageFont
 from playwright.sync_api import expect, sync_playwright
 
-from campaign import OPENING_REELS, READ, SAVE, campaign, ready, ready_scene, state, story_film, target
+from campaign import OPENING_REELS, READ, SAVE, campaign, foreword, ready, state, story_film, target
 from keyboard_route import tab_to
 from release_qa import write
 
 REELS = (*OPENING_REELS, 'epilogue')
+ARRIVING_VOICE = dict(zip(OPENING_REELS, ('raynal', 'henry', 'raynal', 'musgrave', 'musgrave', 'raynal', 'musgrave')))
 MEDIA_FORMATS = ('mp4', 'webm')
 OLD_FLAGS = ('ropeTaken', 'poleTaken', 'canvasRecovered', 'prybarTaken', 'crateOpen',
              'woodCut', 'firewoodPlaced', 'shelterBuilt', 'fireLit', 'mastRaised', 'signalRaised')
@@ -143,12 +144,20 @@ def curtain(page, reel, cues, evidence, measurements):
     verify_timeline(page, reel, native, cues)
     next_cue(page, film, cues)
     page.screenshot(path=evidence / f'frame-{reel}.png')
-    wake(film)
-    film.locator('#film-skip').click()
-    expect(film).not_to_be_visible()
+    if reel == 'epilogue':
+        closing_cards = capture_cards(page, film, reel, evidence)
+        assert len(closing_cards) == 3 and closing_cards[0]['start'] >= cues[-1]['end'], closing_cards
+    ended = natural_end(page, film, reel, native['seconds'])
     assert state(page) == saved
-    measurements[reel] = {**native, 'title': title, 'captionCount': len(cues), 'handoff': 'skip',
-                          'chapter': saved['chapter']}
+    if reel == 'epilogue':
+        expect(page.locator('#completion')).to_be_visible()
+        expect(page.locator('#open-epilogue')).to_be_visible()
+    measurements[reel] = {**native, 'title': title, 'captionCount': len(cues), 'handoff': 'natural end',
+                          'ended': ended, 'chapter': saved['chapter']}
+    if reel == 'epilogue':
+        measurements[reel]['cards'] = closing_cards
+    else:
+        measurements[reel]['arrivalDialogue'] = read_arrival(page, reel)
     print(f"{reel}: native picture and sound, {native['seconds']:.1f}s, returned to chapter {saved['chapter']}", flush=True)
 
 
@@ -173,6 +182,55 @@ def enable_sound(film):
         button.click()
 
 
+def natural_end(page, film, reel, duration):
+    expect(film).to_be_hidden(timeout=round((duration + 12) * 1000))
+    ended = page.evaluate('id => window.qaNaturalEnds.filter(end => end.reel === id)', reel)
+    assert len(ended) == 1 and ended[0]['trusted'], (reel, ended)
+    assert abs(ended[0]['duration'] - duration) < .1 and abs(ended[0]['time'] - duration) < .15, ended
+    return ended[0]
+
+
+def read_arrival(page, reel):
+    """Follow the first voice(s) in the playable room after the screen has cleared."""
+    rail = page.locator('#dialogue')
+    expect(rail).to_be_visible()
+    expect(rail).to_have_attribute('data-speaker', ARRIVING_VOICE[reel])
+    count = 3 if reel == 'prologue' else 1
+    lines = []
+    for i in range(count):
+        portrait = rail.locator('#dialogue-portrait')
+        expect(portrait).to_be_visible()
+        page.wait_for_function("document.querySelector('#dialogue-portrait').naturalWidth > 0")
+        speaker, text = rail.get_attribute('data-speaker'), rail.locator('#dialogue-text').inner_text()
+        assert speaker and text.strip()
+        lines.append({'speaker': speaker, 'text': text})
+        if count > 1:
+            advance = rail.locator('#dialogue-next')
+            expect(advance).to_have_attribute('aria-label', 'Finish conversation' if i == count-1 else 'Continue conversation')
+            advance.click()
+    return lines
+
+
+def capture_cards(page, film, reel, evidence):
+    """Read the same opening and closing titles that accompany the painted frames."""
+    shots = page.evaluate('id => window.CastawayFilmScript.timeline.find(reel => reel.id === id).shots', reel)
+    at, cards = 0, []
+    for shot in shots:
+        if shot.get('titleCard'):
+            # Record actual playback at presentation time. A seek would bypass the edit being tested.
+            page.wait_for_function('t => document.querySelector("#film-video").currentTime >= t',
+                                   arg=at + min(2, shot['seconds'] / 2), timeout=90000)
+            expect(film.locator('#film-card-text')).to_have_text(shot['line'])
+            expect(film.locator('#film-caption')).to_be_hidden()
+            second = film.locator('#film-video').evaluate('v => v.currentTime')
+            assert at <= second < at + shot['seconds'], (second, shot)
+            name = f'{reel}-card-{len(cards) + 1}.png'
+            page.screenshot(path=evidence / name)
+            cards.append({'line': shot['line'], 'start': at, 'observedAt': second, 'screenshot': name})
+        at += shot['seconds']
+    return cards
+
+
 def prologue(page, cues, evidence):
     film = story_film(page, 'prologue')
     before = state(page)
@@ -190,6 +248,9 @@ def prologue(page, cues, evidence):
     native = read_live_video(page, 'prologue')
     verify_timeline(page, 'prologue', native, cues)
     assert not native['muted']
+    opening_cards = capture_cards(page, film, 'prologue', evidence)
+    assert len(opening_cards) == 2 and opening_cards[0]['start'] == 0
+    assert cues[0]['start'] >= 16, 'Narration must wait for the wordless opening and premise.'
     first = next_cue(page, film, cues)
     button_with_key(page, film, 'pause')
     expect(film.locator('#film-pause')).to_have_attribute('aria-pressed', 'true')
@@ -215,18 +276,16 @@ def prologue(page, cues, evidence):
             times.append(verify_cue(page, film, cue))
             page.screenshot(path=evidence / f'frame-prologue-{len(times)}.png')
     assert len(times) >= 4, times
-    expect(film).not_to_be_visible(timeout=60000)
-    ended = page.evaluate('window.qaNaturalEnds')
-    assert len(ended) == 1 and ended[0]['reel'] == 'prologue' and ended[0]['trusted'], ended
-    assert abs(ended[0]['duration'] - ended[0]['time']) < .15, ended
+    ended = natural_end(page, film, 'prologue', native['seconds'])
     expect(page.locator('#dialogue[data-mode="exchange"]')).to_be_visible()
     expect(page.locator('canvas.film-handoff')).to_be_hidden()
     page.screenshot(path=evidence / 'prologue-to-shore.png')
     assert state(page) == before
+    arrival = read_arrival(page, 'prologue')
     ready(page)
     expect(target(page, 'rope')).to_be_visible()
     return {**native, 'title': 'Soundings', 'captionCount': len(cues), 'captionTimes': times,
-            'pausedAt': stopped, 'ended': ended[0],
+            'cards': opening_cards, 'arrivalDialogue': arrival, 'pausedAt': stopped, 'ended': ended,
             'handoff': 'natural end', 'chapter': before['chapter']}
 
 
@@ -270,7 +329,20 @@ def replay(page, unlocked, *, escape=False):
 
 def archive_campaign(page, index, evidence, all_cues):
     page.goto(index.as_uri())
-    ready_scene(page)
+    button = foreword(page)
+    page.wait_for_function("localStorage.getItem('castaways-adventure-v4') !== null")
+    before = state(page)
+    expect(page.locator('#film-caption')).to_be_hidden()
+    expect(page.locator('#game')).to_be_hidden()
+    page.screenshot(path=evidence / 'before-the-voyage.png')
+    # The introduction is held for the reader, including across reloads before they begin.
+    page.wait_for_timeout(1100)
+    expect(button).to_be_visible()
+    assert page.locator('#film-video').evaluate('v => v.paused && v.currentTime === 0')
+    page.reload()
+    expect(foreword(page)).to_be_visible()
+    assert state(page) == before
+    foreword(page).click()
     measurements = {'prologue': prologue(page, all_cues['prologue'], evidence)}
     initial = replay(page, OPENING_REELS[:1], escape=True)
     target(page, 'rope').click()
@@ -315,7 +387,40 @@ def old_saves(browser, index, evidence, saved):
             page.wait_for_function(f"{READ}.inventory.includes('pole')")
             assert state(page)['actions'] == saved['actions'] + 1
             expect(page.locator('#story-film')).to_be_hidden()
+    legacy_film_state(browser, index, evidence)
     return [3, 4]
+
+
+def legacy_film_state(browser, index, evidence):
+    # Edition 20 used the same separate storage key but no version or forewordRead property.
+    with view(browser, evidence, 'legacy-film-source') as page:
+        page.goto(index.as_uri())
+        foreword(page)
+        page.wait_for_function("localStorage.getItem('castaways-adventure-v4') !== null")
+        beach = state(page)
+    observed = {}
+    for name, position in (('untouched', None), ('bookmarked', 12.0)):
+        with view(browser, evidence, f'legacy-film-{name}') as page:
+            import_save(page, SAVE, beach)
+            pending = None if position is None else {'reel':'prologue', 'position':position,
+                                                     'chapter':1, 'scene':'beach', 'actions':0}
+            import_save(page, 'castaways-story-v1', {'openingSeen':pending is None, 'pending':pending})
+            page.goto(index.as_uri())
+            if pending is None:
+                foreword(page)
+                assert page.locator('#film-video').evaluate('v => v.paused && v.currentTime === 0')
+                observed[name] = 'held foreword'
+            else:
+                film = story_film(page, 'prologue')
+                expect(film).to_have_attribute('data-mode', 'movie')
+                seconds = page.wait_for_function("""() => {
+                    const v=document.querySelector('#film-video');
+                    return !v.paused && v.currentTime >= 28 ? v.currentTime : false;
+                }""").json_value()
+                assert seconds < 30.5, seconds
+                observed[name] = {'oldSeconds':position, 'resumedSeconds':seconds}
+            assert state(page) == beach
+    write(evidence / 'legacy-film-state.json', observed)
 
 
 def read_stills(page, film):
@@ -340,6 +445,9 @@ def read_stills(page, film):
 
 def phone_and_reduced(page, index, evidence):
     page.goto(index.as_uri())
+    start = foreword(page)
+    page.screenshot(path=evidence / 'phone-foreword.png')
+    start.tap()
     film = story_film(page, 'prologue')
     expect(film).to_have_attribute('data-player', 'compatible', timeout=25000)
     expect(film.locator('#film-video')).to_be_hidden()
@@ -347,7 +455,7 @@ def phone_and_reduced(page, index, evidence):
     canvas = film.locator('#film-compat-canvas')
     expect(canvas).to_have_attribute('data-ready', 'true', timeout=15000)
     caption = film.locator('#film-caption')
-    expect(caption).to_be_visible(timeout=15000)
+    expect(caption).to_be_visible(timeout=25000)
     first = caption.inner_text()
     frame = canvas.get_attribute('data-frame')
     page.wait_for_timeout(600)
@@ -375,6 +483,7 @@ def phone_and_reduced(page, index, evidence):
 
 def phone_movie(page, index, cues, evidence):
     page.goto(index.as_uri())
+    foreword(page).tap()
     film = story_film(page, 'prologue')
     expect(film).to_have_attribute('data-mode', 'movie')
     enable_sound(film)
@@ -392,12 +501,12 @@ def phone_movie(page, index, cues, evidence):
 
 def missing_media(page, index, evidence):
     page.goto(index.as_uri())
+    foreword(page).click()
     film = story_film(page, 'prologue')
-    ready_scene(page)
     before = state(page)
     expect(film).to_have_attribute('data-player', 'compatible', timeout=30000)
     page.wait_for_function("Number(document.querySelector('#film-compat-canvas')?.dataset.frame)>3")
-    expect(film.locator('#film-caption')).to_be_visible(timeout=15000)
+    expect(film.locator('#film-caption')).to_be_visible(timeout=25000)
     page.screenshot(path=evidence / 'missing-film.png')
     wake(film)
     film.locator('#film-skip').click()
@@ -412,14 +521,15 @@ def missing_media(page, index, evidence):
 
 def last_resort(page, index, evidence):
     page.goto(index.as_uri())
+    foreword(page).tap()
     film = story_film(page, 'prologue')
-    ready_scene(page)
     before = state(page)
     expect(film).to_have_attribute('data-player', 'paintings', timeout=35000)
     expect(film.locator('#film-plate')).to_be_visible()
-    expect(film.locator('#film-caption')).to_be_visible(timeout=15000)
+    expect(film.locator('#film-card-text')).to_contain_text('Until We Return')
+    expect(film.locator('#film-caption')).to_be_hidden()
     page.screenshot(path=evidence / 'last-resort.png')
-    # The damaged copy still carries the six original stills and an exit to the actual shore.
+    # The remaining paintings carry both title cards, each narrated scene and an exit to the shore.
     film.locator('.film-picture').tap()
     film.locator('#film-read').tap()
     pages = read_stills(page, film)
@@ -430,6 +540,7 @@ def last_resort(page, index, evidence):
 
 def webm_intro(page, index):
     page.goto(index.as_uri())
+    foreword(page).click()
     film = story_film(page, 'prologue')
     expect(film).to_have_attribute('data-mode', 'movie')
     page.wait_for_function("document.querySelector('#film-video')?.currentSrc.endsWith('/prologue.webm')")

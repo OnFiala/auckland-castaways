@@ -6,14 +6,20 @@
 })(typeof window === 'undefined' ? undefined : window, function () {
   'use strict';
 
+  function titleCard(plate, seconds, line) {
+    return { plate, seconds, line, action: 'still', titleCard: true, poster: 'assets/story-film/' + plate + '.webp' };
+  }
+
   return {
-    version: 2,
+    version: 3,
     timeline: [
       {
         id: 'prologue',
         title: 'Soundings',
         dateline: 'Sydney, November 1863 · Carnley Harbour, 1–3 January 1864',
         shots: [
+          titleCard('film-title', 7, 'Until We Return\nSydney Harbour · 12 November 1863'),
+          titleCard('film-foreword', 9, 'The Grafton carries a captain,\na gold miner, two sailors\nand a cook to the islands\nsouth of New Zealand.'),
           {
             plate: 'outfit', dateline: 'Sydney · 12 November 1863', seconds: 14, action: 'wind',
             line: 'They loaded four months of food in Sydney. If the Grafton was still missing then, friends would send help. Five men sailed south for Campbell Island in search of tin.'
@@ -132,7 +138,7 @@
       },
       {
         id: 'epilogue',
-        title: 'A letter from Callao',
+        title: 'The survivors’ letters',
         dateline: 'Camp Cove, August 1865 · The northern coast, 1864–65 · Carnley Harbour today',
         shots: [
           {
@@ -154,7 +160,10 @@
           {
             plate: 'hearth-remains', dateline: 'Carnley Harbour · Then and now', seconds: 14, action: 'still',
             line: 'The Grafton’s anchors are still there, under the water. A few ribs lie in the shingle. On shore, the stones of a hearth mark where the five made a home.'
-          }
+          },
+          titleCard('film-home', 6, 'Epigwaitt · August 1865\nFor the crews of the Grafton\nand the Invercauld.'),
+          titleCard('film-witnesses', 6, 'From the survivors’ accounts\nGrafton\nThomas Musgrave · François Raynal\nInvercauld\nGeorge Dalgarno · Andrew Smith'),
+          titleCard('film-credits', 6, 'The End\nExpedition photographs, 1907\nUniversity of Washington Libraries')
         ]
       }
     ]

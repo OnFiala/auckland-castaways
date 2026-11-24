@@ -229,6 +229,9 @@ def build_audio(timeline, args, out):
         speech, cues = [], []
         cursor = 0
         for shot in chapter['shots']:
+            if shot.get('titleCard'):
+                cursor += shot['seconds']
+                continue
             path = audio_cache(shot, args.work)
             if not path.exists():
                 if narrator is None:
@@ -241,7 +244,8 @@ def build_audio(timeline, args, out):
                     cues.append((round(cursor + a, 3), round(cursor + b, 3), caption_lines(line)))
             cursor += shot['seconds']
         voice = np.concatenate(speech)
-        bed = chapter_bed(chapter, ci, RATE)
+        spoken = [shot for shot in chapter['shots'] if not shot.get('titleCard')]
+        bed = chapter_bed({**chapter, 'shots': spoken}, ci, RATE)
         soundtrack = mix_narration(bed, voice, RATE)
         raw = args.work / (chapter['id'] + '-mix.wav')
         tmp = raw.with_suffix('.tmp.wav')
@@ -262,6 +266,29 @@ def loudness(path):
     return json.loads(re.findall(r'\{[^{}]+\}', result.stderr)[-1])
 
 
+def delivery_sound(chapter, mastering):
+    """Master the original spoken body, then join the already mastered music in sample time."""
+    shots = chapter['shots']
+    cards = [shot for shot in shots if shot.get('titleCard')]
+    if not cards:
+        return [], ['-af', mastering], '1:a:0'
+    opening = shots[0].get('titleCard')
+    if cards != (shots[:len(cards)] if opening else shots[-len(cards):]):
+        raise ValueError('The wordless title music must be contiguous at a reel boundary')
+    audio = HERE / 'artwork/story-film/bookends-21/audio' / ('overture.flac' if opening else 'coda.flac')
+    stream = json.loads(shell('ffprobe', '-v', 'error', '-select_streams', 'a:0',
+                              '-show_streams', '-of', 'json', audio,
+                              capture_output=True, text=True).stdout)['streams'][0]
+    samples = sum(shot['seconds'] for shot in cards) * 48000
+    if (stream['sample_rate'], stream['channels'], stream['time_base'], stream['duration_ts']) != ('48000', 2, '1/48000', samples):
+        raise ValueError(f'{audio.name}: the score must cover exactly {samples} stereo samples')
+    order = '[cards][body]' if opening else '[body][cards]'
+    filters = ('[1:a]' + mastering + '[body];'
+               '[2:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo[cards];'
+               + order + 'concat=n=2:v=0:a=1[score]')
+    return ['-i', audio], ['-filter_complex_threads', '1', '-filter_complex', filters], '[score]'
+
+
 def mux(chapter, args, out):
     reel = chapter['id']
     visual = args.visuals / (reel + '.mp4')
@@ -276,8 +303,7 @@ def mux(chapter, args, out):
     # Consistent speech loudness with a short look-ahead limiter for isolated peaks.
     gain = -17.0 - float(stats['input_i'])
     mastering = f'volume={gain:.3f}dB,aresample=48000,alimiter=limit={{limit}}:attack=4:release=60:level=0:latency=1'
-    shared = ['-map', '0:v:0', '-map', '1:a:0', '-ar', '48000', '-ac', '2',
-              '-metadata:s:a:0', 'language=eng',
+    shared = ['-ar', '48000', '-ac', '2', '-metadata:s:a:0', 'language=eng',
               '-metadata', 'title=' + chapter['title'], '-t', str(duration)]
     profiles = {
         'mp4': ['-c:v', 'copy', '-c:a', 'aac', '-b:a', '112k', '-movflags', '+faststart'],
@@ -297,9 +323,10 @@ def mux(chapter, args, out):
             # Lossy transforms can overshoot an input ceiling. Retry only if the decoded
             # mix needs additional peak headroom, holding its average speech level steady.
             for ceiling in (.76, .66, .58):
+                additional, filters, audio_stream = delivery_sound(chapter, mastering.format(limit=ceiling))
                 shell('ffmpeg', '-v', 'error', '-nostdin', '-y', '-threads', '2', '-i', visual,
-                      '-i', mix, '-filter_threads', '1', *shared,
-                      '-af', mastering.format(limit=ceiling), *options, tmp)
+                      '-i', mix, *additional, '-filter_threads', '1', *filters,
+                      '-map', '0:v:0', '-map', audio_stream, *shared, *options, tmp)
                 if float(loudness(tmp)['input_tp']) <= -1.2:
                     break
             else:

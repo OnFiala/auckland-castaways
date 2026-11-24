@@ -96,6 +96,29 @@ def working_motion(reel, edit, pictures):
     return results
 
 
+def title_cards(reel, clips, pictures):
+    """Check the text-only beats in all three players, including each reduced-motion hold."""
+    elapsed = 0
+    cards = {}
+    for shot in reel['shots']:
+        if shot.get('titleCard'):
+            poster = clips / Path(shot['poster']).name
+            with Image.open(poster, formats=['WEBP']) as image:
+                if image.size != (1280, 720):
+                    raise ValueError(f'The title card {poster.name} has the wrong picture size')
+                model = image.convert('RGB').resize(SAMPLE, Image.Resampling.BOX)
+            for name, frames in pictures.items():
+                for at in [1, 2.5]:
+                    compare([model], [frames[round((elapsed + at) * FPS)]], f'{poster.name}, {name} at {elapsed+at}')
+            cards[shot['plate']] = {'begins': elapsed, 'seconds': shot['seconds']}
+        elapsed += shot['seconds']
+    if 'film-credits' in cards:
+        for name, frames in pictures.items():
+            if max(ImageStat.Stat(frames[-1]).mean) > 2.0:
+                raise ValueError(f'The final title has not faded to black in {name}')
+    return cards
+
+
 def verify(game, standalone):
     game = game.resolve()
     release = {}
@@ -109,6 +132,7 @@ def verify(game, standalone):
     at = 0
     reels = []
     actions = {}
+    cards = {}
     edit = None
     if int(release.get('edition', '0')) >= 20:
         sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools'))
@@ -131,8 +155,10 @@ def verify(game, standalone):
         cells = list(image_player_frames(game / 'assets/story-film-compat', key, frames))
         webm = compare(main, alternate, f'{key}.webm')
         sheet = compare(main, cells, f'{key} image player')
+        pictures = {'mp4': main, 'webm': alternate, 'image_player': cells}
         if edit is not None:
-            actions.update(working_motion(reel, edit, {'mp4': main, 'webm': alternate, 'image_player': cells}))
+            actions.update(working_motion(reel, edit, pictures))
+        cards.update(title_cards(reel, clips, pictures))
         for index, (a, b) in enumerate(zip(main, movie[at:at + frames], strict=True)):
             if a.tobytes() != b.tobytes():
                 raise ValueError(f'The standalone changed the copied picture in {key} at {index / FPS:.3f}s')
@@ -146,7 +172,8 @@ def verify(game, standalone):
     with standalone.open('rb') as stream:
         digest = hashlib.file_digest(stream, 'sha256').hexdigest()
     return {**release, 'standalone_sha256': digest, 'sample': list(SAMPLE),
-            'samples_per_second': FPS, 'compared_frames': at, 'reels': reels, 'working_shots': actions}
+            'samples_per_second': FPS, 'compared_frames': at, 'reels': reels,
+            'working_shots': actions, 'title_cards': cards}
 
 
 if __name__ == '__main__':

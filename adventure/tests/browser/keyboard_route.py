@@ -3,7 +3,7 @@ import json
 
 from playwright.sync_api import expect
 
-from campaign import item, ready_scene, state, story_film, target
+from campaign import foreword, item, ready_scene, state, story_film, target
 
 
 def tab_to(page, control):
@@ -26,6 +26,8 @@ def keyboard_ready(page):
 
 
 def keyboard_initial(page):
+    tab_to(page, foreword(page))
+    page.keyboard.press('Enter')
     film = story_film(page, 'prologue')
     tab_to(page, film.locator('#film-skip'))
     page.keyboard.press('Enter')

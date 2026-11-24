@@ -53,6 +53,16 @@ def story_film(page, reel):
     return film
 
 
+def foreword(page):
+    panel = story_film(page, 'prologue')
+    expect(panel).to_have_attribute('data-mode', 'foreword')
+    expect(panel.get_by_role('heading', name='Before the voyage')).to_be_visible()
+    begin = panel.get_by_role('button', name='Begin the voyage', exact=True)
+    expect(begin).to_be_visible()
+    expect(panel.get_by_role('button')).to_have_count(1)
+    return begin
+
+
 def skip_story_film(page, reel):
     film = story_film(page, reel)
     film.locator('.film-picture').click()
@@ -61,7 +71,7 @@ def skip_story_film(page, reel):
 
 
 def ready_initial(page):
-    ready_scene(page)
+    foreword(page).click()
     skip_story_film(page, OPENING_REELS[0])
     ready(page)
 

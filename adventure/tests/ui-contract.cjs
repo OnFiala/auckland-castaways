@@ -49,7 +49,10 @@ function app({initial={},blocked=false,speech=null,scripts=null,saveKey=KEY,skip
  // Existing puzzle/actor tests exercise the direct-to-game path. Film-specific
  // tests opt out so they can interact with the production dialog themselves.
  function skipOfferedFilm(){
-  if(skipFilms && ids.get('story-film')?.open)ids.get('film-skip').onclick();
+  const dialog=ids.get('story-film');
+  if(!skipFilms||!dialog?.open)return;
+  if(dialog.dataset.mode==='foreword')ids.get('film-begin').onclick();
+  ids.get('film-skip').onclick();
  }
  skipOfferedFilm();
  async function flush(frames=600){for(let i=0;i<frames;i++){clock+=16;const batch=raf.splice(0);for(const fn of batch)fn(clock);await Promise.resolve();skipOfferedFilm();}}

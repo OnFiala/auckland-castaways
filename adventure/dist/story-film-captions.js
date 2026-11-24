@@ -2,103 +2,103 @@
 globalThis.storyFilmCaptions = {
   "prologue": [
     {
-      "start": 1.36,
-      "end": 4.206,
+      "start": 17.36,
+      "end": 20.206,
       "text": "They loaded four months\nof food in Sydney."
     },
     {
-      "start": 4.206,
-      "end": 6.181,
+      "start": 20.206,
+      "end": 22.181,
       "text": "If the Grafton was still missing then,"
     },
     {
-      "start": 6.181,
-      "end": 8.006,
+      "start": 22.181,
+      "end": 24.006,
       "text": "friends would send help."
     },
     {
-      "start": 8.006,
-      "end": 11.595,
+      "start": 24.006,
+      "end": 27.595,
       "text": "Five men sailed south\nfor Campbell Island in search of tin."
     },
     {
-      "start": 15.154,
-      "end": 16.759,
+      "start": 31.154,
+      "end": 32.759,
       "text": "They found no tin."
     },
     {
-      "start": 16.759,
-      "end": 19.884,
+      "start": 32.759,
+      "end": 35.884,
       "text": "On New Year’s Day the Grafton\nentered Carnley Harbour."
     },
     {
-      "start": 19.884,
-      "end": 23.499,
+      "start": 35.884,
+      "end": 39.499,
       "text": "Twenty fathoms of line hung beside\nthe cliffs without touching bottom."
     },
     {
-      "start": 26.252,
-      "end": 29.337,
+      "start": 42.252,
+      "end": 45.337,
       "text": "An anchor chain snapped\nat seven the next evening."
     },
     {
-      "start": 29.337,
-      "end": 31.912,
+      "start": 45.337,
+      "end": 47.912,
       "text": "Each swell brought\nthe schooner nearer the rocks."
     },
     {
-      "start": 31.912,
-      "end": 33.352,
+      "start": 47.912,
+      "end": 49.352,
       "text": "At midnight she struck."
     },
     {
-      "start": 35.654,
-      "end": 38.037,
+      "start": 51.654,
+      "end": 54.037,
       "text": "Pieces of keel floated past."
     },
     {
-      "start": 38.037,
-      "end": 40.787,
+      "start": 54.037,
+      "end": 56.787,
       "text": "The men abandoned the pumps\nto save their food."
     },
     {
-      "start": 40.787,
-      "end": 44.25,
+      "start": 56.787,
+      "end": 60.25,
       "text": "A quarter of an hour later the sea\nhad reached the cabin table."
     },
     {
-      "start": 45.64,
-      "end": 48.257,
+      "start": 61.64,
+      "end": 64.257,
       "text": "In daylight all five reached the beach."
     },
     {
-      "start": 48.257,
-      "end": 50.357,
+      "start": 64.257,
+      "end": 66.357,
       "text": "Thomas Musgrave, François Raynal,"
     },
     {
-      "start": 50.357,
-      "end": 53.632,
+      "start": 66.357,
+      "end": 69.632,
       "text": "Alick McLaren, Henry Forgés\nand George Harris."
     },
     {
-      "start": 53.632,
-      "end": 55.693,
+      "start": 69.632,
+      "end": 71.693,
       "text": "Their boat survived the landing too."
     },
     {
-      "start": 57.314,
-      "end": 59.036,
+      "start": 73.314,
+      "end": 75.036,
       "text": "Raynal was ill."
     },
     {
-      "start": 59.036,
-      "end": 61.011,
+      "start": 75.036,
+      "end": 77.011,
       "text": "He walked a hundred yards that day,"
     },
     {
-      "start": 61.011,
-      "end": 64.259,
+      "start": 77.011,
+      "end": 80.259,
       "text": "from the beach to their shelter\nunder the Grafton’s own mainsail."
     }
   ],
