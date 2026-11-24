@@ -23,7 +23,13 @@ def close_if_shown(page, css):
 
 
 def state(page):
-    return page.evaluate(f"() => {READ}")
+    # The foreword can be read while the first beach painting is still decoding.
+    # Campaign state is saved only when that room has finished loading.
+    snapshot = page.wait_for_function(f"() => {READ}")
+    try:
+        return snapshot.json_value()
+    finally:
+        snapshot.dispose()
 
 
 def wait_for_action(page, before, allow_work=False):
