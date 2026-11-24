@@ -1,0 +1,275 @@
+{
+  "url": "https://posledni-vrtak-auckland.andrewxix.chatgpt.site/",
+  "reels": {
+    "prologue": {
+      "duration": 82,
+      "actual": {
+        "first": 0,
+        "last": 82,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 1968,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 1181207,
+        "visibleCards": [
+          "Until We Return\nSydney Harbour · 12 November 1863",
+          "The Grafton carries a captain,\na gold miner, two sailors\nand a cook to the islands\nsouth of New Zealand."
+        ],
+        "ended": {
+          "nativeTime": 82,
+          "trusted": true
+        }
+      },
+      "cards": [
+        {
+          "file": "prologue-card-1.png",
+          "start": 0,
+          "observed": 2.018985,
+          "text": "Until We Return\nSydney Harbour · 12 November 1863"
+        },
+        {
+          "file": "prologue-card-2.png",
+          "start": 7,
+          "observed": 9.009472,
+          "text": "The Grafton carries a captain,\na gold miner, two sailors\nand a cook to the islands\nsouth of New Zealand."
+        }
+      ],
+      "arrival": [
+        {
+          "speaker": "raynal",
+          "text": "Here, Alick. Let me sit a moment. Did George come through?"
+        },
+        {
+          "speaker": "player",
+          "text": "He did. He and Henry are making a place for you up the beach."
+        },
+        {
+          "speaker": "raynal",
+          "text": "There’s the sail we hauled ashore. The wind’s caught it in those branches. Can you reach that corner?"
+        }
+      ]
+    },
+    "winter": {
+      "duration": 21,
+      "actual": {
+        "first": 0,
+        "last": 21,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 504,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 305148,
+        "visibleCards": [],
+        "ended": {
+          "nativeTime": 21,
+          "trusted": true
+        }
+      },
+      "cards": [],
+      "arrival": [
+        {
+          "speaker": "henry",
+          "text": "Found your red knight, Alick. He was sitting in half an inch of water."
+        }
+      ]
+    },
+    "forge": {
+      "duration": 20,
+      "actual": {
+        "first": 0,
+        "last": 20,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 480,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 288777,
+        "visibleCards": [],
+        "ended": {
+          "nativeTime": 20,
+          "trusted": true
+        }
+      },
+      "cards": [],
+      "arrival": [
+        {
+          "speaker": "raynal",
+          "text": "The hearth’s stone cold, Alick. Think we can make a drill before we lose the light?"
+        }
+      ]
+    },
+    "boat": {
+      "duration": 20,
+      "actual": {
+        "first": 0,
+        "last": 20,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 480,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 288526,
+        "visibleCards": [],
+        "ended": {
+          "nativeTime": 20,
+          "trusted": true
+        }
+      },
+      "cards": [],
+      "arrival": [
+        {
+          "speaker": "musgrave",
+          "text": "Those nails of yours will do, Alick. Come round here and sight along this seam with me."
+        }
+      ]
+    },
+    "crossing": {
+      "duration": 21,
+      "actual": {
+        "first": 0,
+        "last": 21,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 504,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 303900,
+        "visibleCards": [],
+        "ended": {
+          "nativeTime": 21,
+          "trusted": true
+        }
+      },
+      "cards": [],
+      "arrival": [
+        {
+          "speaker": "musgrave",
+          "text": "I’ve got the pump. Alick, mind that loose end by the tiller!"
+        }
+      ]
+    },
+    "promise": {
+      "duration": 22,
+      "actual": {
+        "first": 0,
+        "last": 22,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 528,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 317208,
+        "visibleCards": [],
+        "ended": {
+          "nativeTime": 22,
+          "trusted": true
+        }
+      },
+      "cards": [],
+      "arrival": [
+        {
+          "speaker": "raynal",
+          "text": "You’ll see Henry before I do, Captain. Let’s get these supplies aboard."
+        }
+      ]
+    },
+    "return": {
+      "duration": 19,
+      "actual": {
+        "first": 0,
+        "last": 19,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 456,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 276229,
+        "visibleCards": [],
+        "ended": {
+          "nativeTime": 19,
+          "trusted": true
+        }
+      },
+      "cards": [],
+      "arrival": [
+        {
+          "speaker": "musgrave",
+          "text": "Henry and George have gone up for their things. I’ll make the boat fast and go after them."
+        }
+      ]
+    },
+    "epilogue": {
+      "duration": 77,
+      "actual": {
+        "first": 0,
+        "last": 77,
+        "renderers": [
+          "buffered"
+        ],
+        "maxNativeFrames": 1848,
+        "maxCompatibleFrame": 0,
+        "maxDecodedAudioBytes": 1097470,
+        "visibleCards": [
+          "Epigwaitt · August 1865\nFor the crews of the Grafton\nand the Invercauld.",
+          "From the survivors’ accounts\nGrafton\nThomas Musgrave · François Raynal\nInvercauld\nGeorge Dalgarno · Andrew Smith",
+          "The End\nExpedition photographs, 1907\nUniversity of Washington Libraries"
+        ],
+        "ended": {
+          "nativeTime": 77,
+          "trusted": true
+        }
+      },
+      "cards": [
+        {
+          "file": "epilogue-card-1.png",
+          "start": 59,
+          "observed": 61.030592,
+          "text": "Epigwaitt · August 1865\nFor the crews of the Grafton\nand the Invercauld."
+        },
+        {
+          "file": "epilogue-card-2.png",
+          "start": 65,
+          "observed": 67.031521,
+          "text": "From the survivors’ accounts\nGrafton\nThomas Musgrave · François Raynal\nInvercauld\nGeorge Dalgarno · Andrew Smith"
+        },
+        {
+          "file": "epilogue-card-3.png",
+          "start": 71,
+          "observed": 73.02518,
+          "text": "The End\nExpedition photographs, 1907\nUniversity of Washington Libraries"
+        }
+      ]
+    }
+  },
+  "errors": [],
+  "failedAssets": [],
+  "responses": {
+    "/": 200,
+    "/release.json": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/prologue.mp4": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/winter.mp4": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/forge.mp4": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/boat.mp4": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/crossing.mp4": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/promise.mp4": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/return.mp4": 200,
+    "/editions/21-2abd13e141513d026366/assets/story-film/epilogue.mp4": 200
+  },
+  "completed": true,
+  "browser": "158.0.8127.36",
+  "build": "2abd13e141513d0263660966f7f91479030507037551f76ccfe53006c1de4fd1",
+  "gameActions": 96,
+  "archive": "Origin unknown",
+  "earnedReels": [
+    "prologue",
+    "winter",
+    "forge",
+    "boat",
+    "crossing",
+    "promise",
+    "return",
+    "epilogue"
+  ]
+}

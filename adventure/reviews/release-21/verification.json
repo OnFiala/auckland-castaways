@@ -1,0 +1,201 @@
+{
+  "edition": 21,
+  "observed_on": "2026-11-24",
+  "release_commit": "72e45d29251bfafb60839e5343de3d4ef8ff0902",
+  "game_source_commit": "0963850a115010b3ddb62192763549c0c303a064",
+  "site": {
+    "url": "https://posledni-vrtak-auckland.andrewxix.chatgpt.site/",
+    "sites_version": 22,
+    "build": "2abd13e141513d026366",
+    "manifest_sha256": "bc47c79290e48f8402ffc13fb41e308c9801a142c581e8f872c4890b4ce93d96",
+    "all_served_files_verified_anonymously": 736,
+    "current_files_verified": 369,
+    "preceding_immutable_files_verified": 345
+  },
+  "delayed_first_painting": {
+    "foreword_before_room_save": true,
+    "began_and_left_film_while_beach_was_loading": true,
+    "initial_beach_actions": 0,
+    "resumed_item": "rope",
+    "after_actions": 1
+  },
+  "public_playthrough": {
+    "browser": "158.0.8127.36",
+    "game_actions": 96,
+    "completed": true,
+    "final_archive": "Origin unknown",
+    "unlocked_replays": [
+      "prologue",
+      "winter",
+      "forge",
+      "boat",
+      "crossing",
+      "promise",
+      "return",
+      "epilogue"
+    ],
+    "script_errors": []
+  },
+  "reels": [
+    {
+      "id": "prologue",
+      "seconds": 82,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 82,
+        "native_frames": 1968,
+        "native_end": {
+          "nativeTime": 82,
+          "trusted": true
+        },
+        "visible_title_cards": 2
+      }
+    },
+    {
+      "id": "winter",
+      "seconds": 21,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 21,
+        "native_frames": 504,
+        "native_end": {
+          "nativeTime": 21,
+          "trusted": true
+        },
+        "visible_title_cards": 0
+      }
+    },
+    {
+      "id": "forge",
+      "seconds": 20,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 20,
+        "native_frames": 480,
+        "native_end": {
+          "nativeTime": 20,
+          "trusted": true
+        },
+        "visible_title_cards": 0
+      }
+    },
+    {
+      "id": "boat",
+      "seconds": 20,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 20,
+        "native_frames": 480,
+        "native_end": {
+          "nativeTime": 20,
+          "trusted": true
+        },
+        "visible_title_cards": 0
+      }
+    },
+    {
+      "id": "crossing",
+      "seconds": 21,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 21,
+        "native_frames": 504,
+        "native_end": {
+          "nativeTime": 21,
+          "trusted": true
+        },
+        "visible_title_cards": 0
+      }
+    },
+    {
+      "id": "promise",
+      "seconds": 22,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 22,
+        "native_frames": 528,
+        "native_end": {
+          "nativeTime": 22,
+          "trusted": true
+        },
+        "visible_title_cards": 0
+      }
+    },
+    {
+      "id": "return",
+      "seconds": 19,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 19,
+        "native_frames": 456,
+        "native_end": {
+          "nativeTime": 19,
+          "trusted": true
+        },
+        "visible_title_cards": 0
+      }
+    },
+    {
+      "id": "epilogue",
+      "seconds": 77,
+      "offline_natural_end": true,
+      "public_observation": {
+        "renderer": [
+          "buffered"
+        ],
+        "last_time_seconds": 77,
+        "native_frames": 1848,
+        "native_end": {
+          "nativeTime": 77,
+          "trusted": true
+        },
+        "visible_title_cards": 3
+      }
+    }
+  ],
+  "dialogue_and_animation": {
+    "rooms": 14,
+    "conversations": 22,
+    "lines_in_english": 66,
+    "actions_on_separate_crew_route": 96,
+    "walking_samples": 111
+  },
+  "standalone": {
+    "seconds": 282,
+    "english_caption_cues": 75,
+    "sampled_frames_compared": 2256,
+    "sha256": "a17cc2663c1fb23a18d63151df399de780f17e096f2401bd0c17d2566802cf23"
+  },
+  "downloads": {
+    "until-we-return-edition-21.zip": {
+      "sha256": "1a7aacfb26d8e5c4c9bfde436054ff2d15e0e97e01b3edf96eea5105ce0e1558",
+      "bytes": 132455266
+    },
+    "until-we-return-story-film.mp4": {
+      "sha256": "a17cc2663c1fb23a18d63151df399de780f17e096f2401bd0c17d2566802cf23",
+      "bytes": 34112162
+    }
+  },
+  "ci": "https://github.com/OnFiala/auckland-castaways/actions/runs/45484109406"
+}

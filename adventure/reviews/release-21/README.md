@@ -1,6 +1,6 @@
 # Until We Return · Before the voyage
 
-Při prvním spuštění máš čas přečíst si, koho budeš hrát. Jsi námořník Alick McLaren. Po ztroskotání Raynal sotva chodí a do setmění potřebujete pro posádku najít přístřeší. Volbou **Begin the voyage** příběh začne. Nad sydneyským přístavem se objeví název hry, datum a krátké představení posádky. První hlas zazní po šestnácti sekundách filmu.
+Při prvním spuštění máš čas přečíst si, koho budeš hrát. Jsi námořník Alick McLaren. Po ztroskotání Raynal sotva chodí a do setmění potřebujete pro posádku najít přístřeší. Volbou **Begin the voyage** příběh začne. Nad sydneyským přístavem se objeví název hry, datum a krátké představení posádky. Předehra trvá šestnáct sekund. Vypravěč se ozve kolem sedmnácté sekundy, když se příběh přesune k nakládání zásob.
 
 ![První návštěva. Napravo od textu kotví v šerém přístavu škuner. Pod krátkým představením Alicka je jediné tlačítko Begin the voyage.](foreword-desktop.jpg)
 
@@ -9,6 +9,12 @@ Na telefonu se celý úvod vejde na obrazovku v obou polohách. [Úvod na výšk
 Po posledním nalodění následuje večeře na palubě záchranného kutru. Vyprávění se potom vrátí k dřívějšímu ztroskotání na severu ostrova a k dopisům přeživších z *Invercauldu*. Po poslední větě zůstane v obraze na chvíli prázdný Epigwaitt. Závěrečné titulky věnují příběh oběma posádkám. Po doznění hudby si můžeš u archivního stolu prohlédnout dopisy i dobovou mapu. [Dopisy na archivním stole](../../EPILOGUE.md)
 
 ![Záběr z 62. sekundy posledního filmu. Skrz otevřené dveře prázdného Epigwaittu je vidět Carnley Harbour a v titulku je věnování oběma posádkám.](coda.jpg)
+
+Pokud už máš rozehranou kapitolu, hra se otevře na posledním uloženém místě. Úvodní film si můžeš pustit v deníku **Our journey**, u prvního záznamu **The First Night** volbou **View film**. [Úvodník na veřejné adrese](public-foreword.jpg) · [Poslední titulek přímo ve hře](last-title-in-game.jpg)
+
+## Ověřený průchod veřejnou hrou
+
+Čistý prohlížeč bez účtu dokončil sedm kapitol, osm pracovních hlavolamů a 96 herních akcí. Všech osm filmů přehrál se zvukem od prvního snímku až do přirozeného konce. Po 77sekundovém epilogu otevřel archiv, přiřadil zprávy k jejich autorům a u srpnového kouře ponechal závěr *Origin unknown*. V deníku pak byly přístupné všechny filmové kapitoly. [Záznam průchodu a všech osmi filmů](public-playthrough.json) · [Ověření vydání a stažení](verification.json) · [Veřejný přehled vydání](https://posledni-vrtak-auckland.andrewxix.chatgpt.site/release.json)
 
 ## The passage through the game
 
